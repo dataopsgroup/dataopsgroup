@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -23,11 +24,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white">Data Architecture</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Analytics & BI</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Data Governance</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">DataOps Implementation</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Technology Consulting</a></li>
+              <li><Link to="/services" className="text-gray-300 hover:text-white">Data Architecture</Link></li>
+              <li><Link to="/services" className="text-gray-300 hover:text-white">Analytics & BI</Link></li>
+              <li><Link to="/services" className="text-gray-300 hover:text-white">Data Governance</Link></li>
+              <li><Link to="/services" className="text-gray-300 hover:text-white">DataOps Implementation</Link></li>
+              <li><Link to="/services" className="text-gray-300 hover:text-white">Technology Consulting</Link></li>
             </ul>
           </div>
           
@@ -35,18 +36,18 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Company</h3>
             <ul className="space-y-3">
               <li><a href="#about" className="text-gray-300 hover:text-white">About Us</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Leadership</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Blog</a></li>
+              <li><Link to="/leadership" className="text-gray-300 hover:text-white">Leadership</Link></li>
+              <li><Link to="/blog" className="text-gray-300 hover:text-white">Blog</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-6">Resources</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white">Case Studies</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Whitepapers</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Documentation</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">FAQs</a></li>
+              <li><Link to="/case-studies" className="text-gray-300 hover:text-white">Case Studies</Link></li>
+              <li><Link to="/whitepapers" className="text-gray-300 hover:text-white">Whitepapers</Link></li>
+              <li><Link to="/documentation" className="text-gray-300 hover:text-white">Documentation</Link></li>
+              <li><Link to="/faqs" className="text-gray-300 hover:text-white">FAQs</Link></li>
             </ul>
           </div>
         </div>
@@ -57,9 +58,9 @@ const Footer = () => {
               &copy; {new Date().getFullYear()} DataOps Group. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm">Terms of Service</a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm">Sitemap</a>
+              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm">Privacy Policy</Link>
+              <Link to="/terms" className="text-gray-400 hover:text-white text-sm">Terms of Service</Link>
+              <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm">Sitemap</Link>
             </div>
           </div>
         </div>

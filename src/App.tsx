@@ -10,6 +10,15 @@ import ServiceDetail from "./pages/ServiceDetail";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import ContactPage from "./pages/ContactPage";
+import ServicesPage from "./pages/Services";
+import LeadershipPage from "./pages/Leadership";
+import CaseStudiesPage from "./pages/CaseStudies";
+import WhitepapersPage from "./pages/Whitepapers";
+import DocumentationPage from "./pages/Documentation";
+import FAQsPage from "./pages/FAQs";
+import PrivacyPage from "./pages/Privacy";
+import TermsPage from "./pages/Terms";
+import SitemapPage from "./pages/Sitemap";
 
 const queryClient = new QueryClient();
 
@@ -21,10 +30,19 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:postId" element={<BlogPost />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/leadership" element={<LeadershipPage />} />
+          <Route path="/case-studies" element={<CaseStudiesPage />} />
+          <Route path="/whitepapers" element={<WhitepapersPage />} />
+          <Route path="/documentation" element={<DocumentationPage />} />
+          <Route path="/faqs" element={<FAQsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/sitemap" element={<SitemapPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
