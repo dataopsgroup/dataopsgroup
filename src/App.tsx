@@ -11,6 +11,7 @@ import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import ContactPage from "./pages/ContactPage";
 import ServicesPage from "./pages/Services";
+import ApproachPage from "./pages/ApproachPage";
 import LeadershipPage from "./pages/Leadership";
 import CaseStudiesPage from "./pages/CaseStudies";
 import WhitepapersPage from "./pages/Whitepapers";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
+          <Route path="/approach" element={<ApproachPage />} />
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:postId" element={<BlogPost />} />
           <Route path="/contact" element={<ContactPage />} />
