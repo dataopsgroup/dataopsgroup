@@ -22,6 +22,7 @@ import TermsPage from "./pages/Terms";
 import SitemapPage from "./pages/Sitemap";
 import GetStartedPage from "./pages/GetStartedPage";
 import ThankYouPage from "./pages/ThankYouPage";
+import PerplexityPage from "./pages/PerplexityPage";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => (
           <Route path="/sitemap" element={<SitemapPage />} />
           <Route path="/get-started" element={<GetStartedPage />} />
           <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/perplexity" element={<PerplexityPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
