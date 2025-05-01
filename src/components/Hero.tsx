@@ -10,10 +10,10 @@ const Hero = () => {
         <div className="space-y-8">
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Data-Driven <span className="text-green-500">Operations Excellence</span>
+              Fix Your <span className="text-green-500">HubSpot Mess</span>, Generate Revenue
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-              Transform your business data into actionable insights. Our expert DataOps solutions streamline workflows, enhance data quality, and drive measurable growth across your entire organization.
+              It's not HubSpot that's failing you—it's your messy data and setup. We transform chaotic, dirty HubSpot portals into organized revenue engines that convert your existing contacts into paying customers.
             </p>
           </div>
           
@@ -36,11 +36,11 @@ const Hero = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
                 <Database className="h-10 w-10 text-dataops-600 mb-4" />
-                <h3 className="font-medium text-dataops-800">Data Architecture</h3>
+                <h3 className="font-medium text-dataops-800">HubSpot Cleansing</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
                 <BarChart2 className="h-10 w-10 text-dataops-600 mb-4" />
-                <h3 className="font-medium text-dataops-800">Analytics Solutions</h3>
+                <h3 className="font-medium text-dataops-800">Revenue Conversion</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
                 <Share2 className="h-10 w-10 text-dataops-600 mb-4" />
@@ -50,7 +50,7 @@ const Hero = () => {
                 <div className="h-10 w-10 rounded-full bg-dataops-100 flex items-center justify-center mb-4">
                   <span className="text-dataops-700 font-bold">+</span>
                 </div>
-                <h3 className="font-medium text-dataops-800">DataOps Services</h3>
+                <h3 className="font-medium text-dataops-800">HubSpot Services</h3>
               </div>
             </div>
           </div>
