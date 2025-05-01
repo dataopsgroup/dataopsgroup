@@ -43,12 +43,12 @@ const GetStartedPage = () => {
   }, []);
 
   return (
-    <>
+    <div className="page-container">
       <Helmet>
         <title>Get Started - DataOps Group</title>
       </Helmet>
       <Navbar />
-      <main className="pt-24 pb-16">
+      <main className="content-wrapper pt-24 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold text-dataops-900 mb-6">Get Started with DataOps Group</h1>
@@ -78,7 +78,7 @@ const GetStartedPage = () => {
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
