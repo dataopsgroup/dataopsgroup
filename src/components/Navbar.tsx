@@ -3,17 +3,18 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from "@/lib/utils";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
-    { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
-    { name: 'Approach', href: '#approach' },
-    { name: 'Insights', href: '/insights' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Services', href: '/#services' },
+    { name: 'About', href: '/#about' },
+    { name: 'Approach', href: '/#approach' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   useEffect(() => {
@@ -38,25 +39,25 @@ const Navbar = () => {
         scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       )}
     >
-      <div className="container mx-auto flex justify-between items-center">
-        <a href="/" className="flex items-center">
+      <div className="container mx-auto flex justify-between items-center px-4">
+        <Link to="/" className="flex items-center">
           <img 
-            src="https://www.dataopsgroup.com/assets/img/logo.svg" 
+            src="/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png" 
             alt="DataOps Group Logo" 
             className="h-8 md:h-10" 
           />
-        </a>
+        </Link>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <a 
+            <Link 
               key={item.name}
-              href={item.href}
+              to={item.href}
               className="text-dataops-900 hover:text-dataops-600 font-medium transition-colors"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
           <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
         </div>
@@ -79,14 +80,14 @@ const Navbar = () => {
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-md animate-fade-in">
           <div className="container mx-auto py-4 flex flex-col space-y-4">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 onClick={() => setIsOpen(false)}
                 className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <div className="px-4 pt-2">
               <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
