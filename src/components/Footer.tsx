@@ -15,7 +15,7 @@ const Footer = () => {
               efficiency and innovation through expert consulting and tailored solutions.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-white">
+              <a href="https://www.linkedin.com/company/dataopsgroup/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white">
                 <Linkedin size={20} />
               </a>
             </div>
