@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,40 +16,11 @@ const Contact = () => {
             <Card>
               <CardContent className="pt-6">
                 <div className="flex items-start">
-                  <Mail className="w-5 h-5 text-dataops-600 mr-3 mt-1" />
-                  <div>
-                    <h3 className="font-medium mb-1">Email Us</h3>
-                    <p className="text-gray-600">info@dataopsgroup.com</p>
-                    <p className="text-gray-600">support@dataopsgroup.com</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-start">
                   <Phone className="w-5 h-5 text-dataops-600 mr-3 mt-1" />
                   <div>
                     <h3 className="font-medium mb-1">Call Us</h3>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
-                    <p className="text-gray-600">Mon-Fri, 9am-6pm EST</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex items-start">
-                  <MapPin className="w-5 h-5 text-dataops-600 mr-3 mt-1" />
-                  <div>
-                    <h3 className="font-medium mb-1">Visit Us</h3>
-                    <p className="text-gray-600">
-                      123 Data Drive<br />
-                      Tech City, CA 94103<br />
-                      United States
-                    </p>
+                    <p className="text-gray-600">+1 479 844 2052</p>
+                    <p className="text-gray-600">Mon-Thu, 9am-5pm CT</p>
                   </div>
                 </div>
               </CardContent>
