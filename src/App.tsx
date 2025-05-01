@@ -23,6 +23,7 @@ import SitemapPage from "./pages/Sitemap";
 import GetStartedPage from "./pages/GetStartedPage";
 import ThankYouPage from "./pages/ThankYouPage";
 import PerplexityPage from "./pages/PerplexityPage";
+import AboutPage from "./pages/AboutPage"; // Added import for AboutPage
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/blog" element={<BlogList />} />
           <Route path="/blog/:postId" element={<BlogPost />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage />} /> {/* Added new route for About page */}
           <Route path="/leadership" element={<LeadershipPage />} />
           <Route path="/case-studies" element={<CaseStudiesPage />} />
           <Route path="/whitepapers" element={<WhitepapersPage />} />
