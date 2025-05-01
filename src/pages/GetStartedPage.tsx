@@ -13,11 +13,31 @@ const GetStartedPage = () => {
     script.defer = true;
     document.body.appendChild(script);
 
+    // Add onload handler to initialize form with redirect URL
+    script.onload = () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          region: "na1",
+          portalId: "21794360",
+          formId: "f58580b1-2bf3-4df4-9702-81c5808ba539",
+          target: ".hs-form-container",
+          redirectUrl: `${window.location.origin}/thank-you`,
+        });
+      }
+    };
+
     return () => {
       // Clean up
       const scriptToRemove = document.querySelector('script[src="https://js.hsforms.net/forms/embed/21794360.js"]');
       if (scriptToRemove && scriptToRemove.parentNode) {
         scriptToRemove.parentNode.removeChild(scriptToRemove);
+      }
+      // Remove any HubSpot form elements that might have been created
+      const formContainer = document.querySelector('.hs-form-container');
+      if (formContainer) {
+        while (formContainer.firstChild) {
+          formContainer.removeChild(formContainer.firstChild);
+        }
       }
     };
   }, []);
@@ -38,12 +58,7 @@ const GetStartedPage = () => {
             
             {/* HubSpot Form Container */}
             <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-              <div 
-                className="hs-form-frame" 
-                data-region="na1" 
-                data-form-id="f58580b1-2bf3-4df4-9702-81c5808ba539" 
-                data-portal-id="21794360"
-              >
+              <div className="hs-form-container">
                 <div className="flex justify-center items-center h-20">
                   <p className="text-gray-500">Loading form...</p>
                 </div>
@@ -66,5 +81,16 @@ const GetStartedPage = () => {
     </>
   );
 };
+
+// Add HubSpot form typing to window object
+declare global {
+  interface Window {
+    hbspt?: {
+      forms: {
+        create: (config: any) => void;
+      };
+    };
+  }
+}
 
 export default GetStartedPage;
