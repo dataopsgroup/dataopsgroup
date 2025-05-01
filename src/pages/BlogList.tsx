@@ -38,34 +38,31 @@ const BlogList = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post) => (
                 <Card key={post.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
-                  <CardHeader className="pb-4">
-                    <img 
-                      src={post.coverImage} 
-                      alt={post.title} 
-                      className="w-full h-48 object-cover rounded-t-lg mb-4" 
-                    />
-                    <CardTitle className="text-xl font-semibold">
-                      <Link to={`/blog/${post.id}`} className="hover:text-dataops-600 transition-colors">
+                  <Link to={`/blog/${post.id}`} className="flex flex-col h-full">
+                    <CardHeader className="pb-4">
+                      <img 
+                        src={post.coverImage} 
+                        alt={post.title} 
+                        className="w-full h-48 object-cover rounded-t-lg mb-4" 
+                      />
+                      <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
                         {post.title}
-                      </Link>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <CardDescription className="text-gray-700">
-                      {post.excerpt}
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
-                    <div className="text-sm text-gray-500">
-                      {post.date} · {post.category}
-                    </div>
-                    <Link 
-                      to={`/blog/${post.id}`} 
-                      className="text-dataops-600 hover:text-dataops-800 font-medium text-sm"
-                    >
-                      Read More
-                    </Link>
-                  </CardFooter>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <CardDescription className="text-gray-700">
+                        {post.excerpt}
+                      </CardDescription>
+                    </CardContent>
+                    <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
+                      <div className="text-sm text-gray-500">
+                        {post.date} · {post.category}
+                      </div>
+                      <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
+                        Read More
+                      </span>
+                    </CardFooter>
+                  </Link>
                 </Card>
               ))}
             </div>
