@@ -35,7 +35,7 @@ const AboutPage = () => {
                       </Avatar>
                     </div>
                     <h2 className="text-2xl font-bold text-center mb-2">Geoff Tucker</h2>
-                    <p className="text-dataops-700 text-center mb-4">Data Operations Strategist</p>
+                    <p className="text-dataops-700 text-center mb-4">Founder</p>
                     <div className="flex justify-center">
                       <a 
                         href="https://www.linkedin.com/in/geoffreytucker/" 
