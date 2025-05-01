@@ -59,7 +59,9 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
+          <Link to="/get-started">
+            <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
+          </Link>
         </div>
         
         {/* Mobile menu button */}
@@ -90,9 +92,11 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="px-4 pt-2">
-              <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
-                Get Started
-              </Button>
+              <Link to="/get-started" onClick={() => setIsOpen(false)}>
+                <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
+                  Get Started
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
