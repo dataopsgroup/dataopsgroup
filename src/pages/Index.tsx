@@ -6,7 +6,6 @@ import Services from '@/components/Services';
 import About from '@/components/About';
 import Approach from '@/components/Approach';
 import CTABanner from '@/components/CTABanner';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -19,7 +18,6 @@ const Index = () => {
         <About />
         <Approach />
         <CTABanner />
-        <Contact />
       </main>
       <Footer />
     </div>

@@ -14,7 +14,7 @@ const Navbar = () => {
     { name: 'About', href: '/#about' },
     { name: 'Approach', href: '/#approach' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   useEffect(() => {

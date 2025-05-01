@@ -10,15 +10,6 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding bg-white">
       <div className="container mx-auto">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get in <span className="gradient-text">Touch</span>
-          </h2>
-          <p className="text-lg text-gray-600">
-            Ready to transform your data operations? Contact us today.
-          </p>
-        </div>
-
         <div className="grid md:grid-cols-3 gap-8">
           {/* Contact Information */}
           <div className="md:col-span-1 space-y-6">
