@@ -59,7 +59,7 @@ const Navbar = () => {
             </Link>
           ))}
           <Link to="/contact">
-            <Button className="bg-dataops-600 hover:bg-dataops-700">Contact</Button>
+            <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
           </Link>
         </div>
         
@@ -93,7 +93,7 @@ const Navbar = () => {
             <div className="px-4 pt-2">
               <Link to="/contact" onClick={() => setIsOpen(false)}>
                 <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
-                  Contact
+                  Get Started
                 </Button>
               </Link>
             </div>
