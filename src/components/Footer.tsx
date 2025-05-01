@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -15,16 +15,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-white">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
                 <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                <Instagram size={20} />
               </a>
             </div>
           </div>
@@ -45,8 +36,6 @@ const Footer = () => {
             <ul className="space-y-3">
               <li><a href="#about" className="text-gray-300 hover:text-white">About Us</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white">Leadership</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Careers</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">News & Events</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white">Blog</a></li>
             </ul>
           </div>
@@ -56,7 +45,6 @@ const Footer = () => {
             <ul className="space-y-3">
               <li><a href="#" className="text-gray-300 hover:text-white">Case Studies</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white">Whitepapers</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white">Webinars</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white">Documentation</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white">FAQs</a></li>
             </ul>
