@@ -60,18 +60,21 @@ const BlogPostPage = () => {
         <article className="py-12 md:py-16 px-4">
           <div className="container mx-auto">
             <div className="max-w-3xl mx-auto">
-              <Link 
-                to="/blog" 
-                className="inline-flex items-center text-dataops-600 hover:text-dataops-800 mb-8 font-medium py-2 px-4 rounded transition-colors"
+              <Button
+                asChild
+                variant="outline"
+                className="mb-8 bg-gray-700 hover:bg-gray-800 text-white border-none"
               >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Blog
-              </Link>
+                <Link to="/blog">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Blog
+                </Link>
+              </Button>
               
               <header className="mb-10">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center text-gray-600 mb-6">
-                  <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
+                  <span>{format(new Date(post.date), 'MM dd, yyyy')}</span>
                   <span className="mx-2">•</span>
                   <span>{post.author}</span>
                   <span className="mx-2">•</span>
