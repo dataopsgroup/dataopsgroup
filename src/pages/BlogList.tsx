@@ -13,7 +13,7 @@ const BlogList = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Blog | DataOps Group</title>
+        <title>Insights | DataOps Group</title>
         <meta 
           name="description" 
           content="Insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." 
@@ -39,7 +39,7 @@ const BlogList = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post) => (
                 <Card key={post.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
-                  <Link to={`/blog/${post.id}`} className="flex flex-col h-full">
+                  <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
                     <CardHeader className="pb-4">
                       <img 
                         src={post.coverImage} 
@@ -57,7 +57,7 @@ const BlogList = () => {
                     </CardContent>
                     <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
                       <div className="text-sm text-gray-500">
-                        {format(new Date(post.date), 'MM dd, yyyy')} · {post.category}
+                        {format(new Date(post.date), 'MMMM dd, yyyy')} · {post.author}
                       </div>
                       <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
                         Read More

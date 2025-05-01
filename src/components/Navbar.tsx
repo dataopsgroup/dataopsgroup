@@ -11,9 +11,9 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Services', href: '/services' },
-    { name: 'About', href: '/about' }, // Updated link from '/#about' to '/about'
+    { name: 'About', href: '/about' },
     { name: 'Approach', href: '/approach' },
-    { name: 'Insights', href: '/blog' }, // Changed "Blog" to "Insights" here
+    { name: 'Insights', href: '/insights' },
     { name: 'Contact', href: '/contact' },
   ];
 

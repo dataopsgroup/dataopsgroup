@@ -40,7 +40,7 @@ const BlogPostPage = () => {
             <h1 className="text-2xl font-bold mb-4">Blog Post Not Found</h1>
             <p className="mb-6">Sorry, we couldn't find the blog post you're looking for.</p>
             <Button asChild>
-              <Link to="/blog">Return to Blog</Link>
+              <Link to="/insights">Return to Insights</Link>
             </Button>
           </div>
         </main>
@@ -65,16 +65,16 @@ const BlogPostPage = () => {
                 variant="outline"
                 className="mb-8 bg-gray-700 hover:bg-gray-800 text-white border-none"
               >
-                <Link to="/blog">
+                <Link to="/insights">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to Blog
+                  Back to Insights
                 </Link>
               </Button>
               
               <header className="mb-10">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center text-gray-600 mb-6">
-                  <span>{format(new Date(post.date), 'MM dd, yyyy')}</span>
+                  <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
                   <span className="mx-2">•</span>
                   <span>{post.author}</span>
                   <span className="mx-2">•</span>

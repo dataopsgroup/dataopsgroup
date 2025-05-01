@@ -38,8 +38,8 @@ const App = () => (
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:serviceId" element={<ServiceDetail />} />
           <Route path="/approach" element={<ApproachPage />} />
-          <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:postId" element={<BlogPost />} />
+          <Route path="/insights" element={<BlogList />} />
+          <Route path="/insights/:postId" element={<BlogPost />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} /> {/* Added new route for About page */}
           <Route path="/leadership" element={<LeadershipPage />} />
