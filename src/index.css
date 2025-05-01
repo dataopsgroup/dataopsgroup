@@ -92,4 +92,29 @@
   .section-padding {
     @apply py-16 md:py-24 px-4 md:px-8 lg:px-16;
   }
+  
+  /* Blog post styling */
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-bold mt-6 mb-3;
+  }
+  
+  .prose h4 {
+    @apply text-lg font-bold mt-5 mb-2;
+  }
+  
+  .prose p {
+    @apply mb-4 text-gray-700;
+  }
+  
+  .prose ul {
+    @apply mb-6 pl-6 list-disc;
+  }
+  
+  .prose ul li {
+    @apply mb-2 text-gray-700;
+  }
 }
