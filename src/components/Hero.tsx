@@ -2,6 +2,7 @@
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -18,12 +19,14 @@ const Hero = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
-              Schedule a Consultation
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base">
-              View Our Services
+            <Link to="/contact">
+              <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
+                Schedule a Consultation
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" asChild>
+              <Link to="/services">View Our Services</Link>
             </Button>
           </div>
         </div>

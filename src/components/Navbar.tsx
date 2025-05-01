@@ -14,7 +14,6 @@ const Navbar = () => {
     { name: 'About', href: '/about' },
     { name: 'Approach', href: '/approach' },
     { name: 'Insights', href: '/insights' },
-    { name: 'Contact', href: '/contact' },
   ];
 
   useEffect(() => {
@@ -59,8 +58,8 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <Link to="/get-started">
-            <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
+          <Link to="/contact">
+            <Button className="bg-dataops-600 hover:bg-dataops-700">Contact</Button>
           </Link>
         </div>
         
@@ -92,9 +91,9 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="px-4 pt-2">
-              <Link to="/get-started" onClick={() => setIsOpen(false)}>
+              <Link to="/contact" onClick={() => setIsOpen(false)}>
                 <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
-                  Get Started
+                  Contact
                 </Button>
               </Link>
             </div>
