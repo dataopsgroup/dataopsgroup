@@ -12,7 +12,6 @@ const Navbar = () => {
     { name: 'Services', href: '#services' },
     { name: 'About', href: '#about' },
     { name: 'Approach', href: '#approach' },
-    { name: 'Clients', href: '#clients' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -40,7 +39,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center">
         <a href="/" className="flex items-center">
-          <span className="text-2xl font-bold gradient-text">DataOps Group</span>
+          <img 
+            src="https://www.dataopsgroup.com/assets/img/logo.svg" 
+            alt="DataOps Group Logo" 
+            className="h-8 md:h-10" 
+          />
         </a>
         
         {/* Desktop Navigation */}

@@ -27,15 +27,6 @@ const Hero = () => {
               View Our Services
             </Button>
           </div>
-
-          <div className="pt-6">
-            <p className="text-sm text-gray-600 mb-4">Trusted by industry leaders</p>
-            <div className="flex flex-wrap gap-8">
-              <div className="text-gray-400 font-semibold">COMPANY A</div>
-              <div className="text-gray-400 font-semibold">COMPANY B</div>
-              <div className="text-gray-400 font-semibold">COMPANY C</div>
-            </div>
-          </div>
         </div>
 
         <div className="relative hidden md:block">
