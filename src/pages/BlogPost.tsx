@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -69,13 +68,13 @@ const BlogPostPage = () => {
       </Helmet>
       <Navbar />
       <main className="flex-1">
-        <article className="py-12 md:py-16 px-4">
+        <article className="py-16 md:py-24 px-4">
           <div className="container mx-auto">
             <div className="max-w-3xl mx-auto">
               <header className="mb-10">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center text-gray-600 mb-6">
-                  <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
+                  <span>{format(new Date(post.date), 'MMMM d, yyyy')}</span>
                   <span className="mx-2">•</span>
                   <span>{post.author}</span>
                   <span className="mx-2">•</span>
