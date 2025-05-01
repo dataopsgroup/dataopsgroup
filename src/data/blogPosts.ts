@@ -7,7 +7,7 @@ export const blogPosts: BlogPost[] = [
     title: "Marketing Data Management and Analytics: From Chaos to Clarity",
     excerpt: "Most marketing organizations collect vast amounts of data but struggle to transform it into meaningful insights. Learn how to transform chaotic marketing data into structured, actionable insights.",
     date: "2025-04-28",
-    author: "DataOps Team",
+    author: "Geoff Tucker",
     category: "Data Management",
     coverImage: "/placeholder.svg",
     content: `
