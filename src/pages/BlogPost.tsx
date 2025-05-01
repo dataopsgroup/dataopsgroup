@@ -60,10 +60,16 @@ const BlogPostPage = () => {
         <article className="py-12 md:py-16 px-4">
           <div className="container mx-auto">
             <div className="max-w-3xl mx-auto">
-              <Link to="/blog" className="inline-flex items-center text-dataops-600 hover:text-dataops-800 mb-8 font-medium">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Blog
-              </Link>
+              <Button 
+                asChild 
+                variant="ghost" 
+                className="inline-flex items-center text-dataops-600 hover:text-dataops-800 mb-8 font-medium"
+              >
+                <Link to="/blog">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Blog
+                </Link>
+              </Button>
               
               <header className="mb-10">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
