@@ -17,8 +17,8 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>HubSpot Data Cleanup & Revenue Optimization | DataOps Group</title>
-        <meta name="description" content="Turn your messy HubSpot portal into a revenue-generating machine. We clean and optimize your HubSpot data to convert existing contacts into paying customers." />
-        <meta name="keywords" content="hubspot cleanup, hubspot optimization, dirty data fix, hubspot revenue, data cleansing, hubspot consulting" />
+        <meta name="description" content="Turn your disorganized HubSpot portal into a revenue-generating machine. We clean and optimize your HubSpot data to convert existing contacts into paying customers." />
+        <meta name="keywords" content="hubspot cleanup, hubspot optimization, data organization, hubspot revenue, data cleansing, hubspot consulting" />
         <link rel="canonical" href="/" />
       </Helmet>
       <Navbar />
@@ -32,12 +32,12 @@ const Index = () => {
               <h2 className="text-2xl font-bold mb-6">HubSpot Revenue Solutions</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="font-medium mb-2">From Messy Data to Money</h3>
+                  <h3 className="font-medium mb-2">From Disorganized Data to Money</h3>
                   <p className="text-gray-600 mb-4">
                     Our <Link to="/services" className="text-dataops-600 hover:underline">HubSpot data cleanup services</Link> transform your chaotic portal into an organized system that actually generates revenue from your existing contacts.
                   </p>
                   <Link to="/services" className="flex items-center text-sm text-dataops-600 hover:text-dataops-800">
-                    Fix your HubSpot problems <ChevronRight className="h-4 w-4 ml-1" />
+                    Fix your HubSpot challenges <ChevronRight className="h-4 w-4 ml-1" />
                   </Link>
                 </div>
                 <div className="bg-gray-50 p-6 rounded-lg">
