@@ -44,7 +44,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png" 
             alt="DataOps Group Logo" 
-            className="h-8 md:h-10" 
+            className="h-12 md:h-15" 
           />
         </Link>
         
