@@ -36,15 +36,15 @@ const Hero = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
                 <Database className="h-10 w-10 text-dataops-600 mb-4" />
-                <h3 className="font-medium text-dataops-800">Data Integration</h3>
+                <h3 className="font-medium text-dataops-800">Portal Optimization</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
                 <BarChart2 className="h-10 w-10 text-dataops-600 mb-4" />
-                <h3 className="font-medium text-dataops-800">Analytics</h3>
+                <h3 className="font-medium text-dataops-800">Unified Customer Journey</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
                 <Share2 className="h-10 w-10 text-dataops-600 mb-4" />
-                <h3 className="font-medium text-dataops-800">Data Sharing</h3>
+                <h3 className="font-medium text-dataops-800">Systems Integration</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-white border border-dataops-100 rounded-lg shadow-sm">
                 <div className="h-10 w-10 rounded-full bg-dataops-100 flex items-center justify-center mb-4">
