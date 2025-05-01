@@ -2,6 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Helmet } from 'react-helmet-async';
 import {
   Accordion,
   AccordionContent,
@@ -12,6 +13,12 @@ import {
 const FAQsPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Frequently Asked Questions - DataOps Group</title>
+        <meta name="description" content="Find answers to common questions about DataOps, our services, implementation timelines, and measuring success in data operations." />
+        <meta name="keywords" content="FAQs, data operations questions, dataops implementation, data management questions" />
+        <link rel="canonical" href="/faqs" />
+      </Helmet>
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-4">

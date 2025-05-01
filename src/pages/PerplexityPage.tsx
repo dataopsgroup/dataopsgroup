@@ -96,7 +96,10 @@ const PerplexityPage = () => {
   return (
     <div className="page-container">
       <Helmet>
-        <title>Perplexity AI - DataOps Group</title>
+        <title>Perplexity AI Integration - DataOps Group</title>
+        <meta name="description" content="Utilize Perplexity AI's powerful language model to get answers to your data operations questions and generate insights." />
+        <meta name="keywords" content="perplexity AI, AI integration, data insights, AI assistant" />
+        <link rel="canonical" href="/perplexity" />
       </Helmet>
       <Navbar />
       <main className="content-wrapper pt-24 pb-16">
@@ -118,6 +121,7 @@ const PerplexityPage = () => {
                     placeholder="Enter your Perplexity API key"
                     value={apiKey}
                     onChange={(e) => setApiKey(e.target.value)}
+                    aria-label="Perplexity API Key"
                   />
                   <div className="flex flex-row gap-2">
                     <Button onClick={saveApiKey} className="w-full">Save API Key</Button>
@@ -148,6 +152,7 @@ const PerplexityPage = () => {
                     className="min-h-[100px]"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
+                    aria-label="Your question or prompt"
                   />
                   <Button type="submit" disabled={isLoading || !savedApiKey} className="w-full">
                     {isLoading ? 'Processing...' : 'Send to Perplexity'}

@@ -46,6 +46,9 @@ const GetStartedPage = () => {
     <div className="page-container">
       <Helmet>
         <title>Get Started - DataOps Group</title>
+        <meta name="description" content="Start your data transformation journey with DataOps Group. Fill out our form to connect with our experts and receive a customized solution." />
+        <meta name="keywords" content="get started, contact form, data consultation, free assessment" />
+        <link rel="canonical" href="/get-started" />
       </Helmet>
       <Navbar />
       <main className="content-wrapper pt-24 pb-16">

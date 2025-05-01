@@ -3,10 +3,17 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const SitemapPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Sitemap - DataOps Group</title>
+        <meta name="description" content="Navigate our website with ease. Find all pages and resources organized in our sitemap." />
+        <meta name="keywords" content="sitemap, navigation, website map, pages" />
+        <link rel="canonical" href="/sitemap" />
+      </Helmet>
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-4">
@@ -24,6 +31,9 @@ const SitemapPage = () => {
                   <li><Link to="/services" className="text-dataops-600 hover:underline">Services</Link></li>
                   <li><Link to="/contact" className="text-dataops-600 hover:underline">Contact</Link></li>
                   <li><Link to="/blog" className="text-dataops-600 hover:underline">Blog</Link></li>
+                  <li><Link to="/approach" className="text-dataops-600 hover:underline">Our Approach</Link></li>
+                  <li><Link to="/get-started" className="text-dataops-600 hover:underline">Get Started</Link></li>
+                  <li><Link to="/perplexity" className="text-dataops-600 hover:underline">Perplexity AI</Link></li>
                 </ul>
               </div>
               

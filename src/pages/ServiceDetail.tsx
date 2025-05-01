@@ -7,6 +7,7 @@ import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useParams, Link } from 'react-router-dom';
 import { services } from '@/components/Services';
+import { Helmet } from 'react-helmet-async';
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
@@ -25,13 +26,19 @@ const ServiceDetail = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>{service.title} - DataOps Group</title>
+        <meta name="description" content={`Learn about our ${service.title} service and how it can help your business optimize data operations and drive growth.`} />
+        <meta name="keywords" content={`${service.title.toLowerCase()}, data operations, ${service.id}, data consulting`} />
+        <link rel="canonical" href={`/services/${serviceId}`} />
+      </Helmet>
       <Navbar />
       <main>
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
           <div className="container mx-auto">
             <Link to="/#services" className="flex items-center text-dataops-600 hover:text-dataops-800 mb-8">
-              <ArrowLeft className="h-4 w-4 mr-2" />
+              <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
               <span>Back to all services</span>
             </Link>
             
@@ -56,7 +63,7 @@ const ServiceDetail = () => {
               <div className="lg:col-span-2 flex justify-center">
                 <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10 w-full max-w-md">
                   <div className="flex justify-center items-center h-48 w-full rounded-lg bg-dataops-50">
-                    <div className="text-dataops-600">
+                    <div className="text-dataops-600" aria-hidden="true">
                       {service.icon}
                     </div>
                   </div>
@@ -113,7 +120,7 @@ const ServiceDetail = () => {
                   <ul className="space-y-4">
                     {benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start">
-                        <CheckCircle className="h-5 w-5 text-dataops-600 mr-3 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-5 w-5 text-dataops-600 mr-3 mt-0.5 flex-shrink-0" aria-hidden="true" />
                         <span>{benefit}</span>
                       </li>
                     ))}

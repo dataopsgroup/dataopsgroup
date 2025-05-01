@@ -13,6 +13,9 @@ const ThankYouPage = () => {
     <div className="page-container">
       <Helmet>
         <title>Thank You - DataOps Group</title>
+        <meta name="description" content="Thank you for contacting DataOps Group. Our team will be in touch with you shortly to discuss your data operation needs." />
+        <meta name="keywords" content="thank you, contact confirmation, dataops resources" />
+        <link rel="canonical" href="/thank-you" />
       </Helmet>
       <Navbar />
       <main className="content-wrapper pt-24 pb-16">
@@ -36,7 +39,7 @@ const ThankYouPage = () => {
                 <div className="aspect-[3/4] bg-gray-100 rounded-md mb-4 flex items-center justify-center overflow-hidden">
                   <img 
                     src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
-                    alt="DataOps Whitepaper" 
+                    alt="2025 DataOps Transformation Guide whitepaper cover" 
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -47,7 +50,7 @@ const ThankYouPage = () => {
               </CardContent>
               <CardFooter>
                 <Button className="w-full flex items-center gap-2">
-                  Download Now <ArrowDownToLine size={16} />
+                  Download Now <ArrowDownToLine size={16} aria-hidden="true" />
                 </Button>
               </CardFooter>
             </Card>

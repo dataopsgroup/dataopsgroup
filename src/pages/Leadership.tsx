@@ -3,10 +3,17 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Helmet } from 'react-helmet-async';
 
 const LeadershipPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Leadership Team - DataOps Group</title>
+        <meta name="description" content="Meet the experienced leadership team at DataOps Group driving innovation in data operations and management." />
+        <meta name="keywords" content="leadership, data experts, management team, dataops leadership" />
+        <link rel="canonical" href="/leadership" />
+      </Helmet>
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-4">
@@ -17,7 +24,7 @@ const LeadershipPage = () => {
             {/* Leadership profiles */}
             <div className="text-center">
               <Avatar className="h-40 w-40 mx-auto mb-4">
-                <AvatarImage src="/placeholder.svg" alt="CEO" />
+                <AvatarImage src="/placeholder.svg" alt="Jane Doe - CEO of DataOps Group" />
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
               <h2 className="text-xl font-semibold">Jane Doe</h2>
@@ -28,7 +35,7 @@ const LeadershipPage = () => {
             </div>
             <div className="text-center">
               <Avatar className="h-40 w-40 mx-auto mb-4">
-                <AvatarImage src="/placeholder.svg" alt="CTO" />
+                <AvatarImage src="/placeholder.svg" alt="John Smith - CTO of DataOps Group" />
                 <AvatarFallback>JS</AvatarFallback>
               </Avatar>
               <h2 className="text-xl font-semibold">John Smith</h2>
@@ -39,7 +46,7 @@ const LeadershipPage = () => {
             </div>
             <div className="text-center">
               <Avatar className="h-40 w-40 mx-auto mb-4">
-                <AvatarImage src="/placeholder.svg" alt="COO" />
+                <AvatarImage src="/placeholder.svg" alt="Anna Lee - COO of DataOps Group" />
                 <AvatarFallback>AL</AvatarFallback>
               </Avatar>
               <h2 className="text-xl font-semibold">Anna Lee</h2>

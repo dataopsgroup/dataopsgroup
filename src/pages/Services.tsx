@@ -2,10 +2,17 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const ServicesPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Our Services - DataOps Group</title>
+        <meta name="description" content="Explore our comprehensive data operations services including data architecture, analytics, governance, and technology consulting." />
+        <meta name="keywords" content="data services, data architecture, analytics, BI, data governance, dataops implementation" />
+        <link rel="canonical" href="/services" />
+      </Helmet>
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-4">

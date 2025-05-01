@@ -4,10 +4,17 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const WhitepapersPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Whitepapers & Research - DataOps Group</title>
+        <meta name="description" content="Access our collection of whitepapers and research on data operations, governance, and analytics to enhance your organization's data strategy." />
+        <meta name="keywords" content="whitepapers, research papers, data management, dataops research, data governance" />
+        <link rel="canonical" href="/whitepapers" />
+      </Helmet>
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-4">
@@ -24,7 +31,7 @@ const WhitepapersPage = () => {
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-500">Published: March 2025</span>
                 <Button variant="outline" className="flex items-center gap-2">
-                  Download <ArrowRight size={16} />
+                  Download <ArrowRight size={16} aria-hidden="true" />
                 </Button>
               </div>
             </div>
@@ -38,7 +45,7 @@ const WhitepapersPage = () => {
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-500">Published: January 2025</span>
                 <Button variant="outline" className="flex items-center gap-2">
-                  Download <ArrowRight size={16} />
+                  Download <ArrowRight size={16} aria-hidden="true" />
                 </Button>
               </div>
             </div>
@@ -52,7 +59,7 @@ const WhitepapersPage = () => {
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-500">Published: November 2024</span>
                 <Button variant="outline" className="flex items-center gap-2">
-                  Download <ArrowRight size={16} />
+                  Download <ArrowRight size={16} aria-hidden="true" />
                 </Button>
               </div>
             </div>
@@ -66,7 +73,7 @@ const WhitepapersPage = () => {
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-500">Published: September 2024</span>
                 <Button variant="outline" className="flex items-center gap-2">
-                  Download <ArrowRight size={16} />
+                  Download <ArrowRight size={16} aria-hidden="true" />
                 </Button>
               </div>
             </div>

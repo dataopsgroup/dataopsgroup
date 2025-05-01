@@ -3,10 +3,17 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Helmet } from 'react-helmet-async';
 
 const DocumentationPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Documentation - DataOps Group</title>
+        <meta name="description" content="Access comprehensive documentation for DataOps Group's services, products, and implementation guides." />
+        <meta name="keywords" content="documentation, user guides, api reference, implementation guides, tutorials" />
+        <link rel="canonical" href="/documentation" />
+      </Helmet>
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-4">
