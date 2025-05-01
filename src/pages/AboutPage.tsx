@@ -26,6 +26,11 @@ const AboutPage = () => {
                   <div className="bg-white p-6 rounded-lg shadow-md">
                     <div className="flex justify-center mb-6">
                       <Avatar className="h-48 w-48 border-4 border-dataops-100">
+                        <AvatarImage 
+                          src="/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png" 
+                          alt="Geoff Tucker"
+                          className="object-cover"
+                        />
                         <AvatarFallback className="text-4xl bg-dataops-600 text-white">GT</AvatarFallback>
                       </Avatar>
                     </div>
@@ -67,61 +72,6 @@ const AboutPage = () => {
                     organizations overcome their data challenges and achieve measurable business results.
                   </p>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center">Professional Experience</h2>
-              
-              <div className="space-y-6">
-                <Card>
-                  <CardContent className="pt-6">
-                    <div className="flex flex-col md:flex-row justify-between mb-2">
-                      <h3 className="text-xl font-bold">Founder & Principal Consultant</h3>
-                      <p className="text-dataops-600">2020 - Present</p>
-                    </div>
-                    <p className="text-dataops-800 mb-3">DataOps Group</p>
-                    <p className="text-gray-700">
-                      Leading a specialized consulting practice focused on data operations excellence, 
-                      with particular expertise in HubSpot optimization, data quality management, and 
-                      turning existing contacts into revenue opportunities.
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="pt-6">
-                    <div className="flex flex-col md:flex-row justify-between mb-2">
-                      <h3 className="text-xl font-bold">Director of Data Strategy</h3>
-                      <p className="text-dataops-600">2015 - 2020</p>
-                    </div>
-                    <p className="text-dataops-800 mb-3">Enterprise Data Solutions</p>
-                    <p className="text-gray-700">
-                      Led data strategy initiatives for Fortune 500 clients, overseeing the development and 
-                      implementation of comprehensive data governance frameworks and analytics solutions that 
-                      delivered measurable business impact.
-                    </p>
-                  </CardContent>
-                </Card>
-                
-                <Card>
-                  <CardContent className="pt-6">
-                    <div className="flex flex-col md:flex-row justify-between mb-2">
-                      <h3 className="text-xl font-bold">Senior Data Analyst</h3>
-                      <p className="text-dataops-600">2010 - 2015</p>
-                    </div>
-                    <p className="text-dataops-800 mb-3">Global Analytics Partners</p>
-                    <p className="text-gray-700">
-                      Specialized in transforming complex data challenges into actionable insights for 
-                      clients across various industries. Developed and implemented data quality frameworks 
-                      that became company standards.
-                    </p>
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </div>
