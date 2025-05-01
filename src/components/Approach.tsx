@@ -43,8 +43,7 @@ const Approach = () => {
         </div>
 
         <div className="relative">
-          {/* Connection line */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
+          {/* Removed the connection line divs */}
           
           <div className="grid md:grid-cols-4 gap-8">
             {steps.map((step, index) => (
@@ -56,9 +55,7 @@ const Approach = () => {
                 <h3 className="text-xl font-bold mb-3">{step.title}</h3>
                 <p className="text-center text-gray-600">{step.description}</p>
                 
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 -right-4 w-8 h-1 bg-gray-200 z-0"></div>
-                )}
+                {/* Removed the horizontal connection lines between steps */}
               </div>
             ))}
           </div>
