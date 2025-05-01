@@ -13,8 +13,7 @@ const Hero = () => {
               Let's Make Your Business <span className="text-green-500">Bigger</span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-              We help businesses transform their data operations to drive efficiency, 
-              insights, and innovation across their organization.
+              Turn your HubSpot into a revenue engine. We transform your dirty and disorganized portal into a clean machine for efficiency, insights, and growth across the customer journey.
             </p>
           </div>
           
