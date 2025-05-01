@@ -2,33 +2,23 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const GetStartedPage = () => {
   useEffect(() => {
     // Create HubSpot script
     const script = document.createElement('script');
-    script.src = 'https://js.hsforms.net/forms/v2.js';
+    script.src = 'https://js.hsforms.net/forms/embed/21794360.js';
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
 
-    script.onload = () => {
-      // @ts-ignore - HubSpot's hbspt is not typed
-      if (window.hbspt) {
-        // @ts-ignore - HubSpot's hbspt is not typed
-        window.hbspt.forms.create({
-          region: "na1", // Replace with your HubSpot region
-          portalId: "YOUR_PORTAL_ID", // Replace with your HubSpot portal ID
-          formId: "YOUR_FORM_ID", // Replace with your HubSpot form ID
-          target: "#hubspot-form-container"
-        });
-      }
-    };
-
     return () => {
       // Clean up
-      document.body.removeChild(script);
+      const scriptToRemove = document.querySelector('script[src="https://js.hsforms.net/forms/embed/21794360.js"]');
+      if (scriptToRemove && scriptToRemove.parentNode) {
+        scriptToRemove.parentNode.removeChild(scriptToRemove);
+      }
     };
   }, []);
 
@@ -47,12 +37,16 @@ const GetStartedPage = () => {
             </p>
             
             {/* HubSpot Form Container */}
-            <div 
-              id="hubspot-form-container" 
-              className="bg-white rounded-lg shadow-lg p-6 mb-8"
-            >
-              <div className="flex justify-center items-center h-20">
-                <p className="text-gray-500">Loading form...</p>
+            <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+              <div 
+                className="hs-form-frame" 
+                data-region="na1" 
+                data-form-id="f58580b1-2bf3-4df4-9702-81c5808ba539" 
+                data-portal-id="21794360"
+              >
+                <div className="flex justify-center items-center h-20">
+                  <p className="text-gray-500">Loading form...</p>
+                </div>
               </div>
             </div>
             
