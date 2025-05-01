@@ -7,6 +7,7 @@ import { blogPosts } from '@/data/blogPosts';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
+import { format } from 'date-fns';
 
 const BlogList = () => {
   return (
@@ -56,7 +57,7 @@ const BlogList = () => {
                     </CardContent>
                     <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
                       <div className="text-sm text-gray-500">
-                        {post.date} · {post.category}
+                        {format(new Date(post.date), 'MMMM d, yyyy')} · {post.category}
                       </div>
                       <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
                         Read More

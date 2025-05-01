@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { BlogPost } from '@/types/blog';
+import { format } from 'date-fns';
 
 const BlogPostPage = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -67,7 +68,7 @@ const BlogPostPage = () => {
               <header className="mb-10">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center text-gray-600 mb-6">
-                  <span>{post.date}</span>
+                  <span>{format(new Date(post.date), 'MMMM d, yyyy')}</span>
                   <span className="mx-2">•</span>
                   <span>{post.author}</span>
                   <span className="mx-2">•</span>
