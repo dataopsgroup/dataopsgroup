@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { CalendarIcon, UserIcon, ClockIcon } from 'lucide-react';
+import { CalendarIcon, UserIcon, ClockIcon, Tag as TagIcon } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 // Sample blog post data - replace with your actual data
 const blogPosts = [
@@ -16,6 +17,7 @@ const blogPosts = [
     readTime: '5 min read',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000',
     category: 'DataOps',
+    tags: ['DataOps', 'ROI', 'Implementation', 'Case Study'],
   },
   {
     id: '2',
@@ -26,6 +28,7 @@ const blogPosts = [
     readTime: '8 min read',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000',
     category: 'Data Architecture',
+    tags: ['Data Architecture', 'Trends', 'Business Intelligence'],
   },
   {
     id: '3',
@@ -36,10 +39,25 @@ const blogPosts = [
     readTime: '6 min read',
     image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000',
     category: 'Data Governance',
+    tags: ['Data Governance', 'Best Practices', 'Implementation'],
   }
 ];
 
 const BlogList = () => {
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  
+  // Extract all unique tags
+  const allTags = Array.from(
+    new Set(
+      blogPosts.flatMap(post => post.tags)
+    )
+  ).sort();
+  
+  // Filter posts by selected tag, or show all if no tag selected
+  const filteredPosts = selectedTag
+    ? blogPosts.filter(post => post.tags.includes(selectedTag))
+    : blogPosts;
+    
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -49,12 +67,39 @@ const BlogList = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Insights from <span className="gradient-text">DataOps Group</span>
             </h1>
-            <p className="text-lg text-gray-600 mb-12">
+            <p className="text-lg text-gray-600 mb-8">
               Expert perspectives on data operations, architecture, and analytics
             </p>
             
+            {/* Tags filter */}
+            <div className="mb-8">
+              <h2 className="text-lg font-medium mb-3 flex items-center gap-2">
+                <TagIcon size={18} />
+                Filter by tag:
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                <Badge 
+                  variant={selectedTag === null ? "default" : "outline"} 
+                  className={`cursor-pointer px-3 py-1 ${selectedTag === null ? 'bg-dataops-600' : ''}`}
+                  onClick={() => setSelectedTag(null)}
+                >
+                  All
+                </Badge>
+                {allTags.map(tag => (
+                  <Badge 
+                    key={tag} 
+                    variant={selectedTag === tag ? "default" : "outline"}
+                    className={`cursor-pointer px-3 py-1 ${selectedTag === tag ? 'bg-dataops-600' : ''}`}
+                    onClick={() => setSelectedTag(tag)}
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            
             <div className="space-y-12">
-              {blogPosts.map((post) => (
+              {filteredPosts.map((post) => (
                 <article key={post.id} className="border-b border-gray-200 pb-12 last:border-0">
                   <Link to={`/blog/${post.id}`} className="group">
                     <div className="grid md:grid-cols-3 gap-6">
@@ -77,6 +122,17 @@ const BlogList = () => {
                         <p className="text-gray-600 mb-4">
                           {post.excerpt}
                         </p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {post.tags.map(tag => (
+                            <Badge 
+                              key={`${post.id}-${tag}`} 
+                              variant="outline" 
+                              className="bg-gray-50"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
                         <div className="flex items-center text-sm text-gray-500 gap-4">
                           <div className="flex items-center gap-1">
                             <UserIcon size={16} />

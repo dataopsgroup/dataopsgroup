@@ -3,7 +3,8 @@ import React from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { CalendarIcon, UserIcon, ClockIcon, ArrowLeft } from 'lucide-react';
+import { CalendarIcon, UserIcon, ClockIcon, ArrowLeft, Tag as TagIcon } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 // Sample blog post data - replace with your actual blog posts
 const blogPosts = {
@@ -54,6 +55,7 @@ const blogPosts = {
     readTime: '5 min read',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000',
     category: 'DataOps',
+    tags: ['DataOps', 'ROI', 'Implementation', 'Case Study'],
   },
   '2': {
     id: '2',
@@ -100,6 +102,7 @@ const blogPosts = {
     readTime: '8 min read',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000',
     category: 'Data Architecture',
+    tags: ['Data Architecture', 'Trends', 'Business Intelligence'],
   },
   '3': {
     id: '3',
@@ -151,6 +154,7 @@ const blogPosts = {
     readTime: '6 min read',
     image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000',
     category: 'Data Governance',
+    tags: ['Data Governance', 'Best Practices', 'Implementation'],
   }
 };
 
@@ -183,7 +187,7 @@ const BlogPost = () => {
                 {post.title}
               </h1>
               
-              <div className="flex flex-wrap items-center text-sm text-gray-500 gap-4 mb-6">
+              <div className="flex flex-wrap items-center text-sm text-gray-500 gap-4 mb-4">
                 <div className="flex items-center gap-1">
                   <UserIcon size={16} />
                   <span>{post.author}</span>
@@ -197,6 +201,23 @@ const BlogPost = () => {
                   <span>{post.readTime}</span>
                 </div>
               </div>
+              
+              {/* Tags */}
+              {post.tags && post.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex items-center gap-1 text-gray-700">
+                    <TagIcon size={16} />
+                    <span>Tags:</span>
+                  </div>
+                  {post.tags.map(tag => (
+                    <Link to={`/blog?tag=${tag}`} key={tag}>
+                      <Badge variant="outline" className="bg-gray-50 hover:bg-gray-100 cursor-pointer">
+                        {tag}
+                      </Badge>
+                    </Link>
+                  ))}
+                </div>
+              )}
               
               <div className="aspect-[21/9] overflow-hidden rounded-lg mb-8">
                 <img
