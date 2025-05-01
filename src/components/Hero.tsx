@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="space-y-8">
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Maximize Your Data's <span className="gradient-text">Potential</span>
+              Let's Make Your Business <span className="text-green-500">Bigger</span>
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
               We help businesses transform their data operations to drive efficiency, 
