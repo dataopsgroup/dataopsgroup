@@ -68,7 +68,7 @@ const BlogPostPage = () => {
               <header className="mb-10">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center text-gray-600 mb-6">
-                  <span>{format(new Date(post.date), 'MMMM d, yyyy')}</span>
+                  <span>{format(new Date(post.date), 'MM dd, yyyy')}</span>
                   <span className="mx-2">•</span>
                   <span>{post.author}</span>
                   <span className="mx-2">•</span>

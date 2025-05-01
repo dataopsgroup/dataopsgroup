@@ -57,7 +57,7 @@ const BlogList = () => {
                     </CardContent>
                     <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
                       <div className="text-sm text-gray-500">
-                        {format(new Date(post.date), 'MMMM d, yyyy')} · {post.category}
+                        {format(new Date(post.date), 'MM dd, yyyy')} · {post.category}
                       </div>
                       <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
                         Read More
