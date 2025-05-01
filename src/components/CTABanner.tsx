@@ -17,9 +17,6 @@ const CTABanner = () => {
           <Button className="bg-white text-dataops-800 hover:bg-gray-100">
             Schedule a Consultation
           </Button>
-          <Button variant="outline" className="border-white text-white hover:bg-white/10">
-            Learn More
-          </Button>
         </div>
       </div>
     </section>
