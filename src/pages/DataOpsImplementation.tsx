@@ -61,13 +61,6 @@ const DataOpsImplementation = () => {
       <Navbar />
       
       <main>
-        {/* Back button to Insights */}
-        <div className="container mx-auto px-4 pt-28">
-          <Button variant="outline" className="mb-4 bg-gray-700 text-white hover:bg-gray-800" asChild>
-            <Link to="/insights">Back to Insights</Link>
-          </Button>
-        </div>
-        
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
           <div className="container mx-auto">
