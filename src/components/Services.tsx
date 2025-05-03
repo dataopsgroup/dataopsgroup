@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Database, LineChart, Shield, Settings, Laptop, Users, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,8 +43,8 @@ export const services = [
   {
     id: "team-training",
     icon: <Users className="h-10 w-10 text-white" />,
-    title: 'Team Training',
-    description: 'Upskill your team with the latest data management practices and tools.',
+    title: 'HubSpot Training & Implementation',
+    description: 'Expert training and implementation to maximize your HubSpot investment.',
     gradient: 'from-amber-500 to-yellow-600'
   },
   {
