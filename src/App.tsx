@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
@@ -16,6 +15,7 @@ import PrivacyModal from './components/PrivacyModal';
 import BookLandingPage from './pages/BookLandingPage';
 import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -94,6 +94,11 @@ function App() {
           {
             path: "/insights/:postId",
             element: <BlogPost />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/about",
+            element: <AboutPage />,
             errorElement: <NotFound />,
           },
           {
