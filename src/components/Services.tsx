@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Database, LineChart, Settings, TrendingUp } from 'lucide-react';
+import { Database, LineChart, Settings, TrendingUp, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -19,6 +19,13 @@ export const services = [
     title: 'DataOps Implementation',
     description: 'Streamline your data operations with automated workflows and processes.',
     gradient: 'from-orange-500 to-red-600'
+  },
+  {
+    id: "team-training",
+    icon: <Users className="h-10 w-10 text-white" />,
+    title: 'HubSpot Training & Implementation',
+    description: 'Expert training and implementation to maximize your HubSpot investment.',
+    gradient: 'from-amber-500 to-yellow-600'
   },
   {
     id: "marketing-operations-revops",

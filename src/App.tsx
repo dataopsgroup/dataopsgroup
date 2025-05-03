@@ -6,6 +6,7 @@ import Contact from './pages/Contact';
 import Services from './pages/Services';
 import AnalyticsBI from './pages/AnalyticsBI';
 import DataOpsImplementation from './pages/DataOpsImplementation';
+import TeamTraining from './pages/TeamTraining';
 import MarketingOperationsRevOps from './pages/MarketingOperationsRevOps';
 import NotFound from './pages/NotFound';
 import Loading from './components/Loading';
@@ -65,6 +66,11 @@ function App() {
           {
             path: "/services/dataops-implementation",
             element: <DataOpsImplementation />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services/team-training",
+            element: <TeamTraining />,
             errorElement: <NotFound />,
           },
           {

@@ -22,6 +22,10 @@ const navServices = [
     href: '/services/dataops-implementation'
   },
   { 
+    name: 'HubSpot Training & Implementation', 
+    href: '/services/team-training'
+  },
+  { 
     name: 'Marketing Operations & RevOps', 
     href: '/services/marketing-operations-revops'
   },
