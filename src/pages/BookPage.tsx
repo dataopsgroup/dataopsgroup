@@ -40,13 +40,9 @@ const BookPage = () => {
       </Helmet>
       <Navbar />
       
-      <div className="flex items-center bg-gray-100 py-4 px-8">
-        <Link to="/insights" className="flex items-center gap-2 bg-gray-700 text-white px-4 py-2 rounded-md">
-          Insights
-        </Link>
-      </div>
+      {/* Removed the redundant Insights navigation bar that was here */}
       
-      <main className="flex-grow container mx-auto px-4 py-12">
+      <main className="flex-grow container mx-auto px-4 py-12 mt-16">
         <div className="text-left mb-8">
           <Link to="/" className="inline-flex items-center text-dataops-600 hover:text-dataops-800 mb-8">
             <ChevronLeft className="h-4 w-4 mr-1" /> Back to home
@@ -54,7 +50,7 @@ const BookPage = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="flex justify-center pt-28"> {/* Adjusted padding top from pt-16 to pt-28 */}
+          <div className="flex justify-center pt-16"> {/* Adjusted padding to account for navbar without the extra bar */}
             <img 
               src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
               alt="The CMO's Data Playbook book cover" 
@@ -121,3 +117,4 @@ const BookPage = () => {
 };
 
 export default BookPage;
+
