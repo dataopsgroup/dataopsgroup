@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
@@ -16,6 +17,7 @@ import BookLandingPage from './pages/BookLandingPage';
 import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
 import AboutPage from './pages/AboutPage';
+import ApproachPage from './pages/ApproachPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -99,6 +101,11 @@ function App() {
           {
             path: "/about",
             element: <AboutPage />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/approach",
+            element: <ApproachPage />,
             errorElement: <NotFound />,
           },
           {
