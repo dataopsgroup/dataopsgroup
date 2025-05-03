@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Phone } from 'lucide-react';
+import { Phone, Mail, MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 // Use memo to prevent unnecessary re-renders
@@ -53,7 +53,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <section id="contact" className="section-padding bg-white">
+    <section id="contact" className="bg-white mb-16">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-3 gap-8">
           {/* Contact Information */}
@@ -62,9 +62,30 @@ const Contact = () => {
               <div className="flex items-start">
                 <Phone className="w-5 h-5 text-dataops-600 mr-3 mt-1" />
                 <div>
-                  <h3 className="font-medium mb-1">Call Us</h3>
+                  <h3 className="font-medium mb-1 text-xl">Call Us</h3>
                   <p className="text-gray-600">+1 479 844 2052</p>
                   <p className="text-gray-600">Mon-Thu, 9am-5pm CT</p>
+                </div>
+              </div>
+            </ContactCard>
+            
+            <ContactCard>
+              <div className="flex items-start">
+                <Mail className="w-5 h-5 text-dataops-600 mr-3 mt-1" />
+                <div>
+                  <h3 className="font-medium mb-1 text-xl">Email Us</h3>
+                  <p className="text-gray-600">contact@dataopsgroup.com</p>
+                </div>
+              </div>
+            </ContactCard>
+            
+            <ContactCard>
+              <div className="flex items-start">
+                <MapPin className="w-5 h-5 text-dataops-600 mr-3 mt-1" />
+                <div>
+                  <h3 className="font-medium mb-1 text-xl">Location</h3>
+                  <p className="text-gray-600">United States</p>
+                  <p className="text-gray-600">Remote Consultancy</p>
                 </div>
               </div>
             </ContactCard>
