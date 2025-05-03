@@ -10,13 +10,21 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { services } from '@/components/Services';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
-    { name: 'Services', href: '/services' },
+    { 
+      name: 'Services', 
+      isDropdown: true,
+      items: services.map(service => ({
+        name: service.title,
+        href: `/services/${service.id}`
+      }))
+    },
     { name: 'About', href: '/about' },
     { name: 'Approach', href: '/approach' },
     { 
