@@ -5,9 +5,9 @@ import { Helmet } from 'react-helmet-async';
 const MarketingOperationsRevOpsSchema = () => {
   return (
     <Helmet>
-      <title>Marketing Operations & RevOps - DataOps Group</title>
-      <meta name="description" content="Transform your marketing and revenue operations with our strategic RevOps services. Optimize your tech stack, streamline processes, and drive growth." />
-      <meta name="keywords" content="marketing operations, revenue operations, revops, marketing technology, martech, HubSpot, data integration, workflow automation" />
+      <title>Marketing Data Management & Analytics - DataOps Group</title>
+      <meta name="description" content="Transform your marketing data into actionable insights. Our marketing data management and analytics services help you improve ROI, optimize campaigns, and drive growth." />
+      <meta name="keywords" content="marketing data management, marketing analytics, data integration, marketing dashboards, campaign analytics, marketing ROI, data visualization" />
       <link rel="canonical" href="/services/marketing-operations-revops" />
       
       {/* Schema markup for the service */}
@@ -16,13 +16,13 @@ const MarketingOperationsRevOpsSchema = () => {
           {
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "Marketing Operations & RevOps",
+            "name": "Marketing Data Management & Analytics",
             "provider": {
               "@type": "Organization",
               "name": "DataOps Group"
             },
-            "description": "Strategic marketing operations and revenue operations (RevOps) services to align marketing, sales and customer success for improved performance and ROI.",
-            "serviceType": "Marketing Operations & RevOps",
+            "description": "Comprehensive marketing data management and analytics services to help businesses integrate, analyze, and visualize marketing data for improved campaign performance and ROI.",
+            "serviceType": "Marketing Data Management & Analytics",
             "areaServed": {
               "@type": "Country",
               "name": "United States"

@@ -6,18 +6,20 @@ import { Link } from 'react-router-dom';
 
 const MarketingOperationsRevOpsBenefits = () => {
   const benefits = [
-    "Increased marketing and sales alignment",
-    "Improved campaign performance and ROI",
-    "Enhanced data-driven decision making",
-    "Streamlined revenue processes and workflows",
-    "Better customer journey visibility",
-    "Optimized technology stack utilization",
+    "Improved marketing ROI with data-driven decision making",
+    "Unified view of marketing performance across all channels",
+    "Enhanced customer segmentation and targeting",
+    "Better attribution of marketing efforts to revenue",
+    "Streamlined reporting and time savings",
+    "Improved campaign optimization and performance",
+    "Greater marketing and sales alignment",
+    "Increased conversion rates and customer acquisition",
   ];
 
   return (
     <div className="space-y-8">
       <div className="bg-white border border-gray-100 rounded-xl shadow-sm p-8">
-        <h3 className="text-xl font-bold mb-6">Benefits</h3>
+        <h3 className="text-xl font-bold mb-6">Key Benefits</h3>
         <ul className="space-y-4">
           {benefits.map((benefit, index) => (
             <li key={index} className="flex items-start">
@@ -29,10 +31,10 @@ const MarketingOperationsRevOpsBenefits = () => {
       </div>
       
       <div className="bg-dataops-50 rounded-xl p-8">
-        <h3 className="text-xl font-bold mb-4">Ready to get started?</h3>
+        <h3 className="text-xl font-bold mb-4">Ready to transform your marketing data?</h3>
         <p className="text-gray-700 mb-6">
-          Contact us today to schedule a consultation and learn how our Marketing Operations & RevOps services
-          can help you align your teams and drive revenue growth.
+          Contact us today to schedule a consultation and learn how our Marketing Data Management & Analytics services
+          can help you unlock insights and drive revenue growth.
         </p>
         <Button className="w-full bg-dataops-600 hover:bg-dataops-700" asChild>
           <Link to="/contact">Contact Us</Link>
