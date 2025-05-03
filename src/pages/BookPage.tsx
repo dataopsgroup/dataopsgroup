@@ -52,7 +52,7 @@ const BookPage = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="flex justify-center pt-12"> {/* Added padding top to move the image down */}
+          <div className="flex justify-center pt-16"> {/* Increased padding top to push the image down further */}
             <img 
               src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
               alt="The CMO's Data Playbook book cover" 
