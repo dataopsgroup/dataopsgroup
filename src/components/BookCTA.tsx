@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Book } from 'lucide-react';
-import bookCover from '/lovable-uploads/7fffb636-3a9b-492e-9683-9fa503913a8a.png';
 
 const BookCTA = () => {
   return (
@@ -17,7 +16,7 @@ const BookCTA = () => {
                 <div className="flex justify-center md:justify-start">
                   <div className="relative transform transition-transform hover:scale-105 duration-300">
                     <img 
-                      src={bookCover} 
+                      src="/lovable-uploads/7fffb636-3a9b-492e-9683-9fa503913a8a.png" 
                       alt="The CMO's Data Playbook book cover" 
                       className="h-auto w-64 md:w-72 rounded-md shadow-xl" 
                     />
@@ -71,7 +70,7 @@ const BookCTA = () => {
             "name": "Geoff Tucker"
           },
           "url": "https://yourwebsite.com/book",
-          "image": bookCover,
+          "image": "/lovable-uploads/7fffb636-3a9b-492e-9683-9fa503913a8a.png",
           "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
           "publisher": {
             "@type": "Organization",

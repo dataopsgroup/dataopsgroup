@@ -6,10 +6,12 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Book, ChevronRight } from 'lucide-react';
-import bookCover from '/lovable-uploads/7fffb636-3a9b-492e-9683-9fa503913a8a.png';
-import authorPhoto from '/lovable-uploads/73881b43-478e-4955-b56c-b120bd0a5ac5.png';
 
 const BookLandingPage = () => {
+  // Define book cover and author photo paths directly
+  const bookCoverPath = "/lovable-uploads/7fffb636-3a9b-492e-9683-9fa503913a8a.png";
+  const authorPhotoPath = "/lovable-uploads/73881b43-478e-4955-b56c-b120bd0a5ac5.png";
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -29,7 +31,7 @@ const BookLandingPage = () => {
               "name": "Geoff Tucker"
             },
             "url": "https://dataops.group/book",
-            "image": "${window.location.origin}${bookCover}",
+            "image": "${window.location.origin}${bookCoverPath}",
             "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
             "publisher": {
               "@type": "Organization",
@@ -72,7 +74,7 @@ const BookLandingPage = () => {
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative">
                   <img 
-                    src={bookCover} 
+                    src={bookCoverPath} 
                     alt="The CMO's Data Playbook book cover" 
                     className="h-auto max-w-sm rounded-lg shadow-2xl transform md:-rotate-6 hover:rotate-0 transition-transform duration-300" 
                   />
@@ -117,7 +119,7 @@ const BookLandingPage = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">About the Author</h2>
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <img 
-                  src={authorPhoto} 
+                  src={authorPhotoPath} 
                   alt="Geoff Tucker" 
                   className="h-64 w-64 object-cover rounded-full border-4 border-white shadow-lg" 
                 />
