@@ -39,21 +39,21 @@ const Hero = () => {
             <div className="grid grid-cols-2 gap-6">
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg text-white">
                 <Database className="h-10 w-10 mb-4" />
-                <h3 className="text-sm font-medium">HubSpot Cleansing</h3>
+                <h3 className="text-base font-medium">HubSpot Cleansing</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg text-white">
                 <BarChart2 className="h-10 w-10 mb-4" />
-                <h3 className="text-sm font-medium">Revenue Conversion</h3>
+                <h3 className="text-base font-medium">Revenue Conversion</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg text-white">
                 <Share2 className="h-10 w-10 mb-4" />
-                <h3 className="text-sm font-medium">Systems Integration</h3>
+                <h3 className="text-base font-medium">Systems Integration</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg text-white">
                 <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mb-4">
                   <span className="font-bold">+</span>
                 </div>
-                <h3 className="text-sm font-medium">HubSpot Services</h3>
+                <h3 className="text-base font-medium">HubSpot Services</h3>
               </div>
             </div>
           </div>
