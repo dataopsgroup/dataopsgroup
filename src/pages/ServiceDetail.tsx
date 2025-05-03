@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CTABanner from '@/components/CTABanner';
-import { ArrowLeft, CheckCircle, TrendingUp } from 'lucide-react';
+import { CheckCircle, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useParams, Link } from 'react-router-dom';
 import { services } from '@/components/Services';
@@ -67,11 +67,6 @@ const ServiceDetail = () => {
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
           <div className="container mx-auto">
-            <Link to="/insights" className="inline-flex items-center px-4 py-2 rounded-md bg-gray-700 text-white hover:bg-gray-800 mb-8">
-              <ArrowLeft className="h-4 w-4 mr-2" aria-hidden="true" />
-              <span>Back to Insights</span>
-            </Link>
-            
             <div className="grid lg:grid-cols-5 gap-12 items-center">
               <div className="lg:col-span-3 space-y-6">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-100 text-dataops-800 text-sm font-medium mb-2">
