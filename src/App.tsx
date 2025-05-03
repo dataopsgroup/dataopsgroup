@@ -14,6 +14,8 @@ import ErrorDisplay from './components/ErrorDisplay';
 import CookieConsent from 'react-cookie-consent';
 import PrivacyModal from './components/PrivacyModal';
 import BookLandingPage from './pages/BookLandingPage';
+import BlogList from './pages/BlogList';
+import BlogPost from './pages/BlogPost';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,6 +84,16 @@ function App() {
           {
             path: "/book",
             element: <BookLandingPage />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/insights",
+            element: <BlogList />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/insights/:postId",
+            element: <BlogPost />,
             errorElement: <NotFound />,
           },
           {
