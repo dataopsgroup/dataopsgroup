@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Database, LineChart, Shield, Settings, Laptop, Users } from 'lucide-react';
+import { Database, LineChart, Shield, Settings, Laptop, Users, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -46,6 +45,13 @@ export const services = [
     title: 'Team Training',
     description: 'Upskill your team with the latest data management practices and tools.',
     gradient: 'from-amber-500 to-yellow-600'
+  },
+  {
+    id: "marketing-operations-revops",
+    icon: <TrendingUp className="h-10 w-10 text-white" />,
+    title: 'Marketing Operations & RevOps',
+    description: 'Optimize your marketing and revenue operations for improved performance and ROI.',
+    gradient: 'from-emerald-500 to-green-700'
   }
 ];
 

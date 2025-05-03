@@ -1,39 +1,29 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CTABanner from '@/components/CTABanner';
 import { ArrowLeft, CheckCircle, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useParams, Link } from 'react-router-dom';
-import { services } from '@/components/Services';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-const ServiceDetail = () => {
-  const { serviceId } = useParams();
-  
-  // Find the service data based on the ID (in a real app, this would be more robust)
-  const service = services.find((s) => s.id === serviceId) || services[0];
-  
-  // Use specialized back link for marketing-operations-revops
-  const isMarketingOpsPage = serviceId === "marketing-operations-revops";
-  
+const MarketingOperationsRevOps = () => {
   const benefits = [
-    "Improved data quality and consistency",
-    "Enhanced decision-making capabilities",
-    "Streamlined operations and workflows",
-    "Reduced manual effort and human error",
-    "Increased ROI from your HubSpot investment",
+    "Increased marketing and sales alignment",
+    "Improved campaign performance and ROI",
+    "Enhanced data-driven decision making",
+    "Streamlined revenue processes and workflows",
     "Better customer journey visibility",
+    "Optimized technology stack utilization",
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>{service.title} - DataOps Group</title>
-        <meta name="description" content={`Learn about our ${service.title} service and how it can help your business optimize data operations and drive growth.`} />
-        <meta name="keywords" content={`${service.title.toLowerCase()}, data operations, ${service.id}, data consulting`} />
-        <link rel="canonical" href={`/services/${serviceId}`} />
+        <title>Marketing Operations & RevOps - DataOps Group</title>
+        <meta name="description" content="Transform your marketing and revenue operations with our strategic RevOps services. Optimize your tech stack, streamline processes, and drive growth." />
+        <meta name="keywords" content="marketing operations, revenue operations, revops, marketing technology, martech, HubSpot, data integration, workflow automation" />
+        <link rel="canonical" href="/services/marketing-operations-revops" />
         
         {/* Schema markup for the service */}
         <script type="application/ld+json">
@@ -41,13 +31,13 @@ const ServiceDetail = () => {
             {
               "@context": "https://schema.org",
               "@type": "Service",
-              "name": "${service.title}",
+              "name": "Marketing Operations & RevOps",
               "provider": {
                 "@type": "Organization",
                 "name": "DataOps Group"
               },
-              "description": "${service.description}",
-              "serviceType": "${service.title}",
+              "description": "Strategic marketing operations and revenue operations (RevOps) services to align marketing, sales and customer success for improved performance and ROI.",
+              "serviceType": "Marketing Operations & RevOps",
               "areaServed": {
                 "@type": "Country",
                 "name": "United States"
@@ -78,10 +68,11 @@ const ServiceDetail = () => {
                   Our Services
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-                  {service.title}
+                  Marketing Operations & RevOps
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 max-w-2xl">
-                  {service.description}
+                  Align your marketing, sales, and customer success operations to create a unified 
+                  revenue engine that drives growth, improves customer experience, and maximizes ROI.
                 </p>
                 <div className="pt-6">
                   <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
@@ -94,7 +85,7 @@ const ServiceDetail = () => {
                 <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10 w-full max-w-md">
                   <div className="flex justify-center items-center h-48 w-full rounded-lg bg-dataops-50">
                     <div className="text-dataops-600" aria-hidden="true">
-                      {service.icon}
+                      <TrendingUp className="h-16 w-16" />
                     </div>
                   </div>
                 </div>
@@ -111,13 +102,15 @@ const ServiceDetail = () => {
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-6">How We Can Help</h2>
                   <p className="text-gray-700 mb-4">
-                    Our {service.title.toLowerCase()} service is designed to help businesses maximize their data potential
-                    while minimizing complexity and technical debt. We work with you to understand your unique challenges
-                    and goals, then develop a customized solution that delivers measurable results.
+                    Our Marketing Operations & RevOps services help businesses optimize their marketing technology 
+                    stack, streamline processes, and enable data-driven decision making. We specialize in HubSpot 
+                    implementation and optimization, as well as integrating your marketing platforms with sales 
+                    and customer success systems for a unified approach to revenue generation.
                   </p>
                   <p className="text-gray-700 mb-4">
-                    By leveraging our expertise in HubSpot and data operations, we ensure your systems work seamlessly together,
-                    providing the insights and efficiency you need to drive business growth.
+                    By leveraging our expertise in marketing technology, workflow automation, and data integration, 
+                    we help you break down silos between departments, improve collaboration, and create a seamless 
+                    customer journey from awareness to advocacy.
                   </p>
                 </div>
                 
@@ -125,20 +118,24 @@ const ServiceDetail = () => {
                   <h2 className="text-2xl md:text-3xl font-bold mb-6">Our Approach</h2>
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="bg-dataops-50 p-6 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3">1. Assess</h3>
-                      <p className="text-gray-700">We start by thoroughly assessing your current setup, identifying pain points and opportunities.</p>
+                      <h3 className="font-semibold text-lg mb-3">1. Diagnose</h3>
+                      <p className="text-gray-700">We audit your current marketing and sales operations, 
+                      technology stack, and processes to identify opportunities for improvement.</p>
                     </div>
                     <div className="bg-dataops-50 p-6 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3">2. Design</h3>
-                      <p className="text-gray-700">Next, we design a customized solution that addresses your specific needs and goals.</p>
+                      <h3 className="font-semibold text-lg mb-3">2. Strategize</h3>
+                      <p className="text-gray-700">We develop a customized RevOps roadmap aligned with your 
+                      business goals, focusing on people, process, and technology improvements.</p>
                     </div>
                     <div className="bg-dataops-50 p-6 rounded-lg">
                       <h3 className="font-semibold text-lg mb-3">3. Implement</h3>
-                      <p className="text-gray-700">Our team carefully implements the solution with minimal disruption to your operations.</p>
+                      <p className="text-gray-700">Our team configures systems, integrates tools, and 
+                      optimizes workflows to create a cohesive revenue operations framework.</p>
                     </div>
                     <div className="bg-dataops-50 p-6 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3">4. Optimize</h3>
-                      <p className="text-gray-700">We continuously monitor and optimize the solution to ensure it delivers maximum value.</p>
+                      <h3 className="font-semibold text-lg mb-3">4. Measure & Refine</h3>
+                      <p className="text-gray-700">We establish KPIs and reporting dashboards to monitor 
+                      performance and continuously improve your RevOps ecosystem.</p>
                     </div>
                   </div>
                 </div>
@@ -160,8 +157,8 @@ const ServiceDetail = () => {
                 <div className="bg-dataops-50 rounded-xl p-8">
                   <h3 className="text-xl font-bold mb-4">Ready to get started?</h3>
                   <p className="text-gray-700 mb-6">
-                    Contact us today to schedule a consultation and learn how our {service.title.toLowerCase()} services
-                    can help you achieve your business goals.
+                    Contact us today to schedule a consultation and learn how our Marketing Operations & RevOps services
+                    can help you align your teams and drive revenue growth.
                   </p>
                   <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
                     Contact Us
@@ -179,4 +176,4 @@ const ServiceDetail = () => {
   );
 };
 
-export default ServiceDetail;
+export default MarketingOperationsRevOps;
