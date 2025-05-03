@@ -8,7 +8,7 @@ import { ChevronRight, Book } from 'lucide-react';
 const BookCTA = () => {
   return (
     <section className="section-padding bg-white">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-[5%]">
         <Card className="overflow-hidden border-0 shadow-lg">
           <CardContent className="p-0">
             <div className="bg-gradient-to-br from-green-500 to-teal-600 p-6 md:p-8">

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -39,8 +40,8 @@ const BookLandingPage = () => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-dataops-50 to-white py-16 md:py-24">
-          <div className="container mx-auto px-4">
+        <section className="bg-gradient-to-br from-dataops-50 to-white py-16 md:py-24 px-[5%]">
+          <div className="container mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="order-2 md:order-1">
                 <div className="inline-flex items-center bg-dataops-100 text-dataops-700 text-sm px-3 py-1 rounded-full mb-6">
@@ -80,8 +81,8 @@ const BookLandingPage = () => {
         </section>
 
         {/* Book Features */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-white px-[5%]">
+          <div className="container mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center">What You'll Discover</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="p-6 bg-dataops-50 rounded-lg">
@@ -107,8 +108,8 @@ const BookLandingPage = () => {
         </section>
 
         {/* About the Author */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-gray-50 px-[5%]">
+          <div className="container mx-auto">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">About the Author</h2>
               <div className="flex flex-col md:flex-row gap-8 items-center">
@@ -133,8 +134,8 @@ const BookLandingPage = () => {
         </section>
 
         {/* Pre-order CTA */}
-        <section className="py-16 bg-gradient-to-br from-dataops-600 to-dataops-800 text-white">
-          <div className="container mx-auto px-4 text-center">
+        <section className="py-16 bg-gradient-to-br from-dataops-600 to-dataops-800 text-white px-[5%]">
+          <div className="container mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Be Among the First to Read</h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
               Pre-order your copy today and receive exclusive bonus content including case studies and worksheets.
