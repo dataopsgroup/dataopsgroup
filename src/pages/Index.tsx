@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Services from '@/components/Services';
 import Hero from '@/components/Hero';
+import BookCTA from '@/components/BookCTA';
+import Approach from '@/components/Approach';
 
 const Index = () => {
   return (
@@ -22,6 +24,8 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <Services />
+        <Approach />
+        <BookCTA />
       </main>
       
       <Footer />
