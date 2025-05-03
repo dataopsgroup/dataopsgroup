@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -6,7 +5,6 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import bookCover from '/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png';
 
 const BookPage = () => {
   return (
@@ -28,7 +26,7 @@ const BookPage = () => {
               "name": "Geoff Tucker"
             },
             "url": "https://dataops.group/book",
-            "image": "${window.location.origin}${bookCover}",
+            "image": "${window.location.origin}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png",
             "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
             "publisher": {
               "@type": "Organization",
@@ -55,7 +53,7 @@ const BookPage = () => {
         <div className="grid md:grid-cols-2 gap-12">
           <div className="flex justify-center">
             <img 
-              src={bookCover} 
+              src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
               alt="The CMO's Data Playbook book cover" 
               className="h-auto max-w-sm rounded-lg shadow-xl" 
             />
