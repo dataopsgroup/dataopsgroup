@@ -34,6 +34,10 @@
     --ring: 221 83% 53%;
 
     --radius: 0.5rem;
+    
+    /* Add navbar height variable for consistent spacing */
+    --navbar-height: 84px;
+    --navbar-bottom-spacing: 25px;
   }
 
   .dark {
@@ -79,6 +83,11 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  }
+  
+  /* Main content spacing */
+  main {
+    padding-top: calc(var(--navbar-height) + var(--navbar-bottom-spacing));
   }
 
   /* Even larger heading sizes with more dramatic scaling */
