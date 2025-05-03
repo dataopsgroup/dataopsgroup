@@ -7,39 +7,45 @@ import { Link } from "react-router-dom";
 export const services = [
   {
     id: "data-architecture",
-    icon: <Database className="h-10 w-10" />,
+    icon: <Database className="h-10 w-10 text-white" />,
     title: 'Data Architecture',
-    description: 'Design robust, scalable data architectures that support your business objectives.'
+    description: 'Design robust, scalable data architectures that support your business objectives.',
+    gradient: 'from-blue-500 to-indigo-700'
   },
   {
     id: "analytics-bi",
-    icon: <LineChart className="h-10 w-10" />,
+    icon: <LineChart className="h-10 w-10 text-white" />,
     title: 'Analytics & BI',
-    description: 'Transform raw data into actionable insights with advanced analytics and visualization.'
+    description: 'Transform raw data into actionable insights with advanced analytics and visualization.',
+    gradient: 'from-green-500 to-teal-600'
   },
   {
     id: "data-governance",
-    icon: <Shield className="h-10 w-10" />,
+    icon: <Shield className="h-10 w-10 text-white" />,
     title: 'Data Governance',
-    description: 'Implement frameworks to ensure data quality, compliance, and security.'
+    description: 'Implement frameworks to ensure data quality, compliance, and security.',
+    gradient: 'from-purple-500 to-pink-600'
   },
   {
     id: "dataops-implementation",
-    icon: <Settings className="h-10 w-10" />,
+    icon: <Settings className="h-10 w-10 text-white" />,
     title: 'DataOps Implementation',
-    description: 'Streamline your data operations with automated workflows and processes.'
+    description: 'Streamline your data operations with automated workflows and processes.',
+    gradient: 'from-orange-500 to-red-600'
   },
   {
     id: "technology-consulting",
-    icon: <Laptop className="h-10 w-10" />,
+    icon: <Laptop className="h-10 w-10 text-white" />,
     title: 'Technology Consulting',
-    description: 'Get expert guidance on data technology selection and implementation.'
+    description: 'Get expert guidance on data technology selection and implementation.',
+    gradient: 'from-cyan-500 to-blue-600'
   },
   {
     id: "team-training",
-    icon: <Users className="h-10 w-10" />,
+    icon: <Users className="h-10 w-10 text-white" />,
     title: 'Team Training',
-    description: 'Upskill your team with the latest data management practices and tools.'
+    description: 'Upskill your team with the latest data management practices and tools.',
+    gradient: 'from-amber-500 to-yellow-600'
   }
 ];
 
@@ -59,13 +65,13 @@ const Services = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <Link to={`/services/${service.id}`} key={index} className="block transition-transform hover:scale-105">
-              <Card className="border border-gray-100 hover:shadow-lg transition-shadow h-full">
+              <Card className={`border-0 overflow-hidden h-full bg-gradient-to-br ${service.gradient} text-white hover:shadow-xl transition-shadow`}>
                 <CardHeader>
-                  <div className="text-dataops-600 mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl font-semibold">{service.title}</CardTitle>
+                  <div className="mb-4">{service.icon}</div>
+                  <CardTitle className="text-xl font-semibold text-white">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-600">{service.description}</CardDescription>
+                  <CardDescription className="text-white/90">{service.description}</CardDescription>
                 </CardContent>
               </Card>
             </Link>

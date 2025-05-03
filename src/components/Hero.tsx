@@ -37,23 +37,23 @@ const Hero = () => {
           
           <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10">
             <div className="grid grid-cols-2 gap-6">
-              <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
-                <Database className="h-10 w-10 text-dataops-600 mb-4" />
-                <h3 className="font-medium text-dataops-800">HubSpot Cleansing</h3>
+              <div className="flex flex-col items-center p-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg text-white">
+                <Database className="h-10 w-10 mb-4" />
+                <h3 className="font-medium">HubSpot Cleansing</h3>
               </div>
-              <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
-                <BarChart2 className="h-10 w-10 text-dataops-600 mb-4" />
-                <h3 className="font-medium text-dataops-800">Revenue Conversion</h3>
+              <div className="flex flex-col items-center p-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg text-white">
+                <BarChart2 className="h-10 w-10 mb-4" />
+                <h3 className="font-medium">Revenue Conversion</h3>
               </div>
-              <div className="flex flex-col items-center p-6 bg-dataops-50 rounded-lg">
-                <Share2 className="h-10 w-10 text-dataops-600 mb-4" />
-                <h3 className="font-medium text-dataops-800">Systems Integration</h3>
+              <div className="flex flex-col items-center p-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg text-white">
+                <Share2 className="h-10 w-10 mb-4" />
+                <h3 className="font-medium">Systems Integration</h3>
               </div>
-              <div className="flex flex-col items-center p-6 bg-white border border-dataops-100 rounded-lg shadow-sm">
-                <div className="h-10 w-10 rounded-full bg-dataops-100 flex items-center justify-center mb-4">
-                  <span className="text-dataops-700 font-bold">+</span>
+              <div className="flex flex-col items-center p-6 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg text-white">
+                <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mb-4">
+                  <span className="font-bold">+</span>
                 </div>
-                <h3 className="font-medium text-dataops-800">HubSpot Services</h3>
+                <h3 className="font-medium">HubSpot Services</h3>
               </div>
             </div>
           </div>
