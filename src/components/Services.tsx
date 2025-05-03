@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Database, LineChart, Settings, TrendingUp, Users } from 'lucide-react';
+import { Database, LineChart, Settings, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
@@ -11,28 +11,28 @@ export const services = [
     icon: <LineChart className="h-10 w-10 text-white" />,
     title: 'Analytics & BI',
     description: 'Transform raw data into actionable insights with advanced analytics and visualization.',
-    gradient: 'from-green-500 to-teal-600'
+    gradient: 'from-purple-500 to-purple-600' // Purple
   },
   {
     id: "dataops-implementation",
     icon: <Settings className="h-10 w-10 text-white" />,
     title: 'DataOps Implementation',
     description: 'Streamline your data operations with automated workflows and processes.',
-    gradient: 'from-orange-500 to-red-600'
+    gradient: 'from-green-500 to-green-600' // Green
   },
   {
     id: "team-training",
     icon: <Users className="h-10 w-10 text-white" />,
     title: 'HubSpot Training & Implementation',
     description: 'Expert training and implementation to maximize your HubSpot investment.',
-    gradient: 'from-amber-500 to-yellow-600'
+    gradient: 'from-amber-500 to-amber-600' // Amber/Yellow
   },
   {
     id: "marketing-operations-revops",
     icon: <TrendingUp className="h-10 w-10 text-white" />,
     title: 'Marketing Operations & RevOps',
     description: 'Optimize your marketing and revenue operations for improved performance and ROI.',
-    gradient: 'from-emerald-500 to-green-700'
+    gradient: 'from-pink-500 to-rose-600' // Pink/Rose
   }
 ];
 
@@ -49,7 +49,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <Link to={`/services/${service.id}`} key={index} className="block transition-transform hover:scale-105">
               <Card className={`border-0 overflow-hidden h-full bg-gradient-to-br ${service.gradient} text-white hover:shadow-xl transition-shadow`}>
