@@ -37,7 +37,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center">
           <img 
-            src="/lovable-uploads/a7e5473f-2cf4-4af6-9a30-b1116a5f3d03.png" 
+            src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
             alt="DataOps Group Logo" 
             className="h-16 md:h-20" 
           />
