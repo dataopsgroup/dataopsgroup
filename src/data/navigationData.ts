@@ -34,7 +34,6 @@ export const insightsItems: SubNavItem[] = [
 
 // Industry categories
 export const industryItems: SubNavItem[] = [
-  // All case-study links point to a single case-studies page that exists
   { name: 'Finance & Banking', href: '/case-studies' },
   { name: 'Healthcare', href: '/case-studies' },
   { name: 'Manufacturing', href: '/case-studies' },

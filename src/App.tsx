@@ -18,6 +18,7 @@ import BlogList from './pages/BlogList';
 import BlogPost from './pages/BlogPost';
 import AboutPage from './pages/AboutPage';
 import ApproachPage from './pages/ApproachPage';
+import CaseStudiesPage from './pages/CaseStudies';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -106,6 +107,11 @@ function App() {
           {
             path: "/approach",
             element: <ApproachPage />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/case-studies",
+            element: <CaseStudiesPage />,
             errorElement: <NotFound />,
           },
           {
