@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -69,7 +68,7 @@ const BookCTA = () => {
             "@type": "Person",
             "name": "Geoff Tucker"
           },
-          "url": "https://yourwebsite.com/book",
+          "url": "https://dataops.group/book",
           "image": "/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png",
           "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
           "publisher": {
