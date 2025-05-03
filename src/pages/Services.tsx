@@ -4,7 +4,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Database, LineChart, Shield, Settings, Laptop, Users } from 'lucide-react';
+import { services } from '@/components/Services';
 
 const ServicesPage = () => {
   return (
@@ -18,6 +19,10 @@ const ServicesPage = () => {
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-4">
+          <Link to="/insights" className="inline-flex mb-6 items-center justify-center bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition-colors">
+            Back to Insights
+          </Link>
+          
           <h1 className="text-3xl md:text-4xl font-bold mb-8 text-dataops-600">
             Our Services
           </h1>
@@ -28,72 +33,21 @@ const ServicesPage = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Data Architecture</h2>
-              <p className="text-gray-600 mb-4">
-                We design scalable and flexible data architectures tailored to your business needs, ensuring optimal 
-                data flow and integration across your systems.
-              </p>
-              <Link to="/approach" className="flex items-center text-dataops-600 hover:text-dataops-800 group">
-                Learn about our data architecture approach
-                <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Analytics & BI</h2>
-              <p className="text-gray-600 mb-4">
-                Transform raw data into actionable insights with our analytics and business intelligence solutions.
-                Our approach delivers meaningful metrics that drive decision-making.
-              </p>
-              <Link to="/case-studies" className="flex items-center text-dataops-600 hover:text-dataops-800 group">
-                View analytics case studies
-                <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Data Governance</h2>
-              <p className="text-gray-600 mb-4">
-                Implement robust data governance frameworks to ensure data quality, compliance, and security
-                throughout your organization.
-              </p>
-              <Link to="/blog" className="flex items-center text-dataops-600 hover:text-dataops-800 group">
-                Read about data governance best practices
-                <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">DataOps Implementation</h2>
-              <p className="text-gray-600 mb-4">
-                Streamline your data operations with our proven DataOps implementation methodologies that enhance 
-                collaboration between teams.
-              </p>
-              <Link to="/documentation" className="flex items-center text-dataops-600 hover:text-dataops-800 group">
-                Explore implementation guides
-                <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Technology Consulting</h2>
-              <p className="text-gray-600 mb-4">
-                Get expert guidance on selecting and implementing the right data technologies for your organization
-                to maximize ROI.
-              </p>
-              <Link to="/faqs" className="flex items-center text-dataops-600 hover:text-dataops-800 group">
-                Common technology questions
-                <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-semibold mb-4">Enterprise Data Solutions</h2>
-              <p className="text-gray-600 mb-4">
-                Comprehensive enterprise-grade solutions designed to handle complex data challenges at scale
-                for large organizations.
-              </p>
-              <Link to="/contact" className="flex items-center text-dataops-600 hover:text-dataops-800 group">
-                Request a solution consultation
-                <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </div>
+            {services.map((service, index) => (
+              <div key={index} className={`overflow-hidden rounded-lg shadow-md bg-gradient-to-br ${service.gradient} text-white p-6`}>
+                <div className="mb-4">
+                  {service.icon}
+                </div>
+                <h2 className="text-xl font-semibold mb-4 text-white">{service.title}</h2>
+                <p className="text-white/90 mb-4">
+                  {service.description}
+                </p>
+                <Link to={`/services/${service.id}`} className="flex items-center text-white hover:text-white/80 group">
+                  Learn more
+                  <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            ))}
           </div>
           
           <div className="bg-gray-50 p-8 rounded-lg mb-16">
@@ -115,6 +69,24 @@ const ServicesPage = () => {
         </div>
       </main>
       <Footer />
+
+      {/* Schema markup for Services page */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Our Services - DataOps Group",
+          "description": "Explore our comprehensive data operations services including data architecture, analytics, governance, and technology consulting.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "DataOps Group"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Geoff Tucker"
+          }
+        })
+      }} />
     </div>
   );
 };
