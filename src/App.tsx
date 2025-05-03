@@ -30,6 +30,7 @@ const GetStartedPage = lazy(() => import("./pages/GetStartedPage"));
 const ThankYouPage = lazy(() => import("./pages/ThankYouPage"));
 const PerplexityPage = lazy(() => import("./pages/PerplexityPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
+const BookPage = lazy(() => import("./pages/BookPage"));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -77,6 +78,7 @@ const App = () => (
             <Route path="/get-started" element={<GetStartedPage />} />
             <Route path="/thank-you" element={<ThankYouPage />} />
             <Route path="/perplexity" element={<PerplexityPage />} />
+            <Route path="/book" element={<BookPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
