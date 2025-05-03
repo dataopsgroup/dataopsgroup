@@ -50,7 +50,7 @@ const BookPage = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="flex justify-center pt-16"> {/* Adjusted padding to account for navbar without the extra bar */}
+          <div className="flex justify-center pt-48"> {/* Increased padding from pt-16 to pt-48 */}
             <img 
               src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
               alt="The CMO's Data Playbook book cover" 
@@ -117,4 +117,3 @@ const BookPage = () => {
 };
 
 export default BookPage;
-
