@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Services from '@/components/Services';
+import Hero from '@/components/Hero';
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <Navbar />
       
       <main className="flex-grow">
+        <Hero />
         <Services />
       </main>
       
