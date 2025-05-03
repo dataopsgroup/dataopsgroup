@@ -9,7 +9,7 @@ import { Book, ChevronRight } from 'lucide-react';
 
 const BookLandingPage = () => {
   // Define book cover and author photo paths directly
-  const bookCoverPath = "/lovable-uploads/7fffb636-3a9b-492e-9683-9fa503913a8a.png";
+  const bookCoverPath = "/lovable-uploads/591e9856-bd6e-4d1c-bf57-81adfa5036f0.png";
   const authorPhotoPath = "/lovable-uploads/73881b43-478e-4955-b56c-b120bd0a5ac5.png";
 
   return (
