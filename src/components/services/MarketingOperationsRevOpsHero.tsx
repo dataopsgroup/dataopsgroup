@@ -7,14 +7,6 @@ const MarketingOperationsRevOpsHero = () => {
   return (
     <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
       <div className="container mx-auto">
-        <div className="flex justify-center mb-6">
-          <Link 
-            to="/insights" 
-            className="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-800 transition-colors flex items-center"
-          >
-            Back to Insights
-          </Link>
-        </div>
         <div className="grid lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-3 space-y-6">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-100 text-dataops-800 text-sm font-medium mb-2">
