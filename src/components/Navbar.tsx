@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Book } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
@@ -32,6 +32,12 @@ const navServices = [
   // Removed other services that don't have route definitions in App.tsx
 ];
 
+// Insights dropdown items
+const insightsItems = [
+  { name: 'Blog', href: '/insights' },
+  { name: 'Buy the Book', href: '/book', icon: <Book className="h-3 w-3 mr-1" /> }
+];
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -59,7 +65,11 @@ const Navbar = () => {
         { name: 'Energy & Utilities', href: '/case-studies' },
       ]
     },
-    { name: 'Insights', href: '/insights' },
+    { 
+      name: 'Insights', 
+      isDropdown: true,
+      items: insightsItems
+    },
   ];
 
   useEffect(() => {
@@ -107,8 +117,9 @@ const Navbar = () => {
                     <DropdownMenuItem key={subItem.name} asChild>
                       <Link 
                         to={subItem.href}
-                        className="w-full cursor-pointer"
+                        className="w-full cursor-pointer flex items-center"
                       >
+                        {subItem.icon && subItem.icon}
                         {subItem.name}
                       </Link>
                     </DropdownMenuItem>
@@ -157,8 +168,9 @@ const Navbar = () => {
                         key={subItem.name}
                         to={subItem.href}
                         onClick={() => setIsOpen(false)}
-                        className="text-dataops-900 hover:text-dataops-600 py-1"
+                        className="text-dataops-900 hover:text-dataops-600 py-1 flex items-center"
                       >
+                        {subItem.icon && subItem.icon}
                         {subItem.name}
                       </Link>
                     ))}

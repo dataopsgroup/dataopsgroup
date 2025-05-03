@@ -13,6 +13,7 @@ import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
 import CookieConsent from 'react-cookie-consent';
 import PrivacyModal from './components/PrivacyModal';
+import BookLandingPage from './pages/BookLandingPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -76,6 +77,11 @@ function App() {
           {
             path: "/services/marketing-operations-revops",
             element: <MarketingOperationsRevOps />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/book",
+            element: <BookLandingPage />,
             errorElement: <NotFound />,
           },
           {
