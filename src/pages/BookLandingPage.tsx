@@ -116,9 +116,9 @@ const BookLandingPage = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">About the Author</h2>
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <img 
-                  src="/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png" 
-                  alt="Geoff Tucker" 
-                  className="h-64 w-64 object-cover rounded-full border-4 border-white shadow-lg" 
+                  src={bookCover} 
+                  alt="The CMO's Data Playbook book cover" 
+                  className="h-64 w-auto object-cover rounded-lg border-4 border-white shadow-lg" 
                 />
                 <div>
                   <h3 className="text-xl font-bold mb-4">Geoff Tucker</h3>
