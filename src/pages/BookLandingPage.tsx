@@ -27,7 +27,7 @@ const BookLandingPage = () => {
               "name": "Geoff Tucker"
             },
             "url": "https://dataops.group/book",
-            "image": "${window.location.origin}/lovable-uploads/591e9856-bd6e-4d1c-bf57-81adfa5036f0.png",
+            "image": "${window.location.origin}/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png",
             "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
             "publisher": {
               "@type": "Organization",
@@ -70,7 +70,7 @@ const BookLandingPage = () => {
               <div className="order-1 md:order-2 flex justify-center">
                 <div className="relative">
                   <img 
-                    src="/lovable-uploads/591e9856-bd6e-4d1c-bf57-81adfa5036f0.png" 
+                    src="/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png" 
                     alt="The CMO's Data Playbook book cover" 
                     className="h-auto max-w-sm rounded-lg shadow-2xl transform md:-rotate-6 hover:rotate-0 transition-transform duration-300" 
                   />
@@ -115,7 +115,7 @@ const BookLandingPage = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">About the Author</h2>
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <img 
-                  src="/lovable-uploads/73881b43-478e-4955-b56c-b120bd0a5ac5.png" 
+                  src="/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png" 
                   alt="Geoff Tucker" 
                   className="h-64 w-64 object-cover rounded-full border-4 border-white shadow-lg" 
                 />
