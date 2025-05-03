@@ -31,7 +31,7 @@ const steps = [
 
 const Approach = () => {
   return (
-    <section id="approach" className="section-padding bg-white">
+    <section id="approach" className="pt-10 pb-16 md:pt-16 md:pb-24 px-4 md:px-8 bg-white">
       <div className="container mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
