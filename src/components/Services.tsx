@@ -1,17 +1,11 @@
 
 import React from 'react';
-import { Database, LineChart, Shield, Settings, Laptop, Users, TrendingUp } from 'lucide-react';
+import { Database, LineChart, Settings, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
+// Only include services with corresponding routes in App.tsx
 export const services = [
-  {
-    id: "data-architecture",
-    icon: <Database className="h-10 w-10 text-white" />,
-    title: 'Data Architecture',
-    description: 'Design robust, scalable data architectures that support your business objectives.',
-    gradient: 'from-blue-500 to-indigo-700'
-  },
   {
     id: "analytics-bi",
     icon: <LineChart className="h-10 w-10 text-white" />,
@@ -20,32 +14,11 @@ export const services = [
     gradient: 'from-green-500 to-teal-600'
   },
   {
-    id: "data-governance",
-    icon: <Shield className="h-10 w-10 text-white" />,
-    title: 'Data Governance',
-    description: 'Implement frameworks to ensure data quality, compliance, and security.',
-    gradient: 'from-purple-500 to-pink-600'
-  },
-  {
     id: "dataops-implementation",
     icon: <Settings className="h-10 w-10 text-white" />,
     title: 'DataOps Implementation',
     description: 'Streamline your data operations with automated workflows and processes.',
     gradient: 'from-orange-500 to-red-600'
-  },
-  {
-    id: "technology-consulting",
-    icon: <Laptop className="h-10 w-10 text-white" />,
-    title: 'Technology Consulting',
-    description: 'Get expert guidance on data technology selection and implementation.',
-    gradient: 'from-cyan-500 to-blue-600'
-  },
-  {
-    id: "team-training",
-    icon: <Users className="h-10 w-10 text-white" />,
-    title: 'HubSpot Training & Implementation',
-    description: 'Expert training and implementation to maximize your HubSpot investment.',
-    gradient: 'from-amber-500 to-yellow-600'
   },
   {
     id: "marketing-operations-revops",

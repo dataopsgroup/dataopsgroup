@@ -10,7 +10,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { services } from '@/components/Services';
+
+// Only include services that have corresponding pages in App.tsx
+const navServices = [
+  { 
+    name: 'Analytics & BI', 
+    href: '/services/analytics-bi'
+  },
+  { 
+    name: 'DataOps Implementation', 
+    href: '/services/dataops-implementation'
+  },
+  { 
+    name: 'Marketing Operations & RevOps', 
+    href: '/services/marketing-operations-revops'
+  },
+  // Removed other services that don't have route definitions in App.tsx
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,10 +36,7 @@ const Navbar = () => {
     { 
       name: 'Services', 
       isDropdown: true,
-      items: services.map(service => ({
-        name: service.title,
-        href: `/services/${service.id}`
-      }))
+      items: navServices
     },
     { name: 'About', href: '/about' },
     { name: 'Approach', href: '/approach' },
@@ -31,6 +44,7 @@ const Navbar = () => {
       name: 'Industries', 
       isDropdown: true,
       items: [
+        // All case-study links point to a single case-studies page that exists
         { name: 'Finance & Banking', href: '/case-studies' },
         { name: 'Healthcare', href: '/case-studies' },
         { name: 'Manufacturing', href: '/case-studies' },
