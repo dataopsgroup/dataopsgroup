@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
 
@@ -16,20 +15,16 @@ const About = () => {
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              About <span className="gradient-text">DataOps Group</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-600">
+              About DataOps Group
             </h2>
             
             <p className="text-lg text-gray-700 mb-6">
-              DataOps Group is a premier consulting firm specializing in data operations 
-              excellence. We partner with organizations to optimize their data workflows, 
-              enhance data quality, and accelerate value delivery from their data investments.
+              DataOps Group tackles the frustrating data chaos that's costing you millions in wasted resources and missed opportunities. While others push generic solutions, we specialize in transforming your messy, siloed data operations into streamlined revenue-generating systems.
             </p>
             
             <p className="text-lg text-gray-700 mb-8">
-              Our team combines deep technical expertise with business acumen to deliver 
-              solutions that not only solve immediate data challenges but also create 
-              sustainable competitive advantages.
+              Tired of data projects that drain budgets without delivering results? Our team combines battle-tested technical expertise with real-world business knowledge to create practical solutions that eliminate immediate data headaches while building lasting competitive advantages your competitors can't match.
             </p>
             
             <div className="space-y-3">
