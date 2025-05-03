@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Services from '@/components/Services';
 
-const Index = () => {
+const Home = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -27,4 +27,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Home;

@@ -3,23 +3,23 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Services from '@/components/Services';
+import Contact from '@/components/Contact';
 
-const Index = () => {
+const ContactPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>DataOps Group - HubSpot Consultancy</title>
+        <title>Contact Us - DataOps Group</title>
         <meta 
           name="description" 
-          content="DataOps Group is a HubSpot consultancy that helps businesses optimize their HubSpot implementation and maximize their ROI." 
+          content="Get in touch with DataOps Group for HubSpot consultancy services." 
         />
       </Helmet>
       
       <Navbar />
       
-      <main className="flex-grow">
-        <Services />
+      <main className="flex-grow pt-32">
+        <Contact />
       </main>
       
       <Footer />
@@ -27,4 +27,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default ContactPage;

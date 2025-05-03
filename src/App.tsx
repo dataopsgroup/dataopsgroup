@@ -1,14 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Services from './pages/Services';
-import DataArchitecture from './pages/DataArchitecture';
 import AnalyticsBI from './pages/AnalyticsBI';
-import DataGovernance from './pages/DataGovernance';
 import DataOpsImplementation from './pages/DataOpsImplementation';
-import TechnologyConsulting from './pages/TechnologyConsulting';
-import TeamTraining from './pages/TeamTraining';
 import MarketingOperationsRevOps from './pages/MarketingOperationsRevOps';
 import NotFound from './pages/NotFound';
 import Loading from './components/Loading';
@@ -61,33 +58,13 @@ function App() {
             errorElement: <NotFound />,
           },
           {
-            path: "/services/data-architecture",
-            element: <DataArchitecture />,
-            errorElement: <NotFound />,
-          },
-          {
             path: "/services/analytics-bi",
             element: <AnalyticsBI />,
             errorElement: <NotFound />,
           },
           {
-            path: "/services/data-governance",
-            element: <DataGovernance />,
-            errorElement: <NotFound />,
-          },
-          {
             path: "/services/dataops-implementation",
             element: <DataOpsImplementation />,
-            errorElement: <NotFound />,
-          },
-          {
-            path: "/services/technology-consulting",
-            element: <TechnologyConsulting />,
-            errorElement: <NotFound />,
-          },
-          {
-            path: "/services/team-training",
-            element: <TeamTraining />,
             errorElement: <NotFound />,
           },
           {
