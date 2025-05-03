@@ -54,8 +54,8 @@ const Services = () => {
     <section id="services" className="section-padding bg-white">
       <div className="container mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="gradient-text">Services</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-dataops-600">
+            Our Services
           </h2>
           <p className="text-lg text-gray-600">
             Comprehensive data solutions tailored to your business needs

@@ -18,8 +18,8 @@ const ServicesPage = () => {
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8">
-            Our <span className="gradient-text">Services</span>
+          <h1 className="text-3xl md:text-4xl font-bold mb-8 text-dataops-600">
+            Our Services
           </h1>
           <p className="text-lg text-gray-700 max-w-3xl mb-12">
             At DataOps Group, we provide comprehensive <Link to="/approach" className="text-dataops-600 hover:underline">data operation solutions</Link> designed 
@@ -97,7 +97,7 @@ const ServicesPage = () => {
           </div>
           
           <div className="bg-gray-50 p-8 rounded-lg mb-16">
-            <h2 className="text-2xl font-semibold mb-4">Industries We Serve</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-dataops-600">Industries We Serve</h2>
             <p className="text-gray-700 mb-6">
               Our data solutions are tailored to meet the specific needs of various industries, including:
             </p>

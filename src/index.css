@@ -82,7 +82,7 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-dataops-700 to-dataops-500 bg-clip-text text-transparent;
+    @apply text-dataops-600;
   }
 
   .gradient-bg {

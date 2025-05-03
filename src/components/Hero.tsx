@@ -11,7 +11,7 @@ const Hero = () => {
         <div className="space-y-8">
           <div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Fix Your <span className="text-green-500">HubSpot Ordeal</span>, Generate Revenue
+              Fix Your <span className="text-dataops-600">HubSpot Ordeal</span>, Generate Revenue
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
               It's not HubSpot that's failing you—it's your disorganized data and setup. We convert chaotic, scattered HubSpot portals into organized revenue engines that turn your existing contacts into paying customers.

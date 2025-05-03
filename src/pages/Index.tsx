@@ -29,7 +29,7 @@ const Index = () => {
         <section className="py-12 bg-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl font-bold mb-6">HubSpot Revenue Solutions</h2>
+              <h2 className="text-2xl font-bold mb-6 text-dataops-600">HubSpot Revenue Solutions</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h3 className="font-medium mb-2">From HubSpot Ordeal to Money</h3>
