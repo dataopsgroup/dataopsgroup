@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Book } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NavItem } from '@/types/navigation';
 import {
@@ -16,6 +16,14 @@ interface DesktopNavigationProps {
 }
 
 const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
+  // Function to render the appropriate icon based on string identifier
+  const renderIcon = (iconName?: string) => {
+    if (iconName === 'book') {
+      return <Book className="h-3 w-3 mr-1" />;
+    }
+    return null;
+  };
+
   return (
     <div className="hidden md:flex items-center gap-8">
       {navItems.map((item) => (
@@ -32,7 +40,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
                     to={subItem.href}
                     className="w-full cursor-pointer flex items-center"
                   >
-                    {subItem.icon && subItem.icon}
+                    {subItem.icon && renderIcon(subItem.icon)}
                     {subItem.name}
                   </Link>
                 </DropdownMenuItem>

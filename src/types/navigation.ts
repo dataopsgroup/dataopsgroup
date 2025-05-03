@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 export interface SubNavItem {
   name: string;
   href: string;
-  icon?: ReactNode;
+  icon?: string; // Changed from ReactNode to string
 }
 
 export interface NavItem {

@@ -1,6 +1,4 @@
 
-import React from 'react';
-import { Book } from 'lucide-react';
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -27,7 +25,11 @@ export const navServices: SubNavItem[] = [
 // Insights dropdown items
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
-  { name: 'Buy the Book', href: '/book', icon: <Book className="h-3 w-3 mr-1" /> }
+  { 
+    name: 'Buy the Book', 
+    href: '/book', 
+    icon: 'book' // Using a string identifier instead of JSX
+  }
 ];
 
 // Industry categories
