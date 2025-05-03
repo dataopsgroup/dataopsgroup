@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Database, LineChart, Settings, Users } from 'lucide-react';
+import { LineChart, Settings, TrendingUp, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 
