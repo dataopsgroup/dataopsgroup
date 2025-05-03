@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -19,7 +20,6 @@ const BookCTA = () => {
                       alt="The CMO's Data Playbook book cover" 
                       className="h-auto w-64 md:w-72 rounded-md shadow-xl" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-md"></div>
                   </div>
                 </div>
                 

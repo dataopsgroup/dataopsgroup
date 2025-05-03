@@ -73,7 +73,6 @@ const BookLandingPage = () => {
                     alt="The CMO's Data Playbook book cover" 
                     className="h-auto max-w-sm rounded-lg shadow-2xl transform md:-rotate-6 hover:rotate-0 transition-transform duration-300" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-lg"></div>
                 </div>
               </div>
             </div>
