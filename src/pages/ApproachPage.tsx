@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -77,8 +76,8 @@ const ApproachPage = () => {
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
           <div className="container mx-auto">
-            <div className="grid lg:grid-cols-5 gap-12 items-center">
-              <div className="lg:col-span-3 space-y-6">
+            <div className="max-w-3xl">
+              <div className="space-y-6">
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-100 text-dataops-800 text-sm font-medium mb-2">
                   Our Methodology
                 </div>
@@ -89,16 +88,6 @@ const ApproachPage = () => {
                   At DataOps Group, we follow a systematic methodology that delivers reliable results for our clients.
                   Our data operations approach is designed to transform your data operations and create sustainable value.
                 </p>
-              </div>
-              
-              <div className="lg:col-span-2 flex justify-center">
-                <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md">
-                  <img 
-                    src="/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png"
-                    alt="DataOps process visualization"
-                    className="w-full h-64 object-cover object-center"
-                  />
-                </div>
               </div>
             </div>
           </div>
