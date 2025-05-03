@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -31,6 +32,7 @@ const PerplexityPage = lazy(() => import("./pages/PerplexityPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const BookPage = lazy(() => import("./pages/BookPage"));
 const MarketingOperationsRevOps = lazy(() => import("./pages/MarketingOperationsRevOps"));
+const DataOpsImplementation = lazy(() => import("./pages/DataOpsImplementation"));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -63,6 +65,7 @@ const App = () => (
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/:serviceId" element={<ServiceDetail />} />
             <Route path="/services/marketing-operations-revops" element={<MarketingOperationsRevOps />} />
+            <Route path="/services/dataops-implementation" element={<DataOpsImplementation />} />
             <Route path="/approach" element={<ApproachPage />} />
             <Route path="/insights" element={<BlogList />} />
             <Route path="/insights/:postId" element={<BlogPost />} />
