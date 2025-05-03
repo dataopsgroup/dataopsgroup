@@ -71,8 +71,8 @@ const MarketingOperationsRevOps = () => {
                   revenue engine that drives growth, improves customer experience, and maximizes ROI.
                 </p>
                 <div className="pt-6">
-                  <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
-                    Schedule a Consultation
+                  <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base" asChild>
+                    <Link to="/contact">Schedule a Consultation</Link>
                   </Button>
                 </div>
               </div>
@@ -156,8 +156,8 @@ const MarketingOperationsRevOps = () => {
                     Contact us today to schedule a consultation and learn how our Marketing Operations & RevOps services
                     can help you align your teams and drive revenue growth.
                   </p>
-                  <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
-                    Contact Us
+                  <Button className="w-full bg-dataops-600 hover:bg-dataops-700" asChild>
+                    <Link to="/contact">Contact Us</Link>
                   </Button>
                 </div>
               </div>
