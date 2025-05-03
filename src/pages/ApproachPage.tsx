@@ -129,7 +129,6 @@ const ApproachPage = () => {
                           {step.description}
                         </p>
                         <div className="mt-4">
-                          <h4 className="font-medium mb-2">Key Activities:</h4>
                           <ul className="list-disc pl-6 grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-700">
                             {step.activities.map((activity, actIndex) => (
                               <li key={actIndex}>{activity}</li>
