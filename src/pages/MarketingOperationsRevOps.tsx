@@ -78,12 +78,12 @@ const MarketingOperationsRevOps = () => {
               </div>
               
               <div className="lg:col-span-2 flex justify-center">
-                <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10 w-full max-w-md">
-                  <div className="flex justify-center items-center h-48 w-full rounded-lg bg-dataops-50">
-                    <div className="text-dataops-600" aria-hidden="true">
-                      <TrendingUp className="h-16 w-16" />
-                    </div>
-                  </div>
+                <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md">
+                  <img 
+                    src="/lovable-uploads/351b0f9b-3348-45c7-8d09-8ff53700ac30.png"
+                    alt="Network cables and server infrastructure representing marketing operations"
+                    className="w-full h-64 object-cover object-center"
+                  />
                 </div>
               </div>
             </div>
