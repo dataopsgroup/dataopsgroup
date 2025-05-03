@@ -109,13 +109,23 @@ const ServiceDetail = () => {
               </div>
               
               <div className="lg:col-span-2 flex justify-center">
-                <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10 w-full max-w-md">
-                  <div className="flex justify-center items-center h-48 w-full rounded-lg bg-dataops-50">
-                    <div className="text-dataops-600" aria-hidden="true">
-                      {service.icon}
+                {isHubSpotTraining ? (
+                  <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md">
+                    <img 
+                      src="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"
+                      alt="HubSpot training session with a facilitator and attendees"
+                      className="w-full h-64 object-cover object-center"
+                    />
+                  </div>
+                ) : (
+                  <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10 w-full max-w-md">
+                    <div className="flex justify-center items-center h-48 w-full rounded-lg bg-dataops-50">
+                      <div className="text-dataops-600" aria-hidden="true">
+                        {service.icon}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
