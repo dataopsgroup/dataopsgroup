@@ -1,91 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Book } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from "@/lib/utils";
 import { Link } from 'react-router-dom';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-// Define interface for navigation items
-interface NavItem {
-  name: string;
-  href?: string;
-  isDropdown?: boolean;
-  items?: Array<SubNavItem>;
-}
-
-// Define interface for sub-navigation items
-interface SubNavItem {
-  name: string;
-  href: string;
-  icon?: React.ReactNode;
-}
-
-// Only include services that have corresponding pages in App.tsx
-const navServices: SubNavItem[] = [
-  { 
-    name: 'Analytics & BI', 
-    href: '/services/analytics-bi'
-  },
-  { 
-    name: 'DataOps Implementation', 
-    href: '/services/dataops-implementation'
-  },
-  { 
-    name: 'HubSpot Training & Implementation', 
-    href: '/services/team-training'
-  },
-  { 
-    name: 'Marketing Operations & RevOps', 
-    href: '/services/marketing-operations-revops'
-  },
-  // Removed other services that don't have route definitions in App.tsx
-];
-
-// Insights dropdown items
-const insightsItems: SubNavItem[] = [
-  { name: 'Blog', href: '/insights' },
-  { name: 'Buy the Book', href: '/book', icon: <Book className="h-3 w-3 mr-1" /> }
-];
+import { mainNavItems } from '@/data/navigationData';
+import DesktopNavigation from './navigation/DesktopNavigation';
+import MobileNavigation from './navigation/MobileNavigation';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  const navItems: NavItem[] = [
-    { 
-      name: 'Services', 
-      isDropdown: true,
-      items: navServices
-    },
-    { name: 'About', href: '/about' },
-    { name: 'Approach', href: '/approach' },
-    { 
-      name: 'Industries', 
-      isDropdown: true,
-      items: [
-        // All case-study links point to a single case-studies page that exists
-        { name: 'Finance & Banking', href: '/case-studies' },
-        { name: 'Healthcare', href: '/case-studies' },
-        { name: 'Manufacturing', href: '/case-studies' },
-        { name: 'Retail & E-commerce', href: '/case-studies' },
-        { name: 'Technology', href: '/case-studies' },
-        { name: 'Insurance', href: '/case-studies' },
-        { name: 'Logistics', href: '/case-studies' },
-        { name: 'Energy & Utilities', href: '/case-studies' },
-      ]
-    },
-    { 
-      name: 'Insights', 
-      isDropdown: true,
-      items: insightsItems
-    },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -119,42 +44,7 @@ const Navbar = () => {
         </Link>
         
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            item.isDropdown ? (
-              <DropdownMenu key={item.name}>
-                <DropdownMenuTrigger className="text-dataops-900 hover:text-dataops-600 font-medium transition-colors flex items-center gap-1 bg-transparent">
-                  {item.name}
-                  <ChevronDown className="h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-white">
-                  {item.items?.map((subItem) => (
-                    <DropdownMenuItem key={subItem.name} asChild>
-                      <Link 
-                        to={subItem.href}
-                        className="w-full cursor-pointer flex items-center"
-                      >
-                        {subItem.icon && subItem.icon}
-                        {subItem.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link 
-                key={item.name}
-                to={item.href || "/"}
-                className="text-dataops-900 hover:text-dataops-600 font-medium transition-colors"
-              >
-                {item.name}
-              </Link>
-            )
-          ))}
-          <Link to="/contact">
-            <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
-          </Link>
-        </div>
+        <DesktopNavigation navItems={mainNavItems} />
         
         {/* Mobile menu button */}
         <div className="md:hidden">
@@ -170,48 +60,11 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-md animate-fade-in">
-          <div className="container mx-auto py-4 flex flex-col space-y-4">
-            {navItems.map((item) => (
-              item.isDropdown ? (
-                <div key={item.name} className="flex flex-col px-4">
-                  <div className="py-2 font-medium text-dataops-900">{item.name}</div>
-                  <div className="pl-4 flex flex-col space-y-2">
-                    {item.items?.map((subItem) => (
-                      <Link
-                        key={subItem.name}
-                        to={subItem.href}
-                        onClick={() => setIsOpen(false)}
-                        className="text-dataops-900 hover:text-dataops-600 py-1 flex items-center"
-                      >
-                        {subItem.icon && subItem.icon}
-                        {subItem.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.href || "/"}
-                  onClick={() => setIsOpen(false)}
-                  className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4"
-                >
-                  {item.name}
-                </Link>
-              )
-            ))}
-            <div className="px-4 pt-2">
-              <Link to="/contact" onClick={() => setIsOpen(false)}>
-                <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
-                  Get Started
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
+      <MobileNavigation 
+        isOpen={isOpen} 
+        navItems={mainNavItems} 
+        setIsOpen={setIsOpen} 
+      />
     </nav>
   );
 };
