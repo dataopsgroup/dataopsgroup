@@ -5,7 +5,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Book } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { cn } from "@/lib/utils";
 
 const BookPage = () => {
   return (
@@ -52,7 +54,7 @@ const BookPage = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="flex justify-center pt-16"> {/* Increased padding top to push the image down further */}
+          <div className="flex justify-center pt-28"> {/* Adjusted padding top from pt-16 to pt-28 */}
             <img 
               src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
               alt="The CMO's Data Playbook book cover" 
@@ -61,6 +63,11 @@ const BookPage = () => {
           </div>
           
           <div className="text-left">
+            <div className="inline-flex items-center bg-dataops-100 text-dataops-700 text-xs px-3 py-1 rounded-full mb-4">
+              <Book className="h-3 w-3 mr-1" />
+              <span>New Release</span>
+            </div>
+            
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
               THE CMO's DATA PLAYBOOK
             </h1>
