@@ -1,13 +1,29 @@
+
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
 
 const About = () => {
   const benefits = [
-    'Over 15 years of industry experience',
-    'Team of certified data specialists',
-    'Proven methodologies with tangible results',
-    'Tailored solutions for your specific challenges',
-    'Ongoing support and knowledge transfer',
+    {
+      text: 'Over 15 years of industry experience',
+      color: 'bg-blue-400'
+    },
+    {
+      text: 'Team of certified data specialists',
+      color: 'bg-green-400'
+    },
+    {
+      text: 'Proven methodologies with tangible results',
+      color: 'bg-purple-400'
+    },
+    {
+      text: 'Tailored solutions for your specific challenges',
+      color: 'bg-orange-400'
+    },
+    {
+      text: 'Ongoing support and knowledge transfer',
+      color: 'bg-pink-400'
+    }
   ];
 
   return (
@@ -27,11 +43,11 @@ const About = () => {
               Tired of data projects that drain budgets without delivering results? Our team combines battle-tested technical expertise with real-world business knowledge to create practical solutions that eliminate immediate data headaches while building lasting competitive advantages your competitors can't match.
             </p>
             
-            <div className="space-y-3">
+            <div className="space-y-4">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-dataops-600 mr-3 flex-shrink-0" />
-                  <span className="text-gray-700">{benefit}</span>
+                  <div className={`h-4 w-4 rounded-full ${benefit.color} mr-4 flex-shrink-0`}></div>
+                  <span className="text-gray-700">{benefit.text}</span>
                 </div>
               ))}
             </div>
