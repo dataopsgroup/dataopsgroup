@@ -6,7 +6,8 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Book, ChevronRight } from 'lucide-react';
-import bookCover from '/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png';
+import bookCover from '/lovable-uploads/7fffb636-3a9b-492e-9683-9fa503913a8a.png';
+import authorPhoto from '/lovable-uploads/73881b43-478e-4955-b56c-b120bd0a5ac5.png';
 
 const BookLandingPage = () => {
   return (
@@ -116,9 +117,9 @@ const BookLandingPage = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">About the Author</h2>
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 <img 
-                  src={bookCover} 
-                  alt="The CMO's Data Playbook book cover" 
-                  className="h-64 w-auto object-cover rounded-lg border-4 border-white shadow-lg" 
+                  src={authorPhoto} 
+                  alt="Geoff Tucker" 
+                  className="h-64 w-64 object-cover rounded-full border-4 border-white shadow-lg" 
                 />
                 <div>
                   <h3 className="text-xl font-bold mb-4">Geoff Tucker</h3>

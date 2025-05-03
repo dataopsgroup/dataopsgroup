@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Book } from 'lucide-react';
-import bookCover from '/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png';
+import bookCover from '/lovable-uploads/7fffb636-3a9b-492e-9683-9fa503913a8a.png';
 
 const BookCTA = () => {
   return (
