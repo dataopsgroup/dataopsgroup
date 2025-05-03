@@ -1,13 +1,10 @@
 
-import React, { memo } from 'react';
+import React, { useEffect } from 'react';
 import { Phone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 
 // Use memo to prevent unnecessary re-renders
-const ContactCard = memo(({ children }: { children: React.ReactNode }) => (
+const ContactCard = React.memo(({ children }: { children: React.ReactNode }) => (
   <Card>
     <CardContent className="pt-6">
       {children}
@@ -17,46 +14,44 @@ const ContactCard = memo(({ children }: { children: React.ReactNode }) => (
 
 ContactCard.displayName = 'ContactCard';
 
-// Form input component for reusability and better performance
-const FormField = memo(({ 
-  id, 
-  label, 
-  placeholder, 
-  type = 'text', 
-  className = '',
-  isTextarea = false
-}: { 
-  id: string; 
-  label: string; 
-  placeholder: string; 
-  type?: string;
-  className?: string;
-  isTextarea?: boolean;
-}) => (
-  <div className={className}>
-    <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
-      {label}
-    </label>
-    {isTextarea ? (
-      <Textarea
-        id={id}
-        placeholder={placeholder}
-        className="min-h-[120px] w-full"
-      />
-    ) : (
-      <Input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        className="w-full"
-      />
-    )}
-  </div>
-));
-
-FormField.displayName = 'FormField';
-
 const Contact = () => {
+  useEffect(() => {
+    // Create HubSpot script
+    const script = document.createElement('script');
+    script.src = '//js.hsforms.net/forms/embed/v2.js';
+    script.charset = 'utf-8';
+    script.type = 'text/javascript';
+    script.async = true;
+    document.body.appendChild(script);
+
+    // Add onload handler to initialize form
+    script.onload = () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          portalId: "21794360",
+          formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
+          region: "na1",
+          target: "#hubspot-form-container"
+        });
+      }
+    };
+
+    return () => {
+      // Clean up
+      const scriptToRemove = document.querySelector('script[src="//js.hsforms.net/forms/embed/v2.js"]');
+      if (scriptToRemove && scriptToRemove.parentNode) {
+        scriptToRemove.parentNode.removeChild(scriptToRemove);
+      }
+      // Remove any HubSpot form elements that might have been created
+      const formContainer = document.getElementById('hubspot-form-container');
+      if (formContainer) {
+        while (formContainer.firstChild) {
+          formContainer.removeChild(formContainer.firstChild);
+        }
+      }
+    };
+  }, []);
+
   return (
     <section id="contact" className="section-padding bg-white">
       <div className="container mx-auto">
@@ -75,50 +70,14 @@ const Contact = () => {
             </ContactCard>
           </div>
           
-          {/* Contact Form */}
+          {/* HubSpot Contact Form */}
           <div className="md:col-span-2">
             <ContactCard>
-              <form>
-                <div className="grid sm:grid-cols-2 gap-6 mb-6">
-                  <FormField
-                    id="firstName"
-                    label="First Name"
-                    placeholder="John"
-                  />
-                  <FormField
-                    id="lastName"
-                    label="Last Name"
-                    placeholder="Doe"
-                  />
+              <div id="hubspot-form-container" className="min-h-[400px]">
+                <div className="flex justify-center items-center h-20">
+                  <p className="text-gray-500">Loading form...</p>
                 </div>
-                
-                <FormField
-                  id="email"
-                  label="Email Address"
-                  placeholder="john.doe@example.com"
-                  type="email"
-                  className="mb-6"
-                />
-                
-                <FormField
-                  id="company"
-                  label="Company"
-                  placeholder="Your Company, Inc."
-                  className="mb-6"
-                />
-                
-                <FormField
-                  id="message"
-                  label="Message"
-                  placeholder="Tell us about your project or inquiry..."
-                  isTextarea={true}
-                  className="mb-6"
-                />
-                
-                <Button type="submit" className="w-full bg-dataops-600 hover:bg-dataops-700">
-                  Send Message
-                </Button>
-              </form>
+              </div>
             </ContactCard>
           </div>
         </div>
@@ -126,5 +85,16 @@ const Contact = () => {
     </section>
   );
 };
+
+// Add HubSpot form typing to window object
+declare global {
+  interface Window {
+    hbspt?: {
+      forms: {
+        create: (config: any) => void;
+      };
+    };
+  }
+}
 
 export default Contact;

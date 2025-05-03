@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
-import Contact from './pages/Contact';
+import ContactPage from './pages/Contact';
 import Services from './pages/Services';
 import AnalyticsBI from './pages/AnalyticsBI';
 import DataOpsImplementation from './pages/DataOpsImplementation';
@@ -56,7 +55,7 @@ function App() {
           },
           {
             path: "/contact",
-            element: <Contact />,
+            element: <ContactPage />,
             errorElement: <NotFound />,
           },
           {
