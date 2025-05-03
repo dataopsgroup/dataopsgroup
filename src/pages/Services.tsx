@@ -4,10 +4,22 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Database, LineChart, Shield, Settings, Laptop, Users } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { services } from '@/components/Services';
 
 const ServicesPage = () => {
+  // Industry list that matches the dropdown in the navbar
+  const industries = [
+    'Finance & Banking',
+    'Healthcare',
+    'Manufacturing',
+    'Retail & E-commerce',
+    'Technology',
+    'Insurance',
+    'Logistics',
+    'Energy & Utilities',
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -56,14 +68,15 @@ const ServicesPage = () => {
               Our data solutions are tailored to meet the specific needs of various industries, including:
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Link to="/case-studies" className="text-dataops-600 hover:underline">Finance & Banking</Link>
-              <Link to="/case-studies" className="text-dataops-600 hover:underline">Healthcare</Link>
-              <Link to="/case-studies" className="text-dataops-600 hover:underline">Manufacturing</Link>
-              <Link to="/case-studies" className="text-dataops-600 hover:underline">Retail & E-commerce</Link>
-              <Link to="/case-studies" className="text-dataops-600 hover:underline">Technology</Link>
-              <Link to="/case-studies" className="text-dataops-600 hover:underline">Insurance</Link>
-              <Link to="/case-studies" className="text-dataops-600 hover:underline">Logistics</Link>
-              <Link to="/case-studies" className="text-dataops-600 hover:underline">Energy & Utilities</Link>
+              {industries.map((industry, index) => (
+                <Link 
+                  key={index} 
+                  to="/case-studies" 
+                  className="text-dataops-600 hover:underline"
+                >
+                  {industry}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
