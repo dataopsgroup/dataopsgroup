@@ -1,95 +1,127 @@
+import React, { useState, useEffect } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import Services from './pages/Services';
+import DataArchitecture from './pages/DataArchitecture';
+import AnalyticsBI from './pages/AnalyticsBI';
+import DataGovernance from './pages/DataGovernance';
+import DataOpsImplementation from './pages/DataOpsImplementation';
+import TechnologyConsulting from './pages/TechnologyConsulting';
+import TeamTraining from './pages/TeamTraining';
+import MarketingOperationsRevOps from './pages/MarketingOperationsRevOps';
+import NotFound from './pages/NotFound';
+import Loading from './components/Loading';
+import ErrorDisplay from './components/ErrorDisplay';
+import CookieConsent from 'react-cookie-consent';
+import PrivacyModal from './components/PrivacyModal';
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { Suspense, lazy } from "react";
-import { Loader } from "lucide-react";
+function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
-// Eagerly load the Index page for faster initial load
-import Index from "./pages/Index";
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
 
-// Lazy load all other pages
-const NotFound = lazy(() => import("./pages/NotFound"));
-const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
-const BlogList = lazy(() => import("./pages/BlogList"));
-const BlogPost = lazy(() => import("./pages/BlogPost"));
-const ContactPage = lazy(() => import("./pages/ContactPage"));
-const ServicesPage = lazy(() => import("./pages/Services"));
-const ApproachPage = lazy(() => import("./pages/ApproachPage"));
-const LeadershipPage = lazy(() => import("./pages/Leadership"));
-const CaseStudiesPage = lazy(() => import("./pages/CaseStudies"));
-const WhitepapersPage = lazy(() => import("./pages/Whitepapers"));
-const DocumentationPage = lazy(() => import("./pages/Documentation"));
-const FAQsPage = lazy(() => import("./pages/FAQs"));
-const PrivacyPage = lazy(() => import("./pages/Privacy"));
-const TermsPage = lazy(() => import("./pages/Terms"));
-const SitemapPage = lazy(() => import("./pages/Sitemap"));
-const GetStartedPage = lazy(() => import("./pages/GetStartedPage"));
-const ThankYouPage = lazy(() => import("./pages/ThankYouPage"));
-const PerplexityPage = lazy(() => import("./pages/PerplexityPage"));
-const AboutPage = lazy(() => import("./pages/AboutPage"));
-const BookPage = lazy(() => import("./pages/BookPage"));
-const MarketingOperationsRevOps = lazy(() => import("./pages/MarketingOperationsRevOps"));
-const DataOpsImplementation = lazy(() => import("./pages/DataOpsImplementation"));
+    return () => clearTimeout(timer);
+  }, []);
 
-// Loading fallback component
-const LoadingFallback = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="flex flex-col items-center gap-4">
-      <Loader size={48} className="text-dataops-600 animate-spin" />
-      <p className="text-lg text-dataops-600 font-medium">Loading...</p>
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <ErrorDisplay message={error.message} />;
+  }
+
+  return (
+    <div className="relative">
+      {isLoading && <Loading />}
+      {error && <ErrorDisplay message={error.message} />}
+      
+      <RouterProvider
+        router={createBrowserRouter([
+          {
+            path: "/",
+            element: <Home />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/contact",
+            element: <Contact />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services",
+            element: <Services />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services/data-architecture",
+            element: <DataArchitecture />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services/analytics-bi",
+            element: <AnalyticsBI />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services/data-governance",
+            element: <DataGovernance />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services/dataops-implementation",
+            element: <DataOpsImplementation />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services/technology-consulting",
+            element: <TechnologyConsulting />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services/team-training",
+            element: <TeamTraining />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/services/marketing-operations-revops",
+            element: <MarketingOperationsRevOps />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "*",
+            element: <NotFound />,
+          },
+        ])}
+      />
+      
+      <CookieConsent
+        location="bottom"
+        buttonText="Accept"
+        cookieName="dataopsCookieConsent"
+        style={{ background: "#2B373B" }}
+        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+        expires={150}
+        onAccept={() => {
+          // Handle analytics or other tracking services here
+        }}
+      >
+        This website uses cookies to enhance the user experience.{" "}
+        <span style={{ fontSize: "10px", cursor: "pointer", textDecoration: 'underline' }} onClick={() => setIsPrivacyModalOpen(true)}>
+          Learn More
+        </span>
+      </CookieConsent>
+
+      <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
     </div>
-  </div>
-);
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      staleTime: 5 * 60 * 1000, // 5 minutes
-    },
-  },
-});
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Suspense fallback={<LoadingFallback />}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/services/:serviceId" element={<ServiceDetail />} />
-            <Route path="/services/marketing-operations-revops" element={<MarketingOperationsRevOps />} />
-            <Route path="/services/dataops-implementation" element={<DataOpsImplementation />} />
-            <Route path="/approach" element={<ApproachPage />} />
-            <Route path="/insights" element={<BlogList />} />
-            <Route path="/insights/:postId" element={<BlogPost />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/leadership" element={<LeadershipPage />} />
-            <Route path="/case-studies" element={<CaseStudiesPage />} />
-            <Route path="/whitepapers" element={<WhitepapersPage />} />
-            <Route path="/documentation" element={<DocumentationPage />} />
-            <Route path="/faqs" element={<FAQsPage />} />
-            <Route path="/privacy" element={<PrivacyPage />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/sitemap" element={<SitemapPage />} />
-            <Route path="/get-started" element={<GetStartedPage />} />
-            <Route path="/thank-you" element={<ThankYouPage />} />
-            <Route path="/perplexity" element={<PerplexityPage />} />
-            <Route path="/book" element={<BookPage />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  );
+}
 
 export default App;

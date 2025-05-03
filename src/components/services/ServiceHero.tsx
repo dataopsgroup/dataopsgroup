@@ -8,9 +8,11 @@ interface ServiceHeroProps {
   description: string;
   isHubSpotTraining: boolean;
   serviceIcon: React.ReactNode;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
-const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon }: ServiceHeroProps) => {
+const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, imageSrc, imageAlt }: ServiceHeroProps) => {
   return (
     <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
       <div className="container mx-auto">
@@ -38,6 +40,14 @@ const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon }: Ser
                 <img 
                   src="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"
                   alt="HubSpot training session with a facilitator and attendees"
+                  className="w-full h-64 object-cover object-center"
+                />
+              </div>
+            ) : imageSrc ? (
+              <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md">
+                <img 
+                  src={imageSrc}
+                  alt={imageAlt || "Service visualization"}
                   className="w-full h-64 object-cover object-center"
                 />
               </div>
