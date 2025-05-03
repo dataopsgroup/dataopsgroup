@@ -11,8 +11,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+// Define interface for navigation items
+interface NavItem {
+  name: string;
+  href?: string;
+  isDropdown?: boolean;
+  items?: Array<SubNavItem>;
+}
+
+// Define interface for sub-navigation items
+interface SubNavItem {
+  name: string;
+  href: string;
+  icon?: React.ReactNode;
+}
+
 // Only include services that have corresponding pages in App.tsx
-const navServices = [
+const navServices: SubNavItem[] = [
   { 
     name: 'Analytics & BI', 
     href: '/services/analytics-bi'
@@ -33,7 +48,7 @@ const navServices = [
 ];
 
 // Insights dropdown items
-const insightsItems = [
+const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
   { name: 'Buy the Book', href: '/book', icon: <Book className="h-3 w-3 mr-1" /> }
 ];
@@ -42,7 +57,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { 
       name: 'Services', 
       isDropdown: true,
@@ -113,7 +128,7 @@ const Navbar = () => {
                   <ChevronDown className="h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56 bg-white">
-                  {item.items.map((subItem) => (
+                  {item.items?.map((subItem) => (
                     <DropdownMenuItem key={subItem.name} asChild>
                       <Link 
                         to={subItem.href}
@@ -129,7 +144,7 @@ const Navbar = () => {
             ) : (
               <Link 
                 key={item.name}
-                to={item.href}
+                to={item.href || "/"}
                 className="text-dataops-900 hover:text-dataops-600 font-medium transition-colors"
               >
                 {item.name}
@@ -163,7 +178,7 @@ const Navbar = () => {
                 <div key={item.name} className="flex flex-col px-4">
                   <div className="py-2 font-medium text-dataops-900">{item.name}</div>
                   <div className="pl-4 flex flex-col space-y-2">
-                    {item.items.map((subItem) => (
+                    {item.items?.map((subItem) => (
                       <Link
                         key={subItem.name}
                         to={subItem.href}
@@ -179,7 +194,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   key={item.name}
-                  to={item.href}
+                  to={item.href || "/"}
                   onClick={() => setIsOpen(false)}
                   className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4"
                 >
