@@ -28,10 +28,12 @@ import { salesFollowUpMyth } from './posts/sales-follow-up-myth';
 import { customerSegmentationMistake } from './posts/customer-segmentation-mistake';
 import { salesTeamStallingDeals } from './posts/sales-team-stalling-deals';
 import { salesPipelineMetrics } from './posts/sales-pipeline-metrics';
+import { salesIgnoringMarketingLeads } from './posts/sales-ignoring-marketing-leads';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  salesPipelineMetrics, // Add the new blog post at the top for recency
+  salesIgnoringMarketingLeads, // Add the new blog post at the top for recency
+  salesPipelineMetrics,
   salesTeamStallingDeals,
   customerSegmentationMistake,
   salesFollowUpMyth,
@@ -87,4 +89,5 @@ export {
   customerSegmentationMistake,
   salesTeamStallingDeals,
   salesPipelineMetrics,
+  salesIgnoringMarketingLeads,
 };
