@@ -8,4 +8,5 @@ export interface BlogPost {
   category: string;
   coverImage: string;
   content: string;
+  tags?: string[]; // Adding tags as an optional property
 }

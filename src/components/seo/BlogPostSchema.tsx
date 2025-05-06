@@ -15,6 +15,11 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
   const imageWidth = 1200;
   const imageHeight = 630;
   
+  // Handle the keywords - use tags if available or fallback to defaults
+  const keywords = post.tags && post.tags.length > 0 
+    ? post.tags.join(', ') 
+    : 'hubspot, dataops, marketing operations';
+  
   return (
     <Helmet>
       <script type="application/ld+json">
@@ -50,7 +55,7 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
             },
             "datePublished": "${isoDate}",
             "dateModified": "${isoDate}",
-            "keywords": "${post.tags ? post.tags.join(', ') : 'hubspot, dataops, marketing operations'}",
+            "keywords": "${keywords}",
             "articleSection": "${post.category || 'HubSpot'}",
             "inLanguage": "en-US"
           }
