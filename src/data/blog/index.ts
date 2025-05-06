@@ -11,10 +11,12 @@ import { upscaleHomeImprovementGoodsManufacturer } from './posts/upscale-home-im
 import { createProLevelHubSpotLeadScoreModel } from './posts/create-pro-level-hubspot-lead-score-model';
 import { marketingLeadersDataQualityCrisis } from './posts/marketing-leaders-data-quality-crisis';
 import { trueCostOfBadData } from './posts/true-cost-of-bad-data';
+import { stopBuyingContactLists } from './posts/stop-buying-contact-lists';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  trueCostOfBadData, // Add the new blog post at the top for recency
+  stopBuyingContactLists, // Add the new blog post at the top for recency
+  trueCostOfBadData,
   marketingLeadersDataQualityCrisis,
   createProLevelHubSpotLeadScoreModel,
   howToHireAHubSpotConsultant,
@@ -36,4 +38,5 @@ export {
   createProLevelHubSpotLeadScoreModel,
   marketingLeadersDataQualityCrisis,
   trueCostOfBadData,
+  stopBuyingContactLists,
 };
