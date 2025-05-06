@@ -2,7 +2,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ArrowRight, FileText } from 'lucide-react';
 import { blogPosts } from '@/data/blog';
 
 const CaseStudiesGrid = () => {
@@ -19,11 +18,7 @@ const CaseStudiesGrid = () => {
       title: post.title,
       description: post.excerpt,
       image: post.coverImage,
-      postId: post.id,
-      relatedLink: {
-        text: 'Related insights',
-        url: '/insights'
-      }
+      postId: post.id
     })) : 
     [
       // Add actual case studies from the blog posts
@@ -32,11 +27,7 @@ const CaseStudiesGrid = () => {
         title: post.title,
         description: post.excerpt,
         image: post.coverImage,
-        postId: post.id,
-        relatedLink: {
-          text: 'Related insights',
-          url: '/insights'
-        }
+        postId: post.id
       })),
       // Fill remaining spots with "More coming soon" placeholders
       ...Array(4 - caseStudyPosts.length).fill(null).map((_, i) => ({
@@ -44,11 +35,7 @@ const CaseStudiesGrid = () => {
         title: 'More Case Studies Coming Soon!',
         description: 'We are constantly working with new clients across various industries. Check back soon for more detailed case studies.',
         image: '/lovable-uploads/38a717bc-5952-4682-b390-57a9de301649.png', // Using a default image
-        postId: null,
-        relatedLink: {
-          text: 'View all insights',
-          url: '/insights'
-        }
+        postId: null
       }))
     ];
 
@@ -72,7 +59,7 @@ const CaseStudiesGrid = () => {
               <p className="text-gray-600 mb-4">
                 {caseStudy.description}
               </p>
-              <div className="flex justify-between items-center">
+              <div>
                 {caseStudy.postId ? (
                   <Link to={`/insights/${caseStudy.postId}`}>
                     <Button>Read Case Study</Button>
@@ -80,9 +67,6 @@ const CaseStudiesGrid = () => {
                 ) : (
                   <Button disabled>Coming Soon</Button>
                 )}
-                <Link to={caseStudy.relatedLink.url} className="text-dataops-600 hover:underline flex items-center text-sm">
-                  {caseStudy.relatedLink.text} <ArrowRight className="h-4 w-4 ml-1" />
-                </Link>
               </div>
             </div>
           </div>
