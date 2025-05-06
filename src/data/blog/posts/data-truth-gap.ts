@@ -8,7 +8,7 @@ export const dataTruthGap: BlogPost = {
   date: "2025-04-14",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png",
+  coverImage: "/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.png",
   content: `
     <p></p>
     
