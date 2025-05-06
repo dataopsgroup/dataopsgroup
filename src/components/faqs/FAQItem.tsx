@@ -16,7 +16,7 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, id }) => {
       value={id}
       className="bg-white rounded-lg shadow-md border"
     >
-      <AccordionTrigger className="px-6 py-4 text-lg">
+      <AccordionTrigger className="px-6 py-4 text-lg text-left justify-start">
         {item.question}
       </AccordionTrigger>
       <AccordionContent className="px-6 pb-4">
