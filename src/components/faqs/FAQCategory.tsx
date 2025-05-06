@@ -28,17 +28,19 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
   };
 
   return (
-    <Card className="hover:shadow-lg transition-shadow">
+    <Card className="w-full hover:shadow-lg transition-shadow mb-12">
       <CardHeader className="pb-4">
-        <div className="mb-4 h-12 w-12 rounded-full bg-dataops-100 flex items-center justify-center mx-auto">
-          {getIconComponent()}
+        <div className="flex items-center mb-4">
+          <div className="h-12 w-12 rounded-full bg-dataops-100 flex items-center justify-center mr-4">
+            {getIconComponent()}
+          </div>
+          <CardTitle className="text-2xl font-semibold">
+            {category.title}
+          </CardTitle>
         </div>
-        <CardTitle className="text-xl font-semibold text-center">
-          {category.title}
-        </CardTitle>
       </CardHeader>
       <CardContent>
-        <Accordion type="single" collapsible className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {category.items.map((item, index) => (
             <FAQItem 
               key={`${category.id}-item-${index + 1}`}
@@ -46,7 +48,7 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
               item={item} 
             />
           ))}
-        </Accordion>
+        </div>
       </CardContent>
     </Card>
   );
