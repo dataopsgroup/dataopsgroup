@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
 import { format } from 'date-fns';
+import CaseStudiesGrid from '@/components/case-studies/CaseStudiesGrid';
+import CaseStudiesLogos from '@/components/case-studies/CaseStudiesLogos';
 
 const CaseStudiesPage = () => {
   // Filter blog posts to only show case studies
@@ -56,8 +58,18 @@ const CaseStudiesPage = () => {
           </div>
         </section>
         
+        <CaseStudiesLogos />
+        
         <section className="py-16 px-4 bg-white">
           <div className="container mx-auto">
+            <h2 className="text-2xl font-bold mb-8">Featured Case Studies</h2>
+            <CaseStudiesGrid />
+          </div>
+        </section>
+        
+        <section className="py-16 px-4 bg-gray-50">
+          <div className="container mx-auto">
+            <h2 className="text-2xl font-bold mb-8">Client Success Stories</h2>
             {caseStudies.length === 0 ? (
               <div className="text-center py-12">
                 <h2 className="text-2xl font-semibold mb-4">No case studies available yet</h2>
