@@ -2,7 +2,7 @@
 import { FAQCategory } from "./types";
 import hubspotFAQs from "./hubspot-faqs";
 import approachFAQs from "./approach-faqs";
-import dataQualityFAQs from "./data-quality-faqs";
+import dataQualityFAQs from "./data-quality";
 import hubspotModulesFAQs from "./hubspot-modules-faqs";
 
 const faqCategories: FAQCategory[] = [
