@@ -25,9 +25,9 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
               <li><Link to="/services" className="text-gray-300 hover:text-white">Data Architecture</Link></li>
-              <li><Link to="/services" className="text-gray-300 hover:text-white">Analytics & BI</Link></li>
+              <li><Link to="/services/analytics-bi" className="text-gray-300 hover:text-white">Analytics & BI</Link></li>
               <li><Link to="/services" className="text-gray-300 hover:text-white">Data Governance</Link></li>
-              <li><Link to="/services" className="text-gray-300 hover:text-white">DataOps Implementation</Link></li>
+              <li><Link to="/services/dataops-implementation" className="text-gray-300 hover:text-white">DataOps Implementation</Link></li>
               <li><Link to="/services" className="text-gray-300 hover:text-white">Technology Consulting</Link></li>
               <li><Link to="/services" className="text-gray-300 hover:text-white">Enterprise Data Solutions</Link></li>
             </ul>
@@ -36,9 +36,9 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Company</h3>
             <ul className="space-y-3">
-              <li><Link to="/#about" className="text-gray-300 hover:text-white">About Us</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-white">About Us</Link></li>
               <li><Link to="/leadership" className="text-gray-300 hover:text-white">Leadership</Link></li>
-              <li><Link to="/blog" className="text-gray-300 hover:text-white">Blog</Link></li>
+              <li><Link to="/insights" className="text-gray-300 hover:text-white">Blog</Link></li>
               <li><Link to="/approach" className="text-gray-300 hover:text-white">Our Approach</Link></li>
             </ul>
           </div>

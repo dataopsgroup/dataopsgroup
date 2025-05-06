@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import ContactPage from './pages/Contact';
 import Services from './pages/Services';
@@ -18,6 +19,17 @@ import BlogPost from './pages/BlogPost';
 import AboutPage from './pages/AboutPage';
 import ApproachPage from './pages/ApproachPage';
 import CaseStudiesPage from './pages/CaseStudies';
+import Whitepapers from './pages/Whitepapers';
+import Documentation from './pages/Documentation';
+import FAQs from './pages/FAQs';
+import Leadership from './pages/Leadership';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Sitemap from './pages/Sitemap';
+import GetStartedPage from './pages/GetStartedPage';
+import PerplexityPage from './pages/PerplexityPage';
+import ThankYouPage from './pages/ThankYouPage';
+import SEOManagement from './pages/SEOManagement';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -111,6 +123,68 @@ function App() {
           {
             path: "/case-studies",
             element: <CaseStudiesPage />,
+            errorElement: <NotFound />,
+          },
+          // Add redirect from /blog to /insights
+          {
+            path: "/blog",
+            element: <Navigate to="/insights" replace />,
+            errorElement: <NotFound />,
+          },
+          // Add missing routes
+          {
+            path: "/whitepapers",
+            element: <Whitepapers />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/documentation",
+            element: <Documentation />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/faqs",
+            element: <FAQs />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/leadership",
+            element: <Leadership />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/privacy",
+            element: <Privacy />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/terms",
+            element: <Terms />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/sitemap",
+            element: <Sitemap />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/get-started",
+            element: <GetStartedPage />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/perplexity",
+            element: <PerplexityPage />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/thank-you",
+            element: <ThankYouPage />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/seo-management",
+            element: <SEOManagement />,
             errorElement: <NotFound />,
           },
           {

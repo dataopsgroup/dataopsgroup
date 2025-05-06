@@ -20,7 +20,18 @@ const Home = () => {
           content="DataOps Group is a HubSpot consultancy that helps businesses optimize their HubSpot implementation and maximize their ROI." 
         />
         <meta name="keywords" content="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations" />
-        <link rel="canonical" href="/" />
+        <link rel="canonical" href={`${window.location.origin}/`} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="DataOps Group - HubSpot Consultancy" />
+        <meta property="og:description" content="DataOps Group is a HubSpot consultancy that helps businesses optimize their HubSpot implementation and maximize their ROI." />
+        <meta property="og:url" content={`${window.location.origin}/`} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DataOps Group - HubSpot Consultancy" />
+        <meta name="twitter:description" content="DataOps Group is a HubSpot consultancy that helps businesses optimize their HubSpot implementation and maximize their ROI." />
       </Helmet>
       
       <OrganizationSchema />
