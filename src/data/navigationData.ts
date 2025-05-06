@@ -25,6 +25,7 @@ export const navServices: SubNavItem[] = [
 // Insights dropdown items
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
+  { name: 'Case Studies', href: '/case-studies' },
   { 
     name: 'Buy the Book', 
     href: '/book', 
