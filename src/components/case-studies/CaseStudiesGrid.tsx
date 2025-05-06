@@ -43,7 +43,7 @@ const CaseStudiesGrid = () => {
     <section className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {caseStudies.map((caseStudy, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+          <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
             <div className="h-48 relative">
               <img 
                 src={caseStudy.image} 
@@ -51,15 +51,15 @@ const CaseStudiesGrid = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="p-6">
+            <div className="p-6 flex flex-col flex-grow">
               <span className="inline-block px-3 py-1 rounded-full bg-dataops-50 text-dataops-600 text-sm font-medium mb-3">
                 {caseStudy.industry}
               </span>
               <h2 className="text-xl font-semibold mb-2">{caseStudy.title}</h2>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-4 flex-grow">
                 {caseStudy.description}
               </p>
-              <div>
+              <div className="mt-auto">
                 {caseStudy.postId ? (
                   <Link to={`/insights/${caseStudy.postId}`}>
                     <Button>Read Case Study</Button>
