@@ -33,10 +33,12 @@ import { multiNationalSpecialtyInsurance } from './posts/multi-national-specialt
 import { silentSalesMarketingDivide } from './posts/silent-sales-marketing-divide';
 import { customerSegmentationMistakeICP } from './posts/customer-segmentation-mistake-icp';
 import { audioVisualEquipmentWholesaler } from './posts/audio-visual-equipment-wholesaler';
+import { dataTruthGap } from './posts/data-truth-gap';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  audioVisualEquipmentWholesaler, // Add the new blog post at the top
+  dataTruthGap, // Add the new blog post at the top
+  audioVisualEquipmentWholesaler,
   customerSegmentationMistakeICP,
   silentSalesMarketingDivide,
   multiNationalSpecialtyInsurance,
@@ -102,4 +104,5 @@ export {
   silentSalesMarketingDivide,
   customerSegmentationMistakeICP,
   audioVisualEquipmentWholesaler,
+  dataTruthGap,
 };
