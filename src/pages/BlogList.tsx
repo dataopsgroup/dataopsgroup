@@ -3,22 +3,62 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
-import { blogPosts } from '@/data/blog'; // Updated import path
+import { blogPosts } from '@/data/blog';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
 import { format } from 'date-fns';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const BlogList = () => {
+  // Define breadcrumbs for the insights page
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Insights', url: '/insights' },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Insights | DataOps Group</title>
         <meta 
           name="description" 
-          content="Insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." 
+          content="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." 
         />
+        <meta name="keywords" content="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation" />
+        <link rel="canonical" href="/insights" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Insights | DataOps Group" />
+        <meta property="og:description" content="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." />
+        <meta property="og:url" content={`${window.location.origin}/insights`} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Insights | DataOps Group" />
+        <meta name="twitter:description" content="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." />
       </Helmet>
+      
+      {/* Schema Markup */}
+      <BreadcrumbSchema items={breadcrumbs} />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Insights | DataOps Group",
+          "description": "Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "DataOps Group",
+            "logo": {
+              "@type": "ImageObject",
+              "url": `${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+            }
+          }
+        })}
+      </script>
+      
       <Navbar />
       <main className="flex-1">
         <section className="bg-gradient-to-br from-white to-dataops-50 py-16 md:py-24">
