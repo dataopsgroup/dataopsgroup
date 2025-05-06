@@ -8,6 +8,13 @@ interface BlogPostSchemaProps {
 }
 
 const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
+  // Format date to ISO format for schema
+  const isoDate = new Date(post.date).toISOString();
+  
+  // Extract image dimensions for schema
+  const imageWidth = 1200;
+  const imageHeight = 630;
+  
   return (
     <Helmet>
       <script type="application/ld+json">
@@ -21,7 +28,12 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
             },
             "headline": "${post.title}",
             "description": "${post.excerpt}",
-            "image": "${window.location.origin}${post.coverImage}",
+            "image": {
+              "@type": "ImageObject",
+              "url": "${window.location.origin}${post.coverImage}",
+              "width": "${imageWidth}",
+              "height": "${imageHeight}"
+            },
             "author": {
               "@type": "Person",
               "name": "${post.author}"
@@ -36,8 +48,11 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
                 "height": "112"
               }
             },
-            "datePublished": "${post.date}",
-            "dateModified": "${post.date}"
+            "datePublished": "${isoDate}",
+            "dateModified": "${isoDate}",
+            "keywords": "${post.tags ? post.tags.join(', ') : 'hubspot, dataops, marketing operations'}",
+            "articleSection": "${post.category || 'HubSpot'}",
+            "inLanguage": "en-US"
           }
         `}
       </script>

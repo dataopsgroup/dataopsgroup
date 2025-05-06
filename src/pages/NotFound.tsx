@@ -30,8 +30,9 @@ const NotFound = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Page Not Found - DataOps Group</title>
-        <meta name="description" content="The page you are looking for does not exist. Return to our homepage to explore DataOps Group's services and resources." />
+        <meta name="description" content="The page you are looking for does not exist. Return to our homepage to explore DataOps Group's HubSpot consultancy services and resources." />
         <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`${window.location.origin}/404`} />
       </Helmet>
       
       <Navbar />
@@ -46,6 +47,7 @@ const NotFound = () => {
           <Link 
             to="/" 
             className="px-6 py-3 bg-dataops-600 text-white rounded-md hover:bg-dataops-700 transition-colors inline-block"
+            aria-label="Return to DataOps Group homepage"
           >
             Return to Homepage
           </Link>

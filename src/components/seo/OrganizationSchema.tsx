@@ -21,9 +21,7 @@ const OrganizationSchema = () => {
             },
             "description": "DataOps Group is a HubSpot consultancy that helps businesses optimize their HubSpot implementation and maximize their ROI.",
             "sameAs": [
-              "https://twitter.com/dataops_group",
-              "https://www.linkedin.com/company/dataops-group/",
-              "https://www.facebook.com/dataopsgroup"
+              "https://www.linkedin.com/company/dataops-group/"
             ],
             "address": {
               "@type": "PostalAddress",
@@ -38,7 +36,16 @@ const OrganizationSchema = () => {
               "contactType": "customer service",
               "email": "info@dataopsgroup.com",
               "availableLanguage": "English"
-            }
+            },
+            "areaServed": "Worldwide",
+            "foundingDate": "2020",
+            "employee": [
+              {
+                "@type": "Person",
+                "name": "Geoff Tucker",
+                "jobTitle": "Chief Executive Officer"
+              }
+            ]
           }
         `}
       </script>

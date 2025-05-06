@@ -17,11 +17,25 @@ const WebsiteSchema = () => {
             "publisher": {
               "@id": "${window.location.origin}#organization"
             },
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "${window.location.origin}/search?q={search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "${window.location.origin}/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              },
+              {
+                "@type": "ReadAction",
+                "target": [
+                  "${window.location.origin}/services",
+                  "${window.location.origin}/insights",
+                  "${window.location.origin}/about"
+                ]
+              }
+            ],
+            "inLanguage": "en-US"
           }
         `}
       </script>

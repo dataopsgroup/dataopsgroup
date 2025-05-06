@@ -1,14 +1,12 @@
-User-agent: Googlebot
-Allow: /
 
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# robots.txt for dataopsgroup.com
 
 User-agent: *
 Allow: /
+
+# Disallow thank you pages
+Disallow: /thank-you
+Disallow: /thank-you/
+
+# Sitemap
+Sitemap: https://dataopsgroup.com/sitemap.xml
