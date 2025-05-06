@@ -478,7 +478,7 @@ While these manual methods require more effort than using Operations Hub, they c
                         value={`hub-item-${index + 1}`} 
                         className="bg-white rounded-lg shadow-md border"
                       >
-                        <AccordionTrigger className="px-6 py-4 text-sm">
+                        <AccordionTrigger className="px-6 py-4 text-lg">
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="px-6 pb-4">
@@ -520,7 +520,7 @@ While these manual methods require more effort than using Operations Hub, they c
                         value={`approach-item-${index + 1}`} 
                         className="bg-white rounded-lg shadow-md border"
                       >
-                        <AccordionTrigger className="px-6 py-4 text-sm">
+                        <AccordionTrigger className="px-6 py-4 text-lg">
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="px-6 pb-4">
@@ -562,7 +562,7 @@ While these manual methods require more effort than using Operations Hub, they c
                         value={`data-item-${index + 1}`} 
                         className="bg-white rounded-lg shadow-md border"
                       >
-                        <AccordionTrigger className="px-6 py-4 text-sm">
+                        <AccordionTrigger className="px-6 py-4 text-lg">
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="px-6 pb-4">
