@@ -3,7 +3,6 @@ import { FAQCategory } from "./types";
 import hubspotFAQs from "./hubspot-faqs";
 import approachFAQs from "./approach-faqs";
 import dataQualityFAQs from "./data-quality-faqs";
-import { FolderOpen, Book, Database } from "lucide-react";
 
 const faqCategories: FAQCategory[] = [
   {
