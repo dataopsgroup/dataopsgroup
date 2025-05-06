@@ -17,10 +17,12 @@ import { dataEnrichmentStrategy } from './posts/data-enrichment-strategy';
 import { psychologyDataGovernance } from './posts/psychology-data-governance';
 import { marketingOperationsIsntIT } from './posts/marketing-operations-isnt-it';
 import { marketingAttributionModelsBroken } from './posts/marketing-attribution-models-broken';
+import { demystifyingUtmParameters } from './posts/demystifying-utm-parameters';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  marketingAttributionModelsBroken, // Add the new blog post at the top for recency
+  demystifyingUtmParameters, // Add the new blog post at the top for recency
+  marketingAttributionModelsBroken,
   marketingOperationsIsntIT,
   psychologyDataGovernance,
   dataEnrichmentStrategy,
@@ -54,4 +56,5 @@ export {
   psychologyDataGovernance,
   marketingOperationsIsntIT,
   marketingAttributionModelsBroken,
+  demystifyingUtmParameters,
 };
