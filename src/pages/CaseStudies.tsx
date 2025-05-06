@@ -3,21 +3,11 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
-import { blogPosts } from '@/data/blog';
-import { Link } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
-import { format } from 'date-fns';
 import CaseStudiesGrid from '@/components/case-studies/CaseStudiesGrid';
 import CaseStudiesLogos from '@/components/case-studies/CaseStudiesLogos';
 
 const CaseStudiesPage = () => {
-  // Filter blog posts to only show case studies
-  const caseStudies = blogPosts.filter(post => 
-    post.category?.toLowerCase() === 'case studies' || 
-    post.category?.toLowerCase() === 'case study'
-  );
-
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -67,50 +57,6 @@ const CaseStudiesPage = () => {
           </div>
         </section>
         
-        <section className="py-16 px-4 bg-gray-50">
-          <div className="container mx-auto">
-            <h2 className="text-2xl font-bold mb-8">Client Success Stories</h2>
-            {caseStudies.length === 0 ? (
-              <div className="text-center py-12">
-                <h2 className="text-2xl font-semibold mb-4">No case studies available yet</h2>
-                <p className="text-gray-600">Check back soon for real-world success stories from our clients.</p>
-              </div>
-            ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {caseStudies.map((post) => (
-                  <Card key={post.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
-                    <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
-                      <CardHeader className="pb-4">
-                        <img 
-                          src={post.coverImage} 
-                          alt={post.title} 
-                          className="w-full h-48 object-cover rounded-t-lg mb-4" 
-                        />
-                        <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
-                          {post.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="flex-grow">
-                        <CardDescription className="text-gray-700">
-                          {post.excerpt}
-                        </CardDescription>
-                      </CardContent>
-                      <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
-                        <div className="text-sm text-gray-500">
-                          {format(new Date(post.date), 'MMMM dd, yyyy')} · {post.author}
-                        </div>
-                        <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
-                          Read More
-                        </span>
-                      </CardFooter>
-                    </Link>
-                  </Card>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-
         <CTABanner />
       </main>
       <Footer />
