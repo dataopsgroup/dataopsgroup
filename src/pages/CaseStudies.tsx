@@ -1,11 +1,9 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
 import CTABanner from '@/components/CTABanner';
 import CaseStudiesGrid from '@/components/case-studies/CaseStudiesGrid';
-import CaseStudiesLogos from '@/components/case-studies/CaseStudiesLogos';
 
 const CaseStudiesPage = () => {
   return (
@@ -47,8 +45,6 @@ const CaseStudiesPage = () => {
             </div>
           </div>
         </section>
-        
-        <CaseStudiesLogos />
         
         <section className="py-16 px-4 bg-white">
           <div className="container mx-auto">

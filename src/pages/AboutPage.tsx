@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Linkedin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import CaseStudiesLogos from '@/components/case-studies/CaseStudiesLogos';
 
 const AboutPage = () => {
   return (
@@ -76,6 +77,8 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
+
+        <CaseStudiesLogos />
 
         <section className="py-16 bg-dataops-50">
           <div className="container mx-auto px-4">
