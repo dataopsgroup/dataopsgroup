@@ -12,10 +12,12 @@ import { createProLevelHubSpotLeadScoreModel } from './posts/create-pro-level-hu
 import { marketingLeadersDataQualityCrisis } from './posts/marketing-leaders-data-quality-crisis';
 import { trueCostOfBadData } from './posts/true-cost-of-bad-data';
 import { stopBuyingContactLists } from './posts/stop-buying-contact-lists';
+import { leadScoringPitfalls } from './posts/lead-scoring-pitfalls';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  stopBuyingContactLists, // Add the new blog post at the top for recency
+  leadScoringPitfalls, // Add the new blog post at the top for recency
+  stopBuyingContactLists,
   trueCostOfBadData,
   marketingLeadersDataQualityCrisis,
   createProLevelHubSpotLeadScoreModel,
@@ -39,4 +41,5 @@ export {
   marketingLeadersDataQualityCrisis,
   trueCostOfBadData,
   stopBuyingContactLists,
+  leadScoringPitfalls,
 };
