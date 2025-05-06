@@ -18,10 +18,12 @@ import { psychologyDataGovernance } from './posts/psychology-data-governance';
 import { marketingOperationsIsntIT } from './posts/marketing-operations-isnt-it';
 import { marketingAttributionModelsBroken } from './posts/marketing-attribution-models-broken';
 import { demystifyingUtmParameters } from './posts/demystifying-utm-parameters';
+import { crmCleanupPlan } from './posts/crm-cleanup-plan';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  demystifyingUtmParameters, // Add the new blog post at the top for recency
+  crmCleanupPlan, // Add the new blog post at the top for recency
+  demystifyingUtmParameters,
   marketingAttributionModelsBroken,
   marketingOperationsIsntIT,
   psychologyDataGovernance,
@@ -57,4 +59,5 @@ export {
   marketingOperationsIsntIT,
   marketingAttributionModelsBroken,
   demystifyingUtmParameters,
+  crmCleanupPlan,
 };
