@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
-import { blogPosts } from '@/data/blogPosts';
+import { blogPosts } from '@/data/blog'; // Updated import path
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
