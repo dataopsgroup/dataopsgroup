@@ -24,10 +24,12 @@ import { hiddenRevenueLeak } from './posts/hidden-revenue-leak';
 import { forgottenArtCampaignDocumentation } from './posts/forgotten-art-campaign-documentation';
 import { customerChurnBlindspot } from './posts/customer-churn-blindspot';
 import { customerAcquisitionCost } from './posts/customer-acquisition-cost';
+import { salesFollowUpMyth } from './posts/sales-follow-up-myth';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  customerAcquisitionCost, // Add the new blog post at the top for recency
+  salesFollowUpMyth, // Add the new blog post at the top for recency
+  customerAcquisitionCost,
   customerChurnBlindspot,
   forgottenArtCampaignDocumentation,
   hiddenRevenueLeak,
@@ -75,4 +77,5 @@ export {
   forgottenArtCampaignDocumentation,
   customerChurnBlindspot,
   customerAcquisitionCost,
+  salesFollowUpMyth,
 };
