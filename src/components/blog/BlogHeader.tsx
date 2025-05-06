@@ -21,7 +21,7 @@ const BlogHeader = ({ title, date, author, category, coverImage }: BlogHeaderPro
   return (
     <header className="mb-10">
       <div className="mb-4">
-        <Button variant="outline" className="text-gray-500 bg-gray-400 hover:bg-gray-500 hover:text-white" asChild>
+        <Button variant="outline" className="text-white bg-gray-400 hover:bg-gray-500 hover:text-white" asChild>
           <Link to="/insights">Back to Insights</Link>
         </Button>
       </div>
