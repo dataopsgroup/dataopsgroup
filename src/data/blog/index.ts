@@ -22,10 +22,12 @@ import { crmCleanupPlan } from './posts/crm-cleanup-plan';
 import { marketingDashboardsFail } from './posts/marketing-dashboards-fail';
 import { hiddenRevenueLeak } from './posts/hidden-revenue-leak';
 import { forgottenArtCampaignDocumentation } from './posts/forgotten-art-campaign-documentation';
+import { customerChurnBlindspot } from './posts/customer-churn-blindspot';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  forgottenArtCampaignDocumentation, // Add the new blog post at the top for recency
+  customerChurnBlindspot, // Add the new blog post at the top for recency
+  forgottenArtCampaignDocumentation,
   hiddenRevenueLeak,
   marketingDashboardsFail,
   crmCleanupPlan,
@@ -69,4 +71,5 @@ export {
   marketingDashboardsFail,
   hiddenRevenueLeak,
   forgottenArtCampaignDocumentation,
+  customerChurnBlindspot,
 };
