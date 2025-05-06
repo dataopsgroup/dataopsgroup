@@ -14,10 +14,14 @@ import { trueCostOfBadData } from './posts/true-cost-of-bad-data';
 import { stopBuyingContactLists } from './posts/stop-buying-contact-lists';
 import { leadScoringPitfalls } from './posts/lead-scoring-pitfalls';
 import { dataEnrichmentStrategy } from './posts/data-enrichment-strategy';
+import { psychologyDataGovernance } from './posts/psychology-data-governance';
+import { marketingOperationsIsntIT } from './posts/marketing-operations-isnt-it';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  dataEnrichmentStrategy, // Add the new blog post at the top for recency
+  marketingOperationsIsntIT, // Add the new blog post at the top for recency
+  psychologyDataGovernance,
+  dataEnrichmentStrategy,
   leadScoringPitfalls,
   stopBuyingContactLists,
   trueCostOfBadData,
@@ -45,4 +49,6 @@ export {
   stopBuyingContactLists,
   leadScoringPitfalls,
   dataEnrichmentStrategy,
+  psychologyDataGovernance,
+  marketingOperationsIsntIT,
 };
