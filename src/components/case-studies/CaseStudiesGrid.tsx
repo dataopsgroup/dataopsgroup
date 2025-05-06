@@ -31,17 +31,17 @@ const CaseStudiesGrid = () => {
       industry: 'Marketing Operations',
       title: 'Marketing Operations & IT Integration',
       description: 'Bridging the gap between marketing and IT departments for seamless data flow and improved cross-functional collaboration.',
-      image: '/lovable-uploads/af49b492-8291-4b98-89f4-6c36890dae72.png',
+      image: '/lovable-uploads/4fc5a5d8-17d4-482b-9c6c-5bac9aa55fc0.png', // Updated image
       relatedLink: {
         text: 'Related articles',
         url: '/insights'
       }
     },
     {
-      industry: 'Technology',
-      title: 'Enterprise Technology Integration',
-      description: 'Implementing advanced data systems for enterprise clients to improve operational efficiency and decision-making processes.',
-      image: '/lovable-uploads/bc4206e6-a56f-4df9-b1e7-be944954779a.png',
+      industry: 'Data Enrichment',
+      title: 'Enterprise Data Enrichment Strategy',
+      description: 'Implementing advanced data enrichment processes to improve data quality and decision-making for enterprise clients.',
+      image: '/lovable-uploads/5ae47a2e-6c0e-4d39-a7a9-46ed03c4eef3.png', // Updated image
       relatedLink: {
         text: 'Implementation FAQs',
         url: '/faqs'
