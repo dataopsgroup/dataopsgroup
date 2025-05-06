@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
-import SitemapGenerator from '@/components/seo/SitemapGenerator';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { FolderOpen, List, Link as LinkIcon } from 'lucide-react';
 
@@ -67,10 +66,6 @@ const SitemapPage = () => {
               <p className="text-lg text-gray-700">
                 Find everything you need on our website with this complete site navigation guide
               </p>
-              
-              <div className="mt-8">
-                <SitemapGenerator />
-              </div>
             </div>
           </div>
         </section>
