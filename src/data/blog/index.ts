@@ -8,9 +8,13 @@ import { hiringAndWorkingWithAHubSpotConsultant } from './posts/hiring-and-worki
 import { tipsForSmartWorkflows } from './posts/3-tips-for-smart-workflows';
 import { marketingDataManagement } from './posts/marketing-data-management';
 import { upscaleHomeImprovementGoodsManufacturer } from './posts/upscale-home-improvement-goods-manufacturer';
+import { createProLevelHubSpotLeadScoreModel } from './posts/create-pro-level-hubspot-lead-score-model';
+import { marketingLeadersDataQualityCrisis } from './posts/marketing-leaders-data-quality-crisis';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
+  marketingLeadersDataQualityCrisis, // Add the new blog post at the top for recency
+  createProLevelHubSpotLeadScoreModel,
   howToHireAHubSpotConsultant,
   whatHubSpotDoesForMarketing,
   hiringAndWorkingWithAHubSpotConsultant,
@@ -27,4 +31,6 @@ export {
   tipsForSmartWorkflows,
   marketingDataManagement,
   upscaleHomeImprovementGoodsManufacturer,
+  createProLevelHubSpotLeadScoreModel,
+  marketingLeadersDataQualityCrisis,
 };
