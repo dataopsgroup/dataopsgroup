@@ -4,7 +4,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import FAQItem from './FAQItem';
 import { FAQCategory as FAQCategoryType } from '@/data/faqs/types';
-import { FolderOpen, Book, Database } from 'lucide-react';
+import { FolderOpen, Book, Database, FileText } from 'lucide-react';
 
 interface FAQCategoryProps {
   category: FAQCategoryType;
@@ -20,6 +20,8 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
         return <Book className="h-6 w-6 text-dataops-600" />;
       case 'Database':
         return <Database className="h-6 w-6 text-dataops-600" />;
+      case 'FileText':
+        return <FileText className="h-6 w-6 text-dataops-600" />;
       default:
         return <FolderOpen className="h-6 w-6 text-dataops-600" />;
     }
