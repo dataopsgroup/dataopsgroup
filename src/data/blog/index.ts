@@ -20,10 +20,12 @@ import { marketingAttributionModelsBroken } from './posts/marketing-attribution-
 import { demystifyingUtmParameters } from './posts/demystifying-utm-parameters';
 import { crmCleanupPlan } from './posts/crm-cleanup-plan';
 import { marketingDashboardsFail } from './posts/marketing-dashboards-fail';
+import { hiddenRevenueLeak } from './posts/hidden-revenue-leak';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  marketingDashboardsFail, // Add the new blog post at the top for recency
+  hiddenRevenueLeak, // Add the new blog post at the top for recency
+  marketingDashboardsFail,
   crmCleanupPlan,
   demystifyingUtmParameters,
   marketingAttributionModelsBroken,
@@ -63,4 +65,5 @@ export {
   demystifyingUtmParameters,
   crmCleanupPlan,
   marketingDashboardsFail,
+  hiddenRevenueLeak,
 };
