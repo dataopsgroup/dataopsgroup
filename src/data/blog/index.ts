@@ -26,10 +26,12 @@ import { customerChurnBlindspot } from './posts/customer-churn-blindspot';
 import { customerAcquisitionCost } from './posts/customer-acquisition-cost';
 import { salesFollowUpMyth } from './posts/sales-follow-up-myth';
 import { customerSegmentationMistake } from './posts/customer-segmentation-mistake';
+import { salesTeamStallingDeals } from './posts/sales-team-stalling-deals';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  customerSegmentationMistake, // Add the new blog post at the top for recency
+  salesTeamStallingDeals, // Add the new blog post at the top for recency
+  customerSegmentationMistake,
   salesFollowUpMyth,
   customerAcquisitionCost,
   customerChurnBlindspot,
@@ -81,4 +83,5 @@ export {
   customerAcquisitionCost,
   salesFollowUpMyth,
   customerSegmentationMistake,
+  salesTeamStallingDeals,
 };
