@@ -31,10 +31,12 @@ import { salesPipelineMetrics } from './posts/sales-pipeline-metrics';
 import { salesIgnoringMarketingLeads } from './posts/sales-ignoring-marketing-leads';
 import { multiNationalSpecialtyInsurance } from './posts/multi-national-specialty-insurance';
 import { silentSalesMarketingDivide } from './posts/silent-sales-marketing-divide';
+import { customerSegmentationMistakeICP } from './posts/customer-segmentation-mistake-icp';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  silentSalesMarketingDivide, // Add the new blog post at the top
+  customerSegmentationMistakeICP, // Add the new blog post at the top
+  silentSalesMarketingDivide,
   multiNationalSpecialtyInsurance,
   salesIgnoringMarketingLeads,
   salesPipelineMetrics,
@@ -96,4 +98,5 @@ export {
   salesIgnoringMarketingLeads,
   multiNationalSpecialtyInsurance,
   silentSalesMarketingDivide,
+  customerSegmentationMistakeICP,
 };
