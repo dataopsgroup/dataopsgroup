@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Accordion } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import FAQItem from './FAQItem';
 import { FAQCategory as FAQCategoryType } from '@/data/faqs/types';
