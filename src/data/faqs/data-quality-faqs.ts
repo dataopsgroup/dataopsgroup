@@ -1,7 +1,60 @@
-
 import { FAQItem } from "./types";
 
 const dataQualityFAQs: FAQItem[] = [
+  {
+    question: "What are the 6 dimensions of data quality?",
+    answer: "The six fundamental dimensions of data quality are:\n\n1. Accuracy - Is the data correct and reliable?\n\n2. Completeness - Does the data contain all necessary values and records?\n\n3. Consistency - Is the data consistent across different datasets and systems?\n\n4. Timeliness - Is the data up-to-date and available when needed?\n\n5. Validity - Does the data conform to required formats and business rules?\n\n6. Integrity - Are there proper relationships between data elements and appropriate context?\n\nThese dimensions work together to ensure data is reliable and useful for analysis and decision-making. Organizations often establish specific metrics and thresholds for each dimension to monitor and maintain data quality across systems.",
+    relatedLink: {
+      text: "Read more about data quality dimensions",
+      url: "/data-quality-dimensions-guide",
+      ariaLabel: "Comprehensive guide to the six dimensions of data quality"
+    }
+  },
+  {
+    question: "What quality control questions should I include in my surveys?",
+    answer: "Effective survey quality control questions help ensure respondents are providing thoughtful, accurate responses. Consider including:\n\n1. Attention check questions - Simple questions with obvious answers (e.g., 'Please select \"Strongly Agree\" for this question')\n\n2. Logical consistency checks - Pairs of questions that should have logically consistent answers\n\n3. Instructional manipulation checks - Directions that ask respondents to perform a specific action\n\n4. Speeding checks - Identifying respondents who complete sections too quickly\n\n5. Open-ended validation questions - Short-answer questions that verify engagement\n\nWhen respondents fail these checks, you may need to exclude their data from analysis. However, use these sparingly (1-2 per survey) to avoid respondent fatigue and ensure they're designed to catch intentional non-compliance rather than penalizing honest mistakes.",
+    relatedLink: {
+      text: "Survey Data Quality Best Practices",
+      url: "/survey-quality-guide",
+      ariaLabel: "Guide to implementing effective survey data quality measures"
+    }
+  },
+  {
+    question: "How do I create an effective data quality plan?",
+    answer: "Creating an effective data quality plan involves these essential steps:\n\n1. Describe your data ecosystem - Map all systems, sources, and flows of data\n\n2. Identify key stakeholders - Determine who creates, manages, and uses the data\n\n3. Define clear roles and responsibilities - Assign specific data quality duties to team members\n\n4. Establish quality metrics and standards - Define what \"good data\" looks like for your organization\n\n5. Build robust data collection workflows - Design processes that prevent errors at the source\n\n6. Implement data management protocols - Create systems for organizing and maintaining data\n\n7. Train and calibrate data collectors - Ensure everyone follows consistent procedures\n\n8. Develop error detection and correction procedures - Create processes to identify and fix issues\n\n9. Document sources of variability - Understand what might affect data consistency\n\n10. Set up ongoing quality monitoring - Regularly assess and improve data quality\n\nAn effective plan should be documented, communicated across the organization, and regularly reviewed for improvement opportunities.",
+    relatedLink: {
+      text: "Data Quality Planning Template",
+      url: "/data-quality-plan-template",
+      ariaLabel: "Downloadable template for creating a comprehensive data quality plan"
+    }
+  },
+  {
+    question: "What questions should I ask when analyzing data?",
+    answer: "When analyzing data, ask these key questions to extract meaningful insights:\n\n1. What is the business problem I'm trying to solve with this analysis?\n\n2. What are the key patterns or trends in the data?\n\n3. Are there any outliers or anomalies, and what might explain them?\n\n4. How reliable and complete is the underlying data?\n\n5. What biases might exist in how the data was collected or processed?\n\n6. What correlations exist between different variables?\n\n7. Do these correlations suggest causation, or could other factors be involved?\n\n8. How do the findings compare to my initial hypotheses?\n\n9. What actionable insights can be derived from this analysis?\n\n10. How can I effectively communicate these findings to stakeholders?\n\nAsking these questions helps ensure your data analysis is thorough, contextually relevant, and leads to meaningful business decisions rather than just producing interesting statistics.",
+    relatedLink: {
+      text: "Data Analysis Framework Guide",
+      url: "/data-analysis-question-framework",
+      ariaLabel: "Step-by-step guide for structuring effective data analysis"
+    }
+  },
+  {
+    question: "How do I evaluate our organization's data strategy?",
+    answer: "To evaluate your organization's data strategy, ask these seven essential questions:\n\n1. What are our primary business objectives, and how does our data strategy support them?\n\n2. Who are the key stakeholders involved in data collection, management, and analysis?\n\n3. What data sources do we currently utilize, and are there untapped sources we should consider?\n\n4. How do we currently analyze data, and are our methods effective and efficient?\n\n5. What is the current quality of our data, and how do we measure and maintain it?\n\n6. How is data governance implemented across the organization?\n\n7. What technologies and tools comprise our data infrastructure, and are they adequate?\n\nBy answering these questions, you'll identify strengths and gaps in your current approach, reveal opportunities for improvement, and ensure your data strategy effectively supports your business objectives. This evaluation should be conducted periodically, especially when business priorities shift or new technologies emerge.",
+    relatedLink: {
+      text: "Data Strategy Assessment Tool",
+      url: "/data-strategy-assessment",
+      ariaLabel: "Interactive tool for evaluating your organization's data strategy"
+    }
+  },
+  {
+    question: "What's the difference between data quality and data integrity?",
+    answer: "While often used interchangeably, data quality and data integrity represent distinct but complementary aspects of data management:\n\n**Data Quality** focuses on the characteristics that make data reliable and fit for its intended purpose. It addresses attributes like accuracy, completeness, consistency, and timeliness to ensure data meets business requirements. Data quality is primarily concerned with the correctness of individual data elements.\n\n**Data Integrity** extends beyond quality to ensure data maintains its reliability throughout its lifecycle. It focuses on the relationships between data elements, maintaining proper context, and ensuring data remains unaltered during operations. Data integrity emphasizes the structural soundness of data, including referential integrity, and proper maintenance of relationships between tables in relational databases.\n\nIn essence, data quality ensures data is accurate and reliable, while data integrity makes this reliable data useful by adding relationships and context. Both are essential for effective data management—data quality establishes a foundation of trustworthy information, and data integrity makes that information meaningful and actionable.",
+    relatedLink: {
+      text: "Data Quality vs. Integrity Deep Dive",
+      url: "/quality-vs-integrity-guide",
+      ariaLabel: "Comprehensive comparison of data quality and data integrity concepts"
+    }
+  },
   {
     question: "Why is data quality so important for marketing in HubSpot?",
     answer: "Data quality is the foundation of all successful marketing operations in HubSpot. Poor data quality has far-reaching consequences beyond just marketing—it ripples throughout your organization, distorting insights, causing campaigns to miss their mark, and undermining your ability to demonstrate value to leadership.\n\nInaccurate or incomplete data leads to wasted marketing budget on campaigns targeting the wrong contacts or invalid emails. It creates unreliable reporting that makes it impossible to measure campaign effectiveness accurately. This often results in continued investment in underperforming tactics and causes friction between sales and marketing when teams don't trust the quality of leads.\n\nWhen your data is clean, your marketing automation works properly, your segmentation is accurate, your personalization delivers relevant content, and your reporting reflects reality. This translates directly to higher engagement rates, improved conversion, and the ability to demonstrate clear ROI to stakeholders. In essence, data quality isn't just a technical concern—it's a strategic imperative that affects every aspect of your marketing performance.",

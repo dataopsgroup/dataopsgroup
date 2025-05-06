@@ -12,11 +12,11 @@ import FAQHelp from '@/components/faqs/FAQHelp';
 import FAQSchema from '@/components/faqs/FAQSchema';
 
 // Import FAQ data
-import faqCategories, { hubspotFAQs, approachFAQs, dataQualityFAQs } from '@/data/faqs';
+import faqCategories, { hubspotFAQs, approachFAQs, dataQualityFAQs, hubspotModulesFAQs } from '@/data/faqs';
 
 const FAQsPage = () => {
   // Combine all FAQ items for schema markup
-  const allFAQs = [...hubspotFAQs, ...approachFAQs, ...dataQualityFAQs];
+  const allFAQs = [...hubspotFAQs, ...approachFAQs, ...dataQualityFAQs, ...hubspotModulesFAQs];
 
   // Define breadcrumbs for schema
   const breadcrumbs = [
