@@ -2,52 +2,55 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
+import { blogPosts } from '@/data/blog';
 
 const CaseStudiesGrid = () => {
-  // Case study content with updated images
-  const caseStudies = [
-    {
-      industry: 'Financial Services',
-      title: 'Financial Services Data Transformation',
-      description: 'How we helped a Fortune 500 financial services company modernize their data infrastructure and analytics capabilities.',
-      image: '/lovable-uploads/833959d1-f76e-4da5-b0d5-0fec4b891379.png',
+  // Filter blog posts that are categorized as case studies
+  const caseStudyPosts = blogPosts.filter(post => 
+    post.category?.toLowerCase() === 'case studies' || 
+    post.category?.toLowerCase() === 'case study'
+  );
+  
+  // Real case studies from blog posts with links to actual case study posts
+  const caseStudies = caseStudyPosts.length >= 4 ? 
+    caseStudyPosts.slice(0, 4).map(post => ({
+      industry: post.category,
+      title: post.title,
+      description: post.excerpt,
+      image: post.coverImage,
+      postId: post.id,
       relatedLink: {
-        text: 'Related services',
-        url: '/services'
-      }
-    },
-    {
-      industry: 'Healthcare',
-      title: 'Healthcare Provider Data Integration',
-      description: 'Streamlining data operations across multiple healthcare facilities to improve patient outcomes and operational efficiency.',
-      image: '/lovable-uploads/1d08f817-dd96-4157-8b40-be4a84d2ee91.png',
-      relatedLink: {
-        text: 'Implementation guide',
-        url: '/documentation'
-      }
-    },
-    {
-      industry: 'Marketing Operations',
-      title: 'Marketing Operations & IT Integration',
-      description: 'Bridging the gap between marketing and IT departments for seamless data flow and improved cross-functional collaboration.',
-      image: '/lovable-uploads/4fc5a5d8-17d4-482b-9c6c-5bac9aa55fc0.png', // Updated image
-      relatedLink: {
-        text: 'Related articles',
+        text: 'Related insights',
         url: '/insights'
       }
-    },
-    {
-      industry: 'Data Enrichment',
-      title: 'Enterprise Data Enrichment Strategy',
-      description: 'Implementing advanced data enrichment processes to improve data quality and decision-making for enterprise clients.',
-      image: '/lovable-uploads/5ae47a2e-6c0e-4d39-a7a9-46ed03c4eef3.png', // Updated image
-      relatedLink: {
-        text: 'Implementation FAQs',
-        url: '/faqs'
-      }
-    }
-  ];
+    })) : 
+    [
+      // Add actual case studies from the blog posts
+      ...caseStudyPosts.map(post => ({
+        industry: post.category,
+        title: post.title,
+        description: post.excerpt,
+        image: post.coverImage,
+        postId: post.id,
+        relatedLink: {
+          text: 'Related insights',
+          url: '/insights'
+        }
+      })),
+      // Fill remaining spots with "More coming soon" placeholders
+      ...Array(4 - caseStudyPosts.length).fill(null).map((_, i) => ({
+        industry: 'Coming Soon',
+        title: 'More Case Studies Coming Soon!',
+        description: 'We are constantly working with new clients across various industries. Check back soon for more detailed case studies.',
+        image: '/lovable-uploads/38a717bc-5952-4682-b390-57a9de301649.png', // Using a default image
+        postId: null,
+        relatedLink: {
+          text: 'View all insights',
+          url: '/insights'
+        }
+      }))
+    ];
 
   return (
     <section className="space-y-8">
@@ -70,7 +73,13 @@ const CaseStudiesGrid = () => {
                 {caseStudy.description}
               </p>
               <div className="flex justify-between items-center">
-                <Button>Read Case Study</Button>
+                {caseStudy.postId ? (
+                  <Link to={`/insights/${caseStudy.postId}`}>
+                    <Button>Read Case Study</Button>
+                  </Link>
+                ) : (
+                  <Button disabled>Coming Soon</Button>
+                )}
                 <Link to={caseStudy.relatedLink.url} className="text-dataops-600 hover:underline flex items-center text-sm">
                   {caseStudy.relatedLink.text} <ArrowRight className="h-4 w-4 ml-1" />
                 </Link>
