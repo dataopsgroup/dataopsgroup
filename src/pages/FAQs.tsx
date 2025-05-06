@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -92,7 +93,7 @@ const FAQsPage = () => {
           <div className="max-w-3xl mx-auto mb-16">
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem value="item-1" className="bg-white rounded-lg shadow-md">
-                <AccordionTrigger className="px-6 py-4">
+                <AccordionTrigger className="px-6 py-4 text-sm">
                   What is DataOps and why is it important?
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-4">
@@ -110,7 +111,7 @@ const FAQsPage = () => {
               </AccordionItem>
               
               <AccordionItem value="item-2" className="bg-white rounded-lg shadow-md">
-                <AccordionTrigger className="px-6 py-4">
+                <AccordionTrigger className="px-6 py-4 text-sm">
                   How long does it take to implement a DataOps strategy?
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-4">
@@ -127,7 +128,7 @@ const FAQsPage = () => {
               </AccordionItem>
               
               <AccordionItem value="item-3" className="bg-white rounded-lg shadow-md">
-                <AccordionTrigger className="px-6 py-4">
+                <AccordionTrigger className="px-6 py-4 text-sm">
                   What industries do you typically work with?
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-4">
@@ -144,7 +145,7 @@ const FAQsPage = () => {
               </AccordionItem>
               
               <AccordionItem value="item-4" className="bg-white rounded-lg shadow-md">
-                <AccordionTrigger className="px-6 py-4">
+                <AccordionTrigger className="px-6 py-4 text-sm">
                   How do you measure the success of a DataOps implementation?
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-4">
@@ -161,7 +162,7 @@ const FAQsPage = () => {
               </AccordionItem>
               
               <AccordionItem value="item-5" className="bg-white rounded-lg shadow-md">
-                <AccordionTrigger className="px-6 py-4">
+                <AccordionTrigger className="px-6 py-4 text-sm">
                   What technologies do you typically recommend?
                 </AccordionTrigger>
                 <AccordionContent className="px-6 pb-4">
