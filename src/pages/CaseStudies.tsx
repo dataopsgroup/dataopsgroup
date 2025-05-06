@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -48,7 +49,6 @@ const CaseStudiesPage = () => {
         
         <section className="py-16 px-4 bg-white">
           <div className="container mx-auto">
-            <h2 className="text-2xl font-bold mb-8">Featured Case Studies</h2>
             <CaseStudiesGrid />
           </div>
         </section>
