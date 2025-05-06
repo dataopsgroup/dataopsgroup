@@ -14,7 +14,6 @@ const createSitemapContent = () => {
     '/insights',
     '/contact',
     '/faqs',
-    '/leadership',
     '/get-started',
   ];
 

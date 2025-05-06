@@ -27,7 +27,6 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Sitemap from './pages/Sitemap';
 import GetStartedPage from './pages/GetStartedPage';
-import PerplexityPage from './pages/PerplexityPage';
 import ThankYouPage from './pages/ThankYouPage';
 import SEOManagement from './pages/SEOManagement';
 
@@ -170,11 +169,6 @@ function App() {
           {
             path: "/get-started",
             element: <GetStartedPage />,
-            errorElement: <NotFound />,
-          },
-          {
-            path: "/perplexity",
-            element: <PerplexityPage />,
             errorElement: <NotFound />,
           },
           {
