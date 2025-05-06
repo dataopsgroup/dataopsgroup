@@ -8,6 +8,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
 import { HelpCircle, FolderOpen, Book, FileBarChart, Database } from 'lucide-react';
+
 const FAQsPage = () => {
   const hubspotFAQs = [{
     question: "What services does DataOps Group offer for HubSpot users?",
@@ -448,7 +449,9 @@ While these manual methods require more effort than using Operations Hub, they c
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="px-6 pb-4">
-                          {item.answer.split('\n\n').map((paragraph, i) => <p key={i} className="mb-3 whitespace-pre-line">{paragraph}</p>)}
+                          {item.answer.split('\n\n').map((paragraph, i) => <p key={i} className="mb-3 whitespace-pre-line text-base">
+                            {paragraph}
+                          </p>)}
                           {item.relatedLink && <p className="mt-4">
                               <Link to={item.relatedLink.url} className="text-dataops-600 hover:underline font-medium" aria-label={item.relatedLink.ariaLabel}>
                                 {item.relatedLink.text}
@@ -476,7 +479,9 @@ While these manual methods require more effort than using Operations Hub, they c
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="px-6 pb-4">
-                          {item.answer.split('\n\n').map((paragraph, i) => <p key={i} className="mb-3 whitespace-pre-line text-base">{paragraph}</p>)}
+                          {item.answer.split('\n\n').map((paragraph, i) => <p key={i} className="mb-3 whitespace-pre-line text-base">
+                            {paragraph}
+                          </p>)}
                           {item.relatedLink && <p className="mt-4">
                               <Link to={item.relatedLink.url} className="text-dataops-600 hover:underline font-medium" aria-label={item.relatedLink.ariaLabel}>
                                 {item.relatedLink.text}
@@ -504,7 +509,9 @@ While these manual methods require more effort than using Operations Hub, they c
                           {item.question}
                         </AccordionTrigger>
                         <AccordionContent className="px-6 pb-4">
-                          {item.answer.split('\n\n').map((paragraph, i) => <p key={i} className="mb-3 whitespace-pre-line">{paragraph}</p>)}
+                          {item.answer.split('\n\n').map((paragraph, i) => <p key={i} className="mb-3 whitespace-pre-line text-base">
+                            {paragraph}
+                          </p>)}
                           {item.relatedLink && <p className="mt-4">
                               <Link to={item.relatedLink.url} className="text-dataops-600 hover:underline font-medium" aria-label={item.relatedLink.ariaLabel}>
                                 {item.relatedLink.text}
