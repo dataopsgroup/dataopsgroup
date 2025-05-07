@@ -3,12 +3,12 @@ import { BlogPost } from '@/types/blog';
 
 export const salesIgnoringMarketingLeads: BlogPost = {
   id: "sales-ignoring-marketing-leads",
-  title: "Your Sales Team Isn't Ignoring Marketing Leads (They Just Don't Trust Them)",
-  excerpt: "It's not them. It's you. Sorry. Learn how to restore trust from sales that your leads are good enough and worth their time.",
-  date: "2025-04-01",
+  title: "Why Your Sales Team is Ignoring Marketing Leads (And How to Fix It)",
+  excerpt: "When sales teams ignore marketing leads, revenue suffers. Here's how to bridge the gap and align your teams for growth.",
+  date: "2025-03-15",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png",
+  coverImage: "/lovable-uploads/aef17b85-c6b2-44d8-9442-4fa6c2d80354.png",
   content: `
     <p>"Sales never follows up on our marketing leads!"</p>
     
