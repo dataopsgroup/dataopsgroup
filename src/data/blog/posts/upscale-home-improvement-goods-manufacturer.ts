@@ -8,7 +8,7 @@ export const upscaleHomeImprovementGoodsManufacturer: BlogPost = {
   date: "2023-10-25",
   author: "Geoff Tucker",
   category: "Case Study",
-  coverImage: "/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png",
+  coverImage: "/lovable-uploads/72e7f6ab-b186-48c5-990f-fa0d94659fc6.png",
   content: `
     <p>Learn how we created order that boosted business. HubSpot went from a problem to a positive addition.</p>
     
