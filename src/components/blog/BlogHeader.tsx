@@ -1,8 +1,6 @@
 
 import React, { useState } from 'react';
 import { format } from 'date-fns';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 
 interface BlogHeaderProps {
   title: string;
@@ -20,11 +18,6 @@ const BlogHeader = ({ title, date, author, category, coverImage }: BlogHeaderPro
   
   return (
     <header className="mb-10">
-      <div className="mb-4">
-        <Button variant="outline" className="text-white bg-gray-400 hover:bg-gray-500 hover:text-white" asChild>
-          <Link to="/insights">Back to Insights</Link>
-        </Button>
-      </div>
       <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
       <div className="flex items-center text-gray-600 mb-6">
         <span>{formattedDate}</span>
