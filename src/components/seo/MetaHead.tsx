@@ -35,6 +35,11 @@ const MetaHead = ({
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={fullCanonicalUrl} />
       
+      {/* Favicons */}
+      <link rel="icon" type="image/png" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
+      <link rel="shortcut icon" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
+      
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={ogTitle || fullTitle} />
