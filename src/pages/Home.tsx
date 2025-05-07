@@ -10,6 +10,7 @@ import Approach from '@/components/Approach';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 
 const Home = () => {
   return (
@@ -42,6 +43,7 @@ const Home = () => {
       <OrganizationSchema />
       <WebsiteSchema />
       <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
+      <LocalBusinessSchema />
       
       <Navbar />
       

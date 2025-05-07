@@ -7,11 +7,25 @@ import DataOpsImplementationHero from '@/components/services/DataOpsImplementati
 import DataOpsImplementationContent from '@/components/services/DataOpsImplementationContent';
 import DataOpsImplementationBenefits from '@/components/services/DataOpsImplementationBenefits';
 import DataOpsImplementationSchema from '@/components/services/DataOpsImplementationSchema';
+import ServiceSchema from '@/components/seo/ServiceSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const DataOpsImplementation = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <DataOpsImplementationSchema />
+      <ServiceSchema 
+        name="DataOps Implementation for HubSpot" 
+        description="Comprehensive DataOps implementation services for HubSpot users, ensuring clean data, optimized workflows, and maximum value from your HubSpot investment."
+        url={`${window.location.origin}/services/dataops-implementation`}
+      />
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: "DataOps Implementation", url: "/services/dataops-implementation" }
+        ]} 
+      />
       <Navbar />
       
       <main>

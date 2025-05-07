@@ -7,11 +7,25 @@ import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
 import AnalyticsBIContent from '@/components/services/AnalyticsBIContent';
 import AnalyticsBIBenefits from '@/components/services/AnalyticsBIBenefits';
 import AnalyticsBISchema from '@/components/services/AnalyticsBISchema';
+import ServiceSchema from '@/components/seo/ServiceSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const AnalyticsBI = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <AnalyticsBISchema />
+      <ServiceSchema 
+        name="HubSpot Analytics & Business Intelligence" 
+        description="Advanced HubSpot analytics and business intelligence consulting to help businesses make data-driven decisions and maximize their marketing ROI."
+        url={`${window.location.origin}/services/analytics-bi`}
+      />
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: "Analytics & BI", url: "/services/analytics-bi" }
+        ]} 
+      />
       <Navbar />
       
       <main>

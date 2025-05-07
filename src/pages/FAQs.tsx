@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import CTABanner from '@/components/CTABanner';
+import FAQPageSchema from '@/components/seo/FAQPageSchema';
 
 // Import refactored FAQ components
 import FAQHero from '@/components/faqs/FAQHero';
@@ -17,6 +18,12 @@ import faqCategories, { hubspotFAQs, approachFAQs, dataQualityFAQs, hubspotModul
 const FAQsPage = () => {
   // Combine all FAQ items for schema markup
   const allFAQs = [...hubspotFAQs, ...approachFAQs, ...dataQualityFAQs, ...hubspotModulesFAQs];
+
+  // Format FAQs for FAQPageSchema
+  const formattedFAQs = allFAQs.map(faq => ({
+    question: faq.question,
+    answer: faq.answer
+  }));
 
   // Define breadcrumbs for schema
   const breadcrumbs = [
@@ -38,6 +45,7 @@ const FAQsPage = () => {
         pageDescription="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals."
       />
       
+      <FAQPageSchema items={formattedFAQs} url={`${window.location.origin}/faqs`} />
       <BreadcrumbSchema items={breadcrumbs} />
       
       <Navbar />
