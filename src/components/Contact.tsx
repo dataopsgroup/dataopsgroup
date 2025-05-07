@@ -91,14 +91,15 @@ const Contact = () => {
               
               inputs.forEach((input: Element) => {
                 if (input instanceof HTMLElement) {
+                  // Fix: Use getAttribute to safely get name or id
+                  const fieldName = input.getAttribute('name') || input.id || 'unknown';
+                  
                   input.addEventListener('focus', () => {
-                    const name = input.name || input.id || 'unknown';
-                    trackFieldInteraction(name, 'focus');
+                    trackFieldInteraction(fieldName, 'focus');
                   });
                   
                   input.addEventListener('blur', () => {
-                    const name = input.name || input.id || 'unknown';
-                    trackFieldInteraction(name, 'complete');
+                    trackFieldInteraction(fieldName, 'complete');
                   });
                 }
               });
