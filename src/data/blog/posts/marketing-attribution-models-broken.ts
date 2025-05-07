@@ -5,10 +5,10 @@ export const marketingAttributionModelsBroken: BlogPost = {
   id: "marketing-attribution-models-broken",
   title: "Marketing Attribution Models Are Broken: Here's How to Fix Them",
   excerpt: "Fix broken marketing attribution models with AI and holistic measurement. Learn how to improve campaign performance and ROI by modernizing your approach.",
-  date: "2025-01-15", // Updated from 1970-01-01 to a more realistic date
+  date: "2025-01-15", 
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/0b2e6693-839e-467e-8bea-d2458aa3e21f.png",
+  coverImage: "/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.png",
   content: `
     <h2>The Problem with Traditional Attribution Models</h2>
     
