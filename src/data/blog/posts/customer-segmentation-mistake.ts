@@ -8,7 +8,7 @@ export const customerSegmentationMistake: BlogPost = {
   date: "2025-03-25",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/269cf082-a0cd-445e-8738-c2aee0f60336.png",
+  coverImage: "/lovable-uploads/3b1b6123-f768-43f8-9310-060df495237c.png",
   content: `
     <p>"Our ideal customer is any company willing to pay us." I've heard countless executives make this claim, not realizing this approach is costing them millions.</p>
     
