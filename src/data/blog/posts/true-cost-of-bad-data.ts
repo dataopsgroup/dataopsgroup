@@ -8,7 +8,7 @@ export const trueCostOfBadData: BlogPost = {
   date: "2025-02-19",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png",
+  coverImage: "/lovable-uploads/57daab38-9552-4147-bbb4-2e91c29aa0ab.png",
   content: `
     <h2></h2>
     
