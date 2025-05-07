@@ -8,7 +8,7 @@ export const hiringAndWorkingWithAHubSpotConsultant: BlogPost = {
   date: "2023-04-11",
   author: "Geoff Tucker",
   category: "HubSpot Consultant",
-  coverImage: "/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png",
+  coverImage: "/lovable-uploads/a47266d7-28ef-4bce-bb22-ed541dc80559.png",
   content: `
     <h2>Can I hire a HubSpot consultant?</h2>
     
