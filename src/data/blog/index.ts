@@ -34,10 +34,15 @@ import { silentSalesMarketingDivide } from './posts/silent-sales-marketing-divid
 import { customerSegmentationMistakeICP } from './posts/customer-segmentation-mistake-icp';
 import { audioVisualEquipmentWholesaler } from './posts/audio-visual-equipment-wholesaler';
 import { dataTruthGap } from './posts/data-truth-gap';
+import { navigatingFirst90DaysRevops } from './posts/navigating-first-90-days-revops';
+import { whatDoesAHubspotConsultantCost } from './posts/what-does-a-hubspot-consultant-cost';
+import { saasHealthcareAchievesRemarkableInsights } from './posts/saas-healthcare-achieves-remarkable-insights';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  leadScoringPitfalls, // Update to put the most recent blog post at the top
+  whatDoesAHubspotConsultantCost,
+  navigatingFirst90DaysRevops,
+  leadScoringPitfalls,
   dataTruthGap,
   audioVisualEquipmentWholesaler,
   customerSegmentationMistakeICP,
@@ -69,6 +74,7 @@ export const blogPosts: BlogPost[] = [
   tipsForSmartWorkflows,
   marketingDataManagement,
   upscaleHomeImprovementGoodsManufacturer,
+  saasHealthcareAchievesRemarkableInsights,
 ];
 
 // Export individual posts for direct access if needed
@@ -105,4 +111,7 @@ export {
   customerSegmentationMistakeICP,
   audioVisualEquipmentWholesaler,
   dataTruthGap,
+  navigatingFirst90DaysRevops,
+  whatDoesAHubspotConsultantCost,
+  saasHealthcareAchievesRemarkableInsights,
 };
