@@ -10,13 +10,13 @@ export const audioVisualEquipmentWholesaler: BlogPost = {
   category: "Case Study",
   coverImage: "/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089.png",
   content: `
-    <h1>Introduction</h1>
+    <h2>Introduction</h2>
     
     <p>The client has a rich history since 1869 as a leading Midwest wholesale electronics distributor. However, they faced challenges in leveraging their data for sales and marketing effectiveness. This was due in part to user adoption and the need to modernize processes tied to technology usage.</p>
     
     <p>With multiple distribution centers around the Midwest, each location has inside and outside salespeople as well - about 30 people total. This added another dimension to the challenges outlined.</p>
     
-    <h1>Client Challenges – Identifying the Pain Points</h1>
+    <h2>Client Challenges – Identifying the Pain Points</h2>
     
     <ul>
       <li>Limited Sales Visibility: Sales operations lacked clear reporting, hindering progress tracking and performance evaluation.</li>
@@ -31,7 +31,7 @@ export const audioVisualEquipmentWholesaler: BlogPost = {
       <li>Suboptimal ROI: Despite significant investment and interest in HubSpot, the client saw limited returns.</li>
     </ul>
     
-    <h1>Project Goals – Charting the Course for Success</h1>
+    <h2>Project Goals – Charting the Course for Success</h2>
     
     <p>The client's portal had little use that was also inconsistent since inception. With an annual subscription of more than $20,000, they wanted to see this cost be returned through measurable pipeline growth to achieve positive ROI - not just break even.</p>
     
@@ -45,7 +45,7 @@ export const audioVisualEquipmentWholesaler: BlogPost = {
       <li>Single Source of Truth: Transform HubSpot into the central hub for Sales and Marketing data, ensuring accuracy and responsiveness.</li>
     </ul>
     
-    <h1>Our Approach – Strategic Implementation</h1>
+    <h2>Our Approach – Strategic Implementation</h2>
     
     <ul>
       <li>Data Audit and Enrichment: Thoroughly audit and enrich contact, company, and deal data for accuracy.</li>
@@ -59,7 +59,7 @@ export const audioVisualEquipmentWholesaler: BlogPost = {
       <li>Personalized Training: Conduct 20 1:1 training sessions with AI recordings for ongoing reference.</li>
     </ul>
     
-    <h1>Results – Tangible Transformation</h1>
+    <h2>Results – Tangible Transformation</h2>
     
     <p>By creating reports powered by clean data, consistent habits by sales and marketing users, and automations to ensure everyone stayed on course, the client's pipeline grew by 10% in ~6 months. They went from measuring salespeople on their pipeline value to their deal closed values and conversion rates. Pipelines became more accurate, leading to better forecasts and goals setting. Activities become correlatable to outcomes with operations providing support through immediate pricing updates, promotional offers triggered by current quotes and pending orders, and manufacturer rebates. Sales leadership became able to intervene in the moment to redirect and nudge deals along with improved velocity, shortening deal lifecycles by 1-2 weeks in a business that sees daily purchasing activity overall.</p>
     
@@ -81,7 +81,7 @@ export const audioVisualEquipmentWholesaler: BlogPost = {
       <li>Overall Efficiency: Establishing data hygiene lists and reports simplified ongoing data maintenance, ensuring continued data accuracy and efficiency in sales operations.</li>
     </ul>
     
-    <h1>Conclusion – A Testament to Partnership</h1>
+    <h2>Conclusion – A Testament to Partnership</h2>
     
     <p>This case study exemplifies the power of data-driven strategies and collaborative partnerships. By addressing key challenges and implementing strategic solutions, our client achieved substantial improvements in sales and marketing effectiveness. This partnership underscores our commitment to delivering exceptional results and supporting our clients' long-term growth.</p>
   `
