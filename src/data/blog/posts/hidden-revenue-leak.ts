@@ -32,5 +32,6 @@ export const hiddenRevenueLeak: BlogPost = {
     <p><a href="/contact">Schedule Your Assessment →</a></p>
     
     <p>Related post: <a href="/insights/true-cost-of-bad-data">The True Cost of Bad Data: Beyond the 1-10-100 Rule</a></p>
-  `
+  `,
+  tags: ["data quality", "sales data", "revenue leaks", "CRM"]
 };

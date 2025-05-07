@@ -5,7 +5,7 @@ export const leadScoringPitfalls: BlogPost = {
   id: "lead-scoring-pitfalls",
   title: "Lead Scoring Pitfalls to Avoid",
   excerpt: "Learn four quick tips for how to build a lead score model that succeeds in your business. And join our free course to learn all about lead score models.",
-  date: "2024-02-19",
+  date: "2025-05-07",
   author: "Geoff Tucker",
   category: "Tips & Tricks",
   coverImage: "/lovable-uploads/032775c3-24cb-46f6-af01-decc4e9fb38e.png",
@@ -41,5 +41,6 @@ export const leadScoringPitfalls: BlogPost = {
     <p>Last, be sure to create a feedback mechanism, such as a standing call, from Sales on the leads you pass to them. Their feedback will help you refine your model, making it better over time.</p>
     
     <p>Have you used lead scoring in your business? What have you learned by using lead scoring? Please leave a comment below!</p>
-  `
+  `,
+  tags: ["lead scoring", "marketing automation", "hubspot", "sales alignment"]
 };

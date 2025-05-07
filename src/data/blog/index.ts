@@ -37,7 +37,8 @@ import { dataTruthGap } from './posts/data-truth-gap';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  dataTruthGap, // Add the new blog post at the top
+  leadScoringPitfalls, // Update to put the most recent blog post at the top
+  dataTruthGap,
   audioVisualEquipmentWholesaler,
   customerSegmentationMistakeICP,
   silentSalesMarketingDivide,
@@ -58,7 +59,6 @@ export const blogPosts: BlogPost[] = [
   marketingOperationsIsntIT,
   psychologyDataGovernance,
   dataEnrichmentStrategy,
-  leadScoringPitfalls,
   stopBuyingContactLists,
   trueCostOfBadData,
   marketingLeadersDataQualityCrisis,

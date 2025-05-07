@@ -23,5 +23,6 @@ export const tipsForSmartWorkflows: BlogPost = {
     <p>Those are three of my favorites that have helped me repeatedly over the years.</p>
     
     <p>What are you three favorite go-to workflows? Add a comment below. I'd love to see what you've built.</p>
-  `
+  `,
+  tags: ["workflows", "hubspot", "database management", "automation"]
 };
