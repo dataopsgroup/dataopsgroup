@@ -8,7 +8,7 @@ export const saasHealthcareAchievesRemarkableInsights: BlogPost = {
   date: "2023-11-05",
   author: "Geoff Tucker",
   category: "Case Study",
-  coverImage: "/lovable-uploads/377d96ba-a218-4a91-a0f5-446f6b5dc23b.png",
+  coverImage: "/lovable-uploads/c7a6f067-3b91-4089-ad1c-ff7112e6cf67.png",
   content: `
     <p>Our client is a small team for a healthcare SaaS service that supports specialized medical care scenarios. Their ideal customer profile is very specific and requires additional effort to locate. Their challenge was in measuring how well they were doing at attracting the right buyers and how they managed the customer journey from stranger to follow to advocate.</p>
     
