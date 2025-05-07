@@ -8,7 +8,7 @@ export const psychologyDataGovernance: BlogPost = {
   date: "2025-02-11",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png",
+  coverImage: "/lovable-uploads/823db2dc-1e98-4466-87b5-3a4539a2b1ae.png",
   content: `
     <h2>The Psychology of Data Governance: Why Teams Resist Change</h2>
     
