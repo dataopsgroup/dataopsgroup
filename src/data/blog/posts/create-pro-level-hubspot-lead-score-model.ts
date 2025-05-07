@@ -8,7 +8,7 @@ export const createProLevelHubSpotLeadScoreModel: BlogPost = {
   date: "2023-12-18",
   author: "Geoff Tucker",
   category: "Tips & Tricks",
-  coverImage: "/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png",
+  coverImage: "/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.png",
   content: `
     <h2>Unveiling the Power of Lead Scoring in HubSpot for Beginners</h2>
     
