@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ServicesIndustries = () => {
-  // Industry list that matches the dropdown in the navbar
+  // Industry list that directs to case studies now
   const industries = [
     'Finance & Banking',
     'Healthcare',

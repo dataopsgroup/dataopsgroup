@@ -1,4 +1,3 @@
-
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -33,7 +32,7 @@ export const insightsItems: SubNavItem[] = [
   }
 ];
 
-// Industry categories
+// Industry categories - keeping the definition for potential future use
 export const industryItems: SubNavItem[] = [
   { name: 'Finance & Banking', href: '/case-studies' },
   { name: 'Healthcare', href: '/case-studies' },
@@ -45,7 +44,7 @@ export const industryItems: SubNavItem[] = [
   { name: 'Energy & Utilities', href: '/case-studies' },
 ];
 
-// Main navigation items
+// Main navigation items - removed Industries item
 export const mainNavItems: NavItem[] = [
   { 
     name: 'Services', 
@@ -54,11 +53,6 @@ export const mainNavItems: NavItem[] = [
   },
   { name: 'About', href: '/about' },
   { name: 'Approach', href: '/approach' },
-  { 
-    name: 'Industries', 
-    isDropdown: true,
-    items: industryItems
-  },
   { 
     name: 'Insights', 
     isDropdown: true,
