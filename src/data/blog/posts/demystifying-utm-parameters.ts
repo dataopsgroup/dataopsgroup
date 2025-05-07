@@ -8,7 +8,7 @@ export const demystifyingUtmParameters: BlogPost = {
   date: "2025-02-19",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/38a717bc-5952-4682-b390-57a9de301649.png",
+  coverImage: "/lovable-uploads/7a7935e7-7904-4abf-86c2-7ed1801ab849.png",
   content: `
     <p>UTM parameters are essential for tracking marketing campaign performance, yet Google Analytics Report indicates that nearly half of marketers struggle to implement them effectively. Building structured, consistent UTM links ensures you can accurately attribute traffic sources and optimize future campaigns.</p>
     
