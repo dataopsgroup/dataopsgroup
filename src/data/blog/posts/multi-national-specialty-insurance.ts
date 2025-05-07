@@ -8,7 +8,7 @@ export const multiNationalSpecialtyInsurance: BlogPost = {
   date: "2025-03-26",
   author: "Geoff Tucker",
   category: "Case Study",
-  coverImage: "/lovable-uploads/38a717bc-5952-4682-b390-57a9de301649.png",
+  coverImage: "/lovable-uploads/a0bf64ae-3742-4f0e-bf4f-c82371a5bef6.png",
   content: `
     <p>How we modernized sales and marketing with HubSpot to amplify pipeline visibility across multiple product lines and geographical regions.</p>
     
