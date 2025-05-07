@@ -96,9 +96,13 @@ const BlogPostPage = () => {
         <article className="py-16 md:py-24 px-4">
           <div className="container mx-auto">
             <div className="max-w-3xl mx-auto">
-              {/* Back button to Insights */}
+              {/* Back button to Insights with orange hover state */}
               <div className="mb-6">
-                <Button variant="outline" className="bg-gray-700 text-white hover:bg-gray-800" asChild>
+                <Button 
+                  variant="outline" 
+                  className="bg-gray-700 text-white hover:bg-gray-800 hover:text-orange-500 transition-colors" 
+                  asChild
+                >
                   <Link to="/insights">Back to Insights</Link>
                 </Button>
               </div>
