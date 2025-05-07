@@ -17,6 +17,12 @@ const BlogList = () => {
     { name: 'Insights', url: '/insights' },
   ];
 
+  // Filter out posts tagged as "Case Study"
+  const filteredBlogPosts = blogPosts.filter(post => 
+    post.category?.toLowerCase() !== 'case study' && 
+    post.category?.toLowerCase() !== 'case studies'
+  );
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -77,7 +83,7 @@ const BlogList = () => {
         <section className="py-16 px-4 bg-white">
           <div className="container mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post) => (
+              {filteredBlogPosts.map((post) => (
                 <Card key={post.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
                   <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
                     <CardHeader className="pb-4">
