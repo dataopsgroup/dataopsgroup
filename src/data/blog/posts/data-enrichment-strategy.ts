@@ -8,7 +8,7 @@ export const dataEnrichmentStrategy: BlogPost = {
   date: "2025-03-10",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/38a717bc-5952-4682-b390-57a9de301649.png",
+  coverImage: "/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.png",
   content: `
     <h2>The Hidden Cost of Data Enrichment Failures</h2>
     
