@@ -4,6 +4,24 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const CTABanner = () => {
+  const trackCTAClick = () => {
+    // Track in Google Analytics
+    if (window.gtag) {
+      window.gtag('event', 'cta_click', {
+        'event_category': 'Engagement',
+        'event_label': 'Footer CTA Banner',
+        'value': 1
+      });
+    }
+    
+    // Track in HubSpot
+    if (window._hsq) {
+      window._hsq.push(['trackEvent', {
+        id: 'footer_cta_click'
+      }]);
+    }
+  };
+
   return (
     <section className="gradient-bg py-16">
       <div className="container mx-auto px-4 text-center">
@@ -15,7 +33,7 @@ const CTABanner = () => {
           Schedule a consultation to see how we can convert your HubSpot portal into a revenue engine.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button className="bg-white text-dataops-800 hover:bg-gray-100" asChild>
+          <Button className="bg-white text-dataops-800 hover:bg-gray-100" asChild onClick={trackCTAClick}>
             <Link to="/contact">Schedule a Consultation</Link>
           </Button>
         </div>

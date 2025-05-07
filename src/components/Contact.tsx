@@ -1,7 +1,8 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Phone } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { toast } from 'sonner';
 
 // Use memo to prevent unnecessary re-renders
 const ContactCard = React.memo(({ children }: { children: React.ReactNode }) => (
@@ -15,6 +16,9 @@ const ContactCard = React.memo(({ children }: { children: React.ReactNode }) => 
 ContactCard.displayName = 'ContactCard';
 
 const Contact = () => {
+  const formContainerRef = useRef<HTMLDivElement>(null);
+  const formLoadedRef = useRef<boolean>(false);
+
   useEffect(() => {
     // Create HubSpot script
     const script = document.createElement('script');
@@ -26,12 +30,46 @@ const Contact = () => {
 
     // Add onload handler to initialize form
     script.onload = () => {
-      if (window.hbspt) {
+      if (window.hbspt && !formLoadedRef.current) {
+        formLoadedRef.current = true;
         window.hbspt.forms.create({
           portalId: "21794360",
           formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
           region: "na1",
-          target: "#hubspot-form-container"
+          target: "#hubspot-form-container",
+          onFormSubmit: (form) => {
+            // Track form submission in Google Analytics
+            if (window.gtag) {
+              window.gtag('event', 'form_submission', {
+                'event_category': 'Contact',
+                'event_label': 'Contact Form',
+                'value': 1
+              });
+            }
+            
+            // Show success toast
+            toast.success("Form submitted successfully! We'll be in touch shortly.", {
+              duration: 5000,
+            });
+          },
+          onFormReady: (form) => {
+            // Form is ready
+            const formElement = formContainerRef.current?.querySelector('form');
+            if (formElement) {
+              // Add custom styles or event listeners if needed
+              formElement.setAttribute('data-testid', 'contact-form');
+              
+              // Make the form accessible
+              const inputs = formElement.querySelectorAll('input, select, textarea');
+              inputs.forEach((input: Element) => {
+                // Add missing aria attributes if needed
+                if (input instanceof HTMLElement && !input.getAttribute('aria-label')) {
+                  const label = input.getAttribute('placeholder') || '';
+                  input.setAttribute('aria-label', label);
+                }
+              });
+            }
+          }
         });
       }
     };
@@ -49,6 +87,7 @@ const Contact = () => {
           formContainer.removeChild(formContainer.firstChild);
         }
       }
+      formLoadedRef.current = false;
     };
   }, []);
 
@@ -73,7 +112,7 @@ const Contact = () => {
           {/* HubSpot Contact Form */}
           <div className="md:col-span-2">
             <ContactCard>
-              <div id="hubspot-form-container" className="min-h-[400px]">
+              <div id="hubspot-form-container" ref={formContainerRef} className="min-h-[400px]">
                 <div className="flex justify-center items-center h-20">
                   <p className="text-gray-500">Loading form...</p>
                 </div>

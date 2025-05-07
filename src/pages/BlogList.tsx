@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
@@ -22,6 +22,21 @@ const BlogList = () => {
     post.category?.toLowerCase() !== 'case study' && 
     post.category?.toLowerCase() !== 'case studies'
   );
+  
+  useEffect(() => {
+    // Track page view with blog post count
+    if (window.gtag) {
+      window.gtag('event', 'view_item_list', {
+        item_list_name: 'Blog Posts',
+        items: filteredBlogPosts.map((post, index) => ({
+          item_id: post.id,
+          item_name: post.title,
+          item_category: post.category || 'Blog',
+          index: index + 1
+        }))
+      });
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -32,7 +47,7 @@ const BlogList = () => {
           content="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." 
         />
         <meta name="keywords" content="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation" />
-        <link rel="canonical" href="/insights" />
+        <link rel="canonical" href={`${window.location.origin}/insights`} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -61,6 +76,15 @@ const BlogList = () => {
               "@type": "ImageObject",
               "url": `${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
             }
+          },
+          "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": filteredBlogPosts.map((post, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "url": `${window.location.origin}/insights/${post.id}`,
+              "name": post.title
+            }))
           }
         })}
       </script>
@@ -83,14 +107,32 @@ const BlogList = () => {
         <section className="py-16 px-4 bg-white">
           <div className="container mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredBlogPosts.map((post) => (
+              {filteredBlogPosts.map((post, index) => (
                 <Card key={post.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
-                  <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
+                  <Link 
+                    to={`/insights/${post.id}`}
+                    className="flex flex-col h-full"
+                    onClick={() => {
+                      // Track blog post click
+                      if (window.gtag) {
+                        window.gtag('event', 'select_content', {
+                          content_type: 'blog_post',
+                          content_id: post.id,
+                          item_list_name: 'Blog Posts',
+                          index: index
+                        });
+                      }
+                    }}
+                  >
                     <CardHeader className="pb-4">
                       <img 
                         src={post.coverImage} 
                         alt={post.title} 
                         className="w-full h-48 object-cover rounded-t-lg mb-4" 
+                        loading="lazy"
+                        width="400"
+                        height="200"
+                        decoding="async"
                       />
                       <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
                         {post.title}

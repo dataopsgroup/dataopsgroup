@@ -19,13 +19,40 @@ const Hero = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/contact">
+            <Link to="/contact" onClick={() => {
+              // Track CTA click in Google Analytics
+              if (window.gtag) {
+                window.gtag('event', 'cta_click', {
+                  'event_category': 'Engagement',
+                  'event_label': 'Hero Contact CTA',
+                });
+              }
+              // Track in HubSpot
+              if (window._hsq) {
+                window._hsq.push(['trackEvent', {
+                  id: 'hero_contact_cta_click'
+                }]);
+              }
+            }}>
               <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
                 Schedule a Consultation
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" asChild>
+            <Button 
+              variant="outline" 
+              className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" 
+              asChild
+              onClick={() => {
+                // Track secondary CTA click
+                if (window.gtag) {
+                  window.gtag('event', 'cta_click', {
+                    'event_category': 'Engagement',
+                    'event_label': 'Hero Services CTA',
+                  });
+                }
+              }}
+            >
               <Link to="/services">View Our Services</Link>
             </Button>
           </div>
@@ -38,19 +65,19 @@ const Hero = () => {
           <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10">
             <div className="grid grid-cols-2 gap-6">
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg text-white">
-                <Database className="h-10 w-10 mb-4" />
+                <Database className="h-10 w-10 mb-4" aria-hidden="true" />
                 <h3 className="text-base font-medium">HubSpot Cleansing</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg text-white">
-                <BarChart2 className="h-10 w-10 mb-4" />
+                <BarChart2 className="h-10 w-10 mb-4" aria-hidden="true" />
                 <h3 className="text-base font-medium">Revenue Conversion</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg text-white">
-                <Share2 className="h-10 w-10 mb-4" />
+                <Share2 className="h-10 w-10 mb-4" aria-hidden="true" />
                 <h3 className="text-base font-medium">Systems Integration</h3>
               </div>
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg text-white">
-                <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mb-4">
+                <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mb-4" aria-hidden="true">
                   <span className="font-bold">+</span>
                 </div>
                 <h3 className="text-base font-medium">HubSpot Services</h3>
