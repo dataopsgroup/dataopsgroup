@@ -3,12 +3,12 @@ import { BlogPost } from '@/types/blog';
 
 export const salesTeamStallingDeals: BlogPost = {
   id: "sales-team-stalling-deals",
-  title: "Stop Blaming Your Sales Team: The Real Reason Deals Are Stalling",
-  excerpt: "Learn how today's buyer operates. Meet them where they are. Stop forcing them to follow your process - or risk losing them before they buy.",
-  date: "2025-03-24",
+  title: "Is Your Sales Team Stalling Deals? The Hidden Signs and How to Fix Them",
+  excerpt: "Learn how to identify and address the common bottlenecks that delay your sales process.",
+  date: "2025-04-01",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png",
+  coverImage: "/lovable-uploads/0f49143a-7600-4926-8433-8f23c88cefa4.png",
   content: `
     <p>"Our reps aren't closing enough deals." I hear this complaint from nearly every CRO I work with, yet the data tells a very different story.</p>
     
