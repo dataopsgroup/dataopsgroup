@@ -5,7 +5,7 @@ const CaseStudiesLogos = () => {
   const clientLogos = [
     {
       name: 'Wistia',
-      image: '/lovable-uploads/3a418af1-0d95-4493-9ec0-73b630fc350a.png',
+      image: '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.png',
     },
     {
       name: 'Sunburst',
