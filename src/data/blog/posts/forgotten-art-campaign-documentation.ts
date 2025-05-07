@@ -8,7 +8,7 @@ export const forgottenArtCampaignDocumentation: BlogPost = {
   date: "2025-03-18",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png",
+  coverImage: "/lovable-uploads/ef47b612-1fd8-4f88-9d56-a3f9e8de8378.png",
   content: `
     <h2>Why Campaign Documentation Matters</h2>
     
