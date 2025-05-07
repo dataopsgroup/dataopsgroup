@@ -8,7 +8,7 @@ export const marketingOperationsIsntIT: BlogPost = {
   date: "2025-02-04",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/85dd8ce3-48e5-43c2-ae26-e36e0f8413fc.png",
+  coverImage: "/lovable-uploads/51575736-affb-4097-ab47-c87b40af3b1b.png",
   content: `
     <p>Marketing Operations is often mistaken for an IT function, leading to misaligned expectations and inefficient resource allocation. Understanding the distinction is crucial for organizational success.</p>
     
