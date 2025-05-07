@@ -8,7 +8,7 @@ export const tipsForSmartWorkflows: BlogPost = {
   date: "2022-09-05",
   author: "Geoff Tucker",
   category: "Tips & Tricks",
-  coverImage: "/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png",
+  coverImage: "/lovable-uploads/66cb018a-41fa-4046-a81f-5c632b199583.png",
   content: `
     <h2>3 Tips for Smart Workflows</h2>
     
