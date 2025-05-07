@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Helmet } from 'react-helmet-async';
-import { blogPosts } from '@/data/blog'; // Updated import path
+import { blogPosts } from '@/data/blog';
 import CTABanner from '@/components/CTABanner';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -13,6 +12,8 @@ import BlogHeader from '@/components/blog/BlogHeader';
 import RelatedPosts from '@/components/blog/RelatedPosts';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import BlogPostSchema from '@/components/seo/BlogPostSchema';
+import MetaHead from '@/components/seo/MetaHead';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const BlogPostPage = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -28,6 +29,24 @@ const BlogPostPage = () => {
       // Get other posts (excluding current one) for the slider
       const otherPosts = blogPosts.filter(p => p.id !== postId);
       setRelatedPosts(otherPosts.slice(0, 3)); // Take up to 3 posts
+      
+      // Track post view in analytics
+      if (window.gtag) {
+        window.gtag('event', 'view_item', {
+          items: [{
+            item_id: foundPost.id,
+            item_name: foundPost.title,
+            item_category: foundPost.category || 'Blog',
+            item_variant: foundPost.author
+          }]
+        });
+      }
+      
+      // Track in HubSpot
+      if (window._hsq) {
+        window._hsq.push(['setPath', window.location.pathname + window.location.search]);
+        window._hsq.push(['trackPageView']);
+      }
     } else {
       toast({
         title: "Post not found",
@@ -64,28 +83,16 @@ const BlogPostPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>{post.title} | DataOps Group</title>
-        <meta name="description" content={post.excerpt} />
-        <meta name="keywords" content={`${post.category.toLowerCase()}, ${post.title.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join(', ')}, dataops group, hubspot`} />
-        <meta name="author" content={post.author} />
-        <link rel="canonical" href={`/insights/${post.id}`} />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:image" content={post.coverImage} />
-        <meta property="og:url" content={`${window.location.origin}/insights/${post.id}`} />
-        <meta property="article:published_time" content={post.date} />
-        <meta property="article:author" content={post.author} />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.excerpt} />
-        <meta name="twitter:image" content={post.coverImage} />
-      </Helmet>
+      <MetaHead
+        title={post.title}
+        description={post.excerpt}
+        keywords={`${post.category?.toLowerCase()}, ${post.title.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join(', ')}, dataops group, hubspot`}
+        canonicalPath={`/insights/${post.id}`}
+        ogType="article"
+        ogImage={post.coverImage}
+        ogTitle={post.title}
+        ogDescription={post.excerpt}
+      />
       
       {/* Schema Markup */}
       <BlogPostSchema post={post} />
@@ -127,7 +134,20 @@ const BlogPostPage = () => {
                   Schedule a consultation to see how we can convert your HubSpot portal into a revenue engine.
                 </p>
                 <Button asChild className="bg-dataops-600 hover:bg-dataops-700">
-                  <Link to="/contact">Schedule a Consultation</Link>
+                  <Link 
+                    to="/contact"
+                    onClick={() => {
+                      // Track CTA click
+                      if (window.gtag) {
+                        window.gtag('event', 'cta_click', {
+                          'event_category': 'Engagement',
+                          'event_label': 'Blog Post Bottom CTA',
+                        });
+                      }
+                    }}
+                  >
+                    Schedule a Consultation
+                  </Link>
                 </Button>
               </div>
             </div>

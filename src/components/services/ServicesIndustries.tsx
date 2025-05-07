@@ -22,6 +22,12 @@ const ServicesIndustries = () => {
         'event_category': 'Navigation',
         'event_label': industry
       });
+      
+      // Enhanced tracking for industry interest
+      window.gtag('event', 'select_content', {
+        'content_type': 'industry',
+        'item_id': industry.toLowerCase().replace(/\s+/g, '-')
+      });
     }
     
     if (window._hsq) {
@@ -33,8 +39,8 @@ const ServicesIndustries = () => {
   };
 
   return (
-    <section className="space-y-6">
-      <h2 className="text-3xl font-bold">Industries We Serve</h2>
+    <section className="space-y-6" aria-labelledby="industries-heading">
+      <h2 id="industries-heading" className="text-3xl font-bold">Industries We Serve</h2>
       <p className="text-lg text-gray-700">
         Our data solutions are tailored to meet the specific needs of various industries. We understand
         the unique challenges and opportunities across different sectors and provide specialized
@@ -47,7 +53,7 @@ const ServicesIndustries = () => {
             <Link 
               key={index} 
               to="/case-studies" 
-              className="text-dataops-600 hover:underline"
+              className="text-dataops-600 hover:underline focus:outline-none focus:ring-2 focus:ring-dataops-500 focus:ring-offset-2 rounded px-2 py-1"
               onClick={() => trackIndustryClick(industry)}
               aria-label={`View case studies for ${industry}`}
             >

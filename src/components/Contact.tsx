@@ -37,13 +37,21 @@ const Contact = () => {
           formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
           region: "na1",
           target: "#hubspot-form-container",
-          onFormSubmit: (form) => {
+          onFormSubmit: () => {
             // Track form submission in Google Analytics
             if (window.gtag) {
               window.gtag('event', 'form_submission', {
                 'event_category': 'Contact',
                 'event_label': 'Contact Form',
-                'value': 1
+                'value': 1,
+                'conversion': true
+              });
+              
+              // Conversion tracking
+              window.gtag('event', 'conversion', {
+                'send_to': 'AW-16996265146/contact_form_submission',
+                'value': 1.0,
+                'currency': 'USD'
               });
             }
             
@@ -52,12 +60,13 @@ const Contact = () => {
               duration: 5000,
             });
           },
-          onFormReady: (form) => {
+          onFormReady: () => {
             // Form is ready
             const formElement = formContainerRef.current?.querySelector('form');
             if (formElement) {
               // Add custom styles or event listeners if needed
               formElement.setAttribute('data-testid', 'contact-form');
+              formElement.setAttribute('aria-label', 'Contact DataOps Group');
               
               // Make the form accessible
               const inputs = formElement.querySelectorAll('input, select, textarea');
@@ -66,6 +75,31 @@ const Contact = () => {
                 if (input instanceof HTMLElement && !input.getAttribute('aria-label')) {
                   const label = input.getAttribute('placeholder') || '';
                   input.setAttribute('aria-label', label);
+                }
+              });
+              
+              // Add form interaction tracking
+              const trackFieldInteraction = (fieldName: string, action: string) => {
+                if (window.gtag) {
+                  window.gtag('event', 'form_field_interaction', {
+                    'event_category': 'Form',
+                    'event_label': fieldName,
+                    'action': action
+                  });
+                }
+              };
+              
+              inputs.forEach((input: Element) => {
+                if (input instanceof HTMLElement) {
+                  input.addEventListener('focus', () => {
+                    const name = input.name || input.id || 'unknown';
+                    trackFieldInteraction(name, 'focus');
+                  });
+                  
+                  input.addEventListener('blur', () => {
+                    const name = input.name || input.id || 'unknown';
+                    trackFieldInteraction(name, 'complete');
+                  });
                 }
               });
             }
@@ -99,10 +133,14 @@ const Contact = () => {
           <div className="md:col-span-1 space-y-6">
             <ContactCard>
               <div className="flex items-start">
-                <Phone className="w-5 h-5 text-dataops-600 mr-3 mt-1" />
+                <Phone className="w-5 h-5 text-dataops-600 mr-3 mt-1" aria-hidden="true" />
                 <div>
                   <h3 className="font-medium mb-1 text-xl">Call Us</h3>
-                  <p className="text-gray-600">+1 479 844 2052</p>
+                  <p className="text-gray-600">
+                    <a href="tel:+14798442052" className="hover:text-dataops-600 transition-colors">
+                      +1 479 844 2052
+                    </a>
+                  </p>
                   <p className="text-gray-600">Mon-Thu, 9am-5pm CT</p>
                 </div>
               </div>
@@ -112,7 +150,7 @@ const Contact = () => {
           {/* HubSpot Contact Form */}
           <div className="md:col-span-2">
             <ContactCard>
-              <div id="hubspot-form-container" ref={formContainerRef} className="min-h-[400px]">
+              <div id="hubspot-form-container" ref={formContainerRef} className="min-h-[400px]" aria-live="polite">
                 <div className="flex justify-center items-center h-20">
                   <p className="text-gray-500">Loading form...</p>
                 </div>

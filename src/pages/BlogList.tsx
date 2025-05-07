@@ -2,13 +2,14 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Helmet } from 'react-helmet-async';
 import { blogPosts } from '@/data/blog';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
 import { format } from 'date-fns';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import MetaHead from '@/components/seo/MetaHead';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const BlogList = () => {
   // Define breadcrumbs for the insights page
@@ -36,30 +37,25 @@ const BlogList = () => {
         }))
       });
     }
+    
+    // Track in HubSpot
+    if (window._hsq) {
+      window._hsq.push(['setPath', window.location.pathname + window.location.search]);
+      window._hsq.push(['trackPageView']);
+    }
   }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Insights | DataOps Group</title>
-        <meta 
-          name="description" 
-          content="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." 
-        />
-        <meta name="keywords" content="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation" />
-        <link rel="canonical" href={`${window.location.origin}/insights`} />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Insights | DataOps Group" />
-        <meta property="og:description" content="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." />
-        <meta property="og:url" content={`${window.location.origin}/insights`} />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Insights | DataOps Group" />
-        <meta name="twitter:description" content="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." />
-      </Helmet>
+      <MetaHead
+        title="Insights | DataOps Group"
+        description="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group."
+        keywords="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation"
+        canonicalPath="/insights"
+        ogType="website"
+        ogTitle="Expert HubSpot Insights | DataOps Group"
+        ogDescription="Discover actionable insights on HubSpot data management, marketing analytics, and revenue generation strategies."
+      />
       
       {/* Schema Markup */}
       <BreadcrumbSchema items={breadcrumbs} />
@@ -123,16 +119,16 @@ const BlogList = () => {
                         });
                       }
                     }}
+                    aria-label={`Read article: ${post.title}`}
                   >
                     <CardHeader className="pb-4">
-                      <img 
+                      <OptimizedImage 
                         src={post.coverImage} 
                         alt={post.title} 
                         className="w-full h-48 object-cover rounded-t-lg mb-4" 
+                        width={400}
+                        height={200}
                         loading="lazy"
-                        width="400"
-                        height="200"
-                        decoding="async"
                       />
                       <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
                         {post.title}
