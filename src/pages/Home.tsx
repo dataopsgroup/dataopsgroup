@@ -7,6 +7,7 @@ import Services from '@/components/Services';
 import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
+import ChatbotSection from '@/components/ChatbotSection';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
@@ -49,6 +50,7 @@ const Home = () => {
       
       <main className="flex-grow">
         <Hero />
+        <ChatbotSection />
         <Services />
         <Approach />
         <BookCTA />
