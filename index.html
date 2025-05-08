@@ -39,33 +39,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     
-    <!-- Botpress Webchat Scripts -->
-    <script src="https://cdn.botpress.cloud/webchat/v2.5/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js"></script>
-    <script>
-      // Add event listener to hide placeholder when Botpress is initialized
-      document.addEventListener('DOMContentLoaded', function() {
-        const observer = new MutationObserver((mutations) => {
-          for (const mutation of mutations) {
-            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-              // Check if Botpress has injected its elements
-              if (document.querySelector('#botpress-webchat')) {
-                // Hide our placeholder
-                const placeholder = document.getElementById('chatbot-placeholder');
-                if (placeholder) placeholder.style.display = 'none';
-                observer.disconnect();
-              }
-            }
-          }
-        });
-        
-        // Start observing the container for changes
-        const container = document.getElementById('botpress-webchat-container');
-        if (container) {
-          observer.observe(container, { childList: true, subtree: true });
-        }
-      });
-    </script>
+    <!-- Botpress scripts are now loaded dynamically in the ChatbotSection component -->
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16996265146"></script>
