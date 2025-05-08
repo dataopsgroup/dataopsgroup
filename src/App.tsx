@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
@@ -24,7 +23,6 @@ import Documentation from './pages/Documentation';
 import FAQs from './pages/FAQs';
 import Leadership from './pages/Leadership';
 import Privacy from './pages/Privacy';
-import Terms from './pages/Terms';
 import Sitemap from './pages/Sitemap';
 import GetStartedPage from './pages/GetStartedPage';
 import ThankYouPage from './pages/ThankYouPage';
@@ -154,11 +152,6 @@ function App() {
           {
             path: "/privacy",
             element: <Privacy />,
-            errorElement: <NotFound />,
-          },
-          {
-            path: "/terms",
-            element: <Terms />,
             errorElement: <NotFound />,
           },
           {
