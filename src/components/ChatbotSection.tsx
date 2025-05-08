@@ -11,7 +11,7 @@ const ChatbotSection = () => {
           </h2>
           <div 
             id="botpress-webchat-container" 
-            className="bg-white rounded-xl shadow-lg p-4 h-[500px] w-full border border-gray-100"
+            className="bg-white rounded-xl shadow-lg p-4 h-[166px] w-full border border-gray-100"
             aria-label="DataOps Group Chatbot"
           >
             {/* Botpress will inject the chatbot here */}
