@@ -99,8 +99,9 @@ const ChatbotSection = () => {
     };
   }, []); // Empty dependency array means this effect runs once on mount
 
+  // Setting the display to 'none' to hide this component
   return (
-    <section className="py-16 px-4 bg-white">
+    <section className="py-16 px-4 bg-white" style={{ display: 'none' }}>
       <div className="container mx-auto">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-dataops-600">
