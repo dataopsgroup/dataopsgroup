@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -7,7 +6,7 @@ import Services from '@/components/Services';
 import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
-// import ChatbotSection from '@/components/ChatbotSection';
+import ChatbotSection from '@/components/ChatbotSection';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
@@ -50,8 +49,7 @@ const Home = () => {
       
       <main className="flex-grow">
         <Hero />
-        {/* ChatbotSection has been temporarily removed */}
-        {/* <ChatbotSection /> */}
+        <ChatbotSection />
         <Services />
         <Approach />
         <BookCTA />
