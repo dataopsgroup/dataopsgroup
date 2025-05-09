@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface ServiceHeroProps {
   title: string;
@@ -37,18 +38,24 @@ const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, image
           <div className="lg:col-span-2 flex justify-center">
             {isHubSpotTraining ? (
               <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md">
-                <img 
+                <OptimizedImage 
                   src="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"
                   alt="HubSpot training session with a facilitator and attendees"
+                  width={400}
+                  height={250}
                   className="w-full h-64 object-cover object-center"
+                  aspectRatio={16/10}
                 />
               </div>
             ) : imageSrc ? (
               <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md">
-                <img 
+                <OptimizedImage 
                   src={imageSrc}
                   alt={imageAlt || "Service visualization"}
+                  width={400}
+                  height={250}
                   className="w-full h-64 object-cover object-center"
+                  aspectRatio={16/10}
                 />
               </div>
             ) : (

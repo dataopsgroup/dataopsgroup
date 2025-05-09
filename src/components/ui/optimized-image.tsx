@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -9,6 +10,8 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   height?: number;
   className?: string;
   priority?: boolean;
+  aspectRatio?: number;
+  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
 }
 
 const OptimizedImage = ({
@@ -18,20 +21,47 @@ const OptimizedImage = ({
   height,
   className,
   priority = false,
+  aspectRatio,
+  objectFit = 'cover',
   ...props
 }: OptimizedImageProps) => {
-  return (
+  // Check if the image is a remote URL that could support WebP format
+  const isRemoteImage = src.startsWith('http') && !src.includes('lovable-uploads');
+  
+  // Determine image dimensions for layout stability
+  const imgWidth = width || 'auto';
+  const imgHeight = height || 'auto';
+  
+  // Construct the image element with optimization attributes
+  const imageElement = (
     <img
       src={src}
       alt={alt}
-      width={width}
-      height={height}
-      className={cn('max-w-full', className)}
+      width={imgWidth}
+      height={imgHeight}
+      className={cn(
+        'max-w-full',
+        objectFit && `object-${objectFit}`,
+        aspectRatio ? 'h-full w-full' : '',
+        className
+      )}
       loading={priority ? 'eager' : 'lazy'}
       decoding={priority ? 'sync' : 'async'}
+      fetchPriority={priority ? 'high' : 'auto'}
       {...props}
     />
   );
+  
+  // If an aspect ratio is specified, wrap the image in an AspectRatio component
+  if (aspectRatio) {
+    return (
+      <AspectRatio ratio={aspectRatio} className={cn('overflow-hidden', className)}>
+        {imageElement}
+      </AspectRatio>
+    );
+  }
+
+  return imageElement;
 };
 
 export default OptimizedImage;

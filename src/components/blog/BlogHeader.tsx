@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { format } from 'date-fns';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface BlogHeaderProps {
   title: string;
@@ -27,15 +28,17 @@ const BlogHeader = ({ title, date, author, category, coverImage }: BlogHeaderPro
         <span>{category}</span>
       </div>
       <div 
-        className={`w-full h-64 md:h-80 lg:h-96 bg-gray-100 rounded-lg overflow-hidden relative ${!imageLoaded ? 'animate-pulse' : ''}`}
+        className={`w-full rounded-lg overflow-hidden relative ${!imageLoaded ? 'bg-gray-100 animate-pulse' : ''}`}
       >
-        <img 
+        <OptimizedImage 
           src={coverImage} 
           alt={title}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
           onLoad={() => setImageLoaded(true)}
-          loading="lazy"
-          decoding="async"
+          width={1200}
+          height={675}
+          aspectRatio={16/9}
+          priority={true}
         />
       </div>
     </header>

@@ -11,6 +11,7 @@ import {
   CarouselPrevious 
 } from '@/components/ui/carousel';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface RelatedPostsProps {
   relatedPosts: BlogPost[];
@@ -62,17 +63,24 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
         
         <Carousel className="w-full max-w-5xl mx-auto">
           <CarouselContent>
-            {postsToDisplay.map((post) => (
+            {postsToDisplay.map((post, index) => (
               <CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
                 <Card className="h-full hover:shadow-lg transition-shadow">
                   <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
                     <CardHeader className="pb-4">
-                      <img 
-                        src={post.coverImage} 
-                        alt={post.title} 
-                        className="w-full h-40 object-cover rounded-t-lg mb-4" 
-                      />
-                      <CardTitle className="text-lg font-semibold hover:text-dataops-600 transition-colors">
+                      <div className="w-full h-40 rounded-t-lg overflow-hidden">
+                        <OptimizedImage 
+                          src={post.coverImage} 
+                          alt={post.title} 
+                          width={320}
+                          height={160}
+                          className="w-full h-full"
+                          aspectRatio={2/1}
+                          objectFit="cover"
+                          loading={index === 0 ? "eager" : "lazy"}
+                        />
+                      </div>
+                      <CardTitle className="text-lg font-semibold hover:text-dataops-600 transition-colors mt-4">
                         {post.title}
                       </CardTitle>
                     </CardHeader>

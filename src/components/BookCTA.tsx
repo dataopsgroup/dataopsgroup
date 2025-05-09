@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Book } from 'lucide-react';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const BookCTA = () => {
   return (
@@ -15,10 +16,15 @@ const BookCTA = () => {
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="flex justify-center md:justify-start">
                   <div className="relative transform transition-transform hover:scale-105 duration-300">
-                    <img 
+                    <OptimizedImage 
                       src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
                       alt="The CMO's Data Playbook book cover" 
-                      className="h-auto w-64 md:w-72 rounded-md shadow-xl" 
+                      className="h-auto w-64 md:w-72 rounded-md shadow-xl"
+                      width={288}
+                      height={432}
+                      priority={true}
+                      objectFit="cover"
+                      loading="eager"
                     />
                   </div>
                 </div>

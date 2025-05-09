@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -38,6 +39,9 @@ const Home = () => {
         <meta name="twitter:title" content="DataOps Group - HubSpot Consultancy for Marketing & Sales Leaders" />
         <meta name="twitter:description" content="DataOps Group is a premier HubSpot consultancy helping marketing, sales, and operations leaders optimize their HubSpot implementation and maximize ROI through data-driven strategies." />
         <meta name="twitter:image" content={`${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        
+        {/* Preload critical images */}
+        <link rel="preload" as="image" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" />
       </Helmet>
       
       <OrganizationSchema />

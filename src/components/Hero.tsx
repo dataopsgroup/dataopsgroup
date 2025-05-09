@@ -3,8 +3,36 @@ import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
+  // Track CTA click in Google Analytics and HubSpot
+  const trackContactCTAClick = () => {
+    // Track CTA click in Google Analytics
+    if (window.gtag) {
+      window.gtag('event', 'cta_click', {
+        'event_category': 'Engagement',
+        'event_label': 'Hero Contact CTA',
+      });
+    }
+    // Track in HubSpot
+    if (window._hsq) {
+      window._hsq.push(['trackEvent', {
+        id: 'hero_contact_cta_click'
+      }]);
+    }
+  };
+
+  // Track secondary CTA click
+  const trackServicesCTAClick = () => {
+    if (window.gtag) {
+      window.gtag('event', 'cta_click', {
+        'event_category': 'Engagement',
+        'event_label': 'Hero Services CTA',
+      });
+    }
+  };
+
   return (
     <div className="pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50">
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -19,21 +47,7 @@ const Hero = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/contact" onClick={() => {
-              // Track CTA click in Google Analytics
-              if (window.gtag) {
-                window.gtag('event', 'cta_click', {
-                  'event_category': 'Engagement',
-                  'event_label': 'Hero Contact CTA',
-                });
-              }
-              // Track in HubSpot
-              if (window._hsq) {
-                window._hsq.push(['trackEvent', {
-                  id: 'hero_contact_cta_click'
-                }]);
-              }
-            }}>
+            <Link to="/contact" onClick={trackContactCTAClick}>
               <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
                 Schedule a Consultation
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -43,15 +57,7 @@ const Hero = () => {
               variant="outline" 
               className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" 
               asChild
-              onClick={() => {
-                // Track secondary CTA click
-                if (window.gtag) {
-                  window.gtag('event', 'cta_click', {
-                    'event_category': 'Engagement',
-                    'event_label': 'Hero Services CTA',
-                  });
-                }
-              }}
+              onClick={trackServicesCTAClick}
             >
               <Link to="/services">View Our Services</Link>
             </Button>

@@ -18,18 +18,23 @@ const ChatbotSection = () => {
           return;
         }
 
-        const script = document.createElement('script');
-        script.src = 'https://cdn.botpress.cloud/webchat/v2.5/inject.js';
-        script.async = true;
-        script.onload = () => {
-          console.log('Botpress inject script loaded');
-          initBotpressConfig();
-        };
-        script.onerror = (err) => {
-          console.error('Error loading Botpress inject script:', err);
-        };
-        document.body.appendChild(script);
-        scriptLoadedRef.current = true;
+        // Use requestIdleCallback to defer non-critical script loading
+        const loadWhenIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+        
+        loadWhenIdle(() => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.botpress.cloud/webchat/v2.5/inject.js';
+          script.async = true;
+          script.onload = () => {
+            console.log('Botpress inject script loaded');
+            initBotpressConfig();
+          };
+          script.onerror = (err) => {
+            console.error('Error loading Botpress inject script:', err);
+          };
+          document.body.appendChild(script);
+          scriptLoadedRef.current = true;
+        });
       } catch (error) {
         console.error('Error setting up Botpress:', error);
       }
@@ -59,8 +64,10 @@ const ChatbotSection = () => {
       }
     };
 
-    // Start the script loading process
-    loadBotpressScript();
+    // Use requestAnimationFrame to ensure we load the scripts after the main content is rendered
+    window.requestAnimationFrame(() => {
+      loadBotpressScript();
+    });
 
     // Cleanup function if component unmounts
     return () => {
@@ -72,5 +79,15 @@ const ChatbotSection = () => {
   // We're returning an empty fragment since Botpress will inject its own UI
   return <></>;
 };
+
+// Polyfill for requestIdleCallback
+declare global {
+  interface Window {
+    requestIdleCallback?: (
+      callback: IdleRequestCallback,
+      options?: IdleRequestOptions
+    ) => number;
+  }
+}
 
 export default ChatbotSection;

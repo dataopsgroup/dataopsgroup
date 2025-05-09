@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blog';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const CaseStudiesGrid = () => {
   // Filter blog posts that are categorized as case studies
@@ -45,10 +46,15 @@ const CaseStudiesGrid = () => {
         {caseStudies.map((caseStudy, index) => (
           <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
             <div className="h-48 relative">
-              <img 
+              <OptimizedImage 
                 src={caseStudy.image} 
                 alt={`${caseStudy.title} illustration`}
-                className="w-full h-full object-cover"
+                width={600}
+                height={300}
+                className="w-full h-full"
+                aspectRatio={2/1}
+                objectFit="cover"
+                loading={index < 2 ? "eager" : "lazy"}
               />
             </div>
             <div className="p-6 flex flex-col flex-grow">
