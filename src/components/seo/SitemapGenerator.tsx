@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle, Copy, Download } from 'lucide-react';
+import { blogPosts } from '@/data/blog';
 
 // Define all site routes for the sitemap
 const siteRoutes = [
@@ -41,12 +42,23 @@ const SitemapGenerator: React.FC = () => {
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
     
+    // Add standard routes
     siteRoutes.forEach(route => {
       xml += '  <url>\n';
       xml += `    <loc>${baseUrl}${route.url}</loc>\n`;
       xml += `    <lastmod>${today}</lastmod>\n`;
       xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
       xml += `    <priority>${route.priority}</priority>\n`;
+      xml += '  </url>\n';
+    });
+    
+    // Add blog post routes
+    blogPosts.forEach(post => {
+      xml += '  <url>\n';
+      xml += `    <loc>${baseUrl}/insights/${post.id}</loc>\n`;
+      xml += `    <lastmod>${new Date(post.date).toISOString().split('T')[0]}</lastmod>\n`;
+      xml += '    <changefreq>monthly</changefreq>\n';
+      xml += '    <priority>0.7</priority>\n';
       xml += '  </url>\n';
     });
     
