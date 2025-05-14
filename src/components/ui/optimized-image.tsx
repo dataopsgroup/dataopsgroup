@@ -12,6 +12,8 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   priority?: boolean;
   aspectRatio?: number;
   objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
 }
 
 const OptimizedImage = ({
@@ -23,6 +25,8 @@ const OptimizedImage = ({
   priority = false,
   aspectRatio,
   objectFit = 'cover',
+  loading,
+  decoding,
   ...props
 }: OptimizedImageProps) => {
   // Check if the image is a remote URL that could support WebP format
@@ -31,6 +35,10 @@ const OptimizedImage = ({
   // Determine image dimensions for layout stability
   const imgWidth = width || 'auto';
   const imgHeight = height || 'auto';
+  
+  // Determine loading strategy
+  const loadingStrategy = loading || (priority ? 'eager' : 'lazy');
+  const decodingStrategy = decoding || (priority ? 'sync' : 'async');
   
   // Construct the image element with optimization attributes
   const imageElement = (
@@ -45,8 +53,8 @@ const OptimizedImage = ({
         aspectRatio ? 'h-full w-full' : '',
         className
       )}
-      loading={priority ? 'eager' : 'lazy'}
-      decoding={priority ? 'sync' : 'async'}
+      loading={loadingStrategy}
+      decoding={decodingStrategy}
       fetchPriority={priority ? 'high' : 'auto'}
       {...props}
     />

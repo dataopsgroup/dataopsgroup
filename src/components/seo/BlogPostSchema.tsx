@@ -12,9 +12,8 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
   const isoDate = new Date(post.date).toISOString();
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   
-  // Extract image dimensions for schema
-  const imageWidth = 1200;
-  const imageHeight = 630;
+  // Calculate approximate word count
+  const wordCount = post.content.split(/\s+/).length;
   
   // Handle the keywords - use tags if available or fallback to defaults
   const keywords = post.tags && post.tags.length > 0 
@@ -28,6 +27,7 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
           {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
+            "@id": "${baseUrl}/insights/${post.id}#blogposting",
             "mainEntityOfPage": {
               "@type": "WebPage",
               "@id": "${baseUrl}/insights/${post.id}"
@@ -37,11 +37,12 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
             "image": {
               "@type": "ImageObject",
               "url": "${baseUrl}${post.coverImage}",
-              "width": "${imageWidth}",
-              "height": "${imageHeight}"
+              "width": "1200",
+              "height": "630"
             },
             "author": {
               "@type": "Person",
+              "@id": "${baseUrl}/#person-${post.author.toLowerCase().replace(/\s+/g, '-')}",
               "name": "${post.author}",
               "url": "${baseUrl}/about"
             },
@@ -52,6 +53,7 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
             "dateModified": "${isoDate}",
             "keywords": "${keywords}",
             "articleSection": "${post.category || 'HubSpot'}",
+            "wordCount": "${wordCount}",
             "inLanguage": "en-US"
           }
         `}

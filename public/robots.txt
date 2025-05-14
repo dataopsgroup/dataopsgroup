@@ -4,9 +4,26 @@
 User-agent: *
 Allow: /
 
-# Disallow thank you pages
+# Disallow admin and thank you pages
 Disallow: /thank-you
 Disallow: /thank-you/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
 
 # Sitemap
 Sitemap: https://dataopsgroup.com/sitemap.xml
+
+# Crawl delay to prevent overloading the server
+Crawl-delay: 10
+
+# Additional rules for specific bots
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /lovable-uploads/
+
+User-agent: Mediapartners-Google
+Allow: /

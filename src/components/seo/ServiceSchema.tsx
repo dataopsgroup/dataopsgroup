@@ -9,6 +9,9 @@ interface ServiceSchemaProps {
   image?: string;
   provider?: string;
   areaServed?: string;
+  price?: string;
+  priceCurrency?: string;
+  serviceOutput?: string;
 }
 
 const ServiceSchema = ({ 
@@ -17,22 +20,74 @@ const ServiceSchema = ({
   url, 
   image = "https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png", 
   provider = "DataOps Group",
-  areaServed = "Worldwide" 
+  areaServed = "Worldwide",
+  price = "",
+  priceCurrency = "USD",
+  serviceOutput = "Improved HubSpot implementation and data quality"
 }: ServiceSchemaProps) => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const fullImageUrl = image.startsWith('http') ? image : `${baseUrl}${image}`;
+  
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${fullUrl}#service`,
     "name": name,
     "description": description,
-    "url": url,
+    "url": fullUrl,
     "provider": {
       "@type": "ProfessionalService",
+      "@id": `${baseUrl}/#organization`,
       "name": provider,
-      "url": "https://dataopsgroup.com"
+      "url": baseUrl
     },
     "serviceType": "HubSpot Consulting",
-    "areaServed": areaServed,
-    "image": image
+    "areaServed": {
+      "@type": "GeoShape",
+      "name": areaServed
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": fullImageUrl,
+      "width": "1200",
+      "height": "630"
+    },
+    "serviceOutput": serviceOutput,
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": `${baseUrl}/contact`,
+      "servicePhone": "+14798442052",
+      "serviceLocation": {
+        "@type": "Place",
+        "name": "DataOps Group Office",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Fayetteville",
+          "addressRegion": "AR",
+          "postalCode": "72701",
+          "addressCountry": "US"
+        }
+      }
+    },
+    "termsOfService": `${baseUrl}/terms`,
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "HubSpot Consulting Packages",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": name
+          },
+          "price": price || "Contact for pricing",
+          "priceCurrency": priceCurrency,
+          "availability": "https://schema.org/InStock",
+          "url": `${baseUrl}/contact`
+        }
+      ]
+    }
   };
 
   return (

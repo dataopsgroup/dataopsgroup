@@ -9,6 +9,9 @@ interface PersonSchemaProps {
   image?: string;
   url?: string;
   sameAs?: string[];
+  email?: string;
+  telephone?: string;
+  alumniOf?: string;
 }
 
 const PersonSchema = ({
@@ -17,7 +20,10 @@ const PersonSchema = ({
   description,
   image,
   url,
-  sameAs = []
+  sameAs = [],
+  email,
+  telephone,
+  alumniOf
 }: PersonSchemaProps) => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   const fullUrl = url ? (url.startsWith('http') ? url : `${baseUrl}${url}`) : `${baseUrl}/about`;
@@ -27,15 +33,37 @@ const PersonSchema = ({
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${baseUrl}/#person-${name.toLowerCase().replace(/\s+/g, '-')}`,
     "name": name,
     "jobTitle": jobTitle,
     "description": description || `${name} is a team member at DataOps Group, specializing in HubSpot consulting and implementation.`,
-    "image": fullImageUrl,
+    "image": {
+      "@type": "ImageObject",
+      "url": fullImageUrl,
+      "width": "400",
+      "height": "400"
+    },
     "url": fullUrl,
     "worksFor": {
       "@id": `${baseUrl}/#organization`
     },
-    "sameAs": sameAs
+    "sameAs": sameAs,
+    ...(email && { "email": email }),
+    ...(telephone && { "telephone": telephone }),
+    ...(alumniOf && { 
+      "alumniOf": {
+        "@type": "Organization",
+        "name": alumniOf
+      } 
+    }),
+    "knowsAbout": [
+      "HubSpot Implementation",
+      "Data Operations",
+      "Marketing Analytics",
+      "CRM Setup",
+      "Data Quality",
+      "Marketing Operations"
+    ]
   };
 
   return (

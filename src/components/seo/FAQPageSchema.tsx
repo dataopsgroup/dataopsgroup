@@ -10,23 +10,40 @@ interface FAQItem {
 interface FAQPageSchemaProps {
   items: FAQItem[];
   url?: string;
+  title?: string;
+  description?: string;
 }
 
 const FAQPageSchema = ({ 
   items,
-  url = "https://dataopsgroup.com/faqs"
+  url = "/faqs",
+  title = "Frequently Asked Questions about HubSpot Consulting",
+  description = "Find answers to common questions about HubSpot implementation, data quality, and marketing operations."
 }: FAQPageSchemaProps) => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": items.map(item => ({
+    "@id": `${fullUrl}#faqpage`,
+    "url": fullUrl,
+    "name": title,
+    "description": description,
+    "mainEntity": items.map((item, index) => ({
       "@type": "Question",
+      "@id": `${fullUrl}#question-${index + 1}`,
       "name": item.question,
       "acceptedAnswer": {
         "@type": "Answer",
+        "@id": `${fullUrl}#answer-${index + 1}`,
         "text": item.answer
       }
-    }))
+    })),
+    "publisher": {
+      "@id": `${baseUrl}/#organization`
+    },
+    "inLanguage": "en-US"
   };
 
   return (

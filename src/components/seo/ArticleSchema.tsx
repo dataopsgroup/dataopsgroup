@@ -11,6 +11,7 @@ interface ArticleSchemaProps {
   publishDate: string;
   modifiedDate?: string;
   categories?: string[];
+  wordCount?: number;
 }
 
 const ArticleSchema = ({
@@ -21,7 +22,8 @@ const ArticleSchema = ({
   authorName = "Geoff Tucker",
   publishDate,
   modifiedDate,
-  categories = ["HubSpot", "Marketing Operations", "Data Quality"]
+  categories = ["HubSpot", "Marketing Operations", "Data Quality"],
+  wordCount = 1200
 }: ArticleSchemaProps) => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
@@ -31,15 +33,22 @@ const ArticleSchema = ({
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${fullUrl}#article`,
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": fullUrl
     },
     "headline": title,
     "description": description,
-    "image": fullImageUrl,
+    "image": {
+      "@type": "ImageObject",
+      "url": fullImageUrl,
+      "width": "1200",
+      "height": "630"
+    },
     "author": {
       "@type": "Person",
+      "@id": `${baseUrl}/#person-${authorName.toLowerCase().replace(/\s+/g, '-')}`,
       "name": authorName,
       "url": `${baseUrl}/about`
     },
@@ -48,7 +57,10 @@ const ArticleSchema = ({
     },
     "datePublished": publishDate,
     "dateModified": modifiedDate || publishDate,
-    "keywords": categories.join(", ")
+    "keywords": categories.join(", "),
+    "articleSection": categories[0] || "HubSpot",
+    "wordCount": wordCount.toString(),
+    "inLanguage": "en-US"
   };
 
   return (
