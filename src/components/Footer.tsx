@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -63,7 +62,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/privacy" className="text-gray-400 hover:text-white text-sm" aria-label="Read our privacy policy">Privacy Policy</Link>
-              <a href="/sitemap.xml" className="text-gray-400 hover:text-white text-sm" aria-label="View our XML sitemap">Sitemap</a>
+              <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm" aria-label="View our sitemap">Sitemap</Link>
             </div>
           </div>
         </div>

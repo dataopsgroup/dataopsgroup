@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { FolderOpen, List, Link as LinkIcon, FileCode } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const SitemapPage = () => {
   // Define breadcrumbs for schema
@@ -67,7 +65,7 @@ const SitemapPage = () => {
               <p className="text-lg text-gray-700 mb-8">
                 Find everything you need on our website with this complete site navigation guide
               </p>
-              <a href="/sitemap.xml" className="inline-flex items-center gap-2 bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-md transition-colors">
+              <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-md transition-colors">
                 <FileCode size={20} />
                 View XML Sitemap
               </a>
