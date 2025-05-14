@@ -10,3 +10,4 @@ Disallow: /thank-you/
 
 # Sitemap
 Sitemap: https://dataopsgroup.com/sitemap.xml
+

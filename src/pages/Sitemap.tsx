@@ -7,7 +7,8 @@ import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import CTABanner from '@/components/CTABanner';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import { FolderOpen, List, Link as LinkIcon } from 'lucide-react';
+import { FolderOpen, List, Link as LinkIcon, FileCode } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const SitemapPage = () => {
   // Define breadcrumbs for schema
@@ -63,9 +64,13 @@ const SitemapPage = () => {
               <h1 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="gradient-text">Sitemap</span> Navigation
               </h1>
-              <p className="text-lg text-gray-700">
+              <p className="text-lg text-gray-700 mb-8">
                 Find everything you need on our website with this complete site navigation guide
               </p>
+              <a href="/sitemap.xml" className="inline-flex items-center gap-2 bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-md transition-colors">
+                <FileCode size={20} />
+                View XML Sitemap
+              </a>
             </div>
           </div>
         </section>
@@ -131,6 +136,7 @@ const SitemapPage = () => {
                     <li><Link to="/whitepapers" className="text-dataops-600 hover:underline flex items-center"><LinkIcon className="h-4 w-4 mr-2" />Whitepapers</Link></li>
                     <li><Link to="/documentation" className="text-dataops-600 hover:underline flex items-center"><LinkIcon className="h-4 w-4 mr-2" />Documentation</Link></li>
                     <li><Link to="/faqs" className="text-dataops-600 hover:underline flex items-center"><LinkIcon className="h-4 w-4 mr-2" />FAQs</Link></li>
+                    <li><a href="/sitemap.xml" className="text-dataops-600 hover:underline flex items-center"><LinkIcon className="h-4 w-4 mr-2" />XML Sitemap</a></li>
                   </ul>
                 </CardContent>
               </Card>

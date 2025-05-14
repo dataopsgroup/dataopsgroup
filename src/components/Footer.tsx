@@ -51,7 +51,7 @@ const Footer = () => {
               <li><Link to="/whitepapers" className="text-gray-300 hover:text-white" aria-label="Download our whitepapers">Whitepapers</Link></li>
               <li><Link to="/documentation" className="text-gray-300 hover:text-white" aria-label="Access our technical documentation">Documentation</Link></li>
               <li><Link to="/faqs" className="text-gray-300 hover:text-white" aria-label="View frequently asked questions">FAQs</Link></li>
-              <li><Link to="/sitemap" className="text-gray-300 hover:text-white" aria-label="View our site's sitemap">Sitemap</Link></li>
+              <li><a href="/sitemap.xml" className="text-gray-300 hover:text-white" aria-label="View our site's XML sitemap">Sitemap</a></li>
             </ul>
           </div>
         </div>
@@ -63,7 +63,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/privacy" className="text-gray-400 hover:text-white text-sm" aria-label="Read our privacy policy">Privacy Policy</Link>
-              <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm" aria-label="View our sitemap">Sitemap</Link>
+              <a href="/sitemap.xml" className="text-gray-400 hover:text-white text-sm" aria-label="View our XML sitemap">Sitemap</a>
             </div>
           </div>
         </div>
