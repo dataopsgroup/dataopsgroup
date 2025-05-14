@@ -1,5 +1,6 @@
 
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
@@ -7,24 +8,41 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const NotFound = () => {
-  const location = useLocation();
+  // Safe location handling - check if we're in router context
+  const locationFromRouter = (() => {
+    try {
+      // This will throw if we're outside router context
+      return useLocation();
+    } catch (err) {
+      // Return a default location object when outside router context
+      return { pathname: window.location.pathname };
+    }
+  })();
 
   useEffect(() => {
     // Log the 404 error with the attempted path
     console.error(
       "404 Error: User attempted to access non-existent route:",
-      location.pathname
+      locationFromRouter.pathname
     );
 
     // Track 404 error with Google Analytics if available
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'error', {
         'event_category': '404',
-        'event_label': location.pathname,
+        'event_label': locationFromRouter.pathname,
         'non_interaction': true
       });
     }
-  }, [location.pathname]);
+  }, [locationFromRouter.pathname]);
+
+  // Safe way to get canonical URL
+  const getCanonicalUrl = () => {
+    if (typeof window !== 'undefined') {
+      return `${window.location.origin}/404`;
+    }
+    return '/404';
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -32,7 +50,7 @@ const NotFound = () => {
         <title>Page Not Found - DataOps Group</title>
         <meta name="description" content="The page you are looking for does not exist. Return to our homepage to explore DataOps Group's HubSpot consultancy services and resources." />
         <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href={`${window.location.origin}/404`} />
+        <link rel="canonical" href={getCanonicalUrl()} />
       </Helmet>
       
       <Navbar />

@@ -1,5 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
+// Import polyfills
+import '@/lib/polyfills';
 
 const ChatbotSection = () => {
   const scriptLoadedRef = useRef<boolean>(false);
@@ -79,15 +81,5 @@ const ChatbotSection = () => {
   // We're returning an empty fragment since Botpress will inject its own UI
   return <></>;
 };
-
-// Polyfill for requestIdleCallback
-declare global {
-  interface Window {
-    requestIdleCallback?: (
-      callback: IdleRequestCallback,
-      options?: IdleRequestOptions
-    ) => number;
-  }
-}
 
 export default ChatbotSection;
