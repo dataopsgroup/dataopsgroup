@@ -21,8 +21,8 @@ const SitemapPage = () => {
       <Helmet>
         <title>Sitemap - DataOps Group</title>
         <meta name="description" content="Navigate our website with ease. Find all pages and resources organized in our sitemap." />
-        <meta name="keywords" content="sitemap, navigation, website map, pages" />
-        <link rel="canonical" href="/sitemap" />
+        <meta name="keywords" content="sitemap, navigation, website map, pages, dataops group sitemap" />
+        <link rel="canonical" href={`${window.location.origin}/sitemap`} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -42,23 +42,21 @@ const SitemapPage = () => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebPage",
+          "@id": `${window.location.origin}/sitemap/#webpage`,
+          "url": `${window.location.origin}/sitemap`,
           "name": "Sitemap - DataOps Group",
           "description": "Navigate our website with ease. Find all pages and resources organized in our sitemap.",
-          "publisher": {
-            "@type": "Organization",
-            "name": "DataOps Group",
-            "logo": {
-              "@type": "ImageObject",
-              "url": `${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
-            }
-          }
+          "isPartOf": {
+            "@id": `${window.location.origin}/#website`
+          },
+          "inLanguage": "en-US"
         })}
       </script>
       
       <Navbar />
       <main className="flex-1">
         <section className="bg-gradient-to-br from-white to-dataops-50 py-16 md:py-24">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-[5%]">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h1 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="gradient-text">Sitemap</span> Navigation
@@ -74,7 +72,7 @@ const SitemapPage = () => {
           </div>
         </section>
         
-        <section className="py-16 px-4 bg-white">
+        <section className="py-16 px-[5%] bg-white">
           <div className="container mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Main Pages */}

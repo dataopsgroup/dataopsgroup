@@ -7,56 +7,59 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle, Copy, Download } from 'lucide-react';
 import { blogPosts } from '@/data/blog';
 
-// Define all site routes for the sitemap
+// Define all site routes for the sitemap with more accurate lastmod dates
 const siteRoutes = [
-  { url: "/", priority: "1.0", changefreq: "weekly" },
-  { url: "/services", priority: "0.9", changefreq: "weekly" },
-  { url: "/services/analytics-bi", priority: "0.8", changefreq: "monthly" },
-  { url: "/services/dataops-implementation", priority: "0.8", changefreq: "monthly" },
-  { url: "/services/marketing-operations-revops", priority: "0.8", changefreq: "monthly" },
-  { url: "/services/team-training", priority: "0.8", changefreq: "monthly" },
-  { url: "/about", priority: "0.7", changefreq: "monthly" },
-  { url: "/approach", priority: "0.8", changefreq: "monthly" },
-  { url: "/insights", priority: "0.9", changefreq: "weekly" },
-  { url: "/case-studies", priority: "0.8", changefreq: "monthly" },
-  { url: "/contact", priority: "0.8", changefreq: "monthly" },
-  { url: "/get-started", priority: "0.9", changefreq: "monthly" },
-  { url: "/book", priority: "0.7", changefreq: "monthly" },
-  { url: "/faqs", priority: "0.7", changefreq: "monthly" },
-  { url: "/whitepapers", priority: "0.7", changefreq: "monthly" },
-  { url: "/documentation", priority: "0.6", changefreq: "monthly" },
-  { url: "/privacy", priority: "0.5", changefreq: "yearly" },
-  { url: "/terms", priority: "0.5", changefreq: "yearly" },
-  { url: "/sitemap", priority: "0.3", changefreq: "yearly" },
+  { url: "/", priority: "1.0", changefreq: "weekly", lastmod: "2025-05-14" },
+  { url: "/services", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-14" },
+  { url: "/services/analytics-bi", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/services/dataops-implementation", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/services/marketing-operations-revops", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/about", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/approach", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/insights", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-14" },
+  { url: "/case-studies", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/contact", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/get-started", priority: "0.9", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/book", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/whitepapers", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/documentation", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-14" },
+  { url: "/privacy", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-14" },
+  { url: "/terms", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-14" },
+  { url: "/sitemap", priority: "0.3", changefreq: "yearly", lastmod: "2025-05-14" },
 ];
 
 const SitemapGenerator: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [generated, setGenerated] = useState(false);
   
-  // Generate sitemap XML content
+  // Generate sitemap XML content with improved formatting
   const generateSitemapXml = () => {
-    const baseUrl = window.location.origin;
-    const today = new Date().toISOString().split('T')[0];
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
     
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
     
-    // Add standard routes
+    // Add standard routes with consistent date formatting
     siteRoutes.forEach(route => {
       xml += '  <url>\n';
       xml += `    <loc>${baseUrl}${route.url}</loc>\n`;
-      xml += `    <lastmod>${today}</lastmod>\n`;
+      xml += `    <lastmod>${route.lastmod}</lastmod>\n`;
       xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
       xml += `    <priority>${route.priority}</priority>\n`;
       xml += '  </url>\n';
     });
     
-    // Add blog post routes
+    // Add blog post routes with actual dates from blog posts
     blogPosts.forEach(post => {
+      // Format the date correctly for lastmod (YYYY-MM-DD)
+      const postDate = new Date(post.date);
+      const lastmod = postDate.toISOString().split('T')[0];
+      
       xml += '  <url>\n';
       xml += `    <loc>${baseUrl}/insights/${post.id}</loc>\n`;
-      xml += `    <lastmod>${new Date(post.date).toISOString().split('T')[0]}</lastmod>\n`;
+      xml += `    <lastmod>${lastmod}</lastmod>\n`;
       xml += '    <changefreq>monthly</changefreq>\n';
       xml += '    <priority>0.7</priority>\n';
       xml += '  </url>\n';
@@ -118,8 +121,8 @@ const SitemapGenerator: React.FC = () => {
               <Alert>
                 <AlertDescription>
                   <p className="text-sm">
-                    After downloading, upload this sitemap.xml file to your web server root directory, 
-                    then submit it to search engines via their Search Console tools.
+                    After downloading, upload this sitemap.xml file to your web server root directory and ensure it's served with the correct MIME type (application/xml).
+                    Then submit it to search engines via their Search Console tools.
                   </p>
                 </AlertDescription>
               </Alert>

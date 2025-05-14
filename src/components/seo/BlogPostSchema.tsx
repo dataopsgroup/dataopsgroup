@@ -10,6 +10,7 @@ interface BlogPostSchemaProps {
 const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
   // Format date to ISO format for schema
   const isoDate = new Date(post.date).toISOString();
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   
   // Extract image dimensions for schema
   const imageWidth = 1200;
@@ -29,29 +30,23 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
             "@type": "BlogPosting",
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "${window.location.origin}/insights/${post.id}"
+              "@id": "${baseUrl}/insights/${post.id}"
             },
             "headline": "${post.title}",
             "description": "${post.excerpt}",
             "image": {
               "@type": "ImageObject",
-              "url": "${window.location.origin}${post.coverImage}",
+              "url": "${baseUrl}${post.coverImage}",
               "width": "${imageWidth}",
               "height": "${imageHeight}"
             },
             "author": {
               "@type": "Person",
-              "name": "${post.author}"
+              "name": "${post.author}",
+              "url": "${baseUrl}/about"
             },
             "publisher": {
-              "@type": "Organization",
-              "name": "DataOps Group",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png",
-                "width": "112",
-                "height": "112"
-              }
+              "@id": "${baseUrl}/#organization"
             },
             "datePublished": "${isoDate}",
             "dateModified": "${isoDate}",

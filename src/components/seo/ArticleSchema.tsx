@@ -17,35 +17,34 @@ const ArticleSchema = ({
   title,
   description,
   url,
-  image = "https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png",
+  image,
   authorName = "Geoff Tucker",
   publishDate,
   modifiedDate,
   categories = ["HubSpot", "Marketing Operations", "Data Quality"]
 }: ArticleSchemaProps) => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const fullImageUrl = image ? (image.startsWith('http') ? image : `${baseUrl}${image}`) : 
+    `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`;
+  
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Article",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": url
+      "@id": fullUrl
     },
     "headline": title,
     "description": description,
-    "image": image,
+    "image": fullImageUrl,
     "author": {
       "@type": "Person",
-      "name": authorName
+      "name": authorName,
+      "url": `${baseUrl}/about`
     },
     "publisher": {
-      "@type": "Organization",
-      "name": "DataOps Group",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://dataopsgroup.com/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
-        "width": 512,
-        "height": 512
-      }
+      "@id": `${baseUrl}/#organization`
     },
     "datePublished": publishDate,
     "dateModified": modifiedDate || publishDate,

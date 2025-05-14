@@ -3,6 +3,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const WebsiteSchema = () => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  
   return (
     <Helmet>
       <script type="application/ld+json">
@@ -10,28 +12,20 @@ const WebsiteSchema = () => {
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "@id": "${window.location.origin}#website",
-            "url": "${window.location.origin}",
+            "@id": "${baseUrl}/#website",
+            "url": "${baseUrl}",
             "name": "DataOps Group",
             "description": "HubSpot consultancy that helps businesses optimize their HubSpot implementation and maximize their ROI.",
             "publisher": {
-              "@id": "${window.location.origin}#organization"
+              "@id": "${baseUrl}/#organization"
             },
             "potentialAction": [
               {
-                "@type": "SearchAction",
-                "target": {
-                  "@type": "EntryPoint",
-                  "urlTemplate": "${window.location.origin}/search?q={search_term_string}"
-                },
-                "query-input": "required name=search_term_string"
-              },
-              {
                 "@type": "ReadAction",
                 "target": [
-                  "${window.location.origin}/services",
-                  "${window.location.origin}/insights",
-                  "${window.location.origin}/about"
+                  "${baseUrl}/services",
+                  "${baseUrl}/insights",
+                  "${baseUrl}/about"
                 ]
               }
             ],
