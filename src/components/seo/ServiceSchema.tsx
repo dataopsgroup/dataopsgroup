@@ -37,7 +37,7 @@ const ServiceSchema = ({
     "description": description,
     "url": fullUrl,
     "provider": {
-      "@type": "ProfessionalService",
+      "@type": "Organization",
       "@id": `${baseUrl}/#organization`,
       "name": provider,
       "url": baseUrl
@@ -57,36 +57,21 @@ const ServiceSchema = ({
     "availableChannel": {
       "@type": "ServiceChannel",
       "serviceUrl": `${baseUrl}/contact`,
-      "servicePhone": "+14798442052",
-      "serviceLocation": {
-        "@type": "Place",
-        "name": "DataOps Group Office",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Fayetteville",
-          "addressRegion": "AR",
-          "postalCode": "72701",
-          "addressCountry": "US"
-        }
-      }
+      "servicePhone": "+14798442052"
     },
     "termsOfService": `${baseUrl}/terms`,
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "HubSpot Consulting Packages",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": name
-          },
-          "price": price || "Contact for pricing",
-          "priceCurrency": priceCurrency,
-          "availability": "https://schema.org/InStock",
-          "url": `${baseUrl}/contact`
-        }
-      ]
+    "offers": {
+      "@type": "Offer",
+      "price": price || "Contact for pricing",
+      "priceCurrency": priceCurrency,
+      "availability": "https://schema.org/InStock",
+      "url": `${baseUrl}/contact`
+    },
+    "mainEntityOfPage": {
+      "@id": fullUrl
+    },
+    "isPartOf": {
+      "@id": `${baseUrl}/#website`
     }
   };
 

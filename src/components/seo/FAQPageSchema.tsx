@@ -43,6 +43,9 @@ const FAQPageSchema = ({
     "publisher": {
       "@id": `${baseUrl}/#organization`
     },
+    "isPartOf": {
+      "@id": `${baseUrl}/#website`
+    },
     "inLanguage": "en-US"
   };
 

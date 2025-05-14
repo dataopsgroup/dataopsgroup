@@ -26,7 +26,9 @@ const Home = () => {
         />
         <meta name="keywords" content="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations, sales operations, revenue operations" />
         <link rel="canonical" href={`${baseUrl}/`} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        
+        {/* Enhanced viewport meta tag for better mobile experience */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, minimum-scale=1" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -54,7 +56,27 @@ const Home = () => {
         <link rel="preload" as="image" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" />
         <link rel="preload" as="image" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Mobile touch action for better tap targets */}
+        <style type="text/css">{`
+          button, a, .tap-target {
+            touch-action: manipulation;
+            min-height: 44px;
+            min-width: 44px;
+          }
+          
+          @media (max-width: 768px) {
+            .mobile-text {
+              font-size: 16px !important;
+              line-height: 1.5 !important;
+            }
+            .mobile-heading {
+              font-size: 20px !important;
+              line-height: 1.3 !important;
+            }
+          }
+        `}</style>
       </Helmet>
       
       <OrganizationSchema />

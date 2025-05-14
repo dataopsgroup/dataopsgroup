@@ -17,6 +17,7 @@ const OrganizationSchema = () => {
             "url": "${baseUrl}",
             "logo": {
               "@type": "ImageObject",
+              "@id": "${baseUrl}/#logo",
               "url": "${baseUrl}/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
               "width": "512",
               "height": "512",
@@ -35,11 +36,16 @@ const OrganizationSchema = () => {
             ],
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "123 Data Drive",
+              "streetAddress": "230 S College Ave",
               "addressLocality": "Fayetteville",
               "addressRegion": "AR",
               "postalCode": "72701",
               "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "36.0822",
+              "longitude": "-94.1719"
             },
             "contactPoint": [
               {
@@ -65,6 +71,7 @@ const OrganizationSchema = () => {
             "foundingDate": "2020-01-01",
             "founder": {
               "@type": "Person",
+              "@id": "${baseUrl}/#person-geoff-tucker",
               "name": "Geoff Tucker",
               "jobTitle": "Chief Executive Officer",
               "url": "${baseUrl}/about",

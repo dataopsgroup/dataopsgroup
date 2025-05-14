@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense, lazy } from 'react';
+import { StrictMode, Suspense, lazy, useEffect } from 'react';
 
 // Use requestIdleCallback to defer non-critical initialization
 const renderApp = () => {
@@ -29,6 +29,73 @@ const renderApp = () => {
   }
 };
 
+// Enhanced performance monitoring function
+const trackWebVitals = () => {
+  if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+    // Create performance observer for LCP
+    try {
+      const lcpObserver = new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        // Report LCP to analytics if available
+        if (window.gtag) {
+          window.gtag('event', 'web_vitals', {
+            metric_name: 'LCP',
+            metric_value: lastEntry.startTime,
+            metric_delta: 0,
+            metric_rating: lastEntry.startTime < 2500 ? 'good' : lastEntry.startTime < 4000 ? 'needs-improvement' : 'poor'
+          });
+        }
+      });
+      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+      
+      // Create performance observer for CLS
+      const clsObserver = new PerformanceObserver((entryList) => {
+        let clsValue = 0;
+        for (const entry of entryList.getEntries()) {
+          if (!entry.hadRecentInput) {
+            clsValue += entry.value;
+          }
+        }
+        // Report CLS to analytics
+        if (window.gtag) {
+          window.gtag('event', 'web_vitals', {
+            metric_name: 'CLS',
+            metric_value: clsValue,
+            metric_delta: 0,
+            metric_rating: clsValue < 0.1 ? 'good' : clsValue < 0.25 ? 'needs-improvement' : 'poor'
+          });
+        }
+      });
+      clsObserver.observe({ type: 'layout-shift', buffered: true });
+      
+      // Create performance observer for FID/INP
+      const fidObserver = new PerformanceObserver((entryList) => {
+        for (const entry of entryList.getEntries()) {
+          if (window.gtag) {
+            window.gtag('event', 'web_vitals', {
+              metric_name: entry.name === 'first-input' ? 'FID' : 'INP',
+              metric_value: entry.processingStart - entry.startTime,
+              metric_delta: 0,
+              metric_rating: (entry.processingStart - entry.startTime) < 100 ? 'good' : 
+                (entry.processingStart - entry.startTime) < 300 ? 'needs-improvement' : 'poor'
+            });
+          }
+        }
+      });
+      fidObserver.observe({ type: 'first-input', buffered: true });
+      
+      return () => {
+        lcpObserver.disconnect();
+        clsObserver.disconnect();
+        fidObserver.disconnect();
+      };
+    } catch (e) {
+      console.error('Error setting up performance observers:', e);
+    }
+  }
+};
+
 // Track initial page view after analytics has loaded
 const trackInitialPageView = () => {
   // Ensure gtag is available
@@ -40,16 +107,10 @@ const trackInitialPageView = () => {
       page_path: window.location.pathname,
       send_page_view: true
     });
-    
-    // Track additional analytics data
-    window.gtag('event', 'user_engagement', {
-      engagement_time_msec: 1000,
-      session_id: Date.now().toString()
-    });
   }
 };
 
-// Track HubSpot page views (for SPAs)
+// Setup route change tracking for analytics
 const setupRouteChangeTracking = () => {
   if (typeof window !== 'undefined') {
     // Listen for route changes to track in analytics
@@ -66,13 +127,6 @@ const setupRouteChangeTracking = () => {
             page_location: window.location.href,
             page_path: window.location.pathname,
             send_page_view: true
-          });
-          
-          // Track page engagement metrics
-          const prevPath = document.referrer ? new URL(document.referrer).pathname : null;
-          window.gtag('event', 'page_navigation', {
-            'previous_page': prevPath,
-            'current_page': window.location.pathname
           });
         }
         
@@ -104,57 +158,25 @@ const setupRouteChangeTracking = () => {
   }
 };
 
-// Use requestIdleCallback for deferred initialization when browser is idle
-// Fall back to setTimeout if requestIdleCallback is not available
+// Defer non-critical operations
+const deferredInit = () => {
+  trackInitialPageView();
+  setupRouteChangeTracking();
+  trackWebVitals();
+};
+
+// Initialize application with performance optimization
 if (typeof window !== 'undefined') {
+  // Immediately render the app for fast initial paint
+  renderApp();
+  
+  // Defer non-critical operations
   if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(() => {
-      renderApp();
-      trackInitialPageView();
-      setupRouteChangeTracking();
-    }, { timeout: 1000 });
+    window.requestIdleCallback(deferredInit, { timeout: 2000 });
   } else {
     // Fallback for browsers that don't support requestIdleCallback
-    setTimeout(() => {
-      renderApp();
-      trackInitialPageView();
-      setupRouteChangeTracking();
-    }, 0);
+    setTimeout(deferredInit, 200);
   }
-  
-  // Track page load performance metrics
-  window.addEventListener('load', () => {
-    if (window.gtag && window.performance) {
-      // Send performance data to Google Analytics
-      const pageLoadTime = performance.now();
-      window.gtag('event', 'timing_complete', {
-        name: 'page_load',
-        value: pageLoadTime,
-        event_category: 'Performance'
-      });
-      
-      // Send Web Vitals data when available
-      if ('PerformanceObserver' in window) {
-        try {
-          // Track CLS, FID, LCP
-          const observer = new PerformanceObserver((list) => {
-            list.getEntries().forEach((entry) => {
-              const metric = entry.name;
-              const value = entry.startTime;
-              window.gtag('event', 'web_vitals', {
-                metric_name: metric,
-                metric_value: value,
-                metric_delta: entry.duration || 0
-              });
-            });
-          });
-          observer.observe({ type: 'largest-contentful-paint', buffered: true });
-        } catch (e) {
-          console.error('Performance metrics error:', e);
-        }
-      }
-    }
-  });
 }
 
 // Add gtag and HubSpot to window object type

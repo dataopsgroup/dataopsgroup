@@ -29,6 +29,7 @@ const ArticleSchema = ({
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
   const fullImageUrl = image ? (image.startsWith('http') ? image : `${baseUrl}${image}`) : 
     `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`;
+  const authorId = authorName.toLowerCase().replace(/\s+/g, '-');
   
   const schemaData = {
     "@context": "https://schema.org",
@@ -48,7 +49,7 @@ const ArticleSchema = ({
     },
     "author": {
       "@type": "Person",
-      "@id": `${baseUrl}/#person-${authorName.toLowerCase().replace(/\s+/g, '-')}`,
+      "@id": `${baseUrl}/#person-${authorId}`,
       "name": authorName,
       "url": `${baseUrl}/about`
     },
@@ -60,7 +61,10 @@ const ArticleSchema = ({
     "keywords": categories.join(", "),
     "articleSection": categories[0] || "HubSpot",
     "wordCount": wordCount.toString(),
-    "inLanguage": "en-US"
+    "inLanguage": "en-US",
+    "isPartOf": {
+      "@id": `${baseUrl}/#website`
+    }
   };
 
   return (
