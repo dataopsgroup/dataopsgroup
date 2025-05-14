@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { blogPosts } from '@/data/blog';
@@ -12,6 +13,8 @@ import MetaHead from '@/components/seo/MetaHead';
 import OptimizedImage from '@/components/ui/optimized-image';
 
 const BlogList = () => {
+  const location = useLocation();
+  
   // Define breadcrumbs for the insights page
   const breadcrumbs = [
     { name: 'Home', url: '/' },
@@ -23,6 +26,9 @@ const BlogList = () => {
     post.category?.toLowerCase() !== 'case study' && 
     post.category?.toLowerCase() !== 'case studies'
   );
+  
+  // Ensure canonical URL is without query parameters
+  const canonicalPath = '/insights';
   
   useEffect(() => {
     // Track page view with blog post count
@@ -38,12 +44,12 @@ const BlogList = () => {
       });
     }
     
-    // Track in HubSpot
+    // Track in HubSpot - use path without query params
     if (window._hsq) {
-      window._hsq.push(['setPath', window.location.pathname + window.location.search]);
+      window._hsq.push(['setPath', location.pathname]);
       window._hsq.push(['trackPageView']);
     }
-  }, []);
+  }, [filteredBlogPosts, location.pathname]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -51,7 +57,7 @@ const BlogList = () => {
         title="Insights | DataOps Group"
         description="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group."
         keywords="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation"
-        canonicalPath="/insights"
+        canonicalPath={canonicalPath}
         ogType="website"
         ogTitle="Expert HubSpot Insights | DataOps Group"
         ogDescription="Discover actionable insights on HubSpot data management, marketing analytics, and revenue generation strategies."

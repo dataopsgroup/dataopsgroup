@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { blogPosts } from '@/data/blog';
@@ -20,6 +20,10 @@ const BlogPostPage = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
   const { toast } = useToast();
+  const location = useLocation();
+  
+  // Make sure we have the canonical URL without query parameters
+  const canonicalPath = `/insights/${postId}`;
   
   useEffect(() => {
     const foundPost = blogPosts.find(p => p.id === postId);
@@ -44,7 +48,7 @@ const BlogPostPage = () => {
       
       // Track in HubSpot
       if (window._hsq) {
-        window._hsq.push(['setPath', window.location.pathname + window.location.search]);
+        window._hsq.push(['setPath', window.location.pathname]);
         window._hsq.push(['trackPageView']);
       }
     } else {
@@ -78,24 +82,24 @@ const BlogPostPage = () => {
   const breadcrumbs = [
     { name: 'Home', url: '/' },
     { name: 'Insights', url: '/insights' },
-    { name: post.title, url: `/insights/${post.id}` },
+    { name: post?.title || '', url: `/insights/${postId}` },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead
-        title={post.title}
-        description={post.excerpt}
-        keywords={`${post.category?.toLowerCase()}, ${post.title.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join(', ')}, dataops group, hubspot`}
-        canonicalPath={`/insights/${post.id}`}
+        title={post?.title || 'Blog Post'}
+        description={post?.excerpt || ''}
+        keywords={`${post?.category?.toLowerCase() || ''}, ${post?.title?.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join(', ') || ''}, dataops group, hubspot`}
+        canonicalPath={canonicalPath}
         ogType="article"
-        ogImage={post.coverImage}
-        ogTitle={post.title}
-        ogDescription={post.excerpt}
+        ogImage={post?.coverImage || ''}
+        ogTitle={post?.title || ''}
+        ogDescription={post?.excerpt || ''}
       />
       
       {/* Schema Markup */}
-      <BlogPostSchema post={post} />
+      {post && <BlogPostSchema post={post} />}
       <BreadcrumbSchema items={breadcrumbs} />
       
       <Navbar />

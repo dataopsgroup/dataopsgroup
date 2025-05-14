@@ -6,6 +6,25 @@ import { insightRoutes } from './insightRoutes';
 import { utilityRoutes } from './utilityRoutes';
 import { redirectRoutes } from './redirectRoutes';
 import { blogRedirectRoutes } from './blogRedirectRoutes';
+import React from 'react';
+import { Navigate, RouteObject } from 'react-router-dom';
+
+// Create AMP redirect routes for each blog redirect
+const createAmpRedirects = () => {
+  return blogRedirectRoutes.map(route => {
+    // Skip the ones that don't have specific blog post redirects
+    if (route.path === '/blog' || route.path === '/en/blog/all') {
+      return null;
+    }
+    
+    // For each route, create an object that matches any URL with that path plus query params
+    return {
+      // Same path but with wildcard matcher for query params
+      path: `${route.path}/*`,
+      element: route.element
+    };
+  }).filter(Boolean) as RouteObject[];
+};
 
 // Combine all routes
 const routes = [
@@ -14,7 +33,8 @@ const routes = [
   ...insightRoutes,
   ...utilityRoutes,
   ...redirectRoutes,
-  ...blogRedirectRoutes
+  ...blogRedirectRoutes,
+  ...createAmpRedirects()
 ];
 
 // Create and export the router
