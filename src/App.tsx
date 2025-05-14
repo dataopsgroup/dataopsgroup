@@ -123,6 +123,47 @@ function App() {
             element: <CaseStudiesPage />,
             errorElement: <NotFound />,
           },
+          // 301 Redirects for old/missing pages to home page
+          {
+            path: "/services/alignment",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/resources/checklist",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/resources/data-guide",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/services/lineage-mapping",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/services/maintenance",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/approach/data-driven",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/services/roi-tracking",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/services/customer-value",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/data-analysis-question-framework",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/implementation",
+            element: <Navigate to="/" replace />,
+          },
           // Add redirect from /blog to /insights
           {
             path: "/blog",
