@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
@@ -126,6 +127,57 @@ function App() {
           {
             path: "/blog",
             element: <Navigate to="/insights" replace />,
+            errorElement: <NotFound />,
+          },
+          // Add all the 301 redirects for old blog URLs
+          {
+            path: "/en/blog/all",
+            element: <Navigate to="/insights" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/the-forgotten-art-of-campaign-documentation",
+            element: <Navigate to="/insights/forgotten-art-campaign-documentation" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/saas-healthcare-achieves-remarkable-insights",
+            element: <Navigate to="/insights/saas-healthcare-achieves-remarkable-insights" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/stop-pretending-all-leads-are-equal",
+            element: <Navigate to="/insights/lead-tiers-case-study" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/demystifying-utm-parameters",
+            element: <Navigate to="/insights/demystifying-utm-parameters" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/the-psychology-of-data-governance",
+            element: <Navigate to="/insights/psychology-data-governance" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/what-does-a-hubspot-consultant-cost",
+            element: <Navigate to="/insights/what-does-a-hubspot-consultant-cost" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/hiring-and-working-with-a-hubspot-consultant",
+            element: <Navigate to="/insights/hiring-and-working-with-a-hubspot-consultant" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/marketing-operations-isnt-it",
+            element: <Navigate to="/insights/marketing-operations-isnt-it" replace />,
+            errorElement: <NotFound />,
+          },
+          {
+            path: "/en/blog/lead-scoring-pitfalls-to-avoid",
+            element: <Navigate to="/insights/lead-scoring-pitfalls" replace />,
             errorElement: <NotFound />,
           },
           // Add missing routes
