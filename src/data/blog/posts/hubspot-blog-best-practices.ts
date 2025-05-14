@@ -90,10 +90,7 @@ export const hubspotBlogBestPractices: BlogPost = {
   </article>
   `,
   tags: ["HubSpot", "Content Marketing", "Blogging", "SEO", "Marketing Operations"],
-  metadata: {
-    wordCount: 758,
-    charCount: 4532,
-    created: "2025-05-14T14:30:00.000Z",
-    modified: "2025-05-14T14:30:00.000Z"
-  }
+  wordCount: 758,
+  readingTime: 4,
+  modifiedDate: "May 14, 2025"
 };

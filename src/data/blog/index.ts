@@ -37,9 +37,11 @@ import { dataTruthGap } from './posts/data-truth-gap';
 import { navigatingFirst90DaysRevops } from './posts/navigating-first-90-days-revops';
 import { whatDoesAHubSpotConsultantCost } from './posts/what-does-a-hubspot-consultant-cost';
 import { saasHealthcareAchievesRemarkableInsights } from './posts/saas-healthcare-achieves-remarkable-insights';
+import { hubspotBlogBestPractices } from './posts/hubspot-blog-best-practices';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
+  hubspotBlogBestPractices, // Add the new blog post at the top for visibility
   whatDoesAHubSpotConsultantCost,
   navigatingFirst90DaysRevops,
   leadScoringPitfalls,
@@ -79,6 +81,7 @@ export const blogPosts: BlogPost[] = [
 
 // Export individual posts for direct access if needed
 export {
+  hubspotBlogBestPractices, // Add the new blog post here as well
   howToHireAHubSpotConsultant,
   whatHubSpotDoesForMarketing,
   hiringAndWorkingWithAHubSpotConsultant,
