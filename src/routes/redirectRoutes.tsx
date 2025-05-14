@@ -56,5 +56,15 @@ export const redirectRoutes = [
   {
     path: "/implementation",
     element: <Navigate to="/" replace />,
+  },
+  
+  // NEW: Additional redirects for legacy URLs
+  {
+    path: "/hubspot-case-studies",
+    element: <Navigate to="/case-studies" replace />,
+  },
+  {
+    path: "/our-tech-stack",
+    element: <Navigate to="/" replace />,
   }
 ];
