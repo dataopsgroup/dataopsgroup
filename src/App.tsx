@@ -164,6 +164,15 @@ function App() {
             path: "/implementation",
             element: <Navigate to="/" replace />,
           },
+          // Add HubSpot preview URLs redirects
+          {
+            path: "/en/blog/why-marketing-leaders-encounter-career-obstacles-the-hidden-data-quality-crisis-1",
+            element: <Navigate to="/" replace />,
+          },
+          {
+            path: "/en/blog/why-marketing-leaders-encounter-career-obstacles-the-hidden-data-quality-crisis-0",
+            element: <Navigate to="/" replace />,
+          },
           // Add redirect from /blog to /insights
           {
             path: "/blog",
