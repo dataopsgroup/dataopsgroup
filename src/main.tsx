@@ -29,6 +29,17 @@ const renderApp = () => {
   }
 };
 
+// Define types for web vitals performance entries
+interface LayoutShiftEntry extends PerformanceEntry {
+  hadRecentInput: boolean;
+  value: number;
+}
+
+interface FirstInputEntry extends PerformanceEntry {
+  processingStart: number;
+  startTime: number;
+}
+
 // Enhanced performance monitoring function
 const trackWebVitals = () => {
   if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
@@ -53,8 +64,9 @@ const trackWebVitals = () => {
       const clsObserver = new PerformanceObserver((entryList) => {
         let clsValue = 0;
         for (const entry of entryList.getEntries()) {
-          if (!entry.hadRecentInput) {
-            clsValue += entry.value;
+          const layoutShift = entry as LayoutShiftEntry;
+          if (!layoutShift.hadRecentInput) {
+            clsValue += layoutShift.value;
           }
         }
         // Report CLS to analytics
@@ -72,13 +84,14 @@ const trackWebVitals = () => {
       // Create performance observer for FID/INP
       const fidObserver = new PerformanceObserver((entryList) => {
         for (const entry of entryList.getEntries()) {
+          const firstInput = entry as FirstInputEntry;
           if (window.gtag) {
             window.gtag('event', 'web_vitals', {
               metric_name: entry.name === 'first-input' ? 'FID' : 'INP',
-              metric_value: entry.processingStart - entry.startTime,
+              metric_value: firstInput.processingStart - firstInput.startTime,
               metric_delta: 0,
-              metric_rating: (entry.processingStart - entry.startTime) < 100 ? 'good' : 
-                (entry.processingStart - entry.startTime) < 300 ? 'needs-improvement' : 'poor'
+              metric_rating: (firstInput.processingStart - firstInput.startTime) < 100 ? 'good' : 
+                (firstInput.processingStart - firstInput.startTime) < 300 ? 'needs-improvement' : 'poor'
             });
           }
         }
