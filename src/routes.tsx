@@ -16,7 +16,6 @@ import AboutPage from './pages/AboutPage';
 import ApproachPage from './pages/ApproachPage';
 import CaseStudiesPage from './pages/CaseStudies';
 import Whitepapers from './pages/Whitepapers';
-import Documentation from './pages/Documentation';
 import FAQs from './pages/FAQs';
 import Leadership from './pages/Leadership';
 import Privacy from './pages/Privacy';
@@ -109,11 +108,6 @@ const insightRoutes = [
     errorElement: <NotFound />,
   },
   {
-    path: "/documentation",
-    element: <Documentation />,
-    errorElement: <NotFound />,
-  },
-  {
     path: "/faqs",
     element: <FAQs />,
     errorElement: <NotFound />,
@@ -154,6 +148,12 @@ const utilityRoutes = [
 
 // 301 Redirects
 const redirectRoutes = [
+  // Documentation redirect (added to fix canonical issue)
+  {
+    path: "/documentation",
+    element: <Navigate to="/" replace />,
+  },
+  
   // Old services redirects
   {
     path: "/services/alignment",

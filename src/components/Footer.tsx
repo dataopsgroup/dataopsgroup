@@ -12,7 +12,7 @@ const Footer = () => {
             <h3 className="text-2xl font-bold mb-6">DataOps Group</h3>
             <p className="text-gray-300 mb-6">
               Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
-              efficiency and innovation through expert consulting and <Link to="/documentation" className="hover:text-white underline" aria-label="View our detailed documentation">tailored solutions</Link>.
+              efficiency and innovation through expert consulting and <Link to="/" className="hover:text-white underline" aria-label="Visit our homepage">tailored solutions</Link>.
             </p>
             <div className="flex space-x-4">
               <a href="https://www.linkedin.com/company/dataopsgroup/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="Visit DataOps Group LinkedIn profile">
@@ -49,7 +49,6 @@ const Footer = () => {
             <ul className="space-y-3">
               <li><Link to="/case-studies" className="text-gray-300 hover:text-white" aria-label="View our client success stories">Case Studies</Link></li>
               <li><Link to="/whitepapers" className="text-gray-300 hover:text-white" aria-label="Download our whitepapers">Whitepapers</Link></li>
-              <li><Link to="/documentation" className="text-gray-300 hover:text-white" aria-label="Access our technical documentation">Documentation</Link></li>
               <li><Link to="/faqs" className="text-gray-300 hover:text-white" aria-label="View frequently asked questions">FAQs</Link></li>
               <li><Link to="/sitemap" className="text-gray-300 hover:text-white" aria-label="View our site's sitemap">Sitemap</Link></li>
             </ul>

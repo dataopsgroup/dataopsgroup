@@ -295,7 +295,7 @@ const SitemapPage = () => {
                 </CardContent>
               </Card>
               
-              {/* Resources */}
+              {/* Resources - Updated to remove Documentation link */}
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-4">
                   <div className="mb-4 h-12 w-12 rounded-full bg-dataops-100 flex items-center justify-center mx-auto">
@@ -325,16 +325,6 @@ const SitemapPage = () => {
                       >
                         <LinkIcon className="h-4 w-4 mr-2 flex-shrink-0" />
                         <span className="mobile-text">Whitepapers</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link 
-                        to="/documentation" 
-                        className="text-dataops-600 hover:underline flex items-center text-base p-2 mobile-link"
-                        aria-label="Documentation Page"
-                      >
-                        <LinkIcon className="h-4 w-4 mr-2 flex-shrink-0" />
-                        <span className="mobile-text">Documentation</span>
                       </Link>
                     </li>
                     <li>

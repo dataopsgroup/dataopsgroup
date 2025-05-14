@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,7 +20,6 @@ const mainRoutes = [
   { url: "/book", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-14" },
   { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-14" },
   { url: "/whitepapers", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-14" },
-  { url: "/documentation", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-14" },
   { url: "/privacy", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-14" },
   { url: "/terms", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-14" },
   { url: "/sitemap", priority: "0.3", changefreq: "yearly", lastmod: "2025-05-14" },
@@ -99,7 +97,7 @@ const SitemapGenerator: React.FC = () => {
     xml += '  <sitemap>\n';
     xml += `    <loc>${baseUrl}/sitemaps/case-studies-sitemap.xml</loc>\n`;
     xml += '    <lastmod>2025-05-14</lastmod>\n';
-    xml += '  </sitemap>\n';
+    xml += '</sitemap>\n';
     
     xml += '</sitemapindex>';
     
