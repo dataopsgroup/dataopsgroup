@@ -38,10 +38,12 @@ import { navigatingFirst90DaysRevops } from './posts/navigating-first-90-days-re
 import { whatDoesAHubSpotConsultantCost } from './posts/what-does-a-hubspot-consultant-cost';
 import { saasHealthcareAchievesRemarkableInsights } from './posts/saas-healthcare-achieves-remarkable-insights';
 import { hubspotBlogBestPractices } from './posts/hubspot-blog-best-practices';
+import { leadTiersCaseStudy } from './posts/lead-tiers-case-study';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  hubspotBlogBestPractices, // Add the new blog post at the top for visibility
+  leadTiersCaseStudy, // Add the new lead tiers case study at the top
+  hubspotBlogBestPractices,
   whatDoesAHubSpotConsultantCost,
   navigatingFirst90DaysRevops,
   leadScoringPitfalls,
@@ -81,7 +83,8 @@ export const blogPosts: BlogPost[] = [
 
 // Export individual posts for direct access if needed
 export {
-  hubspotBlogBestPractices, // Add the new blog post here as well
+  leadTiersCaseStudy, // Export the new lead tiers case study
+  hubspotBlogBestPractices,
   howToHireAHubSpotConsultant,
   whatHubSpotDoesForMarketing,
   hiringAndWorkingWithAHubSpotConsultant,
