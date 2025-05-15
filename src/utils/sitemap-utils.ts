@@ -1,4 +1,3 @@
-
 import { blogPosts } from '@/data/blog';
 
 // Define all site routes for the sitemap with more accurate lastmod dates
@@ -94,10 +93,13 @@ export const generateServicesSitemap = (baseUrl: string) => {
   return xml;
 };
 
-// Generate sitemap XML for blog posts
+// Generate sitemap XML for blog posts - refactored to be dynamic
 export const generateBlogSitemap = (baseUrl: string) => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  
+  // Add comment for clarity
+  xml += '  <!-- Blog Posts -->\n';
   
   // Add blog post routes with actual dates from blog posts
   blogPosts.filter(post => !post.tags || !post.tags.includes('case study')).forEach(post => {
@@ -109,7 +111,7 @@ export const generateBlogSitemap = (baseUrl: string) => {
     xml += `    <loc>${baseUrl}/insights/${post.id}</loc>\n`;
     xml += `    <lastmod>${lastmod}</lastmod>\n`;
     xml += '    <changefreq>monthly</changefreq>\n';
-    xml += '    <priority>0.7</priority>\n';
+    xml += `    <priority>${post.id === 'hidden-cost-of-failed-hubspot-implementations' ? '0.8' : '0.7'}</priority>\n`;
     xml += '  </url>\n';
   });
   
