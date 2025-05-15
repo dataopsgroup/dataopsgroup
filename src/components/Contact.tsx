@@ -37,6 +37,7 @@ const Contact = () => {
           formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
           region: "na1",
           target: "#hubspot-form-container",
+          redirectUrl: `${window.location.origin}/contact-thank-you`,
           onFormSubmit: () => {
             // Track form submission in Google Analytics
             if (window.gtag) {
