@@ -27,20 +27,7 @@ const BlogHeader = ({ title, date, author, category, coverImage }: BlogHeaderPro
         <span className="mx-2">•</span>
         <span>{category}</span>
       </div>
-      <div 
-        className={`w-full rounded-lg overflow-hidden relative ${!imageLoaded ? 'bg-gray-100 animate-pulse' : ''}`}
-      >
-        <OptimizedImage 
-          src={coverImage} 
-          alt={title}
-          className={`transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-          onLoad={() => setImageLoaded(true)}
-          width={1200}
-          height={675}
-          aspectRatio={16/9}
-          priority={true}
-        />
-      </div>
+      {/* Image element has been removed */}
     </header>
   );
 };

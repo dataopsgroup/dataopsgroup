@@ -5,7 +5,7 @@ export const hiddenCostOfFailedHubspotImplementations: BlogPost = {
   id: "hidden-cost-of-failed-hubspot-implementations", 
   title: "The Hidden Cost of Failed HubSpot Implementations: Why Many Businesses Don't See ROI",
   excerpt: "When HubSpot implementations fail, the costs extend far beyond subscription fees. Learn how to identify warning signs of struggling implementations and implement a proven rescue plan to transform your HubSpot instance into a true growth engine.",
-  date: "2023-05-25",
+  date: "2025-05-15",
   author: "Geoff Tucker", 
   category: "Insights", 
   coverImage: "/lovable-uploads/hubspot-implementation-costs.png",
