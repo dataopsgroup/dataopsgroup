@@ -2,6 +2,7 @@
 import { BlogPost } from '@/types/blog';
 
 // Import all blog posts
+import { hiddenCostOfFailedHubspotImplementations } from './posts/hidden-cost-of-failed-hubspot-implementations';
 import { howToHireAHubSpotConsultant } from './posts/how-to-hire-a-hubspot-consultant';
 import { whatHubSpotDoesForMarketing } from './posts/what-hubspot-does-for-marketing';
 import { hiringAndWorkingWithAHubSpotConsultant } from './posts/hiring-and-working-with-a-hubspot-consultant';
@@ -42,7 +43,8 @@ import { leadTiersCaseStudy } from './posts/lead-tiers-case-study';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  leadTiersCaseStudy, // Add the new lead tiers case study at the top
+  hiddenCostOfFailedHubspotImplementations, // Add the new blog post at the top
+  leadTiersCaseStudy,
   hubspotBlogBestPractices,
   whatDoesAHubSpotConsultantCost,
   navigatingFirst90DaysRevops,
@@ -83,7 +85,8 @@ export const blogPosts: BlogPost[] = [
 
 // Export individual posts for direct access if needed
 export {
-  leadTiersCaseStudy, // Export the new lead tiers case study
+  hiddenCostOfFailedHubspotImplementations, // Export the new blog post
+  leadTiersCaseStudy,
   hubspotBlogBestPractices,
   howToHireAHubSpotConsultant,
   whatHubSpotDoesForMarketing,

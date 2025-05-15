@@ -3,6 +3,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Blog Posts -->
   <url>
+    <loc>https://dataopsgroup.com/insights/hidden-cost-of-failed-hubspot-implementations</loc>
+    <lastmod>2023-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dataopsgroup.com/insights/what-does-a-hubspot-consultant-cost</loc>
     <lastmod>2025-05-14</lastmod>
     <changefreq>monthly</changefreq>
