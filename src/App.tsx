@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
-import CookieConsent from 'react-cookie-consent';
 import PrivacyModal from './components/PrivacyModal';
 import router from './routes';
 
@@ -36,23 +35,6 @@ function App() {
       
       <RouterProvider router={router} />
       
-      <CookieConsent
-        location="bottom"
-        buttonText="Accept"
-        cookieName="dataopsCookieConsent"
-        style={{ background: "#2B373B" }}
-        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
-        expires={150}
-        onAccept={() => {
-          // Handle analytics or other tracking services here
-        }}
-      >
-        This website uses cookies to enhance the user experience.{" "}
-        <span style={{ fontSize: "10px", cursor: "pointer", textDecoration: 'underline' }} onClick={() => setIsPrivacyModalOpen(true)}>
-          Learn More
-        </span>
-      </CookieConsent>
-
       <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
     </div>
   );
