@@ -12,6 +12,7 @@ interface ArticleSchemaProps {
   modifiedDate?: string;
   categories?: string[];
   wordCount?: number;
+  hasCalculator?: boolean;
 }
 
 const ArticleSchema = ({
@@ -23,7 +24,8 @@ const ArticleSchema = ({
   publishDate,
   modifiedDate,
   categories = ["HubSpot", "Marketing Operations", "Data Quality"],
-  wordCount = 1200
+  wordCount = 1200,
+  hasCalculator = false
 }: ArticleSchemaProps) => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
@@ -31,6 +33,7 @@ const ArticleSchema = ({
     `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`;
   const authorId = authorName.toLowerCase().replace(/\s+/g, '-');
   
+  // Enhanced schema with calculator information if applicable
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -64,7 +67,23 @@ const ArticleSchema = ({
     "inLanguage": "en-US",
     "isPartOf": {
       "@id": `${baseUrl}/#website`
-    }
+    },
+    ...(hasCalculator && {
+      "interactionStatistic": {
+        "@type": "InteractionCounter",
+        "interactionType": "https://schema.org/InteractAction",
+        "userInteractionCount": "1"
+      },
+      "hasPart": [
+        {
+          "@type": "WebApplication",
+          "name": "HubSpot ROI Calculator",
+          "description": "Calculate the hidden costs of a failed HubSpot implementation and the potential ROI of fixing it",
+          "url": `${fullUrl}#calculator`,
+          "applicationCategory": "BusinessApplication"
+        }
+      ]
+    })
   };
 
   return (

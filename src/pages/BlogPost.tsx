@@ -59,6 +59,23 @@ const BlogPostPage = () => {
       });
     }
   }, [postId, toast]);
+  
+  // Handle anchor links when the component mounts or location changes
+  useEffect(() => {
+    // Check if there's a hash in the URL
+    if (location.hash) {
+      // Remove the # from the hash
+      const element = document.getElementById(location.hash.slice(1));
+      
+      // If the element exists, scroll to it
+      if (element) {
+        // Give a small delay to ensure the page is fully rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location, post]); // Re-run when location or post changes
 
   if (!post) {
     return (
