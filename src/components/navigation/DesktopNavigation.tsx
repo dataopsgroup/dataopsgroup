@@ -29,9 +29,9 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
       {navItems.map((item) => (
         item.isDropdown ? (
           <DropdownMenu key={item.name}>
-            <DropdownMenuTrigger className="text-dataops-900 hover:text-dataops-600 font-medium transition-colors flex items-center gap-1 bg-transparent">
+            <DropdownMenuTrigger className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors bg-transparent">
               {item.name}
-              <ChevronDown className="h-4 w-4" />
+              <ChevronDown className="h-4 w-4 ml-1" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 bg-white">
               {item.items?.map((subItem) => (
@@ -51,7 +51,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
           <Link 
             key={item.name}
             to={item.href || "/"}
-            className="text-dataops-900 hover:text-dataops-600 font-medium transition-colors"
+            className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors"
           >
             {item.name}
           </Link>

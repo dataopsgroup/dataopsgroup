@@ -28,7 +28,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
         {navItems.map((item) => (
           item.isDropdown ? (
             <div key={item.name} className="flex flex-col px-4">
-              <div className="py-2 font-medium text-dataops-900">{item.name}</div>
+              <div className="py-2 font-medium text-dataops-900 flex items-center">{item.name}</div>
               <div className="pl-4 flex flex-col space-y-2">
                 {item.items?.map((subItem) => (
                   <Link
@@ -48,7 +48,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
               key={item.name}
               to={item.href || "/"}
               onClick={() => setIsOpen(false)}
-              className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4"
+              className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4 flex items-center"
             >
               {item.name}
             </Link>
