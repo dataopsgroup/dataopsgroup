@@ -41,6 +41,9 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
     ]
   } : {};
   
+  // Get the best image to use (featuredImage or fallback to coverImage)
+  const imageUrl = post.featuredImage || post.coverImage;
+  
   // Create the schema data
   const schemaData = {
     "@context": "https://schema.org",
@@ -54,7 +57,7 @@ const BlogPostSchema = ({ post }: BlogPostSchemaProps) => {
     "description": post.excerpt,
     "image": {
       "@type": "ImageObject",
-      "url": `${baseUrl}${post.coverImage}`,
+      "url": `${baseUrl}${imageUrl}`,
       "width": "1200",
       "height": "630"
     },

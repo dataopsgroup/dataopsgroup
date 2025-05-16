@@ -110,7 +110,7 @@ const BlogPostPage = () => {
         keywords={`${post?.category?.toLowerCase() || ''}, ${post?.title?.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join(', ') || ''}, dataops group, hubspot`}
         canonicalPath={canonicalPath}
         ogType="article"
-        ogImage={post?.coverImage || ''}
+        ogImage={post?.featuredImage || post?.coverImage || ''}
         ogTitle={post?.title || ''}
         ogDescription={post?.excerpt || ''}
       />
@@ -147,6 +147,25 @@ const BlogPostPage = () => {
                 className="prose prose-lg max-w-none"
                 dangerouslySetInnerHTML={{ __html: post.content }} 
               />
+              
+              <style jsx global>{`
+                .blog-image-container {
+                  margin: 2rem 0;
+                  width: 100%;
+                }
+                .blog-post-image {
+                  width: 100%;
+                  border-radius: 8px;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }
+                figcaption {
+                  text-align: center;
+                  color: #666;
+                  font-size: 0.9rem;
+                  margin-top: 0.5rem;
+                  font-style: italic;
+                }
+              `}</style>
               
               <div className="mt-12 pt-8 border-t border-gray-100">
                 <h3 className="text-xl font-semibold mb-4">Ready to Fix Your HubSpot Ordeal?</h3>
