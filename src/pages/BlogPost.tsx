@@ -148,7 +148,8 @@ const BlogPostPage = () => {
                 dangerouslySetInnerHTML={{ __html: post.content }} 
               />
               
-              <style jsx global>{`
+              <style>
+                {`
                 .blog-image-container {
                   margin: 2rem 0;
                   width: 100%;
@@ -165,7 +166,8 @@ const BlogPostPage = () => {
                   margin-top: 0.5rem;
                   font-style: italic;
                 }
-              `}</style>
+                `}
+              </style>
               
               <div className="mt-12 pt-8 border-t border-gray-100">
                 <h3 className="text-xl font-semibold mb-4">Ready to Fix Your HubSpot Ordeal?</h3>

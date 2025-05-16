@@ -10,4 +10,7 @@ export interface BlogPost {
   coverImage: string;
   featuredImage?: string;
   tags?: string[];
+  wordCount?: number;
+  readingTime?: number;
+  modifiedDate?: string;
 }
