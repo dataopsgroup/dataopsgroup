@@ -1,46 +1,40 @@
 
 import React from 'react';
-import Leadership from '../pages/Leadership';
-import Privacy from '../pages/Privacy';
-import Sitemap from '../pages/Sitemap';
-import GetStartedPage from '../pages/GetStartedPage';
-import ThankYouPage from '../pages/ThankYouPage';
-import ContactThankYouPage from '../pages/ContactThankYouPage';
-import NotFound from '../pages/NotFound';
+import { Navigate } from 'react-router-dom';
+import NotFound from '@/pages/NotFound';
+import Privacy from '@/pages/Privacy';
+import Terms from '@/pages/Terms';
+import Sitemap from '@/pages/Sitemap';
+import Documentation from '@/pages/Documentation';
+import HubSpotAssessment from '@/pages/HubSpotAssessment';
 
 export const utilityRoutes = [
   {
-    path: "/leadership",
-    element: <Leadership />,
-    errorElement: <NotFound />,
+    path: '/privacy',
+    element: <Privacy />
   },
   {
-    path: "/privacy",
-    element: <Privacy />,
-    errorElement: <NotFound />,
+    path: '/terms',
+    element: <Terms />
   },
   {
-    path: "/sitemap",
-    element: <Sitemap />,
-    errorElement: <NotFound />,
+    path: '/sitemap',
+    element: <Sitemap />
   },
   {
-    path: "/get-started",
-    element: <GetStartedPage />,
-    errorElement: <NotFound />,
+    path: '/documentation',
+    element: <Documentation />
   },
   {
-    path: "/thank-you",
-    element: <ThankYouPage />,
-    errorElement: <NotFound />,
+    path: '/assessment',
+    element: <HubSpotAssessment />
   },
   {
-    path: "/contact-thank-you",
-    element: <ContactThankYouPage />,
-    errorElement: <NotFound />,
+    path: '/not-found',
+    element: <NotFound />
   },
   {
-    path: "*",
-    element: <NotFound />,
+    path: '*',
+    element: <Navigate to="/not-found" replace />
   }
 ];
