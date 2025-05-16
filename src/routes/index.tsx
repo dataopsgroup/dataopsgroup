@@ -8,6 +8,7 @@ import { redirectRoutes } from './redirectRoutes';
 import { blogRedirectRoutes } from './blogRedirectRoutes';
 import React from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
+import HubSpotAssessment from '../pages/HubSpotAssessment';
 
 // Create AMP redirect routes for each blog redirect
 const createAmpRedirects = () => {
@@ -26,6 +27,13 @@ const createAmpRedirects = () => {
   }).filter(Boolean) as RouteObject[];
 };
 
+// Create assessment route
+const assessmentRoute = {
+  path: "/assessment",
+  element: <HubSpotAssessment />,
+  errorElement: <Navigate to="/not-found" replace />
+};
+
 // Combine all routes
 const routes = [
   ...mainRoutes,
@@ -34,7 +42,8 @@ const routes = [
   ...utilityRoutes,
   ...redirectRoutes,
   ...blogRedirectRoutes,
-  ...createAmpRedirects()
+  ...createAmpRedirects(),
+  assessmentRoute
 ];
 
 // Create and export the router
