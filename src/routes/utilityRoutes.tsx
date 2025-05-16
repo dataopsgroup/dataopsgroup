@@ -7,6 +7,7 @@ import Sitemap from '../pages/Sitemap';
 import GetStartedPage from '../pages/GetStartedPage';
 import ThankYouPage from '../pages/ThankYouPage';
 import NotFound from '../pages/NotFound';
+import ContactThankYouPage from '../pages/ContactThankYouPage';
 
 export const utilityRoutes = [
   {
@@ -32,6 +33,11 @@ export const utilityRoutes = [
   {
     path: "/thank-you",
     element: <ThankYouPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/contact-thank-you",
+    element: <ContactThankYouPage />,
     errorElement: <NotFound />,
   },
   {
