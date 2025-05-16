@@ -57,11 +57,13 @@ const CaseStudiesGrid = () => {
                 loading={index < 2 ? "eager" : "lazy"}
               />
             </div>
-            <div className="p-6 pt-4 mt-2 flex flex-col flex-grow">
+            {/* Added proper spacing between image and content with mt-4 */}
+            <div className="p-6 mt-4 flex flex-col flex-grow">
               <span className="inline-block px-3 py-1 rounded-full bg-dataops-50 text-dataops-600 text-sm font-medium mb-3">
                 {caseStudy.industry}
               </span>
               <h2 className="text-xl font-semibold mb-3">{caseStudy.title}</h2>
+              {/* Ensuring text doesn't overlap by improving spacing */}
               <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
                 {caseStudy.description}
               </p>
