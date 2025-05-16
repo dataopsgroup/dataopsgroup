@@ -133,7 +133,7 @@ const BlogList = () => {
                           ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" 
                           : post.coverImage} 
                         alt={post.title} 
-                        className="w-full h-48 object-cover rounded-t-lg mb-4" 
+                        className="w-full h-48 object-cover rounded-t-lg mb-6" 
                         width={400}
                         height={200}
                         loading="lazy"
