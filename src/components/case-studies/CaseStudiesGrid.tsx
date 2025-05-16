@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { blogPosts } from '@/data/blog';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
 const CaseStudiesGrid = () => {
   // Filter blog posts that are categorized as case studies
@@ -44,30 +45,36 @@ const CaseStudiesGrid = () => {
     <section className="space-y-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {caseStudies.map((caseStudy, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
-            <div className="h-48 relative">
+          <Card key={index} className="overflow-hidden flex flex-col h-full">
+            {/* Fixed height image container to ensure consistency */}
+            <div className="h-48 w-full relative overflow-hidden">
               <OptimizedImage 
                 src={caseStudy.image} 
                 alt={`${caseStudy.title} illustration`}
                 width={600}
                 height={300}
-                className="w-full h-full"
-                aspectRatio={2/1}
-                objectFit="cover"
+                className="w-full h-full object-cover"
                 loading={index < 2 ? "eager" : "lazy"}
+                aspectRatio={2/1}
               />
             </div>
-            {/* Added proper spacing between image and content with mt-4 */}
-            <div className="p-6 mt-4 flex flex-col flex-grow">
-              <span className="inline-block px-3 py-1 rounded-full bg-dataops-50 text-dataops-600 text-sm font-medium mb-3">
-                {caseStudy.industry}
-              </span>
-              <h2 className="text-xl font-semibold mb-3">{caseStudy.title}</h2>
-              {/* Ensuring text doesn't overlap by improving spacing */}
-              <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
-                {caseStudy.description}
-              </p>
-              <div className="mt-4">
+            
+            {/* Content section with clear separation from image */}
+            <div className="flex flex-col flex-grow">
+              <CardHeader className="pt-6 pb-2">
+                <span className="inline-block px-3 py-1 rounded-full bg-dataops-50 text-dataops-600 text-sm font-medium mb-2">
+                  {caseStudy.industry}
+                </span>
+                <h2 className="text-xl font-semibold">{caseStudy.title}</h2>
+              </CardHeader>
+              
+              <CardContent className="pb-2">
+                <p className="text-gray-600 line-clamp-3">
+                  {caseStudy.description}
+                </p>
+              </CardContent>
+              
+              <CardFooter className="pt-4 mt-auto">
                 {caseStudy.postId ? (
                   <Link to={`/insights/${caseStudy.postId}`}>
                     <Button>Read Case Study</Button>
@@ -75,9 +82,9 @@ const CaseStudiesGrid = () => {
                 ) : (
                   <Button disabled>Coming Soon</Button>
                 )}
-              </div>
+              </CardFooter>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </section>
