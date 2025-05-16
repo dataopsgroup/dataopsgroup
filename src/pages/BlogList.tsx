@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -128,7 +129,7 @@ const BlogList = () => {
                   >
                     <CardHeader className="pb-4">
                       <OptimizedImage 
-                        src={post.coverImage} 
+                        src={"/lovable-uploads/edd4ceb3-220b-4a02-aa23-5c1416b49af7.png"} 
                         alt={post.title} 
                         className="w-full h-48 object-cover rounded-t-lg mb-4" 
                         width={400}
