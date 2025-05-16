@@ -2,13 +2,14 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const DataOpsImplementationHero = () => {
   return (
     <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-2 space-y-6">
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-100 text-dataops-800 text-sm font-medium mb-2">
               Our Services
             </div>
@@ -26,12 +27,15 @@ const DataOpsImplementationHero = () => {
             </div>
           </div>
           
-          <div className="lg:col-span-2 flex justify-center">
-            <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-md">
-              <img 
+          <div className="lg:col-span-3 flex justify-end">
+            <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-xl h-96">
+              <OptimizedImage 
                 src="/lovable-uploads/12e641ec-9075-4921-80ad-5c42ee2a35de.png"
                 alt="Person diagramming data flows and integrations on a whiteboard"
-                className="w-full h-64 object-cover object-center"
+                width={600}
+                height={375}
+                className="w-full h-full object-cover"
+                objectFit="cover"
               />
             </div>
           </div>
