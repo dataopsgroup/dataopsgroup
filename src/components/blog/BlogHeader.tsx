@@ -28,18 +28,7 @@ const BlogHeader = ({ title, date, author, category, coverImage }: BlogHeaderPro
         <span>{category}</span>
       </div>
       
-      {/* Re-add the image that was previously removed */}
-      <div className="mb-8">
-        <OptimizedImage 
-          src={coverImage} 
-          alt={title}
-          className="w-full rounded-lg shadow-md" 
-          width={800}
-          height={400}
-          aspectRatio={2}
-          priority={true}
-        />
-      </div>
+      {/* Cover image has been removed */}
     </header>
   );
 };
