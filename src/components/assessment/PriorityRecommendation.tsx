@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { AlertCircle } from 'lucide-react';
 
 interface PriorityRecommendationProps {
   index: number;
@@ -14,7 +15,10 @@ const PriorityRecommendation: React.FC<PriorityRecommendationProps> = ({ index, 
         {index}
       </div>
       <div>
-        <h4 className="font-semibold text-lg mb-1 text-dataops-800">{title}</h4>
+        <h4 className="font-semibold text-lg mb-1 text-dataops-800 flex items-center">
+          <span>{title}</span>
+          <AlertCircle className="ml-2 text-dataops-600" size={16} />
+        </h4>
         <p className="text-gray-700">{text}</p>
       </div>
     </div>
