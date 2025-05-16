@@ -16,7 +16,7 @@ const ContactThankYouPage = () => {
         <link rel="canonical" href="/contact-thank-you" />
       </Helmet>
       <Navbar />
-      <main className="content-wrapper pt-24 pb-16">
+      <main className="content-wrapper pt-32 pb-16"> {/* Increased top padding from pt-24 to pt-32 */}
         <div className="container mx-auto px-[5%]">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h1 className="text-3xl md:text-4xl font-bold text-dataops-900 mb-4">Thank You</h1>
