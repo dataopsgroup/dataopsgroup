@@ -27,7 +27,19 @@ const BlogHeader = ({ title, date, author, category, coverImage }: BlogHeaderPro
         <span className="mx-2">•</span>
         <span>{category}</span>
       </div>
-      {/* Image element has been removed */}
+      
+      {/* Re-add the image that was previously removed */}
+      <div className="mb-8">
+        <OptimizedImage 
+          src={coverImage} 
+          alt={title}
+          className="w-full rounded-lg shadow-md" 
+          width={800}
+          height={400}
+          aspectRatio={2}
+          priority={true}
+        />
+      </div>
     </header>
   );
 };

@@ -42,18 +42,19 @@ const ArticleSchema = ({
   );
 };
 
+// Fixed function signature to ensure required parameters come before optional ones
 function generateArticleSchema(
   baseUrl: string,
   title: string,
   description: string,
   url: string,
-  image?: string,
-  authorName: string = "Geoff Tucker",
+  image: string | undefined,
+  authorName: string,
   publishDate: string,
-  modifiedDate?: string,
-  categories: string[] = ["HubSpot", "Marketing Operations", "Data Quality"],
-  wordCount: number = 1200,
-  hasCalculator: boolean = false
+  modifiedDate: string | undefined,
+  categories: string[],
+  wordCount: number,
+  hasCalculator: boolean
 ) {
   const fullUrl = getFullUrl(url, baseUrl);
   const fullImageUrl = getFullImageUrl(image, baseUrl);
