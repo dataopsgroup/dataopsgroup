@@ -28,7 +28,7 @@ const AssessmentIntro: React.FC<AssessmentIntroProps> = ({ startQuiz }) => {
         
         <div className="md:w-1/4 md:min-w-[200px]">
           <Alert className="bg-blue-50 border-blue-200 h-full flex items-center">
-            <AlertDescription className="text-blue-800">
+            <AlertDescription className="text-blue-800 text-2xl font-semibold">
               According to Forrester Research, companies with optimized CRM implementations achieve 2.8x higher ROI than those with poorly executed systems.
             </AlertDescription>
           </Alert>
