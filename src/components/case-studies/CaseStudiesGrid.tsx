@@ -61,11 +61,11 @@ const CaseStudiesGrid = () => {
               <span className="inline-block px-3 py-1 rounded-full bg-dataops-50 text-dataops-600 text-sm font-medium mb-3">
                 {caseStudy.industry}
               </span>
-              <h2 className="text-xl font-semibold mb-2">{caseStudy.title}</h2>
-              <p className="text-gray-600 mb-4 flex-grow">
+              <h2 className="text-xl font-semibold mb-3">{caseStudy.title}</h2>
+              <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
                 {caseStudy.description}
               </p>
-              <div className="mt-auto">
+              <div className="mt-4">
                 {caseStudy.postId ? (
                   <Link to={`/insights/${caseStudy.postId}`}>
                     <Button>Read Case Study</Button>
