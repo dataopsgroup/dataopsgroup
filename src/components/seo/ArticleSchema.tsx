@@ -28,13 +28,39 @@ const ArticleSchema = ({
   hasCalculator = false
 }: ArticleSchemaProps) => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
-  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
-  const fullImageUrl = image ? (image.startsWith('http') ? image : `${baseUrl}${image}`) : 
-    `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`;
+  const schemaData = generateArticleSchema(
+    baseUrl, title, description, url, image, authorName, 
+    publishDate, modifiedDate, categories, wordCount, hasCalculator
+  );
+  
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schemaData)}
+      </script>
+    </Helmet>
+  );
+};
+
+function generateArticleSchema(
+  baseUrl: string,
+  title: string,
+  description: string,
+  url: string,
+  image?: string,
+  authorName: string = "Geoff Tucker",
+  publishDate: string,
+  modifiedDate?: string,
+  categories: string[] = ["HubSpot", "Marketing Operations", "Data Quality"],
+  wordCount: number = 1200,
+  hasCalculator: boolean = false
+) {
+  const fullUrl = getFullUrl(url, baseUrl);
+  const fullImageUrl = getFullImageUrl(image, baseUrl);
   const authorId = authorName.toLowerCase().replace(/\s+/g, '-');
   
-  // Enhanced schema with calculator information if applicable
-  const schemaData = {
+  // Create core schema
+  const coreSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     "@id": `${fullUrl}#article`,
@@ -67,8 +93,13 @@ const ArticleSchema = ({
     "inLanguage": "en-US",
     "isPartOf": {
       "@id": `${baseUrl}/#website`
-    },
-    ...(hasCalculator && {
+    }
+  };
+  
+  // Add calculator extension if needed
+  if (hasCalculator) {
+    return {
+      ...coreSchema,
       "interactionStatistic": {
         "@type": "InteractionCounter",
         "interactionType": "https://schema.org/InteractAction",
@@ -83,16 +114,22 @@ const ArticleSchema = ({
           "applicationCategory": "BusinessApplication"
         }
       ]
-    })
-  };
+    };
+  }
+  
+  return coreSchema;
+}
 
-  return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schemaData)}
-      </script>
-    </Helmet>
-  );
-};
+function getFullUrl(url: string, baseUrl: string): string {
+  return url.startsWith('http') ? url : `${baseUrl}${url}`;
+}
+
+function getFullImageUrl(image: string | undefined, baseUrl: string): string {
+  if (!image) {
+    return `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`;
+  }
+  
+  return image.startsWith('http') ? image : `${baseUrl}${image}`;
+}
 
 export default ArticleSchema;
