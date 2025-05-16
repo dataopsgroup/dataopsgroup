@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -135,6 +134,7 @@ const BlogList = () => {
                         width={400}
                         height={200}
                         loading="lazy"
+                        objectFit="cover"
                       />
                       <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
                         {post.title}
