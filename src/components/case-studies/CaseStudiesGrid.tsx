@@ -57,7 +57,7 @@ const CaseStudiesGrid = () => {
                 loading={index < 2 ? "eager" : "lazy"}
               />
             </div>
-            <div className="p-6 flex flex-col flex-grow">
+            <div className="p-6 pt-4 mt-2 flex flex-col flex-grow">
               <span className="inline-block px-3 py-1 rounded-full bg-dataops-50 text-dataops-600 text-sm font-medium mb-3">
                 {caseStudy.industry}
               </span>
