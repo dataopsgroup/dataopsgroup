@@ -1,11 +1,21 @@
-
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense, lazy, useEffect } from 'react';
+import { StrictMode, Suspense } from 'react';
 
-// Use requestIdleCallback to defer non-critical initialization
+// Define types for web vitals performance entries
+interface LayoutShiftEntry extends PerformanceEntry {
+  hadRecentInput: boolean;
+  value: number;
+}
+
+interface FirstInputEntry extends PerformanceEntry {
+  processingStart: number;
+  startTime: number;
+}
+
+// Initialize application with performance optimization
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -29,16 +39,17 @@ const renderApp = () => {
   }
 };
 
-// Define types for web vitals performance entries
-interface LayoutShiftEntry extends PerformanceEntry {
-  hadRecentInput: boolean;
-  value: number;
-}
-
-interface FirstInputEntry extends PerformanceEntry {
-  processingStart: number;
-  startTime: number;
-}
+// Track initial page view after analytics has loaded
+const trackInitialPageView = () => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      send_page_view: true
+    });
+  }
+};
 
 // Enhanced performance monitoring function
 const trackWebVitals = () => {
@@ -109,20 +120,6 @@ const trackWebVitals = () => {
   }
 };
 
-// Track initial page view after analytics has loaded
-const trackInitialPageView = () => {
-  // Ensure gtag is available
-  if (typeof window !== 'undefined' && window.gtag) {
-    // Send page view for the initial load
-    window.gtag('event', 'page_view', {
-      page_title: document.title,
-      page_location: window.location.href,
-      page_path: window.location.pathname,
-      send_page_view: true
-    });
-  }
-};
-
 // Setup route change tracking for analytics
 const setupRouteChangeTracking = () => {
   if (typeof window !== 'undefined') {
@@ -178,12 +175,11 @@ const deferredInit = () => {
   trackWebVitals();
 };
 
-// Initialize application with performance optimization
+// Immediately render the app for fast initial paint
+renderApp();
+
+// Defer non-critical operations
 if (typeof window !== 'undefined') {
-  // Immediately render the app for fast initial paint
-  renderApp();
-  
-  // Defer non-critical operations
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(deferredInit, { timeout: 2000 });
   } else {

@@ -30,9 +30,6 @@ function App() {
 
   return (
     <div className="relative">
-      {isLoading && <Loading />}
-      {error && <ErrorDisplay message={error.message} />}
-      
       <RouterProvider router={router} />
       
       <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
