@@ -35,7 +35,7 @@ const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, image
             </div>
           </div>
           
-          <div className="lg:col-span-3 flex justify-center lg:justify-start">
+          <div className="lg:col-span-3 flex justify-end">
             {isHubSpotTraining ? (
               <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden w-full max-w-xl h-96">
                 <OptimizedImage 
@@ -54,7 +54,7 @@ const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, image
                   alt={imageAlt || "Service visualization"}
                   width={600}
                   height={375}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   aspectRatio={16/10}
                 />
               </div>

@@ -62,12 +62,8 @@ const ServiceDetail = () => {
       
       <Navbar />
       <main>
-        {/* Back button to Insights */}
-        <div className="container mx-auto px-4 pt-28">
-          <Button variant="outline" className="mb-4 bg-gray-700 text-white hover:bg-gray-800" asChild>
-            <Link to="/insights">Back to Insights</Link>
-          </Button>
-        </div>
+        {/* Only show Back button on blog posts, not on service pages */}
+        {/* removed Back button to Insights */}
         
         {/* Hero Section */}
         <ServiceHero 
