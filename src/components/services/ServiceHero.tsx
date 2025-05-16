@@ -54,7 +54,7 @@ const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, image
                   alt={imageAlt || "Service visualization"}
                   width={400}
                   height={250}
-                  className="w-full h-64 object-cover object-center"
+                  className="w-full h-full object-cover"
                   aspectRatio={16/10}
                 />
               </div>
