@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -59,17 +58,28 @@ const BlogPostPage = () => {
     { name: post?.title || '', url: `/insights/${postId}` },
   ];
 
+  // Prepare keywords from tags and title
+  const keywordsList = [
+    post.category?.toLowerCase() || '',
+    ...(post.tags || []).map(tag => tag.toLowerCase()),
+    ...post.title.toLowerCase().replace(/[^\w\s]/gi, '').split(' ')
+  ].filter(Boolean).join(', ');
+
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead
-        title={post?.title || 'Blog Post'}
-        description={post?.excerpt || ''}
-        keywords={`${post?.category?.toLowerCase() || ''}, ${post?.title?.toLowerCase().replace(/[^\w\s]/gi, '').split(' ').join(', ') || ''}, dataops group, hubspot`}
+        title={post.title}
+        description={post.excerpt}
+        keywords={keywordsList}
         canonicalPath={canonicalPath}
         ogType="article"
-        ogImage={post?.featuredImage || post?.coverImage || ''}
-        ogTitle={post?.title || ''}
-        ogDescription={post?.excerpt || ''}
+        ogImage={post.featuredImage || post.coverImage}
+        ogTitle={post.title}
+        ogDescription={post.excerpt}
+        author={post.author}
+        publishDate={post.date}
+        blogPost={post}
+        isArticle={true}
       />
       
       {/* Schema Markup */}
@@ -96,7 +106,7 @@ const BlogPostPage = () => {
                 title={post.title}
                 date={post.date}
                 author={post.author}
-                category={post.category}
+                category={post.category || ''}
                 coverImage={post.coverImage}
               />
 

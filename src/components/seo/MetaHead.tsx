@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { BlogPost } from '@/types/blog';
 
 interface MetaHeadProps {
   title: string;
@@ -12,6 +13,11 @@ interface MetaHeadProps {
   ogTitle?: string;
   ogDescription?: string;
   twitterCard?: string;
+  author?: string;
+  publishDate?: string;
+  blogPost?: BlogPost;
+  isArticle?: boolean;
+  siteName?: string;
 }
 
 const MetaHead = ({
@@ -20,16 +26,41 @@ const MetaHead = ({
   keywords,
   canonicalPath,
   ogType = 'website',
-  ogImage = 'https://lovable.dev/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
+  ogImage = '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
   ogTitle,
   ogDescription,
-  twitterCard = 'summary_large_image'
+  twitterCard = 'summary_large_image',
+  author = 'Geoff Tucker',
+  publishDate,
+  blogPost,
+  isArticle = false,
+  siteName = 'DataOps Group'
 }: MetaHeadProps) => {
-  const fullTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;
-  const fullCanonicalUrl = `${window.location.origin}${canonicalPath || window.location.pathname}`;
+  // Determine if we're in the browser environment
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  
+  // Format title
+  const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+  
+  // Create full canonical URL
+  const fullCanonicalUrl = `${baseUrl}${canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '')}`;
+  
+  // Ensure image URLs are absolute
+  const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
+  
+  // If this is a blog post, use blog post data for meta tags
+  if (blogPost && isArticle) {
+    ogType = 'article';
+    ogTitle = ogTitle || blogPost.title;
+    ogDescription = ogDescription || blogPost.excerpt;
+    ogImage = blogPost.featuredImage || blogPost.coverImage;
+    author = blogPost.author;
+    publishDate = blogPost.date;
+  }
 
   return (
     <Helmet>
+      {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
@@ -44,16 +75,29 @@ const MetaHead = ({
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={ogTitle || fullTitle} />
       <meta property="og:description" content={ogDescription || description} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={fullOgImage} />
       <meta property="og:url" content={fullCanonicalUrl} />
-      <meta property="og:site_name" content="DataOps Group" />
+      <meta property="og:site_name" content={siteName} />
+      
+      {/* Additional Open Graph tags for articles */}
+      {isArticle && (
+        <>
+          <meta property="article:published_time" content={new Date(publishDate || '').toISOString()} />
+          <meta property="article:author" content={author} />
+          {blogPost?.tags?.map((tag, index) => (
+            <meta property="article:tag" content={tag} key={`tag-${index}`} />
+          ))}
+          <meta property="article:section" content={blogPost?.category || 'Blog'} />
+        </>
+      )}
       
       {/* Twitter */}
       <meta name="twitter:card" content={twitterCard} />
       <meta name="twitter:title" content={ogTitle || fullTitle} />
       <meta name="twitter:description" content={ogDescription || description} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={fullOgImage} />
       <meta name="twitter:site" content="@dataops_group" />
+      {author && <meta name="twitter:creator" content={`@${author.toLowerCase().replace(/\s+/g, '')}`} />}
     </Helmet>
   );
 };
