@@ -135,6 +135,7 @@ const BlogList = () => {
                         height={200}
                         loading="lazy"
                         objectFit="cover"
+                        aspectRatio={2/1}
                       />
                       <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
                         {post.title}
