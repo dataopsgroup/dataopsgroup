@@ -72,12 +72,10 @@ const OptimizedImage = ({
         className={cn(
           'max-w-full',
           objectFit && `object-${objectFit}`,
-          aspectRatio ? 'h-full w-full' : '',
           className
         )}
         loading={loadingStrategy}
         decoding={decodingStrategy}
-        fetchPriority={priority ? 'high' : 'auto'}
         sizes={sizes}
         srcSet={srcSet}
         onError={onError}

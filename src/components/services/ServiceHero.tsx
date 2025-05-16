@@ -43,8 +43,8 @@ const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, image
                   alt="HubSpot training session with a facilitator and attendees"
                   width={600}
                   height={375}
-                  className="w-full h-full object-cover object-center"
-                  aspectRatio={16/10}
+                  className="w-full h-full object-cover"
+                  objectFit="cover"
                 />
               </div>
             ) : imageSrc ? (
@@ -54,8 +54,8 @@ const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, image
                   alt={imageAlt || "Service visualization"}
                   width={600}
                   height={375}
-                  className="w-full h-full object-cover object-center"
-                  aspectRatio={16/10}
+                  className="w-full h-full object-cover"
+                  objectFit="cover"
                 />
               </div>
             ) : (
