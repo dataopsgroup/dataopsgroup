@@ -129,7 +129,7 @@ const BlogList = () => {
                   >
                     <CardHeader className="pb-4">
                       <OptimizedImage 
-                        src={"/lovable-uploads/edd4ceb3-220b-4a02-aa23-5c1416b49af7.png"} 
+                        src={post.coverImage} 
                         alt={post.title} 
                         className="w-full h-48 object-cover rounded-t-lg mb-4" 
                         width={400}
