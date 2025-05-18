@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent } from '@/components/ui/card';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MetaHead from '@/components/seo/MetaHead';
@@ -16,6 +18,13 @@ import EmailModal from '@/components/assessment/EmailModal';
 import { quizSections } from '@/data/assessment/quizData';
 import { useAssessmentResults } from '@/hooks/useAssessmentResults';
 
+// The Google Apps Script URL for sending emails
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvtEP0HZXsIfoKiMGXebjEiIHx_KqWor6_nIxFluCijJCubHEFJl8RxGf4u8zZUPwC/exec';
+
+// HubSpot form submission details (replace with actual values if you have them)
+const HUBSPOT_PORTAL_ID = "21794360";
+const HUBSPOT_FORM_ID = "f58580b1-2bf3-4df4-9702-81c5808ba539";
+
 const HubSpotAssessment = () => {
   const [currentSection, setCurrentSection] = useState(0); // 0 = intro, 1-5 = sections, 6 = results
   const [progress, setProgress] = useState(20);
@@ -28,6 +37,7 @@ const HubSpotAssessment = () => {
   });
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Use custom hook to calculate results data
   const { overallScore, scoreLabel, priorities, rescuePlan } = useAssessmentResults(scores);
@@ -84,19 +94,80 @@ const HubSpotAssessment = () => {
     setIsEmailModalOpen(true);
   };
 
+  // Format priority areas for submission
+  const formatPriorityAreas = () => {
+    return priorities.map(p => p.title.replace(' Improvement', ''));
+  };
+
   // Send results via email
-  const handleSendResults = () => {
-    const email = document.getElementById('email') as HTMLInputElement;
-    const name = document.getElementById('name') as HTMLInputElement;
-    const company = document.getElementById('company') as HTMLInputElement;
-    const consent = document.getElementById('consent') as HTMLInputElement;
-    
-    if (email && name && company && consent && email.value && name.value && company.value && consent.checked) {
-      // Here you would typically send the data to your backend
-      alert('Thank you! Your results have been sent to your email.');
+  const handleSendResults = async (email: string, name: string, company: string) => {
+    try {
+      // First submit to HubSpot if portal ID and form ID are valid
+      if (HUBSPOT_PORTAL_ID && HUBSPOT_FORM_ID && HUBSPOT_PORTAL_ID !== "YOUR_HUBSPOT_PORTAL_ID") {
+        const hubspotData = {
+          fields: [
+            { name: "email", value: email },
+            { name: "firstname", value: name.split(' ')[0] },
+            { name: "lastname", value: name.split(' ').length > 1 ? name.split(' ').slice(1).join(' ') : '' },
+            { name: "company", value: company },
+            { name: "hubspot_implementation_score", value: overallScore.toString() },
+            { name: "hubspot_adoption_score", value: scores.section1.toString() },
+            { name: "hubspot_data_quality_score", value: scores.section2.toString() },
+            { name: "hubspot_process_integration_score", value: scores.section3.toString() },
+            { name: "hubspot_reporting_analytics_score", value: scores.section4.toString() },
+            { name: "hubspot_roi_value_score", value: scores.section5.toString() },
+            { name: "hubspot_implementation_health", value: scoreLabel },
+            { name: "hubspot_priority_areas", value: formatPriorityAreas().join("\n") }
+          ],
+          context: {
+            pageUri: window.location.href,
+            pageName: document.title
+          }
+        };
+
+        await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(hubspotData)
+        });
+      }
+
+      // Now send email using Google Apps Script
+      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          name,
+          company,
+          scores,
+          overallScore,
+          scoreLabel,
+          priorityAreas: formatPriorityAreas()
+        })
+      });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.message || 'Error sending email');
+      }
+
+      // Close modal
       setIsEmailModalOpen(false);
-    } else {
-      alert('Please fill out all fields and accept the terms.');
+      
+      // Show success toast
+      toast.success('Your assessment results have been sent');
+      
+      // Redirect to thank you page
+      navigate('/hubspot-assessment-results');
+    } catch (error) {
+      console.error('Error sending assessment results:', error);
+      throw error; // Let the EmailModal component handle the error
     }
   };
 

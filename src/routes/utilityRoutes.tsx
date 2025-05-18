@@ -8,6 +8,7 @@ import GetStartedPage from '../pages/GetStartedPage';
 import ThankYouPage from '../pages/ThankYouPage';
 import NotFound from '../pages/NotFound';
 import ContactThankYouPage from '../pages/ContactThankYouPage';
+import HubSpotAssessmentResultsPage from '../pages/HubSpotAssessmentResultsPage';
 
 export const utilityRoutes = [
   {
@@ -38,6 +39,11 @@ export const utilityRoutes = [
   {
     path: "/contact-thank-you",
     element: <ContactThankYouPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/hubspot-assessment-results",
+    element: <HubSpotAssessmentResultsPage />,
     errorElement: <NotFound />,
   },
   {
