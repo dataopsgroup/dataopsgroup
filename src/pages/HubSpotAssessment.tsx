@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,9 +20,9 @@ import { useAssessmentResults } from '@/hooks/useAssessmentResults';
 // The Google Apps Script URL for sending emails
 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvtEP0HZXsIfoKiMGXebjEiIHx_KqWor6_nIxFluCijJCubHEFJl8RxGf4u8zZUPwC/exec';
 
-// HubSpot form submission details (replace with actual values if you have them)
+// HubSpot form submission details
 const HUBSPOT_PORTAL_ID = "21794360";
-const HUBSPOT_FORM_ID = "f58580b1-2bf3-4df4-9702-81c5808ba539";
+const HUBSPOT_FORM_ID = "534a62b0-3ed1-47ac-aaef-8ca4efa5eec0";
 
 const HubSpotAssessment = () => {
   const [currentSection, setCurrentSection] = useState(0); // 0 = intro, 1-5 = sections, 6 = results
@@ -103,7 +102,7 @@ const HubSpotAssessment = () => {
   const handleSendResults = async (email: string, name: string, company: string) => {
     try {
       // First submit to HubSpot if portal ID and form ID are valid
-      if (HUBSPOT_PORTAL_ID && HUBSPOT_FORM_ID && HUBSPOT_PORTAL_ID !== "YOUR_HUBSPOT_PORTAL_ID") {
+      if (HUBSPOT_PORTAL_ID && HUBSPOT_FORM_ID) {
         const hubspotData = {
           fields: [
             { name: "email", value: email },
