@@ -133,9 +133,9 @@ export const generateBlogSitemap = (baseUrl: string) => {
     xml += `    <lastmod>${finalLastmod}</lastmod>\n`;
     xml += '    <changefreq>monthly</changefreq>\n';
     
-    // Give higher priority to featured or high-value posts
-    const priority = post.featured ? '0.8' : 
-                     (post.id === 'hidden-cost-of-failed-hubspot-implementations' ? '0.8' : '0.7');
+    // Give higher priority to important posts like the hidden cost post
+    // Instead of using 'featured' which doesn't exist in BlogPost type, we'll check by ID
+    const priority = (post.id === 'hidden-cost-of-failed-hubspot-implementations') ? '0.8' : '0.7';
     
     xml += `    <priority>${priority}</priority>\n`;
     xml += '  </url>\n';
