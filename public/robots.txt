@@ -18,11 +18,6 @@ Disallow: /0OV0VHL4M36Z.js.gz
 
 # Sitemap
 Sitemap: https://dataopsgroup.com/sitemap.xml
-Sitemap: https://dataopsgroup.com/sitemaps/sitemap-index.xml
-Sitemap: https://dataopsgroup.com/sitemaps/main-sitemap.xml
-Sitemap: https://dataopsgroup.com/sitemaps/blog-sitemap.xml
-Sitemap: https://dataopsgroup.com/sitemaps/case-studies-sitemap.xml
-Sitemap: https://dataopsgroup.com/sitemaps/services-sitemap.xml
 
 # Crawl delay to prevent overloading the server
 Crawl-delay: 10
