@@ -10,12 +10,14 @@ interface FAQSchemaProps {
 }
 
 const FAQSchema: React.FC<FAQSchemaProps> = ({ items, pageTitle, pageDescription }) => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  
   return (
     <Helmet>
       <title>{pageTitle}</title>
       <meta name="description" content={pageDescription} />
       <meta name="keywords" content="HubSpot FAQs, HubSpot consultant, data quality, marketing ROI, sales and marketing alignment, HubSpot optimization, statistical process control, data cleaning, reporting dashboards" />
-      <link rel="canonical" href={`${window.location.origin}/faqs`} />
+      <link rel="canonical" href={`${baseUrl}/faqs`} />
       
       {/* FAQ schema markup */}
       <script type="application/ld+json">

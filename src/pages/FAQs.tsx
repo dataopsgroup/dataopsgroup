@@ -45,7 +45,7 @@ const FAQsPage = () => {
         pageDescription="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals."
       />
       
-      <FAQPageSchema items={formattedFAQs} url={`${window.location.origin}/faqs`} />
+      <FAQPageSchema items={formattedFAQs} url="/faqs" />
       <BreadcrumbSchema items={breadcrumbs} />
       
       <Navbar />
