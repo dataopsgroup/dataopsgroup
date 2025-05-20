@@ -7,11 +7,19 @@ import MarketingOperationsRevOpsSchema from '@/components/services/MarketingOper
 import MarketingOperationsRevOpsHero from '@/components/services/MarketingOperationsRevOpsHero';
 import MarketingOperationsRevOpsContent from '@/components/services/MarketingOperationsRevOpsContent';
 import MarketingOperationsRevOpsBenefits from '@/components/services/MarketingOperationsRevOpsBenefits';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const MarketingOperationsRevOps = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <MarketingOperationsRevOpsSchema />
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: "Marketing Operations & RevOps", url: "/services/marketing-operations-revops" }
+        ]} 
+      />
       <Navbar />
       
       <main>

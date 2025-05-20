@@ -33,16 +33,15 @@ const ServiceSchema = ({
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": `${fullUrl}#service`,
+    "serviceType": name,
     "name": name,
     "description": description,
     "url": fullUrl,
     "provider": {
-      "@type": "Organization",
-      "@id": `${baseUrl}/#organization`,
+      "@type": "ProfessionalService",
       "name": provider,
       "url": baseUrl
     },
-    "serviceType": "HubSpot Consulting",
     "areaServed": {
       "@type": "GeoShape",
       "name": areaServed
@@ -59,19 +58,12 @@ const ServiceSchema = ({
       "serviceUrl": `${baseUrl}/contact`,
       "servicePhone": "+14798442052"
     },
-    "termsOfService": `${baseUrl}/terms`,
     "offers": {
       "@type": "Offer",
       "price": price || "Contact for pricing",
       "priceCurrency": priceCurrency,
       "availability": "https://schema.org/InStock",
       "url": `${baseUrl}/contact`
-    },
-    "mainEntityOfPage": {
-      "@id": fullUrl
-    },
-    "isPartOf": {
-      "@id": `${baseUrl}/#website`
     }
   };
 

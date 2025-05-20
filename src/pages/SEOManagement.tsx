@@ -1,7 +1,7 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ServiceSchema from '@/components/seo/ServiceSchema';
 import { Helmet } from 'react-helmet-async';
 import SitemapGenerator from '@/components/seo/SitemapGenerator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -9,15 +9,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 const SEOManagement = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>SEO Management - DataOps Group</title>
-        <meta 
-          name="description" 
-          content="SEO Management tools for DataOps Group website." 
-        />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
-      
+      <ServiceSchema 
+        name="SEO Management for HubSpot"
+        description="Professional SEO management services to optimize your HubSpot website and content for higher search engine rankings and increased organic traffic."
+        url="/seo-management"
+        serviceOutput="Improved search engine rankings, increased organic traffic, and enhanced content visibility"
+      />
       <Navbar />
       
       <main className="flex-grow pt-28 px-4">

@@ -9,7 +9,7 @@ import ServiceHero from '@/components/services/ServiceHero';
 import ServiceBenefits from '@/components/services/ServiceBenefits';
 import HubSpotTrainingContent from '@/components/services/HubSpotTrainingContent';
 import GenericServiceContent from '@/components/services/GenericServiceContent';
-import ServiceSchemaMarkup from '@/components/services/ServiceSchemaMarkup';
+import ServiceSchema from '@/components/seo/ServiceSchema';
 import { Button } from '@/components/ui/button';
 
 const ServiceDetail = () => {
@@ -50,21 +50,21 @@ const ServiceDetail = () => {
   // Determine title and description based on service type
   const title = isHubSpotTraining ? "HubSpot Training & Implementation" : service.title;
   const description = isHubSpotTraining ? hubspotDescription : service.description;
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
   return (
     <div className="min-h-screen flex flex-col">
-      <ServiceSchemaMarkup
-        isHubSpotTraining={isHubSpotTraining}
-        serviceTitle={service.title}
-        serviceDescription={service.description}
-        serviceId={serviceId || ''}
+      <ServiceSchema 
+        name={title}
+        description={description}
+        url={`/services/${serviceId}`}
+        serviceOutput={isHubSpotTraining 
+          ? "Improved team proficiency with HubSpot, maximized platform ROI, and streamlined operations" 
+          : "Optimized data operations, improved business insights, and enhanced marketing and sales performance"}
       />
       
       <Navbar />
       <main>
-        {/* Only show Back button on blog posts, not on service pages */}
-        {/* removed Back button to Insights */}
-        
         {/* Hero Section */}
         <ServiceHero 
           title={title}

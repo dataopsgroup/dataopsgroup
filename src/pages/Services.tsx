@@ -8,6 +8,7 @@ import ServicesHero from '@/components/services/ServicesHero';
 import ServicesOverview from '@/components/services/ServicesOverview';
 import ServicesIndustries from '@/components/services/ServicesIndustries';
 import ServicesSidebar from '@/components/services/ServicesSidebar';
+import ServiceSchema from '@/components/seo/ServiceSchema';
 
 const ServicesPage = () => {
   return (
@@ -18,6 +19,14 @@ const ServicesPage = () => {
         <meta name="keywords" content="data services, data architecture, analytics, BI, data governance, dataops implementation, enterprise data solutions" />
         <link rel="canonical" href="/services" />
       </Helmet>
+      
+      <ServiceSchema 
+        name="DataOps Group Services"
+        description="Comprehensive data operations services including HubSpot implementation, analytics, training, and marketing operations solutions."
+        url="/services"
+        serviceOutput="Optimized business operations, improved data quality, and enhanced marketing and sales performance"
+      />
+      
       <Navbar />
       <main>
         <ServicesHero />
@@ -41,24 +50,6 @@ const ServicesPage = () => {
         <CTABanner />
       </main>
       <Footer />
-      
-      {/* Schema markup for Services page */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "Our Services - DataOps Group",
-          "description": "Explore our comprehensive data operations services including data architecture, analytics, governance, and technology consulting.",
-          "publisher": {
-            "@type": "Organization",
-            "name": "DataOps Group"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Geoff Tucker"
-          }
-        })
-      }} />
     </div>
   );
 };
