@@ -1,7 +1,7 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import { blogPosts } from '@/data/blog';
 import CTABanner from '@/components/CTABanner';
 import { Button } from '@/components/ui/button';
@@ -65,8 +65,12 @@ const BlogPostPage = () => {
     ...post.title.toLowerCase().replace(/[^\w\s]/gi, '').split(' ')
   ].filter(Boolean).join(', ');
 
+  // Format date for time element
+  const publishDate = new Date(post.date);
+  const formattedPublishDate = publishDate.toISOString();
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <SemanticLayout>
       <MetaHead
         title={post.title}
         description={post.excerpt}
@@ -86,22 +90,21 @@ const BlogPostPage = () => {
       {post && <BlogPostSchema post={post} />}
       <BreadcrumbSchema items={breadcrumbs} />
       
-      <Navbar />
-      <main className="flex-1">
-        <article className="py-16 md:py-24 px-4">
-          <div className="container mx-auto">
-            <div className="max-w-3xl mx-auto">
-              {/* Back button to Insights with orange hover state */}
-              <div className="mb-6">
-                <Button 
-                  variant="outline" 
-                  className="bg-gray-700 text-white hover:bg-gray-800 hover:text-orange-500 transition-colors" 
-                  asChild
-                >
-                  <Link to="/insights">Back to Insights</Link>
-                </Button>
-              </div>
-              
+      <article className="py-16 md:py-24 px-4">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mx-auto">
+            {/* Back button to Insights with orange hover state */}
+            <div className="mb-6">
+              <Button 
+                variant="outline" 
+                className="bg-gray-700 text-white hover:bg-gray-800 hover:text-orange-500 transition-colors" 
+                asChild
+              >
+                <Link to="/insights">Back to Insights</Link>
+              </Button>
+            </div>
+            
+            <header>
               <BlogHeader 
                 title={post.title}
                 date={post.date}
@@ -109,19 +112,24 @@ const BlogPostPage = () => {
                 category={post.category || ''}
                 coverImage={post.coverImage}
               />
+            </header>
 
+            <div className="blog-content">
               <BlogPostContent content={post.content} />
             </div>
           </div>
-        </article>
+        </div>
+      </article>
 
-        {/* Related Posts Section */}
+      {/* Related Posts Section */}
+      <aside aria-labelledby="related-posts-heading">
         <RelatedPosts relatedPosts={relatedPosts} currentPostId={post.id} />
-        
+      </aside>
+      
+      <section aria-label="Call to Action">
         <CTABanner />
-      </main>
-      <Footer />
-    </div>
+      </section>
+    </SemanticLayout>
   );
 };
 

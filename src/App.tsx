@@ -29,11 +29,14 @@ function App() {
   }
 
   return (
-    <div className="relative">
+    <>
       <RouterProvider router={router} />
       
-      <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
-    </div>
+      {/* Using dialog element for semantic HTML */}
+      <dialog open={isPrivacyModalOpen} className="relative">
+        <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
+      </dialog>
+    </>
   );
 }
 

@@ -1,55 +1,73 @@
 
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import FAQItem from './FAQItem';
-import { FAQCategory as FAQCategoryType } from '@/data/faqs/types';
-import { FolderOpen, Book, Database, FileText } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { FAQCategory as FAQCategoryType, FAQItem } from '@/data/faqs/types';
+import { cn } from '@/lib/utils';
 
 interface FAQCategoryProps {
   category: FAQCategoryType;
 }
 
 const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
-  // Map icon string to actual icon component
-  const getIconComponent = () => {
-    switch (category.icon) {
-      case 'FolderOpen':
-        return <FolderOpen className="h-6 w-6 text-dataops-600" />;
-      case 'Book':
-        return <Book className="h-6 w-6 text-dataops-600" />;
-      case 'Database':
-        return <Database className="h-6 w-6 text-dataops-600" />;
-      case 'FileText':
-        return <FileText className="h-6 w-6 text-dataops-600" />;
-      default:
-        return <FolderOpen className="h-6 w-6 text-dataops-600" />;
-    }
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  
+  const toggleItem = (itemId: string) => {
+    setExpandedItems(prev => 
+      prev.includes(itemId) 
+        ? prev.filter(id => id !== itemId) 
+        : [...prev, itemId]
+    );
   };
-
+  
   return (
-    <Card className="w-full hover:shadow-lg transition-shadow mb-12">
-      <CardHeader className="pb-4">
-        <div className="flex items-center mb-4">
-          <div className="h-12 w-12 rounded-full bg-dataops-100 flex items-center justify-center mr-4">
-            {getIconComponent()}
-          </div>
-          <CardTitle className="text-2xl font-semibold">
-            {category.title}
-          </CardTitle>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {category.items.map((item, index) => (
-            <FAQItem 
-              key={`${category.id}-item-${index + 1}`}
-              id={`${category.id}-item-${index + 1}`} 
-              item={item} 
-            />
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <section aria-labelledby={`category-${category.id}`}>
+      <h2 
+        id={`category-${category.id}`}
+        className="text-2xl font-bold mb-6 text-gray-900"
+      >
+        {category.title}
+      </h2>
+      
+      <dl className="space-y-4">
+        {category.faqs.map((faq: FAQItem) => {
+          const isExpanded = expandedItems.includes(faq.id);
+          
+          return (
+            <div 
+              key={faq.id}
+              className="border border-gray-200 rounded-lg"
+            >
+              <dt>
+                <button
+                  onClick={() => toggleItem(faq.id)}
+                  className="flex w-full justify-between items-center p-4 text-left text-gray-900 font-medium"
+                  aria-expanded={isExpanded}
+                  aria-controls={`faq-answer-${faq.id}`}
+                >
+                  {faq.question}
+                  <ChevronDown
+                    className={cn(
+                      "h-5 w-5 text-dataops-500 transition-transform",
+                      isExpanded ? "transform rotate-180" : ""
+                    )}
+                  />
+                </button>
+              </dt>
+              
+              <dd
+                id={`faq-answer-${faq.id}`}
+                className={cn(
+                  "px-4 pb-4 pt-0 text-gray-600",
+                  !isExpanded && "hidden"
+                )}
+              >
+                {faq.answer}
+              </dd>
+            </div>
+          );
+        })}
+      </dl>
+    </section>
   );
 };
 

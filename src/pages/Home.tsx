@@ -1,8 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import Services from '@/components/Services';
 import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
@@ -13,12 +12,11 @@ import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
-import OptimizedImage from '@/components/ui/optimized-image';
 
 const Home = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   return (
-    <div className="min-h-screen flex flex-col">
+    <SemanticLayout>
       <Helmet>
         <title>DataOps Group - HubSpot Consultancy for Marketing & Sales Leaders</title>
         <meta 
@@ -86,18 +84,26 @@ const Home = () => {
       <LocalBusinessSchema />
       <ProfessionalServiceSchema />
       
-      <Navbar />
-      
-      <main className="flex-grow">
+      <section aria-labelledby="hero-heading">
         <Hero />
-        <ChatbotSection />
-        <Services />
-        <Approach />
-        <BookCTA />
-      </main>
+      </section>
       
-      <Footer />
-    </div>
+      <section aria-label="Chatbot Services">
+        <ChatbotSection />
+      </section>
+      
+      <section aria-label="Our Services">
+        <Services />
+      </section>
+      
+      <section aria-label="Our Approach">
+        <Approach />
+      </section>
+      
+      <section aria-label="Book a Consultation">
+        <BookCTA />
+      </section>
+    </SemanticLayout>
   );
 };
 

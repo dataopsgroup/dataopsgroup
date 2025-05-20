@@ -1,8 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import { blogPosts } from '@/data/blog';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -52,7 +51,7 @@ const BlogList = () => {
   }, [filteredBlogPosts, location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <SemanticLayout>
       <MetaHead
         title="Insights | DataOps Group"
         description="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group."
@@ -91,83 +90,93 @@ const BlogList = () => {
         })}
       </script>
       
-      <Navbar />
-      <main className="flex-1">
-        <section className="bg-gradient-to-br from-white to-dataops-50 py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-              <h1 className="text-3xl md:text-4xl font-bold mb-6">
-                <span className="gradient-text">Insights</span> & Resources
-              </h1>
-              <p className="text-lg text-gray-700">
-                Expert advice on transforming your HubSpot ordeal into a revenue-generating machine
-              </p>
-            </div>
+      <section className="bg-gradient-to-br from-white to-dataops-50 py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <header className="max-w-3xl mx-auto text-center mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6">
+              <span className="gradient-text">Insights</span> & Resources
+            </h1>
+            <p className="text-lg text-gray-700">
+              Expert advice on transforming your HubSpot ordeal into a revenue-generating machine
+            </p>
+          </header>
+        </div>
+      </section>
+      
+      <section className="py-16 px-4 bg-white">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredBlogPosts.map((post, index) => {
+              // Format date for time element
+              const publishDate = new Date(post.date);
+              const formattedPublishDate = publishDate.toISOString();
+              
+              return (
+                <article key={post.id} className="h-full">
+                  <Card className="flex flex-col h-full hover:shadow-lg transition-shadow">
+                    <Link 
+                      to={`/insights/${post.id}`}
+                      className="flex flex-col h-full"
+                      onClick={() => {
+                        // Track blog post click
+                        if (window.gtag) {
+                          window.gtag('event', 'select_content', {
+                            content_type: 'blog_post',
+                            content_id: post.id,
+                            item_list_name: 'Blog Posts',
+                            index: index
+                          });
+                        }
+                      }}
+                      aria-label={`Read article: ${post.title}`}
+                    >
+                      <CardHeader className="pb-4">
+                        <figure>
+                          <OptimizedImage 
+                            src={post.id === "hidden-cost-of-failed-hubspot-implementations" 
+                              ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" 
+                              : post.coverImage} 
+                            alt={post.title} 
+                            className="w-full h-48 object-cover rounded-t-lg mb-6" 
+                            width={400}
+                            height={200}
+                            loading="lazy"
+                            objectFit="cover"
+                            aspectRatio={2/1}
+                          />
+                        </figure>
+                        <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
+                          <h2>{post.title}</h2>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-grow">
+                        <CardDescription className="text-gray-700">
+                          {post.excerpt}
+                        </CardDescription>
+                      </CardContent>
+                      <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <div className="text-sm text-gray-500">
+                          <time dateTime={formattedPublishDate}>
+                            {format(new Date(post.date), 'MMMM dd, yyyy')}
+                          </time> · {post.author}
+                        </div>
+                        <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
+                          Read More
+                        </span>
+                      </CardFooter>
+                    </Link>
+                  </Card>
+                </article>
+              );
+            })}
           </div>
-        </section>
-        
-        <section className="py-16 px-4 bg-white">
-          <div className="container mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredBlogPosts.map((post, index) => (
-                <Card key={post.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
-                  <Link 
-                    to={`/insights/${post.id}`}
-                    className="flex flex-col h-full"
-                    onClick={() => {
-                      // Track blog post click
-                      if (window.gtag) {
-                        window.gtag('event', 'select_content', {
-                          content_type: 'blog_post',
-                          content_id: post.id,
-                          item_list_name: 'Blog Posts',
-                          index: index
-                        });
-                      }
-                    }}
-                    aria-label={`Read article: ${post.title}`}
-                  >
-                    <CardHeader className="pb-4">
-                      <OptimizedImage 
-                        src={post.id === "hidden-cost-of-failed-hubspot-implementations" 
-                          ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" 
-                          : post.coverImage} 
-                        alt={post.title} 
-                        className="w-full h-48 object-cover rounded-t-lg mb-6" 
-                        width={400}
-                        height={200}
-                        loading="lazy"
-                        objectFit="cover"
-                        aspectRatio={2/1}
-                      />
-                      <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
-                        {post.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <CardDescription className="text-gray-700">
-                        {post.excerpt}
-                      </CardDescription>
-                    </CardContent>
-                    <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
-                      <div className="text-sm text-gray-500">
-                        {format(new Date(post.date), 'MMMM dd, yyyy')} · {post.author}
-                      </div>
-                      <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
-                        Read More
-                      </span>
-                    </CardFooter>
-                  </Link>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
+      <section aria-label="Call to Action">
         <CTABanner />
-      </main>
-      <Footer />
-    </div>
+      </section>
+    </SemanticLayout>
   );
 };
 

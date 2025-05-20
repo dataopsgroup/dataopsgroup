@@ -1,13 +1,12 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import Contact from '@/components/Contact';
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <SemanticLayout>
       <Helmet>
         <title>Contact Us - DataOps Group</title>
         <meta 
@@ -37,22 +36,18 @@ const ContactPage = () => {
         </script>
       </Helmet>
       
-      <Navbar />
-      
-      <main className="flex-grow pt-32 px-[5%]">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+      <section className="flex-grow pt-32 px-[5%]" aria-labelledby="contact-heading">
+        <header className="max-w-3xl mx-auto text-center mb-16">
+          <h1 id="contact-heading" className="text-3xl md:text-4xl font-bold mb-4">
             Get in <span className="gradient-text">Touch</span>
           </h1>
           <p className="text-lg text-gray-600">
             Ready to transform your HubSpot operations? Contact us today to discuss how we can help your marketing, sales, and operations teams.
           </p>
-        </div>
+        </header>
         <Contact />
-      </main>
-      
-      <Footer />
-    </div>
+      </section>
+    </SemanticLayout>
   );
 };
 

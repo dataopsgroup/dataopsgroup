@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { format } from 'date-fns';
 import OptimizedImage from '@/components/ui/optimized-image';
 
@@ -11,25 +11,47 @@ interface BlogHeaderProps {
   coverImage: string;
 }
 
-const BlogHeader = ({ title, date, author, category, coverImage }: BlogHeaderProps) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  
-  // Format the date as per Geoff Tucker's requirement (Month DD, YYYY)
-  const formattedDate = format(new Date(date), 'MMMM d, yyyy');
+const BlogHeader: React.FC<BlogHeaderProps> = ({
+  title,
+  date,
+  author,
+  category,
+  coverImage,
+}) => {
+  const formattedDate = format(new Date(date), 'MMMM dd, yyyy');
+  const isoDate = new Date(date).toISOString();
   
   return (
-    <header className="mb-10">
+    <div className="mb-8">
       <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
-      <div className="flex items-center text-gray-600 mb-6">
-        <span>{formattedDate}</span>
-        <span className="mx-2">•</span>
-        <span>{author || 'Geoff Tucker'}</span>
-        <span className="mx-2">•</span>
-        <span>{category}</span>
+      
+      <div className="flex items-center text-sm text-gray-600 mb-6">
+        <time dateTime={isoDate} className="mr-4">{formattedDate}</time>
+        <span className="mr-4">·</span>
+        <span>By {author}</span>
+        {category && (
+          <>
+            <span className="mx-4">·</span>
+            <span className="bg-dataops-100 text-dataops-800 px-2 py-1 rounded-full text-xs">
+              {category}
+            </span>
+          </>
+        )}
       </div>
       
-      {/* Cover image has been removed */}
-    </header>
+      <figure className="mb-8">
+        <OptimizedImage
+          src={coverImage}
+          alt={title}
+          className="w-full h-auto rounded-lg"
+          width={1200}
+          height={630}
+          objectFit="cover"
+          priority={true}
+          aspectRatio={1200/630}
+        />
+      </figure>
+    </div>
   );
 };
 

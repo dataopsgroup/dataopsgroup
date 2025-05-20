@@ -1,7 +1,7 @@
 
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { Helmet } from 'react-helmet-async';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import CTABanner from '@/components/CTABanner';
 import FAQPageSchema from '@/components/seo/FAQPageSchema';
@@ -38,7 +38,7 @@ const FAQsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <SemanticLayout>
       <FAQSchema 
         items={allFAQs}
         pageTitle="Frequently Asked Questions - DataOps Group"
@@ -48,26 +48,28 @@ const FAQsPage = () => {
       <FAQPageSchema items={formattedFAQs} url="/faqs" />
       <BreadcrumbSchema items={breadcrumbs} />
       
-      <Navbar />
-      <main className="flex-1">
+      <section aria-label="FAQ Hero Section">
         <FAQHero />
-        
-        <section className="py-16 px-4 bg-white">
-          <div className="container mx-auto">
-            <div className="flex flex-col space-y-8">
-              {faqCategories.map((category) => (
-                <FAQCategory key={category.id} category={category} />
-              ))}
-            </div>
-            
-            <FAQHelp />
+      </section>
+      
+      <section className="py-16 px-4 bg-white" aria-label="Frequently Asked Questions">
+        <div className="container mx-auto">
+          <div className="flex flex-col space-y-8">
+            {faqCategories.map((category) => (
+              <FAQCategory key={category.id} category={category} />
+            ))}
           </div>
-        </section>
-        
+          
+          <aside aria-label="Additional Help">
+            <FAQHelp />
+          </aside>
+        </div>
+      </section>
+      
+      <section aria-label="Call To Action">
         <CTABanner />
-      </main>
-      <Footer />
-    </div>
+      </section>
+    </SemanticLayout>
   );
 };
 
