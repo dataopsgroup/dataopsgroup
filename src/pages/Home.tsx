@@ -12,6 +12,7 @@ import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
+import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 import OptimizedImage from '@/components/ui/optimized-image';
 
 const Home = () => {
@@ -83,6 +84,7 @@ const Home = () => {
       <WebsiteSchema />
       <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
       <LocalBusinessSchema />
+      <ProfessionalServiceSchema />
       
       <Navbar />
       

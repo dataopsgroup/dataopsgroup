@@ -7,6 +7,11 @@ import Services from '@/components/Services';
 import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
+import OrganizationSchema from '@/components/seo/OrganizationSchema';
+import WebsiteSchema from '@/components/seo/WebsiteSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
+import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 
 const Index = () => {
   return (
@@ -18,6 +23,12 @@ const Index = () => {
           content="DataOps Group is a HubSpot consultancy that helps businesses optimize their HubSpot implementation and maximize their ROI." 
         />
       </Helmet>
+      
+      <OrganizationSchema />
+      <WebsiteSchema />
+      <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
+      <LocalBusinessSchema />
+      <ProfessionalServiceSchema />
       
       <Navbar />
       
