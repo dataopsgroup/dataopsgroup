@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Helmet } from 'react-helmet-async';
 import CTABanner from '@/components/CTABanner';
 import CaseStudiesGrid from '@/components/case-studies/CaseStudiesGrid';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const CaseStudiesPage = () => {
   return (
@@ -32,6 +33,12 @@ const CaseStudiesPage = () => {
           })}
         </script>
       </Helmet>
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Case Studies", url: "/case-studies" }
+        ]} 
+      />
       <Navbar />
       <main className="flex-1">
         <section className="bg-gradient-to-br from-white to-dataops-50 py-16 md:py-24">

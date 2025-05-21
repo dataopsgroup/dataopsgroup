@@ -9,6 +9,7 @@ import ApproachMethodology from '@/components/approach/ApproachMethodology';
 import ApproachSteps from '@/components/approach/ApproachSteps';
 import ApproachBenefits from '@/components/approach/ApproachBenefits';
 import ApproachSidebar from '@/components/approach/ApproachSidebar';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const ApproachPage = () => {
   return (
@@ -19,6 +20,12 @@ const ApproachPage = () => {
         <meta name="keywords" content="dataops approach, data methodology, data transformation process, agile data management, data strategy, data implementation" />
         <link rel="canonical" href="/approach" />
       </Helmet>
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Our Approach", url: "/approach" }
+        ]}
+      />
       <Navbar />
       <main>
         <ApproachHero />

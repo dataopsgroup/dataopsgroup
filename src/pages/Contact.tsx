@@ -3,6 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import Contact from '@/components/Contact';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const ContactPage = () => {
   return (
@@ -35,6 +36,13 @@ const ContactPage = () => {
           `}
         </script>
       </Helmet>
+      
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" }
+        ]} 
+      />
       
       <section className="flex-grow pt-32 px-[5%]" aria-labelledby="contact-heading">
         <header className="max-w-3xl mx-auto text-center mb-16">

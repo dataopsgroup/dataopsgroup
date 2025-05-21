@@ -9,6 +9,7 @@ import ServicesOverview from '@/components/services/ServicesOverview';
 import ServicesIndustries from '@/components/services/ServicesIndustries';
 import ServicesSidebar from '@/components/services/ServicesSidebar';
 import ServiceSchema from '@/components/seo/ServiceSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const ServicesPage = () => {
   return (
@@ -25,6 +26,13 @@ const ServicesPage = () => {
         description="Comprehensive data operations services including HubSpot implementation, analytics, training, and marketing operations solutions."
         url="/services"
         serviceOutput="Optimized business operations, improved data quality, and enhanced marketing and sales performance"
+      />
+      
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" }
+        ]} 
       />
       
       <Navbar />
