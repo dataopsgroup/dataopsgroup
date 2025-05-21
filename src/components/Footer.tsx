@@ -1,10 +1,14 @@
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import AdminLink from './AdminLink';
+
+// Lazy load the AdminLink component since it's not critical for initial rendering
+const AdminLink = lazy(() => import('./AdminLink'));
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer className="bg-dataops-950 text-white pt-16 mt-auto">
       <div className="container mx-auto px-4">
@@ -59,7 +63,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              &copy; <time dateTime={new Date().getFullYear().toString()}>{new Date().getFullYear()}</time> DataOps Group. All rights reserved.
+              &copy; <time dateTime={currentYear.toString()}>{currentYear}</time> DataOps Group. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/privacy" className="text-gray-400 hover:text-white text-sm" aria-label="Read our privacy policy">Privacy Policy</Link>
@@ -67,10 +71,12 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* AI Tool Note with Admin Link */}
+          {/* AI Tool Note with Admin Link - lazily loaded */}
           <div className="mt-6 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4">
             <p>AI tools: Structured content available at <Link to="/api/content.json" className="text-gray-400 hover:text-gray-300">/api/content.json</Link></p>
-            <AdminLink />
+            <Suspense fallback={<span>Loading...</span>}>
+              <AdminLink />
+            </Suspense>
           </div>
         </div>
       </div>

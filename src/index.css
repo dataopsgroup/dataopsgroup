@@ -1,4 +1,5 @@
 
+/* Base critical styles first */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,38 +41,7 @@
     --navbar-bottom-spacing: 25px;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 217 91% 60%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-  }
-}
-
-@layer base {
+  /* Critical base styles */
   * {
     @apply border-border;
   }
@@ -83,14 +53,41 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    font-display: swap;
   }
   
   /* Main content spacing */
   main {
     padding-top: calc(var(--navbar-height) + var(--navbar-bottom-spacing));
   }
+}
 
-  /* Even larger heading sizes with more dramatic scaling */
+/* Non-critical styles that can be loaded after initial render */
+@layer base {
+  /* Dark mode styles */
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+
+  /* Typography - can load after initial paint */
   h1 {
     @apply text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight;
   }
@@ -127,7 +124,7 @@
     @apply py-16 md:py-24 px-4 md:px-8 lg:px-16;
   }
   
-  /* Updated blog post styling with headings matching the blog post headline size */
+  /* Blog post styling */
   .prose h2 {
     @apply text-3xl md:text-4xl font-bold mt-8 mb-4;
   }

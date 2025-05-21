@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense } from 'react';
+import { StrictMode, Suspense, lazy } from 'react';
 import router from './routes';
 import { validateCriticalRoutes, reportRouteValidationIssues } from './utils/route-monitoring';
 
