@@ -11,7 +11,10 @@ import {
   setupResourceHints, 
   optimizeAssetLoading, 
   setupClientCaching,
-  prefetchCriticalRoutes
+  prefetchCriticalRoutes,
+  optimizeResourceOrder,
+  setupInteractionBasedLoading,
+  prerenderNextLikelyPage
 } from './lib/performance-optimizations';
 import { scheduleTasks, runWhenIdle } from './lib/task-scheduler';
 
@@ -98,6 +101,18 @@ if (typeof window !== 'undefined') {
     { 
       task: setupAnalyticsAndMonitoring, 
       priority: 'low' 
+    },
+    {
+      task: optimizeResourceOrder,
+      priority: 'low'
+    },
+    {
+      task: setupInteractionBasedLoading,
+      priority: 'low'
+    },
+    {
+      task: prerenderNextLikelyPage,
+      priority: 'low'
     }
   ]);
   
@@ -106,6 +121,9 @@ if (typeof window !== 'undefined') {
     if (document.visibilityState === 'visible') {
       // Prioritize responsiveness when page is visible
       performance.mark('page-visible');
+      
+      // When page becomes visible again, check for resources to prioritize
+      optimizeAssetLoading();
     } else {
       // Cancel unnecessary work when page is hidden
       performance.mark('page-hidden');

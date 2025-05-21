@@ -38,8 +38,8 @@ const Hero = () => {
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-8">
           <div>
-            {/* Pre-connect to critical domains for tracking */}
-            <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+            {/* Use resource hints for higher priority assets on page */}
+            <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" fetchpriority="high" />
             
             {/* Mark as LCP element for monitoring */}
             <h1 

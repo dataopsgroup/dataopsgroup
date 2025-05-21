@@ -61,9 +61,32 @@ const OptimizedImage = ({
   const imgWidth = width || undefined;
   const imgHeight = height || undefined;
   
-  // Determine loading strategy
+  // Enhanced loading strategy based on image importance
   const loadingStrategy = priority || isLCP ? 'eager' : (loading || 'lazy');
   const decodingStrategy = priority || isLCP ? 'sync' : (decoding || 'async');
+  
+  // Preload LCP images
+  useEffect(() => {
+    if ((priority || isLCP) && typeof document !== 'undefined') {
+      const preloadLink = document.querySelector(`link[rel="preload"][href="${imageSrc}"]`);
+      
+      if (!preloadLink) {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = imageSrc;
+        link.as = 'image';
+        link.fetchPriority = 'high';
+        document.head.appendChild(link);
+        
+        return () => {
+          // Clean up preload when component unmounts
+          if (link.parentNode) {
+            link.parentNode.removeChild(link);
+          }
+        };
+      }
+    }
+  }, [imageSrc, priority, isLCP]);
   
   // Set up intersection observer for non-priority images
   useEffect(() => {
@@ -121,6 +144,11 @@ const OptimizedImage = ({
   
   const handleLoad = () => {
     setIsLoaded(true);
+    
+    // Priority hint for hero images
+    if (isLCP && imgRef.current) {
+      imgRef.current.fetchPriority = "high";
+    }
   };
   
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
