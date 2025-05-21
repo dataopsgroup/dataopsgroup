@@ -23,7 +23,8 @@ export const setupPerformanceMonitoring = () => {
     const clsObserver = new PerformanceObserver((entryList) => {
       let clsValue = 0;
       for (const entry of entryList.getEntries()) {
-        const layoutShift = entry as LayoutShiftEntry;
+        // Now this will be properly typed with global interface declaration
+        const layoutShift = entry as unknown as LayoutShiftEntry;
         if (!layoutShift.hadRecentInput) {
           clsValue += layoutShift.value;
         }
@@ -36,7 +37,8 @@ export const setupPerformanceMonitoring = () => {
     // Create performance observer for FID/INP
     const fidObserver = new PerformanceObserver((entryList) => {
       for (const entry of entryList.getEntries()) {
-        const firstInput = entry as FirstInputEntry;
+        // Now this will be properly typed with global interface declaration
+        const firstInput = entry as unknown as FirstInputEntry;
         const value = firstInput.processingStart - firstInput.startTime;
         reportWebVital(
           entry.name === 'first-input' ? 'FID' : 'INP', 
@@ -75,4 +77,3 @@ const reportWebVital = (metricName: string, value: number, rating: 'good' | 'nee
     });
   }
 };
-

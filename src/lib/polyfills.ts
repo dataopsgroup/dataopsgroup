@@ -29,11 +29,12 @@ if (typeof window !== 'undefined' && !window.cancelIdleCallback) {
 // Polyfill for Element.prototype.matches
 if (!Element.prototype.matches) {
   Element.prototype.matches = 
-    Element.prototype.matchesSelector || 
-    Element.prototype.mozMatchesSelector ||
-    Element.prototype.msMatchesSelector || 
-    Element.prototype.oMatchesSelector || 
-    Element.prototype.webkitMatchesSelector ||
+    // TypeScript needs explicit type assertions for vendor-specific properties
+    (Element.prototype as any).matchesSelector || 
+    (Element.prototype as any).mozMatchesSelector ||
+    (Element.prototype as any).msMatchesSelector || 
+    (Element.prototype as any).oMatchesSelector || 
+    (Element.prototype as any).webkitMatchesSelector ||
     function(s) {
       const matches = (this.document || this.ownerDocument).querySelectorAll(s);
       let i = matches.length;
@@ -58,4 +59,3 @@ if (!Element.prototype.closest) {
 
 // Export an empty object to make this a proper module
 export {};
-
