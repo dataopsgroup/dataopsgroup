@@ -12,6 +12,7 @@ import {
   setupClientCaching,
   prefetchCriticalRoutes
 } from './lib/performance-optimizations';
+import { setupFontOptimization, loadFonts } from './lib/font-optimization';
 
 // Define app version globally
 if (typeof window !== 'undefined') {
@@ -45,6 +46,9 @@ const renderApp = () => {
 // Apply performance optimizations immediately
 setupResourceHints();
 
+// Initialize font optimization immediately (high priority)
+setupFontOptimization();
+
 // Immediately render the app for fast initial paint
 renderApp();
 
@@ -65,6 +69,11 @@ if (typeof window !== 'undefined') {
 
   const setupDeferredOperations = throttle(() => {
     setupAnalyticsAndMonitoring();
+    
+    // Load non-critical font weights after initial render
+    setTimeout(() => {
+      loadFonts([300, 500, 600]);
+    }, 2000);
   }, 5000);
   
   // Initialize app features when browser is idle

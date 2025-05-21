@@ -1,4 +1,5 @@
 
+@import './styles/fonts.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -82,7 +83,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    /* Font family is now handled in fonts.css */
   }
   
   /* Main content spacing */
