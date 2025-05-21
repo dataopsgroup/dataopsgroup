@@ -1,8 +1,11 @@
 
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { FAQCategory as FAQCategoryType, FAQItem } from '@/data/faqs/types';
+import { FAQCategory as FAQCategoryType } from '@/data/faqs/types';
+// Change the import below to use the full type path to avoid conflict with component name
+import type { FAQItem as FAQItemType } from '@/data/faqs/types';
 import { cn } from '@/lib/utils';
+// Import the component with its actual name
 import FAQItem from '@/components/faqs/FAQItem';
 
 interface FAQCategoryProps {
@@ -42,7 +45,7 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
       </h2>
       
       <dl className="space-y-4">
-        {category.items.map((faq: FAQItem) => {
+        {category.items.map((faq: FAQItemType) => {
           const isExpanded = expandedItems.includes(faq.question);
           
           return (
