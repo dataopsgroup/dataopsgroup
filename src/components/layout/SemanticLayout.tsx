@@ -30,11 +30,11 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
       {!skipNav && (
         <header>
           <Navbar />
-          {/* No additional div needed, padding will be applied to main */}
+          <div className="h-[calc(var(--navbar-height)+var(--navbar-bottom-spacing))]"></div>
         </header>
       )}
       
-      <main className={cn("flex-grow pt-[calc(var(--navbar-height)+5px)]", mainClassName)}>
+      <main className={cn("flex-grow", mainClassName)}>
         {children}
       </main>
       
