@@ -52,7 +52,7 @@ export const optimizeAssetLoading = () => {
   document.querySelectorAll('link[href*=".css"], script[src*=".js"]').forEach(element => {
     const url = element.getAttribute('href') || element.getAttribute('src') || '';
     if (url && !url.includes('?v=') && !url.includes('lovable-uploads')) {
-      const newUrl = url.includes('?') ? `${url}&v=${APP_VERSION}` : `${url}?v=${APP_VERSION}`;
+      const newUrl = url.includes('?') ? `${url}&v=${window.APP_VERSION || '1.0.0'}` : `${url}?v=${window.APP_VERSION || '1.0.0'}`;
       if (element.tagName === 'LINK') {
         element.setAttribute('href', newUrl);
       } else {
@@ -65,7 +65,7 @@ export const optimizeAssetLoading = () => {
 // Configure client-side cache headers through service worker
 export const setupClientCaching = () => {
   // App version for cache busting
-  const APP_VERSION = '1.0.1'; // Should match the version in service worker
+  const appVersion = '1.0.1'; // Should match the version in service worker
   
   // Register service worker if browser supports it
   if ('serviceWorker' in navigator) {
@@ -92,7 +92,7 @@ export const setupClientCaching = () => {
   }
 
   // Apply versioning to dynamic resources
-  window.APP_VERSION = APP_VERSION;
+  window.APP_VERSION = appVersion;
 };
 
 // Prefetch future navigation routes with proper cache headers
@@ -152,4 +152,3 @@ export const fetchWithCaching = (url: string, options: RequestInit = {}) => {
   
   return fetch(url, fetchOptions);
 };
-

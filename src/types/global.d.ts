@@ -5,28 +5,23 @@
  */
 
 // Global window interface extensions
-interface Window {
-  // Analytics and tracking
-  gtag?: (...args: any[]) => void;
-  dataLayer?: any[];
-  _hsq?: any[];
-  
-  // Performance and optimization
-  requestIdleCallback: (
-    callback: IdleRequestCallback,
-    options?: IdleRequestOptions
-  ) => number;
-  cancelIdleCallback: (handle: number) => void;
-}
-
-// Element interface extensions for polyfills
-interface Element {
-  // Vendor prefixed selectors - all with optional modifiers for consistency
-  matchesSelector?: (selector: string) => boolean;
-  mozMatchesSelector?: (selector: string) => boolean;
-  msMatchesSelector?: (selector: string) => boolean;
-  oMatchesSelector?: (selector: string) => boolean;
-  webkitMatchesSelector?: (selector: string) => boolean;
+declare global {
+  interface Window {
+    // Analytics and tracking
+    gtag?: (...args: any[]) => void;
+    dataLayer?: any[];
+    _hsq?: any[];
+    
+    // Application version
+    APP_VERSION?: string;
+    
+    // Performance and optimization
+    requestIdleCallback: (
+      callback: IdleRequestCallback,
+      options?: IdleRequestOptions
+    ) => number;
+    cancelIdleCallback: (handle: number) => void;
+  }
 }
 
 // Performance entry extensions for web vitals monitoring
@@ -46,3 +41,5 @@ interface PerformanceObserverInit {
   buffered?: boolean;
 }
 
+// Ensure this file is treated as a module
+export {};

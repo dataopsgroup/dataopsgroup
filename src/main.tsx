@@ -14,7 +14,9 @@ import {
 } from './lib/performance-optimizations';
 
 // Define app version globally
-window.APP_VERSION = '1.0.1';
+if (typeof window !== 'undefined') {
+  window.APP_VERSION = '1.0.1';
+}
 
 // Initialize application
 const renderApp = () => {

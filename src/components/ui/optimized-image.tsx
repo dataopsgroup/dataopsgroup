@@ -44,7 +44,7 @@ const OptimizedImage = ({
   const isLocalAsset = !src.startsWith('http') && !src.includes('lovable-uploads');
   
   // Add cache busting for local assets if needed
-  const imageSrc = isLocalAsset && window.APP_VERSION ? 
+  const imageSrc = isLocalAsset && typeof window !== 'undefined' && window.APP_VERSION ? 
     `${src}?v=${window.APP_VERSION}` : src;
   
   // Determine image dimensions for layout stability
