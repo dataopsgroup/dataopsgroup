@@ -7,10 +7,11 @@ import { ChevronRight, Book } from 'lucide-react';
 import OptimizedImage from '@/components/ui/optimized-image';
 import { generateBlurPlaceholder } from '@/lib/utils';
 
+// Pre-generate the blur placeholder to avoid repeated calculation
+const blurPlaceholder = generateBlurPlaceholder(100, 150, '#2f855a');
+const bookCoverPath = '/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png';
+
 const BookCTA = () => {
-  // Generate a blur placeholder for the book image
-  const blurPlaceholder = generateBlurPlaceholder(100, 150, '#2f855a');
-  
   return (
     <section className="section-padding bg-white">
       <div className="container mx-auto px-[5%]">
@@ -21,7 +22,7 @@ const BookCTA = () => {
                 <div className="flex justify-center md:justify-start">
                   <div className="relative transform transition-transform hover:scale-105 duration-300">
                     <OptimizedImage 
-                      src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
+                      src={bookCoverPath}
                       alt="The CMO's Data Playbook book cover" 
                       className="h-auto w-64 md:w-72 rounded-md shadow-xl"
                       width={288}
@@ -80,7 +81,7 @@ const BookCTA = () => {
             "name": "Geoff Tucker"
           },
           "url": "https://dataops.group/book",
-          "image": "/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png",
+          "image": bookCoverPath,
           "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
           "publisher": {
             "@type": "Organization",
@@ -92,4 +93,4 @@ const BookCTA = () => {
   );
 };
 
-export default BookCTA;
+export default React.memo(BookCTA);

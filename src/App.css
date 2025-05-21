@@ -7,7 +7,6 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .page-container {
@@ -18,7 +17,7 @@
 
 .content-wrapper {
   flex: 1 0 auto;
-  padding-top: calc(70px + 25px); /* Height of navbar + 25px spacing */
+  padding-top: calc(70px + 25px);
 }
 
 footer {
@@ -26,97 +25,32 @@ footer {
 }
 
 /* Image optimization styles */
-.image-blur-wrapper {
-  overflow: hidden;
-  position: relative;
-}
-
-.image-placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  filter: blur(15px);
-  transform: scale(1.1);
-  opacity: 1;
-  transition: opacity 0.4s ease-out;
-  background-size: cover;
-  background-position: center;
-}
-
-.image-loaded .image-placeholder {
-  opacity: 0;
-}
-
-/* Progressive image loading */
-img.progressive-load {
-  transition: filter 0.3s ease-out, opacity 0.3s ease-out;
-}
-
-img.loading {
-  filter: blur(10px);
-  opacity: 0.6;
-}
-
-img.loaded {
-  filter: blur(0);
-  opacity: 1;
-}
+.image-blur-wrapper {overflow:hidden;position:relative}
+.image-placeholder {position:absolute;top:0;left:0;right:0;bottom:0;filter:blur(15px);transform:scale(1.1);opacity:1;transition:opacity .4s ease-out;background-size:cover;background-position:center}
+.image-loaded .image-placeholder {opacity:0}
+img.progressive-load {transition:filter .3s ease-out,opacity .3s ease-out}
+img.loading {filter:blur(10px);opacity:.6}
+img.loaded {filter:blur(0);opacity:1}
 
 /* Prevent layout shifts with aspect ratio containers */
-.aspect-container {
-  position: relative;
-  width: 100%;
-  height: 0;
-  overflow: hidden;
-}
-
-.aspect-container img,
-.aspect-container picture {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.aspect-container {position:relative;width:100%;height:0;overflow:hidden}
+.aspect-container img,.aspect-container picture {position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
 
 /* Non-critical styles that can be loaded later */
 @media print {
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
+  .logo {height:6em;padding:1.5em;will-change:filter;transition:filter 300ms}
+  .logo:hover {filter:drop-shadow(0 0 2em #646cffaa)}
+  .logo.react:hover {filter:drop-shadow(0 0 2em #61dafbaa)}
 
   @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+    from {transform:rotate(0)}
+    to {transform:rotate(360deg)}
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
+  @media (prefers-reduced-motion:no-preference) {
+    a:nth-of-type(2) .logo {animation:logo-spin infinite 20s linear}
   }
 
-  .card {
-    padding: 2em;
-  }
-
-  .read-the-docs {
-    color: #888;
-  }
+  .card {padding:2em}
+  .read-the-docs {color:#888}
 }

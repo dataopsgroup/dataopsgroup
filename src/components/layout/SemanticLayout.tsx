@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
@@ -22,6 +22,9 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipNav = false,
   skipFooter = false
 }) => {
+  // Only render MetaValidator in development
+  const showMetaValidator = process.env.NODE_ENV === 'development';
+  
   return (
     <div className="min-h-screen flex flex-col">
       {!skipNav && (
@@ -39,11 +42,9 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
       )}
       
       {/* Development-only meta tag validator */}
-      {process.env.NODE_ENV === 'development' && (
-        <MetaValidator />
-      )}
+      {showMetaValidator && <MetaValidator />}
     </div>
   );
 };
 
-export default SemanticLayout;
+export default memo(SemanticLayout);
