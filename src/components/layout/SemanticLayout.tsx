@@ -30,6 +30,7 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
       {!skipNav && (
         <header>
           <Navbar />
+          <div className="h-[calc(var(--navbar-height)+var(--navbar-bottom-spacing))]"></div>
         </header>
       )}
       
