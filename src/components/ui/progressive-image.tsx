@@ -108,6 +108,7 @@ const ProgressiveImage = ({
         onLoad={handleLoad}
         loading={props['data-lcp'] === 'true' ? 'eager' : 'lazy'} 
         decoding={props['data-lcp'] === 'true' ? 'sync' : 'async'}
+        fetchPriority={props['data-lcp'] === 'true' ? 'high' : 'auto'}
         {...props}
       />
       <noscript>

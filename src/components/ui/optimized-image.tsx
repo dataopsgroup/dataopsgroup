@@ -75,7 +75,8 @@ const OptimizedImage = ({
         link.rel = 'preload';
         link.href = imageSrc;
         link.as = 'image';
-        link.fetchPriority = 'high';
+        // Note: Using setAttribute for DOM API to follow standard HTML attribute naming
+        link.setAttribute('fetchpriority', 'high');
         document.head.appendChild(link);
         
         return () => {
@@ -147,7 +148,8 @@ const OptimizedImage = ({
     
     // Priority hint for hero images
     if (isLCP && imgRef.current) {
-      imgRef.current.fetchPriority = "high";
+      // Use fetchPriority in JSX context (React property)
+      imgRef.current.setAttribute('fetchpriority', 'high');
     }
   };
   
