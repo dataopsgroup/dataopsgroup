@@ -5,9 +5,7 @@ import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
 import { throttle } from './lib/optimization';
-import { setupPerformanceMonitoring } from './utils/performance-monitoring';
-import { trackInitialPageView, setupRouteChangeTracking } from './utils/analytics';
-import { validateRoutes, initializeApp } from './utils/app-initialization';
+import { setupAnalyticsAndMonitoring, initializeApp } from './utils/app-initialization';
 
 // Initialize application
 const renderApp = () => {
@@ -38,19 +36,16 @@ renderApp();
 
 // Defer non-critical operations
 if (typeof window !== 'undefined') {
-  const setupAnalyticsAndMonitoring = throttle(() => {
-    validateRoutes();
-    trackInitialPageView();
-    setupRouteChangeTracking();
-    setupPerformanceMonitoring();
+  const setupDeferredOperations = throttle(() => {
+    setupAnalyticsAndMonitoring();
   }, 5000);
   
   // Initialize app features when browser is idle
   if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(setupAnalyticsAndMonitoring, { timeout: 2000 });
+    window.requestIdleCallback(setupDeferredOperations, { timeout: 2000 });
   } else {
     // Fallback for browsers that don't support requestIdleCallback
-    setTimeout(setupAnalyticsAndMonitoring, 200);
+    setTimeout(setupDeferredOperations, 200);
   }
   
   // Initialize remaining app features

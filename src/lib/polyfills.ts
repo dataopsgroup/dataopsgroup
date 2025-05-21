@@ -56,28 +56,6 @@ if (!Element.prototype.closest) {
   };
 }
 
-// Define the global interfaces for TypeScript
-declare global {
-  interface Window {
-    requestIdleCallback: (
-      callback: IdleRequestCallback,
-      options?: IdleRequestOptions
-    ) => number;
-    cancelIdleCallback: (handle: number) => void;
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
-    _hsq?: any[];
-  }
-  
-  // Fix the Element interface to avoid duplicate declarations
-  interface Element {
-    // Using optional modifiers for all vendor prefixed methods to ensure consistent declarations
-    matchesSelector?: (selector: string) => boolean;
-    mozMatchesSelector?: (selector: string) => boolean;
-    msMatchesSelector?: (selector: string) => boolean;
-    oMatchesSelector?: (selector: string) => boolean;
-    webkitMatchesSelector?: (selector: string) => boolean;
-  }
-}
-
+// Export an empty object to make this a proper module
 export {};
+

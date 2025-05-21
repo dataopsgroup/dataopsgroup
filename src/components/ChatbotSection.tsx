@@ -1,8 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
 import { loadScript, runWhenIdle } from '@/lib/optimization';
-// Import polyfills
-import '@/lib/polyfills';
 
 const ChatbotSection = () => {
   const scriptLoadedRef = useRef<boolean>(false);
@@ -11,61 +9,51 @@ const ChatbotSection = () => {
     // This prevents duplicate script loading if the component remounts
     if (scriptLoadedRef.current) return;
 
-    // Function to load the Botpress injection script
-    const loadBotpressScript = async () => {
-      try {
-        // Check if the script is already loaded
-        if (document.querySelector('script[src="https://cdn.botpress.cloud/webchat/v2.5/inject.js"]')) {
-          console.log('Botpress inject script already exists');
-          await initBotpressConfig();
-          return;
-        }
+    // Function to load Botpress scripts with proper sequencing and error handling
+    const loadBotpressScripts = () => {
+      const injectScriptUrl = 'https://cdn.botpress.cloud/webchat/v2.5/inject.js';
+      const configScriptUrl = 'https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js';
+      
+      // Check if scripts are already loaded
+      const injectScriptExists = document.querySelector(`script[src="${injectScriptUrl}"]`);
+      const configScriptExists = document.querySelector(`script[src="${configScriptUrl}"]`);
+      
+      if (injectScriptExists && configScriptExists) {
+        console.log('Botpress scripts already loaded');
+        scriptLoadedRef.current = true;
+        return;
+      }
 
-        // Defer non-critical script loading
-        runWhenIdle(async () => {
-          try {
-            await loadScript('https://cdn.botpress.cloud/webchat/v2.5/inject.js', true, true);
+      // Load scripts in the correct sequence with proper error handling
+      runWhenIdle(async () => {
+        try {
+          // First load inject script if needed
+          if (!injectScriptExists) {
+            await loadScript(injectScriptUrl, true, true);
             console.log('Botpress inject script loaded');
-            await initBotpressConfig();
-            scriptLoadedRef.current = true;
-          } catch (err) {
-            console.error('Error loading Botpress inject script:', err);
           }
-        });
-      } catch (error) {
-        console.error('Error setting up Botpress:', error);
-      }
-    };
-
-    // Function to load the Botpress configuration script
-    const initBotpressConfig = async () => {
-      try {
-        // Check if the script is already loaded
-        if (document.querySelector('script[src="https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js"]')) {
-          console.log('Botpress config script already exists');
-          return;
+          
+          // Then load config script if needed
+          if (!configScriptExists) {
+            await loadScript(configScriptUrl, true, true);
+            console.log('Botpress config script loaded');
+          }
+          
+          scriptLoadedRef.current = true;
+        } catch (err) {
+          console.error('Error loading Botpress scripts:', err);
+          // Implement retry logic or fallback here if needed
         }
-
-        await loadScript('https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js', true, true);
-        console.log('Botpress config script loaded');
-      } catch (error) {
-        console.error('Error initializing Botpress config:', error);
-      }
+      });
     };
 
     // Use requestAnimationFrame to ensure we load the scripts after the main content is rendered
-    window.requestAnimationFrame(() => {
-      loadBotpressScript();
-    });
+    window.requestAnimationFrame(loadBotpressScripts);
 
-    // Cleanup function if component unmounts
-    return () => {
-      // We don't actually remove the scripts on unmount
-      // since they're needed globally
-    };
-  }, []); // Empty dependency array means this effect runs once on mount
+    // No cleanup needed as scripts are kept globally
+  }, []);
 
-  // We're returning an empty fragment since Botpress will inject its own UI
+  // Return empty fragment since Botpress will inject its own UI
   return <></>;
 };
 

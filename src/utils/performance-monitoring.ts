@@ -3,17 +3,6 @@
  * Performance monitoring utilities for tracking web vitals
  */
 
-// Define types for web vitals performance entries
-interface LayoutShiftEntry extends PerformanceEntry {
-  hadRecentInput: boolean;
-  value: number;
-}
-
-interface FirstInputEntry extends PerformanceEntry {
-  processingStart: number;
-  startTime: number;
-}
-
 // Enhanced performance monitoring function - throttled for efficiency
 export const setupPerformanceMonitoring = () => {
   if (typeof window === 'undefined' || !('PerformanceObserver' in window)) {
@@ -26,14 +15,7 @@ export const setupPerformanceMonitoring = () => {
       const entries = entryList.getEntries();
       const lastEntry = entries[entries.length - 1];
       // Report LCP to analytics if available
-      if (window.gtag) {
-        window.gtag('event', 'web_vitals', {
-          metric_name: 'LCP',
-          metric_value: lastEntry.startTime,
-          metric_delta: 0,
-          metric_rating: lastEntry.startTime < 2500 ? 'good' : lastEntry.startTime < 4000 ? 'needs-improvement' : 'poor'
-        });
-      }
+      reportWebVital('LCP', lastEntry.startTime, getRating(lastEntry.startTime, 2500, 4000));
     });
     lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
     
@@ -47,14 +29,7 @@ export const setupPerformanceMonitoring = () => {
         }
       }
       // Report CLS to analytics
-      if (window.gtag) {
-        window.gtag('event', 'web_vitals', {
-          metric_name: 'CLS',
-          metric_value: clsValue,
-          metric_delta: 0,
-          metric_rating: clsValue < 0.1 ? 'good' : clsValue < 0.25 ? 'needs-improvement' : 'poor'
-        });
-      }
+      reportWebVital('CLS', clsValue, getRating(clsValue, 0.1, 0.25));
     });
     clsObserver.observe({ type: 'layout-shift', buffered: true });
     
@@ -62,15 +37,12 @@ export const setupPerformanceMonitoring = () => {
     const fidObserver = new PerformanceObserver((entryList) => {
       for (const entry of entryList.getEntries()) {
         const firstInput = entry as FirstInputEntry;
-        if (window.gtag) {
-          window.gtag('event', 'web_vitals', {
-            metric_name: entry.name === 'first-input' ? 'FID' : 'INP',
-            metric_value: firstInput.processingStart - firstInput.startTime,
-            metric_delta: 0,
-            metric_rating: (firstInput.processingStart - firstInput.startTime) < 100 ? 'good' : 
-              (firstInput.processingStart - firstInput.startTime) < 300 ? 'needs-improvement' : 'poor'
-          });
-        }
+        const value = firstInput.processingStart - firstInput.startTime;
+        reportWebVital(
+          entry.name === 'first-input' ? 'FID' : 'INP', 
+          value,
+          getRating(value, 100, 300)
+        );
       }
     });
     fidObserver.observe({ type: 'first-input', buffered: true });
@@ -85,11 +57,22 @@ export const setupPerformanceMonitoring = () => {
   }
 };
 
-// Add gtag and HubSpot to window object type
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
-    _hsq?: any[];
+// Helper function to determine performance rating
+const getRating = (value: number, good: number, needsImprovement: number): 'good' | 'needs-improvement' | 'poor' => {
+  if (value < good) return 'good';
+  if (value < needsImprovement) return 'needs-improvement';
+  return 'poor';
+};
+
+// Report web vitals metrics to analytics
+const reportWebVital = (metricName: string, value: number, rating: 'good' | 'needs-improvement' | 'poor') => {
+  if (window.gtag) {
+    window.gtag('event', 'web_vitals', {
+      metric_name: metricName,
+      metric_value: value,
+      metric_delta: 0,
+      metric_rating: rating
+    });
   }
-}
+};
+

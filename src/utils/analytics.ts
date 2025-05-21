@@ -1,17 +1,39 @@
 
 /**
  * Analytics utilities for tracking page views and events
+ * Centralized implementation to avoid duplicate tracking code
  */
 
 // Track initial page view after analytics has loaded
 export const trackInitialPageView = () => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'page_view', {
-      page_title: document.title,
-      page_location: window.location.href,
-      page_path: window.location.pathname,
-      send_page_view: true
-    });
+  if (typeof window === 'undefined') return;
+  
+  trackPageView({
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: window.location.pathname,
+    send_page_view: true
+  });
+};
+
+// Track page view with consistent parameters across all tracking systems
+export const trackPageView = (params: {
+  page_title: string;
+  page_location: string;
+  page_path: string;
+  send_page_view?: boolean;
+}) => {
+  if (typeof window === 'undefined') return;
+  
+  // Track in Google Analytics
+  if (window.gtag) {
+    window.gtag('event', 'page_view', params);
+  }
+  
+  // Track in HubSpot
+  if (window._hsq) {
+    window._hsq.push(['setPath', params.page_path + (window.location.search || '')]);
+    window._hsq.push(['trackPageView']);
   }
 };
 
@@ -26,48 +48,39 @@ export const setupRouteChangeTracking = () => {
     
     // Small timeout to ensure title and page have updated
     setTimeout(() => {
-      // Track in Google Analytics
-      if (window.gtag) {
-        window.gtag('event', 'page_view', {
-          page_title: document.title,
-          page_location: window.location.href,
-          page_path: window.location.pathname,
-          send_page_view: true
-        });
-      }
-      
-      // If HubSpot tracking is loaded, track page view
-      if (window._hsq) {
-        window._hsq.push(['setPath', window.location.pathname + window.location.search]);
-        window._hsq.push(['trackPageView']);
-      }
+      trackPageView({
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        send_page_view: true
+      });
     }, 100);
   };
   
   // Also capture browser back/forward navigation
   window.addEventListener('popstate', () => {
     setTimeout(() => {
-      if (window.gtag) {
-        window.gtag('event', 'page_view', {
-          page_title: document.title,
-          page_location: window.location.href,
-          page_path: window.location.pathname
-        });
-      }
-      
-      if (window._hsq) {
-        window._hsq.push(['setPath', window.location.pathname + window.location.search]);
-        window._hsq.push(['trackPageView']);
-      }
+      trackPageView({
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname
+      });
     }, 100);
   });
 };
 
-// Add gtag and HubSpot to window object type
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-    dataLayer?: any[];
-    _hsq?: any[];
+// Track custom events in all analytics systems
+export const trackEvent = (eventName: string, params: Record<string, any>) => {
+  if (typeof window === 'undefined') return;
+  
+  // Track in Google Analytics
+  if (window.gtag) {
+    window.gtag('event', eventName, params);
   }
-}
+  
+  // Track in HubSpot when appropriate
+  if (window._hsq && params.trackInHubspot) {
+    window._hsq.push(['trackEvent', { name: eventName, ...params }]);
+  }
+};
+
