@@ -1,6 +1,15 @@
 
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
+import { getCanonicalFromAmpUrl } from '../utils/redirect-utils';
+
+// For the AMP redirect, we need a component that can access route params
+const AmpRedirectHandler = () => {
+  const { postId } = useParams();
+  // Clean up any query parameters from the postId 
+  const cleanPostId = postId ? postId.split('?')[0] : '';
+  return <Navigate to={`/insights/${cleanPostId}`} replace />;
+};
 
 // 301 Redirects
 export const redirectRoutes = [
@@ -140,10 +149,10 @@ export const redirectRoutes = [
     element: <Navigate to="/services/dataops-implementation" replace />,
   },
   
-  // NEW: Handle AMP URLs - redirect to canonical version
+  // NEW: Fix for AMP URLs - use a dedicated component that can access route params
   {
     path: "/en/blog/:postId",
-    element: <Navigate to={(routeProps) => `/insights/${routeProps.params.postId?.split('?')[0]}`} replace />,
+    element: <AmpRedirectHandler />,
   },
   
   // NEW: Search page redirect
