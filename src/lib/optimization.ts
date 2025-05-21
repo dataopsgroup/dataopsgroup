@@ -1,4 +1,6 @@
 
+import React from 'react';
+
 /**
  * Defer loading of non-critical JavaScript
  * @param src URL of the script to load
