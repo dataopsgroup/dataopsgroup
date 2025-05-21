@@ -10,6 +10,7 @@ import NotFound from '../pages/NotFound';
 import ContactThankYouPage from '../pages/ContactThankYouPage';
 import HubSpotAssessmentResultsPage from '../pages/HubSpotAssessmentResultsPage';
 import HubSpotAssessment from '../pages/HubSpotAssessment';
+import StructuredDataTest from '../pages/StructuredDataTest';
 
 export const utilityRoutes = [
   {
@@ -50,6 +51,11 @@ export const utilityRoutes = [
   {
     path: "/assessment",
     element: <HubSpotAssessment />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/structured-data-test",
+    element: <StructuredDataTest />,
     errorElement: <NotFound />,
   },
   {

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AdminLink from './AdminLink';
 
 const Footer = () => {
   return (
@@ -66,9 +67,10 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* AI Tool Note */}
-          <div className="mt-6 text-center text-xs text-gray-500">
+          {/* AI Tool Note with Admin Link */}
+          <div className="mt-6 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4">
             <p>AI tools: Structured content available at <Link to="/api/content.json" className="text-gray-400 hover:text-gray-300">/api/content.json</Link></p>
+            <AdminLink />
           </div>
         </div>
       </div>
