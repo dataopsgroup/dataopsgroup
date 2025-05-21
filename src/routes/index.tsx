@@ -6,6 +6,7 @@ import { insightRoutes } from './insightRoutes';
 import { utilityRoutes } from './utilityRoutes';
 import { redirectRoutes } from './redirectRoutes';
 import { blogRedirectRoutes } from './blogRedirectRoutes';
+import { apiRoutes } from './apiRoutes';
 import React from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
 import HubSpotAssessment from '../pages/HubSpotAssessment';
@@ -42,6 +43,7 @@ const routes = [
   ...utilityRoutes,
   ...redirectRoutes,
   ...blogRedirectRoutes,
+  ...apiRoutes,
   ...createAmpRedirects(),
   assessmentRoute
 ];

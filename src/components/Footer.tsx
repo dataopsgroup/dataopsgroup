@@ -65,6 +65,11 @@ const Footer = () => {
               <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm" aria-label="View our sitemap">Sitemap</Link>
             </div>
           </div>
+          
+          {/* AI Tool Note */}
+          <div className="mt-6 text-center text-xs text-gray-500">
+            <p>AI tools: Structured content available at <Link to="/api/content.json" className="text-gray-400 hover:text-gray-300">/api/content.json</Link></p>
+          </div>
         </div>
       </div>
     </footer>
