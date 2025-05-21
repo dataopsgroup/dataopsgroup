@@ -1,15 +1,24 @@
 
 import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense, lazy } from 'react';
+import { StrictMode, Suspense } from 'react';
 import router from './routes';
 import { validateCriticalRoutes, reportRouteValidationIssues } from './utils/route-monitoring';
 
-// Lazy load App component to reduce initial bundle size
-const App = lazy(() => import('./App'));
+// Define types for web vitals performance entries
+interface LayoutShiftEntry extends PerformanceEntry {
+  hadRecentInput: boolean;
+  value: number;
+}
 
-// Critical rendering path - Fast initial paint
+interface FirstInputEntry extends PerformanceEntry {
+  processingStart: number;
+  startTime: number;
+}
+
+// Initialize application with performance optimization
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -33,18 +42,24 @@ const renderApp = () => {
   }
 };
 
-// Validation and non-critical operations - executed during idle time
-const deferredInit = () => {
-  // Validate routes
-  if (router && 'routes' in router) {
-    const missingRoutes = validateCriticalRoutes(router.routes);
-    if (missingRoutes.length > 0) {
-      reportRouteValidationIssues(missingRoutes);
+// Pre-launch validation to ensure critical routes exist
+const validateRoutes = () => {
+  try {
+    // Check if router has routes property
+    if (router && 'routes' in router) {
+      const missingRoutes = validateCriticalRoutes(router.routes);
+      if (missingRoutes.length > 0) {
+        reportRouteValidationIssues(missingRoutes);
+      }
     }
+  } catch (e) {
+    console.error('Route validation failed:', e);
   }
+};
 
-  // Track initial page view
-  if (window.gtag) {
+// Track initial page view after analytics has loaded
+const trackInitialPageView = () => {
+  if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'page_view', {
       page_title: document.title,
       page_location: window.location.href,
@@ -52,64 +67,98 @@ const deferredInit = () => {
       send_page_view: true
     });
   }
+};
 
-  // Setup performance monitoring
-  if ('PerformanceObserver' in window) {
+// Enhanced performance monitoring function
+const trackWebVitals = () => {
+  if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+    // Create performance observer for LCP
     try {
-      // Monitor LCP (Largest Contentful Paint)
-      new PerformanceObserver((entryList) => {
+      const lcpObserver = new PerformanceObserver((entryList) => {
         const entries = entryList.getEntries();
         const lastEntry = entries[entries.length - 1];
+        // Report LCP to analytics if available
         if (window.gtag) {
           window.gtag('event', 'web_vitals', {
             metric_name: 'LCP',
             metric_value: lastEntry.startTime,
-            metric_rating: lastEntry.startTime < 2500 ? 'good' : 'poor'
+            metric_delta: 0,
+            metric_rating: lastEntry.startTime < 2500 ? 'good' : lastEntry.startTime < 4000 ? 'needs-improvement' : 'poor'
           });
         }
-      }).observe({type: 'largest-contentful-paint', buffered: true});
-
-      // Monitor CLS (Cumulative Layout Shift)
-      let clsValue = 0;
-      new PerformanceObserver((entryList) => {
+      });
+      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+      
+      // Create performance observer for CLS
+      const clsObserver = new PerformanceObserver((entryList) => {
+        let clsValue = 0;
         for (const entry of entryList.getEntries()) {
-          if (!(entry as any).hadRecentInput) {
-            clsValue += (entry as any).value;
+          const layoutShift = entry as LayoutShiftEntry;
+          if (!layoutShift.hadRecentInput) {
+            clsValue += layoutShift.value;
           }
         }
-      }).observe({type: 'layout-shift', buffered: true});
-
-      // Monitor FID (First Input Delay)
-      new PerformanceObserver((entryList) => {
+        // Report CLS to analytics
+        if (window.gtag) {
+          window.gtag('event', 'web_vitals', {
+            metric_name: 'CLS',
+            metric_value: clsValue,
+            metric_delta: 0,
+            metric_rating: clsValue < 0.1 ? 'good' : clsValue < 0.25 ? 'needs-improvement' : 'poor'
+          });
+        }
+      });
+      clsObserver.observe({ type: 'layout-shift', buffered: true });
+      
+      // Create performance observer for FID/INP
+      const fidObserver = new PerformanceObserver((entryList) => {
         for (const entry of entryList.getEntries()) {
-          const value = (entry as any).processingStart - (entry as any).startTime;
+          const firstInput = entry as FirstInputEntry;
           if (window.gtag) {
             window.gtag('event', 'web_vitals', {
-              metric_name: 'FID',
-              metric_value: value,
-              metric_rating: value < 100 ? 'good' : 'poor'
+              metric_name: entry.name === 'first-input' ? 'FID' : 'INP',
+              metric_value: firstInput.processingStart - firstInput.startTime,
+              metric_delta: 0,
+              metric_rating: (firstInput.processingStart - firstInput.startTime) < 100 ? 'good' : 
+                (firstInput.processingStart - firstInput.startTime) < 300 ? 'needs-improvement' : 'poor'
             });
           }
         }
-      }).observe({type: 'first-input', buffered: true});
+      });
+      fidObserver.observe({ type: 'first-input', buffered: true });
+      
+      return () => {
+        lcpObserver.disconnect();
+        clsObserver.disconnect();
+        fidObserver.disconnect();
+      };
     } catch (e) {
       console.error('Error setting up performance observers:', e);
     }
   }
+};
 
-  // Setup route tracking
+// Setup route change tracking for analytics
+const setupRouteChangeTracking = () => {
   if (typeof window !== 'undefined') {
+    // Listen for route changes to track in analytics
     const pushState = history.pushState;
     history.pushState = function() {
       pushState.apply(history, arguments);
+      
+      // Small timeout to ensure title and page have updated
       setTimeout(() => {
+        // Track in Google Analytics
         if (window.gtag) {
           window.gtag('event', 'page_view', {
             page_title: document.title,
             page_location: window.location.href,
-            page_path: window.location.pathname
+            page_path: window.location.pathname,
+            send_page_view: true
           });
         }
+        
+        // If HubSpot tracking is loaded, track page view
         if (window._hsq) {
           window._hsq.push(['setPath', window.location.pathname + window.location.search]);
           window._hsq.push(['trackPageView']);
@@ -117,6 +166,7 @@ const deferredInit = () => {
       }, 100);
     };
     
+    // Also capture browser back/forward navigation
     window.addEventListener('popstate', () => {
       setTimeout(() => {
         if (window.gtag) {
@@ -126,6 +176,7 @@ const deferredInit = () => {
             page_path: window.location.pathname
           });
         }
+        
         if (window._hsq) {
           window._hsq.push(['setPath', window.location.pathname + window.location.search]);
           window._hsq.push(['trackPageView']);
@@ -135,7 +186,15 @@ const deferredInit = () => {
   }
 };
 
-// Execute critical rendering path immediately
+// Defer non-critical operations
+const deferredInit = () => {
+  validateRoutes(); // Validate routes before other operations
+  trackInitialPageView();
+  setupRouteChangeTracking();
+  trackWebVitals();
+};
+
+// Immediately render the app for fast initial paint
 renderApp();
 
 // Defer non-critical operations
@@ -143,11 +202,12 @@ if (typeof window !== 'undefined') {
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(deferredInit, { timeout: 2000 });
   } else {
+    // Fallback for browsers that don't support requestIdleCallback
     setTimeout(deferredInit, 200);
   }
 }
 
-// Type definitions for global objects
+// Add gtag and HubSpot to window object type
 declare global {
   interface Window {
     gtag?: (...args: any[]) => void;

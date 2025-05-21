@@ -5,11 +5,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Book } from 'lucide-react';
 import OptimizedImage from '@/components/ui/optimized-image';
-import { generateBlurPlaceholder } from '@/lib/utils';
-
-// Pre-generate the blur placeholder to avoid repeated calculation
-const blurPlaceholder = generateBlurPlaceholder(100, 150, '#2f855a');
-const bookCoverPath = '/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png';
 
 const BookCTA = () => {
   return (
@@ -22,7 +17,7 @@ const BookCTA = () => {
                 <div className="flex justify-center md:justify-start">
                   <div className="relative transform transition-transform hover:scale-105 duration-300">
                     <OptimizedImage 
-                      src={bookCoverPath}
+                      src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
                       alt="The CMO's Data Playbook book cover" 
                       className="h-auto w-64 md:w-72 rounded-md shadow-xl"
                       width={288}
@@ -30,7 +25,6 @@ const BookCTA = () => {
                       priority={true}
                       objectFit="cover"
                       loading="eager"
-                      blurDataURL={blurPlaceholder}
                     />
                   </div>
                 </div>
@@ -81,7 +75,7 @@ const BookCTA = () => {
             "name": "Geoff Tucker"
           },
           "url": "https://dataops.group/book",
-          "image": bookCoverPath,
+          "image": "/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png",
           "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
           "publisher": {
             "@type": "Organization",
@@ -93,4 +87,4 @@ const BookCTA = () => {
   );
 };
 
-export default React.memo(BookCTA);
+export default BookCTA;

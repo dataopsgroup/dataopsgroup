@@ -1,17 +1,13 @@
 
-import React, { useCallback } from 'react';
+import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
-import { generateBlurPlaceholder } from '@/lib/utils';
-
-// Memoized blur placeholder
-const blurPlaceholder = generateBlurPlaceholder(20, 20, '#f0f4f8');
 
 const Hero = () => {
-  // Memoized event handlers
-  const trackContactCTAClick = useCallback(() => {
+  // Track CTA click in Google Analytics and HubSpot
+  const trackContactCTAClick = () => {
     // Track CTA click in Google Analytics
     if (window.gtag) {
       window.gtag('event', 'cta_click', {
@@ -25,17 +21,17 @@ const Hero = () => {
         id: 'hero_contact_cta_click'
       }]);
     }
-  }, []);
+  };
 
-  // Memoized secondary event handler
-  const trackServicesCTAClick = useCallback(() => {
+  // Track secondary CTA click
+  const trackServicesCTAClick = () => {
     if (window.gtag) {
       window.gtag('event', 'cta_click', {
         'event_category': 'Engagement',
         'event_label': 'Hero Services CTA',
       });
     }
-  }, []);
+  };
 
   return (
     <div className="pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50">
@@ -100,4 +96,4 @@ const Hero = () => {
   );
 };
 
-export default React.memo(Hero);
+export default Hero;

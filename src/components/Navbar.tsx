@@ -30,8 +30,8 @@ const Navbar = () => {
   return (
     <nav 
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 bg-white",
-        scrolled ? "shadow-md py-2" : "py-4"
+        "fixed top-0 w-full z-50 transition-all duration-300 pb-[25px] border-b border-gray-200",
+        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       )}
       aria-label="Main navigation"
     >
@@ -70,9 +70,6 @@ const Navbar = () => {
         navItems={mainNavItems} 
         setIsOpen={setIsOpen} 
       />
-      
-      {/* Add bottom border for visual separation with margin-top */}
-      <div className="border-b border-gray-200 mt-4"></div>
     </nav>
   );
 };
