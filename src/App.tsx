@@ -1,11 +1,13 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { RouterProvider, RouteObject } from 'react-router-dom';
 import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
-import PrivacyModal from './components/PrivacyModal';
 import router from './routes';
 import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirect-utils';
+
+// Lazy-loaded components
+const PrivacyModal = lazy(() => import('./components/PrivacyModal'));
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,7 +32,7 @@ function App() {
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 1000); // Reduced from 1500ms to 1000ms
 
     return () => clearTimeout(timer);
   }, []);
@@ -65,7 +67,14 @@ function App() {
 
   // Pre-check routes for validation but don't block rendering
   useEffect(() => {
-    validateRoutes(router);
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      window.requestIdleCallback(() => {
+        validateRoutes(router);
+      });
+    } else {
+      // Fallback for browsers that don't support requestIdleCallback
+      setTimeout(() => validateRoutes(router), 300);
+    }
   }, []);
 
   if (isLoading) {
@@ -80,10 +89,14 @@ function App() {
     <>
       <RouterProvider router={router} />
       
-      {/* Using dialog element for semantic HTML */}
-      <dialog open={isPrivacyModalOpen} className="relative">
-        <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
-      </dialog>
+      {/* Using Suspense for lazy-loaded privacy modal */}
+      {isPrivacyModalOpen && (
+        <dialog open={isPrivacyModalOpen} className="relative">
+          <Suspense fallback={<div>Loading...</div>}>
+            <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
+          </Suspense>
+        </dialog>
+      )}
     </>
   );
 }

@@ -6,6 +6,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
 import router from './routes';
 import { validateCriticalRoutes, reportRouteValidationIssues } from './utils/route-monitoring';
+import { throttle, runWhenIdle } from './lib/optimization';
 
 // Define types for web vitals performance entries
 interface LayoutShiftEntry extends PerformanceEntry {
@@ -69,8 +70,8 @@ const trackInitialPageView = () => {
   }
 };
 
-// Enhanced performance monitoring function
-const trackWebVitals = () => {
+// Enhanced performance monitoring function - throttled for efficiency
+const trackWebVitals = throttle(() => {
   if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
     // Create performance observer for LCP
     try {
@@ -136,7 +137,7 @@ const trackWebVitals = () => {
       console.error('Error setting up performance observers:', e);
     }
   }
-};
+}, 5000);
 
 // Setup route change tracking for analytics
 const setupRouteChangeTracking = () => {
@@ -186,25 +187,36 @@ const setupRouteChangeTracking = () => {
   }
 };
 
-// Defer non-critical operations
-const deferredInit = () => {
-  validateRoutes(); // Validate routes before other operations
-  trackInitialPageView();
-  setupRouteChangeTracking();
-  trackWebVitals();
-};
-
 // Immediately render the app for fast initial paint
 renderApp();
 
 // Defer non-critical operations
 if (typeof window !== 'undefined') {
   if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(deferredInit, { timeout: 2000 });
+    window.requestIdleCallback(() => {
+      validateRoutes();
+      trackInitialPageView();
+      setupRouteChangeTracking();
+      trackWebVitals();
+    }, { timeout: 2000 });
   } else {
     // Fallback for browsers that don't support requestIdleCallback
-    setTimeout(deferredInit, 200);
+    setTimeout(() => {
+      validateRoutes();
+      trackInitialPageView();
+      setupRouteChangeTracking();
+      trackWebVitals();
+    }, 200);
   }
+  
+  // Run very low priority operations when the page is fully loaded
+  runWhenIdle(() => {
+    // Optimize images after the initial render is complete
+    document.querySelectorAll('img').forEach(img => {
+      if (!img.loading) img.loading = 'lazy';
+      if (!img.decoding) img.decoding = 'async';
+    });
+  });
 }
 
 // Add gtag and HubSpot to window object type
@@ -213,5 +225,10 @@ declare global {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
     _hsq?: any[];
+    requestIdleCallback?: (
+      callback: IdleRequestCallback,
+      options?: IdleRequestOptions
+    ) => number;
+    cancelIdleCallback?: (handle: number) => void;
   }
 }

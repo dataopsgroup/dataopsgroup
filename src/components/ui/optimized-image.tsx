@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { optimizeImage } from '@/lib/optimization';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -33,6 +34,9 @@ const OptimizedImage = ({
   quality = 85,
   ...props
 }: OptimizedImageProps) => {
+  // Reference to the image element
+  const imgRef = useRef<HTMLImageElement>(null);
+  
   // Check if the image is a remote URL that could benefit from optimization
   const isRemoteImage = src.startsWith('http') && !src.includes('lovable-uploads');
   
@@ -54,6 +58,13 @@ const OptimizedImage = ({
     srcSet = `${src} ${width}w`;
   }
   
+  // Apply image optimizations after mounting
+  useEffect(() => {
+    if (imgRef.current) {
+      optimizeImage(imgRef.current);
+    }
+  }, [src]); // Re-run when src changes
+  
   const onError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
     console.error(`Failed to load image: ${target.src}`);
@@ -65,6 +76,7 @@ const OptimizedImage = ({
   const imageElement = (
     <>
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
         width={imgWidth}
@@ -81,7 +93,6 @@ const OptimizedImage = ({
         onError={onError}
         {...props}
       />
-      {/* Add a noscript fallback for users with JavaScript disabled */}
       <noscript>
         <img
           src={src}

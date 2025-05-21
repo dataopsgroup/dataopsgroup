@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
+import { loadScript, runWhenIdle } from '@/lib/optimization';
 // Import polyfills
 import '@/lib/polyfills';
 
@@ -11,31 +12,25 @@ const ChatbotSection = () => {
     if (scriptLoadedRef.current) return;
 
     // Function to load the Botpress injection script
-    const loadBotpressScript = () => {
+    const loadBotpressScript = async () => {
       try {
         // Check if the script is already loaded
         if (document.querySelector('script[src="https://cdn.botpress.cloud/webchat/v2.5/inject.js"]')) {
           console.log('Botpress inject script already exists');
-          initBotpressConfig();
+          await initBotpressConfig();
           return;
         }
 
-        // Use requestIdleCallback to defer non-critical script loading
-        const loadWhenIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
-        
-        loadWhenIdle(() => {
-          const script = document.createElement('script');
-          script.src = 'https://cdn.botpress.cloud/webchat/v2.5/inject.js';
-          script.async = true;
-          script.onload = () => {
+        // Defer non-critical script loading
+        runWhenIdle(async () => {
+          try {
+            await loadScript('https://cdn.botpress.cloud/webchat/v2.5/inject.js', true, true);
             console.log('Botpress inject script loaded');
-            initBotpressConfig();
-          };
-          script.onerror = (err) => {
+            await initBotpressConfig();
+            scriptLoadedRef.current = true;
+          } catch (err) {
             console.error('Error loading Botpress inject script:', err);
-          };
-          document.body.appendChild(script);
-          scriptLoadedRef.current = true;
+          }
         });
       } catch (error) {
         console.error('Error setting up Botpress:', error);
@@ -43,7 +38,7 @@ const ChatbotSection = () => {
     };
 
     // Function to load the Botpress configuration script
-    const initBotpressConfig = () => {
+    const initBotpressConfig = async () => {
       try {
         // Check if the script is already loaded
         if (document.querySelector('script[src="https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js"]')) {
@@ -51,16 +46,8 @@ const ChatbotSection = () => {
           return;
         }
 
-        const configScript = document.createElement('script');
-        configScript.src = 'https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js';
-        configScript.async = true;
-        configScript.onload = () => {
-          console.log('Botpress config script loaded');
-        };
-        configScript.onerror = (err) => {
-          console.error('Error loading Botpress config script:', err);
-        };
-        document.body.appendChild(configScript);
+        await loadScript('https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js', true, true);
+        console.log('Botpress config script loaded');
       } catch (error) {
         console.error('Error initializing Botpress config:', error);
       }
