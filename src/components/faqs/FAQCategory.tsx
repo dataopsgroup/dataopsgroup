@@ -29,20 +29,20 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
       </h2>
       
       <dl className="space-y-4">
-        {category.faqs.map((faq: FAQItem) => {
-          const isExpanded = expandedItems.includes(faq.id);
+        {category.items.map((faq: FAQItem) => {
+          const isExpanded = expandedItems.includes(faq.question);
           
           return (
             <div 
-              key={faq.id}
+              key={faq.question}
               className="border border-gray-200 rounded-lg"
             >
               <dt>
                 <button
-                  onClick={() => toggleItem(faq.id)}
+                  onClick={() => toggleItem(faq.question)}
                   className="flex w-full justify-between items-center p-4 text-left text-gray-900 font-medium"
                   aria-expanded={isExpanded}
-                  aria-controls={`faq-answer-${faq.id}`}
+                  aria-controls={`faq-answer-${faq.question}`}
                 >
                   {faq.question}
                   <ChevronDown
@@ -55,7 +55,7 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
               </dt>
               
               <dd
-                id={`faq-answer-${faq.id}`}
+                id={`faq-answer-${faq.question}`}
                 className={cn(
                   "px-4 pb-4 pt-0 text-gray-600",
                   !isExpanded && "hidden"
