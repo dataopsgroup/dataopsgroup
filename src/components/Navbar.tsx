@@ -71,8 +71,8 @@ const Navbar = () => {
         setIsOpen={setIsOpen} 
       />
       
-      {/* Add bottom border for visual separation with margin-top */}
-      <div className="border-b border-gray-200 mt-4"></div>
+      {/* Add bottom border for visual separation without margin */}
+      <div className="border-b border-gray-200"></div>
     </nav>
   );
 };

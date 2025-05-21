@@ -25,14 +25,14 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221 83% 53%;
     --radius: 0.5rem;
-    --navbar-height: 84px;
-    --navbar-bottom-spacing: 25px;
+    --navbar-height: 80px; /* Adjusted to better match actual navbar height */
+    --navbar-bottom-spacing: 0px; /* No additional spacing needed */
   }
 
   * {@apply border-border}
   html {scroll-behavior:smooth}
   body {@apply bg-background text-foreground;font-family:'Inter','Segoe UI',system-ui,sans-serif;font-display:swap}
-  main {padding-top:calc(var(--navbar-height) + var(--navbar-bottom-spacing))}
+  /* Removing padding-top from main as it's now handled in SemanticLayout */
 }
 
 @layer base {
