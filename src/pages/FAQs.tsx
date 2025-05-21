@@ -10,7 +10,6 @@ import FAQPageSchema from '@/components/seo/FAQPageSchema';
 import FAQHero from '@/components/faqs/FAQHero';
 import FAQCategory from '@/components/faqs/FAQCategory';
 import FAQHelp from '@/components/faqs/FAQHelp';
-import FAQSchema from '@/components/faqs/FAQSchema';
 
 // Import FAQ data
 import faqCategories, { hubspotFAQs, approachFAQs, dataQualityFAQs, hubspotModulesFAQs } from '@/data/faqs';
@@ -50,11 +49,13 @@ const FAQsPage = () => {
 
   return (
     <SemanticLayout>
-      <FAQSchema 
-        items={allFAQs}
-        pageTitle="Frequently Asked Questions - DataOps Group"
-        pageDescription="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals."
-      />
+      {/* Use only one schema implementation - the more detailed FAQPageSchema */}
+      <Helmet>
+        <title>Frequently Asked Questions - DataOps Group</title>
+        <meta name="description" content="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals." />
+        <meta name="keywords" content="HubSpot FAQs, HubSpot consultant, data quality, marketing ROI, sales and marketing alignment, HubSpot optimization, statistical process control, data cleaning, reporting dashboards" />
+        <link rel="canonical" href="https://dataopsgroup.com/faqs" />
+      </Helmet>
       
       <FAQPageSchema items={formattedFAQs} url="/faqs" />
       <BreadcrumbSchema items={breadcrumbs} />
