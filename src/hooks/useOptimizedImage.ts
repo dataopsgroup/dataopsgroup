@@ -4,8 +4,10 @@ import { reportLCPMetric } from '@/utils/image-utils';
 
 interface UseOptimizedImageProps {
   src: string;
+  placeholder?: string;
   priority?: boolean;
   isLCP?: boolean;
+  blur?: boolean;
   rootMargin?: string;
   threshold?: number;
 }
@@ -19,12 +21,15 @@ interface UseOptimizedImageReturn {
 }
 
 /**
- * Custom hook for optimized image loading with intersection observer
+ * Enhanced hook for optimized image loading with intersection observer
+ * Combines features from both OptimizedImage and ProgressiveImage
  */
 export const useOptimizedImage = ({
   src,
+  placeholder = '/placeholder.svg',
   priority = false,
   isLCP = false,
+  blur = true,
   rootMargin = '200px',
   threshold = 0.01
 }: UseOptimizedImageProps): UseOptimizedImageReturn => {
@@ -86,12 +91,38 @@ export const useOptimizedImage = ({
     reportLCPMetric(src);
   }, [isLCP, isLoaded, src]);
   
+  // Clean up any object URLs when component unmounts
+  useEffect(() => {
+    return () => {
+      if (imgRef.current?.src && imgRef.current.src.startsWith('blob:')) {
+        URL.revokeObjectURL(imgRef.current.src);
+      }
+    };
+  }, []);
+  
   const handleLoad = () => {
     setIsLoaded(true);
     
     // Priority hint for hero images
     if (isLCP && imgRef.current) {
       imgRef.current.setAttribute('fetchpriority', 'high');
+    }
+    
+    // Report LCP if it's a hero image using alternative method from ProgressiveImage
+    if (isLCP && window.performance && 'measure' in window.performance) {
+      try {
+        window.performance.measure('lcp-image-loaded', 'navigationStart');
+        if (window.gtag) {
+          const lcpTiming = window.performance.getEntriesByName('lcp-image-loaded')[0];
+          window.gtag('event', 'web_vitals', {
+            metric_name: 'LCP',
+            metric_value: lcpTiming.duration,
+            metric_delta: 0
+          });
+        }
+      } catch (e) {
+        console.error('Error measuring LCP:', e);
+      }
     }
   };
   
@@ -106,11 +137,11 @@ export const useOptimizedImage = ({
         }
         // Fall back to placeholder
         if (imgRef.current) {
-          imgRef.current.src = '/placeholder.svg';
+          imgRef.current.src = placeholder;
         }
       });
     } else if (imgRef.current) {
-      imgRef.current.src = '/placeholder.svg';
+      imgRef.current.src = placeholder;
     }
   };
   

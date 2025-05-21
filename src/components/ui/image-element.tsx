@@ -15,10 +15,14 @@ interface ImageElementProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   isLCP?: boolean;
   loading?: 'lazy' | 'eager';
   decoding?: 'async' | 'sync' | 'auto';
+  placeholder?: string;
+  blur?: boolean;
+  threshold?: number;
 }
 
 /**
- * Core image element component with optimization features
+ * Enhanced image element component with optimization features from both
+ * OptimizedImage and ProgressiveImage
  */
 const ImageElement: React.FC<ImageElementProps> = ({
   src,
@@ -31,6 +35,9 @@ const ImageElement: React.FC<ImageElementProps> = ({
   isLCP = false,
   loading: loadingProp,
   decoding: decodingProp,
+  placeholder = '/placeholder.svg',
+  blur = true,
+  threshold = 0.1,
   ...props
 }) => {
   const imageSrc = getImageSrc(src);
@@ -43,8 +50,11 @@ const ImageElement: React.FC<ImageElementProps> = ({
     handleError
   } = useOptimizedImage({
     src: imageSrc,
+    placeholder,
     priority,
-    isLCP
+    isLCP,
+    blur,
+    threshold
   });
   
   // Enhanced loading strategy based on image importance
@@ -55,15 +65,17 @@ const ImageElement: React.FC<ImageElementProps> = ({
     <>
       <img
         ref={imgRef}
-        src={isInView ? imageSrc : '/placeholder.svg'} // Only load when in view
+        src={isInView ? imageSrc : placeholder}
         alt={alt}
         width={width}
         height={height}
         className={cn(
           'max-w-full',
           objectFit && `object-${objectFit}`,
-          !isLoaded && 'opacity-0',
+          blur && !isLoaded && 'blur-sm scale-105',
           isLoaded && 'opacity-100 transition-opacity duration-300',
+          !isLoaded && 'opacity-0',
+          'transition-all duration-300',
           className
         )}
         loading={loadingStrategy}

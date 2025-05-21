@@ -17,14 +17,19 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   sizes?: string;
   quality?: number;
   isLCP?: boolean; // Flag to identify Largest Contentful Paint images
+  placeholder?: string; // Custom placeholder image
+  blur?: boolean; // Control blur effect during loading
+  threshold?: number; // Intersection observer threshold
 }
 
 /**
- * Enhanced OptimizedImage with Core Web Vitals optimizations:
+ * Enhanced OptimizedImage with Core Web Vitals optimizations
+ * Combines functionality from both previous OptimizedImage and ProgressiveImage components
  * - Properly sets width/height to avoid layout shifts (CLS)
  * - Prioritizes LCP images
  * - Uses Intersection Observer for below-the-fold images
  * - Sets appropriate loading and decoding attributes
+ * - Supports progressive blur effects during loading
  */
 const OptimizedImage = ({
   src,
@@ -40,6 +45,9 @@ const OptimizedImage = ({
   sizes = '100vw',
   quality = 85,
   isLCP = false,
+  placeholder = '/placeholder.svg',
+  blur = true,
+  threshold = 0.1,
   ...props
 }: OptimizedImageProps) => {
   const imageElement = (
@@ -54,6 +62,9 @@ const OptimizedImage = ({
       isLCP={isLCP}
       loading={loading}
       decoding={decoding}
+      placeholder={placeholder}
+      blur={blur}
+      threshold={threshold}
       sizes={sizes}
       {...props}
     />
@@ -62,7 +73,7 @@ const OptimizedImage = ({
   // If an aspect ratio is specified, wrap the image in an AspectRatio component
   if (aspectRatio) {
     return (
-      <AspectRatio ratio={aspectRatio} className={`overflow-hidden ${className}`}>
+      <AspectRatio ratio={aspectRatio} className={`overflow-hidden ${className || ''}`}>
         {imageElement}
       </AspectRatio>
     );
