@@ -1,58 +1,77 @@
 
-/**
- * Global type definitions for the application
- * This centralizes all global interface extensions to prevent duplicate declarations
- */
-
-// Global window interface extensions
 declare global {
   interface Window {
-    // Analytics and tracking
+    // Analytics integrations
     gtag?: (command: string, action: string, params?: Record<string, any>) => void;
-    dataLayer?: any[];
     _hsq?: any[];
     
-    // Application version
-    APP_VERSION?: string;
-    
-    // Performance and optimization
-    requestIdleCallback: (
-      callback: IdleRequestCallback,
-      options?: IdleRequestOptions
-    ) => number;
-    cancelIdleCallback: (handle: number) => void;
-    
-    // Standard browser APIs may need polyfills
+    // Performance monitoring APIs with vendor prefixes
     webkitRequestIdleCallback?: typeof requestIdleCallback;
     mozRequestIdleCallback?: typeof requestIdleCallback;
     msRequestIdleCallback?: typeof requestIdleCallback;
+    
+    // Standard browser APIs may need polyfills
+    requestIdleCallback?: (
+      callback: (deadline: {
+        didTimeout: boolean;
+        timeRemaining: () => number;
+      }) => void,
+      options?: { timeout: number }
+    ) => number;
+    cancelIdleCallback?: (handle: number) => void;
+
+    // App version for cache busting
+    APP_VERSION?: string;
+    
+    // Performance API endpoint
+    PERFORMANCE_API_ENDPOINT?: string;
   }
 
-  // Element interface extensions for polyfills
-  interface Element {
-    // Vendor prefixed selectors - all with optional modifiers for consistency
-    matchesSelector?: (selector: string) => boolean;
-    mozMatchesSelector?: (selector: string) => boolean;
-    msMatchesSelector?: (selector: string) => boolean;
-    oMatchesSelector?: (selector: string) => boolean;
-    webkitMatchesSelector?: (selector: string) => boolean;
+  // PerformanceObserver interfaces
+  interface PerformanceObserverInit {
+    entryTypes?: string[];
+    type?: string;
+    buffered?: boolean;
+  }
+  
+  // Long tasks performance entry
+  interface PerformanceLongTaskTiming extends PerformanceEntry {
+    attribution: TaskAttributionTiming[];
+  }
+  
+  interface TaskAttributionTiming {
+    name: string;
+    entryType: string;
+    startTime: number;
+    duration: number;
+    containerType: string;
+    containerSrc: string;
+    containerId: string;
+    containerName: string;
   }
 
-  // Performance entry extensions for web vitals monitoring
+  // Layout shifts performance entry
+  interface LayoutShiftAttribution {
+    node: Node;
+    previousRect: DOMRectReadOnly;
+    currentRect: DOMRectReadOnly;
+  }
+
   interface LayoutShiftEntry extends PerformanceEntry {
-    hadRecentInput: boolean;
     value: number;
+    hadRecentInput: boolean;
+    lastInputTime: number;
+    sources?: LayoutShiftAttribution[];
   }
 
+  // First input delay entry
   interface FirstInputEntry extends PerformanceEntry {
     processingStart: number;
+    processingEnd: number;
     startTime: number;
-  }
-
-  // Add missing PerformanceObserverInit interface
-  interface PerformanceObserverInit {
-    type: string;
-    buffered?: boolean;
+    duration: number;
+    cancelable: boolean;
+    target: Element;
   }
 }
 

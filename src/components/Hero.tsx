@@ -38,7 +38,15 @@ const Hero = () => {
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-8">
           <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            {/* Pre-connect to critical domains for tracking */}
+            <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+            
+            {/* Mark as LCP element for monitoring */}
+            <h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+              id="hero-heading"
+              data-lcp="true"
+            >
               Fix Your <span className="text-dataops-600">HubSpot Ordeal</span>, Generate Revenue
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
@@ -69,7 +77,8 @@ const Hero = () => {
           <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-dataops-200 rounded-full filter blur-3xl opacity-50"></div>
           
           <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10">
-            <div className="grid grid-cols-2 gap-6">
+            {/* Use height and width to prevent CLS */}
+            <div className="grid grid-cols-2 gap-6" style={{minHeight: "320px"}}>
               <div className="flex flex-col items-center p-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg text-white">
                 <Database className="h-10 w-10 mb-4" aria-hidden="true" />
                 <h3 className="text-base font-medium">HubSpot Cleansing</h3>

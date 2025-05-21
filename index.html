@@ -10,12 +10,47 @@
     <meta name="author" content="Geoff Tucker, DataOps Group" />
     <meta name="theme-color" content="#4F46E5" />
     
-    <!-- Remove Google Fonts and replace with optimized self-hosted font preloading -->
-    <!-- Critical font weights preloaded: 400 (Regular) and 700 (Bold) -->
+    <!-- Critical CSS inlined for faster rendering -->
+    <style>
+      /* Critical CSS for above the fold content */
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        -webkit-text-size-adjust: 100%;
+      }
+      .fonts-pending {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      }
+      .font-active {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      }
+      /* Layout shift prevention for hero section */
+      @media (min-width: 768px) {
+        .hero-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+        }
+      }
+      /* Loading spinner style */
+      .loading-spinner {
+        width: 3rem;
+        height: 3rem;
+        border: 0.25rem solid rgba(79, 70, 229, 0.3);
+        border-radius: 50%;
+        border-top-color: rgba(79, 70, 229, 1);
+        animation: spin 1s ease-in-out infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+    
+    <!-- Preload critical assets -->
     <link rel="preload" href="/fonts/inter-subset/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-subset/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     
-    <!-- Preconnect to remaining external domains -->
+    <!-- Preconnect to critical domains -->
     <link rel="preconnect" href="https://js.hs-scripts.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.botpress.cloud" />
@@ -47,9 +82,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="msapplication-TileColor" content="#4F46E5" />
     
-    <!-- Remove Google Fonts stylesheet reference as we're self-hosting now -->
-    
-    <!-- Google Tag Manager -->
+    <!-- Core Web Vitals optimization - defer non-critical scripts -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16996265146"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -62,52 +95,87 @@
       });
     </script>
     
-    <!-- HubSpot script -->
+    <!-- HubSpot script - load with low priority -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21794360.js"></script>
     
-    <!-- Font loading optimization script -->
+    <!-- Initialize performance markers -->
     <script>
-      // Minimal inline script to start font loading process early
-      // Add fonts-pending class to allow for FOUT (Flash of Unstyled Text) management
+      // Mark navigation start time
+      performance.mark('navigationStart');
+      // Add fonts-pending class to manage FOUT
       document.documentElement.classList.add('fonts-pending');
       
-      // Feature detection for Font Loading API
-      if ('fonts' in document) {
-        try {
-          // Try to load critical fonts immediately
-          const fontFaces = [
-            new FontFace('Inter', 'url(/fonts/inter-subset/inter-latin-400-normal.woff2) format("woff2")', { 
-              weight: '400',
-              display: 'swap' 
-            }),
-            new FontFace('Inter', 'url(/fonts/inter-subset/inter-latin-700-normal.woff2) format("woff2")', { 
-              weight: '700',
-              display: 'swap' 
-            })
-          ];
-          
-          // Load fonts in parallel
-          Promise.all(fontFaces.map(font => font.load()))
+      // Break up parsing long tasks for better INP/FID
+      const deferredOperations = () => {
+        // Load critical fonts immediately
+        if ('fonts' in document) {
+          try {
+            Promise.all([
+              new FontFace('Inter', 'url(/fonts/inter-subset/inter-latin-400-normal.woff2) format("woff2")', { 
+                weight: '400',
+                display: 'swap' 
+              }).load(),
+              new FontFace('Inter', 'url(/fonts/inter-subset/inter-latin-700-normal.woff2) format("woff2")', { 
+                weight: '700',
+                display: 'swap' 
+              }).load()
+            ])
             .then(loadedFonts => {
               loadedFonts.forEach(font => document.fonts.add(font));
               document.documentElement.classList.add('font-active');
+              document.documentElement.classList.remove('fonts-pending');
+              performance.mark('fonts-loaded');
             })
-            .catch(err => {
-              console.warn('Failed to load fonts:', err);
+            .catch(() => {
+              // Remove pending class even if fonts fail
+              document.documentElement.classList.remove('fonts-pending');
             });
-        } catch (err) {
-          console.warn('Error in font preloading:', err);
+          } catch (err) {
+            document.documentElement.classList.remove('fonts-pending');
+          }
+        } else {
+          document.documentElement.classList.remove('fonts-pending');
         }
+      };
+      
+      // Execute font loading on requestIdleCallback or setTimeout fallback
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(deferredOperations, { timeout: 2000 });
+      } else {
+        setTimeout(deferredOperations, 20); // Small timeout to not block initial rendering
       }
       
-      // Fallback to remove fonts-pending class after timeout
-      setTimeout(() => {
-        document.documentElement.classList.remove('fonts-pending');
-      }, 3000);
+      // Add support for NavigationTiming API
+      if (performance.getEntriesByType && typeof PerformanceObserver === 'function') {
+        try {
+          // Create a performance observer to track long tasks
+          const longTaskObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            entries.forEach((entry) => {
+              // Log long tasks (>50ms) for debugging
+              if (entry.duration > 50) {
+                console.warn(`Long task detected: ${Math.round(entry.duration)}ms`, entry);
+              }
+            });
+          });
+          
+          longTaskObserver.observe({ entryTypes: ['longtask'] });
+        } catch (e) {
+          // Ignore errors in unsupported browsers
+        }
+      }
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Initial loading state with proper layout to prevent CLS -->
+      <div style="width:100%;height:100vh;display:flex;align-items:center;justify-content:center">
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <div class="loading-spinner"></div>
+          <p style="margin-top:1rem;color:#4F46E5;font-size:1.125rem">Loading DataOps Group...</p>
+        </div>
+      </div>
+    </div>
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
