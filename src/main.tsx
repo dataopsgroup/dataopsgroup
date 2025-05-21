@@ -6,6 +6,12 @@ import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
 import { throttle } from './lib/optimization';
 import { setupAnalyticsAndMonitoring, initializeApp } from './utils/app-initialization';
+import { 
+  setupResourceHints, 
+  optimizeAssetLoading, 
+  setupClientCaching,
+  prefetchCriticalRoutes
+} from './lib/performance-optimizations';
 
 // Initialize application
 const renderApp = () => {
@@ -31,11 +37,27 @@ const renderApp = () => {
   }
 };
 
+// Apply performance optimizations immediately
+setupResourceHints();
+
 // Immediately render the app for fast initial paint
 renderApp();
 
 // Defer non-critical operations
 if (typeof window !== 'undefined') {
+  // Process important performance operations with priority
+  optimizeAssetLoading();
+  setupClientCaching();
+  
+  // Prefetch critical routes for faster subsequent navigation
+  prefetchCriticalRoutes([
+    '/contact',
+    '/insights',
+    '/services',
+    '/approach',
+    '/faqs'
+  ]);
+
   const setupDeferredOperations = throttle(() => {
     setupAnalyticsAndMonitoring();
   }, 5000);

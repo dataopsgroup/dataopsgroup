@@ -25,10 +25,27 @@ export const validateRoutes = () => {
 
 // Optimize images after load
 export const optimizePageImages = () => {
-  // Optimize images after the initial render is complete
-  document.querySelectorAll('img').forEach(img => {
-    if (!img.loading) img.loading = 'lazy';
-    if (!img.decoding) img.decoding = 'async';
+  // Use Intersection Observer for better performance
+  const imageObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          // Apply optimization when image comes into view
+          if (!img.loading) img.loading = 'lazy';
+          if (!img.decoding) img.decoding = 'async';
+          
+          // Stop observing this image
+          imageObserver.unobserve(img);
+        }
+      });
+    },
+    { rootMargin: '200px' } // Start loading when image is 200px from viewport
+  );
+  
+  // Observe all images except those with priority attributes
+  document.querySelectorAll('img:not([fetchpriority="high"])').forEach(img => {
+    imageObserver.observe(img);
   });
 };
 
@@ -72,3 +89,25 @@ export const logError = (source: string, error: Error | unknown, additionalData?
   }
 };
 
+// Pre-render critical route content
+export const preloadCriticalRoutes = () => {
+  // This is a client-side alternative to SSR pre-rendering
+  // It loads critical routes in the background after the initial page is rendered
+  const criticalRoutes = ['/contact', '/insights', '/services', '/approach'];
+  
+  if ('IntersectionObserver' in window) {
+    // Only preload routes when user is likely to navigate to them
+    // i.e., when they hover over navigation items
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        const href = link.getAttribute('href');
+        if (href && criticalRoutes.includes(href) && !document.querySelector(`link[rel="prefetch"][href="${href}"]`)) {
+          const prefetch = document.createElement('link');
+          prefetch.rel = 'prefetch';
+          prefetch.href = href;
+          document.head.appendChild(prefetch);
+        }
+      });
+    });
+  }
+};
