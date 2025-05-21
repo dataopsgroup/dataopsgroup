@@ -12,6 +12,7 @@ interface PersonSchemaProps {
   email?: string;
   telephone?: string;
   alumniOf?: string;
+  knowsAbout?: string[];
 }
 
 const PersonSchema = ({
@@ -23,7 +24,8 @@ const PersonSchema = ({
   sameAs = [],
   email,
   telephone,
-  alumniOf
+  alumniOf,
+  knowsAbout = ["HubSpot", "CRM", "Marketing Automation"]
 }: PersonSchemaProps) => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   const personId = name.toLowerCase().replace(/\s+/g, '-');
@@ -46,7 +48,8 @@ const PersonSchema = ({
     },
     "url": fullUrl,
     "worksFor": {
-      "@id": `${baseUrl}/#organization`
+      "@type": "Organization",
+      "name": "DataOps Group"
     },
     "sameAs": sameAs,
     ...(email && { "email": email }),
@@ -57,7 +60,7 @@ const PersonSchema = ({
         "name": alumniOf
       } 
     }),
-    "knowsAbout": [
+    "knowsAbout": knowsAbout || [
       "HubSpot Implementation",
       "Data Operations",
       "Marketing Analytics",
