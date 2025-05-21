@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { FAQCategory as FAQCategoryType, FAQItem } from '@/data/faqs/types';
 import { cn } from '@/lib/utils';
+import FAQItem from '@/components/faqs/FAQItem';
 
 interface FAQCategoryProps {
   category: FAQCategoryType;
@@ -18,6 +19,18 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
         : [...prev, itemId]
     );
   };
+
+  // Add a defensive check to ensure we have items before rendering
+  if (!category || !category.items || category.items.length === 0) {
+    return (
+      <section aria-labelledby={`category-${category?.id || 'unknown'}`}>
+        <h2 className="text-2xl font-bold mb-6 text-gray-900">
+          {category?.title || 'Category'}
+        </h2>
+        <p className="text-gray-600">No FAQ items available for this category.</p>
+      </section>
+    );
+  }
   
   return (
     <section aria-labelledby={`category-${category.id}`}>

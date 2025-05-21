@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
@@ -14,8 +14,19 @@ import FAQSchema from '@/components/faqs/FAQSchema';
 
 // Import FAQ data
 import faqCategories, { hubspotFAQs, approachFAQs, dataQualityFAQs, hubspotModulesFAQs } from '@/data/faqs';
+import { validateFAQData } from '@/utils/route-monitoring';
 
 const FAQsPage = () => {
+  // Validate FAQ data on component mount
+  useEffect(() => {
+    // Validate FAQ data structure to ensure it's working properly
+    const isValid = validateFAQData(faqCategories);
+    
+    if (!isValid) {
+      console.error('FAQ data validation failed. This could cause rendering issues.');
+    }
+  }, []);
+  
   // Combine all FAQ items for schema markup
   const allFAQs = [...hubspotFAQs, ...approachFAQs, ...dataQualityFAQs, ...hubspotModulesFAQs];
 
@@ -55,12 +66,20 @@ const FAQsPage = () => {
       <section className="py-16 px-4 bg-white" aria-label="Frequently Asked Questions">
         <div className="container mx-auto">
           <div className="flex flex-col space-y-8">
-            {faqCategories.map((category) => (
-              <FAQCategory key={category.id} category={category} />
-            ))}
+            {faqCategories && Array.isArray(faqCategories) ? (
+              faqCategories.map((category) => (
+                <FAQCategory key={category.id} category={category} />
+              ))
+            ) : (
+              <div className="p-6 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-600">
+                  Error loading FAQ content. Please try refreshing the page.
+                </p>
+              </div>
+            )}
           </div>
           
-          <aside aria-label="Additional Help">
+          <aside aria-label="Additional Help" className="mt-12">
             <FAQHelp />
           </aside>
         </div>

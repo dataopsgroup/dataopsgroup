@@ -1,8 +1,11 @@
+
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
+import router from './routes';
+import { validateCriticalRoutes, reportRouteValidationIssues } from './utils/route-monitoring';
 
 // Define types for web vitals performance entries
 interface LayoutShiftEntry extends PerformanceEntry {
@@ -36,6 +39,21 @@ const renderApp = () => {
         </HelmetProvider>
       </StrictMode>
     );
+  }
+};
+
+// Pre-launch validation to ensure critical routes exist
+const validateRoutes = () => {
+  try {
+    // Check if router has routes property
+    if (router && 'routes' in router) {
+      const missingRoutes = validateCriticalRoutes(router.routes);
+      if (missingRoutes.length > 0) {
+        reportRouteValidationIssues(missingRoutes);
+      }
+    }
+  } catch (e) {
+    console.error('Route validation failed:', e);
   }
 };
 
@@ -170,6 +188,7 @@ const setupRouteChangeTracking = () => {
 
 // Defer non-critical operations
 const deferredInit = () => {
+  validateRoutes(); // Validate routes before other operations
   trackInitialPageView();
   setupRouteChangeTracking();
   trackWebVitals();
