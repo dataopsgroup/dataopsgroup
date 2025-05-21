@@ -31,7 +31,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
           <li key={item.name}>
             {item.isDropdown ? (
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors bg-transparent" aria-haspopup="true" aria-expanded="false">
+                <DropdownMenuTrigger className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors bg-transparent border-0 cursor-pointer" aria-haspopup="true" aria-expanded="false">
                   {item.name}
                   <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
                   <span className="sr-only">Toggle {item.name} dropdown</span>

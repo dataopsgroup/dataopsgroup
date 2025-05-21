@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav 
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 pb-[25px] border-b border-gray-200",
-        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        scrolled ? "bg-white shadow-md py-2" : "bg-white py-4"
       )}
       aria-label="Main navigation"
     >
