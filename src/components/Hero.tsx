@@ -4,6 +4,7 @@ import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { generateBlurPlaceholder } from '@/lib/utils';
 
 const Hero = () => {
   // Track CTA click in Google Analytics and HubSpot
@@ -32,6 +33,9 @@ const Hero = () => {
       });
     }
   };
+
+  // Simple blur placeholder for background
+  const blurPlaceholder = generateBlurPlaceholder(20, 20, '#f0f4f8');
 
   return (
     <div className="pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50">

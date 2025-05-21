@@ -5,8 +5,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ChevronRight, Book } from 'lucide-react';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { generateBlurPlaceholder } from '@/lib/utils';
 
 const BookCTA = () => {
+  // Generate a blur placeholder for the book image
+  const blurPlaceholder = generateBlurPlaceholder(100, 150, '#2f855a');
+  
   return (
     <section className="section-padding bg-white">
       <div className="container mx-auto px-[5%]">
@@ -25,6 +29,7 @@ const BookCTA = () => {
                       priority={true}
                       objectFit="cover"
                       loading="eager"
+                      blurDataURL={blurPlaceholder}
                     />
                   </div>
                 </div>

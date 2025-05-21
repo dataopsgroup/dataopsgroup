@@ -10,6 +10,7 @@ import { format } from 'date-fns';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { generateBlurPlaceholder } from '@/lib/utils';
 
 const BlogList = () => {
   const location = useLocation();
@@ -25,6 +26,9 @@ const BlogList = () => {
     post.category?.toLowerCase() !== 'case study' && 
     post.category?.toLowerCase() !== 'case studies'
   );
+  
+  // Generate a default blur placeholder
+  const defaultBlurPlaceholder = generateBlurPlaceholder(50, 25, '#e2e8f0');
   
   // Ensure canonical URL is without query parameters
   const canonicalPath = '/insights';
@@ -111,6 +115,11 @@ const BlogList = () => {
               const publishDate = new Date(post.date);
               const formattedPublishDate = publishDate.toISOString();
               
+              // Generate a unique blur placeholder based on post ID
+              const blurPlaceholder = generateBlurPlaceholder(50, 25, 
+                post.id.charCodeAt(0) % 2 === 0 ? '#e2e8f0' : '#f0f4f8'
+              );
+              
               return (
                 <article key={post.id} className="h-full">
                   <Card className="flex flex-col h-full hover:shadow-lg transition-shadow">
@@ -143,6 +152,8 @@ const BlogList = () => {
                             loading="lazy"
                             objectFit="cover"
                             aspectRatio={2/1}
+                            blurDataURL={blurPlaceholder}
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         </figure>
                         <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
