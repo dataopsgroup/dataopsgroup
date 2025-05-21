@@ -69,7 +69,9 @@ declare global {
     _hsq?: any[];
   }
   
+  // Fix the Element interface to avoid duplicate declarations
   interface Element {
+    // Using optional modifiers for all vendor prefixed methods to ensure consistent declarations
     matchesSelector?: (selector: string) => boolean;
     mozMatchesSelector?: (selector: string) => boolean;
     msMatchesSelector?: (selector: string) => boolean;
