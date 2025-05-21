@@ -36,6 +36,23 @@ export const getCanonicalFromAmpUrl = (url: string): string => {
 };
 
 /**
+ * Removes HubSpot language parameter from URL
+ * @param url URL potentially containing hsLang parameter
+ * @returns Clean URL without the language parameter
+ */
+export const removeHsLangParameter = (url: string): string => {
+  if (url.includes('?hsLang=')) {
+    return url.split('?')[0];
+  }
+  
+  if (url.includes('&hsLang=')) {
+    return url.replace(/&hsLang=[^&]+/, '');
+  }
+  
+  return url;
+};
+
+/**
  * Validates that a URL has proper canonical and indexing tags
  * For use in development and testing
  * @param url The URL to validate
@@ -50,5 +67,6 @@ export const validateUrlIndexability = async (url: string): Promise<boolean> => 
 export default {
   handleHubSpotCTARedirect,
   getCanonicalFromAmpUrl,
+  removeHsLangParameter,
   validateUrlIndexability
 };

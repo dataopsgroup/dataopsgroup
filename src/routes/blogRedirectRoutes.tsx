@@ -67,5 +67,15 @@ export const blogRedirectRoutes = [
   {
     path: "/en/blog/lead-scoring-pitfalls-to-avoid",
     element: <BlogRedirect to="/insights/lead-scoring-pitfalls" />,
+  },
+  
+  // NEW: Additional blog redirects
+  {
+    path: "/en/blog",
+    element: <BlogRedirect to="/insights" />,
+  },
+  {
+    path: "/en/blog/tag/case-studies",
+    element: <BlogRedirect to="/case-studies" />,
   }
 ];

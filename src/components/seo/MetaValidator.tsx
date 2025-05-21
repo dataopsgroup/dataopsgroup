@@ -7,6 +7,7 @@ interface MetaValidatorProps {
   validateCanonical?: boolean;
   validateTitle?: boolean;
   validateDescription?: boolean;
+  validateHreflang?: boolean;
 }
 
 /**
@@ -17,7 +18,8 @@ const MetaValidator: React.FC<MetaValidatorProps> = ({
   validateNoindex = true,
   validateCanonical = true,
   validateTitle = true,
-  validateDescription = true
+  validateDescription = true,
+  validateHreflang = true
 }) => {
   const location = useLocation();
   
@@ -28,6 +30,7 @@ const MetaValidator: React.FC<MetaValidatorProps> = ({
     // Give time for meta tags to be added to the document
     const timer = setTimeout(() => {
       const allMeta = document.querySelectorAll('meta');
+      const allLinks = document.querySelectorAll('link');
       
       // Check for noindex and warn if found
       if (validateNoindex) {
@@ -50,6 +53,13 @@ const MetaValidator: React.FC<MetaValidatorProps> = ({
           console.warn(
             `❌ SEO WARNING: Page ${location.pathname} is missing a canonical link tag.`
           );
+        } else {
+          const canonicalHref = canonical.getAttribute('href');
+          if (canonicalHref && canonicalHref.includes('?')) {
+            console.warn(
+              `❌ SEO WARNING: Page ${location.pathname} has a canonical URL with query parameters: ${canonicalHref}`
+            );
+          }
         }
       }
       
@@ -75,10 +85,31 @@ const MetaValidator: React.FC<MetaValidatorProps> = ({
           );
         }
       }
+      
+      // Check for hreflang tags
+      if (validateHreflang) {
+        const hreflangs = Array.from(allLinks).filter(
+          link => link.getAttribute('rel') === 'alternate' && 
+                 link.getAttribute('hreflang')
+        );
+        
+        // If we have any hreflang tags, make sure they are properly formatted
+        if (hreflangs.length > 0) {
+          const hasDefaultHreflang = hreflangs.some(
+            link => link.getAttribute('hreflang') === 'x-default'
+          );
+          
+          if (!hasDefaultHreflang) {
+            console.warn(
+              `❌ SEO WARNING: Page ${location.pathname} has hreflang tags but is missing the x-default tag.`
+            );
+          }
+        }
+      }
     }, 500);
     
     return () => clearTimeout(timer);
-  }, [location.pathname, validateNoindex, validateCanonical, validateTitle, validateDescription]);
+  }, [location.pathname, validateNoindex, validateCanonical, validateTitle, validateDescription, validateHreflang]);
   
   // This component doesn't render anything visible
   return null;

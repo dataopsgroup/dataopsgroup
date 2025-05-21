@@ -25,6 +25,8 @@ Allow: /approach/
 Allow: /faqs/
 Allow: /about/
 Allow: /book/
+Allow: /en/blog/
+Allow: /blog/
 
 # Sitemap
 Sitemap: https://dataopsgroup.com/sitemap.xml

@@ -159,5 +159,27 @@ export const redirectRoutes = [
   {
     path: "/search",
     element: <Navigate to="/insights" replace />,
+  },
+  
+  // NEW: Additional URLs with hsLang parameter
+  {
+    path: "/how-much-is-bad-data-costing-your-business",
+    element: <Navigate to="/insights/true-cost-of-bad-data" replace />,
+  },
+  {
+    path: "/marketing-data-management-and-analytics-services-dataops-group",
+    element: <Navigate to="/services" replace />,
+  },
+  {
+    path: "/hubspot-training-and-implementation",
+    element: <Navigate to="/services/team-training" replace />,
+  },
+  {
+    path: "/hubspot-integration-customization-services",
+    element: <Navigate to="/services/dataops-implementation" replace />,
+  },
+  {
+    path: "/book-meeting",
+    element: <Navigate to="/contact" replace />,
   }
 ];

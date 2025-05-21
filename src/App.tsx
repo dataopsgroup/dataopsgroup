@@ -5,7 +5,7 @@ import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
 import PrivacyModal from './components/PrivacyModal';
 import router from './routes';
-import { handleHubSpotCTARedirect } from './utils/redirect-utils';
+import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirect-utils';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +13,13 @@ function App() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
   useEffect(() => {
+    // Handle language parameter in URL if present
+    const currentUrl = window.location.href;
+    if (currentUrl.includes('hsLang=')) {
+      const cleanUrl = removeHsLangParameter(currentUrl);
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+    
     // Handle HubSpot CTA redirects if present in URL
     if (window.location.pathname.includes('/hs/cta/wi/redirect')) {
       const destinationUrl = handleHubSpotCTARedirect(window.location.search);
