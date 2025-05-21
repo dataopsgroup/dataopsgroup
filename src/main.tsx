@@ -13,6 +13,9 @@ import {
   prefetchCriticalRoutes
 } from './lib/performance-optimizations';
 
+// Define app version globally
+window.APP_VERSION = '1.0.1';
+
 // Initialize application
 const renderApp = () => {
   const container = document.getElementById("root");

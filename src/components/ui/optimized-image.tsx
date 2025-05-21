@@ -40,6 +40,13 @@ const OptimizedImage = ({
   // Check if the image is a remote URL that could benefit from optimization
   const isRemoteImage = src.startsWith('http') && !src.includes('lovable-uploads');
   
+  // Check if this is a local asset that should be versioned for cache control
+  const isLocalAsset = !src.startsWith('http') && !src.includes('lovable-uploads');
+  
+  // Add cache busting for local assets if needed
+  const imageSrc = isLocalAsset && window.APP_VERSION ? 
+    `${src}?v=${window.APP_VERSION}` : src;
+  
   // Determine image dimensions for layout stability
   const imgWidth = width || undefined;
   const imgHeight = height || undefined;
@@ -55,21 +62,41 @@ const OptimizedImage = ({
   if (isRemoteImage && width && height) {
     // This would be where you'd generate different size versions
     // For now we'll just use a placeholder approach
-    srcSet = `${src} ${width}w`;
+    srcSet = `${imageSrc} ${width}w`;
   }
   
   // Apply image optimizations after mounting
   useEffect(() => {
     if (imgRef.current) {
       optimizeImage(imgRef.current);
+      
+      // Add image to browser cache for offline use if it's an important asset
+      if (priority && 'caches' in window) {
+        window.caches.open('dataops-image-cache').then(cache => {
+          cache.add(imageSrc).catch(err => {
+            console.log('Failed to cache image:', err);
+          });
+        });
+      }
     }
-  }, [src]); // Re-run when src changes
+  }, [imageSrc, priority]); // Re-run when src changes
   
   const onError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const target = e.target as HTMLImageElement;
     console.error(`Failed to load image: ${target.src}`);
-    // Optionally set a fallback image
-    // target.src = '/placeholder.svg';
+    // Try to load from cache if available
+    if ('caches' in window) {
+      window.caches.match(target.src).then(response => {
+        if (response) {
+          return response.blob();
+        }
+        // Fallback to placeholder
+        target.src = '/placeholder.svg';
+      });
+    } else {
+      // Fallback to placeholder
+      target.src = '/placeholder.svg';
+    }
   };
   
   // Construct the image element with optimization attributes
@@ -77,7 +104,7 @@ const OptimizedImage = ({
     <>
       <img
         ref={imgRef}
-        src={src}
+        src={imageSrc}
         alt={alt}
         width={imgWidth}
         height={imgHeight}
@@ -95,7 +122,7 @@ const OptimizedImage = ({
       />
       <noscript>
         <img
-          src={src}
+          src={imageSrc}
           alt={alt}
           width={imgWidth}
           height={imgHeight}
