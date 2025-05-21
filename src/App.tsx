@@ -5,6 +5,7 @@ import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
 import PrivacyModal from './components/PrivacyModal';
 import router from './routes';
+import { handleHubSpotCTARedirect } from './utils/redirect-utils';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,6 +13,13 @@ function App() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
   useEffect(() => {
+    // Handle HubSpot CTA redirects if present in URL
+    if (window.location.pathname.includes('/hs/cta/wi/redirect')) {
+      const destinationUrl = handleHubSpotCTARedirect(window.location.search);
+      window.location.replace(destinationUrl);
+      return;
+    }
+    
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);

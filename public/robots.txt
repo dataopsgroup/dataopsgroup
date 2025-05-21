@@ -16,6 +16,16 @@ Disallow: /wp-login.php
 Disallow: /_hcms/forms/embed/v4/render-definition/ssr
 Disallow: /0OV0VHL4M36Z.js.gz
 
+# Explicitly allow all content pages
+Allow: /insights/
+Allow: /services/
+Allow: /case-studies/
+Allow: /assessment/
+Allow: /approach/
+Allow: /faqs/
+Allow: /about/
+Allow: /book/
+
 # Sitemap
 Sitemap: https://dataopsgroup.com/sitemap.xml
 

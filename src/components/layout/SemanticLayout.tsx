@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { cn } from '@/lib/utils';
+import MetaValidator from '@/components/seo/MetaValidator';
 
 interface SemanticLayoutProps {
   children: React.ReactNode;
@@ -35,6 +36,11 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
       
       {!skipFooter && (
         <Footer />
+      )}
+      
+      {/* Development-only meta tag validator */}
+      {process.env.NODE_ENV === 'development' && (
+        <MetaValidator />
       )}
     </div>
   );
