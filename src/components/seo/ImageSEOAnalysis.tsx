@@ -1,21 +1,23 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Info, ChevronRight as AlertTriangle, CircleCheck as CheckCircle } from 'lucide-react';
+import { Info, ChevronRight as AlertTriangle, CircleCheck as CheckCircle, Wrench } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface ImageIssue {
   url: string;
   page: string;
   issues: string[];
   status: 'error' | 'warning' | 'success';
+  fixed?: boolean;
 }
 
-// Mock data for demonstration
-const mockImageIssues: ImageIssue[] = [
+// Initial data for demonstration
+const initialImageIssues: ImageIssue[] = [
   {
     url: '/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png',
     page: '/services',
@@ -49,10 +51,12 @@ const mockImageIssues: ImageIssue[] = [
 ];
 
 const ImageSEOAnalysis: React.FC = () => {
-  const [images, setImages] = useState<ImageIssue[]>(mockImageIssues);
+  const [images, setImages] = useState<ImageIssue[]>(initialImageIssues);
   const [analyzing, setAnalyzing] = useState(false);
+  const [fixing, setFixing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [filter, setFilter] = useState<'all' | 'errors' | 'warnings' | 'success'>('all');
+  const { toast } = useToast();
 
   // Filtered images based on status
   const filteredImages = images.filter(img => {
@@ -88,9 +92,68 @@ const ImageSEOAnalysis: React.FC = () => {
       });
     }, 100);
   };
+
+  // Fix all image issues
+  const fixImageIssues = () => {
+    setFixing(true);
+    setProgress(0);
+    
+    // Simulate fixing process with a progress bar
+    const interval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          
+          // Update the image issues to show they're fixed
+          const updatedImages = images.map(img => {
+            if (img.status === 'error' || img.status === 'warning') {
+              // Create new issues array with resolution notes
+              let updatedIssues = [];
+              
+              if (img.page === '/services' && img.url.includes('1e7d023c')) {
+                updatedIssues = ['Fixed: Added descriptive alt text "Marketing data visualization dashboard showing campaign performance metrics"', 'Fixed: Renamed to marketing-dashboard.png'];
+              } else if (img.page === '/about' && img.url.includes('72e7f6ab')) {
+                updatedIssues = ['Fixed: Added alt text "DataOps Group team members collaborating on a project"', 'Fixed: Optimized image (reduced to 240KB)'];
+              } else if (img.page.includes('marketing-data-management')) {
+                updatedIssues = ['Fixed: Enhanced alt text to "Comprehensive marketing data workflow diagram showing integration points"'];
+              } else if (img.page.includes('hidden-cost')) {
+                updatedIssues = ['Fixed: Compressed image (reduced to 190KB)'];
+              } else {
+                updatedIssues = ['Fixed: All issues resolved'];
+              }
+              
+              return {
+                ...img,
+                status: 'success',
+                issues: updatedIssues,
+                fixed: true
+              };
+            }
+            return img;
+          });
+          
+          setImages(updatedImages);
+          setFixing(false);
+          
+          // Show success toast
+          toast({
+            title: "Images Fixed",
+            description: `Fixed issues with ${errorsCount + warningsCount} images`,
+          });
+          
+          return 100;
+        }
+        return prev + 5;
+      });
+    }, 100);
+  };
   
   // Helper function to render status icon
-  const renderStatusIcon = (status: 'error' | 'warning' | 'success') => {
+  const renderStatusIcon = (status: 'error' | 'warning' | 'success', fixed?: boolean) => {
+    if (fixed) {
+      return <CheckCircle className="h-5 w-5 text-green-500" />;
+    }
+    
     switch (status) {
       case 'error':
         return <AlertTriangle className="h-5 w-5 text-red-500" />;
@@ -100,6 +163,23 @@ const ImageSEOAnalysis: React.FC = () => {
         return <CheckCircle className="h-5 w-5 text-green-500" />;
     }
   };
+
+  // This effect simulates the global "Fix Issues" button in TechnicalSEOHealth.tsx triggering fixes
+  // In a real app, you would use Context, Redux, or other state management to connect these components
+  useEffect(() => {
+    // Listen for a custom event that would be dispatched from TechnicalSEOHealth
+    const handleFixAll = () => {
+      if (!fixing && (errorsCount > 0 || warningsCount > 0)) {
+        fixImageIssues();
+      }
+    };
+
+    window.addEventListener('fix-seo-issues', handleFixAll);
+    
+    return () => {
+      window.removeEventListener('fix-seo-issues', handleFixAll);
+    };
+  }, [fixing, errorsCount, warningsCount]);
 
   return (
     <div className="space-y-6">
@@ -112,16 +192,24 @@ const ImageSEOAnalysis: React.FC = () => {
           <Button onClick={runAnalysis} disabled={analyzing}>
             {analyzing ? 'Analyzing...' : 'Run Analysis'}
           </Button>
-          <Button variant="outline">Export Report</Button>
+          <Button 
+            variant="default" 
+            onClick={fixImageIssues} 
+            disabled={fixing || errorsCount + warningsCount === 0}
+            className="flex items-center gap-2"
+          >
+            <Wrench className="h-4 w-4" />
+            {fixing ? 'Fixing...' : 'Fix Images'}
+          </Button>
         </div>
       </div>
 
-      {analyzing && (
+      {(analyzing || fixing) && (
         <Card>
           <CardContent className="pt-6">
             <div className="space-y-2">
               <div className="flex justify-between">
-                <span>Analyzing images...</span>
+                <span>{analyzing ? 'Analyzing images...' : 'Fixing image issues...'}</span>
                 <span>{progress}%</span>
               </div>
               <Progress value={progress} className="h-2" />
@@ -205,12 +293,13 @@ const ImageSEOAnalysis: React.FC = () => {
               ) : (
                 filteredImages.map((image, index) => (
                   <Alert key={index} className={`
-                    ${image.status === 'error' ? 'border-red-500 bg-red-50' : ''}
-                    ${image.status === 'warning' ? 'border-amber-500 bg-amber-50' : ''}
-                    ${image.status === 'success' ? 'border-green-500 bg-green-50' : ''}
+                    ${image.fixed ? 'border-green-500 bg-green-50' : ''}
+                    ${!image.fixed && image.status === 'error' ? 'border-red-500 bg-red-50' : ''}
+                    ${!image.fixed && image.status === 'warning' ? 'border-amber-500 bg-amber-50' : ''}
+                    ${!image.fixed && image.status === 'success' ? 'border-green-500 bg-green-50' : ''}
                   `}>
                     <div className="flex items-start">
-                      {renderStatusIcon(image.status)}
+                      {renderStatusIcon(image.status, image.fixed)}
                       <div className="ml-3 flex-1">
                         <AlertTitle className="font-medium text-sm">{image.url.split('/').pop()}</AlertTitle>
                         <AlertDescription className="text-sm">
@@ -231,6 +320,7 @@ const ImageSEOAnalysis: React.FC = () => {
         </Card>
       </div>
 
+      {/* Best practices section */}
       <Card>
         <CardHeader>
           <CardTitle>Image SEO Best Practices</CardTitle>

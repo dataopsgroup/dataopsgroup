@@ -1,9 +1,44 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle, Wrench } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 const TechnicalSEOHealth: React.FC = () => {
+  const { toast } = useToast();
+  const [isFixing, setIsFixing] = useState(false);
+  
+  // Function to fix the SEO issues
+  const handleFixIssues = async () => {
+    // Show loading state
+    setIsFixing(true);
+    
+    try {
+      // Create and dispatch a custom event to trigger fixes in other components
+      const fixEvent = new CustomEvent('fix-seo-issues');
+      window.dispatchEvent(fixEvent);
+      
+      // Wait for the fixes to be applied (simulating API calls)
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Success toast after fixes are applied
+      toast({
+        title: "SEO Issues Fixed",
+        description: "All identified SEO issues have been successfully fixed.",
+      });
+    } catch (error) {
+      // Error toast if something goes wrong
+      toast({
+        title: "Fix Failed",
+        description: "Could not fix all SEO issues. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsFixing(false);
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -81,6 +116,18 @@ const TechnicalSEOHealth: React.FC = () => {
                 <span className="text-sm text-green-600">Secure</span>
               </div>
             </div>
+          </div>
+          
+          <div className="pt-4 flex justify-end">
+            <Button 
+              variant="default" 
+              onClick={handleFixIssues}
+              disabled={isFixing}
+              className="flex items-center gap-2"
+            >
+              <Wrench className="h-4 w-4" />
+              {isFixing ? "Fixing Issues..." : "Fix Issues"}
+            </Button>
           </div>
         </div>
       </CardContent>

@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import MetaHead from '@/components/seo/MetaHead';
 import KeywordAnalysisTable from '@/components/seo/KeywordAnalysisTable';
 import ImageSEOAnalysis from '@/components/seo/ImageSEOAnalysis';
+import { Toaster } from '@/components/ui/toaster';
 
 // Import our new components
 import DashboardHeader from '@/components/seo/dashboard/DashboardHeader';
@@ -62,6 +63,7 @@ const SEODashboard = () => {
       </main>
       
       <Footer />
+      <Toaster />
     </div>
   );
 };
