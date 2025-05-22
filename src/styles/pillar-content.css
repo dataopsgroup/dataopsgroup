@@ -21,3 +21,22 @@
 .table-of-contents a.active {
   @apply font-medium bg-gray-100 text-dataops-800;
 }
+
+/* Improve spacing between TOC title and main content title */
+.sidebar-content-title {
+  @apply mb-6;
+}
+
+/* Better spacing for content sections */
+.pillar-content-section {
+  @apply mb-12;
+}
+
+/* Ensure header elements have proper spacing */
+.pillar-content h1 {
+  @apply text-4xl font-bold mb-6;
+}
+
+.pillar-content h2 {
+  @apply text-2xl font-bold mb-4 mt-8;
+}

@@ -27,19 +27,19 @@ const PillarContent: React.FC<PillarContentProps> = ({
     <SidebarProvider defaultOpen={true}>
       <div className="flex w-full">
         {/* Fixed Sidebar with Table of Contents */}
-        <Sidebar className="w-full md:w-1/3 lg:w-1/4 max-w-xs">
-          <SidebarHeader className="border-b p-4">
-            <h3 className="text-xl font-bold">Table of Contents</h3>
-          </SidebarHeader>
-          <SidebarContent>
-            <div className="p-4">
-              {tableOfContents}
-            </div>
-          </SidebarContent>
+        <Sidebar className="w-full md:w-1/4 lg:w-1/4 max-w-xs border-r">
+          <div className="p-6">
+            <img 
+              src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
+              alt="DataOps Group" 
+              className="h-12 mb-6" 
+            />
+            {tableOfContents}
+          </div>
         </Sidebar>
         
         {/* Main Content Area */}
-        <SidebarInset className="w-full md:w-2/3 lg:w-3/4">
+        <SidebarInset className="w-full md:w-3/4 lg:w-3/4">
           <div className="container mx-auto px-5% py-8">
             <BreadcrumbNavigation 
               items={[
@@ -55,7 +55,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
               )}
             </header>
             
-            <main className="prose prose-lg max-w-none">
+            <main className="prose prose-lg max-w-none pillar-content">
               {content}
             </main>
           </div>

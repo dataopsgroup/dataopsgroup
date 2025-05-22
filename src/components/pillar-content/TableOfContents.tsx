@@ -28,16 +28,17 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items, className }) =
   
   return (
     <nav className={cn("table-of-contents", className)}>
-      <ul className="space-y-2">
+      <h3 className="text-xl font-bold mb-4">Table of Contents</h3>
+      <ul className="space-y-3 pl-0 list-none">
         {items.map((item) => (
-          <li key={item.id} className="text-sm">
+          <li key={item.id} className="text-base">
             <a 
               href={`#${item.id}`}
               className={cn(
-                "block py-2 px-3 rounded-md transition-colors duration-200",
+                "block py-1.5 px-2 rounded transition-colors duration-200 no-underline",
                 activeId === item.id 
-                  ? "bg-gray-100 text-dataops-800 font-medium" 
-                  : "text-dataops-600 hover:bg-gray-50 hover:text-dataops-800"
+                  ? "text-dataops-800 font-medium bg-gray-100" 
+                  : "text-dataops-600 hover:text-dataops-800 hover:underline"
               )}
               onClick={(e) => {
                 e.preventDefault();
