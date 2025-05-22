@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 // Import all blog posts
@@ -43,7 +42,7 @@ import { leadTiersCaseStudy } from './posts/lead-tiers-case-study';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
-  hiddenCostOfFailedHubspotImplementations, // Add the new blog post at the top
+  hiddenCostOfFailedHubspotImplementations,
   leadTiersCaseStudy,
   hubspotBlogBestPractices,
   whatDoesAHubSpotConsultantCost,
@@ -85,7 +84,7 @@ export const blogPosts: BlogPost[] = [
 
 // Export individual posts for direct access if needed
 export {
-  hiddenCostOfFailedHubspotImplementations, // Export the new blog post
+  hiddenCostOfFailedHubspotImplementations,
   leadTiersCaseStudy,
   hubspotBlogBestPractices,
   howToHireAHubSpotConsultant,
