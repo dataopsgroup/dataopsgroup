@@ -1,3 +1,4 @@
+
 /**
  * Enhanced web vitals monitoring with more comprehensive metrics
  * and improved reporting capabilities
@@ -11,6 +12,10 @@ export interface WebVitalMetric {
   delta: number;
   id: string;
   entries: PerformanceEntry[];
+  userAgent?: string;
+  connection?: string;
+  deviceCategory?: string;
+  sessionId?: string;
 }
 
 // Interface for layout shift entries with hadRecentInput property
@@ -64,8 +69,101 @@ const generateUniqueID = (): string => {
   return `v-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
 };
 
+// Get device category based on screen size and user agent
+const getDeviceCategory = (): string => {
+  if (typeof window === 'undefined') return 'unknown';
+  
+  const ua = navigator.userAgent;
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+    return window.innerWidth < 600 ? 'mobile' : 'tablet';
+  }
+  return 'desktop';
+};
+
+// Get connection type if available
+const getConnectionInfo = (): string => {
+  if (typeof navigator !== 'undefined' && 'connection' in navigator) {
+    const conn = (navigator as any).connection;
+    if (conn) {
+      return conn.effectiveType || conn.type || 'unknown';
+    }
+  }
+  return 'unknown';
+};
+
+// Get or create sessionId for the current user session
+const getSessionId = (): string => {
+  if (typeof window === 'undefined') return 'server';
+  
+  try {
+    let sessionId = sessionStorage.getItem('perfSessionId');
+    if (!sessionId) {
+      sessionId = `session-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+      sessionStorage.setItem('perfSessionId', sessionId);
+    }
+    return sessionId;
+  } catch (e) {
+    // If sessionStorage is not available, generate a temporary ID
+    return `temp-${Date.now()}`;
+  }
+};
+
+// Custom timing marks for business events
+export const markBusinessEvent = (eventName: string): void => {
+  if (typeof performance === 'undefined') return;
+  
+  try {
+    const markName = `business-${eventName}-${Date.now()}`;
+    performance.mark(markName);
+    
+    // Report the business event timing
+    reportWebVital({
+      name: `Business_${eventName}`,
+      value: performance.now(),
+      delta: 0,
+      rating: 'good', // Business events don't have thresholds
+      id: generateUniqueID(),
+      entries: []
+    });
+  } catch (e) {
+    console.error('Failed to mark business event:', e);
+  }
+};
+
+// Measure time between two business events
+export const measureBusinessTiming = (startMark: string, endMark: string, name: string): void => {
+  if (typeof performance === 'undefined') return;
+  
+  try {
+    const measureName = `business-${name}-${Date.now()}`;
+    performance.measure(measureName, `business-${startMark}-${Date.now()}`, `business-${endMark}-${Date.now()}`);
+    
+    const measures = performance.getEntriesByName(measureName);
+    if (measures.length > 0) {
+      reportWebVital({
+        name: `BusinessTiming_${name}`,
+        value: measures[0].duration,
+        delta: measures[0].duration,
+        rating: 'good', // Business timings don't have thresholds
+        id: generateUniqueID(),
+        entries: measures
+      });
+    }
+  } catch (e) {
+    console.error('Failed to measure business timing:', e);
+  }
+};
+
 // Report web vital to analytics and log
 export const reportWebVital = (metric: WebVitalMetric): void => {
+  // Add user context data to the metric
+  if (typeof window !== 'undefined') {
+    metric.userAgent = navigator.userAgent;
+    metric.connection = getConnectionInfo();
+    metric.deviceCategory = getDeviceCategory();
+    metric.sessionId = getSessionId();
+  }
+  
   // Log to console in dev mode
   if (process.env.NODE_ENV === 'development') {
     console.log(`[Web Vitals] ${metric.name}: ${metric.value.toFixed(2)} (${metric.rating})`);
@@ -78,7 +176,10 @@ export const reportWebVital = (metric: WebVitalMetric): void => {
       metric_value: Math.round(metric.value * 100) / 100,
       metric_delta: Math.round(metric.delta * 100) / 100,
       metric_rating: metric.rating,
-      metric_id: metric.id
+      metric_id: metric.id,
+      device_category: metric.deviceCategory,
+      connection_type: metric.connection,
+      session_id: metric.sessionId
     });
   }
   
@@ -92,7 +193,10 @@ export const reportWebVital = (metric: WebVitalMetric): void => {
         id: metric.id,
         timestamp: Date.now(),
         url: window.location.href,
-        userAgent: navigator.userAgent
+        userAgent: navigator.userAgent,
+        deviceCategory: metric.deviceCategory,
+        connection: metric.connection,
+        sessionId: metric.sessionId
       };
       
       fetch(window.PERFORMANCE_API_ENDPOINT, {
@@ -115,7 +219,10 @@ export const reportWebVital = (metric: WebVitalMetric): void => {
       value: metric.value,
       rating: metric.rating,
       timestamp: Date.now(),
-      path: window.location.pathname
+      path: window.location.pathname,
+      deviceCategory: metric.deviceCategory,
+      connection: metric.connection,
+      sessionId: metric.sessionId
     });
     
     // Keep only last 100 entries
@@ -260,3 +367,26 @@ export const initWebVitals = (): void => {
     }, 0);
   });
 };
+
+// Track custom user interactions for correlation with performance
+export const trackUserInteraction = (interactionType: string, elementId?: string): void => {
+  if (typeof performance === 'undefined') return;
+  
+  try {
+    const timestamp = performance.now();
+    const markName = `interaction-${interactionType}-${timestamp}`;
+    performance.mark(markName);
+    
+    reportWebVital({
+      name: `Interaction_${interactionType}`,
+      value: timestamp,
+      delta: 0,
+      rating: 'good', // Interactions don't have thresholds
+      id: generateUniqueID(),
+      entries: []
+    });
+  } catch (e) {
+    console.error('Failed to track user interaction:', e);
+  }
+};
+

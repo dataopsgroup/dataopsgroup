@@ -33,6 +33,7 @@ if (typeof window !== 'undefined') {
   
   // Mark navigation start for performance measurements
   performance.mark('app-init-start');
+  performance.mark('navigation-start');
 }
 
 // Initialize application
@@ -63,6 +64,7 @@ const renderApp = () => {
     // Mark render completion
     performance.mark('render-complete');
     performance.measure('total-render-time', 'render-start', 'render-complete');
+    performance.measure('navigation-to-render', 'navigation-start', 'render-complete');
   }
 };
 
@@ -137,16 +139,24 @@ if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
     performance.mark('app-loaded');
     performance.measure('app-startup-time', 'app-init-start', 'app-loaded');
+    performance.measure('navigation-to-load', 'navigation-start', 'app-loaded');
     
     // Report performance data after load
     setTimeout(() => {
       const startupTiming = performance.getEntriesByName('app-startup-time')[0];
       const renderTiming = performance.getEntriesByName('total-render-time')[0];
+      const navigationToRenderTiming = performance.getEntriesByName('navigation-to-render')[0];
+      const navigationToLoadTiming = performance.getEntriesByName('navigation-to-load')[0];
       
       if (window.gtag) {
         window.gtag('event', 'performance', {
-          startup_time: Math.round(startupTiming.duration),
-          render_time: Math.round(renderTiming.duration)
+          startup_time: Math.round(startupTiming?.duration || 0),
+          render_time: Math.round(renderTiming?.duration || 0),
+          navigation_to_render: Math.round(navigationToRenderTiming?.duration || 0),
+          navigation_to_load: Math.round(navigationToLoadTiming?.duration || 0),
+          user_agent: navigator.userAgent,
+          viewport_width: window.innerWidth,
+          viewport_height: window.innerHeight
         });
       }
       
