@@ -54,6 +54,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
           objectFit="cover"
           priority={true}
           aspectRatio={1200/630}
+          placeholder="/placeholder.svg"
         />
       </figure>
     </div>

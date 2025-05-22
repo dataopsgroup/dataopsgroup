@@ -85,6 +85,21 @@ export const useOptimizedImage = ({
     }
   }, [src, priority, isLCP]);
   
+  // Pre-validate image exists
+  useEffect(() => {
+    if (typeof Image !== 'undefined' && src && src !== placeholder) {
+      const img = new Image();
+      img.src = src;
+      
+      img.onerror = () => {
+        console.warn(`Image preload failed: ${src}, will use placeholder`);
+        if (imgRef.current && imgRef.current.src !== placeholder) {
+          imgRef.current.src = placeholder;
+        }
+      };
+    }
+  }, [src, placeholder]);
+  
   // Report LCP for important images
   useEffect(() => {
     if (!isLCP || !isLoaded) return;
@@ -136,6 +151,11 @@ export const useOptimizedImage = ({
           return response.blob();
         }
         // Fall back to placeholder
+        if (imgRef.current) {
+          imgRef.current.src = placeholder;
+        }
+      }).catch(() => {
+        // Final fallback - use placeholder
         if (imgRef.current) {
           imgRef.current.src = placeholder;
         }

@@ -133,9 +133,7 @@ const BlogList = () => {
                       <CardHeader className="pb-4">
                         <figure>
                           <OptimizedImage 
-                            src={post.id === "hidden-cost-of-failed-hubspot-implementations" 
-                              ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" 
-                              : post.coverImage} 
+                            src={post.coverImage} 
                             alt={post.title} 
                             className="w-full h-48 object-cover rounded-t-lg mb-6" 
                             width={400}

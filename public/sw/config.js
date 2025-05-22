@@ -1,5 +1,5 @@
 // Service Worker Configuration
-const APP_VERSION = '1.0.7'; // Increment this when making significant changes
+const APP_VERSION = '1.0.8'; // Increment this when making significant changes
 
 // Cache categories for different caching strategies
 const STATIC_CONTENT = {
@@ -8,6 +8,15 @@ const STATIC_CONTENT = {
   resources: [
     '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', // Logo
     '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png', // Favicon
+    // Blog post images
+    '/lovable-uploads/3b1b6123-f768-43f8-9310-060df495237c.png', // customer-segmentation-mistake
+    '/lovable-uploads/2ea19d63-b482-4702-ace9-64b05202fd26.png', // customer-acquisition-cost
+    '/lovable-uploads/ff953630-432d-46db-998e-cc20409e46d1.png', // customer-churn-blindspot
+    '/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.png', // data-enrichment-strategy
+    '/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png', // customer-segmentation-mistake-icp
+    '/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1.png', // crm-cleanup-plan
+    '/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.png', // create-pro-level-hubspot-lead-score-model
+    '/lovable-uploads/66cb018a-41fa-4046-a81f-5c632b199583.png', // 3-tips-for-smart-workflows
     // Other static images and font files
   ]
 };
@@ -69,7 +78,17 @@ const API_RESPONSES = {
 const IMAGE_ASSETS = {
   name: 'image-assets-v3',
   maxAge: 1209600, // 14 days in seconds
-  resources: [],  // Will be populated at runtime
+  resources: [
+    // Blog images
+    '/lovable-uploads/3b1b6123-f768-43f8-9310-060df495237c.png', 
+    '/lovable-uploads/2ea19d63-b482-4702-ace9-64b05202fd26.png',
+    '/lovable-uploads/ff953630-432d-46db-998e-cc20409e46d1.png',
+    '/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.png',
+    '/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png',
+    '/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1.png',
+    '/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.png',
+    '/lovable-uploads/66cb018a-41fa-4046-a81f-5c632b199583.png'
+  ],
   // Different types of images might need different cache settings
   byExtension: {
     '.svg': 2592000, // 30 days for SVG files

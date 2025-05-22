@@ -78,6 +78,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                           aspectRatio={2/1}
                           objectFit="cover"
                           loading={index === 0 ? "eager" : "lazy"}
+                          placeholder="/placeholder.svg"
                         />
                       </div>
                       <CardTitle className="text-lg font-semibold hover:text-dataops-600 transition-colors mt-4">
