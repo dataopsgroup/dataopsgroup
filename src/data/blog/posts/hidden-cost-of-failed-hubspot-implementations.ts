@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 export const hiddenCostOfFailedHubspotImplementations: BlogPost = {
@@ -8,7 +7,7 @@ export const hiddenCostOfFailedHubspotImplementations: BlogPost = {
   date: "2025-05-15",
   author: "Geoff Tucker", 
   category: "Insights", 
-  coverImage: "/lovable-uploads/hubspot-implementation-costs.png",
+  coverImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png",
   featuredImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png",
   content: `
     <p>When a company invests in HubSpot, they're not just purchasing software—they're investing in a vision of streamlined operations, enhanced customer relationships, and data-driven growth. Yet according to a 2022 HubSpot Research study, 45% of businesses report that they aren't utilizing their CRM to its full potential, leaving significant value on the table (<a href="https://www.hubspot.com/state-of-marketing" target="_blank">HubSpot, 2022</a>).</p>
