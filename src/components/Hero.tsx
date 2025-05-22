@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -38,8 +39,8 @@ const Hero = () => {
             <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" fetchPriority="high" />
             
             {/* Mark as LCP element for monitoring */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="hero-heading" data-lcp="true">
-              Fix Your <span className="text-black">HubSpot</span> <span className="text-red-500">Headache</span>. <br />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
+              Fix Your <span className="text-[#403E43]">HubSpot</span> <span className="text-red-500">Headache</span>. <br />
               Eliminate Operational <span className="text-yellow-500">Friction</span>. <br />
               Generate More <span className="text-green-500">Revenue</span> and <span className="text-green-500">Net Profit</span>.
             </h1>
