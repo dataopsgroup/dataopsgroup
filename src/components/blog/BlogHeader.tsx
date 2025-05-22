@@ -44,7 +44,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
         )}
       </div>
       
-      <figure className="mb-8">
+      <figure className="mb-12">
         <OptimizedImage
           src={coverImage}
           alt={title}
