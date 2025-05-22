@@ -1,6 +1,6 @@
 // Service Worker for client-side caching strategy with enhanced caching policies
-const CACHE_NAME = 'dataops-cache-v2';
-const APP_VERSION = '1.0.1'; // Increment this when making significant changes
+const CACHE_NAME = 'dataops-cache-v3';
+const APP_VERSION = '1.0.4'; // Increment this when making significant changes
 
 // Cache categories for different caching strategies
 const STATIC_CONTENT = {
