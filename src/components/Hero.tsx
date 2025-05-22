@@ -86,7 +86,7 @@ const Hero = () => {
                 <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mb-4" aria-hidden="true">
                   <span className="font-bold">+</span>
                 </div>
-                <h3 className="text-base font-medium">HubSpot Services</h3>
+                <h3 className="text-base font-medium">HubSpot Guidance</h3>
               </div>
             </div>
           </div>
