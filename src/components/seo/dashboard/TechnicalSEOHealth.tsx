@@ -1,13 +1,39 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, AlertCircle, Wrench } from 'lucide-react';
+import { CheckCircle, AlertCircle, Wrench, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { useTechnicalSEO } from '@/services/technicalSEOService';
 
 const TechnicalSEOHealth: React.FC = () => {
   const { toast } = useToast();
   const [isFixing, setIsFixing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [checkResults, setCheckResults] = useState<any>(null);
+  const { runTechnicalSEOCheck, fixTechnicalSEOIssues } = useTechnicalSEO('dataopsgroup.com');
+  
+  const loadTechnicalSEOData = async () => {
+    setIsLoading(true);
+    try {
+      const results = await runTechnicalSEOCheck();
+      setCheckResults(results);
+    } catch (error) {
+      console.error('Error loading technical SEO data:', error);
+      toast({
+        title: "Failed to Load SEO Data",
+        description: "Could not retrieve technical SEO health data. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  // Load data on component mount
+  useEffect(() => {
+    loadTechnicalSEOData();
+  }, []);
   
   // Function to fix the SEO issues
   const handleFixIssues = async () => {
@@ -19,15 +45,15 @@ const TechnicalSEOHealth: React.FC = () => {
       const fixEvent = new CustomEvent('fix-seo-issues');
       window.dispatchEvent(fixEvent);
       
-      // Wait for the fixes to be applied (simulating API calls)
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Call the actual fix function
+      const success = await fixTechnicalSEOIssues();
       
-      // Success toast after fixes are applied
-      toast({
-        title: "SEO Issues Fixed",
-        description: "All identified SEO issues have been successfully fixed.",
-      });
+      if (success) {
+        // Reload the technical SEO data to show updated status
+        await loadTechnicalSEOData();
+      }
     } catch (error) {
+      console.error('Error fixing SEO issues:', error);
       // Error toast if something goes wrong
       toast({
         title: "Fix Failed",
@@ -38,6 +64,22 @@ const TechnicalSEOHealth: React.FC = () => {
       setIsFixing(false);
     }
   };
+
+  if (isLoading && !checkResults) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Technical SEO Health</CardTitle>
+          <CardDescription>Issues affecting crawlability and indexability</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card>
@@ -125,8 +167,17 @@ const TechnicalSEOHealth: React.FC = () => {
               disabled={isFixing}
               className="flex items-center gap-2"
             >
-              <Wrench className="h-4 w-4" />
-              {isFixing ? "Fixing Issues..." : "Fix Issues"}
+              {isFixing ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Fixing Issues...
+                </>
+              ) : (
+                <>
+                  <Wrench className="h-4 w-4" />
+                  Fix Issues
+                </>
+              )}
             </Button>
           </div>
         </div>

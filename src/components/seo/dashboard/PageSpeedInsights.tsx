@@ -4,24 +4,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
-import { usePageSpeedData } from '@/hooks/usePageSpeedData';
+import { useRealPageSpeedData } from '@/hooks/useRealPageSpeedData';
+import { Loader2 } from 'lucide-react';
 
 interface PageSpeedInsightsProps {
   siteUrl?: string;
 }
 
 const PageSpeedInsights: React.FC<PageSpeedInsightsProps> = ({ siteUrl = 'dataopsgroup.com' }) => {
-  const [url, setUrl] = useState(siteUrl);
   const [inputUrl, setInputUrl] = useState(siteUrl);
-  const { data, isLoading, error, refetch } = usePageSpeedData(url);
+  const { data, isLoading, analyze } = useRealPageSpeedData();
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputUrl(e.target.value);
   };
 
   const handleAnalyze = () => {
-    setUrl(inputUrl);
-    refetch();
+    analyze(inputUrl);
   };
 
   const getScoreColor = (score: number) => {
@@ -52,17 +51,19 @@ const PageSpeedInsights: React.FC<PageSpeedInsightsProps> = ({ siteUrl = 'dataop
             />
           </div>
           <Button onClick={handleAnalyze} disabled={isLoading}>
-            {isLoading ? 'Analyzing...' : 'Analyze'}
+            {isLoading ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Analyzing...
+              </>
+            ) : 'Analyze'}
           </Button>
         </div>
 
         {isLoading ? (
           <div className="py-8 text-center">
-            <p className="text-muted-foreground">Analyzing {url}...</p>
-          </div>
-        ) : error ? (
-          <div className="py-8 text-center">
-            <p className="text-red-500">Error fetching PageSpeed data. Please try again.</p>
+            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
+            <p className="text-muted-foreground">Analyzing {inputUrl}...</p>
           </div>
         ) : !data ? (
           <div className="py-8 text-center">

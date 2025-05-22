@@ -1,9 +1,12 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { useGSCMetrics } from './useGSCMetrics';
 
-const GSCSummaryMetrics: React.FC = () => {
+interface GSCSummaryMetricsProps {
+  data: any;
+}
+
+const GSCSummaryMetrics: React.FC<GSCSummaryMetricsProps> = ({ data }) => {
   const {
     totalImpressions,
     totalClicks,
@@ -12,7 +15,10 @@ const GSCSummaryMetrics: React.FC = () => {
     impressionsChange,
     clicksChange,
     positionChange
-  } = useGSCMetrics();
+  } = data || { 
+    totalImpressions: 0, totalClicks: 0, averageCTR: 0, 
+    averagePosition: 0, impressionsChange: '0', clicksChange: '0', positionChange: '0' 
+  };
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">

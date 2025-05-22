@@ -1,8 +1,20 @@
 
 import React from 'react';
-import { topPages } from './mockData';
 
-const GSCTopPages: React.FC = () => {
+interface GSCPage {
+  name: string;
+  page?: string;
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  position: number;
+}
+
+interface GSCTopPagesProps {
+  pages: GSCPage[];
+}
+
+const GSCTopPages: React.FC<GSCTopPagesProps> = ({ pages }) => {
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[600px] border-collapse">
@@ -16,15 +28,25 @@ const GSCTopPages: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {topPages.map((page, index) => (
-            <tr key={index} className="border-b">
-              <td className="py-3 px-4 text-left font-medium max-w-[200px] truncate">{page.page}</td>
-              <td className="py-3 px-4 text-right">{page.clicks}</td>
-              <td className="py-3 px-4 text-right">{page.impressions}</td>
-              <td className="py-3 px-4 text-right">{page.ctr}%</td>
-              <td className="py-3 px-4 text-right">{page.position}</td>
+          {pages.length > 0 ? (
+            pages.map((page, index) => (
+              <tr key={index} className="border-b">
+                <td className="py-3 px-4 text-left font-medium max-w-[200px] truncate">
+                  {page.name || page.page}
+                </td>
+                <td className="py-3 px-4 text-right">{page.clicks}</td>
+                <td className="py-3 px-4 text-right">{page.impressions}</td>
+                <td className="py-3 px-4 text-right">{page.ctr}%</td>
+                <td className="py-3 px-4 text-right">{page.position}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={5} className="py-8 text-center text-gray-500">
+                No page data available
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

@@ -8,9 +8,10 @@ import GSCTopQueries from './GSCTopQueries';
 interface GSCContentTabsProps {
   activeTab: string;
   setActiveTab: (value: string) => void;
+  data: any;
 }
 
-const GSCContentTabs: React.FC<GSCContentTabsProps> = ({ activeTab, setActiveTab }) => {
+const GSCContentTabs: React.FC<GSCContentTabsProps> = ({ activeTab, setActiveTab, data }) => {
   return (
     <Tabs defaultValue="performance" className="w-full" onValueChange={setActiveTab}>
       <TabsList className="mb-4 w-full sm:w-auto">
@@ -20,15 +21,15 @@ const GSCContentTabs: React.FC<GSCContentTabsProps> = ({ activeTab, setActiveTab
       </TabsList>
       
       <TabsContent value="performance" className="mt-0">
-        <GSCPerformanceChart activeTab={activeTab} />
+        <GSCPerformanceChart activeTab={activeTab} data={data?.metrics || []} />
       </TabsContent>
       
       <TabsContent value="pages" className="mt-0">
-        <GSCTopPages />
+        <GSCTopPages pages={data?.topPages || []} />
       </TabsContent>
       
       <TabsContent value="queries" className="mt-0">
-        <GSCTopQueries />
+        <GSCTopQueries queries={data?.topQueries || []} />
       </TabsContent>
     </Tabs>
   );

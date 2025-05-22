@@ -6,6 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import GSCSummaryMetrics from './gsc-overview/GSCSummaryMetrics';
 import GSCContentTabs from './gsc-overview/GSCContentTabs';
 import GSCEmptyState from './gsc-overview/GSCEmptyState';
+import useGSCData from '@/hooks/useGSCData';
+import { Loader2 } from 'lucide-react';
 
 interface GSCOverviewProps {
   siteUrl?: string;
@@ -13,8 +15,47 @@ interface GSCOverviewProps {
 
 const GSCOverview: React.FC<GSCOverviewProps> = ({ siteUrl = 'dataopsgroup.com' }) => {
   const [dateRange, setDateRange] = useState('30d');
-  const [isConnected, setIsConnected] = useState(true);
   const [activeTab, setActiveTab] = useState('performance');
+  
+  // Calculate date range for the API call
+  const getDateRange = () => {
+    const endDate = new Date();
+    let startDate = new Date();
+    
+    switch (dateRange) {
+      case '7d':
+        startDate.setDate(endDate.getDate() - 7);
+        break;
+      case '30d':
+        startDate.setDate(endDate.getDate() - 30);
+        break;
+      case '90d':
+        startDate.setDate(endDate.getDate() - 90);
+        break;
+      default:
+        startDate.setDate(endDate.getDate() - 30);
+    }
+    
+    return {
+      startDate: startDate.toISOString().split('T')[0],
+      endDate: endDate.toISOString().split('T')[0]
+    };
+  };
+  
+  const { data, isLoading, refetch, authenticate } = useGSCData(
+    siteUrl, 
+    getDateRange()
+  );
+  
+  const isConnected = data?.isAuthenticated || false;
+  
+  const handleConnect = async () => {
+    await authenticate();
+  };
+  
+  const handleRefresh = () => {
+    refetch();
+  };
 
   return (
     <Card className="w-full">
@@ -30,7 +71,7 @@ const GSCOverview: React.FC<GSCOverviewProps> = ({ siteUrl = 'dataopsgroup.com' 
             </CardDescription>
           </div>
           <div className="flex gap-2">
-            <Select value={dateRange} onValueChange={setDateRange}>
+            <Select value={dateRange} onValueChange={setDateRange} disabled={!isConnected}>
               <SelectTrigger className="w-[130px]">
                 <SelectValue placeholder="Date range" />
               </SelectTrigger>
@@ -40,24 +81,50 @@ const GSCOverview: React.FC<GSCOverviewProps> = ({ siteUrl = 'dataopsgroup.com' 
                 <SelectItem value="90d">Last 90 days</SelectItem>
               </SelectContent>
             </Select>
-            <Button variant="outline" size="sm">
-              {isConnected ? 'Refresh' : 'Connect GSC'}
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={isConnected ? handleRefresh : handleConnect}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                isConnected ? 'Refresh' : 'Connect GSC'
+              )}
             </Button>
           </div>
         </div>
       </CardHeader>
       <CardContent>
         {isConnected ? (
-          <>
-            <GSCSummaryMetrics />
-            <GSCContentTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-          </>
+          isLoading ? (
+            <div className="flex justify-center items-center py-20">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : (
+            <>
+              <GSCSummaryMetrics data={data} />
+              <GSCContentTabs activeTab={activeTab} setActiveTab={setActiveTab} data={data} />
+            </>
+          )
         ) : (
-          <GSCEmptyState />
+          <GSCEmptyState onConnect={handleConnect} isConnecting={isLoading} />
         )}
       </CardContent>
       <CardFooter className="border-t pt-4 text-xs text-gray-500">
-        Data is automatically updated daily. Last updated: May 21, 2025
+        {isConnected ? (
+          `Data is automatically updated daily. Last updated: ${new Date().toLocaleDateString('en-US', { 
+            month: 'long', 
+            day: 'numeric', 
+            year: 'numeric' 
+          })}`
+        ) : (
+          'Connect to Google Search Console to view your search performance data'
+        )}
       </CardFooter>
     </Card>
   );
