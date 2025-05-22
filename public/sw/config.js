@@ -1,5 +1,5 @@
 // Service Worker Configuration
-const APP_VERSION = '1.0.6'; // Increment this when making significant changes
+const APP_VERSION = '1.0.7'; // Increment this when making significant changes
 
 // Cache categories for different caching strategies
 const STATIC_CONTENT = {

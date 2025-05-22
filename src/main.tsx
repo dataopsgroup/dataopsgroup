@@ -1,3 +1,4 @@
+
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
@@ -21,7 +22,7 @@ import { applyCriticalCSS, loadFonts } from './lib/critical-css';
 
 // Define app version globally
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.0.6'; // Incremented version for cache busting
+  window.APP_VERSION = '1.0.7'; // Incremented version for cache busting
 }
 
 // Initialize essential monitoring right away
