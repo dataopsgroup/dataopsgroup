@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, 
@@ -35,13 +34,20 @@ const WebVitalsDashboard = () => {
       // Load metrics from localStorage
       const storedMetrics = localStorage.getItem('webVitalsMetrics');
       if (storedMetrics) {
-        const parsedMetrics = JSON.parse(storedMetrics);
+        const parsedMetrics = JSON.parse(storedMetrics) as WebVitalMetric[];
         setMetrics(parsedMetrics);
         
-        // Extract unique values for filters
-        const devices = [...new Set(parsedMetrics.map((m: WebVitalMetric) => m.deviceCategory).filter(Boolean))];
-        const connections = [...new Set(parsedMetrics.map((m: WebVitalMetric) => m.connection).filter(Boolean))];
-        const paths = [...new Set(parsedMetrics.map((m: WebVitalMetric) => m.path))];
+        // Extract unique values for filters with proper type casting
+        const devices = Array.from(new Set(parsedMetrics
+          .map(m => m.deviceCategory)
+          .filter(Boolean) as string[]));
+          
+        const connections = Array.from(new Set(parsedMetrics
+          .map(m => m.connection)
+          .filter(Boolean) as string[]));
+          
+        const paths = Array.from(new Set(parsedMetrics
+          .map(m => m.path) as string[]));
         
         setUniqueDevices(devices);
         setUniqueConnections(connections);
@@ -52,13 +58,20 @@ const WebVitalsDashboard = () => {
       const handleStorageChange = () => {
         const updatedMetrics = localStorage.getItem('webVitalsMetrics');
         if (updatedMetrics) {
-          const parsedMetrics = JSON.parse(updatedMetrics);
+          const parsedMetrics = JSON.parse(updatedMetrics) as WebVitalMetric[];
           setMetrics(parsedMetrics);
           
-          // Update unique values for filters
-          const devices = [...new Set(parsedMetrics.map((m: WebVitalMetric) => m.deviceCategory).filter(Boolean))];
-          const connections = [...new Set(parsedMetrics.map((m: WebVitalMetric) => m.connection).filter(Boolean))];
-          const paths = [...new Set(parsedMetrics.map((m: WebVitalMetric) => m.path))];
+          // Update unique values for filters with proper type casting
+          const devices = Array.from(new Set(parsedMetrics
+            .map(m => m.deviceCategory)
+            .filter(Boolean) as string[]));
+            
+          const connections = Array.from(new Set(parsedMetrics
+            .map(m => m.connection)
+            .filter(Boolean) as string[]));
+            
+          const paths = Array.from(new Set(parsedMetrics
+            .map(m => m.path) as string[]));
           
           setUniqueDevices(devices);
           setUniqueConnections(connections);

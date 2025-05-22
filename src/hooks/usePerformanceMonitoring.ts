@@ -2,6 +2,12 @@
 import { useEffect } from 'react';
 import { markBusinessEvent, measureBusinessTiming, trackUserInteraction } from '@/utils/web-vitals';
 
+// Extending PerformanceEntry with properties specific to resource timing
+interface PerformanceResourceTimingEntry extends PerformanceResourceTiming {
+  initiatorType: string;
+  duration: number;
+}
+
 /**
  * Hook to track business events and user interactions
  */
@@ -103,11 +109,14 @@ export const useResourceMonitoring = () => {
         const entries = entryList.getEntries();
         
         entries.forEach(entry => {
+          // Type assertion to access resource timing specific properties
+          const resourceEntry = entry as PerformanceResourceTimingEntry;
+          
           // Filter to important resources only
-          if (entry.initiatorType === 'fetch' || 
-              entry.initiatorType === 'xmlhttprequest' || 
-              (entry.initiatorType === 'img' && entry.duration > 1000)) {
-            console.debug('Slow resource load:', entry);
+          if (resourceEntry.initiatorType === 'fetch' || 
+              resourceEntry.initiatorType === 'xmlhttprequest' || 
+              (resourceEntry.initiatorType === 'img' && resourceEntry.duration > 1000)) {
+            console.debug('Slow resource load:', resourceEntry);
           }
         });
       });

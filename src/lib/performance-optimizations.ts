@@ -356,41 +356,46 @@ export const optimizeResourceOrder = () => {
   // Reorder scripts by removing and reinserting them
   // This is an advanced technique and should be used with caution
   if (document.readyState !== 'complete') {
-    window.addEventListener('load', reorderScripts);
+    window.addEventListener('load', () => reorderScripts(criticalScripts, thirdPartyScripts, analyticsScripts));
   } else {
-    reorderScripts();
-  }
-  
-  function reorderScripts() {
-    // First, clone all scripts
-    const scriptClones = [...criticalScripts, ...thirdPartyScripts, ...analyticsScripts].map(script => {
-      const clone = document.createElement('script');
-      
-      // Copy all attributes
-      Array.from(script.attributes).forEach(attr => {
-        clone.setAttribute(attr.name, attr.value);
-      });
-      
-      // Copy inline script content
-      if (!script.src) {
-        clone.textContent = script.textContent;
-      }
-      
-      return {
-        original: script,
-        clone: clone
-      };
-    });
-    
-    // Remove originals and insert clones in optimal order
-    scriptClones.forEach(({ original, clone }) => {
-      if (original.parentNode) {
-        original.parentNode.removeChild(original);
-        document.body.appendChild(clone);
-      }
-    });
+    reorderScripts(criticalScripts, thirdPartyScripts, analyticsScripts);
   }
 };
+
+// Extracted the function to avoid duplicate declarations
+function reorderScripts(
+  criticalScripts: HTMLScriptElement[], 
+  thirdPartyScripts: HTMLScriptElement[], 
+  analyticsScripts: HTMLScriptElement[]
+) {
+  // Clone all scripts
+  const scriptClones = [...criticalScripts, ...thirdPartyScripts, ...analyticsScripts].map(script => {
+    const clone = document.createElement('script');
+    
+    // Copy all attributes
+    Array.from(script.attributes).forEach(attr => {
+      clone.setAttribute(attr.name, attr.value);
+    });
+    
+    // Copy inline script content
+    if (!script.src) {
+      clone.textContent = script.textContent;
+    }
+    
+    return {
+      original: script,
+      clone: clone
+    };
+  });
+  
+  // Remove originals and insert clones in optimal order
+  scriptClones.forEach(({ original, clone }) => {
+    if (original.parentNode) {
+      original.parentNode.removeChild(original);
+      document.body.appendChild(clone);
+    }
+  });
+}
 
 // New function to dynamically prioritize loading based on user interaction
 export const setupInteractionBasedLoading = () => {
