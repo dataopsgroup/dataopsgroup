@@ -23,8 +23,12 @@ const BookCTA = () => {
                       width={288}
                       height={432}
                       priority={true}
+                      isLCP={true}
+                      blur={true}
                       objectFit="cover"
                       loading="eager"
+                      decoding="sync"
+                      threshold={0.1}
                     />
                   </div>
                 </div>

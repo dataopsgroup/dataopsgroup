@@ -34,8 +34,11 @@ const DataOpsImplementationHero = () => {
                 alt="Person diagramming data flows and integrations on a whiteboard"
                 width={600}
                 height={375}
-                className="w-full h-full object-cover"
+                className="w-full h-full"
                 objectFit="cover"
+                isLCP={true}
+                blur={true}
+                threshold={0.1}
               />
             </div>
           </div>
