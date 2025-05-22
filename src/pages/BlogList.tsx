@@ -111,6 +111,11 @@ const BlogList = () => {
               const publishDate = new Date(post.date);
               const formattedPublishDate = publishDate.toISOString();
               
+              // Special case for the post that has a specific image
+              const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" 
+                ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png"
+                : post.coverImage;
+              
               return (
                 <article key={post.id} className="h-full">
                   <Card className="flex flex-col h-full hover:shadow-lg transition-shadow">
@@ -133,7 +138,7 @@ const BlogList = () => {
                       <CardHeader className="pb-4">
                         <figure>
                           <OptimizedImage 
-                            src={post.coverImage} 
+                            src={coverImage} 
                             alt={post.title} 
                             className="w-full h-48 object-cover rounded-t-lg mb-6" 
                             width={400}
@@ -141,10 +146,11 @@ const BlogList = () => {
                             loading="lazy"
                             objectFit="cover"
                             aspectRatio={2/1}
+                            placeholder="/placeholder.svg"
                           />
                         </figure>
                         <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors">
-                          <h2>{post.title}</h2>
+                          {post.title}
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="flex-grow">

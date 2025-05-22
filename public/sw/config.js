@@ -1,5 +1,5 @@
 // Service Worker Configuration
-const APP_VERSION = '1.0.8'; // Increment this when making significant changes
+const APP_VERSION = '1.0.9'; // Increment this when making significant changes
 
 // Cache categories for different caching strategies
 const STATIC_CONTENT = {
@@ -17,6 +17,7 @@ const STATIC_CONTENT = {
     '/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1.png', // crm-cleanup-plan
     '/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.png', // create-pro-level-hubspot-lead-score-model
     '/lovable-uploads/66cb018a-41fa-4046-a81f-5c632b199583.png', // 3-tips-for-smart-workflows
+    '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png', // hidden-cost-of-failed-hubspot-implementations
     // Other static images and font files
   ]
 };
@@ -87,7 +88,8 @@ const IMAGE_ASSETS = {
     '/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png',
     '/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1.png',
     '/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.png',
-    '/lovable-uploads/66cb018a-41fa-4046-a81f-5c632b199583.png'
+    '/lovable-uploads/66cb018a-41fa-4046-a81f-5c632b199583.png',
+    '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png'
   ],
   // Different types of images might need different cache settings
   byExtension: {

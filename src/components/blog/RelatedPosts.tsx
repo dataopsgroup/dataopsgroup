@@ -63,47 +63,54 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
         
         <Carousel className="w-full max-w-5xl mx-auto">
           <CarouselContent>
-            {postsToDisplay.map((post, index) => (
-              <CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                <Card className="h-full hover:shadow-lg transition-shadow">
-                  <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
-                    <CardHeader className="pb-4">
-                      <div className="w-full h-40 rounded-t-lg overflow-hidden">
-                        <OptimizedImage 
-                          src={post.coverImage} 
-                          alt={post.title} 
-                          width={320}
-                          height={160}
-                          className="w-full h-full"
-                          aspectRatio={2/1}
-                          objectFit="cover"
-                          loading={index === 0 ? "eager" : "lazy"}
-                          placeholder="/placeholder.svg"
-                        />
-                      </div>
-                      <CardTitle className="text-lg font-semibold hover:text-dataops-600 transition-colors mt-4">
-                        {post.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <CardDescription className="text-gray-700 text-sm">
-                        {post.excerpt.length > 100 
-                          ? `${post.excerpt.substring(0, 100)}...` 
-                          : post.excerpt}
-                      </CardDescription>
-                    </CardContent>
-                    <CardFooter className="flex justify-between items-center pt-2 border-t border-gray-100">
-                      <div className="text-xs text-gray-500">
-                        {format(new Date(post.date), 'MMMM d, yyyy')} · {post.author}
-                      </div>
-                      <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
-                        Read More
-                      </span>
-                    </CardFooter>
-                  </Link>
-                </Card>
-              </CarouselItem>
-            ))}
+            {postsToDisplay.map((post, index) => {
+              // Special case for the post that has a specific image
+              const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" 
+                ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png"
+                : post.coverImage;
+                
+              return (
+                <CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
+                  <Card className="h-full hover:shadow-lg transition-shadow">
+                    <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
+                      <CardHeader className="pb-4">
+                        <div className="w-full h-40 rounded-t-lg overflow-hidden">
+                          <OptimizedImage 
+                            src={coverImage} 
+                            alt={post.title} 
+                            width={320}
+                            height={160}
+                            className="w-full h-full"
+                            aspectRatio={2/1}
+                            objectFit="cover"
+                            loading={index === 0 ? "eager" : "lazy"}
+                            placeholder="/placeholder.svg"
+                          />
+                        </div>
+                        <CardTitle className="text-lg font-semibold hover:text-dataops-600 transition-colors mt-4">
+                          {post.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-grow">
+                        <CardDescription className="text-gray-700 text-sm">
+                          {post.excerpt.length > 100 
+                            ? `${post.excerpt.substring(0, 100)}...` 
+                            : post.excerpt}
+                        </CardDescription>
+                      </CardContent>
+                      <CardFooter className="flex justify-between items-center pt-2 border-t border-gray-100">
+                        <div className="text-xs text-gray-500">
+                          {format(new Date(post.date), 'MMMM d, yyyy')} · {post.author}
+                        </div>
+                        <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
+                          Read More
+                        </span>
+                      </CardFooter>
+                    </Link>
+                  </Card>
+                </CarouselItem>
+              )
+            })}
           </CarouselContent>
           <CarouselPrevious className="-left-4 lg:-left-12 bg-white" />
           <CarouselNext className="-right-4 lg:-right-12 bg-white" />
