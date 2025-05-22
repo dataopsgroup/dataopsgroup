@@ -39,9 +39,9 @@ const Hero = () => {
             
             {/* Mark as LCP element for monitoring */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" id="hero-heading" data-lcp="true">
-              Fix Your <span className="text-dataops-600">HubSpot Headache</span>. <br />
-              Eliminate Operational Friction. <br />
-              Generate More Revenue and Net Profit.
+              Fix Your <span className="text-black">HubSpot</span> <span className="text-red-500">Headache</span>. <br />
+              Eliminate Operational <span className="text-yellow-500">Friction</span>. <br />
+              Generate More <span className="text-green-500">Revenue</span> and <span className="text-green-500">Net Profit</span>.
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
               It's not HubSpot that's failing you—it's your disorganized data and setup. We convert chaotic, scattered HubSpot portals into organized revenue engines that turn your existing contacts into paying customers.
