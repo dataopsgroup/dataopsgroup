@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { WebVitalMetric } from '@/utils/performance/types';
-import { VitalsSummary } from './components/VitalsSummary';
-import { VitalsDetails } from './components/VitalsDetails';
-import { VitalsSegmentation } from './components/VitalsSegmentation';
-import { VitalsRawData } from './components/VitalsRawData';
+import { VitalsSummary } from '../vitals-dashboard/VitalsSummary';
+import { VitalsDetails } from '../vitals-dashboard/VitalsDetails';
+import { VitalsSegmentation } from '../vitals-dashboard/VitalsSegmentation';
+import { VitalsRawData } from '../vitals-dashboard/VitalsRawData';
 import { DeviceDistribution } from './charts/DeviceDistribution';
 import { LCPElementAnalysis } from './charts/LCPElementAnalysis';
 import { BlockingTimeAnalysis } from './charts/BlockingTimeAnalysis';

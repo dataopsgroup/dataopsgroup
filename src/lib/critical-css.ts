@@ -62,8 +62,9 @@ export const optimizeFontLoading = () => {
           
           if (rule.type === CSSRule.FONT_FACE_RULE) {
             const fontFaceRule = rule as CSSFontFaceRule;
-            if (!fontFaceRule.style.fontDisplay) {
-              fontFaceRule.style.fontDisplay = 'swap';
+            // Use type assertion to access fontDisplay property
+            if (!(fontFaceRule.style as any).fontDisplay) {
+              (fontFaceRule.style as any).fontDisplay = 'swap';
             }
           }
         }

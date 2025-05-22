@@ -11,6 +11,12 @@ interface BudgetItem {
   url: string;
 }
 
+// Type definition for resource timing entry to handle initiatorType property
+interface EnhancedPerformanceEntry extends PerformanceEntry {
+  initiatorType?: string;
+  encodedBodySize?: number;
+}
+
 // Budget limits in bytes
 export const BUDGET_LIMITS = {
   SCRIPT: 170 * 1024, // 170KB for JavaScript
@@ -33,8 +39,10 @@ export const calculateBudgetUsage = (): BudgetItem[] => {
     const budgetItems: BudgetItem[] = [];
     
     resources.forEach(resource => {
+      // Cast to our enhanced interface to access initiatorType
+      const resourceEntry = resource as EnhancedPerformanceEntry;
       const url = resource.name;
-      const size = (resource as PerformanceResourceTiming).encodedBodySize;
+      const size = resourceEntry.encodedBodySize || 0;
       
       // Skip tiny resources or those with invalid size
       if (size < 100) return;
@@ -43,15 +51,15 @@ export const calculateBudgetUsage = (): BudgetItem[] => {
       let limit = BUDGET_LIMITS.TOTAL;
       
       // Determine resource type and applicable limit
-      if (url.endsWith('.js') || url.includes('.js?') || resource.initiatorType === 'script') {
+      if (url.endsWith('.js') || url.includes('.js?') || resourceEntry.initiatorType === 'script') {
         type = 'script';
         limit = BUDGET_LIMITS.SCRIPT;
-      } else if (url.endsWith('.css') || url.includes('.css?') || resource.initiatorType === 'css') {
+      } else if (url.endsWith('.css') || url.includes('.css?') || resourceEntry.initiatorType === 'css') {
         type = 'stylesheet';
         limit = BUDGET_LIMITS.STYLE;
       } else if (
         /\.(jpg|jpeg|png|gif|webp|avif|svg)/.test(url) || 
-        resource.initiatorType === 'img'
+        resourceEntry.initiatorType === 'img'
       ) {
         type = 'image';
         limit = BUDGET_LIMITS.IMAGE;
