@@ -98,10 +98,27 @@ const useGSCData = (siteUrl?: string, options?: GSCDataOptions) => {
       const secondHalfAvgPos = mockSearchData.slice(midPoint).reduce((sum, day) => sum + day.position, 0) / (mockSearchData.length - midPoint);
       const positionChange = ((firstHalfAvgPos - secondHalfAvgPos) / firstHalfAvgPos * 100).toFixed(1);
       
+      // Transform the mock data to match our GSCQueryOrPage interface
+      const mappedTopQueries = topQueries.map(query => ({
+        name: query.query, // Map 'query' property to 'name'
+        clicks: query.clicks,
+        impressions: query.impressions,
+        ctr: query.ctr,
+        position: query.position
+      }));
+
+      const mappedTopPages = topPages.map(page => ({
+        name: page.page, // Map 'page' property to 'name'
+        clicks: page.clicks,
+        impressions: page.impressions,
+        ctr: page.ctr,
+        position: page.position
+      }));
+      
       setData({
         metrics: mockSearchData,
-        topQueries,
-        topPages,
+        topQueries: mappedTopQueries,
+        topPages: mappedTopPages,
         totalClicks,
         totalImpressions,
         averageCTR: Number(averageCTR),

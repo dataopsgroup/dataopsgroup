@@ -30,7 +30,7 @@ const GSCTopQueries: React.FC<GSCTopQueriesProps> = ({ queries }) => {
           {queries.length > 0 ? (
             queries.map((query, index) => (
               <tr key={index} className="border-b">
-                <td className="py-3 px-4 text-left font-medium">{query.name || query.query}</td>
+                <td className="py-3 px-4 text-left font-medium">{query.name}</td>
                 <td className="py-3 px-4 text-right">{query.clicks}</td>
                 <td className="py-3 px-4 text-right">{query.impressions}</td>
                 <td className="py-3 px-4 text-right">{query.ctr}%</td>
