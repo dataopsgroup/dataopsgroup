@@ -1,126 +1,113 @@
-
 import React, { useState, useEffect } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { WebVitalMetric } from '@/utils/performance/types';
-import { VitalsSummary } from './VitalsSummary';
-import { VitalsDetails } from './VitalsDetails';
-import { VitalsSegmentation } from './VitalsSegmentation';
-import { VitalsRawData } from './VitalsRawData';
+import { VitalsSummary } from './components/VitalsSummary';
+import { VitalsDetails } from './components/VitalsDetails';
+import { VitalsSegmentation } from './components/VitalsSegmentation';
+import { VitalsRawData } from './components/VitalsRawData';
+import { DeviceDistribution } from './charts/DeviceDistribution';
+import { LCPElementAnalysis } from './charts/LCPElementAnalysis';
+import { BlockingTimeAnalysis } from './charts/BlockingTimeAnalysis';
 
 const WebVitalsDashboard = () => {
   const [metrics, setMetrics] = useState<WebVitalMetric[]>([]);
-  const [uniqueDevices, setUniqueDevices] = useState<string[]>([]);
-  const [uniqueConnections, setUniqueConnections] = useState<string[]>([]);
-  const [uniquePaths, setUniquePaths] = useState<string[]>([]);
-  
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [timeRange, setTimeRange] = useState('7d'); // Default to 7 days
+  const [filteredMetrics, setFilteredMetrics] = useState<WebVitalMetric[]>([]);
+
+  // Fetch metrics data
   useEffect(() => {
-    try {
-      // Load metrics from localStorage
-      const storedMetrics = localStorage.getItem('webVitalsMetrics');
-      if (storedMetrics) {
-        const parsedMetrics = JSON.parse(storedMetrics) as WebVitalMetric[];
-        setMetrics(parsedMetrics);
-        
-        // Extract unique values for filters with proper type casting
-        const devices = Array.from(new Set(parsedMetrics
-          .map(m => m.deviceCategory)
-          .filter(Boolean) as string[]));
-          
-        const connections = Array.from(new Set(parsedMetrics
-          .map(m => m.connection)
-          .filter(Boolean) as string[]));
-          
-        const paths = Array.from(new Set(parsedMetrics
-          .map(m => m.path) as string[]));
-        
-        setUniqueDevices(devices);
-        setUniqueConnections(connections);
-        setUniquePaths(paths);
+    const fetchMetrics = async () => {
+      try {
+        setLoading(true);
+        // In a real app, this would be an API call
+        // For demo purposes, we'll use mock data
+        const response = await fetch('/api/web-vitals?timeRange=' + timeRange);
+        const data = await response.json();
+        setMetrics(data);
+        setFilteredMetrics(data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load metrics data');
+        setLoading(false);
+        console.error('Error fetching metrics:', err);
       }
-      
-      // Set up listener for new metrics
-      const handleStorageChange = () => {
-        const updatedMetrics = localStorage.getItem('webVitalsMetrics');
-        if (updatedMetrics) {
-          const parsedMetrics = JSON.parse(updatedMetrics) as WebVitalMetric[];
-          setMetrics(parsedMetrics);
-          
-          // Update unique values for filters with proper type casting
-          const devices = Array.from(new Set(parsedMetrics
-            .map(m => m.deviceCategory)
-            .filter(Boolean) as string[]));
-            
-          const connections = Array.from(new Set(parsedMetrics
-            .map(m => m.connection)
-            .filter(Boolean) as string[]));
-            
-          const paths = Array.from(new Set(parsedMetrics
-            .map(m => m.path) as string[]));
-          
-          setUniqueDevices(devices);
-          setUniqueConnections(connections);
-          setUniquePaths(paths);
-        }
-      };
-      
-      window.addEventListener('storage', handleStorageChange);
-      
-      return () => {
-        window.removeEventListener('storage', handleStorageChange);
-      };
-    } catch (e) {
-      console.error('Error loading web vitals metrics:', e);
-    }
-  }, []);
-  
-  // Calculate average scores
-  const averageScores: Record<string, number> = {};
-  ['LCP', 'FID', 'CLS', 'INP', 'FCP', 'TTFB'].forEach(name => {
-    const metricsOfType = metrics.filter(m => m.name === name);
-    if (metricsOfType.length > 0) {
-      averageScores[name] = metricsOfType.reduce((sum, m) => sum + m.value, 0) / metricsOfType.length;
+    };
+
+    fetchMetrics();
+  }, [timeRange]);
+
+  // Filter metrics based on user selection
+  const filterByMetricType = (metricType: string | null) => {
+    if (!metricType) {
+      setFilteredMetrics(metrics);
     } else {
-      averageScores[name] = 0;
+      setFilteredMetrics(metrics.filter(metric => metric.name === metricType));
     }
-  });
+  };
+
+  // Handle time range change
+  const handleTimeRangeChange = (range: string) => {
+    setTimeRange(range);
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong className="font-bold">Error!</strong>
+        <span className="block sm:inline"> {error}</span>
+      </div>
+    );
+  }
   
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6">Core Web Vitals Dashboard</h2>
-      
-      <Tabs defaultValue="summary" className="mb-6">
-        <TabsList className="mb-4">
-          <TabsTrigger value="summary">Summary</TabsTrigger>
-          <TabsTrigger value="details">Metric Details</TabsTrigger>
-          <TabsTrigger value="segments">Segmentation</TabsTrigger>
-          <TabsTrigger value="raw">Raw Data</TabsTrigger>
-        </TabsList>
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+          <h1 className="text-2xl font-bold">Web Vitals Dashboard</h1>
+          <div className="flex space-x-4">
+            {/* Keep existing controls */}
+          </div>
+        </div>
         
-        <TabsContent value="summary">
-          <VitalsSummary 
-            averageScores={averageScores} 
-            metrics={metrics} 
-          />
-        </TabsContent>
+        {/* New Performance Insights Section */}
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold mb-4">Performance Insights</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <LCPElementAnalysis metrics={filteredMetrics} />
+            <BlockingTimeAnalysis metrics={filteredMetrics} />
+          </div>
+        </div>
         
-        <TabsContent value="details">
-          <VitalsDetails metrics={metrics} />
-        </TabsContent>
+        {/* Original Dashboard Content */}
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold mb-4">Summary</h2>
+          <VitalsSummary metrics={filteredMetrics} />
+        </div>
         
-        <TabsContent value="segments">
-          <VitalsSegmentation 
-            metrics={metrics}
-            uniqueDevices={uniqueDevices}
-            uniqueConnections={uniqueConnections}
-            uniquePaths={uniquePaths}
-          />
-        </TabsContent>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <DeviceDistribution metrics={filteredMetrics} />
+          <VitalsSegmentation metrics={filteredMetrics} />
+        </div>
         
-        <TabsContent value="raw">
-          <VitalsRawData metrics={metrics} />
-        </TabsContent>
-      </Tabs>
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold mb-4">Details</h2>
+          <VitalsDetails metrics={filteredMetrics} />
+        </div>
+        
+        <div className="mb-6">
+          <h2 className="text-xl font-semibold mb-4">Raw Data</h2>
+          <VitalsRawData metrics={filteredMetrics} />
+        </div>
+      </div>
     </div>
   );
 };

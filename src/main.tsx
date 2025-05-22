@@ -2,7 +2,7 @@
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
-import './styles/font-face.css'; // Import the new font face definitions
+import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense, lazy } from 'react';
 import { initWebVitals } from './utils/web-vitals';
@@ -17,13 +17,12 @@ import {
   prerenderNextLikelyPage
 } from './lib/performance-optimizations';
 import { scheduleTasks, runWhenIdle } from './lib/task-scheduler';
+import { monitorRouteChanges } from './utils/route-monitoring';
+import { applyCriticalCSS, loadFonts } from './lib/critical-css';
 
 // Define app version globally
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.0.2';
-  
-  // Add performance API endpoint if needed
-  // window.PERFORMANCE_API_ENDPOINT = 'https://your-analytics-api.com/collect';
+  window.APP_VERSION = '1.0.3'; // Increment version for cache busting
 }
 
 // Initialize essential monitoring right away
@@ -34,9 +33,18 @@ if (typeof window !== 'undefined') {
   // Mark navigation start for performance measurements
   performance.mark('app-init-start');
   performance.mark('navigation-start');
+  
+  // Apply critical CSS for initial route
+  applyCriticalCSS(window.location.pathname);
+  
+  // Optimize font loading immediately for better LCP
+  loadFonts();
 }
 
-// Initialize application
+// Apply critical performance optimizations immediately
+setupResourceHints();
+
+// Enhanced application rendering with performance tracking
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -65,11 +73,11 @@ const renderApp = () => {
     performance.mark('render-complete');
     performance.measure('total-render-time', 'render-start', 'render-complete');
     performance.measure('navigation-to-render', 'navigation-start', 'render-complete');
+    
+    // Monitor route changes for performance tracking
+    monitorRouteChanges();
   }
 };
-
-// Apply critical performance optimizations immediately
-setupResourceHints();
 
 // Immediately render the app for fast initial paint
 renderApp();
@@ -124,7 +132,7 @@ if (typeof window !== 'undefined') {
       // Prioritize responsiveness when page is visible
       performance.mark('page-visible');
       
-      // When page becomes visible again, check for resources to prioritize
+      // Optimize media loading when page becomes visible
       optimizeAssetLoading();
     } else {
       // Cancel unnecessary work when page is hidden
@@ -140,6 +148,26 @@ if (typeof window !== 'undefined') {
     performance.mark('app-loaded');
     performance.measure('app-startup-time', 'app-init-start', 'app-loaded');
     performance.measure('navigation-to-load', 'navigation-start', 'app-loaded');
+    
+    // Report Core Web Vitals metrics to console for development
+    if (process.env.NODE_ENV === 'development') {
+      const observer = new PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        entries.forEach((entry) => {
+          if (['largest-contentful-paint', 'layout-shift', 'first-input'].includes(entry.entryType)) {
+            console.info(`[Performance] ${entry.entryType}:`, entry);
+          }
+        });
+      });
+      
+      try {
+        observer.observe({ type: 'largest-contentful-paint', buffered: true });
+        observer.observe({ type: 'layout-shift', buffered: true });
+        observer.observe({ type: 'first-input', buffered: true });
+      } catch (e) {
+        console.error('Failed to observe performance entries:', e);
+      }
+    }
     
     // Report performance data after load
     setTimeout(() => {

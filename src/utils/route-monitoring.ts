@@ -1,10 +1,11 @@
-
 /**
  * Route monitoring utility
  * Helps ensure critical routes and page components remain intact
  */
 
 import { RouteObject } from 'react-router-dom';
+import { applyCriticalCSS, loadFonts } from '@/lib/critical-css';
+import { reportBudgetViolations } from '@/utils/performance-budget';
 
 /**
  * Validates that critical routes exist in the router configuration
@@ -112,8 +113,154 @@ export const validateFAQData = (faqCategories: any[]): boolean => {
   return isValid;
 };
 
+/**
+ * Extract route from URL for metrics
+ */
+export function getRouteFromUrl(url: string): string {
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.pathname;
+  } catch (e) {
+    // If URL parsing fails, just return the input string
+    // This could happen if only a path is provided
+    return url;
+  }
+}
+
+/**
+ * Enhanced route change monitoring with performance tracking
+ */
+export const monitorRouteChanges = () => {
+  if (typeof window === 'undefined') return;
+  
+  // Store current route for comparison
+  let currentRoute = window.location.pathname;
+  
+  // Apply critical CSS for initial route
+  applyCriticalCSS(currentRoute);
+  
+  // Load custom fonts
+  loadFonts();
+  
+  // Check for page visibility API support
+  if ('hidden' in document) {
+    // Track if the page was loaded in a background tab
+    const wasHiddenOnLoad = document.hidden;
+    
+    if (wasHiddenOnLoad) {
+      document.addEventListener('visibilitychange', () => {
+        // When page becomes visible after being loaded in background
+        if (!document.hidden) {
+          // Force a performance measurement when the user actually sees the page
+          if (window.performance && 'mark' in window.performance) {
+            window.performance.mark('page-visible-after-background-load');
+            
+            // Clear the event listener since we only need this once
+            document.removeEventListener('visibilitychange', () => {});
+          }
+        }
+      });
+    }
+  }
+  
+  // History API based monitoring
+  const originalPushState = history.pushState;
+  const originalReplaceState = history.replaceState;
+  
+  // Enhanced navigation timing
+  const measureNavigation = (from: string, to: string) => {
+    if (window.performance && 'mark' in window.performance) {
+      // Mark navigation start
+      window.performance.mark('route-change-start');
+      
+      // Get current time
+      const startTime = performance.now();
+      
+      // Listen for the 'load' event on the window once
+      const handleLoaded = () => {
+        const loadTime = performance.now() - startTime;
+        
+        // Mark navigation end
+        window.performance.mark('route-change-end');
+        
+        // Measure full navigation time
+        window.performance.measure('route-change-duration', 'route-change-start', 'route-change-end');
+        
+        // Apply critical CSS
+        applyCriticalCSS(to);
+        
+        // Check performance budget after route loaded
+        setTimeout(() => {
+          const budgetReport = reportBudgetViolations();
+          if (!budgetReport.withinBudget) {
+            console.warn('Performance budget exceeded:', budgetReport);
+          }
+        }, 1000);
+        
+        // Report to analytics if available
+        if (window.gtag) {
+          window.gtag('event', 'route_change', {
+            from_route: from,
+            to_route: to,
+            load_time: Math.round(loadTime)
+          });
+        }
+        
+        // Remove the event listener
+        window.removeEventListener('load', handleLoaded);
+      };
+      
+      window.addEventListener('load', handleLoaded);
+    }
+  };
+  
+  // Override history methods
+  history.pushState = function() {
+    const from = currentRoute;
+    originalPushState.apply(this, arguments as any);
+    
+    // Get new route after state change
+    const to = window.location.pathname;
+    currentRoute = to;
+    
+    // Track page performance
+    measureNavigation(from, to);
+  };
+  
+  history.replaceState = function() {
+    const from = currentRoute;
+    originalReplaceState.apply(this, arguments as any);
+    
+    // Get new route after state change
+    const to = window.location.pathname;
+    currentRoute = to;
+    
+    // Track page performance
+    measureNavigation(from, to);
+  };
+  
+  // Also listen for popstate events (browser back/forward)
+  window.addEventListener('popstate', () => {
+    const from = currentRoute;
+    const to = window.location.pathname;
+    currentRoute = to;
+    
+    // Track page performance
+    measureNavigation(from, to);
+  });
+  
+  return () => {
+    // Clean up by restoring original methods
+    history.pushState = originalPushState;
+    history.replaceState = originalReplaceState;
+    window.removeEventListener('popstate', () => {});
+  };
+};
+
 export default {
   validateCriticalRoutes,
   reportRouteValidationIssues,
-  validateFAQData
+  validateFAQData,
+  getRouteFromUrl,
+  monitorRouteChanges
 };
