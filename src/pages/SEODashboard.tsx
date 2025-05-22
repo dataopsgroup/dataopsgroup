@@ -8,6 +8,9 @@ import GSCOverview from '@/components/seo/GSCOverview';
 import KeywordAnalysisTable from '@/components/seo/KeywordAnalysisTable';
 import ImageSEOAnalysis from '@/components/seo/ImageSEOAnalysis';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import { CheckCircle } from 'lucide-react';
 
 const SEODashboard = () => {
   return (
@@ -211,10 +214,5 @@ const SEODashboard = () => {
     </div>
   );
 };
-
-// Import the components used in SEODashboard
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
-import { CircleCheck } from 'lucide-react';
 
 export default SEODashboard;
