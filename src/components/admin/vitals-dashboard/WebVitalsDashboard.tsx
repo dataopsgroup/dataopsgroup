@@ -52,6 +52,50 @@ const WebVitalsDashboard = () => {
     setTimeRange(range);
   };
 
+  // Calculate average scores for each metric type
+  const calculateAverageScores = () => {
+    const scores: Record<string, number> = {};
+    const metricCounts: Record<string, number> = {};
+
+    filteredMetrics.forEach(metric => {
+      if (!scores[metric.name]) {
+        scores[metric.name] = 0;
+        metricCounts[metric.name] = 0;
+      }
+      
+      scores[metric.name] += metric.value;
+      metricCounts[metric.name]++;
+    });
+
+    // Calculate averages
+    Object.keys(scores).forEach(key => {
+      if (metricCounts[key] > 0) {
+        scores[key] = scores[key] / metricCounts[key];
+      }
+    });
+
+    return scores;
+  };
+
+  // Extract unique values for segmentation
+  const extractUniqueValues = () => {
+    const devices = new Set<string>();
+    const connections = new Set<string>();
+    const paths = new Set<string>();
+
+    filteredMetrics.forEach(metric => {
+      if (metric.deviceCategory) devices.add(metric.deviceCategory);
+      if (metric.connection) connections.add(metric.connection);
+      if (metric.path) paths.add(metric.path);
+    });
+
+    return {
+      uniqueDevices: Array.from(devices),
+      uniqueConnections: Array.from(connections),
+      uniquePaths: Array.from(paths)
+    };
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -68,6 +112,10 @@ const WebVitalsDashboard = () => {
       </div>
     );
   }
+  
+  // Calculate average scores and extract unique values for segmentation
+  const averageScores = calculateAverageScores();
+  const { uniqueDevices, uniqueConnections, uniquePaths } = extractUniqueValues();
   
   return (
     <div className="container mx-auto px-4 py-8">
@@ -91,12 +139,20 @@ const WebVitalsDashboard = () => {
         {/* Original Dashboard Content */}
         <div className="mb-6">
           <h2 className="text-xl font-semibold mb-4">Summary</h2>
-          <VitalsSummary metrics={filteredMetrics} />
+          <VitalsSummary 
+            metrics={filteredMetrics} 
+            averageScores={averageScores} 
+          />
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <DeviceDistribution metrics={filteredMetrics} />
-          <VitalsSegmentation metrics={filteredMetrics} />
+          <VitalsSegmentation 
+            metrics={filteredMetrics} 
+            uniqueDevices={uniqueDevices}
+            uniqueConnections={uniqueConnections}
+            uniquePaths={uniquePaths}
+          />
         </div>
         
         <div className="mb-6">
