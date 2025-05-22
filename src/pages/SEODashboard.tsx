@@ -14,7 +14,7 @@ import TechnicalSEOHealth from '@/components/seo/dashboard/TechnicalSEOHealth';
 
 const SEODashboard = () => {
   return (
-    <SemanticLayout mainClassName="px-[5%] py-8">
+    <SemanticLayout mainClassName="px-[5%] py-8 pt-[calc(var(--navbar-height)+var(--navbar-bottom-spacing))]">
       <MetaHead 
         title="SEO Management Dashboard | DataOps Group"
         description="SEO management dashboard for monitoring and improving the search engine visibility of DataOps Group website."
