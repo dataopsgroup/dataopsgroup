@@ -6,7 +6,7 @@
 // Configure client-side cache headers through service worker
 export const setupClientCaching = () => {
   // App version for cache busting
-  const appVersion = '1.0.4'; // Should match the version in service worker
+  const appVersion = '1.0.5'; // Should match the version in service worker
   
   // Register service worker if browser supports it
   if ('serviceWorker' in navigator) {
