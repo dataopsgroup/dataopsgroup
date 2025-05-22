@@ -40,3 +40,9 @@
 .pillar-content h2 {
   @apply text-2xl font-bold mb-4 mt-8;
 }
+
+/* Add additional padding to pillar content area */
+.pillar-content {
+  padding-left: 20px;
+  padding-right: 25px;
+}

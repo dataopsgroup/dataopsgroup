@@ -34,7 +34,10 @@ const PillarContent: React.FC<PillarContentProps> = ({
               alt="DataOps Group" 
               className="h-12 mb-6" 
             />
-            {tableOfContents}
+            {/* Add a wrapper div with padding-top to align with Introduction heading */}
+            <div className="pt-8">
+              {tableOfContents}
+            </div>
           </div>
         </Sidebar>
         
@@ -55,7 +58,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
               )}
             </header>
             
-            <main className="prose prose-lg max-w-none pillar-content">
+            <main className="prose prose-lg max-w-none pillar-content pl-5 pr-[25px]">
               {content}
             </main>
           </div>
