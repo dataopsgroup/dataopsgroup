@@ -117,7 +117,7 @@ const BlogList = () => {
                         <figure>
                           <OptimizedImage src={coverImage} alt={post.title} className="w-full h-48 object-cover rounded-t-lg mb-6" width={400} height={200} loading="lazy" objectFit="cover" aspectRatio={2 / 1} placeholder="/placeholder.svg" />
                         </figure>
-                        <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors py-0">
+                        <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors py-0 pt-3">
                           {post.title}
                         </CardTitle>
                       </CardHeader>
