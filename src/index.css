@@ -99,6 +99,14 @@
     @apply text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight;
   }
   
+  /* Specific styling for H2 tags on the /insights page and blog posts */
+  .blog-post-content h2, 
+  .container h2:not(.text-3xl),
+  article h2 {
+    font-size: 1.5em !important;
+    @apply font-semibold tracking-tight;
+  }
+  
   h3 {
     @apply text-4xl md:text-5xl font-semibold tracking-tight;
   }
@@ -135,6 +143,7 @@
   /* Updated blog post styling with headings matching the blog post headline size */
   .prose h2 {
     @apply text-3xl md:text-4xl font-bold mt-8 mb-4;
+    font-size: 1.5em !important;
   }
   
   .prose h3 {
