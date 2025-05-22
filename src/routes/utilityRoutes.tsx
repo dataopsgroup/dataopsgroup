@@ -1,43 +1,57 @@
 
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
-import Sitemap from '@/pages/Sitemap';
+
+// Import pages
+import NotFound from '@/pages/NotFound';
 import Privacy from '@/pages/Privacy';
 import Terms from '@/pages/Terms';
-import NotFound from '@/pages/NotFound';
-import StructuredDataTest from '@/pages/StructuredDataTest';
-import SEODashboard from '@/pages/SEODashboard';
+import Sitemap from '@/pages/Sitemap';
+import FAQs from '@/pages/FAQs';
 import Documentation from '@/pages/Documentation';
+import SEODashboard from '@/pages/SEODashboard';
+import PillarContentPage from '@/pages/PillarContentPage';
 
+// Define utility routes
 export const utilityRoutes: RouteObject[] = [
   {
-    path: '/sitemap',
-    element: <Sitemap />
+    path: "/not-found",
+    element: <NotFound />
   },
   {
-    path: '/privacy',
+    path: "/404",
+    element: <NotFound />
+  },
+  {
+    path: "*",
+    element: <NotFound />
+  },
+  {
+    path: "/privacy",
     element: <Privacy />
   },
   {
-    path: '/terms',
+    path: "/terms",
     element: <Terms />
   },
   {
-    path: '/structured-data-test',
-    element: <StructuredDataTest />
+    path: "/sitemap",
+    element: <Sitemap />
   },
   {
-    path: '/seo-dashboard',
-    element: <SEODashboard />
+    path: "/faqs",
+    element: <FAQs />
   },
   {
-    path: '/documentation',
+    path: "/docs",
     element: <Documentation />
   },
   {
-    path: '*',
-    element: <NotFound />
+    path: "/seo-dashboard",
+    element: <SEODashboard />
+  },
+  {
+    path: "/pillar-content",
+    element: <PillarContentPage />
   }
 ];
-
-export default utilityRoutes;
