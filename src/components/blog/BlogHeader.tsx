@@ -23,7 +23,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
   
   return (
     <div className="mb-8">
-      <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
+      <h1 className="blog-post-title mb-4">{title}</h1>
       
       <div className="flex items-center text-sm text-gray-600 mb-6">
         <time dateTime={isoDate} className="mr-4">{formattedDate}</time>

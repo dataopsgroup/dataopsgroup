@@ -116,6 +116,11 @@
     @apply text-xl md:text-2xl font-medium;
   }
 
+  /* Override heading styles for blog post titles to be more proportional */
+  .blog-post-title {
+    @apply text-2xl md:text-3xl font-bold !important;
+  }
+
   .gradient-text {
     @apply text-dataops-600;
   }
