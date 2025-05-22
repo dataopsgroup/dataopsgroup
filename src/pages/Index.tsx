@@ -13,6 +13,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 import MetaHead from '@/components/seo/MetaHead';
+import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
 import { applyCriticalCSS, preloadCriticalFonts } from '@/lib/critical-css';
 
 const Index = () => {
@@ -31,6 +32,7 @@ const Index = () => {
         ogType="website"
         ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
         canonicalPath="/"
+        gscVerification="YOUR_GSC_VERIFICATION_CODE" // Add your GSC verification code here
       />
       
       <OrganizationSchema />
@@ -41,7 +43,10 @@ const Index = () => {
       
       <Navbar />
       
-      <main className="flex-grow">
+      <main className="flex-grow px-[5%]">
+        <div className="mt-6">
+          <BreadcrumbNavigation items={[{ name: "Home", url: "/", current: true }]} />
+        </div>
         <Hero />
         <Services />
         <Approach />

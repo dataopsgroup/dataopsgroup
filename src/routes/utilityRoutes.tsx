@@ -1,65 +1,43 @@
 
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import Leadership from '../pages/Leadership';
-import Privacy from '../pages/Privacy';
-import Sitemap from '../pages/Sitemap';
-import GetStartedPage from '../pages/GetStartedPage';
-import ThankYouPage from '../pages/ThankYouPage';
-import NotFound from '../pages/NotFound';
-import ContactThankYouPage from '../pages/ContactThankYouPage';
-import HubSpotAssessmentResultsPage from '../pages/HubSpotAssessmentResultsPage';
-import HubSpotAssessment from '../pages/HubSpotAssessment';
-import StructuredDataTest from '../pages/StructuredDataTest';
+import { RouteObject } from 'react-router-dom';
+import Sitemap from '@/pages/Sitemap';
+import Privacy from '@/pages/Privacy';
+import Terms from '@/pages/Terms';
+import NotFound from '@/pages/NotFound';
+import StructuredDataTest from '@/pages/StructuredDataTest';
+import SEODashboard from '@/pages/SEODashboard';
+import Documentation from '@/pages/Documentation';
 
-export const utilityRoutes = [
+export const utilityRoutes: RouteObject[] = [
   {
-    path: "/leadership",
-    element: <Leadership />,
-    errorElement: <NotFound />,
+    path: '/sitemap',
+    element: <Sitemap />
   },
   {
-    path: "/privacy",
-    element: <Privacy />,
-    errorElement: <NotFound />,
+    path: '/privacy',
+    element: <Privacy />
   },
   {
-    path: "/sitemap",
-    element: <Sitemap />,
-    errorElement: <NotFound />,
+    path: '/terms',
+    element: <Terms />
   },
   {
-    path: "/get-started",
-    element: <GetStartedPage />,
-    errorElement: <NotFound />,
+    path: '/structured-data-test',
+    element: <StructuredDataTest />
   },
   {
-    path: "/thank-you",
-    element: <ThankYouPage />,
-    errorElement: <NotFound />,
+    path: '/seo-dashboard',
+    element: <SEODashboard />
   },
   {
-    path: "/contact-thank-you",
-    element: <ContactThankYouPage />,
-    errorElement: <NotFound />,
+    path: '/documentation',
+    element: <Documentation />
   },
   {
-    path: "/hubspot-assessment-results",
-    element: <HubSpotAssessmentResultsPage />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/assessment",
-    element: <HubSpotAssessment />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/structured-data-test",
-    element: <StructuredDataTest />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "*",
-    element: <NotFound />,
+    path: '*',
+    element: <NotFound />
   }
 ];
+
+export default utilityRoutes;

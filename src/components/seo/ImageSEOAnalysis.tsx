@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Info, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Info, ChevronRight as AlertTriangle, CircleCheck as CheckCircle } from 'lucide-react';
 
 interface ImageIssue {
   url: string;
@@ -139,7 +139,7 @@ const ImageSEOAnalysis: React.FC = () => {
             <div className="flex items-center justify-between">
               <div className="text-3xl font-bold">{seoScore}%</div>
               <div className="flex items-center space-x-1">
-                <Badge variant={seoScore >= 80 ? "success" : seoScore >= 60 ? "default" : "destructive"}>
+                <Badge variant={seoScore >= 80 ? "secondary" : seoScore >= 60 ? "default" : "destructive"}>
                   {seoScore >= 80 ? 'Good' : seoScore >= 60 ? 'Needs Improvement' : 'Poor'}
                 </Badge>
               </div>
