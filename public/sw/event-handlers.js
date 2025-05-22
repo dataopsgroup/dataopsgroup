@@ -6,11 +6,16 @@ self.addEventListener('install', event => {
   event.waitUntil(Promise.all([
     caches.open(STATIC_CONTENT.name)
       .then(cache => cache.addAll(STATIC_CONTENT.resources)),
+    caches.open(FONT_FILES.name)
+      .then(cache => cache.addAll(FONT_FILES.resources)),
     caches.open(APP_SHELL.name)
       .then(cache => cache.addAll(APP_SHELL.resources)),
     caches.open(OFFLINE_FALLBACKS.name)
       .then(cache => cache.addAll(OFFLINE_FALLBACKS.resources))
   ]));
+  
+  // Force activation without waiting for tabs to close
+  self.skipWaiting();
 });
 
 // Activate event - clean up old caches
@@ -20,7 +25,7 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           // Delete any cache that doesn't match our current versions
-          if (!cacheName.includes('-v2')) {
+          if (!cacheName.includes('-v3')) {
             return caches.delete(cacheName);
           }
         }).filter(Boolean)
@@ -46,13 +51,20 @@ self.addEventListener('fetch', event => {
   // Get the appropriate cache configuration for this request
   const cacheConfig = getCacheConfigForRequest(event.request);
   
-  // Check if request is for an HTML page (navigation request)
-  const isNavigationRequest = event.request.mode === 'navigate';
-  
-  if (isNavigationRequest) {
-    // For HTML pages: Network-first strategy with offline fallback
+  // Select caching strategy based on the type of resource
+  if (shouldSkipCache(event.request)) {
+    // Never cache these resources
+    event.respondWith(networkOnlyStrategy(event.request));
+  } 
+  else if (shouldUseNetworkFirst(event.request)) {
+    // For HTML pages and dynamic API endpoints: Network-first strategy
     event.respondWith(networkFirstStrategy(event.request));
-  } else {
+  }
+  else if (cacheConfig === FONT_FILES || cacheConfig === STATIC_CONTENT) {
+    // For fonts and static content: Cache-first strategy
+    event.respondWith(cacheFirstStrategy(event.request, cacheConfig));
+  }
+  else {
     // For other assets: Stale-while-revalidate strategy
     event.respondWith(staleWhileRevalidateStrategy(event.request, cacheConfig));
   }
@@ -69,4 +81,23 @@ self.addEventListener('fetch', event => {
         return caches.match('/offline.html') || caches.match('/index.html');
       })
   );
+});
+
+// Listen for messages from clients
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+  
+  if (event.data && event.data.type === 'CLEAR_CACHE') {
+    event.waitUntil(
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            return caches.delete(cacheName);
+          })
+        );
+      })
+    );
+  }
 });
