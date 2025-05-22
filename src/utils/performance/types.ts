@@ -15,6 +15,8 @@ export interface WebVitalMetric {
   connection?: string;
   deviceCategory?: string;
   sessionId?: string;
+  timestamp?: number;
+  path?: string;
 }
 
 // Interface for layout shift entries with hadRecentInput property
