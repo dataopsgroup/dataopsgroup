@@ -4,13 +4,18 @@
 User-agent: *
 Allow: /
 
-# Disallow admin and thank you pages
+# Disallow admin, authentication, and thank you pages
 Disallow: /thank-you
 Disallow: /thank-you/
 Disallow: /admin
 Disallow: /admin/
 Disallow: /wp-admin/
 Disallow: /wp-login.php
+Disallow: /auth/
+Disallow: /logout/
+Disallow: /login/
+Disallow: /signin/
+Disallow: /signup/
 
 # Disallow HubSpot technical resources that are returning 404s
 Disallow: /_hcms/forms/embed/v4/render-definition/ssr
@@ -27,6 +32,18 @@ Allow: /about/
 Allow: /book/
 Allow: /en/blog/
 Allow: /blog/
+
+# Block search engines from scanning query parameters that create duplicate content
+Disallow: /*?utm_source=
+Disallow: /*?utm_medium=
+Disallow: /*?utm_campaign=
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+Disallow: /*&utm_source=
+Disallow: /*&utm_medium=
+Disallow: /*&utm_campaign=
+Disallow: /*&fbclid=
+Disallow: /*&gclid=
 
 # Sitemap
 Sitemap: https://dataopsgroup.com/sitemap.xml
@@ -59,4 +76,7 @@ User-agent: Slurp
 Allow: /
 
 User-agent: DuckDuckBot
+Allow: /
+
+User-agent: BingPreview
 Allow: /

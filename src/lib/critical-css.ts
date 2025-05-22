@@ -36,6 +36,26 @@ export const getRouteCriticalCSS = (route: string): string => {
       @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
       @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
     `,
+    '/insights': `
+      /* Critical CSS for blog/insights page */
+      .blog-grid { display: grid; gap: 2rem; }
+      .blog-card { border-radius: 0.5rem; overflow: hidden; }
+      .blog-card-image { aspect-ratio: 16/9; overflow: hidden; }
+      .blog-card-image img { object-fit: cover; width: 100%; height: 100%; }
+      @media (min-width: 768px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 1024px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+    `,
+    '/contact': `
+      /* Critical CSS for contact page */
+      .contact-form { max-width: 36rem; }
+      .contact-input { width: 100%; padding: 0.75rem 1rem; border-radius: 0.375rem; }
+    `,
+    '/faqs': `
+      /* Critical CSS for FAQ page */
+      .faq-section { max-width: 48rem; margin: 0 auto; }
+      .faq-item { border-bottom: 1px solid #e5e7eb; padding: 1.5rem 0; }
+      .faq-question { font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; }
+    `,
     // Add more route-specific critical CSS as needed
   };
   
@@ -119,4 +139,31 @@ export const loadFonts = () => {
     // Ensure we remove the pending class in case of errors
     document.documentElement.classList.remove('fonts-pending');
   }
+};
+
+// Preload critical fonts for current page
+export const preloadCriticalFonts = () => {
+  if (typeof document === 'undefined') return;
+  
+  const fontUrls = [
+    '/fonts/inter-subset/inter-latin-400-normal.woff2',
+    '/fonts/inter-subset/inter-latin-700-normal.woff2'
+  ];
+  
+  fontUrls.forEach(url => {
+    if (!document.querySelector(`link[rel="preload"][href="${url}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = url;
+      link.as = 'font';
+      link.type = 'font/woff2';
+      link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
+    }
+  });
+};
+
+// Enhance the MetaHead component with GSC verification meta tag support
+export const generateGSCVerificationTag = (verificationId: string) => {
+  return `<meta name="google-site-verification" content="${verificationId}" />`;
 };

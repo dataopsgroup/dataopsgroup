@@ -18,6 +18,11 @@ interface MetaHeadProps {
   blogPost?: BlogPost;
   isArticle?: boolean;
   siteName?: string;
+  gscVerification?: string;
+  structuredData?: Record<string, any>;
+  noindex?: boolean;
+  locale?: string;
+  alternateUrls?: { lang: string; url: string }[];
 }
 
 const MetaHead = ({
@@ -34,7 +39,12 @@ const MetaHead = ({
   publishDate,
   blogPost,
   isArticle = false,
-  siteName = 'DataOps Group'
+  siteName = 'DataOps Group',
+  gscVerification,
+  structuredData,
+  noindex = false,
+  locale = 'en_US',
+  alternateUrls = []
 }: MetaHeadProps) => {
   // Determine if we're in the browser environment
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
@@ -65,6 +75,25 @@ const MetaHead = ({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={fullCanonicalUrl} />
+      
+      {/* Google Search Console verification */}
+      {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
+      
+      {/* Language and Locale */}
+      <meta property="og:locale" content={locale} />
+      <html lang="en" />
+      
+      {/* Alternate language versions */}
+      {alternateUrls.map(({ lang, url }) => (
+        <link key={lang} rel="alternate" hrefLang={lang} href={url.startsWith('http') ? url : `${baseUrl}${url}`} />
+      ))}
+      
+      {/* Robots directives */}
+      {noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      )}
       
       {/* Favicons */}
       <link rel="icon" type="image/png" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
@@ -98,6 +127,13 @@ const MetaHead = ({
       <meta name="twitter:image" content={fullOgImage} />
       <meta name="twitter:site" content="@dataops_group" />
       {author && <meta name="twitter:creator" content={`@${author.toLowerCase().replace(/\s+/g, '')}`} />}
+      
+      {/* Structured Data */}
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      )}
     </Helmet>
   );
 };
