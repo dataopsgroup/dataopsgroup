@@ -1,0 +1,23 @@
+
+/* Table of Contents Styling for Pillar Content */
+.table-of-contents ul {
+  @apply list-none p-0 m-0;
+}
+
+.table-of-contents li {
+  @apply my-2;
+}
+
+.table-of-contents a {
+  @apply text-dataops-600 hover:text-dataops-800;
+}
+
+/* Make content sections have some breathing room */
+[id] {
+  scroll-margin-top: 100px; /* Accounts for fixed navbar */
+}
+
+/* Active TOC link styling */
+.table-of-contents a.active {
+  @apply font-medium bg-gray-100 text-dataops-800;
+}

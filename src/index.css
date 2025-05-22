@@ -1,5 +1,5 @@
-
 @import './styles/fonts.css';
+@import './styles/pillar-content.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -168,7 +168,7 @@
   }
 }
 
-/* Table of Contents Styling for Pillar Content */
+/* Table of Contents Styling for Pillar Content - Remove this as it's now in pillar-content.css */
 .table-of-contents-container {
   @apply bg-gray-50 border border-gray-200 rounded-lg p-6 my-8;
 }
