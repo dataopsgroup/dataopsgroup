@@ -3,6 +3,7 @@ import React from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AdminLink from './AdminLink';
+import { navServices } from '@/data/navigationData';
 
 const Footer = () => {
   return (
@@ -26,12 +27,18 @@ const Footer = () => {
           <nav aria-labelledby="services-navigation">
             <h2 id="services-navigation" className="text-lg font-semibold mb-6">Services</h2>
             <ul className="space-y-3">
-              <li><Link to="/services" className="text-gray-300 hover:text-white" aria-label="Explore our data architecture services">Data Architecture</Link></li>
-              <li><Link to="/services/analytics-bi" className="text-gray-300 hover:text-white" aria-label="Discover our analytics and business intelligence solutions">Analytics & Business Intelligence</Link></li>
-              <li><Link to="/services" className="text-gray-300 hover:text-white" aria-label="Learn about our data governance services">Data Governance</Link></li>
-              <li><Link to="/services/dataops-implementation" className="text-gray-300 hover:text-white" aria-label="Explore our HubSpot implementation services">DataOps Implementation</Link></li>
-              <li><Link to="/services" className="text-gray-300 hover:text-white" aria-label="Learn about our technology consulting services">Technology Consulting</Link></li>
-              <li><Link to="/services" className="text-gray-300 hover:text-white" aria-label="Discover our enterprise data solutions">Enterprise Data Solutions</Link></li>
+              {navServices.map((service) => (
+                <li key={service.href}>
+                  <Link to={service.href} className="text-gray-300 hover:text-white" aria-label={`Explore our ${service.name} services`}>
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/services" className="text-gray-300 hover:text-white" aria-label="View all our services">
+                  All Services
+                </Link>
+              </li>
             </ul>
           </nav>
           
