@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { services } from '@/components/Services';
+import { services } from '@/data/services';
 import { Link } from "react-router-dom";
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';

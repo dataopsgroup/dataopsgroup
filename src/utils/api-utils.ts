@@ -1,6 +1,5 @@
-
 import { blogPosts } from '@/data/blog';
-import { services } from '@/components/Services';
+import { services } from '@/data/services';
 
 /**
  * Generates structured content for the public API endpoint
