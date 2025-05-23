@@ -54,7 +54,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({
   };
   
   return (
-    <div className={`flex items-center space-x-3 ${position === 'under-title' ? 'absolute top-9 left-[60px]' : ''} ${className}`}>
+    <div className={`flex items-center space-x-3 ${position === 'under-title' ? 'absolute top-9 left-0' : ''} ${className}`}>
       <button 
         onClick={handleShareLinkedIn}
         aria-label="Share on LinkedIn"
