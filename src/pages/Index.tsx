@@ -26,8 +26,8 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead 
-        title="HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group"
-        description="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize ROI, and turn your CRM into a revenue-generating machine. Free audit."
+        title="HubSpot Not Delivering ROI? We Fix That | DataOps Group"
+        description="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue machine. Free audit."
         keywords="HubSpot consultant, HubSpot implementation, marketing operations, dataops, sales and marketing alignment, data quality"
         ogType="website"
         ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
