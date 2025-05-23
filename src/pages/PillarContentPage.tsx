@@ -19,13 +19,13 @@ const PillarContentPage = () => {
         {/* Parent container with outline */}
         <div className="flex border border-black">
           {/* Table of Contents placeholder */}
-          <div className="w-1/4 p-4">
+          <div className="w-[33%] p-4">
             <h2 className="text-xl font-semibold mb-4">Table of Contents</h2>
             <p>Table of contents will go here</p>
           </div>
           
           {/* Main content placeholder */}
-          <div className="w-3/4 p-4">
+          <div className="w-[64%] p-4">
             <h2 className="text-xl font-semibold mb-4">Main Content</h2>
             <p>This is a placeholder for the pillar content. We'll rebuild this with a new approach.</p>
           </div>
