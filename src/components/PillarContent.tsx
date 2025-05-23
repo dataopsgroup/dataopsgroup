@@ -25,10 +25,10 @@ const PillarContent: React.FC<PillarContentProps> = ({
 }) => {
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="flex w-full">
+      <div className="flex w-full pt-16"> {/* Added pt-16 to the main container to push everything below the navbar */}
         {/* Fixed Sidebar with Table of Contents - adjusted to be exactly 1/3 width */}
         <Sidebar className="w-full md:w-1/3 lg:w-1/3 max-w-xs border-r">
-          <div className="p-6 pt-0 mt-16"> {/* Added mt-16 to align with breadcrumb */}
+          <div className="p-6 pt-0"> {/* Removed mt-16 as we're handling it at container level */}
             {/* Removed the logo from here as it's already in the main navigation */}
             <div className="sidebar-content-wrapper">
               {tableOfContents}
@@ -38,15 +38,16 @@ const PillarContent: React.FC<PillarContentProps> = ({
         
         {/* Main Content Area - adjusted to be exactly 2/3 width with 20px left padding */}
         <SidebarInset className="w-full md:w-2/3 lg:w-2/3 pl-5">
-          <div className="container mx-auto py-0 pl-0 pr-5%"> {/* Removed py-8 to fix alignment */}
+          <div className="container mx-auto py-0 pl-0 pr-5%"> {/* Maintained spacing */}
             <BreadcrumbNavigation 
               items={[
                 { name: 'Home', url: '/' },
                 { name: 'Pillar Content', url: '/pillar-content', current: true }
               ]}
+              className="mt-0" {/* Adjusted to remove extra top margin since container has pt-16 */}
             />
             
-            <header className="mb-8 text-left ml-20"> {/* Removed pt-8, letting the breadcrumb handle spacing */}
+            <header className="mb-8 text-left ml-20"> {/* Keeping consistent spacing */}
               <h1 className="text-4xl font-bold mb-4 text-dataops-900">{title}</h1>
               {description && (
                 <p className="text-xl text-gray-600">{description}</p>

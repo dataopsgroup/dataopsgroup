@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import PillarContent from '@/components/PillarContent';
@@ -85,7 +86,7 @@ const PillarContentPage = () => {
   );
 
   return (
-    <SemanticLayout mainClassName="pt-0"> {/* Removed navbar padding to fix alignment */}
+    <SemanticLayout mainClassName="pt-0"> {/* Keeping pt-0 to prevent double padding */}
       <MetaHead 
         title="The Ultimate Guide to Hiring HubSpot Experts | DataOps Group"
         description="Everything you need to know about finding, evaluating, and working with HubSpot experts, consultants, and agencies for successful implementation."
