@@ -27,7 +27,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items, className }) =
   };
   
   return (
-    <nav className={cn("table-of-contents mt-16", className)}> {/* Added mt-16 to match breadcrumb spacing */}
+    <nav className={cn("table-of-contents", className)}> {/* Removed mt-16 as parent now has it */}
       <h3 className="text-xl font-bold mb-6 sidebar-content-title">Table of Contents</h3>
       <ul className="space-y-3 pl-0 list-none">
         {items.map((item) => (
