@@ -7,8 +7,71 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import CTABanner from '@/components/CTABanner';
+import { generateAssessmentPDF } from '@/utils/pdfGenerator';
+import { toast } from 'sonner';
 
 const HubSpotAssessmentResultsPage = () => {
+  const handleDownloadSample = async () => {
+    try {
+      // Create sample assessment data
+      const sampleResults = {
+        overallScore: 75,
+        scoreLabel: 'Developing',
+        scores: {
+          section1: 15,
+          section2: 12,
+          section3: 18,
+          section4: 14,
+          section5: 16
+        },
+        priorities: [
+          {
+            title: 'Data Quality & Integrity',
+            text: 'Your HubSpot database contains inconsistent data formats and missing information that could impact your sales and marketing effectiveness.'
+          },
+          {
+            title: 'Process Integration & Workflows',
+            text: 'Current workflows are not optimized for lead nurturing and may be causing prospects to fall through the cracks.'
+          },
+          {
+            title: 'Reporting & Analytics',
+            text: 'Limited visibility into campaign performance and ROI is making it difficult to optimize marketing spend and measure success.'
+          }
+        ]
+      };
+
+      const sampleRescuePlan = {
+        phase1: [
+          'Conduct comprehensive data audit and cleanup',
+          'Standardize contact and company properties',
+          'Implement data validation rules'
+        ],
+        phase2: [
+          'Redesign lead nurturing workflows',
+          'Set up proper lead scoring mechanisms',
+          'Configure automated follow-up sequences'
+        ],
+        phase3: [
+          'Build comprehensive reporting dashboards',
+          'Implement attribution tracking',
+          'Optimize based on performance data'
+        ]
+      };
+
+      const pdf = await generateAssessmentPDF(
+        sampleResults,
+        sampleRescuePlan,
+        'Sample Assessment'
+      );
+      
+      pdf.save('HubSpot-Assessment-Sample-Results.pdf');
+      toast.success('Sample assessment results downloaded successfully');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast.error('Failed to generate PDF. Please try again.');
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -70,9 +133,16 @@ const HubSpotAssessmentResultsPage = () => {
                 <Button asChild className="bg-dataops-600 hover:bg-dataops-700">
                   <Link to="/contact">Schedule a Consultation</Link>
                 </Button>
+                <Button 
+                  onClick={handleDownloadSample}
+                  variant="outline" 
+                  className="border-dataops-600 text-dataops-600 hover:bg-dataops-50"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download Sample Results
+                </Button>
                 <Button asChild variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50">
                   <Link to="/assessment">
-                    <Download className="w-4 h-4 mr-2" />
                     Take Assessment Again
                   </Link>
                 </Button>
