@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,7 +8,7 @@ const PrivacyPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Privacy Policy - DataOps Group</title>
+        <title>Privacy Policy | DataOps Group</title>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="description" content="DataOps Group privacy policy and data protection information." />
         <meta name="keywords" content="privacy policy, data protection, personal information, GDPR compliance" />
