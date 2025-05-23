@@ -15,7 +15,6 @@ export const mainRoutes: SiteRoute[] = [
   { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/whitepapers", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/assessment", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-23" },
-  { url: "/documentation", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/privacy", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-23" },
   { url: "/sitemap", priority: "0.3", changefreq: "yearly", lastmod: "2025-05-19" },
   { url: "/hubspot-assessment-results", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
@@ -27,5 +26,4 @@ export const serviceRoutes: SiteRoute[] = [
   { url: "/services/dataops-implementation", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
   { url: "/services/marketing-operations-revops", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
   { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
-  { url: "/seo-management", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
 ];
