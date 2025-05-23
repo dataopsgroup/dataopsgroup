@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <section>
             <div className="">
-              <OptimizedImage src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" alt="DataOps Group Logo" width={180} height={50} className="ml-[25px]" />
+              <OptimizedImage src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" alt="DataOps Group Logo" width={180} height={50} className="mb-6" />
             </div>
             <p className="text-gray-300 mb-6">
               Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
