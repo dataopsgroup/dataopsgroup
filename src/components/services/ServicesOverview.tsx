@@ -17,10 +17,6 @@ const ServicesOverview = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
         {services.map((service, index) => {
-          // Extract the color from the gradient for the button text
-          const colorMatch = service.gradient.match(/(from|to)-([\w-]+)-\d+/);
-          const baseColor = colorMatch ? colorMatch[2] : 'primary';
-          
           return (
             <div key={index} className={`overflow-hidden rounded-lg shadow-md bg-gradient-to-br ${service.gradient} text-white p-6`}>
               <div className="mb-4">
@@ -32,7 +28,7 @@ const ServicesOverview = () => {
               </p>
               <Link to={`/services/${service.id}`}>
                 <Button 
-                  className={`rounded-full bg-white hover:bg-white/90 text-${baseColor}-600 group px-4 py-1 h-auto`} 
+                  className="rounded-full bg-white hover:bg-white/90 text-black group px-4 py-1 h-auto" 
                   variant="ghost"
                 >
                   Learn more
