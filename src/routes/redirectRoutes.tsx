@@ -13,6 +13,12 @@ const AmpRedirectHandler = () => {
 
 // 301 Redirects
 export const redirectRoutes = [
+  // Leadership page redirect
+  {
+    path: "/leadership",
+    element: <Navigate to="/about" replace />,
+  },
+  
   // Documentation redirect (added to fix canonical issue)
   {
     path: "/documentation",

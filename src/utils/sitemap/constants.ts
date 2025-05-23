@@ -18,7 +18,6 @@ export const mainRoutes: SiteRoute[] = [
   { url: "/documentation", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/privacy", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-23" },
   { url: "/sitemap", priority: "0.3", changefreq: "yearly", lastmod: "2025-05-19" },
-  { url: "/leadership", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/hubspot-assessment-results", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/how-to-hire-a-hubspot-expert-in-2025", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
 ];
