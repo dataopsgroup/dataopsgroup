@@ -7,7 +7,6 @@ import NotFound from '@/pages/NotFound';
 import Privacy from '@/pages/Privacy';
 import Sitemap from '@/pages/Sitemap';
 import FAQs from '@/pages/FAQs';
-import SEODashboard from '@/pages/SEODashboard';
 import PillarContentPage from '@/pages/PillarContentPage';
 import HubSpotExpertGuidePage from '@/pages/HubSpotExpertGuidePage';
 
@@ -52,10 +51,6 @@ export const utilityRoutes: RouteObject[] = [
   {
     path: "/whitepapers",
     element: <Navigate to="/insights" replace />
-  },
-  {
-    path: "/seo-dashboard",
-    element: <SEODashboard />
   },
   {
     path: "/pillar-content",
