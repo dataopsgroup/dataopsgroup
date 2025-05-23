@@ -6,11 +6,9 @@ import AssessmentProgress from './AssessmentProgress';
 import QuizSection from './QuizSection';
 import QuizNavigation from './QuizNavigation';
 import QuizResults from './QuizResults';
-import EmailModal from './EmailModal';
 import { quizSections } from '@/data/assessment/quizData';
 import { useAssessmentResults } from '@/hooks/useAssessmentResults';
 import { useAssessmentState } from '@/hooks/useAssessmentState';
-import { sendAssessmentResults } from '@/utils/assessmentEmailUtils';
 
 const AssessmentContainer = () => {
   const {
@@ -18,32 +16,14 @@ const AssessmentContainer = () => {
     progress,
     scores,
     answers,
-    isEmailModalOpen,
-    navigate,
     startQuiz,
     nextSection,
     prevSection,
-    handleAnswer,
-    handleEmailResults,
-    setIsEmailModalOpen
+    handleAnswer
   } = useAssessmentState();
 
   // Use custom hook to calculate results data
   const { overallScore, scoreLabel, priorities, rescuePlan } = useAssessmentResults(scores);
-
-  // Send results via email
-  const handleSendResults = async (email: string, name: string, company: string) => {
-    await sendAssessmentResults(
-      email, 
-      name, 
-      company,
-      { overallScore, scoreLabel, scores, priorities },
-      navigate
-    );
-    
-    // Close modal on success
-    setIsEmailModalOpen(false);
-  };
 
   // Extract section titles for the results page
   const sectionTitles = quizSections.map(section => 
@@ -81,7 +61,6 @@ const AssessmentContainer = () => {
             sectionTitles={sectionTitles}
             priorities={priorities}
             rescuePlan={rescuePlan}
-            onEmailResults={handleEmailResults}
           />
         )}
         
@@ -93,13 +72,6 @@ const AssessmentContainer = () => {
             nextSection={nextSection}
           />
         )}
-        
-        {/* Email Modal */}
-        <EmailModal 
-          isOpen={isEmailModalOpen}
-          onClose={() => setIsEmailModalOpen(false)}
-          onSend={handleSendResults}
-        />
       </CardContent>
     </Card>
   );

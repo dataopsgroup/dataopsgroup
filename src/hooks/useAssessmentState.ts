@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
 
 export const useAssessmentState = () => {
   const [currentSection, setCurrentSection] = useState(0); // 0 = intro, 1-5 = sections, 6 = results
@@ -14,7 +13,6 @@ export const useAssessmentState = () => {
     section5: 0
   });
   const [answers, setAnswers] = useState<Record<string, number>>({});
-  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
   const navigate = useNavigate();
 
   // Start the quiz
@@ -64,23 +62,15 @@ export const useAssessmentState = () => {
     setScores(newScores);
   };
 
-  // Open email modal
-  const handleEmailResults = () => {
-    setIsEmailModalOpen(true);
-  };
-
   return {
     currentSection,
     progress,
     scores,
     answers,
-    isEmailModalOpen,
     navigate,
     startQuiz,
     nextSection,
     prevSection,
-    handleAnswer,
-    handleEmailResults,
-    setIsEmailModalOpen
+    handleAnswer
   };
 };

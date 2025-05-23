@@ -1,10 +1,12 @@
 
 import React from 'react';
+import { toast } from 'sonner';
 import ResultsOverview from './ResultsOverview';
 import SectionScores from './SectionScores';
 import PriorityImprovements from './PriorityImprovements';
 import ImplementationRescuePlan from './ImplementationRescuePlan';
 import ResultsNextSteps from './ResultsNextSteps';
+import { generateAssessmentPDF } from '@/utils/pdfGenerator';
 
 interface PriorityRec {
   index: number;
@@ -26,7 +28,6 @@ interface QuizResultsProps {
   sectionTitles: string[];
   priorities: PriorityRec[];
   rescuePlan: RescuePlan;
-  onEmailResults: () => void;
 }
 
 const QuizResults: React.FC<QuizResultsProps> = ({
@@ -34,8 +35,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
   scores,
   sectionTitles,
   priorities,
-  rescuePlan,
-  onEmailResults
+  rescuePlan
 }) => {
   // Calculate score label based on overall score
   const getScoreLabel = () => {
@@ -43,6 +43,26 @@ const QuizResults: React.FC<QuizResultsProps> = ({
     if (overallScore < 85) return 'Developing';
     if (overallScore < 105) return 'Effective';
     return 'Optimized';
+  };
+
+  const handleDownloadResults = async () => {
+    try {
+      const pdf = await generateAssessmentPDF(
+        {
+          overallScore,
+          scoreLabel: getScoreLabel(),
+          scores,
+          priorities: priorities.map(p => ({ title: p.title, text: p.text }))
+        },
+        rescuePlan
+      );
+      
+      pdf.save('HubSpot-Assessment-Results.pdf');
+      toast.success('Your assessment results have been downloaded');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      toast.error('Failed to generate PDF. Please try again.');
+    }
   };
 
   return (
@@ -68,7 +88,7 @@ const QuizResults: React.FC<QuizResultsProps> = ({
       <ImplementationRescuePlan rescuePlan={rescuePlan} />
       
       {/* Next Steps */}
-      <ResultsNextSteps onEmailResults={onEmailResults} />
+      <ResultsNextSteps onDownloadResults={handleDownloadResults} />
     </div>
   );
 };
