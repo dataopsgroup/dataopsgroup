@@ -4,6 +4,7 @@ import { SectionId } from '@/types/pillar-content';
 import IntroductionSection from './sections/IntroductionSection';
 import UnderstandingExpertsSection from './sections/UnderstandingExpertsSection';
 import TypesExpertiseSection from './sections/TypesExpertiseSection';
+import BeyondAgencySafetySection from './sections/BeyondAgencySafetySection';
 import DefaultSection from './sections/DefaultSection';
 
 interface ContentSectionProps {
@@ -20,6 +21,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ activeSection }) => {
       case 'types-expertise':
         return <TypesExpertiseSection />;
       case 'beyond-agency-safety':
+        return <BeyondAgencySafetySection />;
       case 'when-need-expert':
       case 'evaluating-qualifications':
       case 'pricing-guide':
