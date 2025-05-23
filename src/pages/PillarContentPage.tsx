@@ -1,20 +1,12 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
-
 const PillarContentPage = () => {
-  return (
-    <SemanticLayout>
-      <MetaHead 
-        title="Pillar Content | DataOps Group"
-        description="Comprehensive guides on HubSpot implementation and integration"
-        keywords="HubSpot experts, HubSpot consultants, HubSpot implementation, HubSpot integration"
-        canonicalPath="/pillar-content"
-      />
+  return <SemanticLayout>
+      <MetaHead title="Pillar Content | DataOps Group" description="Comprehensive guides on HubSpot implementation and integration" keywords="HubSpot experts, HubSpot consultants, HubSpot implementation, HubSpot integration" canonicalPath="/pillar-content" />
       
       <div className="container mx-auto px-4 py-16">
-        <h1 className="text-3xl font-bold mb-8">Pillar Content</h1>
+        <h1 className="text-3xl font-bold mb-8">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
         
         {/* Parent container with outline */}
         <div className="flex border border-black">
@@ -66,8 +58,6 @@ const PillarContentPage = () => {
           </div>
         </div>
       </div>
-    </SemanticLayout>
-  );
+    </SemanticLayout>;
 };
-
 export default PillarContentPage;
