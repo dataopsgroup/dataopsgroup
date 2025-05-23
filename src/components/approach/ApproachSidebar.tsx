@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -42,7 +41,7 @@ const ApproachSidebar = () => {
           to="/contact"
           className="block w-full py-2 px-4 bg-dataops-600 hover:bg-dataops-700 text-white text-center rounded-md transition-colors"
         >
-          Contact Us
+          Get Started
         </Link>
       </div>
     </div>
