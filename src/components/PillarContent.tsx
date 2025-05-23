@@ -36,8 +36,8 @@ const PillarContent: React.FC<PillarContentProps> = ({
           </div>
         </Sidebar>
         
-        {/* Main Content Area - adjusted to be exactly 2/3 width */}
-        <SidebarInset className="w-full md:w-2/3 lg:w-2/3">
+        {/* Main Content Area - adjusted to be exactly 2/3 width with 20px left padding */}
+        <SidebarInset className="w-full md:w-2/3 lg:w-2/3 pl-5">
           <div className="container mx-auto px-5% py-8">
             <BreadcrumbNavigation 
               items={[
