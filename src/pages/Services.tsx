@@ -15,8 +15,8 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>HubSpot Rescue & Optimization Services | Fix Your Broken CRM</title>
-        <meta name="description" content="Broken HubSpot costing you deals? Our rescue services fix data chaos, optimize workflows, and deliver measurable ROI. 150+ successful implementations." />
+        <title>HubSpot Rescue Services | Fix Your Broken CRM Implementation</title>
+        <meta name="description" content="Broken HubSpot costing you deals? Our rescue services fix data chaos, optimize ROI, and get your team back on track. 150+ successful implementations." />
         <meta name="keywords" content="data services, data architecture, analytics, BI, data governance, dataops implementation, enterprise data solutions" />
         <link rel="canonical" href="/services" />
       </Helmet>
