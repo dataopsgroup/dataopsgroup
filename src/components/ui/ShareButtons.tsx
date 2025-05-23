@@ -58,7 +58,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({
       <button 
         onClick={handleShareLinkedIn}
         aria-label="Share on LinkedIn"
-        className="text-gray-600 hover:text-dataops-600 transition-colors"
+        className="text-gray-600 hover:text-dataops-600 transition-colors mt-[5px]"
       >
         <Linkedin size={18} />
         <span className="sr-only">Share on LinkedIn</span>
@@ -67,7 +67,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({
       <button 
         onClick={handleShareTwitter}
         aria-label="Share on Twitter"
-        className="text-gray-600 hover:text-dataops-600 transition-colors"
+        className="text-gray-600 hover:text-dataops-600 transition-colors mt-[5px]"
       >
         <Twitter size={18} />
         <span className="sr-only">Share on Twitter</span>
@@ -76,7 +76,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({
       <button 
         onClick={handleCopyLink}
         aria-label="Copy link to clipboard"
-        className="text-gray-600 hover:text-dataops-600 transition-colors"
+        className="text-gray-600 hover:text-dataops-600 transition-colors mt-[5px]"
       >
         {copied ? <Check size={18} /> : <Copy size={18} />}
         <span className="sr-only">Copy link</span>
