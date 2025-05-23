@@ -135,7 +135,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
               >
                 <Button
                   variant="default"
-                  className="w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center"
+                  className="download-button w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center"
                 >
                   <FileDown size={18} className="mr-2" />
                   Download the Interview Guide

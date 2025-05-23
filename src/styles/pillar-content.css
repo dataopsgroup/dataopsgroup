@@ -53,6 +53,24 @@
   padding-left: calc(0.75rem - 3px); /* Compensate for the border to prevent shifting */
 }
 
+/* Download button styling - new specific override */
+.table-of-contents .download-button {
+  background-color: #dc2626 !important; /* Red - with !important to override other styles */
+  color: white !important;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.table-of-contents .download-button:hover {
+  background-color: #b91c1c !important; /* Darker red on hover */
+  color: white !important;
+}
+
 /* Perfect alignment between TOC title and main content title */
 .sidebar-content-wrapper {
   padding-top: 0; /* Removed extra padding - we handle this in the parent container */
