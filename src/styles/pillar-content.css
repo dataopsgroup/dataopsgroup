@@ -18,22 +18,32 @@
   margin: 8px 0;
 }
 
-.table-of-contents a {
+.table-of-contents button {
   color: #0066cc;
   text-decoration: none;
-  padding: 4px 0;
+  padding: 8px 12px;
   display: block;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.95rem;
+  width: 100%;
+  text-align: left;
+  border-radius: 4px;
 }
 
-.table-of-contents a:hover {
+.table-of-contents button:hover {
   color: #0052a3;
-  text-decoration: underline;
+  background-color: #e9ecef;
 }
 
 /* Active TOC link styling */
-.table-of-contents a.active {
-  @apply font-medium bg-gray-100 text-dataops-800;
+.table-of-contents button.active {
+  font-weight: 600;
+  background-color: #e9ecef;
+  color: #0052a3;
+  border-left: 3px solid #0066cc;
 }
 
 /* Perfect alignment between TOC title and main content title */
@@ -66,4 +76,30 @@
   padding-right: 25px;
   margin-top: 0; /* Remove top margin */
   padding-top: 0; /* Remove top padding */
+}
+
+/* Animation for section transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section[tabindex="-1"] {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table-of-contents button {
+    padding: 10px 8px;
+  }
+  
+  .table-of-contents-container {
+    max-height: 300px;
+    overflow-y: auto;
+  }
 }
