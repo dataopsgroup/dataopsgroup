@@ -12,11 +12,19 @@ const HubSpotAssessmentResultsPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Assessment Completed | DataOps Group</title>
+        <title>Your HubSpot Assessment Results | Custom Optimization Plan</title>
         <meta 
           name="description" 
-          content="Your HubSpot Implementation Assessment is complete. Download your personalized recommendations and next steps to improve your HubSpot implementation."
+          content="See your personalized HubSpot assessment results and custom optimization plan. Discover exactly what's costing you deals and how to fix it. Next steps inside."
         />
+        <meta property="og:title" content="Your HubSpot Assessment Results | Custom Optimization Plan" />
+        <meta property="og:description" content="See your personalized HubSpot assessment results and custom optimization plan. Discover exactly what's costing you deals and how to fix it. Next steps inside." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dataopsgroup.com/hubspot-assessment-results" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Your HubSpot Assessment Results | Custom Optimization Plan" />
+        <meta name="twitter:description" content="See your personalized HubSpot assessment results and custom optimization plan. Discover exactly what's costing you deals and how to fix it. Next steps inside." />
+        <link rel="canonical" href="https://dataopsgroup.com/hubspot-assessment-results" />
       </Helmet>
       
       <Navbar />
