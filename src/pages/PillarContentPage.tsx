@@ -21,8 +21,7 @@ const PillarContentPage = () => {
     'maximizing-partnership',
     'success-stories',
     'common-pitfalls',
-    'conclusion',
-    'faqs'
+    'conclusion'
   ];
   
   const activeId = useActiveSection(sectionIds, 120);
@@ -84,7 +83,6 @@ const PillarContentPage = () => {
                     <li><a href="#success-stories" className={activeId === 'success-stories' ? 'active' : ''}>Real-World Success Stories: Integration-Focused Implementations</a></li>
                     <li><a href="#common-pitfalls" className={activeId === 'common-pitfalls' ? 'active' : ''}>Common Pitfalls When Hiring HubSpot Experts</a></li>
                     <li><a href="#conclusion" className={activeId === 'conclusion' ? 'active' : ''}>Conclusion: Making Your Final Decision</a></li>
-                    <li><a href="#faqs" className={activeId === 'faqs' ? 'active' : ''}>FAQs About Hiring HubSpot Experts</a></li>
                   </ul>
                 </nav>
               </div>
@@ -112,67 +110,19 @@ const PillarContentPage = () => {
                 <p className="mb-4">Most importantly, you'll learn to focus on outcomes rather than company size, and to ask the right questions that reveal whether someone truly understands how to make HubSpot work for businesses like yours.</p>
               </section>
               
-              {/* Placeholder sections for other content */}
-              <section id="understanding-experts" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Understanding HubSpot Experts vs Consultants vs Agencies</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              {/* Add more section placeholders */}
-              <section id="types-expertise" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Types of HubSpot Expertise and Specializations</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="beyond-agency-safety" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Beyond the Agency Safety Net: Choosing Results Over Size</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="when-need-expert" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">When Your Business Needs a HubSpot Expert</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="evaluating-qualifications" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Evaluating HubSpot Expert Qualifications and Integration Experience</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="pricing-guide" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Complete Pricing Guide for HubSpot Experts and Implementation</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="step-by-step-process" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Step-by-Step Process to Find and Hire the Perfect HubSpot Expert</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="essential-questions" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Essential Questions for Evaluating HubSpot Experts</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="maximizing-partnership" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Maximizing Your HubSpot Expert Partnership</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="success-stories" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Real-World Success Stories: Integration-Focused Implementations</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="common-pitfalls" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Common Pitfalls When Hiring HubSpot Experts</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="conclusion" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">Conclusion: Making Your Final Decision</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
+              {/* Empty placeholder sections with only IDs for navigation */}
+              <section id="understanding-experts" className="p-4"></section>
+              <section id="types-expertise" className="p-4"></section>
+              <section id="beyond-agency-safety" className="p-4"></section>
+              <section id="when-need-expert" className="p-4"></section>
+              <section id="evaluating-qualifications" className="p-4"></section>
+              <section id="pricing-guide" className="p-4"></section>
+              <section id="step-by-step-process" className="p-4"></section>
+              <section id="essential-questions" className="p-4"></section>
+              <section id="maximizing-partnership" className="p-4"></section>
+              <section id="success-stories" className="p-4"></section>
+              <section id="common-pitfalls" className="p-4"></section>
+              <section id="conclusion" className="p-4"></section>
             </div>
           </div>
         </div>
