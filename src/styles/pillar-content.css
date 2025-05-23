@@ -4,8 +4,8 @@
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 8px;
-  padding: 24px;
-  margin: 32px 0;
+  padding: 0;
+  margin: 0;
 }
 
 .table-of-contents ul {
@@ -29,11 +29,6 @@
 .table-of-contents a:hover {
   color: #0052a3;
   text-decoration: underline;
-}
-
-/* Make content sections have some breathing room */
-[id] {
-  scroll-margin-top: 100px; /* Accounts for fixed navbar */
 }
 
 /* Active TOC link styling */
