@@ -14,10 +14,11 @@ const SitemapGrid: React.FC = () => {
             <SitemapLink to="/" label="Home" />
             <SitemapLink to="/services" label="Services" />
             <SitemapLink to="/approach" label="Our Approach" />
-            <SitemapLink to="/insights" label="Insights" />
             <SitemapLink to="/about" label="About Us" />
+            <SitemapLink to="/insights" label="Insights" />
             <SitemapLink to="/contact" label="Contact" />
             <SitemapLink to="/get-started" label="Get Started" />
+            <SitemapLink to="/assessment" label="HubSpot Assessment" />
           </SitemapCard>
           
           {/* Services */}
@@ -26,6 +27,7 @@ const SitemapGrid: React.FC = () => {
             <SitemapLink to="/services/dataops-implementation" label="DataOps Implementation" />
             <SitemapLink to="/services/marketing-operations-revops" label="Marketing Operations & RevOps" />
             <SitemapLink to="/services/team-training" label="Team Training" />
+            <SitemapLink to="/seo-management" label="SEO Management" />
           </SitemapCard>
           
           {/* Resources */}
@@ -34,13 +36,13 @@ const SitemapGrid: React.FC = () => {
             <SitemapLink to="/whitepapers" label="Whitepapers" />
             <SitemapLink to="/faqs" label="FAQs" />
             <SitemapLink to="/book" label="Book a Call" />
+            <SitemapLink to="/how-to-hire-a-hubspot-expert-in-2025" label="HubSpot Expert Guide" />
             <SitemapLink to="/sitemap.xml" label="XML Sitemap" external={true} />
           </SitemapCard>
           
           {/* Legal */}
           <SitemapCard title="Legal" icon={List}>
             <SitemapLink to="/privacy" label="Privacy Policy" />
-            <SitemapLink to="/terms" label="Terms of Service" />
           </SitemapCard>
           
           {/* Insights & Blog */}
@@ -50,6 +52,7 @@ const SitemapGrid: React.FC = () => {
             <SitemapLink to="/insights/navigating-first-90-days-revops" label="First 90 Days in RevOps" />
             <SitemapLink to="/insights/crm-cleanup-plan" label="CRM Cleanup Plan" />
             <SitemapLink to="/insights/marketing-data-management" label="Marketing Data Management" />
+            <SitemapLink to="/insights/hidden-cost-of-failed-hubspot-implementations" label="Hidden Costs of Failed HubSpot" />
           </SitemapCard>
           
           {/* Case Studies */}
@@ -58,6 +61,12 @@ const SitemapGrid: React.FC = () => {
             <SitemapLink to="/insights/saas-healthcare-achieves-remarkable-insights" label="SaaS Healthcare Provider" />
             <SitemapLink to="/insights/audio-visual-equipment-wholesaler" label="Audio-Visual Wholesaler" />
             <SitemapLink to="/insights/multi-national-specialty-insurance" label="Specialty Insurance Company" />
+          </SitemapCard>
+          
+          {/* Results & Assessment Pages */}
+          <SitemapCard title="Assessment & Tools" icon={List}>
+            <SitemapLink to="/assessment" label="HubSpot Assessment Tool" />
+            <SitemapLink to="/hubspot-assessment-results" label="Assessment Results" />
           </SitemapCard>
         </div>
       </div>
