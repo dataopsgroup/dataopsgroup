@@ -73,17 +73,19 @@ export const generateServicesSitemap = (baseUrl: string): string => {
   return xml;
 };
 
-// Generate sitemap XML for blog posts - fixed to properly include all blog posts
+// Generate sitemap XML for blog posts (excluding case studies)
 export const generateBlogSitemap = (baseUrl: string): string => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  // Add comment for clarity
-  xml += '  <!-- Blog Posts -->\n';
-  xml += `  <!-- Generated: ${new Date().toISOString()} -->\n`;
-  xml += `  <!-- Total Posts: ${blogPosts.length} -->\n`;
+  // Add main insights page
+  xml += '  <url>\n';
+  xml += `    <loc>${baseUrl}/insights</loc>\n`;
+  xml += `    <lastmod>2025-05-23</lastmod>\n`;
+  xml += '    <changefreq>weekly</changefreq>\n';
+  xml += '    <priority>0.9</priority>\n';
+  xml += '  </url>\n';
   
-  // Add blog post routes with actual dates from blog posts
   // Filter out case studies which will go in their own sitemap
   const regularBlogPosts = blogPosts.filter(post => 
     (!post.tags || !post.tags.includes('case study')) && 
@@ -105,8 +107,7 @@ export const generateBlogSitemap = (baseUrl: string): string => {
     xml += `    <lastmod>${finalLastmod}</lastmod>\n`;
     xml += '    <changefreq>monthly</changefreq>\n';
     
-    // Give higher priority to important posts like the hidden cost post
-    // Instead of using 'featured' which doesn't exist in BlogPost type, we'll check by ID
+    // Give higher priority to important posts
     const priority = (post.id === 'hidden-cost-of-failed-hubspot-implementations') ? '0.8' : '0.7';
     
     xml += `    <priority>${priority}</priority>\n`;
@@ -123,7 +124,7 @@ export const generateCaseStudiesSitemap = (baseUrl: string): string => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  // Add case study from the main case studies page
+  // Add case studies main page
   xml += '  <url>\n';
   xml += `    <loc>${baseUrl}/case-studies</loc>\n`;
   xml += `    <lastmod>2025-05-23</lastmod>\n`;
@@ -136,11 +137,6 @@ export const generateCaseStudiesSitemap = (baseUrl: string): string => {
     (post.tags && post.tags.includes('case study')) || 
     post.category === "Case Study"
   );
-  
-  // Add comment for clarity
-  xml += '  <!-- Case Study Posts -->\n';
-  xml += `  <!-- Generated: ${new Date().toISOString()} -->\n`;
-  xml += `  <!-- Total Case Studies: ${caseStudies.length} -->\n`;
   
   // Add case study post routes
   caseStudies.forEach(post => {
