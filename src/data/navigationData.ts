@@ -1,3 +1,4 @@
+
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items - keeping for potential future use
@@ -32,6 +33,7 @@ export const guidesItems: SubNavItem[] = [
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
   { name: 'Case Studies', href: '/case-studies' },
+  { name: 'Assessment', href: '/assessment' },
   { name: 'Guides', isDropdown: true, items: guidesItems },
   { 
     name: 'Buy the Book', 
