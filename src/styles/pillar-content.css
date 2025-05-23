@@ -1,14 +1,34 @@
+
 /* Table of Contents Styling for Pillar Content */
+.table-of-contents-container {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 32px 0;
+}
+
 .table-of-contents ul {
-  @apply list-none p-0 m-0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .table-of-contents li {
-  @apply my-2;
+  margin: 8px 0;
 }
 
 .table-of-contents a {
-  @apply text-dataops-600 hover:text-dataops-800;
+  color: #0066cc;
+  text-decoration: none;
+  padding: 4px 0;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.table-of-contents a:hover {
+  color: #0052a3;
+  text-decoration: underline;
 }
 
 /* Make content sections have some breathing room */
