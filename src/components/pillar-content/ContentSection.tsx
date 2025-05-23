@@ -12,6 +12,7 @@ import StepByStepProcessSection from './sections/StepByStepProcessSection';
 import EssentialQuestionsSection from './sections/EssentialQuestionsSection';
 import MaximizingPartnershipSection from './sections/MaximizingPartnershipSection';
 import SuccessStoriesSection from './sections/SuccessStoriesSection';
+import CommonPitfallsSection from './sections/CommonPitfallsSection';
 import DefaultSection from './sections/DefaultSection';
 
 interface ContentSectionProps {
@@ -44,6 +45,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ activeSection }) => {
       case 'success-stories':
         return <SuccessStoriesSection />;
       case 'common-pitfalls':
+        return <CommonPitfallsSection />;
       case 'conclusion':
         return <DefaultSection sectionId={activeSection} />;
       default:
