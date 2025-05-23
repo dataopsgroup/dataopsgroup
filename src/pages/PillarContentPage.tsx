@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import PillarContent from '@/components/PillarContent';
@@ -33,7 +34,7 @@ const PillarContentPage = () => {
   // Main content
   const pillarContent = (
     <div>
-      <div id="introduction" className="pillar-content-section">
+      <div id="introduction" className="pillar-content-section ml-20">
         <h2>Introduction</h2>
         <h1 className="text-4xl font-bold mb-6 text-gray-900">How to Hire a HubSpot Expert in 2025: Consultant Guide & Integration Costs</h1>
 
@@ -50,7 +51,7 @@ const PillarContentPage = () => {
         <p className="mb-4">Most importantly, you'll learn to focus on outcomes rather than company size, and to ask the right questions that reveal whether someone truly understands how to make HubSpot work for businesses like yours.</p>
       </div>
       
-      <div id="understanding-experts" className="pillar-content-section">
+      <div id="understanding-experts" className="pillar-content-section ml-20">
         <h2>Understanding HubSpot Experts vs Consultants vs Agencies</h2>
         
         <p className="mb-4">The HubSpot ecosystem includes different types of professionals, and understanding these distinctions will help you make the right choice for your specific needs.</p>
@@ -69,18 +70,18 @@ const PillarContentPage = () => {
       </div>
       
       {/* Additional section placeholders */}
-      <div id="types-expertise"></div>
-      <div id="beyond-agency-safety"></div>
-      <div id="when-need-expert"></div>
-      <div id="evaluating-qualifications"></div>
-      <div id="pricing-guide"></div>
-      <div id="step-by-step-process"></div>
-      <div id="essential-questions"></div>
-      <div id="maximizing-partnership"></div>
-      <div id="success-stories"></div>
-      <div id="common-pitfalls"></div>
-      <div id="conclusion"></div>
-      <div id="faqs"></div>
+      <div id="types-expertise" className="pillar-content-section ml-20"></div>
+      <div id="beyond-agency-safety" className="pillar-content-section ml-20"></div>
+      <div id="when-need-expert" className="pillar-content-section ml-20"></div>
+      <div id="evaluating-qualifications" className="pillar-content-section ml-20"></div>
+      <div id="pricing-guide" className="pillar-content-section ml-20"></div>
+      <div id="step-by-step-process" className="pillar-content-section ml-20"></div>
+      <div id="essential-questions" className="pillar-content-section ml-20"></div>
+      <div id="maximizing-partnership" className="pillar-content-section ml-20"></div>
+      <div id="success-stories" className="pillar-content-section ml-20"></div>
+      <div id="common-pitfalls" className="pillar-content-section ml-20"></div>
+      <div id="conclusion" className="pillar-content-section ml-20"></div>
+      <div id="faqs" className="pillar-content-section ml-20"></div>
     </div>
   );
 
