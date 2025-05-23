@@ -30,7 +30,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
         <Sidebar className="w-full md:w-1/3 lg:w-1/3 max-w-xs border-r">
           <div className="p-6 pt-0 px-[15px]"> {/* Added px-[15px] for horizontal margins */}
             {/* Removed the logo as it's already in the main navigation */}
-            <div className="sidebar-content-wrapper mt-4"> {/* Using consistent spacing mechanism */}
+            <div id="table-of-contents-container" className="sidebar-content-wrapper mt-4"> {/* Added ID attribute */}
               {tableOfContents}
             </div>
           </div>
@@ -66,4 +66,3 @@ const PillarContent: React.FC<PillarContentProps> = ({
 };
 
 export default PillarContent;
-
