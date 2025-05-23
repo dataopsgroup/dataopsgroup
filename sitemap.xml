@@ -1,16 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-  <loc>https://www.dataopsgroup.com/</loc>
-  <lastmod>2025-05-23T20:13:40+00:00</lastmod>
+  <loc>https://dataopsgroup.com/</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>1.0</priority>
 </url>
-
-
+<url>
+  <loc>https://dataopsgroup.com/services</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/assessment</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/insights</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.9</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/case-studies</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/contact</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/about</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/approach</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/book</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/faqs</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/leadership</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.6</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/services/analytics-bi</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/services/dataops-implementation</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/services/marketing-operations-revops</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://dataopsgroup.com/services/team-training</loc>
+  <lastmod>2025-05-23</lastmod>
+  <priority>0.8</priority>
+</url>
 </urlset>
