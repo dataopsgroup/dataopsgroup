@@ -2,6 +2,7 @@
 import React from 'react';
 import { SectionId } from '@/types/pillar-content';
 import { FileDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface TableOfContentsProps {
   sectionIds: SectionId[];
@@ -124,16 +125,21 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
                 Conclusion: Making Your Final Decision
               </button>
             </li>
-            {/* Download Interview Guide - highlighted in red */}
-            <li className="mt-4 border-t border-gray-200 pt-4">
+            {/* Download Interview Guide CTA Button */}
+            <li className="mt-4 border-t border-gray-200 pt-4 px-3">
               <a 
                 href="https://drive.google.com/file/d/1ApJENdggcFYSirQDzmnV1GEtjAWKL4R5/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center text-red-600 hover:text-red-800 font-medium w-full text-left py-2 px-3 pr-4"
+                className="block"
               >
-                <FileDown size={18} className="inline mr-2" />
-                Download the Interview Guide
+                <Button
+                  variant="default"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center"
+                >
+                  <FileDown size={18} className="mr-2" />
+                  Download the Interview Guide
+                </Button>
               </a>
             </li>
           </ul>
