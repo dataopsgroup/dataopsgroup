@@ -36,7 +36,7 @@ const BreadcrumbNavigation = ({ items, className = '' }: BreadcrumbNavigationPro
       <BreadcrumbSchema items={breadcrumbItems} />
       
       {/* Visual breadcrumb for users */}
-      <Breadcrumb className={`mb-4 ml-20 pt-16 ${className}`}>
+      <Breadcrumb className={`mb-4 ml-20 mt-16 ${className}`}>
         <BreadcrumbList>
           {breadcrumbItems.map((item, index) => {
             const isLast = index === breadcrumbItems.length - 1;

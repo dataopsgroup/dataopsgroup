@@ -28,7 +28,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
       <div className="flex w-full">
         {/* Fixed Sidebar with Table of Contents - adjusted to be exactly 1/3 width */}
         <Sidebar className="w-full md:w-1/3 lg:w-1/3 max-w-xs border-r">
-          <div className="p-6 pt-16"> {/* Added top padding to align with content */}
+          <div className="p-6 pt-0"> {/* Removed top padding to fix alignment */}
             {/* Removed the logo from here as it's already in the main navigation */}
             <div className="sidebar-content-wrapper">
               {tableOfContents}
@@ -38,7 +38,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
         
         {/* Main Content Area - adjusted to be exactly 2/3 width with 20px left padding */}
         <SidebarInset className="w-full md:w-2/3 lg:w-2/3 pl-5">
-          <div className="container mx-auto py-8 pl-0 pr-5%">
+          <div className="container mx-auto py-0 pl-0 pr-5%"> {/* Removed py-8 to fix alignment */}
             <BreadcrumbNavigation 
               items={[
                 { name: 'Home', url: '/' },
@@ -46,7 +46,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
               ]}
             />
             
-            <header className="mb-8 text-left ml-20 pt-8"> {/* Added top padding to align with TOC */}
+            <header className="mb-8 text-left ml-20"> {/* Removed pt-8, letting the breadcrumb handle spacing */}
               <h1 className="text-4xl font-bold mb-4 text-dataops-900">{title}</h1>
               {description && (
                 <p className="text-xl text-gray-600">{description}</p>
