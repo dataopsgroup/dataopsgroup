@@ -17,17 +17,7 @@ interface RescuePlan {
   phase3: string[];
 }
 
-export const generateAssessmentPDF = async (
-  results: AssessmentResults,
-  rescuePlan: RescuePlan,
-  userName: string = 'Assessment Participant'
-) => {
-  const pdf = new jsPDF();
-  const pageWidth = pdf.internal.pageSize.getWidth();
-  const pageHeight = pdf.internal.pageSize.getHeight();
-  let yPosition = 20;
-
-  // Add DataOps Group logo
+const addLogo = async (pdf: jsPDF, yPosition: number): Promise<number> => {
   try {
     const logoResponse = await fetch('/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png');
     if (logoResponse.ok) {
@@ -42,24 +32,24 @@ export const generateAssessmentPDF = async (
   } catch (error) {
     console.warn('Could not load logo for PDF:', error);
   }
+  return yPosition + 30;
+};
 
-  yPosition += 30;
-
-  // Header
+const addHeader = (pdf: jsPDF, yPosition: number, userName: string): number => {
   pdf.setFontSize(24);
   pdf.setFont('helvetica', 'bold');
   pdf.text('HubSpot Implementation Assessment Results', 20, yPosition);
   yPosition += 20;
 
-  // Participant name and date
   pdf.setFontSize(12);
   pdf.setFont('helvetica', 'normal');
   pdf.text(`Assessment for: ${userName}`, 20, yPosition);
   yPosition += 10;
   pdf.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, yPosition);
-  yPosition += 20;
+  return yPosition + 20;
+};
 
-  // Overall Score Section
+const addOverallScore = (pdf: jsPDF, yPosition: number, results: AssessmentResults): number => {
   pdf.setFontSize(18);
   pdf.setFont('helvetica', 'bold');
   pdf.text('Overall Assessment Score', 20, yPosition);
@@ -68,9 +58,10 @@ export const generateAssessmentPDF = async (
   pdf.setFontSize(14);
   pdf.setFont('helvetica', 'normal');
   pdf.text(`Your Score: ${results.overallScore}/125 (${results.scoreLabel})`, 20, yPosition);
-  yPosition += 20;
+  return yPosition + 20;
+};
 
-  // Section Breakdown
+const addSectionBreakdown = (pdf: jsPDF, yPosition: number, results: AssessmentResults): number => {
   pdf.setFontSize(16);
   pdf.setFont('helvetica', 'bold');
   pdf.text('Section Breakdown', 20, yPosition);
@@ -91,9 +82,13 @@ export const generateAssessmentPDF = async (
     yPosition += 10;
   });
 
-  yPosition += 15;
+  return yPosition + 15;
+};
 
-  // Priority Improvements
+const addPriorityImprovements = (pdf: jsPDF, yPosition: number, results: AssessmentResults): number => {
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const pageWidth = pdf.internal.pageSize.getWidth();
+
   if (yPosition > pageHeight - 50) {
     pdf.addPage();
     yPosition = 20;
@@ -122,7 +117,39 @@ export const generateAssessmentPDF = async (
     yPosition += lines.length * 5 + 10;
   });
 
-  // 90-Day Rescue Plan
+  return yPosition;
+};
+
+const addRescuePlanPhase = (pdf: jsPDF, yPosition: number, title: string, actions: string[]): number => {
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  if (yPosition > pageHeight - 50) {
+    pdf.addPage();
+    yPosition = 20;
+  }
+
+  pdf.setFontSize(14);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text(title, 20, yPosition);
+  yPosition += 10;
+
+  pdf.setFontSize(11);
+  pdf.setFont('helvetica', 'normal');
+  actions.forEach(action => {
+    if (yPosition > pageHeight - 20) {
+      pdf.addPage();
+      yPosition = 20;
+    }
+    pdf.text(`• ${action}`, 25, yPosition);
+    yPosition += 8;
+  });
+
+  return yPosition + 10;
+};
+
+const addRescuePlan = (pdf: jsPDF, yPosition: number, rescuePlan: RescuePlan): number => {
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
   if (yPosition > pageHeight - 50) {
     pdf.addPage();
     yPosition = 20;
@@ -133,74 +160,17 @@ export const generateAssessmentPDF = async (
   pdf.text('90-Day Implementation Rescue Plan', 20, yPosition);
   yPosition += 15;
 
-  // Phase 1
-  pdf.setFontSize(14);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Days 1-30: Foundation', 20, yPosition);
-  yPosition += 10;
+  yPosition = addRescuePlanPhase(pdf, yPosition, 'Days 1-30: Foundation', rescuePlan.phase1);
+  yPosition = addRescuePlanPhase(pdf, yPosition, 'Days 31-60: Transformation', rescuePlan.phase2);
+  yPosition = addRescuePlanPhase(pdf, yPosition, 'Days 61-90: Optimization', rescuePlan.phase3);
 
-  pdf.setFontSize(11);
-  pdf.setFont('helvetica', 'normal');
-  rescuePlan.phase1.forEach(action => {
-    if (yPosition > pageHeight - 20) {
-      pdf.addPage();
-      yPosition = 20;
-    }
-    pdf.text(`• ${action}`, 25, yPosition);
-    yPosition += 8;
-  });
+  return yPosition;
+};
 
-  yPosition += 10;
-
-  // Phase 2
-  if (yPosition > pageHeight - 50) {
-    pdf.addPage();
-    yPosition = 20;
-  }
-
-  pdf.setFontSize(14);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Days 31-60: Transformation', 20, yPosition);
-  yPosition += 10;
-
-  pdf.setFontSize(11);
-  pdf.setFont('helvetica', 'normal');
-  rescuePlan.phase2.forEach(action => {
-    if (yPosition > pageHeight - 20) {
-      pdf.addPage();
-      yPosition = 20;
-    }
-    pdf.text(`• ${action}`, 25, yPosition);
-    yPosition += 8;
-  });
-
-  yPosition += 10;
-
-  // Phase 3
-  if (yPosition > pageHeight - 50) {
-    pdf.addPage();
-    yPosition = 20;
-  }
-
-  pdf.setFontSize(14);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Days 61-90: Optimization', 20, yPosition);
-  yPosition += 10;
-
-  pdf.setFontSize(11);
-  pdf.setFont('helvetica', 'normal');
-  rescuePlan.phase3.forEach(action => {
-    if (yPosition > pageHeight - 20) {
-      pdf.addPage();
-      yPosition = 20;
-    }
-    pdf.text(`• ${action}`, 25, yPosition);
-    yPosition += 8;
-  });
-
-  // Call to Action Section
+const addCallToAction = (pdf: jsPDF): void => {
+  const pageHeight = pdf.internal.pageSize.getHeight();
   pdf.addPage();
-  yPosition = 20;
+  let yPosition = 20;
 
   pdf.setFontSize(20);
   pdf.setFont('helvetica', 'bold');
@@ -219,7 +189,7 @@ export const generateAssessmentPDF = async (
     '• Get a customized implementation rescue plan tailored to your business',
     '• Learn how we can help you achieve the ROI you expected from HubSpot',
     '',
-    'Don\'t let another month pass with an underperforming HubSpot implementation.',
+    "Don't let another month pass with an underperforming HubSpot implementation.",
     'Contact us today to start your transformation journey.'
   ];
 
@@ -252,6 +222,24 @@ export const generateAssessmentPDF = async (
   pdf.setFontSize(10);
   pdf.setFont('helvetica', 'italic');
   pdf.text('© 2025 DataOps Group. All rights reserved.', 20, pageHeight - 15);
+};
+
+export const generateAssessmentPDF = async (
+  results: AssessmentResults,
+  rescuePlan: RescuePlan,
+  userName: string = 'Assessment Participant'
+) => {
+  const pdf = new jsPDF();
+  let yPosition = 20;
+
+  // Add each section sequentially
+  yPosition = await addLogo(pdf, yPosition);
+  yPosition = addHeader(pdf, yPosition, userName);
+  yPosition = addOverallScore(pdf, yPosition, results);
+  yPosition = addSectionBreakdown(pdf, yPosition, results);
+  yPosition = addPriorityImprovements(pdf, yPosition, results);
+  yPosition = addRescuePlan(pdf, yPosition, rescuePlan);
+  addCallToAction(pdf);
 
   return pdf;
 };
