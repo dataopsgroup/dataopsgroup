@@ -25,7 +25,7 @@ const ResultsNextSteps: React.FC<ResultsNextStepsProps> = ({ onDownloadResults }
         <Button 
           variant="outline"
           onClick={onDownloadResults}
-          className="border-dataops-600 text-dataops-600 hover:bg-dataops-50"
+          className="border-orange-500 text-orange-500 hover:bg-orange-50"
         >
           <Download className="w-4 h-4 mr-2" />
           Download My Results
