@@ -1,4 +1,3 @@
-
 import { blogPosts } from '@/data/blog';
 
 // Define all site routes for the sitemap with more accurate lastmod dates
@@ -21,6 +20,7 @@ export const mainRoutes = [
   { url: "/sitemap", priority: "0.3", changefreq: "yearly", lastmod: "2025-05-19" },
   { url: "/leadership", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/hubspot-assessment-results", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
+  { url: "/how-to-hire-a-hubspot-expert-in-2025", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
 ];
 
 export const serviceRoutes = [

@@ -11,6 +11,7 @@ import FAQs from '@/pages/FAQs';
 import Documentation from '@/pages/Documentation';
 import SEODashboard from '@/pages/SEODashboard';
 import PillarContentPage from '@/pages/PillarContentPage';
+import HubSpotExpertGuidePage from '@/pages/HubSpotExpertGuidePage';
 
 // Define utility routes
 export const utilityRoutes: RouteObject[] = [
@@ -53,5 +54,9 @@ export const utilityRoutes: RouteObject[] = [
   {
     path: "/pillar-content",
     element: <PillarContentPage />
+  },
+  {
+    path: "/how-to-hire-a-hubspot-expert-in-2025",
+    element: <HubSpotExpertGuidePage />
   }
 ];
