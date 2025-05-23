@@ -2,10 +2,15 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export const useScrollToAnchor = (dependencyArray: any[] = []) => {
+export const useScrollToAnchor = (dependencyArray: any[] = [], disableOnManualNavigation = false) => {
   const location = useLocation();
   
   useEffect(() => {
+    // Skip automatic scrolling if it's a manual navigation and disableOnManualNavigation is true
+    if (disableOnManualNavigation && location.state?.manualNavigation) {
+      return;
+    }
+    
     // Check if there's a hash in the URL
     if (location.hash) {
       // Remove the # from the hash
@@ -19,7 +24,7 @@ export const useScrollToAnchor = (dependencyArray: any[] = []) => {
         }, 100);
       }
     }
-  }, [location, ...dependencyArray]); // Re-run when location or dependencies change
+  }, [location, disableOnManualNavigation, ...dependencyArray]); // Add disableOnManualNavigation as dependency
 };
 
 export default useScrollToAnchor;

@@ -35,8 +35,8 @@ const PillarContentPage = () => {
   // Get active section based on scroll
   const activeId = useActiveSection(sectionIds, 120);
   
-  // Handle scroll to anchor when page loads with hash
-  useScrollToAnchor();
+  // Handle scroll to anchor when page loads with hash, but disable for manual navigation
+  useScrollToAnchor([], true);
   
   // Setup interaction-based loading for performance
   React.useEffect(() => {
@@ -58,7 +58,11 @@ const PillarContentPage = () => {
   // Handle TOC link clicks
   const handleSectionClick = (sectionId: SectionId) => {
     setActiveSection(sectionId);
-    navigate(`/pillar-content#${sectionId}`, { replace: true });
+    navigate(`/pillar-content#${sectionId}`, { 
+      replace: true,
+      state: { manualNavigation: true } // Add state to indicate this is a manual navigation
+    });
+    
     // Scroll to top when changing sections
     window.scrollTo(0, 0);
     
