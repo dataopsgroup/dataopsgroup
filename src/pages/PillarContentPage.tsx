@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -123,7 +124,6 @@ const PillarContentPage = () => {
                 <p className="mb-4">Coming soon...</p>
               </section>
               
-              {/* ... keep similar placeholders for all other sections ... */}
               <section id="beyond-agency-safety" className="p-4">
                 <h2 className="text-2xl font-bold mb-4 mt-8">Beyond the Agency Safety Net: Choosing Results Over Size</h2>
                 <p className="mb-4">Coming soon...</p>
@@ -171,11 +171,6 @@ const PillarContentPage = () => {
               
               <section id="conclusion" className="p-4">
                 <h2 className="text-2xl font-bold mb-4 mt-8">Conclusion: Making Your Final Decision</h2>
-                <p className="mb-4">Coming soon...</p>
-              </section>
-              
-              <section id="faqs" className="p-4">
-                <h2 className="text-2xl font-bold mb-4 mt-8">FAQs About Hiring HubSpot Experts</h2>
                 <p className="mb-4">Coming soon...</p>
               </section>
             </div>
