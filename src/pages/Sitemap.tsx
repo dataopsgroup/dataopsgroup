@@ -48,9 +48,8 @@ const SitemapPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Sitemap - DataOps Group | Website Navigation Guide</title>
-        <meta name="description" content="Navigate the DataOps Group website with ease using our comprehensive sitemap. Find all pages, resources, and services for HubSpot consulting and implementation." />
-        <meta name="keywords" content="sitemap, DataOps Group navigation, HubSpot consulting pages, website map, marketing operations resources" />
+        <title>Site Map | DataOps Group</title>
+        <meta name="description" content="DataOps Group sitemap and page directory." />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href={`${baseUrl}/sitemap`} />
         
@@ -59,15 +58,15 @@ const SitemapPage = () => {
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Sitemap - DataOps Group | Website Navigation Guide" />
-        <meta property="og:description" content="Navigate the DataOps Group website with ease using our comprehensive sitemap. Find all pages, resources, and services for HubSpot consulting and implementation." />
+        <meta property="og:title" content="Site Map | DataOps Group" />
+        <meta property="og:description" content="DataOps Group sitemap and page directory." />
         <meta property="og:url" content={`${baseUrl}/sitemap`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Sitemap - DataOps Group | Website Navigation Guide" />
-        <meta name="twitter:description" content="Navigate the DataOps Group website with ease using our comprehensive sitemap. Find all pages, resources, and services for HubSpot consulting and implementation." />
+        <meta name="twitter:title" content="Site Map | DataOps Group" />
+        <meta name="twitter:description" content="DataOps Group sitemap and page directory." />
         
         {/* Mobile touch action for better tap targets */}
         <style type="text/css">{`
