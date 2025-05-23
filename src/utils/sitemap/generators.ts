@@ -9,22 +9,22 @@ export const generateSitemapIndex = (baseUrl: string): string => {
   
   return `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>${baseUrl}/sitemaps/main-sitemap.xml</loc>
-    <lastmod>${today}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${baseUrl}/sitemaps/services-sitemap.xml</loc>
-    <lastmod>${today}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${baseUrl}/sitemaps/blog-sitemap.xml</loc>
-    <lastmod>${today}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${baseUrl}/sitemaps/case-studies-sitemap.xml</loc>
-    <lastmod>${today}</lastmod>
-  </sitemap>
+<sitemap>
+<loc>${baseUrl}/sitemaps/main-sitemap.xml</loc>
+<lastmod>${today}</lastmod>
+</sitemap>
+<sitemap>
+<loc>${baseUrl}/sitemaps/services-sitemap.xml</loc>
+<lastmod>${today}</lastmod>
+</sitemap>
+<sitemap>
+<loc>${baseUrl}/sitemaps/blog-sitemap.xml</loc>
+<lastmod>${today}</lastmod>
+</sitemap>
+<sitemap>
+<loc>${baseUrl}/sitemaps/case-studies-sitemap.xml</loc>
+<lastmod>${today}</lastmod>
+</sitemap>
 </sitemapindex>`;
 };
 
@@ -35,12 +35,12 @@ export const generateMainSitemap = (baseUrl: string): string => {
   
   mainRoutes.forEach(route => {
     xml += `
-  <url>
-    <loc>${baseUrl}${route.url}</loc>
-    <lastmod>${route.lastmod}</lastmod>
-    <changefreq>${route.changefreq}</changefreq>
-    <priority>${route.priority}</priority>
-  </url>`;
+<url>
+<loc>${baseUrl}${route.url}</loc>
+<lastmod>${route.lastmod}</lastmod>
+<changefreq>${route.changefreq}</changefreq>
+<priority>${route.priority}</priority>
+</url>`;
   });
   
   xml += `
@@ -56,12 +56,12 @@ export const generateServicesSitemap = (baseUrl: string): string => {
   
   serviceRoutes.forEach(route => {
     xml += `
-  <url>
-    <loc>${baseUrl}${route.url}</loc>
-    <lastmod>${route.lastmod}</lastmod>
-    <changefreq>${route.changefreq}</changefreq>
-    <priority>${route.priority}</priority>
-  </url>`;
+<url>
+<loc>${baseUrl}${route.url}</loc>
+<lastmod>${route.lastmod}</lastmod>
+<changefreq>${route.changefreq}</changefreq>
+<priority>${route.priority}</priority>
+</url>`;
   });
   
   xml += `
@@ -77,12 +77,12 @@ export const generateBlogSitemap = (baseUrl: string): string => {
   
   // Add main insights page
   xml += `
-  <url>
-    <loc>${baseUrl}/insights</loc>
-    <lastmod>2025-05-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>`;
+<url>
+<loc>${baseUrl}/insights</loc>
+<lastmod>2025-05-23</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+</url>`;
   
   // Filter out case studies which will go in their own sitemap
   const regularBlogPosts = blogPosts.filter(post => 
@@ -104,12 +104,12 @@ export const generateBlogSitemap = (baseUrl: string): string => {
     const priority = (post.id === 'hidden-cost-of-failed-hubspot-implementations') ? '0.8' : '0.7';
     
     xml += `
-  <url>
-    <loc>${baseUrl}/insights/${post.id}</loc>
-    <lastmod>${finalLastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>${priority}</priority>
-  </url>`;
+<url>
+<loc>${baseUrl}/insights/${post.id}</loc>
+<lastmod>${finalLastmod}</lastmod>
+<changefreq>monthly</changefreq>
+<priority>${priority}</priority>
+</url>`;
   });
   
   xml += `
@@ -125,12 +125,12 @@ export const generateCaseStudiesSitemap = (baseUrl: string): string => {
   
   // Add case studies main page
   xml += `
-  <url>
-    <loc>${baseUrl}/case-studies</loc>
-    <lastmod>2025-05-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
+<url>
+<loc>${baseUrl}/case-studies</loc>
+<lastmod>2025-05-23</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>`;
   
   // Get all case studies by tag or category
   const caseStudies = blogPosts.filter(post => 
@@ -150,12 +150,12 @@ export const generateCaseStudiesSitemap = (baseUrl: string): string => {
       : lastmod;
     
     xml += `
-  <url>
-    <loc>${baseUrl}/insights/${post.id}</loc>
-    <lastmod>${finalLastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
+<url>
+<loc>${baseUrl}/insights/${post.id}</loc>
+<lastmod>${finalLastmod}</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>`;
   });
   
   xml += `
