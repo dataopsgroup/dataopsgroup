@@ -28,7 +28,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
       <div className="flex w-full pt-16"> {/* Main container pushed below navbar with pt-16 */}
         {/* Fixed Sidebar with Table of Contents - exactly 1/3 width */}
         <Sidebar className="w-full md:w-1/3 lg:w-1/3 max-w-xs border-r">
-          <div className="px-[15px] mt-20"> {/* Removed p-6 and pt-0, added mt-20 to align with breadcrumb */}
+          <div className="px-[15px]"> {/* Removed mt-20 to rely on parent's pt-16 */}
             {/* Removed the logo as it's already in the main navigation */}
             <div id="table-of-contents-container" className="sidebar-content-wrapper"> {/* Removed mt-4 as we're controlling spacing with the parent */}
               {tableOfContents}
