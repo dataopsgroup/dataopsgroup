@@ -15,7 +15,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
 }) => {
   return (
     <div className="p-4 md:sticky md:top-24">
-      <div className="table-of-contents-container">
+      <div className="table-of-contents-container mr-7">
         <h2 className="text-xl font-semibold px-3 py-2 my-2">Table of Contents</h2>
         <nav className="table-of-contents">
           <ul className="space-y-0">
