@@ -9,10 +9,21 @@ import AnalyticsBIBenefits from '@/components/services/AnalyticsBIBenefits';
 import AnalyticsBISchema from '@/components/services/AnalyticsBISchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import MetaHead from '@/components/seo/MetaHead';
 
 const AnalyticsBI = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <MetaHead
+        title="HubSpot Analytics & BI Services | Turn Data Into Revenue"
+        description="Transform your HubSpot data into actionable insights. Custom dashboards, reporting, and BI solutions that drive better decisions and higher ROI."
+        keywords="HubSpot analytics, business intelligence, data visualization, HubSpot reporting, marketing analytics"
+        canonicalPath="/services/analytics-bi"
+        ogType="website"
+        ogTitle="HubSpot Analytics & BI Services | Turn Data Into Revenue"
+        ogDescription="Transform your HubSpot data into actionable insights. Custom dashboards, reporting, and BI solutions that drive better decisions and higher ROI."
+      />
+      
       <AnalyticsBISchema />
       <BreadcrumbSchema 
         items={[
