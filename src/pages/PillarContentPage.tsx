@@ -95,7 +95,7 @@ const PillarContentPage = () => {
       />
       
       <div className="container mx-auto px-4 py-16">
-        <div className="flex flex-col md:flex-row border border-black">
+        <div className="flex flex-col md:flex-row">
           {/* Table of Contents */}
           <div className="w-full md:w-[33%]">
             <TableOfContents 
