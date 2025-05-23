@@ -1,21 +1,22 @@
+
 import { blogPosts } from '@/data/blog';
 
 // Define all site routes for the sitemap with more accurate lastmod dates
 export const mainRoutes = [
-  { url: "/", priority: "1.0", changefreq: "weekly", lastmod: "2025-05-19" },
-  { url: "/services", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-19" },
-  { url: "/about", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
+  { url: "/", priority: "1.0", changefreq: "weekly", lastmod: "2025-05-23" },
+  { url: "/services", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-23" },
+  { url: "/about", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-23" },
   { url: "/approach", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/insights", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-19" },
-  { url: "/case-studies", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/contact", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/get-started", priority: "0.9", changefreq: "monthly", lastmod: "2025-05-19" },
+  { url: "/insights", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-23" },
+  { url: "/case-studies", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
+  { url: "/contact", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
+  { url: "/get-started", priority: "0.9", changefreq: "monthly", lastmod: "2025-05-23" },
   { url: "/book", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
   { url: "/whitepapers", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/assessment", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-19" },
+  { url: "/assessment", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-23" },
   { url: "/documentation", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/privacy", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-19" },
+  { url: "/privacy", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-23" },
   { url: "/terms", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-19" },
   { url: "/sitemap", priority: "0.3", changefreq: "yearly", lastmod: "2025-05-19" },
   { url: "/leadership", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
@@ -24,10 +25,10 @@ export const mainRoutes = [
 ];
 
 export const serviceRoutes = [
-  { url: "/services/analytics-bi", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/services/dataops-implementation", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/services/marketing-operations-revops", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
+  { url: "/services/analytics-bi", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
+  { url: "/services/dataops-implementation", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
+  { url: "/services/marketing-operations-revops", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
+  { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
   { url: "/seo-management", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
 ];
 
@@ -154,7 +155,7 @@ export const generateCaseStudiesSitemap = (baseUrl: string) => {
   // Add case study from the main case studies page
   xml += '  <url>\n';
   xml += `    <loc>${baseUrl}/case-studies</loc>\n`;
-  xml += `    <lastmod>2025-05-19</lastmod>\n`;
+  xml += `    <lastmod>2025-05-23</lastmod>\n`;
   xml += '    <changefreq>monthly</changefreq>\n';
   xml += '    <priority>0.8</priority>\n';
   xml += '  </url>\n';
