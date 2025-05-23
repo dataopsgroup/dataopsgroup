@@ -21,6 +21,7 @@ const MarketingOperationsRevOps = () => {
         ogType="website"
         ogTitle="HubSpot RevOps Services | Align Sales & Marketing for Growth"
         ogDescription="RevOps consulting that aligns your sales and marketing teams. Optimize processes, improve forecasting, and accelerate revenue growth with HubSpot."
+        twitterCard="summary"
       />
       
       <MarketingOperationsRevOpsSchema />

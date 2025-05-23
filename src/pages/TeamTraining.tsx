@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -30,6 +29,7 @@ const TeamTraining = () => {
         ogType="website"
         ogTitle="HubSpot Team Training | Get Your Team Up to Speed Fast"
         ogDescription="Comprehensive HubSpot training for your team. From basics to advanced techniques, get everyone productive quickly. Custom training programs available."
+        twitterCard="summary"
       />
       
       <ServiceSchema 

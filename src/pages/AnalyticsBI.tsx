@@ -22,6 +22,7 @@ const AnalyticsBI = () => {
         ogType="website"
         ogTitle="HubSpot Analytics & BI Services | Turn Data Into Revenue"
         ogDescription="Transform your HubSpot data into actionable insights. Custom dashboards, reporting, and BI solutions that drive better decisions and higher ROI."
+        twitterCard="summary"
       />
       
       <AnalyticsBISchema />

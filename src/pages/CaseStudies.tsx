@@ -11,17 +11,30 @@ const CaseStudiesPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Case Studies | DataOps Group</title>
+        <title>HubSpot Success Stories | Real Client Results | DataOps Group</title>
         <meta 
           name="description" 
-          content="Real-world success stories and case studies showcasing how DataOps Group has transformed data operations for businesses." 
+          content="See how we've rescued broken HubSpot implementations and delivered measurable ROI. Real case studies from insurance, manufacturing, and SaaS companies." 
         />
+        <link rel="canonical" href="https://dataopsgroup.com/case-studies" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="HubSpot Success Stories | Real Client Results | DataOps Group" />
+        <meta property="og:description" content="See how we've rescued broken HubSpot implementations and delivered measurable ROI. Real case studies from insurance, manufacturing, and SaaS companies." />
+        <meta property="og:url" content="https://dataopsgroup.com/case-studies" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="HubSpot Success Stories | Real Client Results | DataOps Group" />
+        <meta name="twitter:description" content="See how we've rescued broken HubSpot implementations and delivered measurable ROI. Real case studies from insurance, manufacturing, and SaaS companies." />
+        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "Case Studies | DataOps Group",
-            "description": "Real-world success stories and case studies showcasing how DataOps Group has transformed data operations for businesses.",
+            "name": "HubSpot Success Stories | Real Client Results | DataOps Group",
+            "description": "See how we've rescued broken HubSpot implementations and delivered measurable ROI. Real case studies from insurance, manufacturing, and SaaS companies.",
             "publisher": {
               "@type": "Organization",
               "name": "DataOps Group",

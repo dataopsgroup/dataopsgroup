@@ -22,6 +22,7 @@ const DataOpsImplementation = () => {
         ogType="website"
         ogTitle="HubSpot DataOps Implementation | Streamline Your Data Operations"
         ogDescription="Implement DataOps methodologies in HubSpot for faster, more reliable data workflows. Reduce errors, improve quality, accelerate time-to-insight."
+        twitterCard="summary"
       />
       
       <DataOpsImplementationSchema />

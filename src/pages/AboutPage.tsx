@@ -13,7 +13,18 @@ const AboutPage = () => {
       <Helmet>
         <title>HubSpot Expert Since 2012 | Geoff Tucker | DataOps Group</title>
         <meta name="description" content="13+ years HubSpot experience. Rescued 150+ broken implementations. From startup to enterprise, I fix what others couldn't. Ready to save your HubSpot investment?" />
-        <link rel="canonical" href="/about" />
+        <link rel="canonical" href="https://dataopsgroup.com/about" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="HubSpot Expert Since 2012 | Geoff Tucker | DataOps Group" />
+        <meta property="og:description" content="13+ years HubSpot experience. Rescued 150+ broken implementations. From startup to enterprise, I fix what others couldn't. Ready to save your HubSpot investment?" />
+        <meta property="og:url" content="https://dataopsgroup.com/about" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="HubSpot Expert Since 2012 | Geoff Tucker | DataOps Group" />
+        <meta name="twitter:description" content="13+ years HubSpot experience. Rescued 150+ broken implementations. From startup to enterprise, I fix what others couldn't. Ready to save your HubSpot investment?" />
       </Helmet>
       <Navbar />
 
