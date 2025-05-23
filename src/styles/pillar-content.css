@@ -64,7 +64,7 @@
   justify-content: center;
   padding: 1rem 1rem; /* Increased vertical padding from 0.75rem to 1rem */
   transition: background-color 0.2s ease;
-  min-height: 20px !important; /* Ensure minimum height of 20px */
+  min-height: 36px !important; /* Increased from 20px to 36px for more vertical space */
 }
 
 .table-of-contents .download-button:hover {

@@ -88,7 +88,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             {/* Download Interview Guide CTA Button */}
             <li className="mt-4 border-t border-gray-200 pt-4 px-3">
               <a href="https://drive.google.com/file/d/1ApJENdggcFYSirQDzmnV1GEtjAWKL4R5/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="block">
-                <Button variant="default" className="download-button w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center py-2 min-h-[20px]">
+                <Button variant="default" className="download-button w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center py-3 min-h-[36px]">
                   <FileDown size={18} className="mr-2" />
                   Download the Interview Guide
                 </Button>
