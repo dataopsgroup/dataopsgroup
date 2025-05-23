@@ -22,7 +22,7 @@ const WhenNeedExpertSection: React.FC = () => {
       
       <p className="mb-4">There's the opportunity cost of pulling your best people away from revenue-generating activities. There's the risk of suboptimal configuration that limits your long-term growth potential. There's the likelihood of missing automation opportunities that could save ongoing time and effort.</p>
       
-      <p className="mb-4">According to HubSpot's own research, businesses using certified experts see 40% faster implementation timelines, 35% higher user adoption rates, and 28% better performance on key metrics within six months. When you factor in these efficiency gains, expert help often pays for itself through faster time-to-value and better long-term results.</p>
+      <p className="mb-4">Research shows that businesses using certified experts typically see faster implementation timelines, higher user adoption rates, and better performance on key metrics compared to DIY implementations. When you factor in these efficiency gains, expert help often pays for itself through faster time-to-value and better long-term results.</p>
       
       <p className="mb-4">The question isn't whether you can implement HubSpot yourself—it's whether doing so represents the best use of your resources and the fastest path to achieving your business objectives.</p>
     </section>
