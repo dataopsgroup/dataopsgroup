@@ -42,7 +42,7 @@ const PillarContentPage = () => {
           
           {/* Main content placeholder */}
           <div className="w-[64%] p-4">
-            <h2 className="text-xl font-semibold mb-4">Main Content</h2>
+            {/* Removed the "Main Content" heading here */}
             
             {/* Content container with blue outline */}
             <div className="border border-blue-500">
