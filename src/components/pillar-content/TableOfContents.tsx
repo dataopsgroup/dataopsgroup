@@ -27,7 +27,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items, className }) =
   };
   
   return (
-    <nav className={cn("table-of-contents pt-0", className)}>
+    <nav className={cn("table-of-contents pt-0 ml-4", className)}>
       <h3 className="text-xl font-bold mb-6 sidebar-content-title">Table of Contents</h3>
       <ul className="space-y-3 pl-0 list-none">
         {items.map((item) => (
@@ -55,3 +55,4 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items, className }) =
 };
 
 export default TableOfContents;
+
