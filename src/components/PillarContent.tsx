@@ -44,7 +44,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
                 { name: 'Home', url: '/' },
                 { name: 'Pillar Content', url: '/pillar-content', current: true }
               ]}
-              className="mt-0" {/* Adjusted to remove extra top margin since container has pt-16 */}
+              className="mt-0" /* Adjusted to remove extra top margin since container has pt-16 */
             />
             
             <header className="mb-8 text-left ml-20"> {/* Keeping consistent spacing */}
