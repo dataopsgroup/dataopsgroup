@@ -46,7 +46,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
               ]}
             />
             
-            <header className="mb-12 text-left">
+            <header className="mb-12 text-left ml-20">
               <h1 className="text-4xl font-bold mb-4 text-dataops-900">{title}</h1>
               {description && (
                 <p className="text-xl text-gray-600">{description}</p>
