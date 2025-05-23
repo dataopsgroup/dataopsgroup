@@ -23,9 +23,8 @@ const ResultsNextSteps: React.FC<ResultsNextStepsProps> = ({ onDownloadResults }
           <a href="/contact">Request Free Consultation</a>
         </Button>
         <Button 
-          variant="outline"
           onClick={onDownloadResults}
-          className="border-orange-500 text-orange-500 hover:bg-orange-50"
+          className="bg-orange-500 hover:bg-orange-600 text-white"
         >
           <Download className="w-4 h-4 mr-2" />
           Download My Results

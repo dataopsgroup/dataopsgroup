@@ -75,18 +75,18 @@ const HubSpotAssessmentResultsPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Your HubSpot Assessment Results | Custom Optimization Plan</title>
+        <title>HubSpot Assessment Complete | Download Your Personalized Implementation Rescue Plan</title>
         <meta 
           name="description" 
-          content="See your personalized HubSpot assessment results and custom optimization plan. Discover exactly what's costing you deals and how to fix it. Next steps inside."
+          content="Your HubSpot implementation assessment is complete! Download your personalized rescue plan with actionable insights, priority fixes, and a 90-day roadmap to optimize your HubSpot portal for maximum ROI."
         />
-        <meta property="og:title" content="Your HubSpot Assessment Results | Custom Optimization Plan" />
-        <meta property="og:description" content="See your personalized HubSpot assessment results and custom optimization plan. Discover exactly what's costing you deals and how to fix it. Next steps inside." />
+        <meta property="og:title" content="HubSpot Assessment Complete | Download Your Personalized Implementation Rescue Plan" />
+        <meta property="og:description" content="Your HubSpot implementation assessment is complete! Download your personalized rescue plan with actionable insights, priority fixes, and a 90-day roadmap to optimize your HubSpot portal for maximum ROI." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dataopsgroup.com/hubspot-assessment-results" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Your HubSpot Assessment Results | Custom Optimization Plan" />
-        <meta name="twitter:description" content="See your personalized HubSpot assessment results and custom optimization plan. Discover exactly what's costing you deals and how to fix it. Next steps inside." />
+        <meta name="twitter:title" content="HubSpot Assessment Complete | Download Your Personalized Implementation Rescue Plan" />
+        <meta name="twitter:description" content="Your HubSpot implementation assessment is complete! Download your personalized rescue plan with actionable insights, priority fixes, and a 90-day roadmap to optimize your HubSpot portal for maximum ROI." />
         <link rel="canonical" href="https://dataopsgroup.com/hubspot-assessment-results" />
       </Helmet>
       
@@ -135,8 +135,7 @@ const HubSpotAssessmentResultsPage = () => {
                 </Button>
                 <Button 
                   onClick={handleDownloadSample}
-                  variant="outline" 
-                  className="border-orange-500 text-orange-500 hover:bg-orange-50"
+                  className="bg-orange-500 hover:bg-orange-600 text-white"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Download Sample Results
