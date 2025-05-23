@@ -6,6 +6,7 @@ import UnderstandingExpertsSection from './sections/UnderstandingExpertsSection'
 import TypesExpertiseSection from './sections/TypesExpertiseSection';
 import BeyondAgencySafetySection from './sections/BeyondAgencySafetySection';
 import WhenNeedExpertSection from './sections/WhenNeedExpertSection';
+import EvaluatingQualificationsSection from './sections/EvaluatingQualificationsSection';
 import DefaultSection from './sections/DefaultSection';
 
 interface ContentSectionProps {
@@ -26,6 +27,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ activeSection }) => {
       case 'when-need-expert':
         return <WhenNeedExpertSection />;
       case 'evaluating-qualifications':
+        return <EvaluatingQualificationsSection />;
       case 'pricing-guide':
       case 'step-by-step-process':
       case 'essential-questions':
