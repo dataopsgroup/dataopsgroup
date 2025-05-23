@@ -51,6 +51,7 @@ const SitemapPage = () => {
         <title>Sitemap - DataOps Group | Website Navigation Guide</title>
         <meta name="description" content="Navigate the DataOps Group website with ease using our comprehensive sitemap. Find all pages, resources, and services for HubSpot consulting and implementation." />
         <meta name="keywords" content="sitemap, DataOps Group navigation, HubSpot consulting pages, website map, marketing operations resources" />
+        <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href={`${baseUrl}/sitemap`} />
         
         {/* Enhanced viewport meta tag for better mobile experience */}
