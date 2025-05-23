@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -61,16 +62,13 @@ const Hero = () => {
                 </p>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div>
                 <Link to="/contact" onClick={trackContactCTAClick}>
                   <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
                     Book My Assessment
                     <ChevronRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
-                <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" asChild onClick={trackServicesCTAClick}>
-                  <Link to="/services">View Our Services</Link>
-                </Button>
               </div>
             </div>
           </div>
@@ -150,3 +148,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
