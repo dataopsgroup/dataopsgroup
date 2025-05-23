@@ -1,11 +1,10 @@
 
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import { RouteObject, Navigate } from 'react-router-dom';
 
 // Import pages
 import NotFound from '@/pages/NotFound';
 import Privacy from '@/pages/Privacy';
-import Terms from '@/pages/Terms';
 import Sitemap from '@/pages/Sitemap';
 import FAQs from '@/pages/FAQs';
 import Documentation from '@/pages/Documentation';
@@ -33,7 +32,7 @@ export const utilityRoutes: RouteObject[] = [
   },
   {
     path: "/terms",
-    element: <Terms />
+    element: <Navigate to="/" replace />
   },
   {
     path: "/sitemap",

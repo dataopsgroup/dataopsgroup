@@ -19,6 +19,12 @@ export const redirectRoutes = [
     element: <Navigate to="/" replace />,
   },
   
+  // Terms page redirect
+  {
+    path: "/terms-of-service",
+    element: <Navigate to="/" replace />,
+  },
+  
   // Old services redirects
   {
     path: "/services/alignment",
