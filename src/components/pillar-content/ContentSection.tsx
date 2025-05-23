@@ -54,11 +54,16 @@ const ContentSection: React.FC<ContentSectionProps> = ({ activeSection }) => {
   };
 
   return (
-    <div className="w-full md:w-[64%] p-4">
-      <div className="p-4">
-        {renderSection()}
+    <>
+      <div className="w-full md:w-[64%] mb-6">
+        <h1 className="text-3xl font-bold">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
       </div>
-    </div>
+      <div className="w-full md:w-[64%] p-4">
+        <div className="p-4">
+          {renderSection()}
+        </div>
+      </div>
+    </>
   );
 };
 
