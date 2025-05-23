@@ -31,7 +31,11 @@ const PillarContentPage = () => {
           {/* Main content placeholder */}
           <div className="w-[64%] p-4">
             <h2 className="text-xl font-semibold mb-4">Main Content</h2>
-            <p>This is a placeholder for the pillar content. We'll rebuild this with a new approach.</p>
+            
+            {/* Content container with blue outline */}
+            <div className="border border-blue-500">
+              <p>This is a placeholder for the pillar content. We'll rebuild this with a new approach.</p>
+            </div>
           </div>
         </div>
       </div>
