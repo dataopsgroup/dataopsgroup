@@ -2,8 +2,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { NavItem } from '@/types/navigation';
-import { Book } from 'lucide-react';
+import { NavItem, SubNavItem } from '@/types/navigation';
+import { Book, ChevronRight } from 'lucide-react';
 
 interface MobileNavigationProps {
   isOpen: boolean;
@@ -22,6 +22,38 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
     return null;
   };
 
+  // Recursive function to render nested menu items
+  const renderSubMenu = (items: SubNavItem[] | undefined, level: number = 1) => {
+    if (!items) return null;
+
+    return (
+      <ul className={`pl-${level * 4} flex flex-col space-y-2`}>
+        {items.map((subItem) => (
+          <li key={subItem.name}>
+            {subItem.isDropdown && subItem.items ? (
+              <div className="flex flex-col">
+                <div className="py-1 font-medium text-dataops-900 flex items-center">
+                  {subItem.name}
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </div>
+                {renderSubMenu(subItem.items, level + 1)}
+              </div>
+            ) : (
+              <Link
+                to={subItem.href || "/"}
+                onClick={() => setIsOpen(false)}
+                className="text-dataops-900 hover:text-dataops-600 py-1 flex items-center"
+              >
+                {subItem.icon && renderIcon(subItem.icon)}
+                {subItem.name}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
     <nav 
       id="mobile-menu"
@@ -35,20 +67,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
               {item.isDropdown ? (
                 <div className="flex flex-col px-4">
                   <h3 className="py-2 font-medium text-dataops-900 flex items-center">{item.name}</h3>
-                  <ul className="pl-4 flex flex-col space-y-2">
-                    {item.items?.map((subItem) => (
-                      <li key={subItem.name}>
-                        <Link
-                          to={subItem.href}
-                          onClick={() => setIsOpen(false)}
-                          className="text-dataops-900 hover:text-dataops-600 py-1 flex items-center"
-                        >
-                          {subItem.icon && renderIcon(subItem.icon)}
-                          {subItem.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  {renderSubMenu(item.items)}
                 </div>
               ) : (
                 <Link

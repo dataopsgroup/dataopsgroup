@@ -1,3 +1,4 @@
+
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -21,10 +22,19 @@ export const navServices: SubNavItem[] = [
   // Removed other services that don't have route definitions in App.tsx
 ];
 
+// Guides dropdown items 
+export const guidesItems: SubNavItem[] = [
+  { 
+    name: 'How to Hire a HubSpot Expert in 2025', 
+    href: '/how-to-hire-a-hubspot-expert-in-2025' 
+  }
+];
+
 // Insights dropdown items
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
   { name: 'Case Studies', href: '/case-studies' },
+  { name: 'Guides', isDropdown: true, items: guidesItems },
   { 
     name: 'Buy the Book', 
     href: '/book', 

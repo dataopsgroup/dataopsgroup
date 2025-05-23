@@ -3,12 +3,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, Book } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { NavItem } from '@/types/navigation';
+import { NavItem, SubNavItem } from '@/types/navigation';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
 
 interface DesktopNavigationProps {
@@ -24,6 +27,34 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
     return null;
   };
 
+  // Function to render submenu items recursively
+  const renderSubMenuItem = (subItem: SubNavItem) => {
+    if (subItem.isDropdown && subItem.items) {
+      return (
+        <DropdownMenuSub key={subItem.name}>
+          <DropdownMenuSubTrigger>
+            {subItem.name}
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            {subItem.items.map(renderSubMenuItem)}
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+      );
+    } else {
+      return (
+        <DropdownMenuItem asChild key={subItem.name}>
+          <Link 
+            to={subItem.href || "/"}
+            className="w-full cursor-pointer flex items-center"
+          >
+            {subItem.icon && renderIcon(subItem.icon)}
+            {subItem.name}
+          </Link>
+        </DropdownMenuItem>
+      );
+    }
+  };
+
   return (
     <nav className="hidden md:flex items-center gap-8" aria-label="Desktop Navigation">
       <ul className="flex items-center gap-8">
@@ -37,21 +68,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
                   <span className="sr-only">Toggle {item.name} dropdown</span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56 bg-white">
-                  <ul>
-                    {item.items?.map((subItem) => (
-                      <li key={subItem.name}>
-                        <DropdownMenuItem asChild>
-                          <Link 
-                            to={subItem.href}
-                            className="w-full cursor-pointer flex items-center"
-                          >
-                            {subItem.icon && renderIcon(subItem.icon)}
-                            {subItem.name}
-                          </Link>
-                        </DropdownMenuItem>
-                      </li>
-                    ))}
-                  </ul>
+                  {item.items?.map(renderSubMenuItem)}
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
