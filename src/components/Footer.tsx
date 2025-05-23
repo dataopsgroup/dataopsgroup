@@ -1,17 +1,14 @@
-
 import React from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AdminLink from './AdminLink';
 import { navServices } from '@/data/navigationData';
-
 const Footer = () => {
-  return (
-    <footer className="bg-dataops-950 text-white pt-16 mt-auto">
+  return <footer className="bg-dataops-950 text-white pt-16 mt-auto">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <section>
-            <h2 className="text-2xl font-bold mb-6">DataOps Group</h2>
+            <h2 className="text-2xl font-bold mb-6"></h2>
             <p className="text-gray-300 mb-6">
               Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
               efficiency and innovation through expert consulting and <Link to="/" className="hover:text-white underline" aria-label="Visit our homepage">tailored solutions</Link>.
@@ -27,13 +24,11 @@ const Footer = () => {
           <nav aria-labelledby="services-navigation">
             <h2 id="services-navigation" className="text-lg font-semibold mb-6">Services</h2>
             <ul className="space-y-3">
-              {navServices.map((service) => (
-                <li key={service.href}>
+              {navServices.map(service => <li key={service.href}>
                   <Link to={service.href} className="text-gray-300 hover:text-white" aria-label={`Explore our ${service.name} services`}>
                     {service.name}
                   </Link>
-                </li>
-              ))}
+                </li>)}
               <li>
                 <Link to="/services" className="text-gray-300 hover:text-white" aria-label="View all our services">
                   All Services
@@ -81,8 +76,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
