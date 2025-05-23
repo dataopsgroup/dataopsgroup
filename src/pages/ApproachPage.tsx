@@ -15,10 +15,21 @@ const ApproachPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Our Approach to DataOps - DataOps Group</title>
-        <meta name="description" content="Learn about our systematic approach to implementing DataOps in your organization through discovery, strategy, implementation, and optimization." />
+        <title>Our HubSpot Optimization Approach | Proven 3-Step Process</title>
+        <meta name="description" content="How we rescue broken HubSpot implementations: Audit, Optimize, Scale. Our proven methodology has saved 150+ companies from CRM disasters. See the process." />
         <meta name="keywords" content="dataops approach, data methodology, data transformation process, agile data management, data strategy, data implementation" />
-        <link rel="canonical" href="/approach" />
+        <link rel="canonical" href="https://dataopsgroup.com/approach" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Our HubSpot Optimization Approach | Proven 3-Step Process" />
+        <meta property="og:description" content="How we rescue broken HubSpot implementations: Audit, Optimize, Scale. Our proven methodology has saved 150+ companies from CRM disasters. See the process." />
+        <meta property="og:url" content="https://dataopsgroup.com/approach" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Our HubSpot Optimization Approach | Proven 3-Step Process" />
+        <meta name="twitter:description" content="How we rescue broken HubSpot implementations: Audit, Optimize, Scale. Our proven methodology has saved 150+ companies from CRM disasters. See the process." />
       </Helmet>
       <BreadcrumbSchema 
         items={[
@@ -56,8 +67,8 @@ const ApproachPage = () => {
         __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "name": "Our Approach to DataOps - DataOps Group",
-          "description": "Learn about our systematic approach to implementing DataOps in your organization through discovery, strategy, implementation, and optimization.",
+          "name": "Our HubSpot Optimization Approach | Proven 3-Step Process",
+          "description": "How we rescue broken HubSpot implementations: Audit, Optimize, Scale. Our proven methodology has saved 150+ companies from CRM disasters. See the process.",
           "publisher": {
             "@type": "Organization",
             "name": "DataOps Group"
