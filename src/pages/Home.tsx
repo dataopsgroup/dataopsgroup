@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -17,10 +18,10 @@ const Home = () => {
   return (
     <SemanticLayout>
       <Helmet>
-        <title>HubSpot Not Delivering ROI? We Fix That | DataOps Group</title>
+        <title>HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group</title>
         <meta 
           name="description" 
-          content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue machine. Free audit." 
+          content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue-generating machine. Free assessment." 
         />
         <meta name="keywords" content="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations, sales operations, revenue operations" />
         <link rel="canonical" href={`${baseUrl}/`} />
@@ -30,8 +31,8 @@ const Home = () => {
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="HubSpot Not Delivering ROI? We Fix That | DataOps Group" />
-        <meta property="og:description" content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue machine. Free audit." />
+        <meta property="og:title" content="HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group" />
+        <meta property="og:description" content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue-generating machine. Free assessment." />
         <meta property="og:url" content={`${baseUrl}/`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta property="og:image:width" content="1200" />
@@ -40,8 +41,8 @@ const Home = () => {
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HubSpot Not Delivering ROI? We Fix That | DataOps Group" />
-        <meta name="twitter:description" content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue machine. Free audit." />
+        <meta name="twitter:title" content="HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group" />
+        <meta name="twitter:description" content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue-generating machine. Free assessment." />
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta name="twitter:site" content="@dataops_group" />
         
