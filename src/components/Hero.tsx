@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -42,7 +43,8 @@ const Hero = () => {
               HubSpot Not Delivering ROI? We Fix That.
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-              It's not HubSpot that's failing you—it's your disorganized data and setup. We convert chaotic, scattered HubSpot portals into organized revenue engines that turn your existing contacts into paying customers.
+              Stop losing money on broken workflows, messy data, and disconnected teams. 
+              We rescue HubSpot implementations and turn them into revenue-generating machines.
             </p>
           </div>
           
