@@ -6,9 +6,9 @@ import {
   generateServicesSitemap,
   generateBlogSitemap,
   generateCaseStudiesSitemap
-} from './generators';
+} from './xml-generator';
 
-// Generate all sitemaps
+// Generate all sitemaps using the clean XML generator
 export const generateAllSitemaps = (baseUrl: string): SitemapData => {
   return {
     index: generateSitemapIndex(baseUrl),
@@ -21,5 +21,4 @@ export const generateAllSitemaps = (baseUrl: string): SitemapData => {
 
 // Re-export everything for backward compatibility
 export * from './types';
-export * from './constants';
-export * from './generators';
+export * from './xml-generator';

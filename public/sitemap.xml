@@ -1,20 +1,2 @@
 
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap>
-<loc>https://dataopsgroup.com/sitemaps/main-sitemap.xml</loc>
-<lastmod>2025-05-23</lastmod>
-</sitemap>
-<sitemap>
-<loc>https://dataopsgroup.com/sitemaps/services-sitemap.xml</loc>
-<lastmod>2025-05-23</lastmod>
-</sitemap>
-<sitemap>
-<loc>https://dataopsgroup.com/sitemaps/blog-sitemap.xml</loc>
-<lastmod>2025-05-23</lastmod>
-</sitemap>
-<sitemap>
-<loc>https://dataopsgroup.com/sitemaps/case-studies-sitemap.xml</loc>
-<lastmod>2025-05-23</lastmod>
-</sitemap>
-</sitemapindex>
+<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://dataopsgroup.com/sitemaps/main-sitemap.xml</loc><lastmod>2025-05-23</lastmod></sitemap><sitemap><loc>https://dataopsgroup.com/sitemaps/services-sitemap.xml</loc><lastmod>2025-05-23</lastmod></sitemap><sitemap><loc>https://dataopsgroup.com/sitemaps/blog-sitemap.xml</loc><lastmod>2025-05-23</lastmod></sitemap><sitemap><loc>https://dataopsgroup.com/sitemaps/case-studies-sitemap.xml</loc><lastmod>2025-05-23</lastmod></sitemap></sitemapindex>
