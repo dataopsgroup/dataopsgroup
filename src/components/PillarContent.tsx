@@ -29,12 +29,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
         {/* Fixed Sidebar with Table of Contents - adjusted to be exactly 1/3 width */}
         <Sidebar className="w-full md:w-1/3 lg:w-1/3 max-w-xs border-r">
           <div className="p-6">
-            <img 
-              src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
-              alt="DataOps Group" 
-              className="h-12 mb-6" 
-            />
-            {/* Removed the extra padding top to align with content */}
+            {/* Removed the logo from here as it's already in the main navigation */}
             <div className="sidebar-content-wrapper">
               {tableOfContents}
             </div>
