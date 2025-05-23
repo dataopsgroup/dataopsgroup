@@ -22,9 +22,9 @@
   @apply font-medium bg-gray-100 text-dataops-800;
 }
 
-/* Perfect alignment between TOC title and main content title */
+/* Perfect alignment between TOC title and breadcrumb */
 .sidebar-content-wrapper {
-  padding-top: 52px; /* Exact alignment with the Introduction heading */
+  padding-top: 0; /* Adjusted to align with breadcrumb */
 }
 
 /* Improve spacing between TOC title and main content title */
