@@ -21,7 +21,11 @@ const PillarContentPage = () => {
           {/* Table of Contents placeholder */}
           <div className="w-[33%] p-4">
             <h2 className="text-xl font-semibold mb-4">Table of Contents</h2>
-            <p>Table of contents will go here</p>
+            
+            {/* TOC container with red outline */}
+            <div className="border border-red-500">
+              <p>Table of contents will go here</p>
+            </div>
           </div>
           
           {/* Main content placeholder */}
