@@ -75,44 +75,65 @@ export const optimizeAssetLoading = () => {
   });
 };
 
-// Extracted function to avoid duplicate declarations
+// Flag to track if script reordering has already been done
+const scriptReorderingFlag = '__SCRIPT_REORDERING_DONE__';
+
+// Extracted function to avoid duplicate declarations and prevent multiple executions
 export const reorderScripts = (
   criticalScripts: HTMLScriptElement[], 
   thirdPartyScripts: HTMLScriptElement[], 
   analyticsScripts: HTMLScriptElement[]
 ) => {
-  // Clone all scripts
-  const scriptClones = [...criticalScripts, ...thirdPartyScripts, ...analyticsScripts].map(script => {
-    const clone = document.createElement('script');
-    
-    // Copy all attributes
-    Array.from(script.attributes).forEach(attr => {
-      clone.setAttribute(attr.name, attr.value);
+  // Safety check: only run once per page/document to prevent duplicate script issues
+  if ((window as any)[scriptReorderingFlag]) {
+    return; // Exit if already executed
+  }
+  
+  try {
+    // Clone all scripts
+    const scriptClones = [...criticalScripts, ...thirdPartyScripts, ...analyticsScripts].map(script => {
+      const clone = document.createElement('script');
+      
+      // Copy all attributes
+      Array.from(script.attributes).forEach(attr => {
+        clone.setAttribute(attr.name, attr.value);
+      });
+      
+      // Copy inline script content
+      if (!script.src) {
+        clone.textContent = script.textContent;
+      }
+      
+      return {
+        original: script,
+        clone: clone
+      };
     });
     
-    // Copy inline script content
-    if (!script.src) {
-      clone.textContent = script.textContent;
-    }
+    // Remove originals and insert clones in optimal order
+    scriptClones.forEach(({ original, clone }) => {
+      if (original.parentNode) {
+        original.parentNode.removeChild(original);
+        document.body.appendChild(clone);
+      }
+    });
     
-    return {
-      original: script,
-      clone: clone
-    };
-  });
-  
-  // Remove originals and insert clones in optimal order
-  scriptClones.forEach(({ original, clone }) => {
-    if (original.parentNode) {
-      original.parentNode.removeChild(original);
-      document.body.appendChild(clone);
-    }
-  });
+    // Mark as done to prevent duplicate execution
+    (window as any)[scriptReorderingFlag] = true;
+  } catch (error) {
+    console.error('Error during script reordering:', error);
+    // Don't set the flag if execution failed, allowing for potential retry
+  }
 };
 
-// Optimize resource order through dynamic insertion
+// Optimize resource order through dynamic insertion - made safer with checks
 export const optimizeResourceOrder = () => {
   if (typeof document === 'undefined') return;
+  
+  // Skip if already executed
+  if ((window as any)[scriptReorderingFlag]) {
+    return;
+  }
   
   // Collect all script elements
   const scripts = Array.from(document.querySelectorAll('script'));
@@ -141,10 +162,13 @@ export const optimizeResourceOrder = () => {
     }
   });
   
-  // Reorder scripts by removing and reinserting them
-  // This is an advanced technique and should be used with caution
+  // Reorder scripts by removing and reinserting them - with safer approach
   if (document.readyState !== 'complete') {
-    window.addEventListener('load', () => reorderScripts(criticalScripts, thirdPartyScripts, analyticsScripts));
+    window.addEventListener('load', () => {
+      if (!(window as any)[scriptReorderingFlag]) {
+        reorderScripts(criticalScripts, thirdPartyScripts, analyticsScripts);
+      }
+    }, { once: true });  // Use once option to ensure handler runs only once
   } else {
     reorderScripts(criticalScripts, thirdPartyScripts, analyticsScripts);
   }
