@@ -25,16 +25,18 @@ const PillarContentPage = () => {
               
               {/* TOC container with red outline */}
               <div className="border border-red-500">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p>Praesent eget nunc in dolor finibus efficitur.</p>
-                <p>Aliquam erat volutpat. Morbi vel magna sit amet risus.</p>
-                <p>Suspendisse potenti. Nullam ullamcorper diam in dolor.</p>
-                <p>Donec auctor ligula eget magna tincidunt, vel congue.</p>
-                <p>Integer vehicula magna a orci laoreet, in lacinia magna.</p>
-                <p>Curabitur ut arcu nec dui finibus fermentum sit amet.</p>
-                <p>Mauris lacinia risus vitae augue tincidunt, ut sodales.</p>
-                <p>Vestibulum ante ipsum primis in faucibus orci luctus et.</p>
-                <p>Nulla facilisi. Fusce tempus odio sem, vel accumsan.</p>
+                <ul className="list-none p-0 m-0">
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Praesent eget nunc in dolor finibus efficitur.</li>
+                  <li>Aliquam erat volutpat. Morbi vel magna sit amet risus.</li>
+                  <li>Suspendisse potenti. Nullam ullamcorper diam in dolor.</li>
+                  <li>Donec auctor ligula eget magna tincidunt, vel congue.</li>
+                  <li>Integer vehicula magna a orci laoreet, in lacinia magna.</li>
+                  <li>Curabitur ut arcu nec dui finibus fermentum sit amet.</li>
+                  <li>Mauris lacinia risus vitae augue tincidunt, ut sodales.</li>
+                  <li>Vestibulum ante ipsum primis in faucibus orci luctus et.</li>
+                  <li>Nulla facilisi. Fusce tempus odio sem, vel accumsan.</li>
+                </ul>
               </div>
             </div>
           </div>
