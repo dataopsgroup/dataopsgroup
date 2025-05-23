@@ -114,13 +114,13 @@ const PillarContentPage = () => {
           <BreadcrumbNavigation items={breadcrumbItems} />
           
           {/* Title heading */}
-          <div className="flex flex-wrap justify-between items-center mb-6">
+          <div className="flex flex-wrap justify-between items-center mb-6 relative">
             <h1 className="text-3xl font-bold">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
             
-            {/* Share buttons */}
+            {/* Share buttons - positioned under the word "How" */}
             <ShareButtons 
               title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs" 
-              className="mt-4 md:mt-0"
+              position="under-title"
             />
           </div>
         </div>

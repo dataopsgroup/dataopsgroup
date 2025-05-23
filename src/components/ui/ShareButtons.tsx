@@ -6,11 +6,13 @@ import { useToast } from '@/hooks/use-toast';
 interface ShareButtonsProps {
   title: string;
   className?: string;
+  position?: 'default' | 'under-title';
 }
 
 const ShareButtons: React.FC<ShareButtonsProps> = ({
   title,
   className = '',
+  position = 'default',
 }) => {
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
@@ -52,7 +54,7 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({
   };
   
   return (
-    <div className={`flex items-center space-x-3 ${className}`}>
+    <div className={`flex items-center space-x-3 ${position === 'under-title' ? 'absolute top-9 left-[60px]' : ''} ${className}`}>
       <button 
         onClick={handleShareLinkedIn}
         aria-label="Share on LinkedIn"
