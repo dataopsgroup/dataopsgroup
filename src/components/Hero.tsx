@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,13 +11,13 @@ const Hero = () => {
     if (window.gtag) {
       window.gtag('event', 'cta_click', {
         'event_category': 'Engagement',
-        'event_label': 'Hero Contact CTA'
+        'event_label': 'Hero Assessment CTA'
       });
     }
     // Track in HubSpot
     if (window._hsq) {
       window._hsq.push(['trackEvent', {
-        id: 'hero_contact_cta_click'
+        id: 'hero_assessment_cta_click'
       }]);
     }
   };
@@ -52,16 +51,27 @@ const Hero = () => {
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" onClick={trackContactCTAClick}>
-                <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
-                  Schedule a Consultation
-                  <ChevronRight className="ml-2 h-4 w-4" />
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <h2 className="text-xl font-semibold text-[#403E43]">
+                  Discover What's Costing You Deals
+                </h2>
+                <p className="text-gray-600">
+                  Free 30-minute HubSpot assessment reveals hidden revenue leaks
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/contact" onClick={trackContactCTAClick}>
+                  <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
+                    Book My Assessment
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" asChild onClick={trackServicesCTAClick}>
+                  <Link to="/services">View Our Services</Link>
                 </Button>
-              </Link>
-              <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" asChild onClick={trackServicesCTAClick}>
-                <Link to="/services">View Our Services</Link>
-              </Button>
+              </div>
             </div>
           </div>
 
