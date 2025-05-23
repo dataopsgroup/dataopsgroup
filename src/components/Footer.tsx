@@ -1,24 +1,16 @@
-
 import React from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AdminLink from './AdminLink';
 import { navServices } from '@/data/navigationData';
 import OptimizedImage from './ui/optimized-image';
-
 const Footer = () => {
   return <footer className="bg-dataops-950 text-white pt-16 mt-auto">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <section>
-            <div className="mb-6">
-              <OptimizedImage 
-                src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" 
-                alt="DataOps Group Logo" 
-                width={180} 
-                height={50} 
-                className="ml-[25px]"
-              />
+            <div className="">
+              <OptimizedImage src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" alt="DataOps Group Logo" width={180} height={50} className="ml-[25px]" />
             </div>
             <p className="text-gray-300 mb-6">
               Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
