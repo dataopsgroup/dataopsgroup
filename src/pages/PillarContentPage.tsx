@@ -1,78 +1,184 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
 import '../styles/pillar-content.css';
+import useActiveSection from '@/hooks/useActiveSection';
+import useScrollToAnchor from '@/hooks/useScrollToAnchor';
+import { setupInteractionBasedLoading } from '@/lib/performance/interaction-loading';
 
 const PillarContentPage = () => {
+  const sectionIds = [
+    'introduction',
+    'understanding-experts',
+    'types-expertise',
+    'beyond-agency-safety',
+    'when-need-expert',
+    'evaluating-qualifications',
+    'pricing-guide',
+    'step-by-step-process',
+    'essential-questions',
+    'maximizing-partnership',
+    'success-stories',
+    'common-pitfalls',
+    'conclusion',
+    'faqs'
+  ];
+  
+  const activeId = useActiveSection(sectionIds, 120);
+  
+  // Handle scroll to anchor when page loads with hash
+  useScrollToAnchor();
+  
+  // Setup interaction-based loading for performance
+  React.useEffect(() => {
+    setupInteractionBasedLoading();
+  }, []);
+  
   return <SemanticLayout>
-      <MetaHead title="Pillar Content | DataOps Group" description="Comprehensive guides on HubSpot implementation and integration" keywords="HubSpot experts, HubSpot consultants, HubSpot implementation, HubSpot integration" canonicalPath="/pillar-content" />
+      <MetaHead 
+        title="How to Hire a HubSpot Expert in 2025: Consultant Guide & Integration Costs" 
+        description="Your complete guide to hiring the right HubSpot expert or consultant for your business needs, including implementation costs, evaluation criteria, and key questions to ask."
+        keywords="HubSpot experts, HubSpot consultants, HubSpot implementation, HubSpot integration, HubSpot consultant costs" 
+        canonicalPath="/pillar-content" 
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "How to Hire a HubSpot Expert in 2025: Consultant Guide & Integration Costs",
+          "author": {
+            "@type": "Person",
+            "name": "Geoff Tucker"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "DataOps Group",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://dataopsgroup.com/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png"
+            }
+          },
+          "datePublished": "2025-05-23",
+          "dateModified": "2025-05-23"
+        }}
+      />
       
       <div className="container mx-auto px-4 py-16">
-        <h1 className="text-3xl font-bold mb-8">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
-        
-        {/* Parent container with outline */}
         <div className="flex border border-black">
-          {/* Table of Contents placeholder */}
+          {/* Table of Contents */}
           <div className="w-[33%]">
-            <div className="p-4 sticky top-24"> {/* Added sticky positioning */}
+            <div className="p-4 sticky top-24">
               <div className="table-of-contents-container">
                 <h2 className="text-xl font-semibold mb-4">Table of Contents</h2>
                 <nav className="table-of-contents">
                   <ul>
-                    <li><a href="#introduction">Introduction</a></li>
-                    <li><a href="#understanding-experts">Understanding HubSpot Experts vs Consultants vs Agencies</a></li>
-                    <li><a href="#types-expertise">Types of HubSpot Expertise and Specializations</a></li>
-                    <li><a href="#beyond-agency-safety">Beyond the Agency Safety Net: Choosing Results Over Size</a></li>
-                    <li><a href="#when-need-expert">When Your Business Needs a HubSpot Expert</a></li>
-                    <li><a href="#evaluating-qualifications">Evaluating HubSpot Expert Qualifications and Integration Experience</a></li>
-                    <li><a href="#pricing-guide">Complete Pricing Guide for HubSpot Experts and Implementation</a></li>
-                    <li><a href="#step-by-step-process">Step-by-Step Process to Find and Hire the Perfect HubSpot Expert</a></li>
-                    <li><a href="#essential-questions">Essential Questions for Evaluating HubSpot Experts</a></li>
-                    <li><a href="#maximizing-partnership">Maximizing Your HubSpot Expert Partnership</a></li>
-                    <li><a href="#success-stories">Real-World Success Stories: Integration-Focused Implementations</a></li>
-                    <li><a href="#common-pitfalls">Common Pitfalls When Hiring HubSpot Experts</a></li>
-                    <li><a href="#conclusion">Conclusion: Making Your Final Decision</a></li>
-                    <li><a href="#faqs">FAQs About Hiring HubSpot Experts</a></li>
+                    <li><a href="#introduction" className={activeId === 'introduction' ? 'active' : ''}>Introduction</a></li>
+                    <li><a href="#understanding-experts" className={activeId === 'understanding-experts' ? 'active' : ''}>Understanding HubSpot Experts vs Consultants vs Agencies</a></li>
+                    <li><a href="#types-expertise" className={activeId === 'types-expertise' ? 'active' : ''}>Types of HubSpot Expertise and Specializations</a></li>
+                    <li><a href="#beyond-agency-safety" className={activeId === 'beyond-agency-safety' ? 'active' : ''}>Beyond the Agency Safety Net: Choosing Results Over Size</a></li>
+                    <li><a href="#when-need-expert" className={activeId === 'when-need-expert' ? 'active' : ''}>When Your Business Needs a HubSpot Expert</a></li>
+                    <li><a href="#evaluating-qualifications" className={activeId === 'evaluating-qualifications' ? 'active' : ''}>Evaluating HubSpot Expert Qualifications and Integration Experience</a></li>
+                    <li><a href="#pricing-guide" className={activeId === 'pricing-guide' ? 'active' : ''}>Complete Pricing Guide for HubSpot Experts and Implementation</a></li>
+                    <li><a href="#step-by-step-process" className={activeId === 'step-by-step-process' ? 'active' : ''}>Step-by-Step Process to Find and Hire the Perfect HubSpot Expert</a></li>
+                    <li><a href="#essential-questions" className={activeId === 'essential-questions' ? 'active' : ''}>Essential Questions for Evaluating HubSpot Experts</a></li>
+                    <li><a href="#maximizing-partnership" className={activeId === 'maximizing-partnership' ? 'active' : ''}>Maximizing Your HubSpot Expert Partnership</a></li>
+                    <li><a href="#success-stories" className={activeId === 'success-stories' ? 'active' : ''}>Real-World Success Stories: Integration-Focused Implementations</a></li>
+                    <li><a href="#common-pitfalls" className={activeId === 'common-pitfalls' ? 'active' : ''}>Common Pitfalls When Hiring HubSpot Experts</a></li>
+                    <li><a href="#conclusion" className={activeId === 'conclusion' ? 'active' : ''}>Conclusion: Making Your Final Decision</a></li>
+                    <li><a href="#faqs" className={activeId === 'faqs' ? 'active' : ''}>FAQs About Hiring HubSpot Experts</a></li>
                   </ul>
                 </nav>
               </div>
             </div>
           </div>
           
-          {/* Main content placeholder */}
+          {/* Main content */}
           <div className="w-[64%] p-4">
             {/* Removed the "Main Content" heading here */}
             
             {/* Content container with blue outline */}
             <div className="border border-blue-500">
-              <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur, nisi vel tincidunt aliquam, tortor nisi aliquam dui, id efficitur turpis mauris vel nulla. Fusce vel turpis non orci tincidunt bibendum. Nulla facilisi. Donec vehicula, mauris at scelerisque fermentum, velit turpis tincidunt nisi, eget aliquam quam nisi id nisl.</p>
+              <section id="introduction" className="pillar-content-section p-4">
+                <h1 className="text-3xl font-bold mb-6">How to Hire a HubSpot Expert in 2025: Consultant Guide &amp; Integration Costs</h1>
+                
+                <p className="mb-4">Finding the right HubSpot expert can be the difference between simply using another marketing tool and unleashing a growth engine that transforms your entire business. If you've been struggling with disconnected systems, manual processes, or a HubSpot setup that feels more complicated than helpful, you're not alone.</p>
+                
+                <p className="mb-4">The challenge isn't just about implementing HubSpot anymore. With thousands of integrations now available and countless ways to configure the platform, the real question has become: how do you find someone who understands both the technical possibilities and your specific business needs?</p>
+                
+                <p className="mb-4">Here's what makes this decision particularly tricky in 2025. Many businesses assume they need a big agency because that feels "safer," but the reality is often quite different. You might meet with impressive senior consultants during the sales process, only to have your actual work handled by junior team members who lack the business experience to make strategic decisions. Meanwhile, some of the most skilled HubSpot experts work independently, bringing years of hands-on experience directly to your project.</p>
+                
+                <p className="mb-4">The integration landscape has become especially complex. Your HubSpot implementation isn't just about marketing automation anymore—it needs to talk to your CRM, your accounting software, your e-commerce platform, and whatever other tools keep your business running. Getting these connections right from the start can save you months of frustration and thousands of dollars in rework.</p>
+                
+                <p className="mb-4">Throughout this guide, you'll discover how to identify genuine expertise, avoid common hiring mistakes, and find someone who can turn HubSpot into the business asset you originally envisioned. Whether you're implementing HubSpot for the first time, fixing a problematic setup, or expanding into new areas of the platform, the insights here will help you make a decision you'll feel confident about long after the project is complete.</p>
+                
+                <p className="mb-4">Most importantly, you'll learn to focus on outcomes rather than company size, and to ask the right questions that reveal whether someone truly understands how to make HubSpot work for businesses like yours.</p>
+              </section>
               
-              <p className="mb-4">Praesent id lacus vel nisi ultrices ultricies. Suspendisse potenti. Donec blandit mi eu nunc pellentesque, eget dictum nisl interdum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras nec dictum sapien. Integer euismod, metus non cursus finibus, eros lacus aliquam nulla, id faucibus magna augue ac velit.</p>
+              {/* Placeholder sections for other content */}
+              <section id="understanding-experts" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Understanding HubSpot Experts vs Consultants vs Agencies</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">In hac habitasse platea dictumst. Etiam elementum ex vel ullamcorper ultricies. Vivamus non augue quis neque feugiat dictum. Donec vehicula odio a eros pharetra, id pharetra quam placerat. Mauris non tincidunt velit, et fermentum neque. Nunc malesuada augue vel ante tincidunt, id pharetra magna sollicitudin.</p>
+              {/* Add more section placeholders */}
+              <section id="types-expertise" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Types of HubSpot Expertise and Specializations</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Fusce ultrices enim ut sapien feugiat, vel pretium lacus euismod. Nulla facilisi. Etiam interdum, felis id congue viverra, mi velit pretium nisl, id tempor purus neque nec ex. Mauris fermentum, purus vel bibendum auctor, diam mauris tincidunt nisl, sit amet facilisis arcu mi at velit. Donec non ornare justo.</p>
+              {/* ... keep similar placeholders for all other sections ... */}
+              <section id="beyond-agency-safety" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Beyond the Agency Safety Net: Choosing Results Over Size</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla finibus orci id risus fermentum, vel vestibulum ipsum malesuada. Aenean vestibulum, eros non volutpat rutrum, sapien nulla congue risus, vel bibendum magna est ac velit.</p>
+              <section id="when-need-expert" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">When Your Business Needs a HubSpot Expert</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Morbi tristique feugiat nisi, vel cursus tortor tristique vel. Nulla nec accumsan nisl. Integer hendrerit purus eu dolor rhoncus, vel placerat quam feugiat. Ut mollis vestibulum odio, ut fringilla neque cursus vel. Integer vel quam vitae leo dictum tempus.</p>
+              <section id="evaluating-qualifications" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Evaluating HubSpot Expert Qualifications and Integration Experience</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Cras efficitur justo eget nulla finibus, in lacinia nunc egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam scelerisque justo vel lacus fermentum, vel luctus magna hendrerit. Pellentesque tincidunt congue risus, vel commodo dui lacinia at.</p>
+              <section id="pricing-guide" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Complete Pricing Guide for HubSpot Experts and Implementation</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Maecenas ultricies lacus vel nisl tempus, vel pulvinar magna tincidunt. Vestibulum bibendum lorem vel sapien scelerisque, at venenatis velit tempus. Nam suscipit enim vitae urna pharetra, vel fermentum magna facilisis. Praesent nec mauris sit amet turpis faucibus blandit vel quis risus.</p>
+              <section id="step-by-step-process" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Step-by-Step Process to Find and Hire the Perfect HubSpot Expert</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Vivamus ut arcu vitae nulla tincidunt fringilla. Phasellus ac quam felis. Sed iaculis placerat nisi, vel dictum mauris commodo in. Aenean pharetra ante id nunc aliquam, nec varius odio fringilla. Pellentesque sed ipsum nec nisl convallis faucibus. Morbi fringilla magna vel sem molestie, at ultricies justo volutpat.</p>
+              <section id="essential-questions" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Essential Questions for Evaluating HubSpot Experts</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Quisque efficitur dui vel magna venenatis, non lacinia justo semper. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur pharetra rutrum malesuada. Fusce auctor dolor in augue posuere, vel hendrerit magna posuere.</p>
+              <section id="maximizing-partnership" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Maximizing Your HubSpot Expert Partnership</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Suspendisse potenti. Aliquam erat volutpat. Duis fringilla metus at odio faucibus, sit amet laoreet nisi pharetra. Nunc rhoncus augue at risus suscipit, eu commodo tellus placerat. Integer consequat posuere diam eget dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+              <section id="success-stories" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Real-World Success Stories: Integration-Focused Implementations</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla facilisi. Cras nec ligula quam. Integer accumsan consequat lorem, vel facilisis purus efficitur nec. Duis eget tristique magna. Integer lacinia, nibh vitae finibus tincidunt, magna mi tristique elit, ac posuere nisl justo eget dui.</p>
+              <section id="common-pitfalls" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Common Pitfalls When Hiring HubSpot Experts</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Nulla convallis semper dui, vel efficitur erat tincidunt sit amet. Sed euismod, arcu ac tempor varius, libero turpis venenatis nisi, in venenatis metus lorem sit amet tortor. Aliquam erat volutpat. Suspendisse potenti. Donec ultricies risus vel arcu faucibus, id aliquam elit euismod.</p>
+              <section id="conclusion" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">Conclusion: Making Your Final Decision</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
               
-              <p className="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+              <section id="faqs" className="pillar-content-section p-4">
+                <h2 className="text-2xl font-bold mb-4 mt-8">FAQs About Hiring HubSpot Experts</h2>
+                <p className="mb-4">Coming soon...</p>
+              </section>
             </div>
           </div>
         </div>
