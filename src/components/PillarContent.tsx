@@ -34,8 +34,8 @@ const PillarContent: React.FC<PillarContentProps> = ({
               alt="DataOps Group" 
               className="h-12 mb-6" 
             />
-            {/* Updated wrapper div to align exactly with Introduction heading */}
-            <div className="pt-10">
+            {/* Removed the extra padding top to align with content */}
+            <div className="sidebar-content-wrapper">
               {tableOfContents}
             </div>
           </div>
@@ -58,7 +58,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
               )}
             </header>
             
-            {/* Removed duplicate padding from here as it's now managed in the CSS */}
+            {/* Content area with proper spacing */}
             <main className="prose prose-lg max-w-none pillar-content">
               {content}
             </main>
