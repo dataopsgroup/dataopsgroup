@@ -3,7 +3,7 @@ import React from 'react';
 
 const UnderstandingExpertsSection: React.FC = () => {
   return (
-    <section id="understanding-experts" className="p-4" tabIndex={-1}>
+    <section id="understanding-experts" tabIndex={-1}>
       <h2 className="text-2xl font-bold mb-4">Understanding HubSpot Experts vs Consultants vs Agencies</h2>
 
       <p className="mb-4">The HubSpot ecosystem includes different types of professionals, and understanding these distinctions will help you make the right choice for your specific needs.</p>
