@@ -10,6 +10,7 @@ import EvaluatingQualificationsSection from './sections/EvaluatingQualifications
 import PricingGuideSection from './sections/PricingGuideSection';
 import StepByStepProcessSection from './sections/StepByStepProcessSection';
 import EssentialQuestionsSection from './sections/EssentialQuestionsSection';
+import MaximizingPartnershipSection from './sections/MaximizingPartnershipSection';
 import DefaultSection from './sections/DefaultSection';
 
 interface ContentSectionProps {
@@ -38,6 +39,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ activeSection }) => {
       case 'essential-questions':
         return <EssentialQuestionsSection />;
       case 'maximizing-partnership':
+        return <MaximizingPartnershipSection />;
       case 'success-stories':
       case 'common-pitfalls':
       case 'conclusion':
