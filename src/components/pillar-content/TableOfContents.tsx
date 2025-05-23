@@ -38,7 +38,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('types-expertise')} 
-                className={`${activeSection === 'types-expertise' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'types-expertise' ? 'active' : ''} w-full text-left block py-2 px-3 pr-8`}
               >
                 Types of HubSpot Expertise and Specializations
               </button>
