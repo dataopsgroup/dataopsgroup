@@ -15,8 +15,8 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Our Services - DataOps Group</title>
-        <meta name="description" content="Explore our comprehensive data operations services including data architecture, analytics, governance, and technology consulting." />
+        <title>HubSpot Rescue & Optimization Services | Fix Your Broken CRM</title>
+        <meta name="description" content="Broken HubSpot costing you deals? Our rescue services fix data chaos, optimize workflows, and deliver measurable ROI. 150+ successful implementations." />
         <meta name="keywords" content="data services, data architecture, analytics, BI, data governance, dataops implementation, enterprise data solutions" />
         <link rel="canonical" href="/services" />
       </Helmet>
