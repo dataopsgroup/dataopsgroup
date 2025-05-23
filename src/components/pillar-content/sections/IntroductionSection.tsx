@@ -1,10 +1,7 @@
-
 import React from 'react';
-
 const IntroductionSection: React.FC = () => {
-  return (
-    <section id="introduction" className="p-4" tabIndex={-1}>
-      <h1 className="text-3xl font-bold mb-6">How to Hire a HubSpot Expert in 2025: Consultant Guide &amp; Integration Costs</h1>
+  return <section id="introduction" className="p-4" tabIndex={-1}>
+      <h1 className="text-3xl font-bold mb-6">Introduction</h1>
       
       <p className="mb-4">Finding the right HubSpot expert can be the difference between simply using another marketing tool and unleashing a growth engine that transforms your entire business. If you've been struggling with disconnected systems, manual processes, or a HubSpot setup that feels more complicated than helpful, you're not alone.</p>
       
@@ -17,8 +14,6 @@ const IntroductionSection: React.FC = () => {
       <p className="mb-4">Throughout this guide, you'll discover how to identify genuine expertise, avoid common hiring mistakes, and find someone who can turn HubSpot into the business asset you originally envisioned. Whether you're implementing HubSpot for the first time, fixing a problematic setup, or expanding into new areas of the platform, the insights here will help you make a decision you'll feel confident about long after the project is complete.</p>
       
       <p className="mb-4">Most importantly, you'll learn to focus on outcomes rather than company size, and to ask the right questions that reveal whether someone truly understands how to make HubSpot work for businesses like yours.</p>
-    </section>
-  );
+    </section>;
 };
-
 export default IntroductionSection;
