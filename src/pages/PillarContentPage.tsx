@@ -95,6 +95,11 @@ const PillarContentPage = () => {
       />
       
       <div className="container mx-auto px-4 py-16">
+        {/* Title heading above both TOC and content */}
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
+        </div>
+        
         <div className="flex flex-col md:flex-row">
           {/* Table of Contents */}
           <div className="w-full md:w-[33%]">
