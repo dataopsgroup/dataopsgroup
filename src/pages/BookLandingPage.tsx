@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -61,9 +60,6 @@ const BookLandingPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button className="bg-dataops-600 hover:bg-dataops-700 text-white text-lg px-8 py-6">
                     Pre-Order Now <ChevronRight className="h-4 w-4" />
-                  </Button>
-                  <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 text-lg px-8 py-6">
-                    Learn More
                   </Button>
                 </div>
               </div>
