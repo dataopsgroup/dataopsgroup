@@ -24,7 +24,7 @@
 
 /* Perfect alignment between TOC title and main content title */
 .sidebar-content-wrapper {
-  padding-top: 52px; /* Exact alignment with the Introduction heading */
+  padding-top: 0; /* Removed extra padding - we handle this in the parent container */
 }
 
 /* Improve spacing between TOC title and main content title */
