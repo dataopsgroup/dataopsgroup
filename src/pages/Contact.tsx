@@ -9,10 +9,10 @@ const ContactPage = () => {
   return (
     <SemanticLayout>
       <Helmet>
-        <title>Contact Us - DataOps Group</title>
+        <title>Book Free HubSpot Consultation | DataOps Group</title>
         <meta 
           name="description" 
-          content="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations." 
+          content="Ready to maximize your HubSpot ROI? Book a free 30-minute consultation. We'll audit your setup and identify what's costing you deals. No obligation." 
         />
         <meta name="keywords" content="contact dataops, hubspot consultancy, get in touch, marketing operations, sales operations" />
         <link rel="canonical" href="/contact" />
@@ -22,7 +22,7 @@ const ContactPage = () => {
               "@context": "https://schema.org",
               "@type": "ContactPage",
               "name": "DataOps Group Contact",
-              "description": "Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations.",
+              "description": "Ready to maximize your HubSpot ROI? Book a free 30-minute consultation. We'll audit your setup and identify what's costing you deals. No obligation.",
               "url": "${window.location.origin}/contact",
               "publisher": {
                 "@type": "Organization",
