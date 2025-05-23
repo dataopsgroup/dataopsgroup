@@ -7,84 +7,82 @@ import { SiteRoute } from './types';
 export const generateSitemapIndex = (baseUrl: string): string => {
   const today = new Date().toISOString().split('T')[0];
   
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-  
-  xml += '  <sitemap>\n';
-  xml += `    <loc>${baseUrl}/sitemaps/main-sitemap.xml</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += '  </sitemap>\n';
-  
-  xml += '  <sitemap>\n';
-  xml += `    <loc>${baseUrl}/sitemaps/services-sitemap.xml</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += '  </sitemap>\n';
-  
-  xml += '  <sitemap>\n';
-  xml += `    <loc>${baseUrl}/sitemaps/blog-sitemap.xml</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += '  </sitemap>\n';
-  
-  xml += '  <sitemap>\n';
-  xml += `    <loc>${baseUrl}/sitemaps/case-studies-sitemap.xml</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
-  xml += '  </sitemap>\n';
-  
-  xml += '</sitemapindex>';
-  
-  return xml;
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${baseUrl}/sitemaps/main-sitemap.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemaps/services-sitemap.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemaps/blog-sitemap.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemaps/case-studies-sitemap.xml</loc>
+    <lastmod>${today}</lastmod>
+  </sitemap>
+</sitemapindex>`;
 };
 
 // Generate sitemap XML for main pages
 export const generateMainSitemap = (baseUrl: string): string => {
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
   
   mainRoutes.forEach(route => {
-    xml += '  <url>\n';
-    xml += `    <loc>${baseUrl}${route.url}</loc>\n`;
-    xml += `    <lastmod>${route.lastmod}</lastmod>\n`;
-    xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
-    xml += `    <priority>${route.priority}</priority>\n`;
-    xml += '  </url>\n';
+    xml += `
+  <url>
+    <loc>${baseUrl}${route.url}</loc>
+    <lastmod>${route.lastmod}</lastmod>
+    <changefreq>${route.changefreq}</changefreq>
+    <priority>${route.priority}</priority>
+  </url>`;
   });
   
-  xml += '</urlset>';
+  xml += `
+</urlset>`;
   
   return xml;
 };
 
 // Generate sitemap XML for service pages
 export const generateServicesSitemap = (baseUrl: string): string => {
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
   
   serviceRoutes.forEach(route => {
-    xml += '  <url>\n';
-    xml += `    <loc>${baseUrl}${route.url}</loc>\n`;
-    xml += `    <lastmod>${route.lastmod}</lastmod>\n`;
-    xml += `    <changefreq>${route.changefreq}</changefreq>\n`;
-    xml += `    <priority>${route.priority}</priority>\n`;
-    xml += '  </url>\n';
+    xml += `
+  <url>
+    <loc>${baseUrl}${route.url}</loc>
+    <lastmod>${route.lastmod}</lastmod>
+    <changefreq>${route.changefreq}</changefreq>
+    <priority>${route.priority}</priority>
+  </url>`;
   });
   
-  xml += '</urlset>';
+  xml += `
+</urlset>`;
   
   return xml;
 };
 
 // Generate sitemap XML for blog posts (excluding case studies)
 export const generateBlogSitemap = (baseUrl: string): string => {
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
   
   // Add main insights page
-  xml += '  <url>\n';
-  xml += `    <loc>${baseUrl}/insights</loc>\n`;
-  xml += `    <lastmod>2025-05-23</lastmod>\n`;
-  xml += '    <changefreq>weekly</changefreq>\n';
-  xml += '    <priority>0.9</priority>\n';
-  xml += '  </url>\n';
+  xml += `
+  <url>
+    <loc>${baseUrl}/insights</loc>
+    <lastmod>2025-05-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>`;
   
   // Filter out case studies which will go in their own sitemap
   const regularBlogPosts = blogPosts.filter(post => 
@@ -102,35 +100,37 @@ export const generateBlogSitemap = (baseUrl: string): string => {
       ? new Date(post.modifiedDate).toISOString().split('T')[0] 
       : lastmod;
     
-    xml += '  <url>\n';
-    xml += `    <loc>${baseUrl}/insights/${post.id}</loc>\n`;
-    xml += `    <lastmod>${finalLastmod}</lastmod>\n`;
-    xml += '    <changefreq>monthly</changefreq>\n';
-    
     // Give higher priority to important posts
     const priority = (post.id === 'hidden-cost-of-failed-hubspot-implementations') ? '0.8' : '0.7';
     
-    xml += `    <priority>${priority}</priority>\n`;
-    xml += '  </url>\n';
+    xml += `
+  <url>
+    <loc>${baseUrl}/insights/${post.id}</loc>
+    <lastmod>${finalLastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
   });
   
-  xml += '</urlset>';
+  xml += `
+</urlset>`;
   
   return xml;
 };
 
 // Generate sitemap XML for case studies
 export const generateCaseStudiesSitemap = (baseUrl: string): string => {
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
   
   // Add case studies main page
-  xml += '  <url>\n';
-  xml += `    <loc>${baseUrl}/case-studies</loc>\n`;
-  xml += `    <lastmod>2025-05-23</lastmod>\n`;
-  xml += '    <changefreq>monthly</changefreq>\n';
-  xml += '    <priority>0.8</priority>\n';
-  xml += '  </url>\n';
+  xml += `
+  <url>
+    <loc>${baseUrl}/case-studies</loc>
+    <lastmod>2025-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
   
   // Get all case studies by tag or category
   const caseStudies = blogPosts.filter(post => 
@@ -149,15 +149,17 @@ export const generateCaseStudiesSitemap = (baseUrl: string): string => {
       ? new Date(post.modifiedDate).toISOString().split('T')[0] 
       : lastmod;
     
-    xml += '  <url>\n';
-    xml += `    <loc>${baseUrl}/insights/${post.id}</loc>\n`;
-    xml += `    <lastmod>${finalLastmod}</lastmod>\n`;
-    xml += '    <changefreq>monthly</changefreq>\n';
-    xml += '    <priority>0.8</priority>\n';
-    xml += '  </url>\n';
+    xml += `
+  <url>
+    <loc>${baseUrl}/insights/${post.id}</loc>
+    <lastmod>${finalLastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
   });
   
-  xml += '</urlset>';
+  xml += `
+</urlset>`;
   
   return xml;
 };
