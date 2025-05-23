@@ -4,6 +4,7 @@ import hubspotFAQs from "./hubspot-faqs";
 import approachFAQs from "./approach-faqs";
 import dataQualityFAQs from "./data-quality";
 import hubspotModulesFAQs from "./hubspot-modules-faqs";
+import hubspotExpertFAQs from "./hubspot-expert-faqs";
 
 const faqCategories: FAQCategory[] = [
   {
@@ -11,6 +12,12 @@ const faqCategories: FAQCategory[] = [
     title: "HubSpot Services",
     icon: "FolderOpen",
     items: hubspotFAQs
+  },
+  {
+    id: "hubspot-experts",
+    title: "HubSpot Experts",
+    icon: "Award",
+    items: hubspotExpertFAQs
   },
   {
     id: "our-approach",
@@ -32,5 +39,5 @@ const faqCategories: FAQCategory[] = [
   }
 ];
 
-export { hubspotFAQs, approachFAQs, dataQualityFAQs, hubspotModulesFAQs };
+export { hubspotFAQs, approachFAQs, dataQualityFAQs, hubspotModulesFAQs, hubspotExpertFAQs };
 export default faqCategories;

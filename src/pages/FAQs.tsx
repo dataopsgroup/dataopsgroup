@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -12,7 +11,13 @@ import FAQCategory from '@/components/faqs/FAQCategory';
 import FAQHelp from '@/components/faqs/FAQHelp';
 
 // Import FAQ data
-import faqCategories, { hubspotFAQs, approachFAQs, dataQualityFAQs, hubspotModulesFAQs } from '@/data/faqs';
+import faqCategories, { 
+  hubspotFAQs, 
+  approachFAQs, 
+  dataQualityFAQs, 
+  hubspotModulesFAQs,
+  hubspotExpertFAQs 
+} from '@/data/faqs';
 import { validateFAQData } from '@/utils/route-monitoring';
 
 const FAQsPage = () => {
@@ -27,7 +32,13 @@ const FAQsPage = () => {
   }, []);
   
   // Combine all FAQ items for schema markup
-  const allFAQs = [...hubspotFAQs, ...approachFAQs, ...dataQualityFAQs, ...hubspotModulesFAQs];
+  const allFAQs = [
+    ...hubspotFAQs, 
+    ...approachFAQs, 
+    ...dataQualityFAQs, 
+    ...hubspotModulesFAQs,
+    ...hubspotExpertFAQs
+  ];
 
   // Format FAQs for FAQPageSchema
   const formattedFAQs = allFAQs.map(faq => ({
@@ -53,7 +64,7 @@ const FAQsPage = () => {
       <Helmet>
         <title>Frequently Asked Questions - DataOps Group</title>
         <meta name="description" content="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals." />
-        <meta name="keywords" content="HubSpot FAQs, HubSpot consultant, data quality, marketing ROI, sales and marketing alignment, HubSpot optimization, statistical process control, data cleaning, reporting dashboards" />
+        <meta name="keywords" content="HubSpot FAQs, HubSpot consultant, data quality, marketing ROI, sales and marketing alignment, HubSpot optimization, statistical process control, data cleaning, reporting dashboards, HubSpot experts" />
         <link rel="canonical" href="https://dataopsgroup.com/faqs" />
       </Helmet>
       
