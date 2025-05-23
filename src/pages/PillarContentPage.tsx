@@ -10,6 +10,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { SectionId } from '@/types/pillar-content';
 import TableOfContents from '@/components/pillar-content/TableOfContents';
 import ContentSection from '@/components/pillar-content/ContentSection';
+import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
+import ShareButtons from '@/components/ui/ShareButtons';
 
 const PillarContentPage = () => {
   const sectionIds: SectionId[] = [
@@ -69,6 +71,13 @@ const PillarContentPage = () => {
     // For accessibility and screen readers
     document.getElementById(sectionId)?.focus();
   };
+
+  // Define breadcrumb items
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Resources', url: '/resources' },
+    { name: 'Guide To Hiring a HubSpot Expert', url: '/pillar-content' }
+  ];
   
   return (
     <SemanticLayout>
@@ -99,9 +108,21 @@ const PillarContentPage = () => {
       />
       
       <div className="container mx-auto px-4 py-16">
-        {/* Title heading above both TOC and content */}
-        <div className="mb-6 ml-[25px]">
-          <h1 className="text-3xl font-bold">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
+        {/* Title and navigation elements */}
+        <div className="mb-6">
+          {/* Breadcrumbs */}
+          <BreadcrumbNavigation items={breadcrumbItems} />
+          
+          {/* Title heading */}
+          <div className="flex flex-wrap justify-between items-center mb-6 ml-[25px]">
+            <h1 className="text-3xl font-bold">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
+            
+            {/* Share buttons */}
+            <ShareButtons 
+              title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs" 
+              className="mt-4 md:mt-0"
+            />
+          </div>
         </div>
         
         <div className="flex flex-col md:flex-row">
