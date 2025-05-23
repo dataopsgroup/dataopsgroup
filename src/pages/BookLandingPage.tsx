@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -10,10 +11,22 @@ const BookLandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>The CMO's Data Playbook - Transform Data Into Revenue | DataOps Group</title>
-        <meta name="description" content="Discover how to harness your marketing data and transform it into revenue with The CMO's Data Playbook by Geoff Tucker." />
-        <meta name="keywords" content="data playbook, marketing data, cmo data, revenue optimization, data strategy, marketing operations" />
-        <link rel="canonical" href="/book" />
+        <title>Book Your Free HubSpot Consultation | DataOps Group</title>
+        <meta name="description" content="Ready to fix your HubSpot? Book a free consultation and get a custom plan to optimize your CRM, boost ROI, and stop losing deals. Available times here." />
+        <meta name="keywords" content="hubspot consultation, hubspot expert, hubspot crm, hubspot optimization, hubspot consulting" />
+        <link rel="canonical" href="https://dataopsgroup.com/book" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Book Your Free HubSpot Consultation | DataOps Group" />
+        <meta property="og:description" content="Ready to fix your HubSpot? Book a free consultation and get a custom plan to optimize your CRM, boost ROI, and stop losing deals. Available times here." />
+        <meta property="og:url" content="https://dataopsgroup.com/book" />
+        <meta property="og:image" content="${window.location.origin}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Book Your Free HubSpot Consultation | DataOps Group" />
+        <meta name="twitter:description" content="Ready to fix your HubSpot? Book a free consultation and get a custom plan to optimize your CRM, boost ROI, and stop losing deals. Available times here." />
         
         {/* Schema markup for the book */}
         <script type="application/ld+json">{`
