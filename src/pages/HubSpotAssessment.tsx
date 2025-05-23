@@ -11,12 +11,14 @@ const HubSpotAssessment = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead
-        title="HubSpot Rescue Services | Fix Your Broken CRM Implementation"
-        description="Broken HubSpot costing you deals? Our rescue services fix data chaos, optimize ROI, and get your team back on track. 150+ successful implementations."
+        title="Free HubSpot Assessment | Discover What's Costing You Deals"
+        description="Get a free HubSpot assessment and discover exactly what's holding back your ROI. 15-minute evaluation reveals hidden revenue leaks. Start now."
         keywords="HubSpot implementation, HubSpot assessment, CRM assessment, HubSpot ROI, HubSpot optimization"
+        canonicalPath="/assessment"
         ogType="website"
-        ogTitle="HubSpot Rescue Services | Fix Your Broken CRM Implementation"
-        ogDescription="Broken HubSpot costing you deals? Our rescue services fix data chaos, optimize ROI, and get your team back on track. 150+ successful implementations."
+        ogTitle="Free HubSpot Assessment | Discover What's Costing You Deals"
+        ogDescription="Get a free HubSpot assessment and discover exactly what's holding back your ROI. 15-minute evaluation reveals hidden revenue leaks. Start now."
+        twitterCard="summary"
       />
       
       <AssessmentSchema url={window.location.href} />

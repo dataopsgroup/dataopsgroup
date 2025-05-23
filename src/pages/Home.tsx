@@ -24,7 +24,7 @@ const Home = () => {
           content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue-generating machine. Free assessment." 
         />
         <meta name="keywords" content="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations, sales operations, revenue operations" />
-        <link rel="canonical" href={`${baseUrl}/`} />
+        <link rel="canonical" href="https://dataopsgroup.com/" />
         
         {/* Enhanced viewport meta tag for better mobile experience */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5, minimum-scale=1" />
@@ -33,14 +33,14 @@ const Home = () => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group" />
         <meta property="og:description" content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue-generating machine. Free assessment." />
-        <meta property="og:url" content={`${baseUrl}/`} />
+        <meta property="og:url" content="https://dataopsgroup.com/" />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:site_name" content="DataOps Group" />
         
         {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group" />
         <meta name="twitter:description" content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize workflows, and turn your CRM into a revenue-generating machine. Free assessment." />
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />

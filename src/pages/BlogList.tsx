@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -10,6 +9,7 @@ import { format } from 'date-fns';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import OptimizedImage from '@/components/ui/optimized-image';
+
 const BlogList = () => {
   const location = useLocation();
 
@@ -47,7 +47,9 @@ const BlogList = () => {
       window._hsq.push(['trackPageView']);
     }
   }, [filteredBlogPosts, location.pathname]);
-  return <SemanticLayout>
+  
+  return (
+    <SemanticLayout>
       <MetaHead 
         title="HubSpot Insights & Best Practices | DataOps Group Blog" 
         description="Real-world HubSpot strategies from 150+ implementations. Get insider tips, case studies, and ROI-boosting tactics that actually work. Free insights." 
@@ -55,7 +57,8 @@ const BlogList = () => {
         canonicalPath={canonicalPath} 
         ogType="website" 
         ogTitle="HubSpot Insights & Best Practices | DataOps Group Blog" 
-        ogDescription="Real-world HubSpot strategies from 150+ implementations. Get insider tips, case studies, and ROI-boosting tactics that actually work. Free insights." 
+        ogDescription="Real-world HubSpot strategies from 150+ implementations. Get insider tips, case studies, and ROI-boosting tactics that actually work. Free insights."
+        twitterCard="summary"
       />
       
       {/* Schema Markup */}
@@ -156,6 +159,8 @@ const BlogList = () => {
       <section aria-label="Call to Action">
         <CTABanner />
       </section>
-    </SemanticLayout>;
+    </SemanticLayout>
+  );
 };
+
 export default BlogList;
