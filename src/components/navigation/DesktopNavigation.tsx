@@ -62,10 +62,17 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
           <li key={item.name}>
             {item.isDropdown ? (
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors bg-transparent" aria-haspopup="true" aria-expanded="false">
-                  {item.name}
-                  <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
-                  <span className="sr-only">Toggle {item.name} dropdown</span>
+                <DropdownMenuTrigger asChild>
+                  <Link 
+                    to={item.name === 'Services' ? '/services' : (item.href || "/")}
+                    className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors bg-transparent"
+                    aria-haspopup="true" 
+                    aria-expanded="false"
+                  >
+                    {item.name}
+                    <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
+                    <span className="sr-only">Toggle {item.name} dropdown</span>
+                  </Link>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56 bg-white">
                   {item.items?.map(renderSubMenuItem)}
