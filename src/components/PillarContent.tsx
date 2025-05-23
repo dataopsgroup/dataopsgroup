@@ -28,7 +28,7 @@ const PillarContent: React.FC<PillarContentProps> = ({
       <div className="flex w-full">
         {/* Fixed Sidebar with Table of Contents - adjusted to be exactly 1/3 width */}
         <Sidebar className="w-full md:w-1/3 lg:w-1/3 max-w-xs border-r">
-          <div className="p-6">
+          <div className="p-6 pt-10">
             {/* Removed the logo from here as it's already in the main navigation */}
             <div className="sidebar-content-wrapper">
               {tableOfContents}
