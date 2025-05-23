@@ -47,7 +47,21 @@ const PillarContentPage = () => {
             
             {/* Content container with blue outline */}
             <div className="border border-blue-500">
-              <p>This is a placeholder for the pillar content. We'll rebuild this with a new approach.</p>
+              <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur, nisi vel tincidunt aliquam, tortor nisi aliquam dui, id efficitur turpis mauris vel nulla. Fusce vel turpis non orci tincidunt bibendum. Nulla facilisi. Donec vehicula, mauris at scelerisque fermentum, velit turpis tincidunt nisi, eget aliquam quam nisi id nisl.</p>
+              
+              <p className="mb-4">Praesent id lacus vel nisi ultrices ultricies. Suspendisse potenti. Donec blandit mi eu nunc pellentesque, eget dictum nisl interdum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras nec dictum sapien. Integer euismod, metus non cursus finibus, eros lacus aliquam nulla, id faucibus magna augue ac velit.</p>
+              
+              <p className="mb-4">In hac habitasse platea dictumst. Etiam elementum ex vel ullamcorper ultricies. Vivamus non augue quis neque feugiat dictum. Donec vehicula odio a eros pharetra, id pharetra quam placerat. Mauris non tincidunt velit, et fermentum neque. Nunc malesuada augue vel ante tincidunt, id pharetra magna sollicitudin.</p>
+              
+              <p className="mb-4">Fusce ultrices enim ut sapien feugiat, vel pretium lacus euismod. Nulla facilisi. Etiam interdum, felis id congue viverra, mi velit pretium nisl, id tempor purus neque nec ex. Mauris fermentum, purus vel bibendum auctor, diam mauris tincidunt nisl, sit amet facilisis arcu mi at velit. Donec non ornare justo.</p>
+              
+              <p className="mb-4">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla finibus orci id risus fermentum, vel vestibulum ipsum malesuada. Aenean vestibulum, eros non volutpat rutrum, sapien nulla congue risus, vel bibendum magna est ac velit.</p>
+              
+              <p className="mb-4">Morbi tristique feugiat nisi, vel cursus tortor tristique vel. Nulla nec accumsan nisl. Integer hendrerit purus eu dolor rhoncus, vel placerat quam feugiat. Ut mollis vestibulum odio, ut fringilla neque cursus vel. Integer vel quam vitae leo dictum tempus.</p>
+              
+              <p className="mb-4">Cras efficitur justo eget nulla finibus, in lacinia nunc egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam scelerisque justo vel lacus fermentum, vel luctus magna hendrerit. Pellentesque tincidunt congue risus, vel commodo dui lacinia at.</p>
+              
+              <p className="mb-4">Maecenas ultricies lacus vel nisl tempus, vel pulvinar magna tincidunt. Vestibulum bibendum lorem vel sapien scelerisque, at venenatis velit tempus. Nam suscipit enim vitae urna pharetra, vel fermentum magna facilisis. Praesent nec mauris sit amet turpis faucibus blandit vel quis risus.</p>
             </div>
           </div>
         </div>
