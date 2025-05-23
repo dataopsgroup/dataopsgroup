@@ -26,23 +26,23 @@ const PillarContent: React.FC<PillarContentProps> = ({
   return (
     <SidebarProvider defaultOpen={true}>
       <div className="flex w-full">
-        {/* Fixed Sidebar with Table of Contents */}
-        <Sidebar className="w-full md:w-1/4 lg:w-1/4 max-w-xs border-r">
+        {/* Fixed Sidebar with Table of Contents - adjusted to be exactly 1/3 width */}
+        <Sidebar className="w-full md:w-1/3 lg:w-1/3 max-w-xs border-r">
           <div className="p-6">
             <img 
               src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
               alt="DataOps Group" 
               className="h-12 mb-6" 
             />
-            {/* Add a wrapper div with padding-top to align with Introduction heading */}
-            <div className="pt-8">
+            {/* Updated wrapper div to align exactly with Introduction heading */}
+            <div className="pt-10">
               {tableOfContents}
             </div>
           </div>
         </Sidebar>
         
-        {/* Main Content Area */}
-        <SidebarInset className="w-full md:w-3/4 lg:w-3/4">
+        {/* Main Content Area - adjusted to be exactly 2/3 width */}
+        <SidebarInset className="w-full md:w-2/3 lg:w-2/3">
           <div className="container mx-auto px-5% py-8">
             <BreadcrumbNavigation 
               items={[
@@ -58,7 +58,8 @@ const PillarContent: React.FC<PillarContentProps> = ({
               )}
             </header>
             
-            <main className="prose prose-lg max-w-none pillar-content pl-5 pr-[25px]">
+            {/* Removed duplicate padding from here as it's now managed in the CSS */}
+            <main className="prose prose-lg max-w-none pillar-content">
               {content}
             </main>
           </div>

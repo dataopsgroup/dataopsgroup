@@ -28,6 +28,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items, className }) =
   
   return (
     <nav className={cn("table-of-contents", className)}>
+      {/* Match the vertical positioning with Introduction heading */}
       <h3 className="text-xl font-bold mb-4">Table of Contents</h3>
       <ul className="space-y-3 pl-0 list-none">
         {items.map((item) => (

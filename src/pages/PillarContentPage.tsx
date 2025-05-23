@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import PillarContent from '@/components/PillarContent';
@@ -34,7 +33,7 @@ const PillarContentPage = () => {
   // Main content
   const pillarContent = (
     <div>
-      <div id="introduction">
+      <div id="introduction" className="pillar-content-section">
         <h2>Introduction</h2>
         <h1 className="text-4xl font-bold mb-6 text-gray-900">How to Hire a HubSpot Expert in 2025: Consultant Guide & Integration Costs</h1>
 
@@ -51,7 +50,7 @@ const PillarContentPage = () => {
         <p className="mb-4">Most importantly, you'll learn to focus on outcomes rather than company size, and to ask the right questions that reveal whether someone truly understands how to make HubSpot work for businesses like yours.</p>
       </div>
       
-      <div id="understanding-experts">
+      <div id="understanding-experts" className="pillar-content-section">
         <h2>Understanding HubSpot Experts vs Consultants vs Agencies</h2>
         
         <p className="mb-4">The HubSpot ecosystem includes different types of professionals, and understanding these distinctions will help you make the right choice for your specific needs.</p>
