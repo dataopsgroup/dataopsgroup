@@ -35,6 +35,8 @@
   border-radius: 0;
   margin: 0;
   position: relative;
+  white-space: normal;
+  padding-right: 1.5rem !important; /* Ensure enough right padding for all buttons */
 }
 
 .table-of-contents button:hover {

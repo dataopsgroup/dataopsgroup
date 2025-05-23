@@ -54,7 +54,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ activeSection }) => {
   };
 
   return (
-    <div className="w-full md:w-[64%] p-4">
+    <div className="w-full p-4">
       <div className="p-4">
         {renderSection()}
       </div>

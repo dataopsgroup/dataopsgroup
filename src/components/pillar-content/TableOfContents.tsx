@@ -22,7 +22,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('introduction')} 
-                className={`${activeSection === 'introduction' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'introduction' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Introduction
               </button>
@@ -30,7 +30,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('understanding-experts')} 
-                className={`${activeSection === 'understanding-experts' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'understanding-experts' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Understanding HubSpot Experts vs Consultants vs Agencies
               </button>
@@ -46,7 +46,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('beyond-agency-safety')} 
-                className={`${activeSection === 'beyond-agency-safety' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'beyond-agency-safety' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Beyond the Agency Safety Net: Choosing Results Over Size
               </button>
@@ -54,7 +54,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('when-need-expert')} 
-                className={`${activeSection === 'when-need-expert' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'when-need-expert' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 When Your Business Needs a HubSpot Expert
               </button>
@@ -62,7 +62,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('evaluating-qualifications')} 
-                className={`${activeSection === 'evaluating-qualifications' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'evaluating-qualifications' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Evaluating HubSpot Expert Qualifications and Integration Experience
               </button>
@@ -70,7 +70,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('pricing-guide')} 
-                className={`${activeSection === 'pricing-guide' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'pricing-guide' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Complete Pricing Guide for HubSpot Experts and Implementation
               </button>
@@ -78,7 +78,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('step-by-step-process')} 
-                className={`${activeSection === 'step-by-step-process' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'step-by-step-process' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Step-by-Step Process to Find and Hire the Perfect HubSpot Expert
               </button>
@@ -86,7 +86,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('essential-questions')} 
-                className={`${activeSection === 'essential-questions' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'essential-questions' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Essential Questions for Evaluating HubSpot Experts
               </button>
@@ -94,7 +94,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('maximizing-partnership')} 
-                className={`${activeSection === 'maximizing-partnership' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'maximizing-partnership' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Maximizing Your HubSpot Expert Partnership
               </button>
@@ -102,7 +102,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('success-stories')} 
-                className={`${activeSection === 'success-stories' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'success-stories' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Real-World Success Stories: Integration-Focused Implementations
               </button>
@@ -110,7 +110,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('common-pitfalls')} 
-                className={`${activeSection === 'common-pitfalls' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'common-pitfalls' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Common Pitfalls When Hiring HubSpot Experts
               </button>
@@ -118,7 +118,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             <li>
               <button 
                 onClick={() => handleSectionClick('conclusion')} 
-                className={`${activeSection === 'conclusion' ? 'active' : ''} w-full text-left block py-2 px-3`}
+                className={`${activeSection === 'conclusion' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
               >
                 Conclusion: Making Your Final Decision
               </button>

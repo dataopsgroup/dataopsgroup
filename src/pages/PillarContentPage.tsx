@@ -105,8 +105,8 @@ const PillarContentPage = () => {
         </div>
         
         <div className="flex flex-col md:flex-row">
-          {/* Table of Contents */}
-          <div className="w-full md:w-[33%]">
+          {/* Table of Contents - increased width from 33% to 35% */}
+          <div className="w-full md:w-[35%]">
             <TableOfContents 
               sectionIds={sectionIds}
               activeSection={activeSection}
@@ -114,8 +114,10 @@ const PillarContentPage = () => {
             />
           </div>
           
-          {/* Main content */}
-          <ContentSection activeSection={activeSection} />
+          {/* Main content - decreased width from 64% to 62% */}
+          <div className="w-full md:w-[62%]">
+            <ContentSection activeSection={activeSection} />
+          </div>
         </div>
       </div>
     </SemanticLayout>
