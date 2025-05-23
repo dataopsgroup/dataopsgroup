@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -62,13 +61,21 @@ const Hero = () => {
                 </p>
               </div>
               
-              <div>
-                <Link to="/contact" onClick={trackContactCTAClick}>
-                  <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
-                    Book My Assessment
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+              <div className="space-y-3">
+                <div>
+                  <Link to="/contact" onClick={trackContactCTAClick}>
+                    <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
+                      Book My Assessment
+                      <ChevronRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+                
+                <div className="text-sm text-gray-600 italic max-w-md">
+                  <strong>No-Risk Assessment</strong><br />
+                  We'll audit your HubSpot setup and show you exactly what's wrong - completely free. 
+                  No obligation, no sales pitch, just honest feedback about your ROI potential.
+                </div>
               </div>
             </div>
           </div>
@@ -148,4 +155,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
