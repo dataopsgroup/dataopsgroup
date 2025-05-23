@@ -25,18 +25,18 @@ const PillarContent: React.FC<PillarContentProps> = ({
 }) => {
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="flex w-full pt-16"> {/* Added pt-16 to the main container to push everything below the navbar */}
-        {/* Fixed Sidebar with Table of Contents - adjusted to be exactly 1/3 width */}
+      <div className="flex w-full pt-16"> {/* Main container pushed below navbar with pt-16 */}
+        {/* Fixed Sidebar with Table of Contents - exactly 1/3 width */}
         <Sidebar className="w-full md:w-1/3 lg:w-1/3 max-w-xs border-r">
-          <div className="p-6 pt-0"> {/* Removed mt-16 as we're handling it at container level */}
-            {/* Removed the logo from here as it's already in the main navigation */}
-            <div className="sidebar-content-wrapper">
+          <div className="p-6 pt-0 px-[15px]"> {/* Added px-[15px] for horizontal margins */}
+            {/* Removed the logo as it's already in the main navigation */}
+            <div className="sidebar-content-wrapper mt-[28px]"> {/* Added mt-[28px] to align with breadcrumb */}
               {tableOfContents}
             </div>
           </div>
         </Sidebar>
         
-        {/* Main Content Area - adjusted to be exactly 2/3 width with 20px left padding */}
+        {/* Main Content Area - exactly 2/3 width with left padding */}
         <SidebarInset className="w-full md:w-2/3 lg:w-2/3 pl-5">
           <div className="container mx-auto py-0 pl-0 pr-5%"> {/* Maintained spacing */}
             <BreadcrumbNavigation 
