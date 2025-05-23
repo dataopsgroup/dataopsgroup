@@ -64,7 +64,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Link 
-                    to={item.name === 'Services' ? '/services' : (item.href || "/")}
+                    to={item.href || "/"}
                     className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors bg-transparent"
                     aria-haspopup="true" 
                     aria-expanded="false"

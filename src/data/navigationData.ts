@@ -1,7 +1,6 @@
-
 import { NavItem, SubNavItem } from '@/types/navigation';
 
-// Services dropdown items
+// Services dropdown items - keeping for potential future use
 export const navServices: SubNavItem[] = [
   { 
     name: 'Analytics & BI', 
@@ -19,7 +18,6 @@ export const navServices: SubNavItem[] = [
     name: 'Marketing Operations & RevOps', 
     href: '/services/marketing-operations-revops'
   },
-  // Removed other services that don't have route definitions in App.tsx
 ];
 
 // Guides dropdown items 
@@ -54,12 +52,11 @@ export const industryItems: SubNavItem[] = [
   { name: 'Energy & Utilities', href: '/case-studies' },
 ];
 
-// Main navigation items - removed Industries item
+// Main navigation items - Services is now a simple link, not a dropdown
 export const mainNavItems: NavItem[] = [
   { 
     name: 'Services', 
-    isDropdown: true,
-    items: navServices
+    href: '/services'
   },
   { name: 'About', href: '/about' },
   { name: 'Approach', href: '/approach' },

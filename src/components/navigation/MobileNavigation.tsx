@@ -67,7 +67,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
               {item.isDropdown ? (
                 <div className="flex flex-col px-4">
                   <Link
-                    to={item.name === 'Services' ? '/services' : (item.href || "/")}
+                    to={item.href || "/"}
                     onClick={() => setIsOpen(false)}
                     className="py-2 font-medium text-dataops-900 hover:text-dataops-600 flex items-center"
                   >
