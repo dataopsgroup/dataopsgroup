@@ -11,8 +11,8 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>About Geoff Tucker | DataOps Group</title>
-        <meta name="description" content="Learn more about Geoff Tucker, a seasoned data professional with over 15 years of experience in data operations, strategy, and analytics." />
+        <title>HubSpot Expert Since 2012 | Geoff Tucker | DataOps Group</title>
+        <meta name="description" content="13+ years HubSpot experience. Rescued 150+ broken implementations. From startup to enterprise, I fix what others couldn't. Ready to save your HubSpot investment?" />
         <link rel="canonical" href="/about" />
       </Helmet>
       <Navbar />
