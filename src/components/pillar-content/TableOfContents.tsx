@@ -1,12 +1,15 @@
+
 import React from 'react';
 import { SectionId } from '@/types/pillar-content';
 import { FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
 interface TableOfContentsProps {
   sectionIds: SectionId[];
   activeSection: string;
   handleSectionClick: (sectionId: SectionId) => void;
 }
+
 const TableOfContents: React.FC<TableOfContentsProps> = ({
   sectionIds,
   activeSection,
@@ -85,7 +88,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
             {/* Download Interview Guide CTA Button */}
             <li className="mt-4 border-t border-gray-200 pt-4 px-3">
               <a href="https://drive.google.com/file/d/1ApJENdggcFYSirQDzmnV1GEtjAWKL4R5/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="block">
-                <Button variant="default" className="download-button w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center py-[2px]">
+                <Button variant="default" className="download-button w-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center py-2 min-h-[20px]">
                   <FileDown size={18} className="mr-2" />
                   Download the Interview Guide
                 </Button>
@@ -96,4 +99,5 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
       </div>
     </div>;
 };
+
 export default TableOfContents;
