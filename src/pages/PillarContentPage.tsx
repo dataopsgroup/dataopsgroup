@@ -19,12 +19,23 @@ const PillarContentPage = () => {
         {/* Parent container with outline */}
         <div className="flex border border-black">
           {/* Table of Contents placeholder */}
-          <div className="w-[33%] p-4">
-            <h2 className="text-xl font-semibold mb-4">Table of Contents</h2>
-            
-            {/* TOC container with red outline */}
-            <div className="border border-red-500">
-              <p>Table of contents will go here</p>
+          <div className="w-[33%]">
+            <div className="p-4 sticky top-24"> {/* Added sticky positioning */}
+              <h2 className="text-xl font-semibold mb-4">Table of Contents</h2>
+              
+              {/* TOC container with red outline */}
+              <div className="border border-red-500">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Praesent eget nunc in dolor finibus efficitur.</p>
+                <p>Aliquam erat volutpat. Morbi vel magna sit amet risus.</p>
+                <p>Suspendisse potenti. Nullam ullamcorper diam in dolor.</p>
+                <p>Donec auctor ligula eget magna tincidunt, vel congue.</p>
+                <p>Integer vehicula magna a orci laoreet, in lacinia magna.</p>
+                <p>Curabitur ut arcu nec dui finibus fermentum sit amet.</p>
+                <p>Mauris lacinia risus vitae augue tincidunt, ut sodales.</p>
+                <p>Vestibulum ante ipsum primis in faucibus orci luctus et.</p>
+                <p>Nulla facilisi. Fusce tempus odio sem, vel accumsan.</p>
+              </div>
             </div>
           </div>
           
