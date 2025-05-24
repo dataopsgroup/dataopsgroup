@@ -19,10 +19,10 @@ export const generateCleanXML = (urls: SitemapUrl[]): string => {
 export const generateSitemapIndex = (baseUrl: string): string => {
   const today = new Date().toISOString().split('T')[0];
   const sitemaps = [
-    { loc: `${baseUrl}/sitemaps/main-sitemap.xml`, lastmod: today },
-    { loc: `${baseUrl}/sitemaps/services-sitemap.xml`, lastmod: today },
-    { loc: `${baseUrl}/sitemaps/blog-sitemap.xml`, lastmod: today },
-    { loc: `${baseUrl}/sitemaps/case-studies-sitemap.xml`, lastmod: today }
+    { loc: `${baseUrl}/main-sitemap.xml`, lastmod: today },
+    { loc: `${baseUrl}/services-sitemap.xml`, lastmod: today },
+    { loc: `${baseUrl}/blog-sitemap.xml`, lastmod: today },
+    { loc: `${baseUrl}/case-studies-sitemap.xml`, lastmod: today }
   ];
   
   const sitemapEntries = sitemaps.map(sitemap => 

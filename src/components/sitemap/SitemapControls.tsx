@@ -27,11 +27,9 @@ const SitemapControls: React.FC<SitemapControlsProps> = ({ onGenerateAll, onDown
       <Alert>
         <AlertDescription>
           <p className="text-sm">
-            These modular sitemaps make maintenance easier. After downloading, upload them to your web server's
-            <code className="bg-muted p-1 rounded mx-1">sitemaps/</code> 
-            directory (create it if needed) and ensure the main
-            <code className="bg-muted p-1 rounded mx-1">sitemap.xml</code>
-            references them correctly.
+            These sitemaps are generated for the root domain. After downloading, upload them to your web server's
+            <strong className="bg-muted p-1 rounded mx-1">root directory</strong> 
+            so they're accessible at dataopsgroup.com/sitemap.xml, dataopsgroup.com/main-sitemap.xml, etc.
           </p>
         </AlertDescription>
       </Alert>
