@@ -1,24 +1,93 @@
 
-/* Hero Dashboard Styles */
+/* Hero Dashboard Styles - Dual Dashboard Layout */
 
-.dashboard-container {
+.hero-dashboard-column {
+  flex: 0.55;
   position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+}
+
+/* Primary Dashboard (Top - KPI Metrics) */
+.dashboard-container.dashboard-primary {
+  position: relative;
+  z-index: 2;
+  width: 100%;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   transform: perspective(1000px) rotateY(-2deg);
   transition: all 0.3s ease;
-  width: 100%;
 }
 
-.dashboard-container:hover {
-  transform: perspective(1000px) rotateY(-2deg) translateY(-5px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+/* Secondary Dashboard (Bottom - Field Sales) */
+.dashboard-container.dashboard-secondary {
+  position: absolute;
+  top: 20%;
+  right: -5%;
+  z-index: 1;
+  width: 95%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 50px rgba(0,0,0,0.2);
+  transform: perspective(1000px) rotateY(-4deg);
+  transition: all 0.3s ease;
 }
 
+/* Dashboard Images */
 .dashboard-image {
   width: 100%;
   height: auto;
   display: block;
   max-width: none;
+}
+
+/* Hover Effects for Interactive Appeal */
+.hero-dashboard-column:hover .dashboard-container.dashboard-primary {
+  transform: perspective(1000px) rotateY(-2deg) translateY(-10px);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+}
+
+.hero-dashboard-column:hover .dashboard-container.dashboard-secondary {
+  transform: perspective(1000px) rotateY(-4deg) translateY(10px);
+  box-shadow: 0 35px 55px rgba(0,0,0,0.25);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+  .hero-dashboard-column {
+    min-height: 400px;
+  }
+  
+  .dashboard-container.dashboard-primary,
+  .dashboard-container.dashboard-secondary {
+    transform: none;
+  }
+  
+  .dashboard-container.dashboard-secondary {
+    position: relative;
+    top: -10%;
+    right: 0;
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .hero-dashboard-column:hover .dashboard-container.dashboard-primary,
+  .hero-dashboard-column:hover .dashboard-container.dashboard-secondary {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-dashboard-column {
+    min-height: 300px;
+  }
+  
+  .dashboard-container.dashboard-secondary {
+    top: -5%;
+    width: 85%;
+  }
 }
