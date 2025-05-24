@@ -1,11 +1,24 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
+  const ctaButtonRef = useRef<HTMLAnchorElement>(null);
+
+  // Add pulse animation after component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (ctaButtonRef.current) {
+        ctaButtonRef.current.classList.add('animate-pulse-cta');
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Track CTA click in Google Analytics and HubSpot
   const trackContactCTAClick = () => {
     // Track CTA click in Google Analytics
@@ -67,11 +80,14 @@ const Hero = () => {
               
               <div className="space-y-3">
                 <div>
-                  <Link to="/contact" onClick={trackContactCTAClick}>
-                    <Button className="hero-cta">
-                      Book My Assessment
-                      <ChevronRight className="ml-2 h-4 w-4" />
-                    </Button>
+                  <Link 
+                    to="/contact" 
+                    onClick={trackContactCTAClick}
+                    ref={ctaButtonRef}
+                    className="hero-cta"
+                  >
+                    Book My Assessment
+                    <ChevronRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
                 
