@@ -1,3 +1,4 @@
+
 @import './styles/fonts.css';
 @import './styles/pillar-content.css';
 @tailwind base;
@@ -82,13 +83,17 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    /* Font family is now handled in fonts.css */
+    @apply bg-background text-foreground font-body;
   }
   
   /* Main content spacing */
   main {
     padding-top: calc(var(--navbar-height) + var(--navbar-bottom-spacing));
+  }
+
+  /* Apply Rubik font to all headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
   }
 
   /* Even larger heading sizes with more dramatic scaling */
