@@ -1,10 +1,8 @@
-
 import React, { useEffect, useRef } from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
-
 const Hero = () => {
   const ctaButtonRef = useRef<HTMLAnchorElement>(null);
 
@@ -15,7 +13,6 @@ const Hero = () => {
         ctaButtonRef.current.classList.add('animate-pulse-cta');
       }
     }, 1000);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -45,9 +42,7 @@ const Hero = () => {
       });
     }
   };
-
-  return (
-    <>
+  return <>
       <div className="hero-section bg-gradient-to-br from-white to-gray-50">
         <div className="hero-container">
           {/* Text Column */}
@@ -59,7 +54,7 @@ const Hero = () => {
               
               {/* Premium Tagline */}
               <div className="hero-tagline">
-                <span className="tagline-text">HUBSPOT OPTIMIZATION SPECIALISTS</span>
+                <span className="tagline-text">EXPERT HUBSPOT TRANSFORMATION SPECIALISTS</span>
               </div>
               
               {/* Mark as LCP element for monitoring */}
@@ -85,12 +80,7 @@ const Hero = () => {
               
               <div className="space-y-3">
                 <div>
-                  <Link 
-                    to="/contact" 
-                    onClick={trackContactCTAClick}
-                    ref={ctaButtonRef}
-                    className="hero-cta"
-                  >
+                  <Link to="/contact" onClick={trackContactCTAClick} ref={ctaButtonRef} className="hero-cta">
                     Book My Assessment
                     <ChevronRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -108,16 +98,7 @@ const Hero = () => {
           {/* Dashboard Column */}
           <div className="hero-dashboard-column">
             <div className="dashboard-container">
-              <OptimizedImage
-                src="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png"
-                alt="HubSpot Performance Dashboard showing KPIs, metrics, growth data, and ROI analytics"
-                className="dashboard-image"
-                width={600}
-                height={400}
-                priority={true}
-                isLCP={false}
-                loading="eager"
-              />
+              <OptimizedImage src="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" alt="HubSpot Performance Dashboard showing KPIs, metrics, growth data, and ROI analytics" className="dashboard-image" width={600} height={400} priority={true} isLCP={false} loading="eager" />
             </div>
           </div>
         </div>
@@ -160,8 +141,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Hero;
