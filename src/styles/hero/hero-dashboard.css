@@ -26,8 +26,8 @@
 /* Secondary Dashboard (Bottom - Field Sales) */
 .dashboard-container.dashboard-secondary {
   position: absolute;
-  top: 35%;
-  right: -5%;
+  top: 15%;
+  right: -25%;
   z-index: 1;
   width: 95%;
   border-radius: 12px;
