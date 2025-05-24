@@ -134,13 +134,43 @@
     @apply text-2xl md:text-3xl font-bold !important;
   }
 
-  /* Hero-specific typography classes for premium styling */
+  /* Hero Section - Two Column Layout */
+  .hero-section {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+  }
+
+  .hero-text-column {
+    flex: 1;
+    padding-right: 20px;
+    text-align: left;
+  }
+
+  .hero-dashboard-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Hero Typography */
   .hero-headline {
-    @apply font-headline font-medium text-[#403E43];
+    @apply font-headline font-medium;
     font-size: 3.5rem;
     line-height: 1.2;
+    color: #14213D;
     margin-bottom: 1.5rem;
-    max-width: 650px;
     text-align: left;
   }
 
@@ -163,12 +193,11 @@
   }
 
   .hero-description {
-    @apply font-body text-gray-700;
+    @apply font-body;
     font-size: 1.125rem;
     line-height: 1.6;
+    color: rgba(20, 33, 61, 0.85);
     margin-bottom: 2.5rem;
-    max-width: 600px;
-    opacity: 0.85;
     text-align: left;
   }
 
@@ -178,12 +207,68 @@
     }
   }
 
-  .hero-content {
-    padding: 80px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 12%;
+  /* Hero CTA Button */
+  .hero-cta {
+    @apply font-body font-medium;
+    padding: 12px 28px !important;
+    background-color: #FBB03B !important;
+    color: #14213D !important;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+  }
+
+  .hero-cta:hover {
+    background-color: #e69c27 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  /* Dashboard Container */
+  .dashboard-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transform: perspective(1000px) rotateY(-2deg);
+    transition: all 0.3s ease;
+  }
+
+  .dashboard-container:hover {
+    transform: perspective(1000px) rotateY(-2deg) translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  }
+
+  .dashboard-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Responsive Design for Hero */
+  @media (max-width: 991px) {
+    .hero-container {
+      flex-direction: column;
+    }
+    
+    .hero-text-column,
+    .hero-dashboard-column {
+      width: 100%;
+    }
+    
+    .hero-text-column {
+      padding-right: 0;
+      margin-bottom: 40px;
+    }
+    
+    .hero-headline {
+      font-size: 2.5rem;
+    }
+    
+    .dashboard-container {
+      transform: none;
+    }
   }
 
   .gradient-text {

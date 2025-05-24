@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,16 +35,18 @@ const Hero = () => {
 
   return (
     <>
-      <div className="pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50">
-        <div className="container mx-auto">
-          <div className="hero-content">
+      <div className="hero-section bg-gradient-to-br from-white to-gray-50">
+        <div className="hero-container">
+          {/* Text Column */}
+          <div className="hero-text-column">
             <div>
               {/* Use resource hints for higher priority assets on page */}
               <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" fetchPriority="high" />
+              <link rel="preload" href="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" as="image" fetchPriority="high" />
               
               {/* Mark as LCP element for monitoring */}
               <h1 className="hero-headline" id="hero-heading" data-lcp="true">
-                HubSpot Not<br />Delivering ROI?<br />
+                HubSpot Not Delivering ROI?<br />
                 <span className="hero-emphasis">We Fix That.</span>
               </h1>
               <p className="hero-description">
@@ -67,7 +68,7 @@ const Hero = () => {
               <div className="space-y-3">
                 <div>
                   <Link to="/contact" onClick={trackContactCTAClick}>
-                    <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
+                    <Button className="hero-cta">
                       Book My Assessment
                       <ChevronRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -83,34 +84,19 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="relative hidden md:block absolute right-0 top-0 w-2/5">
-            <div className="absolute -top-12 -left-12 w-64 h-64 bg-dataops-100 rounded-full filter blur-3xl opacity-50"></div>
-            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-dataops-200 rounded-full filter blur-3xl opacity-50"></div>
-            
-            <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10">
-              {/* Use height and width to prevent CLS */}
-              <div className="grid grid-cols-2 gap-6" style={{
-              minHeight: "320px"
-            }}>
-                <div className="flex flex-col items-center p-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg text-white">
-                  <Database className="h-10 w-10 mb-4" aria-hidden="true" />
-                  <h3 className="text-base font-medium">HubSpot Cleansing</h3>
-                </div>
-                <div className="flex flex-col items-center p-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg text-white">
-                  <BarChart2 className="h-10 w-10 mb-4" aria-hidden="true" />
-                  <h3 className="text-base font-medium">Revenue Conversion</h3>
-                </div>
-                <div className="flex flex-col items-center p-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg text-white">
-                  <Share2 className="h-10 w-10 mb-4" aria-hidden="true" />
-                  <h3 className="text-base font-medium">Systems Integration</h3>
-                </div>
-                <div className="flex flex-col items-center p-6 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg text-white">
-                  <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mb-4" aria-hidden="true">
-                    <span className="font-bold">+</span>
-                  </div>
-                  <h3 className="text-base font-medium">HubSpot Guidance</h3>
-                </div>
-              </div>
+          {/* Dashboard Column */}
+          <div className="hero-dashboard-column">
+            <div className="dashboard-container">
+              <OptimizedImage
+                src="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png"
+                alt="HubSpot Performance Dashboard showing KPIs, metrics, growth data, and ROI analytics"
+                className="dashboard-image"
+                width={600}
+                height={400}
+                priority={true}
+                isLCP={false}
+                loading="eager"
+              />
             </div>
           </div>
         </div>
