@@ -1,4 +1,3 @@
-
 /* Hero Dashboard Styles - Enhanced with Animations */
 
 .hero-dashboard-column {
@@ -8,9 +7,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Align to top instead of center */
+  justify-content: flex-start;
   min-height: 500px;
-  padding-top: 0; /* Remove any top padding */
+  padding-top: 80px; /* Add top padding to align with tagline position */
 }
 
 /* Dashboard entrance animation */
@@ -52,8 +51,8 @@
   will-change: transform;
   animation: fadeSlideIn 0.8s ease-out forwards, float 6s ease-in-out infinite;
   animation-delay: 0.3s, 1.5s;
-  margin-top: 0; /* Align with the top of the hero text */
-  top: 0; /* Reset any top positioning */
+  margin-top: 0;
+  top: 0;
 }
 
 /* Secondary Dashboard (Bottom - Field Sales) */
