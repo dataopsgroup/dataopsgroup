@@ -1,0 +1,23 @@
+
+/* General component styles */
+
+/* Table of Contents Styling for Pillar Content */
+.table-of-contents-container {
+  @apply bg-gray-50 border border-gray-200 rounded-lg p-6 my-8;
+}
+
+.table-of-contents ul {
+  @apply list-none p-0 m-0;
+}
+
+.table-of-contents li {
+  @apply my-2;
+}
+
+.table-of-contents a {
+  @apply text-dataops-600 no-underline py-1 block transition-colors duration-200;
+}
+
+.table-of-contents a:hover {
+  @apply text-dataops-800 underline;
+}

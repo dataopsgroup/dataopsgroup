@@ -1,0 +1,73 @@
+
+/* Typography styles for headings, text, and content */
+
+@layer base {
+  /* Apply Rubik font to all headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+
+  /* Even larger heading sizes with more dramatic scaling */
+  h1 {
+    @apply text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight;
+  }
+  
+  h2 {
+    @apply text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight;
+  }
+  
+  /* Specific styling for H2 tags on the /insights page and blog posts */
+  .blog-post-content h2, 
+  .container h2:not(.text-3xl),
+  article h2 {
+    font-size: 1.5em !important;
+    @apply font-semibold tracking-tight;
+  }
+  
+  h3 {
+    @apply text-4xl md:text-5xl font-semibold tracking-tight;
+  }
+  
+  h4 {
+    @apply text-3xl md:text-4xl font-medium;
+  }
+  
+  h5 {
+    @apply text-2xl md:text-3xl font-medium;
+  }
+  
+  h6 {
+    @apply text-xl md:text-2xl font-medium;
+  }
+
+  /* Override heading styles for blog post titles to be more proportional */
+  h1.blog-post-title {
+    @apply text-2xl md:text-3xl font-bold !important;
+  }
+
+  /* Updated blog post styling with headings matching the blog post headline size */
+  .prose h2 {
+    @apply text-3xl md:text-4xl font-bold mt-8 mb-4;
+    font-size: 1.5em !important;
+  }
+  
+  .prose h3 {
+    @apply text-2xl md:text-3xl font-bold mt-6 mb-3;
+  }
+  
+  .prose h4 {
+    @apply text-xl md:text-2xl font-bold mt-5 mb-2;
+  }
+  
+  .prose p {
+    @apply mb-4 text-gray-700;
+  }
+  
+  .prose ul {
+    @apply mb-6 pl-6 list-disc;
+  }
+  
+  .prose ul li {
+    @apply mb-2 text-gray-700;
+  }
+}
