@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,17 +37,18 @@ const Hero = () => {
   return (
     <>
       <div className="pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50">
-        <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
+        <div className="container mx-auto">
+          <div className="hero-content">
             <div>
               {/* Use resource hints for higher priority assets on page */}
               <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" fetchPriority="high" />
               
               {/* Mark as LCP element for monitoring */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
-                HubSpot Not<br />Delivering ROI?<br />We Fix That.
+              <h1 className="hero-headline" id="hero-heading" data-lcp="true">
+                HubSpot Not<br />Delivering ROI?<br />
+                <span className="hero-emphasis">We Fix That.</span>
               </h1>
-              <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
+              <p className="hero-description">
                 Stop losing money on broken workflows, messy data, and disconnected teams. 
                 We rescue HubSpot implementations and turn them into revenue-generating machines.
               </p>
@@ -81,7 +83,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="relative hidden md:block">
+          <div className="relative hidden md:block absolute right-0 top-0 w-2/5">
             <div className="absolute -top-12 -left-12 w-64 h-64 bg-dataops-100 rounded-full filter blur-3xl opacity-50"></div>
             <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-dataops-200 rounded-full filter blur-3xl opacity-50"></div>
             

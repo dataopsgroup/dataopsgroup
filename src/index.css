@@ -134,6 +134,58 @@
     @apply text-2xl md:text-3xl font-bold !important;
   }
 
+  /* Hero-specific typography classes for premium styling */
+  .hero-headline {
+    @apply font-headline font-medium text-[#403E43];
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    max-width: 650px;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .hero-headline {
+      font-size: 4.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-headline {
+      font-size: 5.5rem;
+    }
+  }
+
+  .hero-emphasis {
+    @apply text-saffron;
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .hero-description {
+    @apply font-body text-gray-700;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    opacity: 0.85;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .hero-description {
+      font-size: 1.25rem;
+    }
+  }
+
+  .hero-content {
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 12%;
+  }
+
   .gradient-text {
     @apply text-dataops-600;
   }
