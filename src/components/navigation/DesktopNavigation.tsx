@@ -56,43 +56,41 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
   };
 
   return (
-    <nav className="hidden md:flex items-center gap-8" aria-label="Desktop Navigation">
-      <ul className="flex items-center gap-8">
-        {navItems.map((item) => (
-          <li key={item.name}>
-            {item.isDropdown ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Link 
-                    to={item.href || "/"}
-                    className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors bg-transparent"
-                    aria-haspopup="true" 
-                    aria-expanded="false"
-                  >
-                    {item.name}
-                    <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
-                    <span className="sr-only">Toggle {item.name} dropdown</span>
-                  </Link>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-white">
-                  {item.items?.map(renderSubMenuItem)}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link 
-                to={item.href || "/"}
-                className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors"
-              >
-                {item.name}
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
-      <Link to="/contact">
-        <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
+    <>
+      {navItems.map((item) => (
+        <div key={item.name}>
+          {item.isDropdown ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Link 
+                  to={item.href || "/"}
+                  className="dropdown-trigger flex items-center"
+                  aria-haspopup="true" 
+                  aria-expanded="false"
+                >
+                  {item.name}
+                  <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
+                  <span className="sr-only">Toggle {item.name} dropdown</span>
+                </Link>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56 bg-white">
+                {item.items?.map(renderSubMenuItem)}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link 
+              to={item.href || "/"}
+              className="nav-item"
+            >
+              {item.name}
+            </Link>
+          )}
+        </div>
+      ))}
+      <Link to="/contact" className="nav-cta">
+        Get Started
       </Link>
-    </nav>
+    </>
   );
 };
 

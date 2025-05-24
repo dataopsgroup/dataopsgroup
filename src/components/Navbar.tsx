@@ -14,7 +14,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -30,29 +30,30 @@ const Navbar = () => {
   return (
     <nav 
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 pb-[25px] border-b border-gray-200",
-        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+        "site-header",
+        scrolled && "scrolled"
       )}
       aria-label="Main navigation"
     >
-      <div className="container mx-auto flex justify-between items-center px-4">
-        <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
+      <div className="nav-wrapper">
+        <Link to="/" className="site-logo" aria-label="DataOps Group Home">
           <img 
             src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
             alt="DataOps Group Logo" 
-            className="h-16 md:h-20" 
           />
         </Link>
         
         {/* Desktop Navigation */}
-        <DesktopNavigation navItems={mainNavItems} />
+        <div className="nav-menu">
+          <DesktopNavigation navItems={mainNavItems} />
+        </div>
         
         {/* Mobile menu button */}
         <div className="md:hidden">
           <Button
             variant="ghost"
             onClick={() => setIsOpen(!isOpen)}
-            className="text-dataops-900"
+            className="mobile-menu-button"
             size="icon"
             aria-expanded={isOpen}
             aria-controls="mobile-menu"

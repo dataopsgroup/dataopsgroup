@@ -1,0 +1,222 @@
+
+/* Navigation Bar Styles */
+
+/* Main Navigation Container */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.98);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Navigation Wrapper */
+.nav-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo Styling */
+.site-logo {
+  display: block;
+  margin-right: 16px;
+  transition: all 0.2s ease;
+}
+
+.site-logo:hover {
+  filter: brightness(1.05);
+}
+
+.site-logo img {
+  height: 72px; /* Increased by 10-15% from 64px */
+}
+
+/* Navigation Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-item {
+  position: relative;
+  text-decoration: none;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(20, 33, 61, 0.9); /* Navy at 90% opacity */
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-item:hover {
+  color: rgba(20, 33, 61, 1);
+}
+
+/* Underline effect on hover */
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #14213D;
+  transition: width 0.2s ease-in-out;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+/* Get Started Button */
+.nav-cta {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 8px 20px;
+  border-radius: 50px;
+  color: #14213D;
+  background-color: transparent;
+  border: 1.5px solid #14213D;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-left: 16px;
+  display: inline-block;
+}
+
+.nav-cta:hover {
+  background-color: #FBB03B;
+  border-color: #FBB03B;
+  color: #14213D;
+  transform: translateY(-1px);
+}
+
+/* Sticky Navigation Styles */
+.site-header.scrolled {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.site-header.scrolled .nav-wrapper {
+  padding: 12px 24px;
+}
+
+.site-header.scrolled .site-logo img {
+  height: 64px; /* Slightly smaller when scrolled */
+}
+
+/* Dropdown Menu Styling */
+.dropdown-trigger {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(20, 33, 61, 0.9);
+  transition: color 0.2s ease-in-out;
+  position: relative;
+}
+
+.dropdown-trigger::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #14213D;
+  transition: width 0.2s ease-in-out;
+}
+
+.dropdown-trigger:hover {
+  color: rgba(20, 33, 61, 1) !important;
+}
+
+.dropdown-trigger:hover::after {
+  width: 100%;
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 767px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .mobile-menu-button {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #14213D;
+    cursor: pointer;
+    padding: 8px;
+  }
+  
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.98);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding-top: 120px;
+  }
+  
+  .mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .mobile-nav-item {
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    margin: 16px 0;
+    color: #14213D;
+    text-decoration: none;
+    padding: 12px 24px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .mobile-nav-cta {
+    margin-top: 24px;
+    width: 80%;
+    text-align: center;
+    padding: 12px 0;
+    border-radius: 50px;
+    background-color: transparent;
+    border: 1.5px solid #14213D;
+    color: #14213D;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .mobile-nav-cta:hover {
+    background-color: #FBB03B;
+    border-color: #FBB03B;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-button {
+    display: none;
+  }
+}
