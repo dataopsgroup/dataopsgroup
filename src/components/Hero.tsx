@@ -49,6 +49,13 @@ const Hero = () => {
   return (
     <>
       <div className="hero-section bg-gradient-to-br from-white to-gray-50">
+        {/* Premium Tagline */}
+        <div className="hero-tagline">
+          <span className="tagline-decorator"></span>
+          <span className="tagline-text">HUBSPOT OPTIMIZATION SPECIALISTS</span>
+          <span className="tagline-decorator"></span>
+        </div>
+
         <div className="hero-container">
           {/* Text Column */}
           <div className="hero-text-column">
