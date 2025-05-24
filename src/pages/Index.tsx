@@ -43,14 +43,16 @@ const Index = () => {
       
       <Navbar />
       
-      <main className="flex-grow px-[5%]">
-        <div className="mt-6">
+      <main className="flex-grow">
+        <div className="px-[5%] mt-6">
           <BreadcrumbNavigation items={[{ name: "Home", url: "/", current: true }]} />
         </div>
         <Hero />
-        <Services />
-        <Approach />
-        <BookCTA />
+        <div className="px-[5%]">
+          <Services />
+          <Approach />
+          <BookCTA />
+        </div>
       </main>
       
       <Footer />

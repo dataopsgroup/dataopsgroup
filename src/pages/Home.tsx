@@ -88,21 +88,23 @@ const Home = () => {
         <Hero />
       </section>
       
-      <section aria-label="Chatbot Services">
-        <ChatbotSection />
-      </section>
-      
-      <section aria-label="Our Services">
-        <Services />
-      </section>
-      
-      <section aria-label="Our Approach">
-        <Approach />
-      </section>
-      
-      <section aria-label="Book a Consultation">
-        <BookCTA />
-      </section>
+      <div className="px-[5%]">
+        <section aria-label="Chatbot Services">
+          <ChatbotSection />
+        </section>
+        
+        <section aria-label="Our Services">
+          <Services />
+        </section>
+        
+        <section aria-label="Our Approach">
+          <Approach />
+        </section>
+        
+        <section aria-label="Book a Consultation">
+          <BookCTA />
+        </section>
+      </div>
     </SemanticLayout>
   );
 };
