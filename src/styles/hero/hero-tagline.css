@@ -1,0 +1,33 @@
+
+/* Hero Tagline Styles */
+
+.hero-tagline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: taglineFadeIn 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes taglineFadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-5px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.tagline-text {
+  @apply font-body;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(20, 33, 61, 0.8);
+  position: relative;
+}

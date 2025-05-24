@@ -1,0 +1,56 @@
+
+/* Hero CTA Button Styles */
+
+.hero-cta {
+  @apply font-headline font-medium;
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 36px !important;
+  font-size: 18px !important;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: #14213D !important;
+  background: linear-gradient(135deg, #FBB03B 0%, #F5A623 100%) !important;
+  border: none;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 16px rgba(251, 176, 59, 0.3);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+.hero-cta:hover {
+  background: linear-gradient(135deg, #F5A623 0%, #E69C27 100%) !important;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 20px rgba(251, 176, 59, 0.4);
+  color: #14213D !important;
+}
+
+.hero-cta:active {
+  transform: translateY(1px) scale(1.01);
+  box-shadow: 0 4px 8px rgba(251, 176, 59, 0.3);
+}
+
+/* CTA Pulse Animation */
+@keyframes ctaPulse {
+  0% { 
+    box-shadow: 0 8px 16px rgba(251, 176, 59, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 8px 24px rgba(251, 176, 59, 0.5);
+    transform: scale(1.02);
+  }
+  100% { 
+    box-shadow: 0 8px 16px rgba(251, 176, 59, 0.3);
+    transform: scale(1);
+  }
+}
+
+.hero-cta.animate-pulse-cta {
+  animation: ctaPulse 1.5s ease-in-out;
+  animation-delay: 2s;
+  animation-iteration-count: 3;
+}

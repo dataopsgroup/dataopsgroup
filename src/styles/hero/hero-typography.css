@@ -1,0 +1,44 @@
+
+/* Hero Typography Styles */
+
+.hero-headline {
+  @apply font-headline font-medium;
+  font-size: 3.5rem;
+  line-height: 1.2;
+  color: #14213D;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .hero-headline {
+    font-size: 4.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-headline {
+    font-size: 5.5rem;
+  }
+}
+
+.hero-emphasis {
+  @apply text-saffron;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.hero-description {
+  @apply font-body;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: rgba(20, 33, 61, 0.85);
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .hero-description {
+    font-size: 1.25rem;
+  }
+}

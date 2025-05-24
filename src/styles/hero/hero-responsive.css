@@ -1,0 +1,48 @@
+
+/* Hero Responsive Design */
+
+@media (max-width: 991px) {
+  .hero-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .hero-text-column,
+  .hero-dashboard-column {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+  }
+  
+  .hero-text-column {
+    padding-right: 0;
+    margin-bottom: 0;
+  }
+  
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+  
+  .hero-cta {
+    font-size: 16px !important;
+    padding: 14px 32px !important;
+  }
+  
+  .dashboard-container {
+    transform: none;
+  }
+  
+  /* Mobile tagline adjustments */
+  .tagline-text {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .tagline-text {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+}
