@@ -1,5 +1,5 @@
 
-/* Hero Dashboard Styles - Dual Dashboard Layout */
+/* Hero Dashboard Styles - Enhanced with Animations */
 
 .hero-dashboard-column {
   flex: 0.55;
@@ -9,6 +9,32 @@
   align-items: center;
   justify-content: center;
   min-height: 500px;
+}
+
+/* Dashboard entrance animation */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) perspective(1000px) rotateY(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) perspective(1000px) rotateY(-2deg);
+  }
+}
+
+/* Gentle floating animation */
+@keyframes float {
+  0% { transform: translateY(0) perspective(1000px) rotateY(-2deg); }
+  50% { transform: translateY(-8px) perspective(1000px) rotateY(-2deg); }
+  100% { transform: translateY(0) perspective(1000px) rotateY(-2deg); }
+}
+
+/* Secondary dashboard floating animation */
+@keyframes floatSecondary {
+  0% { transform: translateY(0) perspective(1000px) rotateY(-4deg); }
+  50% { transform: translateY(-6px) perspective(1000px) rotateY(-4deg); }
+  100% { transform: translateY(0) perspective(1000px) rotateY(-4deg); }
 }
 
 /* Primary Dashboard (Top - KPI Metrics) */
@@ -21,13 +47,16 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   transform: perspective(1000px) rotateY(-2deg);
   transition: all 0.3s ease;
+  will-change: transform;
+  animation: fadeSlideIn 0.8s ease-out forwards, float 6s ease-in-out infinite;
+  animation-delay: 0.3s, 1.5s;
 }
 
 /* Secondary Dashboard (Bottom - Field Sales) */
 .dashboard-container.dashboard-secondary {
   position: absolute;
-  top: 15%;
-  right: -25%;
+  top: -5%;
+  right: -20%;
   z-index: 1;
   width: 95%;
   border-radius: 12px;
@@ -35,6 +64,9 @@
   box-shadow: 0 30px 50px rgba(0,0,0,0.2);
   transform: perspective(1000px) rotateY(-4deg);
   transition: all 0.3s ease;
+  will-change: transform;
+  animation: fadeSlideIn 0.8s ease-out forwards, floatSecondary 6s ease-in-out infinite;
+  animation-delay: 0.6s, 1.8s;
 }
 
 /* Dashboard Images */
@@ -49,11 +81,35 @@
 .hero-dashboard-column:hover .dashboard-container.dashboard-primary {
   transform: perspective(1000px) rotateY(-2deg) translateY(-10px);
   box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+  animation-play-state: paused;
 }
 
 .hero-dashboard-column:hover .dashboard-container.dashboard-secondary {
   transform: perspective(1000px) rotateY(-4deg) translateY(10px);
   box-shadow: 0 35px 55px rgba(0,0,0,0.25);
+  animation-play-state: paused;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-container.dashboard-primary,
+  .dashboard-container.dashboard-secondary {
+    animation: none;
+    transform: perspective(1000px) rotateY(-2deg);
+  }
+  
+  .dashboard-container.dashboard-secondary {
+    transform: perspective(1000px) rotateY(-4deg);
+  }
+  
+  .hero-dashboard-column:hover .dashboard-container.dashboard-primary,
+  .hero-dashboard-column:hover .dashboard-container.dashboard-secondary {
+    transform: perspective(1000px) rotateY(-2deg);
+  }
+  
+  .hero-dashboard-column:hover .dashboard-container.dashboard-secondary {
+    transform: perspective(1000px) rotateY(-4deg);
+  }
 }
 
 /* Responsive Adjustments */
@@ -65,6 +121,7 @@
   .dashboard-container.dashboard-primary,
   .dashboard-container.dashboard-secondary {
     transform: none;
+    animation: none;
   }
   
   .dashboard-container.dashboard-secondary {

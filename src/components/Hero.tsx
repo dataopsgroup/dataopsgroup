@@ -71,7 +71,7 @@ const Hero = () => {
               </p>
             </div>
             
-            <div className="space-y-4">
+            <div className="assessment-container">
               <div className="space-y-2">
                 <h2 className="text-xl font-semibold text-[#403E43]">
                   Discover What's Costing You Deals
@@ -89,7 +89,7 @@ const Hero = () => {
                   </Link>
                 </div>
                 
-                <div className="text-sm text-gray-600 italic max-w-md">
+                <div className="no-risk-assessment text-sm text-gray-600 italic">
                   <strong>No-Risk Assessment</strong><br />
                   We'll audit your HubSpot setup and show you exactly what's wrong - completely free. 
                   No obligation, no sales pitch, just honest feedback about your ROI potential.
