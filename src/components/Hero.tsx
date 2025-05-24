@@ -127,7 +127,7 @@ const Hero = () => {
       <div className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-[#403E43] mb-12">
-            Trusted by 50+ Companies to Rescue Their HubSpot Investments
+            Companies Trust DataOps Group to Transform Their HubSpot and Operations
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
