@@ -49,13 +49,6 @@ const Hero = () => {
   return (
     <>
       <div className="hero-section bg-gradient-to-br from-white to-gray-50">
-        {/* Premium Tagline */}
-        <div className="hero-tagline">
-          <span className="tagline-decorator"></span>
-          <span className="tagline-text">HUBSPOT OPTIMIZATION SPECIALISTS</span>
-          <span className="tagline-decorator"></span>
-        </div>
-
         <div className="hero-container">
           {/* Text Column */}
           <div className="hero-text-column">
@@ -63,6 +56,11 @@ const Hero = () => {
               {/* Use resource hints for higher priority assets on page */}
               <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" fetchPriority="high" />
               <link rel="preload" href="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" as="image" fetchPriority="high" />
+              
+              {/* Premium Tagline */}
+              <div className="hero-tagline">
+                <span className="tagline-text">HUBSPOT OPTIMIZATION SPECIALISTS</span>
+              </div>
               
               {/* Mark as LCP element for monitoring */}
               <h1 className="hero-headline" id="hero-heading" data-lcp="true">

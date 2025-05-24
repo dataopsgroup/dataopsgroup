@@ -14,9 +14,8 @@
 .hero-tagline {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 16px;
-  padding-top: 20px;
   opacity: 0;
   animation: taglineFadeIn 1s ease forwards;
   animation-delay: 0.5s;
@@ -41,29 +40,7 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: rgba(20, 33, 61, 0.8);
-  margin: 0 16px;
   position: relative;
-}
-
-/* Optional underline accent */
-.tagline-text::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 1px;
-  background-color: #FBB03B;
-}
-
-/* Decorative elements */
-.tagline-decorator {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: #FBB03B;
-  opacity: 0.8;
 }
 
 .hero-container {
@@ -240,23 +217,13 @@
   .tagline-text {
     font-size: 12px;
     letter-spacing: 1.2px;
-    margin: 0 12px;
-  }
-  
-  .tagline-decorator {
-    width: 3px;
-    height: 3px;
   }
 }
 
-/* Very small screens - remove decorators to avoid crowding */
+/* Very small screens */
 @media (max-width: 480px) {
-  .tagline-decorator {
-    display: none;
-  }
-  
   .tagline-text {
-    margin: 0;
+    font-size: 11px;
+    letter-spacing: 1px;
   }
 }
-
