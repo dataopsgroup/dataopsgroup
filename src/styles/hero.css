@@ -1,5 +1,4 @@
 
-
 /* Hero Section Styles */
 
 /* Hero Section - Two Column Layout */
@@ -49,19 +48,22 @@
   padding: 0 5%;
   display: flex;
   align-items: center;
-  gap: 5%;
+  gap: 3%;
+  justify-content: space-between;
 }
 
 .hero-text-column {
-  flex: 1;
-  padding-right: 20px;
+  flex: 0.45;
+  max-width: 45%;
+  padding-right: 0;
   text-align: left;
 }
 
 .hero-dashboard-column {
-  flex: 1;
+  flex: 0.55;
+  max-width: 55%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -171,6 +173,7 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   transform: perspective(1000px) rotateY(-2deg);
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .dashboard-container:hover {
@@ -182,22 +185,26 @@
   width: 100%;
   height: auto;
   display: block;
+  max-width: none;
 }
 
 /* Responsive Design for Hero */
 @media (max-width: 991px) {
   .hero-container {
     flex-direction: column;
+    gap: 40px;
   }
   
   .hero-text-column,
   .hero-dashboard-column {
     width: 100%;
+    max-width: 100%;
+    flex: none;
   }
   
   .hero-text-column {
     padding-right: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0;
   }
   
   .hero-headline {
