@@ -6,9 +6,11 @@
   position: relative;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Align to top instead of center */
   min-height: 500px;
+  padding-top: 0; /* Remove any top padding */
 }
 
 /* Dashboard entrance animation */
@@ -50,13 +52,15 @@
   will-change: transform;
   animation: fadeSlideIn 0.8s ease-out forwards, float 6s ease-in-out infinite;
   animation-delay: 0.3s, 1.5s;
+  margin-top: 0; /* Align with the top of the hero text */
+  top: 0; /* Reset any top positioning */
 }
 
 /* Secondary Dashboard (Bottom - Field Sales) */
 .dashboard-container.dashboard-secondary {
   position: absolute;
-  top: -5%;
-  right: -20%;
+  top: 32%; /* Adjust this value based on the size of the first dashboard */
+  right: -5%;
   z-index: 1;
   width: 95%;
   border-radius: 12px;
