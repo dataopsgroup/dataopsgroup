@@ -9,7 +9,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  min-height: 400px;
+  min-height: 500px;
   padding-top: 2rem;
   contain: layout style paint;
   visibility: visible !important;
@@ -36,7 +36,7 @@
 .dashboard-container.dashboard-secondary {
   width: 95%;
   position: absolute;
-  top: 20%;
+  top: 70px;
   right: -5%;
   z-index: 1;
   border-radius: 12px;
