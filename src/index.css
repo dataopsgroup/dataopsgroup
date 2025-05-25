@@ -6,6 +6,7 @@
 @import './styles/components.css';
 @import './styles/navigation.css';
 @import './styles/pillar-content.css';
+@import './styles/hubspot-cookie-banner.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
