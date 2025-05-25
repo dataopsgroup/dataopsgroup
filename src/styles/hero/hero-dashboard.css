@@ -1,13 +1,12 @@
 
-/* Hero Dashboard Styles - Fixed sizing and positioning */
+/* Hero Dashboard Styles - Simplified stable layout */
 
 .hero-dashboard-column {
   width: 50%;
-  position: relative;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 20px;
+  align-items: flex-end;
   justify-content: flex-start;
   min-height: 500px;
   padding-top: 2rem;
@@ -16,33 +15,27 @@
   opacity: 1 !important;
 }
 
-/* Primary Dashboard (Top - KPI Metrics) */
+/* Primary Dashboard (Top) */
 .dashboard-container.dashboard-primary {
   width: 100%;
   position: relative;
   z-index: 2;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  transform: perspective(1000px) rotateY(-2deg);
-  margin-top: 0;
-  top: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   background-color: #fff;
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-/* Secondary Dashboard (Bottom - Field Sales) */
+/* Secondary Dashboard (Bottom) */
 .dashboard-container.dashboard-secondary {
-  width: 95%;
-  position: absolute;
-  top: 70px;
-  right: -5%;
+  width: 90%;
+  position: relative;
   z-index: 1;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 25px 40px rgba(0,0,0,0.2);
-  transform: perspective(1000px) rotateY(-4deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   background-color: #fff;
   visibility: visible !important;
   opacity: 1 !important;
@@ -65,30 +58,26 @@
     width: 100%;
     min-height: 400px;
     contain: none;
+    align-items: center;
   }
   
   .dashboard-container.dashboard-primary,
   .dashboard-container.dashboard-secondary {
-    transform: none;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
   }
   
   .dashboard-container.dashboard-secondary {
-    position: relative;
-    top: -10%;
-    right: 0;
-    width: 90%;
-    margin: 0 auto;
+    width: 85%;
   }
 }
 
 @media (max-width: 768px) {
   .hero-dashboard-column {
     min-height: 300px;
+    gap: 15px;
   }
   
   .dashboard-container.dashboard-secondary {
-    top: -5%;
-    width: 85%;
+    width: 80%;
   }
 }
