@@ -77,13 +77,13 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Dual Dashboard Column - Static for Performance */}
+          {/* Dual Dashboard Column - Optimized Static Images */}
           <div className="hero-dashboard-column">
             {/* First Dashboard (KPI Metrics - Top) - Critical LCP Image */}
             <div className="dashboard-container dashboard-primary">
               <picture>
                 <source 
-                  srcset="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" 
+                  srcSet="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" 
                   type="image/png"
                 />
                 <OptimizedImage 
@@ -106,7 +106,7 @@ const Hero = () => {
             <div className="dashboard-container dashboard-secondary">
               <picture>
                 <source 
-                  srcset="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" 
+                  srcSet="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" 
                   type="image/png"
                 />
                 <OptimizedImage 
