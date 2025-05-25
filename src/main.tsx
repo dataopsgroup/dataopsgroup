@@ -8,10 +8,10 @@ import { StrictMode, Suspense } from 'react';
 
 // Define app version globally
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.0.9'; // Incremented for performance optimizations
+  window.APP_VERSION = '1.1.0'; // Incremented for LCP optimizations
 }
 
-// Optimized application rendering with performance focus
+// Critical rendering optimized for LCP and FCP
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -24,8 +24,8 @@ const renderApp = () => {
           <Suspense fallback={
             <div className="w-full h-screen flex items-center justify-center">
               <div className="flex flex-col items-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-dataops-600 mb-4"></div>
-                <p className="text-dataops-600 text-lg">Loading DataOps Group...</p>
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600 mb-2"></div>
+                <p className="text-blue-600 text-sm">Loading...</p>
               </div>
             </div>
           }>
@@ -35,56 +35,43 @@ const renderApp = () => {
       </StrictMode>
     );
     
-    // Mark render completion
     performance.mark('render-complete');
-    performance.measure('total-render-time', 'render-start', 'render-complete');
   }
 };
 
-// Immediately render the app for fast initial paint
+// Immediately render for fast FCP
 renderApp();
 
-// Defer all non-critical initialization to after page load
+// Defer all non-critical functionality until after LCP
 if (typeof window !== 'undefined') {
-  // Load remaining functionality after initial render
-  window.addEventListener('load', async () => {
-    // Dynamically import and initialize non-critical modules
-    const [
-      { initWebVitals },
-      { setupAnalyticsAndMonitoring, initializeApp },
-      { setupResourceHints, optimizeAssetLoading, setupClientCaching }
-    ] = await Promise.all([
-      import('./utils/web-vitals'),
-      import('./utils/app-initialization'),
-      import('./lib/performance-optimizations')
-    ]);
-    
-    // Initialize in order of priority
-    initWebVitals();
-    setupResourceHints();
-    
-    // Use requestIdleCallback for non-critical tasks
+  // Use requestIdleCallback to defer non-critical work
+  const deferNonCritical = () => {
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => {
-        optimizeAssetLoading();
-        setupClientCaching();
-      });
-      
-      requestIdleCallback(() => {
+      requestIdleCallback(async () => {
+        // Load performance monitoring after initial render
+        const { initWebVitals } = await import('./utils/web-vitals');
+        initWebVitals();
+        
+        // Load analytics after LCP
+        const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
         setupAnalyticsAndMonitoring();
-        initializeApp();
-      }, { timeout: 5000 });
+      }, { timeout: 3000 });
     } else {
       // Fallback for browsers without requestIdleCallback
-      setTimeout(() => {
-        optimizeAssetLoading();
-        setupClientCaching();
+      setTimeout(async () => {
+        const { initWebVitals } = await import('./utils/web-vitals');
+        const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
+        
+        initWebVitals();
         setupAnalyticsAndMonitoring();
-        initializeApp();
-      }, 100);
+      }, 1000);
     }
-    
-    performance.mark('app-loaded');
-    performance.measure('app-startup-time', 'render-start', 'app-loaded');
-  });
+  };
+
+  // Wait for LCP before loading non-critical scripts
+  if (document.readyState === 'complete') {
+    deferNonCritical();
+  } else {
+    window.addEventListener('load', deferNonCritical, { once: true });
+  }
 }
