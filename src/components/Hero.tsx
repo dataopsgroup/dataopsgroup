@@ -1,23 +1,10 @@
 
-import React, { useEffect, useRef } from 'react';
-import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React from 'react';
+import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
-  const ctaButtonRef = useRef<HTMLAnchorElement>(null);
-
-  // Add pulse animation after component mounts - deferred for performance
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (ctaButtonRef.current) {
-        ctaButtonRef.current.classList.add('animate-pulse-cta');
-      }
-    }, 2000); // Delayed to improve initial load performance
-    return () => clearTimeout(timer);
-  }, []);
-
   // Track CTA click in Google Analytics and HubSpot
   const trackContactCTAClick = () => {
     // Track CTA click in Google Analytics
@@ -32,16 +19,6 @@ const Hero = () => {
       window._hsq.push(['trackEvent', {
         id: 'hero_assessment_cta_click'
       }]);
-    }
-  };
-
-  // Track secondary CTA click
-  const trackServicesCTAClick = () => {
-    if (window.gtag) {
-      window.gtag('event', 'cta_click', {
-        'event_category': 'Engagement',
-        'event_label': 'Hero Services CTA'
-      });
     }
   };
 
@@ -85,7 +62,7 @@ const Hero = () => {
               
               <div className="space-y-3">
                 <div>
-                  <Link to="/contact" onClick={trackContactCTAClick} ref={ctaButtonRef} className="hero-cta">
+                  <Link to="/contact" onClick={trackContactCTAClick} className="hero-cta">
                     Book My Assessment
                     <ChevronRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -100,46 +77,58 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Dual Dashboard Column - Optimized for Performance */}
+          {/* Dual Dashboard Column - Static for Performance */}
           <div className="hero-dashboard-column">
             {/* First Dashboard (KPI Metrics - Top) - Critical LCP Image */}
             <div className="dashboard-container dashboard-primary">
-              <OptimizedImage 
-                src="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" 
-                alt="HubSpot Performance Dashboard showing KPIs, metrics, growth data, and ROI analytics" 
-                className="dashboard-image" 
-                width={580} 
-                height={387} 
-                priority={true} 
-                isLCP={true} 
-                loading="eager"
-                decoding="sync"
-                sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 580px"
-                quality={85}
-              />
+              <picture>
+                <source 
+                  srcset="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" 
+                  type="image/png"
+                />
+                <OptimizedImage 
+                  src="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" 
+                  alt="HubSpot Performance Dashboard showing KPIs, metrics, growth data, and ROI analytics" 
+                  className="dashboard-image" 
+                  width={580} 
+                  height={387} 
+                  priority={true} 
+                  isLCP={true} 
+                  loading="eager"
+                  decoding="sync"
+                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 580px"
+                  quality={85}
+                />
+              </picture>
             </div>
             
             {/* Second Dashboard (Field Sales Metrics - Bottom) */}
             <div className="dashboard-container dashboard-secondary">
-              <OptimizedImage 
-                src="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" 
-                alt="Field Sales Metrics Dashboard showing growth, revenue, pipeline, and performance indicators" 
-                className="dashboard-image" 
-                width={551} 
-                height={368} 
-                priority={true} 
-                isLCP={false} 
-                loading="eager"
-                decoding="async"
-                sizes="(max-width: 768px) 85vw, (max-width: 1024px) 47vw, 551px"
-                quality={85}
-              />
+              <picture>
+                <source 
+                  srcset="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" 
+                  type="image/png"
+                />
+                <OptimizedImage 
+                  src="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" 
+                  alt="Field Sales Metrics Dashboard showing growth, revenue, pipeline, and performance indicators" 
+                  className="dashboard-image" 
+                  width={551} 
+                  height={368} 
+                  priority={true} 
+                  isLCP={false} 
+                  loading="eager"
+                  decoding="async"
+                  sizes="(max-width: 768px) 85vw, (max-width: 1024px) 47vw, 551px"
+                  quality={85}
+                />
+              </picture>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Authority Section - Images below the fold use lazy loading */}
+      {/* Authority Section */}
       <div className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-[#403E43] mb-12">
