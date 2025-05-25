@@ -2,42 +2,64 @@
 /* Hero Typography Styles */
 
 .hero-headline {
-  @apply font-headline font-medium;
+  font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+  font-weight: 500;
   font-size: 3.5rem;
   line-height: 1.2;
   color: #14213D;
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.5rem 0;
   text-align: left;
-}
-
-@media (min-width: 768px) {
-  .hero-headline {
-    font-size: 4.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-headline {
-    font-size: 5.5rem;
-  }
 }
 
 .hero-emphasis {
-  @apply text-saffron;
   display: block;
-  margin-top: 0.5rem;
+  font-family: 'Rubik', system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 3.5rem;
+  line-height: 1.2;
+  color: #E84C3D;
+  margin-bottom: 1.5rem;
 }
 
 .hero-description {
-  @apply font-body;
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.6;
   color: rgba(20, 33, 61, 0.85);
-  margin-bottom: 2.5rem;
+  margin: 0 0 2rem 0;
+  max-width: 550px;
   text-align: left;
 }
 
-@media (min-width: 768px) {
+/* Premium tagline */
+.hero-text-column .mb-4 span {
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #0066CC;
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .hero-headline,
+  .hero-emphasis {
+    font-size: 2.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-headline,
+  .hero-emphasis {
+    font-size: 4rem;
+  }
+  
   .hero-description {
     font-size: 1.25rem;
   }

@@ -2,91 +2,35 @@
 /* Hero CTA Button Styles */
 
 .hero-cta {
-  @apply font-headline font-medium;
   display: inline-flex;
   align-items: center;
-  padding: 14px 32px !important;
-  font-size: 17px !important;
-  letter-spacing: 0.5px;
+  background: #dc2626;
+  color: white;
+  padding: 0.875rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1.125rem;
   text-decoration: none;
-  color: #14213D !important;
-  background: linear-gradient(135deg, #FBB03B 0%, #F5A623 100%) !important;
+  transition: background-color 0.2s ease;
   border: none;
-  border-radius: 8px !important;
-  box-shadow: 0 8px 16px rgba(251, 176, 59, 0.3);
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  overflow: hidden;
   cursor: pointer;
-  transform: translateZ(0); /* Force GPU acceleration */
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  margin-top: 1rem;
 }
 
 .hero-cta:hover {
-  background: linear-gradient(135deg, #F5A623 0%, #E69C27 100%) !important;
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 12px 20px rgba(251, 176, 59, 0.4);
-  color: #14213D !important;
+  background: #b91c1c;
+  transform: translateY(-1px);
 }
 
 .hero-cta:active {
-  transform: translateY(1px) scale(1.01);
-  box-shadow: 0 4px 8px rgba(251, 176, 59, 0.3);
+  transform: translateY(0);
 }
 
-/* CTA Pulse Animation */
-@keyframes ctaPulse {
-  0% { 
-    box-shadow: 0 8px 16px rgba(251, 176, 59, 0.3);
-    transform: scale(1);
-  }
-  50% { 
-    box-shadow: 0 8px 24px rgba(251, 176, 59, 0.5);
-    transform: scale(1.02);
-  }
-  100% { 
-    box-shadow: 0 8px 16px rgba(251, 176, 59, 0.3);
-    transform: scale(1);
-  }
-}
-
-.hero-cta.animate-pulse-cta {
-  animation: ctaPulse 1.5s ease-in-out;
-  animation-delay: 2s;
-  animation-iteration-count: 3;
-}
-
-/* Assessment Container Styling */
-.assessment-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-}
-
-/* No-Risk Assessment Text Enhancement */
-.no-risk-assessment {
-  font-size: 15px;
-  line-height: 1.5;
-  margin-top: 16px;
-  color: rgba(20, 33, 61, 0.85);
-  max-width: 380px;
-}
-
-/* Respect user's motion preferences */
-@media (prefers-reduced-motion: reduce) {
+/* Mobile adjustments */
+@media (max-width: 768px) {
   .hero-cta {
-    transition: none;
-  }
-  
-  .hero-cta:hover {
-    transform: none;
-  }
-  
-  .hero-cta:active {
-    transform: none;
-  }
-  
-  .hero-cta.animate-pulse-cta {
-    animation: none;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
   }
 }

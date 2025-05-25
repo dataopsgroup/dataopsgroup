@@ -1,42 +1,65 @@
+
 /* Hero Section Layout Styles */
 
 .hero-section {
-  padding: 80px 0;
-  background-color: #f8f9fa;
-  overflow: hidden;
-  position: relative;
   width: 100%;
-  background-image: 
-    linear-gradient(to right, #545454 1px, transparent 1px),
-    linear-gradient(to bottom, #545454 1px, transparent 1px);
-  background-size: 50px 50px;
-  background-position: 0 0;
+  padding: 60px 0;
+  background: linear-gradient(135deg, #fff 0%, #f9fafb 100%);
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .hero-container {
-  max-width: 1400px;
   width: 90%;
   margin: 0 auto;
-  padding: 0;
   display: flex;
-  align-items: center;
-  gap: 5%;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 5%;
+  max-width: 1400px;
 }
 
+/* Fixed column widths to prevent scaling issues */
 .hero-text-column {
-  flex: 1;
-  max-width: 45%;
-  padding-right: 0;
-  text-align: left;
+  width: 45%;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 10;
+  padding-top: 2rem;
 }
 
 .hero-dashboard-column {
-  flex: 1;
-  max-width: 55%;
+  width: 50%;
+  position: relative;
+  min-height: 400px;
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: flex-start;
-  align-items: center;
+  padding-top: 2rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    width: 95%;
+    gap: 2rem;
+  }
+  
+  .hero-text-column,
+  .hero-dashboard-column {
+    width: 100%;
+    padding-right: 0;
+  }
+  
+  .hero-dashboard-column {
+    min-height: 300px;
+  }
 }
 
 /* For very large screens, prevent excessive stretching */

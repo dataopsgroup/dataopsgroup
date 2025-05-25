@@ -1,62 +1,100 @@
 
-/* HubSpot Cookie Banner Customization */
-/* Make the banner less intrusive while maintaining compliance */
+/* HubSpot Cookie Banner Customization - Enhanced specificity */
 
-#hs-eu-cookie-confirmation {
-  /* Change background color to match our site */
-  background-color: rgba(20, 33, 61, 0.95) !important; /* Navy blue with slight transparency */
-  border: none !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-  
-  /* Make it smaller and less intrusive */
-  max-width: 375px !important;
+/* Primary container with maximum specificity */
+#hs-eu-cookie-confirmation,
+div#hs-eu-cookie-confirmation {
+  /* Position and size - use !important to override HubSpot */
+  position: fixed !important;
+  bottom: 20px !important;
   right: 20px !important;
   left: auto !important;
-  bottom: 20px !important;
+  top: auto !important;
+  max-width: 375px !important;
+  width: auto !important;
+  height: auto !important;
+  
+  /* Styling */
+  background-color: rgba(20, 33, 61, 0.95) !important;
   border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border: none !important;
   padding: 15px !important;
   
-  /* Fix any z-index issues */
-  z-index: 99999 !important;
+  /* Stacking - very high to ensure visibility */
+  z-index: 999999 !important;
+  
+  /* Prevent full screen takeover */
+  transform: none !important;
+  margin: 0 !important;
 }
 
-/* Style the text and buttons to match our brand */
-#hs-eu-cookie-confirmation-inner {
+/* Inner container fix */
+#hs-eu-cookie-confirmation-inner,
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
   padding: 10px !important;
+  background: transparent !important;
+  border: none !important;
+  margin: 0 !important;
 }
 
-#hs-eu-cookie-confirmation-inner p {
+/* Content text styling */
+#hs-eu-cookie-confirmation-inner p,
+div#hs-eu-cookie-confirmation-inner p {
   font-size: 13px !important;
   line-height: 1.4 !important;
   color: #fff !important;
+  margin-bottom: 10px !important;
+  font-family: 'Roboto', system-ui, sans-serif !important;
 }
 
-#hs-eu-confirmation-button {
-  background-color: #FBB03B !important; /* Our saffron color */
+/* Button container */
+#hs-eu-cookie-confirmation-buttons-area,
+div#hs-eu-cookie-confirmation-buttons-area {
+  margin-top: 10px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+}
+
+/* Accept button styling */
+#hs-eu-confirmation-button,
+button#hs-eu-confirmation-button {
+  background-color: #FBB03B !important;
+  color: #14213D !important;
   border: none !important;
-  color: #14213D !important; /* Navy text */
-  font-weight: 500 !important;
   border-radius: 4px !important;
   padding: 8px 16px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
   margin-right: 8px !important;
+  font-family: 'Roboto', system-ui, sans-serif !important;
 }
 
-#hs-eu-decline-button {
-  color: rgba(255, 255, 255, 0.8) !important;
+/* Decline button styling */
+#hs-eu-decline-button,
+button#hs-eu-decline-button {
   background: transparent !important;
+  color: rgba(255, 255, 255, 0.8) !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   border-radius: 4px !important;
   padding: 8px 16px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  font-family: 'Roboto', system-ui, sans-serif !important;
 }
 
-/* Hover effects for better user experience */
-#hs-eu-confirmation-button:hover {
+/* Hover effects */
+#hs-eu-confirmation-button:hover,
+button#hs-eu-confirmation-button:hover {
   background-color: #e09d2e !important;
   transform: translateY(-1px) !important;
   transition: all 0.2s ease !important;
 }
 
-#hs-eu-decline-button:hover {
+#hs-eu-decline-button:hover,
+button#hs-eu-decline-button:hover {
   border-color: rgba(255, 255, 255, 0.5) !important;
   color: rgba(255, 255, 255, 1) !important;
   transition: all 0.2s ease !important;
@@ -64,10 +102,35 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  #hs-eu-cookie-confirmation {
+  #hs-eu-cookie-confirmation,
+  div#hs-eu-cookie-confirmation {
     max-width: calc(100vw - 40px) !important;
     right: 20px !important;
     left: 20px !important;
     bottom: 20px !important;
   }
+  
+  #hs-eu-cookie-confirmation-buttons-area,
+  div#hs-eu-cookie-confirmation-buttons-area {
+    flex-direction: column !important;
+  }
+  
+  #hs-eu-confirmation-button,
+  #hs-eu-decline-button,
+  button#hs-eu-confirmation-button,
+  button#hs-eu-decline-button {
+    width: 100% !important;
+    margin: 2px 0 !important;
+  }
+}
+
+/* Prevent any full-screen overlays */
+#hs-eu-cookie-confirmation:fullscreen,
+div#hs-eu-cookie-confirmation:fullscreen {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  max-width: 375px !important;
+  width: auto !important;
+  height: auto !important;
 }
