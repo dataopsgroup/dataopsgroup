@@ -27,7 +27,7 @@ const Hero = () => {
       <link rel="preload" href="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" as="image" fetchPriority="high" />
       <link rel="preload" href="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" as="image" fetchPriority="high" />
       
-      {/* Inline critical CSS for above-the-fold content */}
+      {/* Inline critical CSS for above-the-fold content - dashboard styles moved to external CSS */}
       <style>{`
         .hero-section { 
           background: linear-gradient(135deg, #fff 0%, #f9fafb 100%);
@@ -35,6 +35,8 @@ const Hero = () => {
           display: flex;
           align-items: center;
           padding: 2rem 5%;
+          position: relative;
+          z-index: 1;
         }
         .hero-container { 
           display: grid;
@@ -87,42 +89,6 @@ const Hero = () => {
         .hero-cta:hover {
           background: #b91c1c;
         }
-        .hero-dashboard-column {
-          position: relative;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: flex-start;
-          min-height: 500px;
-          padding-top: 2rem;
-        }
-        .dashboard-container {
-          border-radius: 12px;
-          overflow: hidden;
-        }
-        .dashboard-container.dashboard-primary {
-          position: relative;
-          z-index: 2;
-          width: 100%;
-          box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-          transform: perspective(1000px) rotateY(-2deg);
-        }
-        .dashboard-container.dashboard-secondary {
-          position: absolute;
-          top: 20%;
-          right: -5%;
-          z-index: 1;
-          width: 95%;
-          box-shadow: 0 25px 40px rgba(0,0,0,0.2);
-          transform: perspective(1000px) rotateY(-4deg);
-        }
-        .dashboard-image {
-          width: 100%;
-          height: auto;
-          display: block;
-          max-width: none;
-        }
         @media (max-width: 991px) {
           .hero-container { 
             grid-template-columns: 1fr;
@@ -130,29 +96,6 @@ const Hero = () => {
           }
           .hero-headline { 
             font-size: 2.5rem;
-          }
-          .hero-dashboard-column {
-            min-height: 400px;
-          }
-          .dashboard-container {
-            transform: none;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-          }
-          .dashboard-container.dashboard-secondary {
-            position: relative;
-            top: -10%;
-            right: 0;
-            width: 90%;
-            margin: 0 auto;
-          }
-        }
-        @media (max-width: 768px) {
-          .hero-dashboard-column {
-            min-height: 300px;
-          }
-          .dashboard-container.dashboard-secondary {
-            top: -5%;
-            width: 85%;
           }
         }
       `}</style>
@@ -207,7 +150,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Restored Dashboard Images Column with Visual Design */}
+          {/* Dashboard Images Column - Now using external CSS */}
           <div className="hero-dashboard-column">
             {/* Primary Dashboard - Critical LCP Image */}
             <div className="dashboard-container dashboard-primary">
@@ -226,7 +169,7 @@ const Hero = () => {
               />
             </div>
             
-            {/* Secondary Dashboard - Overlapping with restored styling */}
+            {/* Secondary Dashboard - Overlapping with external CSS styling */}
             <div className="dashboard-container dashboard-secondary">
               <OptimizedImage 
                 src="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" 

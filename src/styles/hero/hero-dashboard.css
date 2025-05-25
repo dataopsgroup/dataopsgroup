@@ -1,5 +1,5 @@
 
-/* Hero Dashboard Styles - Performance Optimized (Animations Removed) */
+/* Hero Dashboard Styles - Consolidated and Fixed */
 
 .hero-dashboard-column {
   flex: 0.55;
@@ -7,37 +7,45 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   min-height: 500px;
-  padding-top: 80px;
+  padding-top: 2rem;
   contain: layout style paint;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-/* Primary Dashboard (Top - KPI Metrics) - Static */
+/* Primary Dashboard (Top - KPI Metrics) */
 .dashboard-container.dashboard-primary {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   width: 100%;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-  transform: perspective(800px) rotateY(-1deg);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transform: perspective(1000px) rotateY(-2deg);
   margin-top: 0;
   top: 0;
+  background-color: #fff;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-/* Secondary Dashboard (Bottom - Field Sales) - Static */
+/* Secondary Dashboard (Bottom - Field Sales) */
 .dashboard-container.dashboard-secondary {
   position: absolute;
-  top: 32%;
+  top: 20%;
   right: -5%;
-  z-index: 1;
+  z-index: 3;
   width: 95%;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 20px 35px rgba(0,0,0,0.15);
-  transform: perspective(800px) rotateY(-2deg);
+  box-shadow: 0 25px 40px rgba(0,0,0,0.2);
+  transform: perspective(1000px) rotateY(-4deg);
+  background-color: #fff;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Dashboard Images - Performance optimized */
@@ -47,6 +55,8 @@
   display: block;
   max-width: none;
   image-rendering: crisp-edges;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Responsive Adjustments - Static positioning */
