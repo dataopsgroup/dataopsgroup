@@ -8,13 +8,13 @@ import OptimizedImage from '@/components/ui/optimized-image';
 const Hero = () => {
   const ctaButtonRef = useRef<HTMLAnchorElement>(null);
 
-  // Add pulse animation after component mounts
+  // Add pulse animation after component mounts - deferred for performance
   useEffect(() => {
     const timer = setTimeout(() => {
       if (ctaButtonRef.current) {
         ctaButtonRef.current.classList.add('animate-pulse-cta');
       }
-    }, 1000);
+    }, 2000); // Delayed to improve initial load performance
     return () => clearTimeout(timer);
   }, []);
 
@@ -46,15 +46,17 @@ const Hero = () => {
   };
 
   return <>
+      {/* Critical resource hints for performance */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="preload" href="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" as="image" fetchPriority="high" />
+      <link rel="preload" href="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" as="image" fetchPriority="high" />
+      
       <div className="hero-section bg-gradient-to-br from-white to-gray-50">
         <div className="hero-container">
           {/* Text Column */}
           <div className="hero-text-column">
             <div>
-              {/* Use resource hints for higher priority assets on page */}
-              <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" fetchPriority="high" />
-              <link rel="preload" href="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" as="image" fetchPriority="high" />
-              
               {/* Premium Tagline */}
               <div className="hero-tagline">
                 <span className="tagline-text">EXPERT HUBSPOT TRANSFORMATION SPECIALISTS</span>
@@ -98,19 +100,22 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Dual Dashboard Column */}
+          {/* Dual Dashboard Column - Optimized for Performance */}
           <div className="hero-dashboard-column">
-            {/* First Dashboard (KPI Metrics - Top) */}
+            {/* First Dashboard (KPI Metrics - Top) - Critical LCP Image */}
             <div className="dashboard-container dashboard-primary">
               <OptimizedImage 
                 src="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" 
                 alt="HubSpot Performance Dashboard showing KPIs, metrics, growth data, and ROI analytics" 
                 className="dashboard-image" 
-                width={600} 
-                height={400} 
+                width={580} 
+                height={387} 
                 priority={true} 
-                isLCP={false} 
-                loading="eager" 
+                isLCP={true} 
+                loading="eager"
+                decoding="sync"
+                sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 580px"
+                quality={85}
               />
             </div>
             
@@ -120,18 +125,21 @@ const Hero = () => {
                 src="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" 
                 alt="Field Sales Metrics Dashboard showing growth, revenue, pipeline, and performance indicators" 
                 className="dashboard-image" 
-                width={580} 
-                height={380} 
-                priority={false} 
+                width={551} 
+                height={368} 
+                priority={true} 
                 isLCP={false} 
-                loading="eager" 
+                loading="eager"
+                decoding="async"
+                sizes="(max-width: 768px) 85vw, (max-width: 1024px) 47vw, 551px"
+                quality={85}
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Authority Section */}
+      {/* Authority Section - Images below the fold use lazy loading */}
       <div className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-center text-[#403E43] mb-12">

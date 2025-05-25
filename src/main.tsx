@@ -4,7 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense, lazy } from 'react';
+import { StrictMode, Suspense } from 'react';
 import { initWebVitals } from './utils/web-vitals';
 import { setupAnalyticsAndMonitoring, initializeApp } from './utils/app-initialization';
 import { 
@@ -22,10 +22,10 @@ import { applyCriticalCSS, loadFonts } from './lib/critical-css';
 
 // Define app version globally
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.0.7'; // Incremented version for cache busting
+  window.APP_VERSION = '1.0.8'; // Incremented for performance optimizations
 }
 
-// Initialize essential monitoring right away
+// Performance-first initialization
 if (typeof window !== 'undefined') {
   // Initialize web vitals monitoring early
   initWebVitals();
@@ -34,21 +34,17 @@ if (typeof window !== 'undefined') {
   performance.mark('app-init-start');
   performance.mark('navigation-start');
   
-  // Apply critical CSS for initial route
+  // Apply critical CSS for initial route immediately
   applyCriticalCSS(window.location.pathname);
   
-  // Optimize font loading immediately for better LCP
-  loadFonts();
+  // Setup critical resource hints immediately
+  setupResourceHints();
 }
 
-// Apply critical performance optimizations immediately
-setupResourceHints();
-
-// Enhanced application rendering with performance tracking
+// Optimized application rendering with performance focus
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
-    // Report First Paint to performance monitoring
     performance.mark('render-start');
     
     const root = createRoot(container);
@@ -82,16 +78,21 @@ const renderApp = () => {
 // Immediately render the app for fast initial paint
 renderApp();
 
-// Schedule remaining initializations based on priority
+// Performance-optimized task scheduling
 if (typeof window !== 'undefined') {
+  // Defer font loading to after critical render
+  setTimeout(() => {
+    loadFonts();
+  }, 100);
+  
   scheduleTasks([
-    // High priority tasks - run immediately but non-blocking
+    // Critical tasks - run immediately after render
     { 
       task: optimizeAssetLoading, 
       priority: 'high' 
     },
     
-    // Medium priority tasks - run soon but yield to user interaction
+    // Important tasks - run soon but yield to interaction
     { 
       task: () => setupClientCaching(),
       priority: 'medium'
@@ -100,14 +101,12 @@ if (typeof window !== 'undefined') {
       task: () => prefetchCriticalRoutes([
         '/contact',
         '/insights',
-        '/services',
-        '/approach',
-        '/faqs'
+        '/services'
       ]),
       priority: 'medium' 
     },
     
-    // Low priority tasks - run during idle time
+    // Background tasks - run during idle time only
     { 
       task: setupAnalyticsAndMonitoring, 
       priority: 'low' 
@@ -119,64 +118,39 @@ if (typeof window !== 'undefined') {
     {
       task: setupInteractionBasedLoading,
       priority: 'low'
-    },
-    {
-      task: prerenderNextLikelyPage,
-      priority: 'low'
     }
   ]);
   
-  // Handle page visibility changes to optimize for foreground/background
+  // Optimize visibility handling for performance
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
-      // Prioritize responsiveness when page is visible
       performance.mark('page-visible');
-      
-      // Optimize media loading when page becomes visible
-      optimizeAssetLoading();
+      // Only optimize when page becomes visible to save resources
+      requestIdleCallback(() => {
+        optimizeAssetLoading();
+      });
     } else {
-      // Cancel unnecessary work when page is hidden
       performance.mark('page-hidden');
     }
   });
   
-  // Initialize remaining app features
+  // Initialize remaining app features during idle time
   runWhenIdle(initializeApp);
   
-  // Report performance metrics when the page is fully loaded
+  // Performance reporting - deferred to not impact loading
   window.addEventListener('load', () => {
     performance.mark('app-loaded');
     performance.measure('app-startup-time', 'app-init-start', 'app-loaded');
     performance.measure('navigation-to-load', 'navigation-start', 'app-loaded');
     
-    // Report Core Web Vitals metrics to console for development
-    if (process.env.NODE_ENV === 'development') {
-      const observer = new PerformanceObserver((list) => {
-        const entries = list.getEntries();
-        entries.forEach((entry) => {
-          if (['largest-contentful-paint', 'layout-shift', 'first-input'].includes(entry.entryType)) {
-            console.info(`[Performance] ${entry.entryType}:`, entry);
-          }
-        });
-      });
-      
-      try {
-        observer.observe({ type: 'largest-contentful-paint', buffered: true });
-        observer.observe({ type: 'layout-shift', buffered: true });
-        observer.observe({ type: 'first-input', buffered: true });
-      } catch (e) {
-        console.error('Failed to observe performance entries:', e);
-      }
-    }
-    
-    // Report performance data after load
+    // Report performance data after a delay to ensure all metrics are captured
     setTimeout(() => {
-      const startupTiming = performance.getEntriesByName('app-startup-time')[0];
-      const renderTiming = performance.getEntriesByName('total-render-time')[0];
-      const navigationToRenderTiming = performance.getEntriesByName('navigation-to-render')[0];
-      const navigationToLoadTiming = performance.getEntriesByName('navigation-to-load')[0];
-      
       if (window.gtag) {
+        const startupTiming = performance.getEntriesByName('app-startup-time')[0];
+        const renderTiming = performance.getEntriesByName('total-render-time')[0];
+        const navigationToRenderTiming = performance.getEntriesByName('navigation-to-render')[0];
+        const navigationToLoadTiming = performance.getEntriesByName('navigation-to-load')[0];
+        
         window.gtag('event', 'performance', {
           startup_time: Math.round(startupTiming?.duration || 0),
           render_time: Math.round(renderTiming?.duration || 0),
@@ -188,9 +162,9 @@ if (typeof window !== 'undefined') {
         });
       }
       
-      // Clear marks and measures to avoid memory leaks
+      // Clean up performance marks to prevent memory leaks
       performance.clearMarks();
       performance.clearMeasures();
-    }, 0);
+    }, 1000); // Increased delay to capture all metrics
   });
 }
