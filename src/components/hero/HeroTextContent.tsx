@@ -27,32 +27,32 @@ const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
           Stop losing money on broken workflows, messy data, and disconnected teams. 
           We rescue HubSpot implementations and turn them into revenue-generating machines.
         </p>
-      </div>
-      
-      <div className="space-y-6">
-        <div className="space-y-2">
-          <h2 className="text-xl font-semibold text-white">
-            Discover What's Costing You Deals
-          </h2>
-          <p className="text-white">
-            Free 30-minute HubSpot assessment reveals hidden revenue leaks
-          </p>
-        </div>
         
-        <div className="space-y-3">
-          <div>
-            <Link to="/contact" onClick={onCTAClick} className="hero-cta">
-              Book My Assessment
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Link>
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <h2 className="text-xl font-semibold text-white">
+              Discover What's Costing You Deals
+            </h2>
+            <p className="text-white">
+              Free 30-minute HubSpot assessment reveals hidden revenue leaks
+            </p>
           </div>
           
-          <div className="text-sm text-white italic">
-            <strong className="text-white">No-Risk Assessment</strong><br />
-            <span className="text-white">
-              We'll audit your HubSpot setup and show you exactly what's wrong - completely free. 
-              No obligation, no sales pitch, just honest feedback about your ROI potential.
-            </span>
+          <div className="space-y-3">
+            <div>
+              <Link to="/contact" onClick={onCTAClick} className="hero-cta">
+                Book My Assessment
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+            
+            <div className="text-sm text-white italic">
+              <strong className="text-white">No-Risk Assessment</strong><br />
+              <span className="text-white">
+                We'll audit your HubSpot setup and show you exactly what's wrong - completely free. 
+                No obligation, no sales pitch, just honest feedback about your ROI potential.
+              </span>
+            </div>
           </div>
         </div>
       </div>
