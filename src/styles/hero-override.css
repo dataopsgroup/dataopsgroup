@@ -1,7 +1,47 @@
 
-/* Hero Override CSS - Maximum Specificity */
+/* Hero Override CSS - Maximum Specificity + Containment */
 /* This file overrides all other CSS for hero section text */
 
+/* Hero Section Container - CRITICAL: Contain all elements */
+.hero-section,
+div.hero-section {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 80vh !important;
+  contain: layout style paint !important;
+}
+
+/* Blur backgrounds - MUST stay within hero bounds */
+.hero-section .blur-background,
+.hero-section::before,
+.hero-section::after,
+.hero-section .hero-blur-1,
+.hero-section .hero-blur-2 {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  clip-path: inset(0) !important;
+  contain: layout !important;
+}
+
+/* Hero content containers */
+.hero-section .hero-container,
+.hero-section .hero-text-column {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.hero-section .hero-text-column .hero-text-overlay {
+  position: relative !important;
+  z-index: 11 !important;
+  padding: 2rem !important;
+}
+
+/* Headlines with maximum specificity */
 .hero-section .hero-text-column .hero-text-overlay h1,
 .hero-section .hero-container .hero-text-column h1,
 div.hero-section div.hero-text-column div.hero-text-overlay h1 {
@@ -11,6 +51,8 @@ div.hero-section div.hero-text-column div.hero-text-overlay h1 {
   margin-bottom: 1rem !important;
   color: #000000 !important;
   font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  position: relative !important;
+  z-index: 12 !important;
 }
 
 /* "We Fix That" saffron color override */
@@ -30,6 +72,8 @@ div.hero-section div.hero-text-column div.hero-text-overlay p {
   color: #ffffff !important;
   margin-bottom: 1.5rem !important;
   font-family: 'Roboto', system-ui, -apple-system, sans-serif !important;
+  position: relative !important;
+  z-index: 12 !important;
 }
 
 /* Desktop body text color override */
@@ -48,6 +92,8 @@ div.hero-section div.hero-text-column div.hero-text-overlay h2 {
   color: #000000 !important;
   margin-bottom: 0.75rem !important;
   font-family: 'Rubik', system-ui, -apple-system, sans-serif !important;
+  position: relative !important;
+  z-index: 12 !important;
 }
 
 /* White text for mobile subheadings */
@@ -75,6 +121,8 @@ div.hero-section div.hero-text-column div.hero-text-overlay h2 {
   margin-top: 1rem !important;
   font-family: 'Roboto', system-ui, -apple-system, sans-serif !important;
   transition: background-color 0.2s ease !important;
+  position: relative !important;
+  z-index: 12 !important;
 }
 
 .hero-section .hero-text-column .hero-text-overlay a:hover,
@@ -98,6 +146,8 @@ div.hero-section div.hero-text-column div.hero-text-overlay h2 {
   display: inline-block !important;
   backdrop-filter: blur(8px) !important;
   font-family: 'Roboto', system-ui, -apple-system, sans-serif !important;
+  position: relative !important;
+  z-index: 12 !important;
 }
 
 /* Desktop tagline color override */
@@ -109,8 +159,23 @@ div.hero-section div.hero-text-column div.hero-text-overlay h2 {
   }
 }
 
+/* Next section protection - prevent hero overflow */
+.hero-section + section,
+.hero-section + div,
+section:nth-child(2) {
+  position: relative !important;
+  z-index: 20 !important;
+  background: white !important;
+  isolation: isolate !important;
+}
+
 /* Mobile responsive overrides */
 @media (max-width: 768px) {
+  .hero-section,
+  div.hero-section {
+    min-height: 60vh !important;
+  }
+  
   .hero-section .hero-text-column .hero-text-overlay h1,
   div.hero-section div.hero-text-column div.hero-text-overlay h1 {
     font-size: 2.5rem !important;
@@ -140,6 +205,10 @@ div.hero-section div.hero-text-column div.hero-text-overlay h2 {
     text-align: center !important;
     margin: 0 auto 1rem auto !important;
     width: fit-content !important;
+  }
+  
+  .hero-section .hero-text-column .hero-text-overlay {
+    padding: 1.5rem !important;
   }
 }
 
@@ -171,4 +240,9 @@ div.hero-section div.hero-text-column div.hero-text-overlay h2 {
 /* Override any conflicting Tailwind classes */
 .hero-section .hero-text-column .hero-text-overlay * {
   box-sizing: border-box !important;
+}
+
+/* Emergency containment - if blurs still leak */
+.hero-section * {
+  max-height: 100vh !important;
 }
