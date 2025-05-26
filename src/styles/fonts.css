@@ -1,5 +1,6 @@
 
 /* Typography using Google Fonts: Rubik Medium for headlines, Roboto Regular for body text */
+/* Mobile uses Inter for performance optimization */
 
 /* Font loading state classes for progressive enhancement */
 .fonts-pending {
@@ -20,16 +21,45 @@ html, body {
   font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+/* Mobile-first font optimization - use Inter on mobile for performance */
+@media (max-width: 768px) {
+  html, body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  .font-active {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
 /* Headline font class for components that need explicit headline styling */
 .font-headline {
   font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 500;
 }
 
+/* Mobile headline optimization */
+@media (max-width: 768px) {
+  .font-headline {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
+    font-display: swap;
+  }
+}
+
 /* Body font class - matches default but available for explicit use */
 .font-body {
   font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 400;
+}
+
+/* Mobile body font optimization */
+@media (max-width: 768px) {
+  .font-body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    font-display: swap;
+  }
 }
 
 /* Font size adjustments for mobile to improve readability and performance */

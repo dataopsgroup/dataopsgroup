@@ -42,15 +42,38 @@
   font-weight: 600;
 }
 
-/* Mobile adjustments */
+/* Mobile-only optimizations - Inter fonts + black headings, white body text */
 @media (max-width: 768px) {
   .hero-headline,
   .hero-emphasis {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
     font-size: 2.5rem;
+    color: #000000; /* Black for headings on mobile */
+    font-display: swap;
   }
   
   .hero-description {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
     font-size: 1rem;
+    color: #ffffff; /* White for body text on mobile */
+    font-display: swap;
+  }
+  
+  .hero-text-column .mb-4 span {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    color: #ffffff; /* White for premium tagline on mobile */
+    font-display: swap;
+  }
+  
+  /* Mobile h2 headings - black for better readability */
+  .hero-text-column h2 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    color: #000000;
+    font-display: swap;
   }
 }
 

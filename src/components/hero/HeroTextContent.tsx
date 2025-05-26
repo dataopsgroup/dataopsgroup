@@ -18,22 +18,22 @@ const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
           </span>
         </div>
         
-        {/* LCP optimized heading - mobile-first text colors */}
-        <h1 className="hero-headline text-white">
+        {/* LCP optimized heading - mobile-first text colors with black headings */}
+        <h1 className="hero-headline text-black md:text-[#14213D]">
           HubSpot Not Delivering ROI?<br />
-          <span className="hero-emphasis text-yellow-300 md:text-green-600">We Fix That.</span>
+          <span className="hero-emphasis text-black md:text-green-600">We Fix That.</span>
         </h1>
-        <p className="hero-description text-white/90 md:text-gray-700">
+        <p className="hero-description text-white md:text-gray-700">
           Stop losing money on broken workflows, messy data, and disconnected teams. 
           We rescue HubSpot implementations and turn them into revenue-generating machines.
         </p>
         
         <div className="space-y-6">
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-black md:text-white">
               Discover What's Costing You Deals
             </h2>
-            <p className="text-white/90 md:text-gray-700">
+            <p className="text-white md:text-gray-700">
               Free 30-minute HubSpot assessment reveals hidden revenue leaks
             </p>
           </div>
