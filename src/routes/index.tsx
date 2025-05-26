@@ -8,11 +8,12 @@ import { redirectRoutes } from './redirectRoutes';
 import { blogRedirectRoutes } from './blogRedirectRoutes';
 import { apiRoutes } from './apiRoutes';
 import React from 'react';
-import { Navigate, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import HubSpotAssessment from '../pages/HubSpotAssessment';
+import RouteErrorBoundary from '../components/routing/RouteErrorBoundary';
 
 // Create AMP redirect routes for each blog redirect
-const createAmpRedirects = () => {
+const createAmpRedirects = (): RouteObject[] => {
   return blogRedirectRoutes.map(route => {
     // Skip the ones that don't have specific blog post redirects
     if (route.path === '/blog' || route.path === '/en/blog/all') {
@@ -29,14 +30,14 @@ const createAmpRedirects = () => {
 };
 
 // Create assessment route with proper component reference
-const assessmentRoute = {
+const assessmentRoute: RouteObject = {
   path: "/assessment",
   Component: HubSpotAssessment,
-  errorElement: React.createElement(() => <Navigate to="/not-found" replace />)
+  errorElement: React.createElement(RouteErrorBoundary)
 };
 
-// Combine all routes
-const routes = [
+// Combine all routes with consistent error boundaries
+const routes: RouteObject[] = [
   ...mainRoutes,
   ...serviceRoutes,
   ...insightRoutes,

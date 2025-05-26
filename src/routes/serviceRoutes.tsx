@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { RouteObject } from 'react-router-dom';
 import Services from '../pages/Services';
 import AnalyticsBI from '../pages/AnalyticsBI';
 import DataOpsImplementation from '../pages/DataOpsImplementation';
@@ -8,35 +9,35 @@ import MarketingOperationsRevOps from '../pages/MarketingOperationsRevOps';
 import SEOManagement from '../pages/SEOManagement';
 import NotFound from '../pages/NotFound';
 
-export const serviceRoutes = [
+export const serviceRoutes: RouteObject[] = [
   {
     path: "/services",
-    element: <Services />,
-    errorElement: <NotFound />,
+    Component: Services,
+    errorElement: React.createElement(NotFound),
   },
   {
     path: "/services/analytics-bi",
-    element: <AnalyticsBI />,
-    errorElement: <NotFound />,
+    Component: AnalyticsBI,
+    errorElement: React.createElement(NotFound),
   },
   {
     path: "/services/dataops-implementation",
-    element: <DataOpsImplementation />,
-    errorElement: <NotFound />,
+    Component: DataOpsImplementation,
+    errorElement: React.createElement(NotFound),
   },
   {
     path: "/services/team-training",
-    element: <TeamTraining />,
-    errorElement: <NotFound />,
+    Component: TeamTraining,
+    errorElement: React.createElement(NotFound),
   },
   {
     path: "/services/marketing-operations-revops",
-    element: <MarketingOperationsRevOps />,
-    errorElement: <NotFound />,
+    Component: MarketingOperationsRevOps,
+    errorElement: React.createElement(NotFound),
   },
   {
     path: "/seo-management",
-    element: <SEOManagement />,
-    errorElement: <NotFound />,
+    Component: SEOManagement,
+    errorElement: React.createElement(NotFound),
   }
 ];

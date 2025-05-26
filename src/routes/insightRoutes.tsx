@@ -1,30 +1,31 @@
 
 import React from 'react';
+import { RouteObject } from 'react-router-dom';
 import BlogList from '../pages/BlogList';
 import BlogPost from '../pages/BlogPost';
 import CaseStudiesPage from '../pages/CaseStudies';
 import FAQs from '../pages/FAQs';
 import NotFound from '../pages/NotFound';
 
-export const insightRoutes = [
+export const insightRoutes: RouteObject[] = [
   {
     path: "/insights",
-    element: <BlogList />,
-    errorElement: <NotFound />,
+    Component: BlogList,
+    errorElement: React.createElement(NotFound),
   },
   {
     path: "/insights/:postId",
-    element: <BlogPost />,
-    errorElement: <NotFound />,
+    Component: BlogPost,
+    errorElement: React.createElement(NotFound),
   },
   {
     path: "/case-studies",
-    element: <CaseStudiesPage />,
-    errorElement: <NotFound />,
+    Component: CaseStudiesPage,
+    errorElement: React.createElement(NotFound),
   },
   {
     path: "/faqs",
-    element: <FAQs />,
-    errorElement: <NotFound />,
+    Component: FAQs,
+    errorElement: React.createElement(NotFound),
   }
 ];

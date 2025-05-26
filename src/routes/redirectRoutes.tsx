@@ -1,197 +1,164 @@
 
 import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-import { getCanonicalFromAmpUrl } from '../utils/redirect-utils';
+import { RouteObject } from 'react-router-dom';
+import OptimizedRedirect, { AmpRedirectHandler } from '../components/routing/OptimizedRedirect';
 
-// For the AMP redirect, we need a component that can access route params
-const AmpRedirectHandler = () => {
-  const { postId } = useParams();
-  // Clean up any query parameters from the postId 
-  const cleanPostId = postId ? postId.split('?')[0] : '';
-  return <Navigate to={`/insights/${cleanPostId}`} replace />;
-};
-
-// 301 Redirects
-export const redirectRoutes = [
-  // Leadership page redirect
+// 301 Redirects with optimized components
+export const redirectRoutes: RouteObject[] = [
   {
     path: "/leadership",
-    element: <Navigate to="/about" replace />,
+    element: <OptimizedRedirect to="/about" />,
   },
-  
-  // Documentation redirect (added to fix canonical issue)
   {
     path: "/documentation",
-    element: <Navigate to="/" replace />,
+    element: <OptimizedRedirect to="/" />,
   },
-  
-  // Terms page redirect
   {
     path: "/terms-of-service",
-    element: <Navigate to="/" replace />,
+    element: <OptimizedRedirect to="/" />,
   },
-  
-  // Old services redirects
   {
     path: "/services/alignment",
-    element: <Navigate to="/services" replace />,
+    element: <OptimizedRedirect to="/services" />,
   },
   {
     path: "/services/lineage-mapping",
-    element: <Navigate to="/services" replace />,
+    element: <OptimizedRedirect to="/services" />,
   },
   {
     path: "/services/maintenance",
-    element: <Navigate to="/services" replace />,
+    element: <OptimizedRedirect to="/services" />,
   },
   {
     path: "/services/roi-tracking",
-    element: <Navigate to="/services" replace />,
+    element: <OptimizedRedirect to="/services" />,
   },
   {
     path: "/services/customer-value",
-    element: <Navigate to="/services" replace />,
+    element: <OptimizedRedirect to="/services" />,
   },
   {
     path: "/services/dashboards",
-    element: <Navigate to="/services/analytics-bi" replace />,
+    element: <OptimizedRedirect to="/services/analytics-bi" />,
   },
   {
     path: "/services/reporting",
-    element: <Navigate to="/services/analytics-bi" replace />,
+    element: <OptimizedRedirect to="/services/analytics-bi" />,
   },
-  
-  // Old resources redirects
   {
     path: "/resources/checklist",
-    element: <Navigate to="/" replace />,
+    element: <OptimizedRedirect to="/" />,
   },
   {
     path: "/resources/data-guide",
-    element: <Navigate to="/" replace />,
+    element: <OptimizedRedirect to="/" />,
   },
   {
     path: "/resources/data-impact",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
-  
-  // Old approach redirects
   {
     path: "/approach/data-driven",
-    element: <Navigate to="/approach" replace />,
+    element: <OptimizedRedirect to="/approach" />,
   },
   {
     path: "/methodology",
-    element: <Navigate to="/approach" replace />,
+    element: <OptimizedRedirect to="/approach" />,
   },
   {
     path: "/methodology/three-pillars",
-    element: <Navigate to="/approach" replace />,
+    element: <OptimizedRedirect to="/approach" />,
   },
-  
-  // Miscellaneous old URLs
   {
     path: "/data-analysis-question-framework",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
   {
     path: "/implementation",
-    element: <Navigate to="/services/dataops-implementation" replace />,
+    element: <OptimizedRedirect to="/services/dataops-implementation" />,
   },
   {
     path: "/maintenance",
-    element: <Navigate to="/services" replace />,
+    element: <OptimizedRedirect to="/services" />,
   },
   {
     path: "/training",
-    element: <Navigate to="/services" replace />,
+    element: <OptimizedRedirect to="/services" />,
   },
   {
     path: "/testimonials",
-    element: <Navigate to="/case-studies" replace />,
+    element: <OptimizedRedirect to="/case-studies" />,
   },
   {
     path: "/guide",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
-  
-  // NEW: Additional redirects for legacy URLs
   {
     path: "/hubspot-case-studies",
-    element: <Navigate to="/case-studies" replace />,
+    element: <OptimizedRedirect to="/case-studies" />,
   },
   {
     path: "/our-tech-stack",
-    element: <Navigate to="/" replace />,
+    element: <OptimizedRedirect to="/" />,
   },
-  
-  // NEW: Resource guides redirects
   {
     path: "/data-quality-dimensions-guide",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
   {
     path: "/quality-vs-integrity-guide",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
   {
     path: "/survey-quality-guide",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
   {
     path: "/data-quality-plan-template",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
   {
     path: "/knowledge-base-resources",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
-  
-  // NEW: Tool and assessment redirects
   {
     path: "/data-strategy-assessment",
-    element: <Navigate to="/assessment" replace />,
+    element: <OptimizedRedirect to="/assessment" />,
   },
   {
     path: "/roi-calculator",
-    element: <Navigate to="/assessment" replace />,
+    element: <OptimizedRedirect to="/assessment" />,
   },
   {
     path: "/data-governance",
-    element: <Navigate to="/services/dataops-implementation" replace />,
+    element: <OptimizedRedirect to="/services/dataops-implementation" />,
   },
-  
-  // NEW: Fix for AMP URLs - use a dedicated component that can access route params
   {
     path: "/en/blog/:postId",
-    element: <AmpRedirectHandler />,
+    Component: AmpRedirectHandler,
   },
-  
-  // NEW: Search page redirect
   {
     path: "/search",
-    element: <Navigate to="/insights" replace />,
+    element: <OptimizedRedirect to="/insights" />,
   },
-  
-  // NEW: Additional URLs with hsLang parameter
   {
     path: "/how-much-is-bad-data-costing-your-business",
-    element: <Navigate to="/insights/true-cost-of-bad-data" replace />,
+    element: <OptimizedRedirect to="/insights/true-cost-of-bad-data" />,
   },
   {
     path: "/marketing-data-management-and-analytics-services-dataops-group",
-    element: <Navigate to="/services" replace />,
+    element: <OptimizedRedirect to="/services" />,
   },
   {
     path: "/hubspot-training-and-implementation",
-    element: <Navigate to="/services/team-training" replace />,
+    element: <OptimizedRedirect to="/services/team-training" />,
   },
   {
     path: "/hubspot-integration-customization-services",
-    element: <Navigate to="/services/dataops-implementation" replace />,
+    element: <OptimizedRedirect to="/services/dataops-implementation" />,
   },
   {
     path: "/book-meeting",
-    element: <Navigate to="/contact" replace />,
+    element: <OptimizedRedirect to="/contact" />,
   }
 ];

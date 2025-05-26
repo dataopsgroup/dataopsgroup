@@ -1,15 +1,16 @@
 
 import React from 'react';
+import { RouteObject } from 'react-router-dom';
 import ApiContent from '../pages/ApiContent';
 import XmlContent from '../pages/XmlContent';
 
-export const apiRoutes = [
+export const apiRoutes: RouteObject[] = [
   {
     path: "/api/content.json",
-    element: <ApiContent />,
+    Component: ApiContent,
   },
   {
     path: "/sitemap.xml",
-    element: <XmlContent />,
+    Component: XmlContent,
   }
 ];
