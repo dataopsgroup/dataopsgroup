@@ -2,65 +2,27 @@ import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
 
-const AnalyticsBIPage = () => {
+const AnalyticsBI = () => {
   return (
     <>
       <MetaHead
-        title="Analytics & Business Intelligence Services | DataOps Group"
-        description="Transform your data into actionable insights with our advanced analytics and visualization services."
+        title="HubSpot Analytics & BI Services | Turn Data Into Revenue"
+        description="Transform your HubSpot data into actionable insights."
         canonicalPath="/services/analytics-bi"
       />
       
       <SemanticLayout>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Page Header - light text on dark background */}
-          <div className="mb-12 text-white">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Analytics & BI Services
-            </h1>
-            
-            <p className="text-lg text-gray-300 max-w-3xl">
-              Transform your raw data into actionable insights with our advanced analytics 
-              and visualization services that drive smarter business decisions.
-            </p>
-          </div>
-          
-          {/* Data Visualization Section */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-10">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              Data Visualization & Dashboarding
-            </h2>
-            
-            <p className="text-gray-600 mb-6">
-              Transform complex data into intuitive, interactive visualizations 
-              that make insights accessible to all stakeholders.
-            </p>
-            
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <span className="text-blue-500 mr-3 text-lg">•</span>
-                <span className="text-gray-700">Custom dashboard development tailored to your specific KPIs and metrics</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-500 mr-3 text-lg">•</span>
-                <span className="text-gray-700">Interactive data visualizations that allow for exploration and deeper analysis</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-500 mr-3 text-lg">•</span>
-                <span className="text-gray-700">Executive dashboards for high-level business performance monitoring</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-500 mr-3 text-lg">•</span>
-                <span className="text-gray-700">Operational dashboards for day-to-day decision making</span>
-              </li>
-            </ul>
-          </div>
-          
-          {/* Advanced Analytics Section */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-10">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              Advanced Analytics & Modeling
-            </h2>
+        {/* Test content */}
+        <div className="py-16 px-4">
+          <h1 className="text-3xl font-bold">Analytics & BI Services</h1>
+          <p>Test content to verify the page loads correctly.</p>
+        </div>
+      </SemanticLayout>
+    </>
+  );
+};
+
+export default AnalyticsBI;            </h2>
             
             <p className="text-gray-600 mb-6">
               Leverage sophisticated analytical techniques to uncover hidden patterns, 
