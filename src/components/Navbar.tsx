@@ -67,7 +67,7 @@ const Navbar = () => {
               <Link to="/contact">Contact</Link>
             </Button>
             <Button asChild className="btn btn-primary">
-              <Link to="/assessment">Book Free Assessment</Link>
+              <a href="https://dataopsgroup.com/get-started">Book Free Assessment</a>
             </Button>
           </div>
           
