@@ -39,7 +39,7 @@ export const optimizeResourcePriorities = () => {
 export const preloadCriticalResources = () => {
   if (typeof document === 'undefined') return;
 
-  // Only preload hero image on desktop devices
+  // Only preload hero image on desktop devices (1024px+)
   const isDesktop = window.innerWidth >= 1024;
   
   const criticalResources = [
@@ -52,7 +52,7 @@ export const preloadCriticalResources = () => {
     }
   ];
 
-  // Add hero image only for desktop
+  // Add hero image only for desktop to reduce mobile load
   if (isDesktop) {
     criticalResources.unshift({
       href: '/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png', 
