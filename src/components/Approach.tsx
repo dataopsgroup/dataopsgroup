@@ -26,9 +26,7 @@ const Approach = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Our <span className="gradient-text">Process</span>
           </h2>
-          <p className="text-lg text-gray-600">
-            A systematic 3-week process that delivers reliable results
-          </p>
+          <p className="text-lg text-gray-600">A systematic process that delivers reliable results</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
