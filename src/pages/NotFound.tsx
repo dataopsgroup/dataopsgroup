@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
@@ -8,33 +8,34 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const NotFound = () => {
-  // Safe location handling - check if we're in router context
-  const locationFromRouter = (() => {
-    try {
-      // This will throw if we're outside router context
-      return useLocation();
-    } catch (err) {
-      // Return a default location object when outside router context
-      return { pathname: window.location.pathname };
+  // Safe location handling with proper error boundary
+  let currentPath = '/';
+  try {
+    const location = useLocation();
+    currentPath = location.pathname;
+  } catch (error) {
+    // Fallback when outside router context
+    if (typeof window !== 'undefined') {
+      currentPath = window.location.pathname;
     }
-  })();
+  }
 
   useEffect(() => {
     // Log the 404 error with the attempted path
     console.error(
       "404 Error: User attempted to access non-existent route:",
-      locationFromRouter.pathname
+      currentPath
     );
 
     // Track 404 error with Google Analytics if available
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'error', {
         'event_category': '404',
-        'event_label': locationFromRouter.pathname,
+        'event_label': currentPath,
         'non_interaction': true
       });
     }
-  }, [locationFromRouter.pathname]);
+  }, [currentPath]);
 
   // Safe way to get canonical URL
   const getCanonicalUrl = () => {
