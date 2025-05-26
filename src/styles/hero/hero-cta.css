@@ -4,22 +4,24 @@
 .hero-cta {
   display: inline-flex;
   align-items: center;
-  background: #dc2626;
-  color: white;
-  padding: 0.875rem 2rem;
-  border-radius: 0.5rem;
+  background: #ffffff; /* White background */
+  color: #1e40af; /* Blue text */
+  border: 2px solid #ffffff; /* White border */
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 1.125rem;
   text-decoration: none;
-  transition: background-color 0.2s ease;
-  border: none;
+  transition: all 0.3s ease;
   cursor: pointer;
   font-family: 'Roboto', system-ui, -apple-system, sans-serif;
   margin-top: 1rem;
 }
 
 .hero-cta:hover {
-  background: #b91c1c;
+  background: transparent; /* Transparent on hover */
+  color: #ffffff; /* White text on hover */
+  border-color: #ffffff; /* Maintain white border */
   transform: translateY(-1px);
 }
 

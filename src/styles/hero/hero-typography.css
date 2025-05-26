@@ -3,10 +3,10 @@
 
 .hero-headline {
   font-family: 'Rubik', system-ui, -apple-system, sans-serif;
-  font-weight: 500;
+  font-weight: 700; /* Increased weight for better hierarchy */
   font-size: 3.5rem;
   line-height: 1.2;
-  color: #14213D;
+  color: #000000 !important; /* Black text for headlines */
   margin: 0 0 1.5rem 0;
   text-align: left;
 }
@@ -14,10 +14,10 @@
 .hero-emphasis {
   display: block;
   font-family: 'Rubik', system-ui, -apple-system, sans-serif;
-  font-weight: 500;
+  font-weight: 700; /* Increased weight for better hierarchy */
   font-size: 3.5rem;
   line-height: 1.2;
-  color: #FBB03B; /* Changed to saffron color */
+  color: #f4a261 !important; /* Saffron brand color */
   margin-bottom: 1.5rem;
 }
 
@@ -26,7 +26,7 @@
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.6;
-  color: rgba(20, 33, 61, 0.85);
+  color: #ffffff !important; /* White text for body */
   margin: 0 0 2rem 0;
   max-width: 550px;
   text-align: left;
@@ -37,50 +37,65 @@
   font-size: 0.9rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #0066CC;
+  color: #ffffff !important; /* White for supporting text */
   font-family: 'Roboto', system-ui, -apple-system, sans-serif;
   font-weight: 600;
 }
 
-/* Mobile-only optimizations - Inter fonts + black headings, white body text */
+/* Blue overlay container */
+.hero-text-overlay {
+  background: rgba(59, 130, 246, 0.9); /* Blue semi-transparent background */
+  border-radius: 16px;
+  padding: 2rem 2rem 1.5rem 2rem; /* Adjusted bottom padding */
+  max-width: 100%;
+  margin: 2rem auto;
+}
+
+/* Mobile-only optimizations */
 @media (max-width: 768px) {
   .hero-headline,
   .hero-emphasis {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-weight: 600;
-    font-size: 2.5rem;
+    font-weight: 700; /* Increased weight for mobile */
+    font-size: 2rem; /* Adjusted for mobile container */
     font-display: swap;
   }
   
   .hero-headline {
-    color: #000000; /* Black for headings on mobile */
+    color: #000000 !important; /* Black for headings on mobile */
   }
   
   .hero-emphasis {
-    color: #FBB03B; /* Saffron color maintained on mobile */
+    color: #f4a261 !important; /* Saffron brand color on mobile */
   }
   
   .hero-description {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    color: #ffffff; /* White for body text on mobile */
+    color: #ffffff !important; /* White for body text on mobile */
     font-display: swap;
   }
   
   .hero-text-column .mb-4 span {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 600;
-    color: #ffffff; /* White for premium tagline on mobile */
+    color: #ffffff !important; /* White for premium tagline on mobile */
     font-display: swap;
   }
   
-  /* Mobile h2 headings - black for better readability */
+  /* Mobile h2 headings */
   .hero-text-column h2 {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 600;
-    color: #000000;
+    color: #000000 !important; /* Black for headings */
     font-display: swap;
+  }
+  
+  /* Mobile container adjustments */
+  .hero-text-overlay {
+    padding: 1.5rem;
+    margin: 1rem;
   }
 }
 
