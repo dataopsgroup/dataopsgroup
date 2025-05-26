@@ -1,3 +1,4 @@
+
 /**
  * Enhanced performance optimization utilities for 90+ PageSpeed score
  */
@@ -88,13 +89,13 @@ export const optimizeThirdPartyScripts = () => {
   setTimeout(loadDelayedScripts, 2000);
 };
 
-// Enhanced critical resource preloading - Updated for background image
+// Enhanced critical resource preloading - Updated for consultant background image
 export const preloadCriticalResources = () => {
   if (typeof document === 'undefined') return;
 
   const criticalResources = [
     { 
-      href: '/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png', 
+      href: '/lovable-uploads/afb1ced2-4687-47d3-b600-945954edb0fc.png', 
       as: 'image',
       fetchpriority: 'high'
     },

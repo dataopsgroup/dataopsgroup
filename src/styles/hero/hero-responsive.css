@@ -1,5 +1,5 @@
 
-/* Hero Responsive Design for Background Image Approach */
+/* Hero Responsive Design for Consultant Background Image */
 
 @media (max-width: 991px) {
   .hero-section {
@@ -67,6 +67,6 @@
 /* High DPI displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .hero-section {
-    background-image: url('/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png');
+    background-image: url('/lovable-uploads/afb1ced2-4687-47d3-b600-945954edb0fc.png');
   }
 }

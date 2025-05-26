@@ -1,9 +1,9 @@
 
-/* Hero Background Image Styles - Replaces Dashboard Images */
+/* Hero Background Image Styles - Consultant Photo */
 
 .hero-section {
-  /* WebP with JPEG fallback for better performance */
-  background-image: url('/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png');
+  /* Using consultant photo as background */
+  background-image: url('/lovable-uploads/afb1ced2-4687-47d3-b600-945954edb0fc.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
