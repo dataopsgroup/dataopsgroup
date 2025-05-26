@@ -34,8 +34,7 @@ export default defineConfig(({ mode }) => ({
           'react-router': ['react-router-dom'],
           'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
           'icons': ['lucide-react'],
-          'utils': ['clsx', 'tailwind-merge'],
-          'performance': ['src/utils/web-vitals', 'src/utils/performance-monitoring']
+          'utils': ['clsx', 'tailwind-merge']
         },
         // Optimized file naming with better cache control
         chunkFileNames: (chunkInfo) => {
@@ -92,11 +91,6 @@ export default defineConfig(({ mode }) => ({
       'react-dom',
       'react-router-dom',
       'lucide-react'
-    ],
-    exclude: [
-      // Exclude performance monitoring from pre-bundling
-      'src/utils/web-vitals',
-      'src/utils/performance-monitoring'
     ]
   },
   // Enhanced esbuild configuration
