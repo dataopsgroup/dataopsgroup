@@ -1,7 +1,7 @@
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import ServicesPageWrapper from '@/components/services/ServicesPageWrapper';
-import ServiceSection from '@/components/services/ServiceSection';
+// import ServiceSection from '@/components/services/ServiceSection';
 import MetaHead from '@/components/seo/MetaHead';
 
 const AnalyticsBIPage = () => {
@@ -18,6 +18,7 @@ const AnalyticsBIPage = () => {
           title="Analytics & BI Services"
           description="Transform your raw data into actionable insights with our advanced analytics and visualization services that drive smarter business decisions."
         >
+          {/* Comment out the entire ServiceSection block 
           <ServiceSection
             title="Data Visualization & Dashboarding"
             description="Transform complex data into intuitive, interactive visualizations that make insights accessible to all stakeholders."
@@ -41,6 +42,7 @@ const AnalyticsBIPage = () => {
               </li>
             </ul>
           </ServiceSection>
+          */}
           
           {/* Additional service sections with the same pattern */}
           {/* ... */}
