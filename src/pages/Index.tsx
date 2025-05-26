@@ -7,7 +7,6 @@ import Services from '@/components/Services';
 import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
-import CMODataPlaybook from '@/components/CMODataPlaybook';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
@@ -52,9 +51,6 @@ const Index = () => {
         <div className="px-[5%]">
           <Services />
           <Approach />
-        </div>
-        <CMODataPlaybook />
-        <div className="px-[5%]">
           <BookCTA />
         </div>
       </main>
