@@ -17,7 +17,7 @@
   font-weight: 500;
   font-size: 3.5rem;
   line-height: 1.2;
-  color: #E84C3D;
+  color: #FBB03B; /* Changed to saffron color */
   margin-bottom: 1.5rem;
 }
 
@@ -49,8 +49,15 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 600;
     font-size: 2.5rem;
-    color: #000000; /* Black for headings on mobile */
     font-display: swap;
+  }
+  
+  .hero-headline {
+    color: #000000; /* Black for headings on mobile */
+  }
+  
+  .hero-emphasis {
+    color: #FBB03B; /* Saffron color maintained on mobile */
   }
   
   .hero-description {
