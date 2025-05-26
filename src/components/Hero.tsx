@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -25,26 +26,26 @@ const Hero = () => {
       <div className="relative pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50 overflow-hidden">
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-no-repeat opacity-20"
+          className="absolute inset-0 bg-cover bg-no-repeat"
           style={{
-            backgroundImage: `url('/lovable-uploads/da11f004-8dcc-4a9b-80f2-b3d7893140e8.png')`,
-            backgroundPosition: 'right center',
+            backgroundImage: `url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png')`,
+            backgroundPosition: 'center right',
             backgroundSize: 'cover'
           }}
         />
         
         {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30" />
         
         <div className="container mx-auto relative z-10">
-          <div className="max-w-3xl">
+          <div className="max-w-2xl lg:max-w-xl">
             <div className="space-y-8">
               <div>
                 {/* Use resource hints for higher priority assets on page */}
-                <link rel="preload" href="/lovable-uploads/da11f004-8dcc-4a9b-80f2-b3d7893140e8.png" as="image" fetchPriority="high" />
+                <link rel="preload" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" as="image" fetchPriority="high" />
                 
                 {/* Mark as LCP element for monitoring */}
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
                   PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
                   We Implement the HubSpot Systems Your Investors Expect
                 </h1>
