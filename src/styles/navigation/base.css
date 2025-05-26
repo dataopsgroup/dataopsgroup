@@ -1,101 +1,194 @@
 
 /* Navigation Base Styles */
 
-.site-header {
+/* Base header styles */
+.header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  height: 110px;
   transition: all 0.2s ease;
 }
 
-.site-header.scrolled {
+.header.scrolled {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .nav-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
-  padding: 0 5%;
+  height: 70px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.site-logo {
-  display: flex;
+/* Logo */
+.logo {
+  display: inline-flex;
   align-items: center;
   text-decoration: none;
 }
 
-.site-logo img {
-  height: 80px;
+.logo img {
+  height: 40px;
   width: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
 }
 
-.nav-menu {
+/* Main navigation */
+.main-nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
 }
 
 .nav-item {
-  color: #374151;
-  text-decoration: none;
-  font-weight: 500;
-  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  transition: color 0.2s ease;
-  padding: 0.5rem 0;
   position: relative;
+  margin: 0 5px;
 }
 
-.nav-item:hover {
-  color: #4F46E5;
-}
-
-.nav-dropdown-trigger {
+.nav-link {
   display: flex;
   align-items: center;
-  cursor: pointer;
-}
-
-.nav-cta {
-  background: #4F46E5;
-  color: white !important;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
+  padding: 10px 15px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
   text-decoration: none;
-  font-weight: 600;
-  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  transition: background-color 0.2s ease;
-  white-space: nowrap;
-}
-
-.nav-cta:hover {
-  background: #4338CA;
-  color: white !important;
-}
-
-.mobile-menu-button {
+  transition: color 0.2s;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.nav-link:hover {
+  color: #1a8aeb;
+}
+
+.dropdown-toggle::after {
+  content: "";
+  display: inline-block;
+  margin-left: 8px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+/* Dropdown menu */
+.dropdown:hover .dropdown-toggle::after {
+  transform: rotate(-135deg);
+}
+
+/* CTA buttons */
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.2s;
+  text-decoration: none;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.btn-outline {
+  color: #1a8aeb;
+  border: 1px solid #1a8aeb;
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: #f0f7ff;
+  color: #1a8aeb;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1a8aeb;
+  border: 1px solid #1a8aeb;
+}
+
+.btn-primary:hover {
+  background-color: #0d6ac7;
+  border-color: #0d6ac7;
+  color: #fff;
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
   color: #374151;
   transition: color 0.2s ease;
 }
 
-.mobile-menu-button:hover {
-  color: #4F46E5;
+.mobile-menu-btn:hover {
+  color: #1a8aeb;
 }
 
-/* New navbar styles */
+.menu-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  transition: all 0.3s;
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  top: 8px;
+}
+
+/* Mobile styles */
+@media (max-width: 1024px) {
+  .nav-cta {
+    display: none;
+  }
+  
+  .main-nav {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+}
 
 /* Dropdown animation */
 @keyframes fadeIn {
@@ -115,25 +208,39 @@
 
 /* Override any default button styles for navigation */
 .nav-button {
-  @apply font-medium transition-colors;
+  font-weight: 500;
+  transition: color 0.2s;
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Badge styling */
 .nav-badge {
-  @apply inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  background-color: rgba(26, 138, 235, 0.1);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #1a8aeb;
 }
 
 /* Success story section in dropdown */
 .success-story-container {
-  @apply bg-gray-50 p-6 flex flex-col justify-between;
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Mobile menu transition */
 .mobile-menu-transition {
-  @apply transition-all duration-300;
+  transition: all 0.3s;
 }
 
 /* Icon styling in navigation */
 .nav-icon {
-  @apply text-primary flex-shrink-0;
+  color: #1a8aeb;
+  flex-shrink: 0;
 }
