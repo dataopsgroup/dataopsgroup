@@ -1,39 +1,47 @@
 
 import React from 'react';
-import { X } from 'lucide-react';
 
 const Approach = () => {
   return (
-    <section id="approach" className="pt-10 pb-16 md:pt-16 md:pb-24 px-4 md:px-8 bg-gray-50">
-      <div className="container mx-auto">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Sound Familiar?
-          </h2>
+    <section id="approach" className="sound-familiar-section">
+      <h2>Sound Familiar?</h2>
+      <p className="subtitle">If any of these HubSpot challenges resonate with your experience, you're not alone. We've helped hundreds of companies solve these exact problems.</p>
+      
+      <div className="problem-cards-grid">
+        {/* Problem Card 1 */}
+        <div className="problem-card">
+          <div className="problem-icon">📊</div>
+          <h3 className="problem-title">Your marketing and sales teams are fighting over lead quality</h3>
+          <p className="problem-description">Sales complains about poor lead quality while marketing insists they're delivering good prospects. The disconnect is costing you deals and creating internal friction.</p>
         </div>
-
-        <div className="max-w-3xl mx-auto">
-          <div className="grid gap-6">
-            {[
-              "Your marketing and sales teams are fighting over lead quality",
-              "Deals are stuck in your pipeline with no clear reason why",
-              "You're spending more time managing HubSpot than growing revenue",
-              "Your dashboards show activity but not actual business impact"
-            ].map((problem, index) => (
-              <div 
-                key={index} 
-                className="flex items-start gap-4 p-5 bg-white rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-              >
-                <div className="flex-shrink-0 mt-1">
-                  <X className="h-5 w-5 text-red-500" />
-                </div>
-                <p className="text-lg text-gray-800">
-                  {problem}
-                </p>
-              </div>
-            ))}
-          </div>
+        
+        {/* Problem Card 2 */}
+        <div className="problem-card">
+          <div className="problem-icon">🔍</div>
+          <h3 className="problem-title">Deals are stuck in your pipeline with no clear reason why</h3>
+          <p className="problem-description">Your pipeline is full but deals aren't closing. You lack visibility into what's actually happening in your sales process and where prospects are getting stuck.</p>
         </div>
+        
+        {/* Problem Card 3 */}
+        <div className="problem-card">
+          <div className="problem-icon">💸</div>
+          <h3 className="problem-title">You're spending more time managing HubSpot than growing revenue</h3>
+          <p className="problem-description">Your team spends hours on manual tasks, data entry, and trying to make HubSpot work properly instead of focusing on closing deals and growing the business.</p>
+        </div>
+        
+        {/* Problem Card 4 */}
+        <div className="problem-card">
+          <div className="problem-icon">📈</div>
+          <h3 className="problem-title">Your dashboards show activity but not actual business impact</h3>
+          <p className="problem-description">You have plenty of reports showing emails sent and calls made, but you can't clearly connect your marketing efforts to real revenue growth and ROI.</p>
+        </div>
+      </div>
+      
+      {/* CTA Section */}
+      <div className="familiar-cta">
+        <h3>Ready to Fix These Problems?</h3>
+        <p>Our free HubSpot assessment identifies exactly what's broken in your setup and provides a clear roadmap to fix it.</p>
+        <button className="familiar-cta-button">Get Your Free Assessment</button>
       </div>
     </section>
   );

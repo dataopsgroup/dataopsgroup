@@ -9,6 +9,7 @@
 @import './styles/hubspot-cookie-banner.css';
 @import './styles/trust-section.css';
 @import './styles/process-section.css';
+@import './styles/sound-familiar-section.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
