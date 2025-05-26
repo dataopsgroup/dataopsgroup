@@ -6,7 +6,7 @@ import Services from '@/components/Services';
 import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
-import ChatbotSection from '@/components/ChatbotSection';
+import CMODataPlaybook from '@/components/CMODataPlaybook';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
@@ -63,10 +63,6 @@ const Home = () => {
       </section>
       
       <div className="px-[5%]">
-        <section aria-label="Chatbot Services">
-          <ChatbotSection />
-        </section>
-        
         <section aria-label="Our Services">
           <Services />
         </section>
@@ -74,7 +70,11 @@ const Home = () => {
         <section aria-label="Our Approach">
           <Approach />
         </section>
-        
+      </div>
+      
+      <CMODataPlaybook />
+      
+      <div className="px-[5%]">
         <section aria-label="Book a Consultation">
           <BookCTA />
         </section>
