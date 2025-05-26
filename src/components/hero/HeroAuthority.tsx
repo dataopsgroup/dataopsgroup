@@ -3,42 +3,39 @@ import React from 'react';
 
 const HeroAuthority = () => {
   return (
-    <div className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
-          Companies Trust DataOps Group to Transform Their HubSpot and Operations
-        </h2>
+    <section className="trust-section">
+      <h2>Companies Trust DataOps Group to Transform Their HubSpot ROI</h2>
+      <p className="subtitle">See how we've helped businesses turn their marketing technology investment into measurable revenue growth</p>
+      
+      <div className="testimonial-grid">
+        <div className="testimonial-card">
+          <div className="results-badge">47% Lead Growth</div>
+          <p className="testimonial-quote">DataOps Group transformed our HubSpot from a glorified contact database into a revenue-generating machine. Our qualified leads increased by 47% in 90 days.</p>
+          <div className="company-info">
+            <div className="company-name">Atlas World Equipment Wholesaler</div>
+            <div className="industry-type">Industrial Equipment • B2B</div>
+          </div>
+        </div>
         
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <div className="bg-white p-6 rounded-lg shadow-md border">
-            <p className="text-lg font-semibold text-blue-600 mb-2">
-              "Increased qualified leads by 47% in 90 days"
-            </p>
-            <p className="text-gray-600">
-              - Audio Visual Equipment Wholesaler
-            </p>
+        <div className="testimonial-card">
+          <div className="results-badge">25% Sales Cycle Reduction</div>
+          <p className="testimonial-quote">Our sales team finally has the automation and insights they need. We're closing deals 25% faster with better qualified prospects.</p>
+          <div className="company-info">
+            <div className="company-name">North American Electronics</div>
+            <div className="industry-type">Electronics • Manufacturing</div>
           </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-md border">
-            <p className="text-lg font-semibold text-blue-600 mb-2">
-              "Reduced sales cycle by 28%"
-            </p>
-            <p className="text-gray-600">
-              - Multi-National Insurance
-            </p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-lg shadow-md border">
-            <p className="text-lg font-semibold text-blue-600 mb-2">
-              "Achieved 35% improvement in close rates"
-            </p>
-            <p className="text-gray-600">
-              - SaaS Healthcare
-            </p>
+        </div>
+        
+        <div className="testimonial-card">
+          <div className="results-badge">35% ROI Improvement</div>
+          <p className="testimonial-quote">The strategic overhaul of our HubSpot workflows delivered measurable results within the first quarter. Best investment we've made.</p>
+          <div className="company-info">
+            <div className="company-name">Swift Electronics</div>
+            <div className="industry-type">Technology • B2B Services</div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

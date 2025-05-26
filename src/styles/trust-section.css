@@ -1,0 +1,116 @@
+
+/* Trust Section Container */
+.trust-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.trust-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.trust-section .subtitle {
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Testimonial Cards Grid */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Individual Cards - NO ANIMATIONS */
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+/* Results Badge */
+.results-badge {
+  background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Quote Text */
+.testimonial-quote {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  position: relative;
+}
+
+.testimonial-quote::before {
+  content: '"';
+  font-size: 3rem;
+  color: #f4a261;
+  position: absolute;
+  top: -1rem;
+  left: -0.5rem;
+  font-family: serif;
+}
+
+/* Company Info */
+.company-info {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+  text-align: left;
+}
+
+.company-name {
+  font-weight: 600;
+  color: #1a202c;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.industry-type {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .testimonial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .trust-section {
+    padding: 3rem 1rem;
+  }
+  
+  .trust-section h2 {
+    font-size: 2rem;
+  }
+}
