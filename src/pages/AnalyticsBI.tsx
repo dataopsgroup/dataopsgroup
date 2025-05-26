@@ -1,7 +1,6 @@
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import ServicesPageWrapper from '@/components/services/ServicesPageWrapper';
-// import ServiceSection from '@/components/services/ServiceSection';
 import MetaHead from '@/components/seo/MetaHead';
 
 const AnalyticsBIPage = () => {
@@ -14,20 +13,28 @@ const AnalyticsBIPage = () => {
       />
       
       <SemanticLayout>
-        <ServicesPageWrapper
-          title="Analytics & BI Services"
-          description="Transform your raw data into actionable insights with our advanced analytics and visualization services that drive smarter business decisions."
-        >
-          // Add this after the ServicesPageWrapper opening tag
-<div style={{ border: '2px solid red', padding: '20px', margin: '20px 0' }}>
-  <h2 style={{ color: 'red' }}>TEST CONTENT - CAN YOU SEE THIS?</h2>
-  <p>This is a test paragraph to check visibility issues.</p>
-</div>
-          {/* Comment out the entire ServiceSection block 
-          <ServiceSection
-            title="Data Visualization & Dashboarding"
-            description="Transform complex data into intuitive, interactive visualizations that make insights accessible to all stakeholders."
-          >
+        {/* Basic content with clear visibility styling */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+            Analytics & BI Services
+          </h1>
+          
+          <p className="text-lg text-gray-600 max-w-3xl mb-8">
+            Transform your raw data into actionable insights with our advanced analytics 
+            and visualization services that drive smarter business decisions.
+          </p>
+          
+          {/* Data Visualization Section */}
+          <div className="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              Data Visualization & Dashboarding
+            </h2>
+            
+            <p className="text-gray-600 mb-6">
+              Transform complex data into intuitive, interactive visualizations 
+              that make insights accessible to all stakeholders.
+            </p>
+            
             <ul className="space-y-3">
               <li className="flex items-start">
                 <span className="text-blue-500 mr-2">•</span>
@@ -46,12 +53,10 @@ const AnalyticsBIPage = () => {
                 <span>Operational dashboards for day-to-day decision making</span>
               </li>
             </ul>
-          </ServiceSection>
-          */}
+          </div>
           
-          {/* Additional service sections with the same pattern */}
-          {/* ... */}
-        </ServicesPageWrapper>
+          {/* We can add more sections here later */}
+        </div>
       </SemanticLayout>
     </>
   );
