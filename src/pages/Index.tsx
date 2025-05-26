@@ -33,7 +33,7 @@ const Index = () => {
         ogType="website"
         ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
         canonicalPath="/"
-        gscVerification="YOUR_GSC_VERIFICATION_CODE" // Add your GSC verification code here
+        gscVerification="YOUR_GSC_VERIFICATION_CODE"
       />
       
       <OrganizationSchema />
@@ -52,7 +52,9 @@ const Index = () => {
         <div className="px-[5%]">
           <Services />
           <Approach />
-          <CMODataPlaybook />
+        </div>
+        <CMODataPlaybook />
+        <div className="px-[5%]">
           <BookCTA />
         </div>
       </main>
