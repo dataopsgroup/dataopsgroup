@@ -15,7 +15,7 @@ interface OptimizedWebPImageProps {
 
 /**
  * High-performance WebP image component with JPEG fallback
- * Implements Core Web Vitals best practices
+ * Implements Core Web Vitals best practices and preserves aspect ratios
  */
 const OptimizedWebPImage = ({
   src,
@@ -30,6 +30,12 @@ const OptimizedWebPImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [imageSrc, setImageSrc] = useState(src);
+  const [naturalDimensions, setNaturalDimensions] = useState<{width: number, height: number} | null>(null);
+
+  // Calculate the proper aspect ratio from the original image
+  const aspectRatio = naturalDimensions 
+    ? `${naturalDimensions.width}/${naturalDimensions.height}`
+    : `${width}/${height}`;
 
   // Simple image loading with fallback
   useEffect(() => {
@@ -37,10 +43,12 @@ const OptimizedWebPImage = ({
     setIsLoaded(false);
     setHasError(false);
     setImageSrc(src);
+    setNaturalDimensions(null);
 
-    // Test if the image exists
+    // Test if the image exists and get natural dimensions
     const img = new Image();
     img.onload = () => {
+      setNaturalDimensions({ width: img.naturalWidth, height: img.naturalHeight });
       setIsLoaded(true);
     };
     img.onerror = () => {
@@ -76,7 +84,7 @@ const OptimizedWebPImage = ({
     return (
       <div 
         className={cn('bg-gray-200 flex items-center justify-center', className)}
-        style={{ width, height, aspectRatio: `${width}/${height}` }}
+        style={{ width: '100%', aspectRatio }}
         aria-label={hasError ? 'Image failed to load' : 'Loading image...'}
       >
         {hasError ? (
@@ -92,18 +100,18 @@ const OptimizedWebPImage = ({
     <img
       src={imageSrc}
       alt={alt}
-      width={width}
-      height={height}
+      width={naturalDimensions?.width || width}
+      height={naturalDimensions?.height || height}
       loading={priority ? 'eager' : 'lazy'}
       decoding={priority ? 'sync' : 'async'}
       className={cn(
-        'transition-opacity duration-300',
+        'transition-opacity duration-300 w-full h-auto',
         isLoaded ? 'opacity-100' : 'opacity-0',
         className
       )}
       onLoad={handleLoad}
       onError={handleError}
-      style={{ aspectRatio: `${width}/${height}` }}
+      style={{ aspectRatio }}
     />
   );
 };

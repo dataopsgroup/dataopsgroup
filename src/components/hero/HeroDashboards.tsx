@@ -5,7 +5,7 @@ import OptimizedWebPImage from '@/components/ui/optimized-webp-image';
 const HeroDashboards = () => {
   return (
     <div className="hero-dashboard-column">
-      {/* Primary Dashboard - Critical LCP Image */}
+      {/* Primary Dashboard - Critical LCP Image with original dimensions */}
       <div className="dashboard-container dashboard-primary">
         <OptimizedWebPImage 
           src="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" 
@@ -19,7 +19,7 @@ const HeroDashboards = () => {
         />
       </div>
       
-      {/* Secondary Dashboard */}
+      {/* Secondary Dashboard with original dimensions */}
       <div className="dashboard-container dashboard-secondary">
         <OptimizedWebPImage 
           src="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" 

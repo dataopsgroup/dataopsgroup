@@ -1,5 +1,5 @@
 
-/* Hero Dashboard Styles - Simplified stable layout */
+/* Hero Dashboard Styles - Aspect Ratio Preservation */
 
 .hero-dashboard-column {
   width: 50%;
@@ -15,7 +15,7 @@
   opacity: 1 !important;
 }
 
-/* Primary Dashboard (Top) */
+/* Primary Dashboard (Top) - Preserve original 580x387 ratio */
 .dashboard-container.dashboard-primary {
   width: 100%;
   position: relative;
@@ -24,11 +24,12 @@
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   background-color: #fff;
+  aspect-ratio: 580/387; /* Explicit aspect ratio preservation */
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-/* Secondary Dashboard (Bottom) */
+/* Secondary Dashboard (Bottom) - Preserve original 551x368 ratio */
 .dashboard-container.dashboard-secondary {
   width: 90%;
   position: relative;
@@ -37,16 +38,18 @@
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   background-color: #fff;
+  aspect-ratio: 551/368; /* Explicit aspect ratio preservation */
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-/* Dashboard Images - Performance optimized */
+/* Dashboard Images - Maintain proportions */
 .dashboard-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  max-width: 100%;
+  object-fit: contain; /* Preserve aspect ratio without distortion */
+  object-position: center;
   image-rendering: crisp-edges;
   visibility: visible !important;
   opacity: 1 !important;
