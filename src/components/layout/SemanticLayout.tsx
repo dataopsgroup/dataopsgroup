@@ -15,7 +15,7 @@ interface SemanticLayoutProps {
 /**
  * SemanticLayout component provides a consistent semantic HTML structure
  * across the website with proper heading hierarchy and semantic tags.
- * Uses flexbox to ensure footer always stays at bottom of viewport.
+ * Footer is now fixed to viewport bottom to prevent scrolling.
  */
 const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   children,

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin } from 'lucide-react';
@@ -7,7 +8,7 @@ import OptimizedImage from './ui/optimized-image';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="fixed-footer">
       <div className="footer-container">
         <div className="footer-content">
           {/* Company Info */}

@@ -1,12 +1,17 @@
 
-/* Footer - Sticky at bottom via flexbox layout */
-.footer {
+/* Footer - Fixed to bottom of viewport */
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
   color: white;
   padding: 3rem 0 2rem 0;
   width: 100%;
-  position: relative;
-  flex-shrink: 0; /* Ensures the footer doesn't shrink if space is limited */
+  z-index: 30;
+  max-height: 50vh;
+  overflow-y: auto;
 }
 
 /* Footer container */
@@ -200,6 +205,11 @@
   color: #f4a261;
 }
 
+/* Add bottom padding to body to prevent content overlap */
+body {
+  padding-bottom: 400px; /* Adjust based on footer height */
+}
+
 /* Responsive design */
 @media (max-width: 1024px) {
   .footer-content {
@@ -212,6 +222,10 @@
     max-width: none;
     margin-bottom: 1rem;
   }
+  
+  body {
+    padding-bottom: 450px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -220,7 +234,7 @@
     gap: 2rem;
   }
   
-  .footer {
+  .fixed-footer {
     padding: 2rem 0 1.5rem 0;
   }
   
@@ -247,5 +261,9 @@
     display: block;
     text-align: center;
     margin-bottom: 1rem;
+  }
+  
+  body {
+    padding-bottom: 500px;
   }
 }
