@@ -11,7 +11,6 @@ interface SemanticLayoutProps {
   skipFooter?: boolean;
 }
 
-// Reverted to simplest possible version
 const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   children,
   mainClassName,
@@ -19,14 +18,14 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-gray-50"> {/* Added flex layout back with bg color */}
       {!skipNav && (
-        <header>
+        <header className="sticky top-0 z-50">
           <Navbar />
         </header>
       )}
       
-      <main className={cn("pt-[120px]", mainClassName)}>
+      <main className={cn("pt-[90px] lg:pt-[110px] flex-grow", mainClassName)}>
         {children}
       </main>
       
@@ -37,7 +36,7 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
       {process.env.NODE_ENV === 'development' && (
         <MetaValidator />
       )}
-    </>
+    </div>
   );
 };
 
