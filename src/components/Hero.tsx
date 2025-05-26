@@ -44,8 +44,9 @@ const Hero = () => {
                 We Accelerate HubSpot-Driven Growth Across PE Portfolios
               </h1>
               <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                Stop losing money on broken workflows, messy data, and disconnected teams. 
-                We rescue HubSpot implementations and turn them into revenue-generating machines.
+                Stop watching portfolio companies struggle with fragmented sales operations. 
+                We implement scalable HubSpot systems that drive consistent growth metrics 
+                across your entire portfolio - fast.
               </p>
             </div>
             
