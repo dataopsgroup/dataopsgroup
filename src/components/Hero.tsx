@@ -1,10 +1,8 @@
-
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
-
 const Hero = () => {
   // Track CTA click in Google Analytics and HubSpot
   const trackContactCTAClick = () => {
@@ -32,9 +30,7 @@ const Hero = () => {
       });
     }
   };
-
-  return (
-    <>
+  return <>
       <div className="pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50">
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
@@ -102,9 +98,7 @@ const Hero = () => {
       {/* Trusted Companies Section */}
       <div className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12">
-            Trusted by 150+ Companies to Rescue Their HubSpot Investments
-          </h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-white p-6 rounded-lg shadow-sm">
@@ -130,8 +124,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Hero;
