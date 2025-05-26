@@ -1,5 +1,4 @@
 
-
 @import './styles/fonts.css';
 @import './styles/base.css';
 @import './styles/typography.css';
@@ -12,7 +11,7 @@
 @import './styles/process-section.css';
 @import './styles/sound-familiar-section.css';
 @import './styles/cmo-playbook-section.css';
+@import './styles/footer.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-

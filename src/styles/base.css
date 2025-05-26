@@ -74,7 +74,10 @@
     @apply border-border;
   }
   
-  html {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     scroll-behavior: smooth;
   }
 
@@ -82,8 +85,16 @@
     @apply bg-background text-foreground font-body;
   }
   
-  /* Main content spacing */
-  main {
+  /* Page wrapper for sticky footer */
+  .page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Main content area */
+  .main-content {
+    flex: 1;
     padding-top: calc(var(--navbar-height) + var(--navbar-bottom-spacing));
   }
 

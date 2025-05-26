@@ -23,14 +23,14 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="page-wrapper">
       {!skipNav && (
         <header>
           <Navbar />
         </header>
       )}
       
-      <main className={cn("flex-grow", mainClassName)}>
+      <main className={cn("main-content", mainClassName)}>
         {children}
       </main>
       
