@@ -29,13 +29,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         // More granular chunking for better caching
-        manualChunks: {
-          'react-core': ['react', 'react-dom'],
-          'react-router': ['react-router-dom'],
-          'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          'icons': ['lucide-react'],
-          'utils': ['clsx', 'tailwind-merge']
-        },
+      
         // Optimized file naming with better cache control
         chunkFileNames: (chunkInfo) => {
           // Use deterministic names for vendor chunks
@@ -60,11 +54,6 @@ export default defineConfig(({ mode }) => ({
         }
       },
       // Tree-shaking optimization
-      treeshake: {
-        moduleSideEffects: false,
-        propertyReadSideEffects: false,
-        unknownGlobalSideEffects: false
-      }
     },
     // Source map generation
     sourcemap: mode === 'production' ? false : 'inline',
