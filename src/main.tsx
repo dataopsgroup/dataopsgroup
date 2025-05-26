@@ -8,7 +8,7 @@ import { StrictMode, Suspense } from 'react';
 
 // Critical performance setup
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.5.0'; // Incremented for mobile performance optimizations
+  window.APP_VERSION = '1.6.0'; // Incremented for mobile-first optimizations
 }
 
 // Optimized render function with performance monitoring
@@ -25,10 +25,10 @@ const renderApp = () => {
       <StrictMode>
         <HelmetProvider>
           <Suspense fallback={
-            <div className="w-full h-screen flex items-center justify-center bg-gray-50">
+            <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
               <div className="flex flex-col items-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600 mb-2"></div>
-                <p className="text-blue-600 text-sm font-medium">Loading...</p>
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white mb-2"></div>
+                <p className="text-white text-sm font-medium">Loading...</p>
               </div>
             </div>
           }>
@@ -51,6 +51,9 @@ renderApp();
 // Mobile-first deferred module loading
 const loadDeferredModules = async () => {
   try {
+    // Detect device type early
+    const isMobile = window.innerWidth < 1024;
+    
     // Load mobile-optimized performance initialization
     const { initializePerformanceOptimizations } = await import('./utils/performance/initialization');
     initializePerformanceOptimizations();
@@ -59,8 +62,16 @@ const loadDeferredModules = async () => {
     const { initWebVitals } = await import('./utils/web-vitals');
     initWebVitals();
     
-    // Load analytics based on device type (handled in mobile-optimization.ts)
-    // Desktop gets full analytics, mobile gets lightweight version
+    // Conditional loading based on device type
+    if (isMobile) {
+      // Mobile gets lightweight features only
+      const { initMobileOptimizations } = await import('./utils/performance/mobile-optimization');
+      initMobileOptimizations();
+    } else {
+      // Desktop gets full feature set
+      const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
+      setupAnalyticsAndMonitoring();
+    }
     
   } catch (error) {
     console.error('Error loading deferred modules:', error);
@@ -70,9 +81,9 @@ const loadDeferredModules = async () => {
 // Use requestIdleCallback for better performance
 if (typeof window !== 'undefined') {
   if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(loadDeferredModules, { timeout: 2000 });
+    window.requestIdleCallback(loadDeferredModules, { timeout: 1000 });
   } else {
     // Fallback for browsers without requestIdleCallback
-    setTimeout(loadDeferredModules, 500);
+    setTimeout(loadDeferredModules, 300);
   }
 }

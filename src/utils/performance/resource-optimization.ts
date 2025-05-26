@@ -35,16 +35,14 @@ export const optimizeResourcePriorities = () => {
   });
 };
 
-// Enhanced critical resource preloading - FIXED with correct consultant image
+// Enhanced critical resource preloading - mobile-first approach
 export const preloadCriticalResources = () => {
   if (typeof document === 'undefined') return;
 
+  // Only preload hero image on desktop devices
+  const isDesktop = window.innerWidth >= 1024;
+  
   const criticalResources = [
-    { 
-      href: '/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png', 
-      as: 'image',
-      fetchpriority: 'high'
-    },
     { 
       href: '/fonts/inter-subset/inter-latin-400-normal.woff2', 
       as: 'font',
@@ -53,6 +51,15 @@ export const preloadCriticalResources = () => {
       fetchpriority: 'high'
     }
   ];
+
+  // Add hero image only for desktop
+  if (isDesktop) {
+    criticalResources.unshift({
+      href: '/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png', 
+      as: 'image',
+      fetchpriority: 'high'
+    });
+  }
 
   criticalResources.forEach(resource => {
     if (!document.querySelector(`link[href="${resource.href}"]`)) {
