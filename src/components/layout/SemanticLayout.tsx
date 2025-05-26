@@ -18,20 +18,26 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div className="min-h-screen"> {/* Removed flex for now */}
+    <div className="relative min-h-screen"> {/* Added relative positioning */}
       {!skipNav && (
         <header className="sticky top-0 z-50">
           <Navbar />
         </header>
       )}
       
-      {/* Added overflow-visible to ensure content isn't cut off */}
-      <main className={cn("main-content pt-[90px] lg:pt-[110px] overflow-visible", mainClassName)}>
+      {/* Added critical visibility properties */}
+      <main className={cn(
+        "relative z-10 w-full pt-[90px] lg:pt-[110px] pb-20", /* Added bottom padding */
+        "overflow-visible block", /* Force visibility */
+        mainClassName
+      )}>
         {children}
       </main>
       
       {!skipFooter && (
-        <Footer />
+        <div className="relative z-10"> {/* Footer wrapper with z-index */}
+          <Footer />
+        </div>
       )}
       
       {process.env.NODE_ENV === 'development' && (
