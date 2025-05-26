@@ -37,7 +37,7 @@ const Hero = () => {
         <div className="container mx-auto relative z-10">
           <div className="w-[45%] relative">
             {/* Semi-transparent background only behind text */}
-            <div className="absolute inset-0 bg-white/50 rounded-lg" />
+            <div className="absolute inset-0 bg-white/75 rounded-lg" />
             
             <div className="relative z-10 p-8 space-y-8">
               <div>
