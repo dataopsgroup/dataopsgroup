@@ -1,4 +1,3 @@
-
 /**
  * Mobile-specific performance optimizations to reduce bundle size and improve loading
  */
