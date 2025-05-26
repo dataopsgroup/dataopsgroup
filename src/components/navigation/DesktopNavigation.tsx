@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, Book } from 'lucide-react';
@@ -35,7 +34,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
           <DropdownMenuSubTrigger className="font-body">
             {subItem.name}
           </DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
+          <DropdownMenuSubContent className="z-[1200]">
             {subItem.items.map(renderSubMenuItem)}
           </DropdownMenuSubContent>
         </DropdownMenuSub>
@@ -71,7 +70,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
                 <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
               </Link>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 bg-white">
+            <DropdownMenuContent className="w-56 bg-white z-[1100]">
               {item.items?.map(renderSubMenuItem)}
             </DropdownMenuContent>
           </DropdownMenu>
