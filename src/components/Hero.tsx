@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -41,8 +40,8 @@ const Hero = () => {
               
               {/* Mark as LCP element for monitoring */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
-                <span className="text-[#403E43]">HubSpot</span> Not Delivering <span className="text-red-500">ROI</span>? <br />
-                We Fix That.
+                Portfolio Company Digital Transformation <span className="text-red-500">Stalling</span>?<br />
+                We Accelerate HubSpot-Driven Growth Across PE Portfolios
               </h1>
               <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
                 Stop losing money on broken workflows, messy data, and disconnected teams. 
