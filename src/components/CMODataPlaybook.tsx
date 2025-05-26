@@ -1,21 +1,18 @@
-
 import React from 'react';
-
 const CMODataPlaybook = () => {
-  return (
-    <section className="cmo-playbook-section">
+  return <section className="cmo-playbook-section">
       <div className="playbook-container">
         {/* Book Showcase */}
         <div className="book-showcase">
-          <img src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" alt="The CMO's Data Playbook" className="book-image" />
+          
           <div className="book-highlight">
-            <p className="book-highlight-text">Trusted by 500+ Marketing Leaders</p>
+            
           </div>
         </div>
         
         {/* Content */}
         <div className="playbook-content">
-          <span className="playbook-badge">Free Download</span>
+          
           
           <h2 className="playbook-title">The CMO's Data Playbook</h2>
           <h3 className="playbook-subtitle">Transform Data Into Revenue</h3>
@@ -47,8 +44,6 @@ const CMODataPlaybook = () => {
           <p className="cta-subtext">No spam. Unsubscribe anytime. Trusted by marketing leaders worldwide.</p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CMODataPlaybook;
