@@ -1,66 +1,61 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { cn } from '@/lib/utils';
-import MetaValidator from '@/components/seo/MetaValidator';
+import CTABanner from '@/components/CTABanner';
+import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
+import AnalyticsBIContent from '@/components/services/AnalyticsBIContent';
+import AnalyticsBIBenefits from '@/components/services/AnalyticsBIBenefits';
+import AnalyticsBISchema from '@/components/services/AnalyticsBISchema';
+import ServiceSchema from '@/components/seo/ServiceSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import MetaHead from '@/components/seo/MetaHead';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 
-interface SemanticLayoutProps {
-  children: React.ReactNode;
-  mainClassName?: string;
-  skipNav?: boolean;
-  skipFooter?: boolean;
-}
-
-const SemanticLayout: React.FC<SemanticLayoutProps> = ({
-  children,
-  mainClassName,
-  skipNav = false,
-  skipFooter = false
-}) => {
+const AnalyticsBI = () => {
   return (
     <>
-      {/* Add a background wrapper with the footer's dark color */}
-      <div style={{ 
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        width: '100%',
-        height: '100vh', /* Extend far beyond what's needed */
-        backgroundColor: '#1A2237', /* Match your footer's background color */
-        zIndex: -1 /* Behind everything else */
-      }} />
+      <MetaHead
+        title="HubSpot Analytics & BI Services | Turn Data Into Revenue"
+        description="Transform your HubSpot data into actionable insights. Custom dashboards, reporting, and BI solutions that drive better decisions and higher ROI."
+        keywords="HubSpot analytics, business intelligence, data visualization, HubSpot reporting, marketing analytics"
+        canonicalPath="/services/analytics-bi"
+        ogType="website"
+        ogTitle="HubSpot Analytics & BI Services | Turn Data Into Revenue"
+        ogDescription="Transform your HubSpot data into actionable insights. Custom dashboards, reporting, and BI solutions that drive better decisions and higher ROI."
+        twitterCard="summary"
+      />
       
-      <div style={{ 
-        minHeight: '100vh',
-        position: 'relative',
-        paddingBottom: '350px' /* Adjust based on your footer height */
-      }}> 
-        {!skipNav && (
-          <header style={{ position: 'sticky', top: 0, zIndex: 50 }}>
-            <Navbar />
-          </header>
-        )}
-        
-        <main className={cn("pt-[90px] lg:pt-[110px]", mainClassName)}>
-          {children}
-        </main>
-        
-        {process.env.NODE_ENV === 'development' && (
-          <MetaValidator />
-        )}
-      </div>
+      <AnalyticsBISchema />
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: "Analytics & BI", url: "/services/analytics-bi" }
+        ]} 
+      />
       
-      {!skipFooter && (
-        <footer style={{ 
-          position: 'absolute', 
-          bottom: 0, 
-          width: '100%'
-        }}>
-          <Footer />
-        </footer>
-      )}
+      <SemanticLayout>
+        <AnalyticsBIHero />
+        
+        {/* Content Section */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto">
+            <div className="grid lg:grid-cols-3 gap-16">
+              <div className="lg:col-span-2 space-y-8">
+                <AnalyticsBIContent />
+              </div>
+              
+              <div>
+                <AnalyticsBIBenefits />
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <CTABanner />
+      </SemanticLayout>
     </>
   );
 };
 
-export default SemanticLayout;
+export default AnalyticsBI;
