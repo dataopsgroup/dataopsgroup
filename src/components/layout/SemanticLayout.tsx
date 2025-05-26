@@ -18,20 +18,27 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}> 
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      minHeight: '100vh',
+      position: 'relative'
+    }}> 
       {!skipNav && (
-        <header>
+        <header style={{ position: 'sticky', top: 0, zIndex: 50 }}>
           <Navbar />
         </header>
       )}
       
       <main className={cn("pt-[90px] lg:pt-[110px]", mainClassName)} 
-            style={{ flexGrow: 1 }}>
+            style={{ flex: '1 0 auto' }}>
         {children}
       </main>
       
       {!skipFooter && (
-        <Footer />
+        <div style={{ marginTop: 'auto' }}>
+          <Footer />
+        </div>
       )}
       
       {process.env.NODE_ENV === 'development' && (
