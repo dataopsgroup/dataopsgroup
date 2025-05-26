@@ -1,22 +1,25 @@
 
-/* Hero Responsive Design */
+/* Hero Responsive Design for Background Image Approach */
 
 @media (max-width: 991px) {
-  .hero-container {
-    flex-direction: column;
-    gap: 40px;
+  .hero-section {
+    min-height: 70vh;
+    background-position: 20% center;
   }
   
-  .hero-text-column,
-  .hero-dashboard-column {
-    width: 100%;
-    max-width: 100%;
-    flex: none;
+  .hero-container {
+    padding: 2rem 5%;
   }
   
   .hero-text-column {
-    padding-right: 0;
-    margin-bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 12px;
   }
   
   .hero-headline {
@@ -27,22 +30,43 @@
     font-size: 16px !important;
     padding: 14px 32px !important;
   }
-  
-  .dashboard-container {
-    transform: none;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 60vh;
+    background-position: 15% center;
   }
   
-  /* Mobile tagline adjustments */
-  .tagline-text {
-    font-size: 12px;
-    letter-spacing: 1.2px;
+  .hero-text-column {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .hero-headline {
+    font-size: 2rem;
   }
 }
 
 /* Very small screens */
 @media (max-width: 480px) {
-  .tagline-text {
-    font-size: 11px;
-    letter-spacing: 1px;
+  .hero-section {
+    min-height: 50vh;
+    background-position: 10% center;
+  }
+  
+  .hero-text-column {
+    padding: 1rem;
+  }
+  
+  .hero-headline {
+    font-size: 1.75rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-section {
+    background-image: url('/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png');
   }
 }

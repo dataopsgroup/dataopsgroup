@@ -10,7 +10,7 @@ interface HeroTextContentProps {
 const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
   return (
     <div className="hero-text-column">
-      <div>
+      <div className="hero-text-overlay">
         {/* Premium Tagline */}
         <div className="mb-4">
           <span className="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold tracking-wide uppercase">

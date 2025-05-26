@@ -1,86 +1,79 @@
 
-/* Hero Dashboard Styles - Aspect Ratio Preservation */
+/* Hero Background Image Styles - Replaces Dashboard Images */
 
-.hero-dashboard-column {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: flex-end;
-  justify-content: flex-start;
-  min-height: 500px;
-  padding-top: 2rem;
+.hero-section {
+  /* WebP with JPEG fallback for better performance */
+  background-image: url('/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   contain: layout style paint;
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-/* Primary Dashboard (Top) - Preserve original 580x387 ratio */
-.dashboard-container.dashboard-primary {
-  width: 100%;
+/* Text overlay blur effect for readability */
+.hero-text-overlay {
   position: relative;
-  z-index: 2;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  background-color: #fff;
-  aspect-ratio: 580/387; /* Explicit aspect ratio preservation */
-  visibility: visible !important;
-  opacity: 1 !important;
+  z-index: 3;
 }
 
-/* Secondary Dashboard (Bottom) - Preserve original 551x368 ratio */
-.dashboard-container.dashboard-secondary {
-  width: 90%;
-  position: relative;
-  z-index: 1;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  background-color: #fff;
-  aspect-ratio: 551/368; /* Explicit aspect ratio preservation */
-  visibility: visible !important;
-  opacity: 1 !important;
+.hero-text-overlay::before {
+  content: '';
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  right: -2rem;
+  bottom: -2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  z-index: -1;
 }
 
-/* Dashboard Images - Maintain proportions */
-.dashboard-image {
+/* Performance optimizations for background image */
+.hero-section {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Ensure image loads with high priority */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: block;
-  object-fit: contain; /* Preserve aspect ratio without distortion */
-  object-position: center;
-  image-rendering: crisp-edges;
-  visibility: visible !important;
-  opacity: 1 !important;
+  background: transparent;
+  pointer-events: none;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 991px) {
-  .hero-dashboard-column {
-    width: 100%;
-    min-height: 400px;
-    contain: none;
-    align-items: center;
-  }
-  
-  .dashboard-container.dashboard-primary,
-  .dashboard-container.dashboard-secondary {
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  }
-  
-  .dashboard-container.dashboard-secondary {
-    width: 85%;
+/* Progressive enhancement for backdrop-filter */
+@supports (backdrop-filter: blur(12px)) {
+  .hero-text-overlay::before {
+    background: rgba(255, 255, 255, 0.15);
   }
 }
 
+@supports not (backdrop-filter: blur(12px)) {
+  .hero-text-overlay::before {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Mobile background positioning */
 @media (max-width: 768px) {
-  .hero-dashboard-column {
-    min-height: 300px;
-    gap: 15px;
+  .hero-section {
+    background-position: 20% center;
+    background-size: cover;
   }
   
-  .dashboard-container.dashboard-secondary {
-    width: 80%;
+  .hero-text-overlay::before {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 }

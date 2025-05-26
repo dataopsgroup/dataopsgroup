@@ -1,4 +1,3 @@
-
 /**
  * Enhanced performance optimization utilities for 90+ PageSpeed score
  */
@@ -8,7 +7,7 @@ export const optimizeResourcePriorities = () => {
   if (typeof document === 'undefined') return;
 
   // Mark critical LCP images with high priority
-  const lcpImages = document.querySelectorAll('img[data-lcp="true"], .dashboard-image');
+  const lcpImages = document.querySelectorAll('img[data-lcp="true"], .hero-section');
   lcpImages.forEach(img => {
     if (img instanceof HTMLImageElement) {
       img.setAttribute('fetchpriority', 'high');
@@ -89,18 +88,13 @@ export const optimizeThirdPartyScripts = () => {
   setTimeout(loadDelayedScripts, 2000);
 };
 
-// Enhanced critical resource preloading
+// Enhanced critical resource preloading - Updated for background image
 export const preloadCriticalResources = () => {
   if (typeof document === 'undefined') return;
 
   const criticalResources = [
     { 
       href: '/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png', 
-      as: 'image',
-      fetchpriority: 'high'
-    },
-    { 
-      href: '/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png', 
       as: 'image',
       fetchpriority: 'high'
     },
@@ -135,25 +129,24 @@ export const preloadCriticalResources = () => {
   });
 };
 
-// Enhanced CLS prevention
+// Enhanced CLS prevention for background image hero
 export const preventLayoutShift = () => {
   if (typeof document === 'undefined') return;
 
   // Set explicit aspect ratios for images without dimensions
   const images = document.querySelectorAll('img:not([width]):not([height]):not([style*="aspect-ratio"])');
   images.forEach(img => {
-    if (img instanceof HTMLImageElement && img.classList.contains('dashboard-image')) {
-      // Dashboard images have specific aspect ratios
-      if (img.src.includes('98b80390-1e73-4256-a9fe-fc237c118c8b')) {
-        img.style.aspectRatio = '580/387';
-      } else if (img.src.includes('61e82165-c0b9-4fde-98f6-f68f483b1017')) {
-        img.style.aspectRatio = '551/368';
-      } else {
-        img.style.aspectRatio = '16/9'; // Default fallback
-      }
+    if (img instanceof HTMLImageElement) {
+      img.style.aspectRatio = '16/9'; // Default fallback
       img.style.objectFit = 'contain';
     }
   });
+
+  // Reserve space for hero section to prevent layout shift
+  const heroSection = document.querySelector('.hero-section');
+  if (heroSection instanceof HTMLElement && !heroSection.style.minHeight) {
+    heroSection.style.minHeight = '80vh';
+  }
 
   // Reserve space for dynamic content to prevent layout shift
   const dynamicElements = document.querySelectorAll('[data-dynamic="true"]');
