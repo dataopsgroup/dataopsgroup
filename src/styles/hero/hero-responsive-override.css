@@ -1,0 +1,63 @@
+
+/* Hero Responsive Overrides */
+
+/* Mobile responsive overrides */
+@media (max-width: 768px) {
+  .hero-section,
+  div.hero-section {
+    min-height: 60vh !important;
+  }
+  
+  .hero-section .hero-text-column .hero-text-overlay h1,
+  div.hero-section div.hero-text-column div.hero-text-overlay h1 {
+    font-size: 2.5rem !important;
+    text-align: center !important;
+  }
+  
+  .hero-section .hero-text-column .hero-text-overlay p {
+    font-size: 1.1rem !important;
+    text-align: center !important;
+    color: #ffffff !important;
+  }
+  
+  .hero-section .hero-text-column .hero-text-overlay h2,
+  .hero-section .hero-text-column .hero-text-overlay h4 {
+    text-align: center !important;
+  }
+  
+  .hero-section .hero-text-column .hero-text-overlay a,
+  .hero-section .hero-text-column .hero-text-overlay button {
+    font-size: 1rem !important;
+    padding: 0.75rem 1.25rem !important;
+    justify-self: center !important;
+  }
+  
+  .hero-section .hero-text-column .hero-text-overlay span.inline-block {
+    display: block !important;
+    text-align: center !important;
+    margin: 0 auto 1rem auto !important;
+    width: fit-content !important;
+  }
+  
+  .hero-section .hero-text-column .hero-text-overlay {
+    padding: 1.5rem !important;
+  }
+}
+
+/* Tablet responsive overrides */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-section .hero-text-column .hero-text-overlay h1 {
+    font-size: 3rem !important;
+  }
+}
+
+/* Large screen adjustments */
+@media (min-width: 1200px) {
+  .hero-section .hero-text-column .hero-text-overlay h1 {
+    font-size: 4rem !important;
+  }
+  
+  .hero-section .hero-text-column .hero-text-overlay p {
+    font-size: 1.25rem !important;
+  }
+}
