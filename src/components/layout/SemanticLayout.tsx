@@ -18,14 +18,15 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div className="flex flex-col min-h-screen"> 
+    <div className="min-h-screen"> {/* Removed flex for now */}
       {!skipNav && (
         <header className="sticky top-0 z-50">
           <Navbar />
         </header>
       )}
       
-      <main className={cn("main-content pt-[90px] lg:pt-[110px] flex-grow", mainClassName)}>
+      {/* Added overflow-visible to ensure content isn't cut off */}
+      <main className={cn("main-content pt-[90px] lg:pt-[110px] overflow-visible", mainClassName)}>
         {children}
       </main>
       
