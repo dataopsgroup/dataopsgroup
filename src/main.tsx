@@ -52,7 +52,7 @@ renderApp();
 const loadDeferredModules = async () => {
   try {
     // Load performance optimizations when idle
-    const { initializePerformanceOptimizations } = await import('./utils/performance-optimization');
+    const { initializePerformanceOptimizations } = await import('./utils/performance/initialization');
     initializePerformanceOptimizations();
     
     // Load web vitals monitoring when idle
