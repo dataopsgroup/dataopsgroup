@@ -8,7 +8,7 @@ import { StrictMode, Suspense } from 'react';
 
 // Critical performance setup
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.4.0'; // Incremented for final PageSpeed optimizations
+  window.APP_VERSION = '1.5.0'; // Incremented for mobile performance optimizations
 }
 
 // Optimized render function with performance monitoring
@@ -48,14 +48,10 @@ const renderApp = () => {
 // Immediate render for fast FCP
 renderApp();
 
-// Enhanced deferred module loading for final PageSpeed optimization
+// Mobile-first deferred module loading
 const loadDeferredModules = async () => {
   try {
-    // Load advanced optimizations first (highest impact)
-    const { initAdvancedOptimizations } = await import('./utils/performance/advanced-optimization');
-    initAdvancedOptimizations();
-    
-    // Load existing performance optimizations
+    // Load mobile-optimized performance initialization
     const { initializePerformanceOptimizations } = await import('./utils/performance/initialization');
     initializePerformanceOptimizations();
     
@@ -63,9 +59,9 @@ const loadDeferredModules = async () => {
     const { initWebVitals } = await import('./utils/web-vitals');
     initWebVitals();
     
-    // Load analytics last (lowest priority)
-    const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
-    setupAnalyticsAndMonitoring();
+    // Load analytics based on device type (handled in mobile-optimization.ts)
+    // Desktop gets full analytics, mobile gets lightweight version
+    
   } catch (error) {
     console.error('Error loading deferred modules:', error);
   }
