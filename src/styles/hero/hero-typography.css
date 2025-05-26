@@ -2,6 +2,7 @@
 /* Hero Typography Styles */
 
 .hero-heading {
+  font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 3rem;
   line-height: 1.1;
   font-weight: 700;
@@ -9,7 +10,27 @@
   color: #1f2937;
 }
 
+.hero-headline {
+  font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero-headline-black {
+  color: #000000;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.hero-headline-saffron {
+  color: #FBB03B;
+  display: block;
+}
+
 .hero-description {
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 1.25rem;
   line-height: 1.6;
   margin: 0 0 2rem 0;
@@ -17,13 +38,63 @@
   color: rgba(20, 33, 61, 0.85);
 }
 
+.hero-subheading {
+  font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtext {
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+.hero-risk-assessment {
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.hero-risk-assessment h4 {
+  font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 0.25rem;
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  .hero-heading {
+  .hero-heading,
+  .hero-headline {
     font-size: 2rem;
   }
   
   .hero-description {
     font-size: 1rem;
+  }
+  
+  .hero-subheading {
+    font-size: 1.25rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-heading,
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+  
+  .hero-description {
+    font-size: 1.125rem;
+  }
+  
+  .hero-subheading {
+    font-size: 1.375rem;
   }
 }

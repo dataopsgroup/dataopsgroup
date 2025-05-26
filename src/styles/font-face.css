@@ -1,4 +1,7 @@
 
+/* Google Fonts Integration with Self-hosted fallbacks */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap');
+
 /* Self-hosted Inter font with proper font-display settings */
 @font-face {
   font-family: 'Inter';
