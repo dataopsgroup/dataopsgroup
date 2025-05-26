@@ -50,8 +50,8 @@ const Footer = () => {
             <ul>
               {navServices.map(service => (
                 <li key={service.href}>
-                  <Link to={service.href} aria-label={`Explore our ${service.name} services`} className="font-body">
-                    {service.name}
+                  <Link to={service.href || "/"} aria-label={`Explore our ${service.title} services`} className="font-body">
+                    {service.title}
                   </Link>
                 </li>
               ))}

@@ -5,7 +5,6 @@ import {
   ChevronDown, 
   LifeBuoy, 
   Rocket, 
-  Connection, 
   LineChart, 
   FolderKanban, 
   Workflow, 
@@ -14,7 +13,8 @@ import {
   FileText, 
   Calculator, 
   Newspaper, 
-  BookOpen 
+  BookOpen,
+  ArrowRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -38,7 +38,6 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
     switch (iconName) {
       case 'LifeBuoy': return <LifeBuoy {...iconProps} />;
       case 'Rocket': return <Rocket {...iconProps} />;
-      case 'Connection': return <Connection {...iconProps} />;
       case 'LineChart': return <LineChart {...iconProps} />;
       case 'FolderKanban': return <FolderKanban {...iconProps} />;
       case 'Workflow': return <Workflow {...iconProps} />;
@@ -48,6 +47,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
       case 'Calculator': return <Calculator {...iconProps} />;
       case 'Newspaper': return <Newspaper {...iconProps} />;
       case 'BookOpen': return <BookOpen {...iconProps} />;
+      case 'ArrowRight': return <ArrowRight {...iconProps} />;
       default: return null;
     }
   };

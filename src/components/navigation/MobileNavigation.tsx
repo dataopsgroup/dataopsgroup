@@ -8,7 +8,6 @@ import {
   ChevronRight,
   LifeBuoy, 
   Rocket, 
-  Connection, 
   LineChart, 
   FolderKanban, 
   Workflow, 
@@ -36,7 +35,6 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
     switch (iconName) {
       case 'LifeBuoy': return <LifeBuoy {...iconProps} />;
       case 'Rocket': return <Rocket {...iconProps} />;
-      case 'Connection': return <Connection {...iconProps} />;
       case 'LineChart': return <LineChart {...iconProps} />;
       case 'FolderKanban': return <FolderKanban {...iconProps} />;
       case 'Workflow': return <Workflow {...iconProps} />;
