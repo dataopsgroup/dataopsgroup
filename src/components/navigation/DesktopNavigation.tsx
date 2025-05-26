@@ -71,7 +71,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
                 <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
               </Link>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="dropdown-menu-content w-56 bg-white">
+            <DropdownMenuContent className="w-56 bg-white">
               {item.items?.map(renderSubMenuItem)}
             </DropdownMenuContent>
           </DropdownMenu>
