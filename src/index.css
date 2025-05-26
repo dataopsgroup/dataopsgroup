@@ -10,8 +10,8 @@
 @import './styles/trust-section.css';
 @import './styles/process-section.css';
 @import './styles/sound-familiar-section.css';
-@import './styles/cmo-playbook-section.css';
 @import './styles/footer.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './styles/cmo-playbook-section.css';
