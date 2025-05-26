@@ -20,7 +20,7 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Simple render function
+// EMERGENCY FIX: Simplified render function without aggressive optimizations
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -37,10 +37,10 @@ const renderApp = () => {
   }
 };
 
-// Immediate render
+// EMERGENCY FIX: Immediate render without complex initialization
 renderApp();
 
-// Simple deferred loading without aggressive optimizations
+// EMERGENCY FIX: Simplified deferred loading without breaking functionality
 const loadDeferredModules = async () => {
   try {
     // Only load basic web vitals after a reasonable delay
@@ -61,9 +61,9 @@ const loadDeferredModules = async () => {
 if (typeof window !== 'undefined') {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(loadDeferredModules, 500);
+      setTimeout(loadDeferredModules, 1000);
     });
   } else {
-    setTimeout(loadDeferredModules, 500);
+    setTimeout(loadDeferredModules, 1000);
   }
 }

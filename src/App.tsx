@@ -11,7 +11,8 @@ import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirec
 const PrivacyModal = lazy(() => import('./components/PrivacyModal'));
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  // EMERGENCY FIX: Remove artificial loading state that was causing issues
+  const [isLoading, setIsLoading] = useState(false); // Changed from true to false
   const [error, setError] = useState<Error | null>(null);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
@@ -30,12 +31,9 @@ function App() {
       return;
     }
     
-    // Simple loading timer
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300); // Much shorter delay
-
-    return () => clearTimeout(timer);
+    // EMERGENCY FIX: Remove artificial loading timer that was blocking site load
+    // Site should load immediately without delay
+    console.log('App initialized without loading delay');
   }, []);
 
   // Error boundary for router
@@ -45,9 +43,10 @@ function App() {
     return <ErrorDisplay message={(error instanceof Error ? error.message : 'An unexpected error occurred')} />;
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  // EMERGENCY FIX: Removed artificial loading state check
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   if (error) {
     return <ErrorDisplay message={error.message} />;
