@@ -15,21 +15,10 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>HubSpot Rescue Services | Fix Your Broken CRM Implementation</title>
-        <meta name="description" content="Broken HubSpot costing you deals? Our rescue services fix data chaos, optimize ROI, and get your team back on track. 150+ successful implementations." />
+        <title>Our Services - DataOps Group</title>
+        <meta name="description" content="Explore our comprehensive data operations services including data architecture, analytics, governance, and technology consulting." />
         <meta name="keywords" content="data services, data architecture, analytics, BI, data governance, dataops implementation, enterprise data solutions" />
-        <link rel="canonical" href="https://dataopsgroup.com/services" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="HubSpot Rescue Services | Fix Your Broken CRM Implementation" />
-        <meta property="og:description" content="Broken HubSpot costing you deals? Our rescue services fix data chaos, optimize ROI, and get your team back on track. 150+ successful implementations." />
-        <meta property="og:url" content="https://dataopsgroup.com/services" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="HubSpot Rescue Services | Fix Your Broken CRM Implementation" />
-        <meta name="twitter:description" content="Broken HubSpot costing you deals? Our rescue services fix data chaos, optimize ROI, and get your team back on track. 150+ successful implementations." />
+        <link rel="canonical" href="/services" />
       </Helmet>
       
       <ServiceSchema 

@@ -1,13 +1,12 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Download } from 'lucide-react';
 
 interface ResultsNextStepsProps {
-  onDownloadResults: () => void;
+  onEmailResults: () => void;
 }
 
-const ResultsNextSteps: React.FC<ResultsNextStepsProps> = ({ onDownloadResults }) => {
+const ResultsNextSteps: React.FC<ResultsNextStepsProps> = ({ onEmailResults }) => {
   return (
     <div className="bg-dataops-50 border border-dataops-100 rounded-lg p-6 text-center">
       <h3 className="text-xl font-semibold mb-3 text-dataops-800">Get Your Personalized Implementation Rescue Plan</h3>
@@ -20,14 +19,14 @@ const ResultsNextSteps: React.FC<ResultsNextStepsProps> = ({ onDownloadResults }
           asChild
           className="bg-dataops-600 hover:bg-dataops-700 text-white"
         >
-          <a href="/get-started">Book My Assessment</a>
+          <a href="/contact">Request Free Consultation</a>
         </Button>
         <Button 
-          onClick={onDownloadResults}
-          className="bg-orange-500 hover:bg-orange-600 text-white"
+          variant="outline"
+          onClick={onEmailResults}
+          className="border-dataops-600 text-dataops-600 hover:bg-dataops-50"
         >
-          <Download className="w-4 h-4 mr-2" />
-          Download My Results
+          Email My Results
         </Button>
       </div>
     </div>

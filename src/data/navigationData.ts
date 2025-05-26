@@ -1,88 +1,71 @@
 
 import { NavItem, SubNavItem } from '@/types/navigation';
 
-// Main navigation items with mega-menu structure
-export const mainNavItems: NavItem[] = [
-  {
-    title: "Solutions",
-    href: "#",
-    children: [
-      {
-        title: "Analytics & BI",
-        icon: "LineChart",
-        description: "Transform your data into actionable insights with advanced analytics and business intelligence",
-        href: "/services/analytics-bi",
-      },
-      {
-        title: "DataOps Implementation",
-        icon: "Database",
-        description: "Streamline your data operations with expert implementation and optimization services",
-        href: "/services/dataops-implementation",
-      },
-      {
-        title: "Team Training",
-        icon: "GraduationCap",
-        description: "Empower your team with comprehensive HubSpot training and skill development",
-        href: "/services/team-training",
-      },
-      {
-        title: "Marketing Operations & RevOps",
-        icon: "Workflow",
-        description: "Optimize your revenue operations and marketing processes for maximum efficiency",
-        href: "/services/marketing-operations-revops",
-      }
-    ]
+// Services dropdown items
+export const navServices: SubNavItem[] = [
+  { 
+    name: 'Analytics & BI', 
+    href: '/services/analytics-bi'
   },
-  {
-    title: "Resources",
-    href: "#",
-    children: [
-      {
-        title: "Case Studies",
-        icon: "FileText",
-        description: "Real-world examples of HubSpot transformations and results",
-        href: "/case-studies",
-      },
-      {
-        title: "Assessment",
-        icon: "Calculator",
-        description: "Evaluate your current HubSpot setup and identify improvement opportunities",
-        href: "/hubspot-assessment",
-        badge: "FREE"
-      },
-      {
-        title: "Insights",
-        icon: "Newspaper",
-        description: "Expert insights, strategies and tips for HubSpot success",
-        href: "/insights",
-      }
-    ]
+  { 
+    name: 'DataOps Implementation', 
+    href: '/services/dataops-implementation'
   },
-  {
-    title: "About",
-    href: "/about",
+  { 
+    name: 'HubSpot Training & Implementation', 
+    href: '/services/team-training'
   },
+  { 
+    name: 'Marketing Operations & RevOps', 
+    href: '/services/marketing-operations-revops'
+  },
+  // Removed other services that don't have route definitions in App.tsx
 ];
 
-// Legacy exports for backward compatibility (can be removed later)
-export const navServices: SubNavItem[] = [
-  {
-    title: "Analytics & BI",
-    href: "/services/analytics-bi",
-  },
-  {
-    title: "DataOps Implementation", 
-    href: "/services/dataops-implementation",
-  },
-  {
-    title: "Team Training",
-    href: "/services/team-training",
-  },
-  {
-    title: "Marketing Operations & RevOps",
-    href: "/services/marketing-operations-revops",
+// Guides dropdown items 
+export const guidesItems: SubNavItem[] = [
+  { 
+    name: 'How to Hire a HubSpot Expert in 2025', 
+    href: '/how-to-hire-a-hubspot-expert-in-2025' 
   }
 ];
-export const guidesItems: SubNavItem[] = [];
-export const insightsItems: SubNavItem[] = [];
-export const industryItems: SubNavItem[] = [];
+
+// Insights dropdown items
+export const insightsItems: SubNavItem[] = [
+  { name: 'Blog', href: '/insights' },
+  { name: 'Case Studies', href: '/case-studies' },
+  { name: 'Guides', isDropdown: true, items: guidesItems },
+  { 
+    name: 'Buy the Book', 
+    href: '/book', 
+    icon: 'book' // Using a string identifier instead of JSX
+  }
+];
+
+// Industry categories - keeping the definition for potential future use
+export const industryItems: SubNavItem[] = [
+  { name: 'Finance & Banking', href: '/case-studies' },
+  { name: 'Healthcare', href: '/case-studies' },
+  { name: 'Manufacturing', href: '/case-studies' },
+  { name: 'Retail & E-commerce', href: '/case-studies' },
+  { name: 'Technology', href: '/case-studies' },
+  { name: 'Insurance', href: '/case-studies' },
+  { name: 'Logistics', href: '/case-studies' },
+  { name: 'Energy & Utilities', href: '/case-studies' },
+];
+
+// Main navigation items - removed Industries item
+export const mainNavItems: NavItem[] = [
+  { 
+    name: 'Services', 
+    isDropdown: true,
+    items: navServices
+  },
+  { name: 'About', href: '/about' },
+  { name: 'Approach', href: '/approach' },
+  { 
+    name: 'Insights', 
+    isDropdown: true,
+    items: insightsItems
+  },
+];

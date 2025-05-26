@@ -1,47 +1,65 @@
 
 import React from 'react';
+import { Lightbulb, BookOpen, Users, Rocket } from 'lucide-react';
+
+const steps = [
+  {
+    icon: <Lightbulb className="h-10 w-10" />,
+    title: 'Discovery',
+    description: 'We assess your current data landscape, identify challenges, and define clear objectives.',
+    color: 'bg-blue-500'
+  },
+  {
+    icon: <BookOpen className="h-10 w-10" />,
+    title: 'Strategy',
+    description: 'Our team designs a tailored roadmap to transform your data operations approach.',
+    color: 'bg-teal-500'
+  },
+  {
+    icon: <Users className="h-10 w-10" />,
+    title: 'Implementation',
+    description: 'We execute the plan, integrating solutions that address your specific needs.',
+    color: 'bg-purple-500'
+  },
+  {
+    icon: <Rocket className="h-10 w-10" />,
+    title: 'Optimization',
+    description: 'Continuous improvement ensures your data operations evolve with your business.',
+    color: 'bg-amber-500'
+  }
+];
 
 const Approach = () => {
   return (
-    <section id="approach" className="sound-familiar-section">
-      <h2>Sound Familiar?</h2>
-      <p className="subtitle">If any of these HubSpot challenges resonate with your experience, you're not alone. We've helped hundreds of companies solve these exact problems.</p>
-      
-      <div className="problem-cards-grid">
-        {/* Problem Card 1 */}
-        <div className="problem-card">
-          <div className="problem-icon">📊</div>
-          <h3 className="problem-title">Your marketing and sales teams are fighting over lead quality</h3>
-          <p className="problem-description">Sales complains about poor lead quality while marketing insists they're delivering good prospects. The disconnect is costing you deals and creating internal friction.</p>
+    <section id="approach" className="pt-10 pb-16 md:pt-16 md:pb-24 px-4 md:px-8 bg-white">
+      <div className="container mx-auto">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Our <span className="gradient-text">Approach</span>
+          </h2>
+          <p className="text-lg text-gray-600">
+            A systematic methodology that delivers reliable results
+          </p>
         </div>
-        
-        {/* Problem Card 2 */}
-        <div className="problem-card">
-          <div className="problem-icon">🔍</div>
-          <h3 className="problem-title">Deals are stuck in your pipeline with no clear reason why</h3>
-          <p className="problem-description">Your pipeline is full but deals aren't closing. You lack visibility into what's actually happening in your sales process and where prospects are getting stuck.</p>
+
+        <div className="relative">
+          {/* Removed the connection line divs */}
+          
+          <div className="grid md:grid-cols-4 gap-8">
+            {steps.map((step, index) => (
+              <div key={index} className="relative z-10 flex flex-col items-center">
+                <div className={`${step.color} w-16 h-16 rounded-full flex items-center justify-center text-white mb-6`}>
+                  {step.icon}
+                </div>
+                
+                <h3 className="text-xl font-bold mb-3">{step.title}</h3>
+                <p className="text-center text-gray-600">{step.description}</p>
+                
+                {/* Removed the horizontal connection lines between steps */}
+              </div>
+            ))}
+          </div>
         </div>
-        
-        {/* Problem Card 3 */}
-        <div className="problem-card">
-          <div className="problem-icon">💸</div>
-          <h3 className="problem-title">You're spending more time managing HubSpot than growing revenue</h3>
-          <p className="problem-description">Your team spends hours on manual tasks, data entry, and trying to make HubSpot work properly instead of focusing on closing deals and growing the business.</p>
-        </div>
-        
-        {/* Problem Card 4 */}
-        <div className="problem-card">
-          <div className="problem-icon">📈</div>
-          <h3 className="problem-title">Your dashboards show activity but not actual business impact</h3>
-          <p className="problem-description">You have plenty of reports showing emails sent and calls made, but you can't clearly connect your marketing efforts to real revenue growth and ROI.</p>
-        </div>
-      </div>
-      
-      {/* CTA Section */}
-      <div className="familiar-cta">
-        <h3>Ready to Fix These Problems?</h3>
-        <p>Our free HubSpot assessment identifies exactly what's broken in your setup and provides a clear roadmap to fix it.</p>
-        <button className="familiar-cta-button">Get Your Free Assessment</button>
       </div>
     </section>
   );

@@ -32,7 +32,7 @@ const ServiceBenefits = ({ benefits, serviceTitle, isHubSpotTraining }: ServiceB
           can help you achieve your business goals.
         </p>
         <Button className="w-full bg-dataops-600 hover:bg-dataops-700" asChild>
-          <a href="https://dataopsgroup.com/get-started">Book My Assessment</a>
+          <Link to="/contact">Contact Us</Link>
         </Button>
       </div>
     </div>

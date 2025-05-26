@@ -1,19 +1,190 @@
-
 @import './styles/fonts.css';
-@import './styles/base.css';
-@import './styles/typography.css';
-@import './styles/hero.css';
-@import './styles/hero-override.css';
-@import './styles/components.css';
-@import './styles/navigation.css';
 @import './styles/pillar-content.css';
-@import './styles/hubspot-cookie-banner.css';
-@import './styles/hubspot-form-overrides.css';
-@import './styles/trust-section.css';
-@import './styles/process-section.css';
-@import './styles/sound-familiar-section.css';
-@import './styles/footer.css';
 @tailwind base;
-@import './styles/cmo-playbook-section.css';
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 199 89% 48%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+    
+    /* Add navbar height variable for consistent spacing */
+    --navbar-height: 84px;
+    --navbar-bottom-spacing: 25px;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Font family is now handled in fonts.css */
+  }
+  
+  /* Main content spacing */
+  main {
+    padding-top: calc(var(--navbar-height) + var(--navbar-bottom-spacing));
+  }
+
+  /* Even larger heading sizes with more dramatic scaling */
+  h1 {
+    @apply text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight;
+  }
+  
+  h2 {
+    @apply text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight;
+  }
+  
+  /* Specific styling for H2 tags on the /insights page and blog posts */
+  .blog-post-content h2, 
+  .container h2:not(.text-3xl),
+  article h2 {
+    font-size: 1.5em !important;
+    @apply font-semibold tracking-tight;
+  }
+  
+  h3 {
+    @apply text-4xl md:text-5xl font-semibold tracking-tight;
+  }
+  
+  h4 {
+    @apply text-3xl md:text-4xl font-medium;
+  }
+  
+  h5 {
+    @apply text-2xl md:text-3xl font-medium;
+  }
+  
+  h6 {
+    @apply text-xl md:text-2xl font-medium;
+  }
+
+  /* Override heading styles for blog post titles to be more proportional */
+  h1.blog-post-title {
+    @apply text-2xl md:text-3xl font-bold !important;
+  }
+
+  .gradient-text {
+    @apply text-dataops-600;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-r from-dataops-700 to-dataops-500;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 px-4 md:px-8 lg:px-16;
+  }
+  
+  /* Updated blog post styling with headings matching the blog post headline size */
+  .prose h2 {
+    @apply text-3xl md:text-4xl font-bold mt-8 mb-4;
+    font-size: 1.5em !important;
+  }
+  
+  .prose h3 {
+    @apply text-2xl md:text-3xl font-bold mt-6 mb-3;
+  }
+  
+  .prose h4 {
+    @apply text-xl md:text-2xl font-bold mt-5 mb-2;
+  }
+  
+  .prose p {
+    @apply mb-4 text-gray-700;
+  }
+  
+  .prose ul {
+    @apply mb-6 pl-6 list-disc;
+  }
+  
+  .prose ul li {
+    @apply mb-2 text-gray-700;
+  }
+}
+
+/* Table of Contents Styling for Pillar Content - Remove this as it's now in pillar-content.css */
+.table-of-contents-container {
+  @apply bg-gray-50 border border-gray-200 rounded-lg p-6 my-8;
+}
+
+.table-of-contents ul {
+  @apply list-none p-0 m-0;
+}
+
+.table-of-contents li {
+  @apply my-2;
+}
+
+.table-of-contents a {
+  @apply text-dataops-600 no-underline py-1 block transition-colors duration-200;
+}
+
+.table-of-contents a:hover {
+  @apply text-dataops-800 underline;
+}

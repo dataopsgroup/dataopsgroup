@@ -39,10 +39,10 @@ const ServicesSidebar = () => {
           Contact us today to schedule a consultation and learn how our services can help your organization.
         </p>
         <Link 
-          to="/get-started"
+          to="/contact"
           className="block w-full py-2 px-4 bg-dataops-600 hover:bg-dataops-700 text-white text-center rounded-md transition-colors"
         >
-          Book My Assessment
+          Contact Us
         </Link>
       </div>
     </div>

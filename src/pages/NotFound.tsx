@@ -1,6 +1,6 @@
 
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
@@ -8,34 +8,33 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const NotFound = () => {
-  // Safe location handling with proper error boundary
-  let currentPath = '/';
-  try {
-    const location = useLocation();
-    currentPath = location.pathname;
-  } catch (error) {
-    // Fallback when outside router context
-    if (typeof window !== 'undefined') {
-      currentPath = window.location.pathname;
+  // Safe location handling - check if we're in router context
+  const locationFromRouter = (() => {
+    try {
+      // This will throw if we're outside router context
+      return useLocation();
+    } catch (err) {
+      // Return a default location object when outside router context
+      return { pathname: window.location.pathname };
     }
-  }
+  })();
 
   useEffect(() => {
     // Log the 404 error with the attempted path
     console.error(
       "404 Error: User attempted to access non-existent route:",
-      currentPath
+      locationFromRouter.pathname
     );
 
     // Track 404 error with Google Analytics if available
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'error', {
         'event_category': '404',
-        'event_label': currentPath,
+        'event_label': locationFromRouter.pathname,
         'non_interaction': true
       });
     }
-  }, [currentPath]);
+  }, [locationFromRouter.pathname]);
 
   // Safe way to get canonical URL
   const getCanonicalUrl = () => {
@@ -57,52 +56,19 @@ const NotFound = () => {
       <Navbar />
       
       <main className="flex-grow flex items-center justify-center bg-gray-50 px-4">
-        <div className="text-center max-w-2xl mx-auto p-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-dataops-500 mb-6 font-headline">
-            Oops! Page Not Found
-          </h1>
-          <p className="text-lg md:text-xl text-gray-700 mb-8 font-body leading-relaxed">
-            Sorry that page doesn't exist. Please check the footer for all available links.
+        <div className="text-center max-w-md">
+          <h1 className="text-6xl font-bold text-dataops-600 mb-4">404</h1>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Page Not Found</h2>
+          <p className="text-lg text-gray-600 mb-8">
+            Sorry, the page you are looking for doesn't exist or has been moved.
           </p>
-          <div className="space-y-4">
-            <Link 
-              to="/" 
-              className="inline-block px-8 py-3 bg-dataops-500 text-white rounded-lg hover:bg-dataops-600 transition-colors font-medium font-body text-lg"
-              aria-label="Return to DataOps Group homepage"
-            >
-              Back to Home
-            </Link>
-            <div className="flex flex-wrap justify-center gap-4 mt-6">
-              <Link 
-                to="/services" 
-                className="text-dataops-500 hover:text-dataops-600 transition-colors font-medium font-body"
-                aria-label="View our services"
-              >
-                Services
-              </Link>
-              <Link 
-                to="/insights" 
-                className="text-dataops-500 hover:text-dataops-600 transition-colors font-medium font-body"
-                aria-label="Read our insights"
-              >
-                Insights
-              </Link>
-              <Link 
-                to="/hubspot-assessment" 
-                className="text-dataops-500 hover:text-dataops-600 transition-colors font-medium font-body"
-                aria-label="Take our HubSpot assessment"
-              >
-                Free Assessment
-              </Link>
-              <Link 
-                to="/contact" 
-                className="text-dataops-500 hover:text-dataops-600 transition-colors font-medium font-body"
-                aria-label="Contact us"
-              >
-                Contact
-              </Link>
-            </div>
-          </div>
+          <Link 
+            to="/" 
+            className="px-6 py-3 bg-dataops-600 text-white rounded-md hover:bg-dataops-700 transition-colors inline-block"
+            aria-label="Return to DataOps Group homepage"
+          >
+            Return to Homepage
+          </Link>
         </div>
       </main>
       

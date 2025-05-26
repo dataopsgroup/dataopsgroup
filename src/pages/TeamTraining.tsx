@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,7 +8,6 @@ import ServiceBenefits from '@/components/services/ServiceBenefits';
 import HubSpotTrainingContent from '@/components/services/HubSpotTrainingContent';
 import { Users } from 'lucide-react';
 import ServiceSchema from '@/components/seo/ServiceSchema';
-import MetaHead from '@/components/seo/MetaHead';
 
 const TeamTraining = () => {
   const benefits = [
@@ -21,17 +21,6 @@ const TeamTraining = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <MetaHead
-        title="HubSpot Team Training | Get Your Team Up to Speed Fast"
-        description="Comprehensive HubSpot training for your team. From basics to advanced techniques, get everyone productive quickly. Custom training programs available."
-        keywords="HubSpot training, team training, HubSpot implementation, HubSpot education, CRM training"
-        canonicalPath="/services/team-training"
-        ogType="website"
-        ogTitle="HubSpot Team Training | Get Your Team Up to Speed Fast"
-        ogDescription="Comprehensive HubSpot training for your team. From basics to advanced techniques, get everyone productive quickly. Custom training programs available."
-        twitterCard="summary"
-      />
-      
       <ServiceSchema 
         name="HubSpot Training & Implementation"
         description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."

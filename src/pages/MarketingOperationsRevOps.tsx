@@ -8,22 +8,10 @@ import MarketingOperationsRevOpsHero from '@/components/services/MarketingOperat
 import MarketingOperationsRevOpsContent from '@/components/services/MarketingOperationsRevOpsContent';
 import MarketingOperationsRevOpsBenefits from '@/components/services/MarketingOperationsRevOpsBenefits';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import MetaHead from '@/components/seo/MetaHead';
 
 const MarketingOperationsRevOps = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <MetaHead
-        title="HubSpot RevOps Services | Align Sales & Marketing for Growth"
-        description="RevOps consulting that aligns your sales and marketing teams. Optimize processes, improve forecasting, and accelerate revenue growth with HubSpot."
-        keywords="RevOps consulting, sales and marketing alignment, HubSpot RevOps, revenue operations, process optimization"
-        canonicalPath="/services/marketing-operations-revops"
-        ogType="website"
-        ogTitle="HubSpot RevOps Services | Align Sales & Marketing for Growth"
-        ogDescription="RevOps consulting that aligns your sales and marketing teams. Optimize processes, improve forecasting, and accelerate revenue growth with HubSpot."
-        twitterCard="summary"
-      />
-      
       <MarketingOperationsRevOpsSchema />
       <BreadcrumbSchema 
         items={[

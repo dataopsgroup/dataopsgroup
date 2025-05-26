@@ -15,7 +15,7 @@ interface ServiceHeroProps {
 
 const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, imageSrc, imageAlt }: ServiceHeroProps) => {
   return (
-    <section className="pt-16 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
+    <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-2 space-y-6">
@@ -30,7 +30,7 @@ const ServiceHero = ({ title, description, isHubSpotTraining, serviceIcon, image
             </p>
             <div className="pt-6">
               <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base" asChild>
-                <a href="https://dataopsgroup.com/get-started">Book My Assessment</a>
+                <Link to="/contact">Schedule a Consultation</Link>
               </Button>
             </div>
           </div>

@@ -21,74 +21,56 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Enhanced minification for production
-    minify: mode === 'production' ? 'esbuild' : false,
-    // Modern browser targets for better optimization
-    target: ['es2020', 'chrome80', 'firefox78', 'safari14'],
-    // Enhanced chunking strategy for optimal loading
+    // Enable more aggressive minification
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: mode === 'production',
+        drop_debugger: true,
+        pure_funcs: mode === 'production' ? ['console.log', 'console.debug'] : []
+      },
+      format: {
+        comments: false
+      }
+    },
+    // Enable chunking for better code-splitting
     rollupOptions: {
       output: {
-        // More granular chunking for better caching
-      
-        // Optimized file naming with better cache control
-        chunkFileNames: (chunkInfo) => {
-          // Use deterministic names for vendor chunks
-          if (chunkInfo.name.includes('vendor') || chunkInfo.name.includes('react')) {
-            return 'assets/vendor-[name].[hash].js';
-          }
-          return 'assets/[name].[hash].js';
+        manualChunks: {
+          // Split vendor dependencies into separate chunks
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-components': [
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-alert-dialog',
+            '@radix-ui/react-aspect-ratio',
+            '@radix-ui/react-avatar',
+            '@radix-ui/react-checkbox',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-dropdown-menu',
+            '@radix-ui/react-label',
+            '@radix-ui/react-popover',
+            '@radix-ui/react-select',
+            '@radix-ui/react-slot',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-toast',
+            'class-variance-authority',
+            'clsx',
+            'cmdk',
+            'tailwind-merge'
+          ],
+          'charts': ['recharts']
         },
-        entryFileNames: 'assets/entry-[name].[hash].js',
+        // Add content hash to chunk names for better caching
+        chunkFileNames: 'assets/js/[name].[hash].js',
+        entryFileNames: 'assets/js/[name].[hash].js',
         assetFileNames: (assetInfo) => {
-          // Organize assets by type
-          if (assetInfo.name?.endsWith('.css')) {
-            return 'assets/styles/[name].[hash][extname]';
-          }
-          if (assetInfo.name?.match(/\.(png|jpg|jpeg|gif|svg|webp|avif)$/)) {
-            return 'assets/images/[name].[hash][extname]';
-          }
-          if (assetInfo.name?.match(/\.(woff|woff2|ttf|eot)$/)) {
-            return 'assets/fonts/[name].[hash][extname]';
+          // Don't rename CSS files - as requested
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'assets/[name][extname]';
           }
           return 'assets/[name].[hash][extname]';
         }
-      },
-      // Tree-shaking optimization
-    },
-    // Source map generation
-    sourcemap: mode === 'production' ? false : 'inline',
-    // Chunk size warnings
-    chunkSizeWarningLimit: 1000,
-    // CSS code splitting
-    cssCodeSplit: true,
-    // Report compressed size
-    reportCompressedSize: true,
-    // Optimize CSS
-    cssMinify: mode === 'production' ? 'esbuild' : false
-  },
-  // Enhanced CSS processing
-  css: {
-    devSourcemap: mode === 'development',
-    postcss: {
-      plugins: []
+      }
     }
-  },
-  // Performance optimizations
-  optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-      'lucide-react'
-    ]
-  },
-  // Enhanced esbuild configuration
-  esbuild: {
-    // Drop console and debugger in production
-    drop: mode === 'production' ? ['console', 'debugger'] : [],
-    // Use more aggressive optimization
-    treeShaking: true,
-    // Format for better compression
-    format: 'esm'
   }
 }));

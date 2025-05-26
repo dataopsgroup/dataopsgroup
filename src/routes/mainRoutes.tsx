@@ -1,56 +1,37 @@
 
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
-import Index from '../pages/Index';
+import Home from '../pages/Home';
 import ContactPage from '../pages/Contact';
 import AboutPage from '../pages/AboutPage';
 import ApproachPage from '../pages/ApproachPage';
 import BookLandingPage from '../pages/BookLandingPage';
-import HubSpotAssessmentResultsPage from '../pages/HubSpotAssessmentResultsPage';
-import HubSpotAssessmentPage from '../pages/HubSpotAssessmentPage';
-import GetStartedPage from '../pages/GetStartedPage';
 import NotFound from '../pages/NotFound';
 
-// Define main routes - use Component property for proper React context
-export const mainRoutes: RouteObject[] = [
+// Define main routes for better organization
+export const mainRoutes = [
   {
     path: "/",
-    Component: Index,
-    errorElement: React.createElement(NotFound),
+    element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     path: "/contact",
-    Component: ContactPage,
-    errorElement: React.createElement(NotFound),
+    element: <ContactPage />,
+    errorElement: <NotFound />,
   },
   {
     path: "/about",
-    Component: AboutPage,
-    errorElement: React.createElement(NotFound),
+    element: <AboutPage />,
+    errorElement: <NotFound />,
   },
   {
     path: "/approach",
-    Component: ApproachPage,
-    errorElement: React.createElement(NotFound),
+    element: <ApproachPage />,
+    errorElement: <NotFound />,
   },
   {
     path: "/book",
-    Component: BookLandingPage,
-    errorElement: React.createElement(NotFound),
-  },
-  {
-    path: "/get-started",
-    Component: GetStartedPage,
-    errorElement: React.createElement(NotFound),
-  },
-  {
-    path: "/hubspot-assessment",
-    Component: HubSpotAssessmentPage,
-    errorElement: React.createElement(NotFound),
-  },
-  {
-    path: "/hubspot-assessment-results",
-    Component: HubSpotAssessmentResultsPage,
-    errorElement: React.createElement(NotFound),
+    element: <BookLandingPage />,
+    errorElement: <NotFound />,
   }
 ];

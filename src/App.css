@@ -1,14 +1,27 @@
+
 #root {
   width: 100%;
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
-/* Main content area - no longer needs flex properties */
-.main-content {
-  width: 100%;
-  /* Bottom padding handled by footer.css */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  flex: 1 0 auto;
+  padding-top: calc(70px + 25px); /* Height of navbar + 25px spacing */
+}
+
+footer {
+  flex-shrink: 0;
 }
 
 /* Keep the rest of your existing styles */

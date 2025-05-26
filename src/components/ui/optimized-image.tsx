@@ -16,19 +16,20 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   decoding?: 'async' | 'sync' | 'auto';
   sizes?: string;
   quality?: number;
-  isLCP?: boolean;
-  placeholder?: string;
-  blur?: boolean;
-  threshold?: number;
+  isLCP?: boolean; // Flag to identify Largest Contentful Paint images
+  placeholder?: string; // Custom placeholder image
+  blur?: boolean; // Control blur effect during loading
+  threshold?: number; // Intersection observer threshold
 }
 
 /**
- * Performance-optimized OptimizedImage component
- * - Properly sets width/height to prevent layout shifts (CLS)
- * - Prioritizes LCP images with eager loading
- * - Uses lazy loading for below-the-fold images
- * - Implements proper resource hints
- * - Optimized for Core Web Vitals
+ * Enhanced OptimizedImage with Core Web Vitals optimizations
+ * Combines functionality from both previous OptimizedImage and ProgressiveImage components
+ * - Properly sets width/height to avoid layout shifts (CLS)
+ * - Prioritizes LCP images
+ * - Uses Intersection Observer for below-the-fold images
+ * - Sets appropriate loading and decoding attributes
+ * - Supports progressive blur effects during loading
  */
 const OptimizedImage = ({
   src,
@@ -40,7 +41,7 @@ const OptimizedImage = ({
   aspectRatio,
   objectFit = 'cover',
   loading,
-  decoding = 'async',
+  decoding,
   sizes = '100vw',
   quality = 85,
   isLCP = false,
@@ -49,10 +50,6 @@ const OptimizedImage = ({
   threshold = 0.1,
   ...props
 }: OptimizedImageProps) => {
-  // Determine optimal loading strategy for performance
-  const loadingStrategy = priority || isLCP ? 'eager' : (loading || 'lazy');
-  const decodingStrategy = priority || isLCP ? 'sync' : decoding;
-  
   const imageElement = (
     <ImageElement
       src={src}
@@ -63,10 +60,10 @@ const OptimizedImage = ({
       objectFit={objectFit}
       priority={priority}
       isLCP={isLCP}
-      loading={loadingStrategy}
-      decoding={decodingStrategy}
+      loading={loading}
+      decoding={decoding}
       placeholder={placeholder}
-      blur={blur && !priority} // Disable blur for priority images to improve LCP
+      blur={blur}
       threshold={threshold}
       sizes={sizes}
       {...props}

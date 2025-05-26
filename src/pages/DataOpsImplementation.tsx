@@ -9,22 +9,10 @@ import DataOpsImplementationBenefits from '@/components/services/DataOpsImplemen
 import DataOpsImplementationSchema from '@/components/services/DataOpsImplementationSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import MetaHead from '@/components/seo/MetaHead';
 
 const DataOpsImplementation = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <MetaHead
-        title="HubSpot DataOps Implementation | Streamline Your Data Operations"
-        description="Implement DataOps methodologies in HubSpot for faster, more reliable data workflows. Reduce errors, improve quality, accelerate time-to-insight."
-        keywords="DataOps implementation, HubSpot data operations, data workflows, data quality, HubSpot automation"
-        canonicalPath="/services/dataops-implementation"
-        ogType="website"
-        ogTitle="HubSpot DataOps Implementation | Streamline Your Data Operations"
-        ogDescription="Implement DataOps methodologies in HubSpot for faster, more reliable data workflows. Reduce errors, improve quality, accelerate time-to-insight."
-        twitterCard="summary"
-      />
-      
       <DataOpsImplementationSchema />
       <ServiceSchema 
         name="DataOps Implementation for HubSpot" 

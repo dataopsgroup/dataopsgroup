@@ -8,9 +8,8 @@ const PrivacyPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Privacy Policy | DataOps Group</title>
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="description" content="DataOps Group privacy policy and data protection information." />
+        <title>Privacy Policy - DataOps Group</title>
+        <meta name="description" content="Read our privacy policy to understand how DataOps Group collects, uses, and protects your personal information." />
         <meta name="keywords" content="privacy policy, data protection, personal information, GDPR compliance" />
         <link rel="canonical" href="/privacy" />
       </Helmet>

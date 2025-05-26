@@ -1,9 +1,8 @@
 
 import React from 'react';
-import { services } from '@/data/services';
+import { services } from '@/components/Services';
 import { Link } from "react-router-dom";
 import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const ServicesOverview = () => {
   return (
@@ -16,28 +15,21 @@ const ServicesOverview = () => {
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-        {services.map((service, index) => {
-          return (
-            <div key={index} className={`overflow-hidden rounded-lg shadow-md bg-gradient-to-br ${service.gradient} text-white p-6`}>
-              <div className="mb-4">
-                {service.icon}
-              </div>
-              <h2 className="text-xl font-semibold mb-4 text-white">{service.title}</h2>
-              <p className="text-white/90 mb-6">
-                {service.description}
-              </p>
-              <Link to={`/services/${service.id}`}>
-                <Button 
-                  className="rounded-full bg-white hover:bg-white/90 text-black group px-4 py-1 h-auto" 
-                  variant="ghost"
-                >
-                  Learn more
-                  <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
+        {services.map((service, index) => (
+          <div key={index} className={`overflow-hidden rounded-lg shadow-md bg-gradient-to-br ${service.gradient} text-white p-6`}>
+            <div className="mb-4">
+              {service.icon}
             </div>
-          );
-        })}
+            <h2 className="text-xl font-semibold mb-4 text-white">{service.title}</h2>
+            <p className="text-white/90 mb-4">
+              {service.description}
+            </p>
+            <Link to={`/services/${service.id}`} className="flex items-center text-white hover:text-white/80 group">
+              Learn more
+              <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        ))}
       </div>
     </section>
   );

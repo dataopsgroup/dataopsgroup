@@ -1,7 +1,5 @@
 
-/* Self-hosted Inter font with proper font-display settings for performance */
-/* Google Fonts (Rubik and Roboto) are loaded via HTML link tag for better performance */
-
+/* Self-hosted Inter font with proper font-display settings */
 @font-face {
   font-family: 'Inter';
   font-style: normal;

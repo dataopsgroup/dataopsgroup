@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CTABanner from '@/components/CTABanner';
 import { Link, useParams } from 'react-router-dom';
-import { services } from '@/data/services';
+import { services } from '@/components/Services';
 import ServiceHero from '@/components/services/ServiceHero';
 import ServiceBenefits from '@/components/services/ServiceBenefits';
 import HubSpotTrainingContent from '@/components/services/HubSpotTrainingContent';

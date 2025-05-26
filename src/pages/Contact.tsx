@@ -9,32 +9,20 @@ const ContactPage = () => {
   return (
     <SemanticLayout>
       <Helmet>
-        <title>Contact DataOps Group | Free HubSpot Consultation</title>
+        <title>Contact Us - DataOps Group</title>
         <meta 
           name="description" 
-          content="Get expert HubSpot help. Free consultation to diagnose your CRM issues and boost ROI. Email, phone, or schedule a call. Response within 24 hours." 
+          content="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations." 
         />
         <meta name="keywords" content="contact dataops, hubspot consultancy, get in touch, marketing operations, sales operations" />
-        <link rel="canonical" href="https://dataopsgroup.com/contact" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Contact DataOps Group | Free HubSpot Consultation" />
-        <meta property="og:description" content="Get expert HubSpot help. Free consultation to diagnose your CRM issues and boost ROI. Email, phone, or schedule a call. Response within 24 hours." />
-        <meta property="og:url" content="https://dataopsgroup.com/contact" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Contact DataOps Group | Free HubSpot Consultation" />
-        <meta name="twitter:description" content="Get expert HubSpot help. Free consultation to diagnose your CRM issues and boost ROI. Email, phone, or schedule a call. Response within 24 hours." />
-        
+        <link rel="canonical" href="/contact" />
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
               "@type": "ContactPage",
               "name": "DataOps Group Contact",
-              "description": "Get expert HubSpot help. Free consultation to diagnose your CRM issues and boost ROI. Email, phone, or schedule a call. Response within 24 hours.",
+              "description": "Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations.",
               "url": "${window.location.origin}/contact",
               "publisher": {
                 "@type": "Organization",

@@ -45,21 +45,10 @@ const GetStartedPage = () => {
   return (
     <div className="page-container">
       <Helmet>
-        <title>Get Started with DataOps Group | HubSpot Optimization Experts</title>
-        <meta name="description" content="Ready to maximize your HubSpot investment? Start with a free consultation. We'll audit your setup and create a custom optimization plan. Book today." />
+        <title>Get Started - DataOps Group</title>
+        <meta name="description" content="Start your data transformation journey with DataOps Group. Fill out our form to connect with our experts and receive a customized solution." />
         <meta name="keywords" content="get started, contact form, data consultation, free assessment" />
-        <link rel="canonical" href="https://dataopsgroup.com/get-started" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Get Started with DataOps Group | HubSpot Optimization Experts" />
-        <meta property="og:description" content="Ready to maximize your HubSpot investment? Start with a free consultation. We'll audit your setup and create a custom optimization plan. Book today." />
-        <meta property="og:url" content="https://dataopsgroup.com/get-started" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Get Started with DataOps Group | HubSpot Optimization Experts" />
-        <meta name="twitter:description" content="Ready to maximize your HubSpot investment? Start with a free consultation. We'll audit your setup and create a custom optimization plan. Book today." />
+        <link rel="canonical" href="/get-started" />
       </Helmet>
       <Navbar />
       <main className="content-wrapper pt-24 pb-16">

@@ -9,7 +9,6 @@ import { format } from 'date-fns';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import OptimizedImage from '@/components/ui/optimized-image';
-
 const BlogList = () => {
   const location = useLocation();
 
@@ -47,19 +46,8 @@ const BlogList = () => {
       window._hsq.push(['trackPageView']);
     }
   }, [filteredBlogPosts, location.pathname]);
-  
-  return (
-    <SemanticLayout>
-      <MetaHead 
-        title="HubSpot Insights & Best Practices | DataOps Group Blog" 
-        description="Real-world HubSpot strategies from 150+ implementations. Get insider tips, case studies, and ROI-boosting tactics that actually work. Free insights." 
-        keywords="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation" 
-        canonicalPath={canonicalPath} 
-        ogType="website" 
-        ogTitle="HubSpot Insights & Best Practices | DataOps Group Blog" 
-        ogDescription="Real-world HubSpot strategies from 150+ implementations. Get insider tips, case studies, and ROI-boosting tactics that actually work. Free insights."
-        twitterCard="summary"
-      />
+  return <SemanticLayout>
+      <MetaHead title="Insights | DataOps Group" description="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." keywords="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation" canonicalPath={canonicalPath} ogType="website" ogTitle="Expert HubSpot Insights | DataOps Group" ogDescription="Discover actionable insights on HubSpot data management, marketing analytics, and revenue generation strategies." />
       
       {/* Schema Markup */}
       <BreadcrumbSchema items={breadcrumbs} />
@@ -67,8 +55,8 @@ const BlogList = () => {
         {JSON.stringify({
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "HubSpot Insights & Best Practices | DataOps Group Blog",
-        "description": "Real-world HubSpot strategies from 150+ implementations. Get insider tips, case studies, and ROI-boosting tactics that actually work. Free insights.",
+        "name": "Insights | DataOps Group",
+        "description": "Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group.",
         "publisher": {
           "@type": "Organization",
           "name": "DataOps Group",
@@ -159,8 +147,6 @@ const BlogList = () => {
       <section aria-label="Call to Action">
         <CTABanner />
       </section>
-    </SemanticLayout>
-  );
+    </SemanticLayout>;
 };
-
 export default BlogList;

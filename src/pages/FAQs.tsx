@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -61,22 +60,12 @@ const FAQsPage = () => {
 
   return (
     <SemanticLayout>
+      {/* Use only one schema implementation - the more detailed FAQPageSchema */}
       <Helmet>
-        <title>HubSpot Consulting FAQs | Common Questions Answered</title>
-        <meta name="description" content="Get answers to common HubSpot consulting questions. Pricing, timelines, process, and what to expect when working with DataOps Group. Start here." />
+        <title>Frequently Asked Questions - DataOps Group</title>
+        <meta name="description" content="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals." />
         <meta name="keywords" content="HubSpot FAQs, HubSpot consultant, data quality, marketing ROI, sales and marketing alignment, HubSpot optimization, statistical process control, data cleaning, reporting dashboards, HubSpot experts" />
         <link rel="canonical" href="https://dataopsgroup.com/faqs" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="HubSpot Consulting FAQs | Common Questions Answered" />
-        <meta property="og:description" content="Get answers to common HubSpot consulting questions. Pricing, timelines, process, and what to expect when working with DataOps Group. Start here." />
-        <meta property="og:url" content="https://dataopsgroup.com/faqs" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="HubSpot Consulting FAQs | Common Questions Answered" />
-        <meta name="twitter:description" content="Get answers to common HubSpot consulting questions. Pricing, timelines, process, and what to expect when working with DataOps Group. Start here." />
       </Helmet>
       
       <FAQPageSchema items={formattedFAQs} url="/faqs" />

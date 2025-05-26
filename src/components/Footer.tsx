@@ -1,105 +1,86 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import AdminLink from './AdminLink';
 import { navServices } from '@/data/navigationData';
 import OptimizedImage from './ui/optimized-image';
-
 const Footer = () => {
-  return (
-    <footer className="fixed-footer">
-      <div className="footer-container">
-        <div className="footer-content">
-          {/* Company Info */}
-          <div className="footer-company">
-            <div className="footer-logo">
-              <OptimizedImage 
-                src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" 
-                alt="DataOps Group Logo" 
-                width={180} 
-                height={50} 
-                className="footer-logo-image" 
-              />
+  return <footer className="bg-dataops-950 text-white pt-16 mt-auto">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <section>
+            <div className="">
+              <OptimizedImage src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" alt="DataOps Group Logo" width={180} height={50} className="mb-6" />
             </div>
-            <p className="footer-tagline font-body">
-              Expert HubSpot consulting for businesses serious about transforming their marketing technology investment into measurable revenue growth.
+            <p className="text-gray-300 mb-6">
+              Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
+              efficiency and innovation through expert consulting and <Link to="/" className="hover:text-white underline" aria-label="Visit our homepage">tailored solutions</Link>.
             </p>
-            <div className="footer-contact">
-              <p className="font-body">Ready to transform your HubSpot?</p>
-              <Link to="/get-started" className="footer-cta-button font-body">
-                Book My Assessment
-              </Link>
-              <div className="footer-social">
-                <a 
-                  href="https://www.linkedin.com/company/dataopsgroup/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="footer-linkedin-link"
-                  aria-label="Follow DataOps Group on LinkedIn"
-                >
-                  <Linkedin className="footer-linkedin-icon" />
-                </a>
-              </div>
+            <div className="flex space-x-4">
+              <a href="https://www.linkedin.com/company/dataopsgroup/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="Visit DataOps Group LinkedIn profile">
+                <Linkedin size={20} />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+            </div>
+          </section>
+          
+          <nav aria-labelledby="services-navigation">
+            <h2 id="services-navigation" className="text-lg font-semibold mb-6">Services</h2>
+            <ul className="space-y-3">
+              {navServices.map(service => <li key={service.href}>
+                  <Link to={service.href} className="text-gray-300 hover:text-white" aria-label={`Explore our ${service.name} services`}>
+                    {service.name}
+                  </Link>
+                </li>)}
+              <li>
+                <Link to="/services" className="text-gray-300 hover:text-white" aria-label="View all our services">
+                  All Services
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          
+          <nav aria-labelledby="company-navigation">
+            <h2 id="company-navigation" className="text-lg font-semibold mb-6">Company</h2>
+            <ul className="space-y-3">
+              <li><Link to="/about" className="text-gray-300 hover:text-white" aria-label="Learn about DataOps Group">About Us</Link></li>
+              <li><Link to="/leadership" className="text-gray-300 hover:text-white" aria-label="Meet our leadership team">Leadership</Link></li>
+              <li><Link to="/insights" className="text-gray-300 hover:text-white" aria-label="Read our latest insights and articles">Blog</Link></li>
+              <li><Link to="/approach" className="text-gray-300 hover:text-white" aria-label="Learn about our methodology">Our Approach</Link></li>
+            </ul>
+          </nav>
+          
+          <nav aria-labelledby="resources-navigation">
+            <h2 id="resources-navigation" className="text-lg font-semibold mb-6">Resources</h2>
+            <ul className="space-y-3">
+              <li><Link to="/case-studies" className="text-gray-300 hover:text-white" aria-label="View our client success stories">Case Studies</Link></li>
+              <li><Link to="/whitepapers" className="text-gray-300 hover:text-white" aria-label="Download our whitepapers">Whitepapers</Link></li>
+              <li><Link to="/faqs" className="text-gray-300 hover:text-white" aria-label="View frequently asked questions">FAQs</Link></li>
+              <li><Link to="/how-to-hire-a-hubspot-expert-in-2025" className="text-gray-300 hover:text-white" aria-label="Learn how to hire a HubSpot expert">HubSpot Expert Guide</Link></li>
+              <li><Link to="/sitemap" className="text-gray-300 hover:text-white" aria-label="View our site's sitemap">Sitemap</Link></li>
+            </ul>
+          </nav>
+        </div>
+        
+        <div className="border-t border-gray-800 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              &copy; <time dateTime={new Date().getFullYear().toString()}>{new Date().getFullYear()}</time> DataOps Group. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm" aria-label="Read our privacy policy">Privacy Policy</Link>
+              <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm" aria-label="View our sitemap">Sitemap</Link>
             </div>
           </div>
           
-          {/* Solutions Column */}
-          <div className="footer-column">
-            <h4 className="font-headline">Solutions</h4>
-            <ul>
-              {navServices.map(service => (
-                <li key={service.href}>
-                  <Link to={service.href || "/"} aria-label={`Explore our ${service.title} services`} className="font-body">
-                    {service.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* AI Tool Note with Admin Link */}
+          <div className="mt-6 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4">
+            <p>AI tools: Structured content available at <Link to="/api/content.json" className="text-gray-400 hover:text-gray-300">/api/content.json</Link></p>
+            <AdminLink />
           </div>
-          
-          {/* Company Column */}
-          <div className="footer-column">
-            <h4 className="font-headline">Company</h4>
-            <ul>
-              <li><Link to="/about" aria-label="Learn about DataOps Group" className="font-body">About Us</Link></li>
-              <li><Link to="/approach" aria-label="Learn about our methodology" className="font-body">Our Approach</Link></li>
-              <li><Link to="/case-studies" aria-label="View our client success stories" className="font-body">Case Studies</Link></li>
-              <li><Link to="/insights" aria-label="Read our latest insights and articles" className="font-body">Blog</Link></li>
-            </ul>
-          </div>
-          
-          {/* Resources Column */}
-          <div className="footer-column">
-            <h4 className="font-headline">Resources</h4>
-            <ul>
-              <li><Link to="/case-studies" aria-label="View our client success stories" className="font-body">Case Studies</Link></li>
-              <li><Link to="/hubspot-assessment" aria-label="Take our free HubSpot assessment" className="font-body">HubSpot Assessment</Link></li>
-              <li><Link to="/faqs" aria-label="View frequently asked questions" className="font-body">FAQs</Link></li>
-              <li><Link to="/contact" aria-label="Contact us" className="font-body">Contact</Link></li>
-            </ul>
-          </div>
-        </div>
-        
-        {/* Footer Bottom */}
-        <div className="footer-bottom">
-          <div className="footer-copyright font-body">
-            © <time dateTime={new Date().getFullYear().toString()}>{new Date().getFullYear()}</time> DataOps Group. All rights reserved.
-          </div>
-          <div className="footer-legal">
-            <Link to="/privacy" aria-label="Read our privacy policy" className="font-body">Privacy Policy</Link>
-            <Link to="/sitemap" aria-label="View our sitemap" className="font-body">Sitemap</Link>
-          </div>
-        </div>
-        
-        {/* AI Tool Note with Admin Link */}
-        <div className="footer-ai-tools">
-          <p className="font-body">AI tools: Structured content available at <Link to="/api/content.json" className="font-body">/api/content.json</Link></p>
-          <AdminLink />
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;

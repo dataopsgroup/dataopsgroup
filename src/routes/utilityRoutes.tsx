@@ -1,63 +1,62 @@
 
 import React from 'react';
-import { RouteObject, Navigate } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 
-// Import pages - these are component references, not instantiated components
+// Import pages
 import NotFound from '@/pages/NotFound';
 import Privacy from '@/pages/Privacy';
+import Terms from '@/pages/Terms';
 import Sitemap from '@/pages/Sitemap';
 import FAQs from '@/pages/FAQs';
+import Documentation from '@/pages/Documentation';
+import SEODashboard from '@/pages/SEODashboard';
 import PillarContentPage from '@/pages/PillarContentPage';
 import HubSpotExpertGuidePage from '@/pages/HubSpotExpertGuidePage';
 
-// Define utility routes - use component references, not JSX
+// Define utility routes
 export const utilityRoutes: RouteObject[] = [
   {
     path: "/not-found",
-    Component: NotFound
+    element: <NotFound />
   },
   {
     path: "/404",
-    Component: NotFound
+    element: <NotFound />
   },
   {
     path: "*",
-    Component: NotFound
+    element: <NotFound />
   },
   {
     path: "/privacy",
-    Component: Privacy
+    element: <Privacy />
   },
   {
     path: "/terms",
-    element: <Navigate to="/" replace />
+    element: <Terms />
   },
   {
     path: "/sitemap",
-    Component: Sitemap
+    element: <Sitemap />
   },
   {
     path: "/faqs",
-    Component: FAQs
+    element: <FAQs />
   },
   {
     path: "/docs",
-    element: <Navigate to="/insights" replace />
+    element: <Documentation />
   },
   {
-    path: "/documentation",
-    element: <Navigate to="/insights" replace />
-  },
-  {
-    path: "/whitepapers",
-    element: <Navigate to="/insights" replace />
+    path: "/seo-dashboard",
+    element: <SEODashboard />
   },
   {
     path: "/pillar-content",
-    Component: PillarContentPage
+    element: <PillarContentPage />
   },
   {
     path: "/how-to-hire-a-hubspot-expert-in-2025",
-    Component: HubSpotExpertGuidePage
+    element: <HubSpotExpertGuidePage />
   }
 ];

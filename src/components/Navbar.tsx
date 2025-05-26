@@ -11,91 +11,66 @@ import MobileNavigation from './navigation/MobileNavigation';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 10) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  
-  // Prevent scrolling when mobile menu is open and add menu-open class
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('overflow-hidden', 'menu-open');
-    } else {
-      document.body.classList.remove('overflow-hidden', 'menu-open');
-    }
-    
-    // Cleanup on unmount
-    return () => {
-      document.body.classList.remove('overflow-hidden', 'menu-open');
-    };
-  }, [isOpen]);
-  
+
   return (
-    <header className={cn(
-      "header fixed top-0 left-0 w-full z-40 transition-all duration-300",
-      scrolled ? "bg-white shadow-md py-2" : "bg-white/95 backdrop-blur-sm py-4"
-    )}>
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="nav-wrapper flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="logo flex items-center">
-            <img 
-              src="/lovable-uploads/b8e7f5a3-a944-47ec-876d-6369eb4c4b6c.png" 
-              alt="DataOps Group" 
-              className="h-8 md:h-10"
-              width="auto"
-              height="40"
-            />
-          </Link>
-          
-          {/* Desktop Navigation */}
-          <DesktopNavigation navItems={mainNavItems} />
-          
-          {/* Call to Action - Desktop */}
-          <div className="nav-cta hidden lg:flex items-center space-x-4">
-            <Button variant="outline" asChild className="btn btn-outline">
-              <Link to="/contact">Contact</Link>
-            </Button>
-            <Button asChild className="btn btn-primary">
-              <a href="https://dataopsgroup.com/get-started">Book Free Assessment</a>
-            </Button>
-          </div>
-          
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={() => setIsOpen(!isOpen)} 
-              className="mobile-menu-btn" 
-              aria-expanded={isOpen} 
-              aria-controls="mobile-menu" 
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
-            </Button>
-          </div>
+    <nav 
+      className={cn(
+        "fixed top-0 w-full z-50 transition-all duration-300 pb-[25px] border-b border-gray-200",
+        scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+      )}
+      aria-label="Main navigation"
+    >
+      <div className="container mx-auto flex justify-between items-center px-4">
+        <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
+          <img 
+            src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
+            alt="DataOps Group Logo" 
+            className="h-16 md:h-20" 
+          />
+        </Link>
+        
+        {/* Desktop Navigation */}
+        <DesktopNavigation navItems={mainNavItems} />
+        
+        {/* Mobile menu button */}
+        <div className="md:hidden">
+          <Button
+            variant="ghost"
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-dataops-900"
+            size="icon"
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
+          </Button>
         </div>
       </div>
-      
+
       {/* Mobile Navigation */}
       <MobileNavigation 
-        navItems={mainNavItems} 
         isOpen={isOpen} 
+        navItems={mainNavItems} 
         setIsOpen={setIsOpen} 
       />
-    </header>
+    </nav>
   );
 };
 

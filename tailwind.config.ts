@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,11 +19,6 @@ export default {
 			}
 		},
 		extend: {
-			fontFamily: {
-				'headline': ['Rubik', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-				'body': ['Roboto', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-				'sans': ['Roboto', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -69,20 +65,6 @@ export default {
 					800: '#0F4786',
 					900: '#0F3C70',
 					950: '#0F172A',
-				},
-				saffron: {
-					DEFAULT: '#FBB03B',
-					50: '#FEF8ED',
-					100: '#FDF0D5',
-					200: '#FBDEAA',
-					300: '#F9C674',
-					400: '#F6A63C',
-					500: '#FBB03B',
-					600: '#E8951E',
-					700: '#C17A18',
-					800: '#9B621A',
-					900: '#7F5119',
-					950: '#44290B',
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

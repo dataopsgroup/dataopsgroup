@@ -1,28 +1,17 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  LifeBuoy, 
-  Rocket, 
-  LineChart, 
-  FolderKanban, 
-  Workflow, 
-  Database, 
-  GraduationCap, 
-  FileText, 
-  Calculator, 
-  Newspaper, 
-  BookOpen,
-  ArrowRight
-} from 'lucide-react';
+import { ChevronDown, Book } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { NavItem, SubNavItem } from '@/types/navigation';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
 
 interface DesktopNavigationProps {
@@ -32,138 +21,70 @@ interface DesktopNavigationProps {
 const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
   // Function to render the appropriate icon based on string identifier
   const renderIcon = (iconName?: string) => {
-    const iconProps = { className: "h-5 w-5 mr-3 text-dataops-500", "aria-hidden": true };
-    
-    switch (iconName) {
-      case 'LifeBuoy': return <LifeBuoy {...iconProps} />;
-      case 'Rocket': return <Rocket {...iconProps} />;
-      case 'LineChart': return <LineChart {...iconProps} />;
-      case 'FolderKanban': return <FolderKanban {...iconProps} />;
-      case 'Workflow': return <Workflow {...iconProps} />;
-      case 'Database': return <Database {...iconProps} />;
-      case 'GraduationCap': return <GraduationCap {...iconProps} />;
-      case 'FileText': return <FileText {...iconProps} />;
-      case 'Calculator': return <Calculator {...iconProps} />;
-      case 'Newspaper': return <Newspaper {...iconProps} />;
-      case 'BookOpen': return <BookOpen {...iconProps} />;
-      case 'ArrowRight': return <ArrowRight {...iconProps} />;
-      default: return null;
+    if (iconName === 'book') {
+      return <Book className="h-3 w-3 mr-1" aria-hidden="true" />;
+    }
+    return null;
+  };
+
+  // Function to render submenu items recursively
+  const renderSubMenuItem = (subItem: SubNavItem) => {
+    if (subItem.isDropdown && subItem.items) {
+      return (
+        <DropdownMenuSub key={subItem.name}>
+          <DropdownMenuSubTrigger>
+            {subItem.name}
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            {subItem.items.map(renderSubMenuItem)}
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+      );
+    } else {
+      return (
+        <DropdownMenuItem asChild key={subItem.name}>
+          <Link 
+            to={subItem.href || "/"}
+            className="w-full cursor-pointer flex items-center"
+          >
+            {subItem.icon && renderIcon(subItem.icon)}
+            {subItem.name}
+          </Link>
+        </DropdownMenuItem>
+      );
     }
   };
 
-  // Function to render mega-menu items without featured section
-  const renderMegaMenuDropdown = (item: NavItem) => {
-    if (!item.children) return null;
-
-    // Split items into two sections for better layout
-    const firstSection = item.children.slice(0, 2);
-    const secondSection = item.children.slice(2, 4);
-
-    return (
-      <DropdownMenuContent className="mega-menu-dropdown w-[500px] bg-white border border-gray-200 shadow-xl z-[1200] p-0">
-        <div className="dropdown-grid grid grid-cols-2 gap-0">
-          {/* First Section */}
-          <div className="dropdown-section p-4 border-r border-gray-100">
-            {firstSection.map((subItem) => (
-              <DropdownMenuItem asChild key={subItem.title} className="p-0 mb-4 last:mb-0">
-                <Link 
-                  to={subItem.href || "/"}
-                  className="dropdown-item flex items-start p-3 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
-                >
-                  <div className="item-icon mr-3 mt-1">
-                    {subItem.icon && renderIcon(subItem.icon)}
-                  </div>
-                  <div className="item-content flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="item-title font-semibold text-gray-900 text-sm font-body">
-                        {subItem.title}
-                      </h3>
-                      {subItem.badge && (
-                        <Badge variant="success" className="text-xs">
-                          {subItem.badge}
-                        </Badge>
-                      )}
-                    </div>
-                    {subItem.description && (
-                      <p className="item-description text-xs text-gray-600 font-body leading-relaxed">
-                        {subItem.description}
-                      </p>
-                    )}
-                  </div>
-                </Link>
-              </DropdownMenuItem>
-            ))}
-          </div>
-
-          {/* Second Section */}
-          <div className="dropdown-section p-4">
-            {secondSection.map((subItem) => (
-              <DropdownMenuItem asChild key={subItem.title} className="p-0 mb-4 last:mb-0">
-                <Link 
-                  to={subItem.href || "/"}
-                  className="dropdown-item flex items-start p-3 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
-                >
-                  <div className="item-icon mr-3 mt-1">
-                    {subItem.icon && renderIcon(subItem.icon)}
-                  </div>
-                  <div className="item-content flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="item-title font-semibold text-gray-900 text-sm font-body">
-                        {subItem.title}
-                      </h3>
-                      {subItem.badge && (
-                        <Badge variant="success" className="text-xs">
-                          {subItem.badge}
-                        </Badge>
-                      )}
-                    </div>
-                    {subItem.description && (
-                      <p className="item-description text-xs text-gray-600 font-body leading-relaxed">
-                        {subItem.description}
-                      </p>
-                    )}
-                  </div>
-                </Link>
-              </DropdownMenuItem>
-            ))}
-          </div>
-        </div>
-      </DropdownMenuContent>
-    );
-  };
-
   return (
-    <nav className="main-nav hidden lg:flex items-center space-x-8">
-      {navItems.map((item) => (
-        item.children ? (
-          <div key={item.title} className="nav-item dropdown">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="nav-link-button flex items-center font-body h-auto px-3 py-2 transition-colors border-0 shadow-none bg-transparent hover:bg-transparent"
-                  style={{ color: '#000000' }}
-                  aria-haspopup="true" 
-                  aria-expanded="false"
-                >
-                  {item.title}
-                </Button>
-              </DropdownMenuTrigger>
-              {renderMegaMenuDropdown(item)}
-            </DropdownMenu>
-          </div>
-        ) : (
-          <div key={item.title} className="nav-item">
-            <Link 
-              to={item.href || "/"}
-              className="nav-link font-medium font-body transition-colors px-3 py-2 rounded hover:text-dataops-500"
-              style={{ color: '#000000' }}
-            >
-              {item.title}
-            </Link>
-          </div>
-        )
-      ))}
+    <nav className="hidden md:flex items-center gap-8" aria-label="Desktop Navigation">
+      <ul className="flex items-center gap-8">
+        {navItems.map((item) => (
+          <li key={item.name}>
+            {item.isDropdown ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors bg-transparent" aria-haspopup="true" aria-expanded="false">
+                  {item.name}
+                  <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
+                  <span className="sr-only">Toggle {item.name} dropdown</span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 bg-white">
+                  {item.items?.map(renderSubMenuItem)}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link 
+                to={item.href || "/"}
+                className="flex items-center text-dataops-900 hover:text-dataops-600 font-medium transition-colors"
+              >
+                {item.name}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+      <Link to="/contact">
+        <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
+      </Link>
     </nav>
   );
 };
