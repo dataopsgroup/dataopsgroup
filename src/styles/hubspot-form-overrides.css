@@ -1,0 +1,58 @@
+
+/* HubSpot Form Font Overrides */
+/* High specificity selectors to override HubSpot's default styling */
+
+/* Target the form container and all form elements */
+.hs-form-frame .hs-form,
+.hs-form-frame .hs-form *,
+.hs-form .hs-fieldtype-text input,
+.hs-form .hs-fieldtype-email input,
+.hs-form .hs-fieldtype-select select,
+.hs-form .hs-fieldtype-textarea textarea,
+.hs-form .hs-input,
+.hs-form input[type="text"],
+.hs-form input[type="email"],
+.hs-form input[type="tel"],
+.hs-form select,
+.hs-form textarea {
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-weight: 400 !important;
+}
+
+/* Override labels and form text */
+.hs-form .hs-form-field label,
+.hs-form .hs-form-field .hs-field-desc,
+.hs-form .hs-richtext,
+.hs-form .hs-form-required,
+.hs-form .hs-error-msg,
+.hs-form .hs-main-font-element {
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-weight: 400 !important;
+}
+
+/* Override any headings within the form to use Rubik */
+.hs-form h1,
+.hs-form h2,
+.hs-form h3,
+.hs-form h4,
+.hs-form h5,
+.hs-form h6,
+.hs-form .hs-form-title {
+  font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+/* Override submit button styling */
+.hs-form .hs-button,
+.hs-form input[type="submit"],
+.hs-form .actions input[type="submit"] {
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* Ensure consistent font rendering */
+.hs-form-frame {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}

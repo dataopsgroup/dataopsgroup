@@ -34,6 +34,22 @@ const HubSpotAssessmentForm = () => {
           if (form) {
             clearInterval(checkForForm);
             
+            // Inject additional font styling directly into the form
+            const injectFontStyles = () => {
+              const styleElement = document.createElement('style');
+              styleElement.textContent = `
+                .hs-form * {
+                  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+                }
+                .hs-form h1, .hs-form h2, .hs-form h3, .hs-form h4, .hs-form h5, .hs-form h6 {
+                  font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+                }
+              `;
+              document.head.appendChild(styleElement);
+            };
+            
+            injectFontStyles();
+            
             form.addEventListener('submit', () => {
               // Track form submission in Google Analytics
               if (window.gtag) {
