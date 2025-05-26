@@ -68,4 +68,3 @@ const AnalyticsBIPage = () => {
 };
 
 export default AnalyticsBIPage;
-export default AnalyticsBIPage;
