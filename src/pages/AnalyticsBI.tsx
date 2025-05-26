@@ -1,7 +1,6 @@
 
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
 import AnalyticsBIContent from '@/components/services/AnalyticsBIContent';
@@ -13,7 +12,7 @@ import MetaHead from '@/components/seo/MetaHead';
 
 const AnalyticsBI = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <SemanticLayout>
       <MetaHead
         title="HubSpot Analytics & BI Services | Turn Data Into Revenue"
         description="Transform your HubSpot data into actionable insights. Custom dashboards, reporting, and BI solutions that drive better decisions and higher ROI."
@@ -33,30 +32,26 @@ const AnalyticsBI = () => {
           { name: "Analytics & BI", url: "/services/analytics-bi" }
         ]} 
       />
-      <Navbar />
       
-      <main>
-        <AnalyticsBIHero />
+      <AnalyticsBIHero />
 
-        {/* Content Section */}
-        <section className="py-16 px-4">
-          <div className="container mx-auto">
-            <div className="grid lg:grid-cols-3 gap-16">
-              <div className="lg:col-span-2 space-y-8">
-                <AnalyticsBIContent />
-              </div>
-              
-              <div>
-                <AnalyticsBIBenefits />
-              </div>
+      {/* Content Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-3 gap-16">
+            <div className="lg:col-span-2 space-y-8">
+              <AnalyticsBIContent />
+            </div>
+            
+            <div>
+              <AnalyticsBIBenefits />
             </div>
           </div>
-        </section>
-        
-        <CTABanner />
-      </main>
-      <Footer />
-    </div>
+        </div>
+      </section>
+      
+      <CTABanner />
+    </SemanticLayout>
   );
 };
 
