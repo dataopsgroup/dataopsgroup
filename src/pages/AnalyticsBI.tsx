@@ -1,58 +1,53 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
-import CTABanner from '@/components/CTABanner';
-import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
-import AnalyticsBIContent from '@/components/services/AnalyticsBIContent';
-import AnalyticsBIBenefits from '@/components/services/AnalyticsBIBenefits';
-import AnalyticsBISchema from '@/components/services/AnalyticsBISchema';
-import ServiceSchema from '@/components/seo/ServiceSchema';
-import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import ServicesPageWrapper from '@/components/services/ServicesPageWrapper';
+import ServiceSection from '@/components/services/ServiceSection';
 import MetaHead from '@/components/seo/MetaHead';
 
-const AnalyticsBI = () => {
+const AnalyticsBIPage = () => {
   return (
-    <SemanticLayout>
+    <>
       <MetaHead
-        title="HubSpot Analytics & BI Services | Turn Data Into Revenue"
-        description="Transform your HubSpot data into actionable insights. Custom dashboards, reporting, and BI solutions that drive better decisions and higher ROI."
-        keywords="HubSpot analytics, business intelligence, data visualization, HubSpot reporting, marketing analytics"
+        title="Analytics & Business Intelligence Services | DataOps Group"
+        description="Transform your data into actionable insights with our advanced analytics and visualization services."
         canonicalPath="/services/analytics-bi"
-        ogType="website"
-        ogTitle="HubSpot Analytics & BI Services | Turn Data Into Revenue"
-        ogDescription="Transform your HubSpot data into actionable insights. Custom dashboards, reporting, and BI solutions that drive better decisions and higher ROI."
-        twitterCard="summary"
       />
       
-      <AnalyticsBISchema />
-      <BreadcrumbSchema 
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Services", url: "/services" },
-          { name: "Analytics & BI", url: "/services/analytics-bi" }
-        ]} 
-      />
-      
-      <AnalyticsBIHero />
-
-      {/* Content Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-3 gap-16">
-            <div className="lg:col-span-2 space-y-8">
-              <AnalyticsBIContent />
-            </div>
-            
-            <div>
-              <AnalyticsBIBenefits />
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <CTABanner />
-    </SemanticLayout>
+      <SemanticLayout>
+        <ServicesPageWrapper
+          title="Analytics & BI Services"
+          description="Transform your raw data into actionable insights with our advanced analytics and visualization services that drive smarter business decisions."
+        >
+          <ServiceSection
+            title="Data Visualization & Dashboarding"
+            description="Transform complex data into intuitive, interactive visualizations that make insights accessible to all stakeholders."
+          >
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <span className="text-blue-500 mr-2">•</span>
+                <span>Custom dashboard development tailored to your specific KPIs and metrics</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-blue-500 mr-2">•</span>
+                <span>Interactive data visualizations that allow for exploration and deeper analysis</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-blue-500 mr-2">•</span>
+                <span>Executive dashboards for high-level business performance monitoring</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-blue-500 mr-2">•</span>
+                <span>Operational dashboards for day-to-day decision making</span>
+              </li>
+            </ul>
+          </ServiceSection>
+          
+          {/* Additional service sections with the same pattern */}
+          {/* ... */}
+        </ServicesPageWrapper>
+      </SemanticLayout>
+    </>
   );
 };
 
-export default AnalyticsBI;
+export default AnalyticsBIPage;
