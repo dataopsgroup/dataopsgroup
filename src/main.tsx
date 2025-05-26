@@ -5,21 +5,17 @@ import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
-import { injectCriticalCSS } from './utils/critical-css-enhanced';
 
-// Enhanced version setup with performance monitoring
+// Basic version setup
 if (typeof window !== 'undefined') {
   window.APP_VERSION = '1.7.2';
   
-  // Inject critical CSS immediately to prevent render blocking
-  injectCriticalCSS();
-  
-  // Register enhanced service worker
+  // Basic service worker registration
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw-enhanced.js')
+      navigator.serviceWorker.register('/sw.js')
         .then((registration) => {
-          console.log('Enhanced SW registered:', registration.scope);
+          console.log('SW registered:', registration.scope);
         })
         .catch((error) => {
           console.log('SW registration failed:', error);
@@ -28,7 +24,7 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// Enhanced loading fallback with better UX
+// Simple loading fallback
 const LoadingFallback = () => (
   <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
     <div className="flex flex-col items-center space-y-4">
@@ -44,7 +40,7 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Optimized render function with error boundaries
+// Simple render function
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -61,93 +57,35 @@ const renderApp = () => {
   }
 };
 
-// Immediate render for faster Time to Interactive
+// Immediate render
 renderApp();
 
-// Enhanced deferred loading with comprehensive error handling and performance monitoring
-const loadDeferredModules = async () => {
+// Basic deferred initialization (simplified)
+const loadBasicModules = async () => {
   try {
-    const isMobile = window.innerWidth < 768;
-    
-    // Performance monitoring initialization
-    try {
-      const { initEnhancedWebVitals } = await import('./utils/core-web-vitals-enhanced');
-      initEnhancedWebVitals();
-    } catch (error) {
-      console.warn('Enhanced web vitals failed to load:', error);
-      
-      // Fallback to basic web vitals
-      try {
-        const { initWebVitals } = await import('./utils/web-vitals');
-        initWebVitals();
-      } catch (fallbackError) {
-        console.warn('Basic web vitals also failed:', fallbackError);
+    // Only load basic analytics after a delay
+    setTimeout(() => {
+      if (window.gtag) {
+        window.gtag('config', 'AW-16996265146', {
+          'send_page_view': false,
+          'cookie_flags': 'samesite=none;secure'
+        });
       }
-    }
-    
-    // Enhanced performance initialization
-    try {
-      const { initializePerformanceOptimizations } = await import('./utils/performance/initialization-enhanced');
-      initializePerformanceOptimizations();
-    } catch (error) {
-      console.warn('Enhanced performance optimization failed:', error);
-      
-      // Fallback to basic performance optimization
-      try {
-        const { initializePerformanceOptimizations } = await import('./utils/performance/initialization');
-        initializePerformanceOptimizations();
-      } catch (fallbackError) {
-        console.warn('Basic performance optimization also failed:', fallbackError);
-      }
-    }
-    
-    // Device-specific optimizations with enhanced error handling
-    if (isMobile) {
-      try {
-        const { initMobileOptimizations } = await import('./utils/performance/mobile-optimization');
-        initMobileOptimizations();
-      } catch (error) {
-        console.warn('Mobile optimizations failed:', error);
-      }
-    } else {
-      // Desktop-specific enhancements
-      setTimeout(() => {
-        try {
-          if (window.gtag) {
-            window.gtag('config', 'AW-16996265146', {
-              'send_page_view': false,
-              'cookie_flags': 'samesite=none;secure'
-            });
-          }
-        } catch (error) {
-          console.warn('Analytics setup failed:', error);
-        }
-      }, 1000);
-    }
-    
-    // Performance budget monitoring
-    try {
-      const { reportBudgetViolations } = await import('./utils/performance-budget');
-      setTimeout(() => {
-        reportBudgetViolations();
-      }, 3000);
-    } catch (error) {
-      console.warn('Performance budget monitoring failed:', error);
-    }
+    }, 2000);
     
   } catch (error) {
-    console.error('Error loading deferred modules:', error);
-    // Continue without deferred modules if they fail - no user impact
+    console.error('Error loading basic modules:', error);
+    // Continue without modules if they fail
   }
 };
 
-// Use optimized timing for module loading
+// Simple timing for module loading
 if (typeof window !== 'undefined') {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(loadDeferredModules, 100);
+      setTimeout(loadBasicModules, 500);
     });
   } else {
-    setTimeout(loadDeferredModules, 100);
+    setTimeout(loadBasicModules, 500);
   }
 }

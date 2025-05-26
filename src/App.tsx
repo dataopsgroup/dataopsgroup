@@ -12,7 +12,7 @@ import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirec
 const PrivacyModal = lazy(() => import('./components/PrivacyModal'));
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Changed from true to false
   const [error, setError] = useState<Error | null>(null);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
@@ -31,12 +31,7 @@ function App() {
       return;
     }
     
-    // Optimized loading time for better UX
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 800); // Reduced from 1000ms to 800ms
-
-    return () => clearTimeout(timer);
+    // Remove the artificial loading delay - site should render immediately
   }, []);
 
   // Error boundary for router
