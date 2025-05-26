@@ -24,11 +24,11 @@ const Hero = () => {
 
   return <>
       <div className="relative pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50 overflow-hidden">
-        {/* Background Image */}
+        {/* Background Image - Force cache refresh */}
         <div 
           className="absolute inset-0 bg-cover bg-no-repeat"
           style={{
-            backgroundImage: `url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png')`,
+            backgroundImage: `url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png?v=${Date.now()}')`,
             backgroundPosition: 'center right',
             backgroundSize: 'cover'
           }}
@@ -36,7 +36,7 @@ const Hero = () => {
         
         <div className="container mx-auto relative z-10">
           <div className="w-[45%] relative">
-            {/* Semi-transparent background only behind text */}
+            {/* Semi-transparent background only behind text - 75% opacity for better readability */}
             <div className="absolute inset-0 bg-white/75 rounded-lg" />
             
             <div className="relative z-10 p-8 space-y-8">
