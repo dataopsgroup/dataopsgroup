@@ -71,13 +71,13 @@
   }
 }
 
-/* Fix button hover states to prevent dark backgrounds */
+/* Fix button hover states to prevent any backgrounds */
 [data-radix-dropdown-menu-trigger] {
   background-color: transparent !important;
 }
 
 [data-radix-dropdown-menu-trigger]:hover {
-  background-color: #f8f9ff !important;
+  background-color: transparent !important;
   color: #1a8aeb !important;
 }
 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin } from 'lucide-react';
@@ -44,9 +43,9 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Services Column */}
+          {/* Solutions Column */}
           <div className="footer-column">
-            <h4 className="font-headline">Services</h4>
+            <h4 className="font-headline">Solutions</h4>
             <ul>
               {navServices.map(service => (
                 <li key={service.href}>
@@ -55,11 +54,6 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link to="/services" aria-label="View all our services" className="font-body">
-                  All Services
-                </Link>
-              </li>
             </ul>
           </div>
           
@@ -79,7 +73,7 @@ const Footer = () => {
             <h4 className="font-headline">Resources</h4>
             <ul>
               <li><Link to="/case-studies" aria-label="View our client success stories" className="font-body">Case Studies</Link></li>
-              <li><Link to="/how-to-hire-a-hubspot-expert-in-2025" aria-label="Learn how to hire a HubSpot expert" className="font-body">HubSpot Expert Guide</Link></li>
+              <li><Link to="/hubspot-assessment" aria-label="Take our free HubSpot assessment" className="font-body">HubSpot Assessment</Link></li>
               <li><Link to="/faqs" aria-label="View frequently asked questions" className="font-body">FAQs</Link></li>
               <li><Link to="/contact" aria-label="Contact us" className="font-body">Contact</Link></li>
             </ul>

@@ -8,58 +8,28 @@ export const mainNavItems: NavItem[] = [
     href: "#",
     children: [
       {
-        title: "HubSpot Rescue",
-        icon: "LifeBuoy",
-        description: "Fix broken implementations and optimize your existing HubSpot setup",
-        href: "/solutions/hubspot-rescue",
-      },
-      {
-        title: "HubSpot Implementation",
-        icon: "Rocket",
-        description: "Start your HubSpot journey right with expert-led implementation",
-        href: "/solutions/hubspot-implementation",
-      },
-      {
-        title: "HubSpot Integration",
-        icon: "Connection",
-        description: "Connect your tech stack for seamless data flow and automation",
-        href: "/solutions/hubspot-integration",
-      },
-      {
-        title: "HubSpot Strategy",
+        title: "Analytics & BI",
         icon: "LineChart",
-        description: "Align your HubSpot setup with your revenue and growth goals",
-        href: "/solutions/hubspot-strategy",
-      }
-    ]
-  },
-  {
-    title: "Services",
-    href: "#",
-    children: [
-      {
-        title: "CRM & Pipeline Management",
-        icon: "FolderKanban",
-        description: "Optimize your sales process with structured pipelines and automation",
-        href: "/services/crm-pipeline-management",
+        description: "Transform your data into actionable insights with advanced analytics and business intelligence",
+        href: "/analytics-bi",
       },
       {
-        title: "Workflow Automation",
-        icon: "Workflow",
-        description: "Automate repetitive tasks and free your team to focus on growth",
-        href: "/services/workflow-automation",
-      },
-      {
-        title: "Data Migration & Integration",
+        title: "DataOps Implementation",
         icon: "Database",
-        description: "Seamlessly transfer data and connect systems for unified operations",
-        href: "/services/data-migration-integration",
+        description: "Streamline your data operations with expert implementation and optimization services",
+        href: "/dataops-implementation",
       },
       {
-        title: "Training & Support",
-        icon: "GraduationCap", 
-        description: "Empower your team with expert knowledge and ongoing assistance",
-        href: "/services/training-support",
+        title: "Team Training",
+        icon: "GraduationCap",
+        description: "Empower your team with comprehensive HubSpot training and skill development",
+        href: "/team-training",
+      },
+      {
+        title: "Marketing Operations & RevOps",
+        icon: "Workflow",
+        description: "Optimize your revenue operations and marketing processes for maximum efficiency",
+        href: "/marketing-operations-revops",
       }
     ]
   },
@@ -71,26 +41,20 @@ export const mainNavItems: NavItem[] = [
         title: "Case Studies",
         icon: "FileText",
         description: "Real-world examples of HubSpot transformations and results",
-        href: "/resources/case-studies",
+        href: "/case-studies",
       },
       {
-        title: "ROI Calculator",
+        title: "Assessment",
         icon: "Calculator",
-        description: "Estimate your potential return on HubSpot investment",
-        href: "/resources/roi-calculator",
-        badge: "NEW"
+        description: "Evaluate your current HubSpot setup and identify improvement opportunities",
+        href: "/hubspot-assessment",
+        badge: "FREE"
       },
       {
-        title: "Blog",
+        title: "Insights",
         icon: "Newspaper",
         description: "Expert insights, strategies and tips for HubSpot success",
-        href: "/blog",
-      },
-      {
-        title: "HubSpot Resources",
-        icon: "BookOpen",
-        description: "Guides, templates and tools to maximize your HubSpot experience",
-        href: "/resources/hubspot-resources",
+        href: "/insights",
       }
     ]
   },
@@ -101,7 +65,24 @@ export const mainNavItems: NavItem[] = [
 ];
 
 // Legacy exports for backward compatibility (can be removed later)
-export const navServices: SubNavItem[] = [];
+export const navServices: SubNavItem[] = [
+  {
+    title: "Analytics & BI",
+    href: "/analytics-bi",
+  },
+  {
+    title: "DataOps Implementation", 
+    href: "/dataops-implementation",
+  },
+  {
+    title: "Team Training",
+    href: "/team-training",
+  },
+  {
+    title: "Marketing Operations & RevOps",
+    href: "/marketing-operations-revops",
+  }
+];
 export const guidesItems: SubNavItem[] = [];
 export const insightsItems: SubNavItem[] = [];
 export const industryItems: SubNavItem[] = [];
