@@ -18,33 +18,48 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      minHeight: '100vh',
-      position: 'relative'
-    }}> 
-      {!skipNav && (
-        <header style={{ position: 'sticky', top: 0, zIndex: 50 }}>
-          <Navbar />
-        </header>
-      )}
+    <>
+      {/* Add a background wrapper with the footer's dark color */}
+      <div style={{ 
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        width: '100%',
+        height: '100vh', /* Extend far beyond what's needed */
+        backgroundColor: '#1A2237', /* Match your footer's background color */
+        zIndex: -1 /* Behind everything else */
+      }} />
       
-      <main className={cn("pt-[90px] lg:pt-[110px]", mainClassName)} 
-            style={{ flex: '1 0 auto' }}>
-        {children}
-      </main>
+      <div style={{ 
+        minHeight: '100vh',
+        position: 'relative',
+        paddingBottom: '350px' /* Adjust based on your footer height */
+      }}> 
+        {!skipNav && (
+          <header style={{ position: 'sticky', top: 0, zIndex: 50 }}>
+            <Navbar />
+          </header>
+        )}
+        
+        <main className={cn("pt-[90px] lg:pt-[110px]", mainClassName)}>
+          {children}
+        </main>
+        
+        {process.env.NODE_ENV === 'development' && (
+          <MetaValidator />
+        )}
+      </div>
       
       {!skipFooter && (
-        <div style={{ marginTop: 'auto' }}>
+        <footer style={{ 
+          position: 'absolute', 
+          bottom: 0, 
+          width: '100%'
+        }}>
           <Footer />
-        </div>
+        </footer>
       )}
-      
-      {process.env.NODE_ENV === 'development' && (
-        <MetaValidator />
-      )}
-    </div>
+    </>
   );
 };
 
