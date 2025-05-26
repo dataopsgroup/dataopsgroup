@@ -18,14 +18,15 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50"> {/* Added flex layout back with bg color */}
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}> 
       {!skipNav && (
-        <header className="sticky top-0 z-50">
+        <header>
           <Navbar />
         </header>
       )}
       
-      <main className={cn("pt-[90px] lg:pt-[110px] flex-grow", mainClassName)}>
+      <main className={cn("pt-[90px] lg:pt-[110px]", mainClassName)} 
+            style={{ flexGrow: 1 }}>
         {children}
       </main>
       
