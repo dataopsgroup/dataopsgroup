@@ -19,13 +19,12 @@ body {
   color: #374151;
   background-color: #ffffff;
   min-height: 100%;
-  padding-top: 130px; /* Updated to accommodate larger navigation */
+  /* Removed padding-top as it's handled by SemanticLayout */
 }
 
-@media (max-width: 1024px) {
-  body {
-    padding-top: 90px; /* Smaller padding for mobile */
-  }
+/* Root element takes full height */
+#root {
+  min-height: 100vh;
 }
 
 /* Utility classes */

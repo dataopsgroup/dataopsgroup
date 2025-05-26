@@ -1,10 +1,10 @@
 
-/* Footer - Always at bottom */
+/* Footer - Sticky at bottom via flexbox layout */
 .footer {
   background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
   color: white;
   padding: 3rem 0 2rem 0;
-  margin-top: auto;
+  /* Removed margin-top: auto as flexbox handles positioning */
   width: 100%;
   position: relative;
 }

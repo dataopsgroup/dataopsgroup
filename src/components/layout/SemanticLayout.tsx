@@ -15,6 +15,7 @@ interface SemanticLayoutProps {
 /**
  * SemanticLayout component provides a consistent semantic HTML structure
  * across the website with proper heading hierarchy and semantic tags.
+ * Uses flexbox to ensure footer always stays at bottom of viewport.
  */
 const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   children,
@@ -23,14 +24,14 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div className="page-wrapper">
+    <div className="min-h-screen flex flex-col">
       {!skipNav && (
         <header>
           <Navbar />
         </header>
       )}
       
-      <main className={cn("main-content", mainClassName)}>
+      <main className={cn("flex-1 pt-[90px] lg:pt-[110px]", mainClassName)}>
         {children}
       </main>
       
