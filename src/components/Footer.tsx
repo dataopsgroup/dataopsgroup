@@ -27,8 +27,8 @@ const Footer = () => {
             </p>
             <div className="footer-contact">
               <p className="font-body">Ready to transform your HubSpot?</p>
-              <Link to="/contact" className="footer-cta-button font-body">
-                Get Started
+              <Link to="/get-started" className="footer-cta-button font-body">
+                Book My Assessment
               </Link>
               <div className="footer-social">
                 <a 

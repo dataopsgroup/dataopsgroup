@@ -11,6 +11,7 @@ export const mainRoutes: SiteRoute[] = [
   { url: "/insights", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-23" },
   { url: "/case-studies", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
   { url: "/contact", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
+  { url: "/get-started", priority: "0.9", changefreq: "monthly", lastmod: "2025-05-23" },
   { url: "/book", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-23" },
   { url: "/assessment", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-23" },
   { url: "/hubspot-assessment-results", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-23" },

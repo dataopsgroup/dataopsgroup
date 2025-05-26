@@ -17,7 +17,7 @@ const SitemapGrid: React.FC = () => {
             <SitemapLink to="/about" label="About Us" />
             <SitemapLink to="/insights" label="Insights" />
             <SitemapLink to="/contact" label="Contact" />
-            <SitemapLink to="/get-started" label="Get Started" />
+            <SitemapLink to="/get-started" label="Book My Assessment" />
             <SitemapLink to="/assessment" label="HubSpot Assessment" />
           </SitemapCard>
           

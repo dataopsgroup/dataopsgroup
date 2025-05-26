@@ -20,7 +20,7 @@ const ResultsNextSteps: React.FC<ResultsNextStepsProps> = ({ onDownloadResults }
           asChild
           className="bg-dataops-600 hover:bg-dataops-700 text-white"
         >
-          <a href="/hubspot-assessment">Book My Assessment</a>
+          <a href="/get-started">Book My Assessment</a>
         </Button>
         <Button 
           onClick={onDownloadResults}
