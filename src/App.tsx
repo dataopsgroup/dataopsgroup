@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider, RouteObject } from 'react-router-dom';
 import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
 import CustomCookieBanner from './components/CustomCookieBanner';
+import PerformanceMonitor from './components/performance/PerformanceMonitor';
 import router from './routes';
 import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirect-utils';
 
@@ -11,8 +12,7 @@ import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirec
 const PrivacyModal = lazy(() => import('./components/PrivacyModal'));
 
 function App() {
-  // EMERGENCY FIX: Remove artificial loading state that was causing issues
-  const [isLoading, setIsLoading] = useState(false); // Changed from true to false
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
@@ -31,9 +31,12 @@ function App() {
       return;
     }
     
-    // EMERGENCY FIX: Remove artificial loading timer that was blocking site load
-    // Site should load immediately without delay
-    console.log('App initialized without loading delay');
+    // Optimized loading time for better UX
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800); // Reduced from 1000ms to 800ms
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Error boundary for router
@@ -43,10 +46,42 @@ function App() {
     return <ErrorDisplay message={(error instanceof Error ? error.message : 'An unexpected error occurred')} />;
   };
 
-  // EMERGENCY FIX: Removed artificial loading state check
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+  // Validate routes to ensure no critical routes are missing
+  const validateRoutes = (routerObj: any): boolean => {
+    try {
+      // Ensure critical routes exist
+      const routes = routerObj.routes as RouteObject[];
+      const criticalPaths = ['/', '/faqs', '/contact', '/insights'];
+      
+      const foundPaths = routes.map(route => route.path);
+      const missingPaths = criticalPaths.filter(path => !foundPaths.includes(path));
+      
+      if (missingPaths.length > 0) {
+        console.error('Critical routes missing:', missingPaths);
+      }
+      
+      return missingPaths.length === 0;
+    } catch (e) {
+      console.error('Route validation error:', e);
+      return true; // Continue anyway to avoid blocking the app
+    }
+  };
+
+  // Pre-check routes for validation but don't block rendering
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      window.requestIdleCallback(() => {
+        validateRoutes(router);
+      });
+    } else {
+      // Fallback for browsers that don't support requestIdleCallback
+      setTimeout(() => validateRoutes(router), 300);
+    }
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (error) {
     return <ErrorDisplay message={error.message} />;
@@ -58,6 +93,9 @@ function App() {
       
       {/* Custom Cookie Banner */}
       <CustomCookieBanner />
+      
+      {/* Performance Monitor for Development */}
+      <PerformanceMonitor />
       
       {/* Using Suspense for lazy-loaded privacy modal */}
       {isPrivacyModalOpen && (

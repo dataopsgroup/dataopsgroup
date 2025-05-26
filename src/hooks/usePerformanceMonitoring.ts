@@ -1,5 +1,6 @@
+
 import { useEffect } from 'react';
-import { markBusinessEvent, measureBusinessTiming, trackUserInteraction } from '@/utils/performance/business-metrics';
+import { markBusinessEvent, measureBusinessTiming, trackUserInteraction } from '@/utils/web-vitals';
 
 // Extending PerformanceEntry with properties specific to resource timing
 interface PerformanceResourceTimingEntry extends PerformanceResourceTiming {

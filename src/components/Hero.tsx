@@ -1,32 +1,31 @@
 
 import React from 'react';
-import HeroTextContent from './hero/HeroTextContent';
+import HeroSection from './hero/HeroSection';
+import HeroAuthority from './hero/HeroAuthority';
 
 const Hero = () => {
-  // Track CTA click in analytics
+  // Track CTA click in Google Analytics and HubSpot
   const trackContactCTAClick = () => {
-    // Defer analytics tracking to not block UI
-    setTimeout(() => {
-      if (window.gtag) {
-        window.gtag('event', 'cta_click', {
-          'event_category': 'Engagement',
-          'event_label': 'Hero Assessment CTA'
-        });
-      }
-      if (window._hsq) {
-        window._hsq.push(['trackEvent', {
-          id: 'hero_assessment_cta_click'
-        }]);
-      }
-    }, 0);
+    // Track CTA click in Google Analytics
+    if (window.gtag) {
+      window.gtag('event', 'cta_click', {
+        'event_category': 'Engagement',
+        'event_label': 'Hero Assessment CTA'
+      });
+    }
+    // Track in HubSpot
+    if (window._hsq) {
+      window._hsq.push(['trackEvent', {
+        id: 'hero_assessment_cta_click'
+      }]);
+    }
   };
 
   return (
-    <div className="hero-section">
-      <div className="hero-container">
-        <HeroTextContent onCTAClick={trackContactCTAClick} />
-      </div>
-    </div>
+    <>
+      <HeroSection onCTAClick={trackContactCTAClick} />
+      <HeroAuthority />
+    </>
   );
 };
 

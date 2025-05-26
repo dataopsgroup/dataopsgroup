@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Services from '@/components/Services';
-import Hero from '@/components/Hero'; // EMERGENCY FIX: Direct import instead of lazy loading
+import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
@@ -14,13 +14,14 @@ import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
+import { applyCriticalCSS, preloadCriticalFonts } from '@/lib/critical-css';
 
 const Index = () => {
-  // EMERGENCY FIX: Removed critical CSS and font preloading that was causing issues
-  // React.useEffect(() => {
-  //   applyCriticalCSS('/');
-  //   preloadCriticalFonts();
-  // }, []);
+  React.useEffect(() => {
+    // Apply critical CSS and preload fonts for the homepage
+    applyCriticalCSS('/');
+    preloadCriticalFonts();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -46,7 +47,6 @@ const Index = () => {
         <div className="px-[5%] mt-6">
           <BreadcrumbNavigation items={[{ name: "Home", url: "/", current: true }]} />
         </div>
-        {/* EMERGENCY FIX: Direct Hero component usage */}
         <Hero />
         <div className="px-[5%]">
           <Services />

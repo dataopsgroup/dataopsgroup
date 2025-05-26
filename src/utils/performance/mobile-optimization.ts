@@ -1,10 +1,7 @@
 
 /**
- * Enhanced mobile optimization for 90+ PSI score
+ * Mobile-specific performance optimizations - Simplified for compatibility
  */
-
-import { optimizeMobileScripts, purgeUnusedCSS, initUltraMobileOptimizations } from '../mobile-performance-optimizer';
-import { initMobileCSSOptimizations } from '../critical-css-mobile';
 
 // Mobile device detection
 export const isMobileDevice = (): boolean => {
@@ -12,79 +9,117 @@ export const isMobileDevice = (): boolean => {
   return window.innerWidth < 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 };
 
-// Ultra-aggressive mobile initialization
-export const initMobileOptimizations = () => {
-  if (!isMobileDevice()) return;
-  
+// Tablet device detection
+export const isTabletDevice = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth >= 768 && window.innerWidth < 1024;
+};
+
+// Simplified device-specific loading
+export const loadDeviceSpecificFeatures = () => {
+  if (typeof window === 'undefined') return;
+
   try {
-    // Phase 1: Critical CSS optimization
-    initMobileCSSOptimizations();
-    
-    // Phase 2: Script optimization
-    initUltraMobileOptimizations();
-    
-    // Phase 3: Remove unused resources
-    purgeUnusedCSS();
-    
-    // Phase 4: Disable all tracking initially
-    disableTrackingOnMobile();
-    
-    // Phase 5: Optimize images for mobile
-    optimizeMobileImages();
-    
-  } catch (error) {
-    console.error('Mobile optimization failed:', error);
-  }
-};
-
-// Disable all tracking on mobile initially
-const disableTrackingOnMobile = () => {
-  // Clear analytics
-  if (window.gtag) {
-    window.gtag = () => {};
-  }
-  
-  // Clear HubSpot
-  if (window._hsq) {
-    window._hsq = [];
-  }
-  
-  // Remove analytics scripts
-  document.querySelectorAll('script[src*="googletagmanager"], script[src*="analytics"]').forEach(script => {
-    script.remove();
-  });
-};
-
-// Optimize images specifically for mobile
-const optimizeMobileImages = () => {
-  // Add loading=lazy to all images except hero
-  document.querySelectorAll('img:not([data-hero])').forEach(img => {
-    if (img instanceof HTMLImageElement) {
-      img.loading = 'lazy';
-      img.decoding = 'async';
+    if (isMobileDevice()) {
+      loadMobileEssentials();
+    } else if (isTabletDevice()) {
+      loadTabletFeatures();
+    } else {
+      loadDesktopFeatures();
     }
-  });
-  
-  // Ensure hero image has proper attributes
-  const heroImg = document.querySelector('img[data-hero]') as HTMLImageElement;
-  if (heroImg) {
-    heroImg.loading = 'eager';
-    heroImg.decoding = 'sync';
-    heroImg.fetchPriority = 'high';
+  } catch (error) {
+    console.error('Device-specific feature loading failed:', error);
   }
 };
 
-// Load only essential features after significant delay
-export const loadMobileEssentials = () => {
-  setTimeout(() => {
-    // Re-enable minimal analytics after 10 seconds
+// Simplified mobile features
+const loadMobileEssentials = () => {
+  try {
+    // Basic mobile analytics
     if (window.gtag) {
       window.gtag('config', 'AW-16996265146', {
         'send_page_view': false,
         'cookie_flags': 'samesite=none;secure',
-        'anonymize_ip': true,
-        'client_storage': 'none'
+        'anonymize_ip': true
       });
     }
-  }, 10000);
+    
+    // Mark completion
+    if (window.performance?.mark) {
+      window.performance.mark('mobile-optimization-complete');
+    }
+    
+  } catch (error) {
+    console.error('Mobile essentials loading failed:', error);
+  }
+};
+
+// Tablet features
+const loadTabletFeatures = () => {
+  try {
+    setTimeout(() => {
+      if (window.gtag) {
+        window.gtag('config', 'AW-16996265146', {
+          'send_page_view': false,
+          'cookie_flags': 'samesite=none;secure'
+        });
+      }
+    }, 1500);
+  } catch (error) {
+    console.error('Tablet features loading failed:', error);
+  }
+};
+
+// Desktop features
+const loadDesktopFeatures = () => {
+  try {
+    // Desktop analytics
+    setTimeout(() => {
+      if (window.gtag) {
+        window.gtag('config', 'AW-16996265146', {
+          'send_page_view': false,
+          'cookie_flags': 'samesite=none;secure'
+        });
+      }
+    }, 1000);
+    
+    // Chatbot for desktop only
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => {
+        loadChatbotForDesktop();
+      }, { timeout: 3000 });
+    }
+    
+  } catch (error) {
+    console.error('Desktop features loading failed:', error);
+  }
+};
+
+// Desktop chatbot loading
+const loadChatbotForDesktop = () => {
+  try {
+    if (!document.querySelector('#chatbot-script')) {
+      const script = document.createElement('script');
+      script.id = 'chatbot-script';
+      script.src = 'https://cdn.botpress.cloud/webchat/v1/inject.js';
+      script.async = true;
+      script.setAttribute('fetchpriority', 'low');
+      document.body.appendChild(script);
+    }
+  } catch (error) {
+    console.error('Chatbot loading failed:', error);
+  }
+};
+
+// Initialize mobile optimizations
+export const initMobileOptimizations = () => {
+  try {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', loadDeviceSpecificFeatures);
+    } else {
+      loadDeviceSpecificFeatures();
+    }
+  } catch (error) {
+    console.error('Mobile optimization initialization failed:', error);
+  }
 };
