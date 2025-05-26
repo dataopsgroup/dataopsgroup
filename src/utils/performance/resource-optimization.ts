@@ -40,7 +40,7 @@ export const preloadCriticalResources = () => {
 
   const criticalResources = [
     { 
-      href: '/lovable-uploads/afb1ced2-4687-47d3-b600-945954edb0fc.png', 
+      href: '/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png', 
       as: 'image',
       fetchpriority: 'high'
     },
