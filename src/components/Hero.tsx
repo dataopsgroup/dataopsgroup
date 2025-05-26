@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -39,9 +40,8 @@ const Hero = () => {
             
             {/* Mark as LCP element for monitoring */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
-              Fix Your <span className="text-[#403E43]">HubSpot</span> <span className="text-red-500">Headache</span> <br />
-              Eliminate Operational <span className="text-yellow-500">Friction</span> <br />
-              Generate More <span className="text-green-500">Revenue</span> and <span className="text-green-500">Net Profit</span>
+              <span className="text-[#403E43]">HubSpot</span> Not Delivering <span className="text-red-500">ROI</span>? <br />
+              We Fix That.
             </h1>
             <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
               It's not HubSpot that's failing you—it's your disorganized data and setup. We convert chaotic, scattered HubSpot portals into organized revenue engines that turn your existing contacts into paying customers.
