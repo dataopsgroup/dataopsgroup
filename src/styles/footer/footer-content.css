@@ -1,0 +1,67 @@
+
+/* Footer Content - Company info, columns, and text styling */
+
+/* Company info section */
+.footer-company {
+  max-width: 350px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.footer-logo-image {
+  max-width: 180px;
+  height: auto;
+}
+
+.footer-tagline {
+  color: #a0aec0;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.footer-contact {
+  color: #cbd5e0;
+  font-size: 0.9rem;
+}
+
+.footer-contact p {
+  margin-bottom: 1rem;
+}
+
+/* Footer columns */
+.footer-column h4 {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f4a261;
+  display: inline-block;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column li {
+  margin-bottom: 0.75rem;
+}
+
+/* Footer text elements */
+.footer-copyright {
+  color: #718096;
+  font-size: 0.85rem;
+}
+
+.footer-ai-tools p {
+  font-size: 0.75rem;
+  color: #718096;
+  margin: 0;
+}

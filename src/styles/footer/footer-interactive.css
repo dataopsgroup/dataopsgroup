@@ -1,0 +1,87 @@
+
+/* Footer Interactive Elements - Buttons, links, and hover states */
+
+/* Footer CTA Button */
+.footer-cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(244, 162, 97, 0.3);
+}
+
+.footer-cta-button:hover {
+  background: linear-gradient(135deg, #e76f51 0%, #f4a261 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.4);
+  text-decoration: none;
+  color: white;
+}
+
+/* Footer Social Section */
+.footer-social {
+  margin-top: 1rem;
+}
+
+.footer-linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(244, 162, 97, 0.1);
+  border: 1px solid rgba(244, 162, 97, 0.3);
+  border-radius: 8px;
+  color: #a0aec0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footer-linkedin-link:hover {
+  background: rgba(244, 162, 97, 0.2);
+  border-color: #f4a261;
+  color: #f4a261;
+  transform: translateY(-1px);
+}
+
+.footer-linkedin-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Footer links */
+.footer-column a {
+  color: #a0aec0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #f4a261;
+}
+
+.footer-legal a {
+  color: #718096;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-legal a:hover {
+  color: #f4a261;
+}
+
+.footer-ai-tools a {
+  color: #a0aec0;
+  text-decoration: none;
+}
+
+.footer-ai-tools a:hover {
+  color: #f4a261;
+}
