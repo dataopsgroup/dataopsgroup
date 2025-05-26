@@ -35,7 +35,7 @@ export default defineConfig(({ mode }) => ({
           'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
           'icons': ['lucide-react'],
           'utils': ['clsx', 'tailwind-merge'],
-          'performance': ['src/utils/performance', 'src/utils/web-vitals']
+          'performance': ['src/utils/web-vitals', 'src/utils/performance-monitoring']
         },
         // Optimized file naming with better cache control
         chunkFileNames: (chunkInfo) => {
@@ -95,8 +95,8 @@ export default defineConfig(({ mode }) => ({
     ],
     exclude: [
       // Exclude performance monitoring from pre-bundling
-      'src/utils/performance',
-      'src/utils/web-vitals'
+      'src/utils/web-vitals',
+      'src/utils/performance-monitoring'
     ]
   },
   // Enhanced esbuild configuration
