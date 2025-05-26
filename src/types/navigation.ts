@@ -2,16 +2,16 @@
 import { ReactNode } from 'react';
 
 export interface SubNavItem {
-  name: string;
+  title: string;
   href?: string;
-  icon?: string; // Changed from ReactNode to string
-  isDropdown?: boolean;
-  items?: Array<SubNavItem>;
+  icon?: string;
+  description?: string;
+  badge?: string;
+  children?: Array<SubNavItem>;
 }
 
 export interface NavItem {
-  name: string;
+  title: string;
   href?: string;
-  isDropdown?: boolean;
-  items?: Array<SubNavItem>;
+  children?: Array<SubNavItem>;
 }

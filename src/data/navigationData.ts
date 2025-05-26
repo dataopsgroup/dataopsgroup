@@ -1,70 +1,107 @@
 
 import { NavItem, SubNavItem } from '@/types/navigation';
 
-// Services dropdown items - keeping for potential future use
-export const navServices: SubNavItem[] = [
-  { 
-    name: 'Analytics & BI', 
-    href: '/services/analytics-bi'
-  },
-  { 
-    name: 'DataOps Implementation', 
-    href: '/services/dataops-implementation'
-  },
-  { 
-    name: 'HubSpot Training & Implementation', 
-    href: '/services/team-training'
-  },
-  { 
-    name: 'Marketing Operations & RevOps', 
-    href: '/services/marketing-operations-revops'
-  },
-];
-
-// Guides dropdown items 
-export const guidesItems: SubNavItem[] = [
-  { 
-    name: 'How to Hire a HubSpot Expert in 2025', 
-    href: '/how-to-hire-a-hubspot-expert-in-2025' 
-  }
-];
-
-// Insights dropdown items
-export const insightsItems: SubNavItem[] = [
-  { name: 'Blog', href: '/insights' },
-  { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Assessment', href: '/assessment' },
-  { name: 'Guides', isDropdown: true, items: guidesItems },
-  { 
-    name: 'Buy the Book', 
-    href: '/book', 
-    icon: 'book' // Using a string identifier instead of JSX
-  }
-];
-
-// Industry categories - keeping the definition for potential future use
-export const industryItems: SubNavItem[] = [
-  { name: 'Finance & Banking', href: '/case-studies' },
-  { name: 'Healthcare', href: '/case-studies' },
-  { name: 'Manufacturing', href: '/case-studies' },
-  { name: 'Retail & E-commerce', href: '/case-studies' },
-  { name: 'Technology', href: '/case-studies' },
-  { name: 'Insurance', href: '/case-studies' },
-  { name: 'Logistics', href: '/case-studies' },
-  { name: 'Energy & Utilities', href: '/case-studies' },
-];
-
-// Main navigation items - Services is now a simple link, not a dropdown
+// Main navigation items with mega-menu structure
 export const mainNavItems: NavItem[] = [
-  { 
-    name: 'Services', 
-    href: '/services'
+  {
+    title: "Solutions",
+    href: "#",
+    children: [
+      {
+        title: "HubSpot Rescue",
+        icon: "LifeBuoy",
+        description: "Fix broken implementations and optimize your existing HubSpot setup",
+        href: "/solutions/hubspot-rescue",
+      },
+      {
+        title: "HubSpot Implementation",
+        icon: "Rocket",
+        description: "Start your HubSpot journey right with expert-led implementation",
+        href: "/solutions/hubspot-implementation",
+      },
+      {
+        title: "HubSpot Integration",
+        icon: "Connection",
+        description: "Connect your tech stack for seamless data flow and automation",
+        href: "/solutions/hubspot-integration",
+      },
+      {
+        title: "HubSpot Strategy",
+        icon: "LineChart",
+        description: "Align your HubSpot setup with your revenue and growth goals",
+        href: "/solutions/hubspot-strategy",
+      }
+    ]
   },
-  { name: 'About', href: '/about' },
-  { name: 'Approach', href: '/approach' },
-  { 
-    name: 'Insights', 
-    isDropdown: true,
-    items: insightsItems
+  {
+    title: "Services",
+    href: "#",
+    children: [
+      {
+        title: "CRM & Pipeline Management",
+        icon: "FolderKanban",
+        description: "Optimize your sales process with structured pipelines and automation",
+        href: "/services/crm-pipeline-management",
+      },
+      {
+        title: "Workflow Automation",
+        icon: "Workflow",
+        description: "Automate repetitive tasks and free your team to focus on growth",
+        href: "/services/workflow-automation",
+      },
+      {
+        title: "Data Migration & Integration",
+        icon: "Database",
+        description: "Seamlessly transfer data and connect systems for unified operations",
+        href: "/services/data-migration-integration",
+      },
+      {
+        title: "Training & Support",
+        icon: "GraduationCap", 
+        description: "Empower your team with expert knowledge and ongoing assistance",
+        href: "/services/training-support",
+      }
+    ]
+  },
+  {
+    title: "Resources",
+    href: "#",
+    children: [
+      {
+        title: "Case Studies",
+        icon: "FileText",
+        description: "Real-world examples of HubSpot transformations and results",
+        href: "/resources/case-studies",
+      },
+      {
+        title: "ROI Calculator",
+        icon: "Calculator",
+        description: "Estimate your potential return on HubSpot investment",
+        href: "/resources/roi-calculator",
+        badge: "NEW"
+      },
+      {
+        title: "Blog",
+        icon: "Newspaper",
+        description: "Expert insights, strategies and tips for HubSpot success",
+        href: "/blog",
+      },
+      {
+        title: "HubSpot Resources",
+        icon: "BookOpen",
+        description: "Guides, templates and tools to maximize your HubSpot experience",
+        href: "/resources/hubspot-resources",
+      }
+    ]
+  },
+  {
+    title: "About",
+    href: "/about",
   },
 ];
+
+// Legacy exports for backward compatibility (can be removed later)
+export const navServices: SubNavItem[] = [];
+export const guidesItems: SubNavItem[] = [];
+export const insightsItems: SubNavItem[] = [];
+export const industryItems: SubNavItem[] = [];

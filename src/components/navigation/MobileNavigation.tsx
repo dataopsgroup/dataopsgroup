@@ -2,8 +2,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { NavItem, SubNavItem } from '@/types/navigation';
-import { Book, ChevronRight } from 'lucide-react';
+import { 
+  ChevronRight,
+  LifeBuoy, 
+  Rocket, 
+  Connection, 
+  LineChart, 
+  FolderKanban, 
+  Workflow, 
+  Database, 
+  GraduationCap, 
+  FileText, 
+  Calculator, 
+  Newspaper, 
+  BookOpen 
+} from 'lucide-react';
 
 interface MobileNavigationProps {
   isOpen: boolean;
@@ -16,10 +31,23 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
 
   // Function to render the appropriate icon based on string identifier
   const renderIcon = (iconName?: string) => {
-    if (iconName === 'book') {
-      return <Book className="h-3 w-3 mr-1" aria-hidden="true" />;
+    const iconProps = { className: "h-4 w-4 mr-2 text-dataops-500", "aria-hidden": true };
+    
+    switch (iconName) {
+      case 'LifeBuoy': return <LifeBuoy {...iconProps} />;
+      case 'Rocket': return <Rocket {...iconProps} />;
+      case 'Connection': return <Connection {...iconProps} />;
+      case 'LineChart': return <LineChart {...iconProps} />;
+      case 'FolderKanban': return <FolderKanban {...iconProps} />;
+      case 'Workflow': return <Workflow {...iconProps} />;
+      case 'Database': return <Database {...iconProps} />;
+      case 'GraduationCap': return <GraduationCap {...iconProps} />;
+      case 'FileText': return <FileText {...iconProps} />;
+      case 'Calculator': return <Calculator {...iconProps} />;
+      case 'Newspaper': return <Newspaper {...iconProps} />;
+      case 'BookOpen': return <BookOpen {...iconProps} />;
+      default: return null;
     }
-    return null;
   };
 
   // Recursive function to render nested menu items
@@ -29,25 +57,33 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
     return (
       <ul className={`pl-${level * 4} flex flex-col space-y-2`}>
         {items.map((subItem) => (
-          <li key={subItem.name}>
-            {subItem.isDropdown && subItem.items ? (
-              <div className="flex flex-col">
-                <div className="py-1 font-medium text-dataops-900 flex items-center font-body">
-                  {subItem.name}
-                  <ChevronRight className="h-4 w-4 ml-1" />
-                </div>
-                {renderSubMenu(subItem.items, level + 1)}
-              </div>
-            ) : (
-              <Link
-                to={subItem.href || "/"}
-                onClick={() => setIsOpen(false)}
-                className="text-dataops-900 hover:text-dataops-600 py-1 flex items-center font-body"
-              >
+          <li key={subItem.title}>
+            <Link
+              to={subItem.href || "/"}
+              onClick={() => setIsOpen(false)}
+              className="text-dataops-900 hover:text-dataops-600 py-2 flex items-start font-body"
+            >
+              <div className="flex items-start w-full">
                 {subItem.icon && renderIcon(subItem.icon)}
-                {subItem.name}
-              </Link>
-            )}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-medium">
+                      {subItem.title}
+                    </span>
+                    {subItem.badge && (
+                      <Badge variant="success" className="text-xs">
+                        {subItem.badge}
+                      </Badge>
+                    )}
+                  </div>
+                  {subItem.description && (
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      {subItem.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>
@@ -63,17 +99,14 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
       <div className="container mx-auto py-4 flex flex-col space-y-4">
         <ul className="flex flex-col space-y-4">
           {navItems.map((item) => (
-            <li key={item.name}>
-              {item.isDropdown ? (
+            <li key={item.title}>
+              {item.children ? (
                 <div className="flex flex-col px-4">
-                  <Link
-                    to={item.href || "/"}
-                    onClick={() => setIsOpen(false)}
-                    className="py-2 font-medium text-dataops-900 hover:text-dataops-600 flex items-center font-body"
-                  >
-                    {item.name}
-                  </Link>
-                  {renderSubMenu(item.items)}
+                  <div className="py-2 font-medium text-dataops-900 flex items-center font-body">
+                    {item.title}
+                    <ChevronRight className="h-4 w-4 ml-1" />
+                  </div>
+                  {renderSubMenu(item.children)}
                 </div>
               ) : (
                 <Link
@@ -81,7 +114,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
                   onClick={() => setIsOpen(false)}
                   className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4 flex items-center font-body"
                 >
-                  {item.name}
+                  {item.title}
                 </Link>
               )}
             </li>
