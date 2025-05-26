@@ -1,9 +1,9 @@
-
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 
 // Basic version setup
 if (typeof window !== 'undefined') {
@@ -18,6 +18,7 @@ const renderApp = () => {
     root.render(
       <HelmetProvider>
         <App />
+        <Analytics />
       </HelmetProvider>
     );
   }
