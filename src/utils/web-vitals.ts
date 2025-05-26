@@ -18,8 +18,11 @@ export const initWebVitals = () => {
       try {
         const observer = new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
-            if (entry.entryType === 'layout-shift' && !(entry as any).hadRecentInput) {
-              console.debug('Layout shift detected:', entry.value);
+            if (entry.entryType === 'layout-shift') {
+              const layoutShiftEntry = entry as any; // Type assertion for layout shift specific properties
+              if (!layoutShiftEntry.hadRecentInput) {
+                console.debug('Layout shift detected:', layoutShiftEntry.value);
+              }
             }
           }
         });
