@@ -21,15 +21,6 @@ const Hero = () => {
     }
   };
 
-  // Track secondary CTA click
-  const trackServicesCTAClick = () => {
-    if (window.gtag) {
-      window.gtag('event', 'cta_click', {
-        'event_category': 'Engagement',
-        'event_label': 'Hero Services CTA'
-      });
-    }
-  };
   return <>
       <div className="pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50">
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -63,9 +54,6 @@ const Hero = () => {
                   <p>We'll audit your HubSpot setup and show you exactly what's wrong - completely free. No obligation, no sales pitch, just honest feedback about your ROI potential.</p>
                 </div>
               </div>
-              <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" asChild onClick={trackServicesCTAClick}>
-                <Link to="/services">View Our Services</Link>
-              </Button>
             </div>
           </div>
 
