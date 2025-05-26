@@ -4,11 +4,15 @@
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  /* Removed conflicting flex rules - handled by SemanticLayout */
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Removed .page-container and .content-wrapper as they're no longer needed */
+/* Main content area that sits between header and footer */
+.main-content {
+  flex: 1 0 auto; /* This is key: allows the main content to grow and shrink but not shrink beyond its content size */
+  /* It means: flex-grow: 1; flex-shrink: 0; flex-basis: auto; */
+}
 
 /* Keep the rest of your existing styles */
 .logo {

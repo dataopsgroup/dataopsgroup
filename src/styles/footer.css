@@ -4,9 +4,9 @@
   background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
   color: white;
   padding: 3rem 0 2rem 0;
-  /* Removed margin-top: auto as flexbox handles positioning */
   width: 100%;
   position: relative;
+  flex-shrink: 0; /* Ensures the footer doesn't shrink if space is limited */
 }
 
 /* Footer container */

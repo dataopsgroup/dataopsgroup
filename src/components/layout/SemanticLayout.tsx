@@ -24,14 +24,14 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       {!skipNav && (
         <header>
           <Navbar />
         </header>
       )}
       
-      <main className={cn("flex-1 pt-[90px] lg:pt-[110px]", mainClassName)}>
+      <main className={cn("main-content pt-[90px] lg:pt-[110px]", mainClassName)}>
         {children}
       </main>
       
@@ -43,7 +43,7 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
       {process.env.NODE_ENV === 'development' && (
         <MetaValidator />
       )}
-    </div>
+    </>
   );
 };
 
