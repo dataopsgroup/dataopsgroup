@@ -23,7 +23,7 @@ const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
           HubSpot Not Delivering ROI?<br />
           <span className="hero-emphasis">We Fix That.</span>
         </h1>
-        <p className="hero-description">
+        <p className="hero-description text-white">
           Stop losing money on broken workflows, messy data, and disconnected teams. 
           We rescue HubSpot implementations and turn them into revenue-generating machines.
         </p>
@@ -31,10 +31,10 @@ const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
       
       <div className="space-y-6">
         <div className="space-y-2">
-          <h2 className="text-xl font-semibold text-gray-800">
+          <h2 className="text-xl font-semibold text-white">
             Discover What's Costing You Deals
           </h2>
-          <p className="text-gray-600">
+          <p className="text-white">
             Free 30-minute HubSpot assessment reveals hidden revenue leaks
           </p>
         </div>
