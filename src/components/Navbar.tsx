@@ -37,13 +37,13 @@ const Navbar = () => {
   
   return (
     <header className={cn(
-      "fixed top-0 left-0 w-full z-40 transition-all duration-300",
+      "header fixed top-0 left-0 w-full z-40 transition-all duration-300",
       scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
     )}>
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between">
+        <div className="nav-wrapper flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="logo flex items-center">
             <img 
               src="/lovable-uploads/b8e7f5a3-a944-47ec-876d-6369eb4c4b6c.png" 
               alt="DataOps Group" 
@@ -56,12 +56,12 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <DesktopNavigation navItems={mainNavItems} />
           
-          {/* Right side buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="outline" asChild>
+          {/* Call to Action - Desktop */}
+          <div className="nav-cta hidden lg:flex items-center space-x-4">
+            <Button variant="outline" asChild className="btn btn-outline">
               <Link to="/contact">Contact</Link>
             </Button>
-            <Button asChild>
+            <Button asChild className="btn btn-primary">
               <Link to="/assessment">Book Free Assessment</Link>
             </Button>
           </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
               variant="ghost" 
               size="icon" 
               onClick={() => setIsOpen(!isOpen)} 
-              className="mobile-menu-button" 
+              className="mobile-menu-btn" 
               aria-expanded={isOpen} 
               aria-controls="mobile-menu" 
               aria-label={isOpen ? "Close menu" : "Open menu"}

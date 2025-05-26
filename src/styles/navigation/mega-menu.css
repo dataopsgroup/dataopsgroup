@@ -8,44 +8,112 @@
   padding: 0.5rem;
 }
 
-.mega-menu-item {
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 300px;
+  min-height: 280px;
+}
+
+.dropdown-section {
+  padding: 1rem;
+}
+
+.dropdown-item {
   display: flex;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 0.75rem;
   border-radius: 0.5rem;
   transition: background-color 0.2s ease;
   text-decoration: none;
   color: inherit;
+  margin-bottom: 1rem;
 }
 
-.mega-menu-item:hover {
+.dropdown-item:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-item:hover {
   background-color: #f9fafb;
 }
 
-.mega-menu-icon {
+.item-icon {
   flex-shrink: 0;
   margin-right: 0.75rem;
   margin-top: 0.125rem;
 }
 
-.mega-menu-content-wrapper {
+.item-content {
   flex: 1;
   min-width: 0;
 }
 
-.mega-menu-title {
+.item-title {
   font-weight: 600;
   color: #111827;
   margin-bottom: 0.25rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.875rem;
 }
 
-.mega-menu-description {
+.item-description {
+  font-size: 0.75rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* Featured section styling */
+.dropdown-feature {
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid #e5e7eb;
+}
+
+.feature-tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background-color: #dcfce7;
+  color: #166534;
+  font-size: 0.625rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-bottom: 0.75rem;
+}
+
+.feature-title {
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.feature-desc {
   font-size: 0.875rem;
   color: #6b7280;
   line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.feature-link {
+  color: #1a8aeb;
+  font-weight: 500;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.feature-link:hover {
+  color: #0d6ac7;
 }
 
 /* Mobile mega menu adaptations */
@@ -76,4 +144,20 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.025em;
+}
+
+/* Dropdown animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu-content[data-state="open"] {
+  animation: slideDown 0.2s ease-out;
 }
