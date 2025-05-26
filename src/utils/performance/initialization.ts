@@ -1,6 +1,6 @@
+
 /**
- * Performance optimization initialization - Updated with mobile-first approach
- * Enhanced for PSI mobile requirements
+ * Performance optimization initialization - Simplified for better compatibility
  */
 
 import { 
@@ -12,82 +12,106 @@ import { optimizeThirdPartyScripts, removeModernBrowserPolyfills } from './scrip
 import { preventLayoutShift } from './layout-optimization';
 import { optimizeFontLoading } from './font-optimization';
 import { monitorPerformance } from './monitoring';
-import { initMobileOptimizations, isMobileDevice } from './mobile-optimization';
-import { initMobileCSSOptimizations } from './mobile-css-optimization';
 
-// Initialize all performance optimizations with aggressive mobile-first approach
+// Simplified initialization with better error handling
 export const initializePerformanceOptimizations = () => {
-  // Detect device type early
-  const isMobile = isMobileDevice();
-  
-  if (isMobile) {
-    // Mobile-specific initialization order for optimal LCP
-    initializeMobileOptimizations();
-  } else {
-    // Desktop/tablet initialization
-    initializeDesktopOptimizations();
+  try {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile) {
+      initializeMobileOptimizations();
+    } else {
+      initializeDesktopOptimizations();
+    }
+  } catch (error) {
+    console.error('Performance optimization initialization failed:', error);
   }
 };
 
-// Mobile-specific initialization for PSI optimization
+// Mobile initialization
 const initializeMobileOptimizations = () => {
-  // Phase 1: Critical resource optimization (immediate)
-  optimizeResourcePriorities();
-  
-  // Phase 2: Remove unnecessary code (immediate)
-  removeModernBrowserPolyfills();
-  removeUnusedCSS();
-  
-  // Phase 3: CSS optimization (immediate)
-  initMobileCSSOptimizations();
-  
-  // Phase 4: Layout optimization (immediate)
-  preventLayoutShift();
-  
-  // Phase 5: Font optimization (immediate)
-  optimizeFontLoading();
-  
-  // Phase 6: Script optimization (deferred)
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      optimizeThirdPartyScripts();
-    });
-  } else {
-    optimizeThirdPartyScripts();
-  }
-  
-  // Phase 7: Mobile-specific optimizations (deferred)
-  initMobileOptimizations();
-  
-  // Phase 8: Performance monitoring (low priority)
-  setTimeout(() => {
-    monitorPerformance();
-  }, 3000);
-  
-  // Mark mobile optimization complete
-  if (window.performance?.mark) {
-    window.performance.mark('mobile-perf-optimization-complete');
+  try {
+    // Phase 1: Critical optimizations
+    optimizeResourcePriorities();
+    removeModernBrowserPolyfills();
+    removeUnusedCSS();
+    
+    // Phase 2: Layout and fonts
+    preventLayoutShift();
+    optimizeFontLoading();
+    
+    // Phase 3: Deferred optimizations
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        try {
+          optimizeThirdPartyScripts();
+        } catch (error) {
+          console.warn('Script optimization failed:', error);
+        }
+      });
+    } else {
+      setTimeout(() => {
+        try {
+          optimizeThirdPartyScripts();
+        } catch (error) {
+          console.warn('Script optimization failed:', error);
+        }
+      }, 100);
+    }
+    
+    // Phase 4: Monitoring
+    setTimeout(() => {
+      try {
+        monitorPerformance();
+      } catch (error) {
+        console.warn('Performance monitoring failed:', error);
+      }
+    }, 3000);
+    
+  } catch (error) {
+    console.error('Mobile optimization failed:', error);
   }
 };
 
-// Desktop initialization (unchanged)
+// Desktop initialization
 const initializeDesktopOptimizations = () => {
-  // Run immediately for critical optimizations
-  optimizeResourcePriorities();
-  removeUnusedCSS();
-  preloadCriticalResources();
-  preventLayoutShift();
-  optimizeFontLoading();
+  try {
+    // Immediate optimizations
+    optimizeResourcePriorities();
+    removeUnusedCSS();
+    preloadCriticalResources();
+    preventLayoutShift();
+    optimizeFontLoading();
 
-  // Run after DOM is ready for script optimizations
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      optimizeThirdPartyScripts();
-    });
-  } else {
-    optimizeThirdPartyScripts();
+    // Deferred optimizations
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        try {
+          optimizeThirdPartyScripts();
+        } catch (error) {
+          console.warn('Script optimization failed:', error);
+        }
+      });
+    } else {
+      setTimeout(() => {
+        try {
+          optimizeThirdPartyScripts();
+        } catch (error) {
+          console.warn('Script optimization failed:', error);
+        }
+      }, 100);
+    }
+    
+    // Monitoring
+    setTimeout(() => {
+      try {
+        monitorPerformance();
+      } catch (error) {
+        console.warn('Performance monitoring failed:', error);
+      }
+    }, 1000);
+    
+  } catch (error) {
+    console.error('Desktop optimization failed:', error);
   }
-  
-  // Monitor performance and log metrics
-  monitorPerformance();
 };
