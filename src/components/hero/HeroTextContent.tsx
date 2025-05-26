@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 interface HeroTextContentProps {
   onCTAClick: () => void;
@@ -44,10 +43,14 @@ const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
           
           <div className="space-y-3">
             <div>
-              <Link to="/get-started" onClick={onCTAClick} className="inline-flex items-center bg-white text-purple-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors md:bg-blue-600 md:text-white md:hover:bg-blue-700 font-body">
+              <a 
+                href="https://dataopsgroup.com/get-started" 
+                onClick={onCTAClick} 
+                className="inline-flex items-center bg-white text-purple-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors md:bg-blue-600 md:text-white md:hover:bg-blue-700 font-body"
+              >
                 Book My Assessment
                 <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
+              </a>
             </div>
             
             {/* Risk assessment section with font classes */}
