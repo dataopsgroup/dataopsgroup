@@ -58,33 +58,32 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
   return (
     <>
       {navItems.map((item) => (
-        <div key={item.name}>
-          {item.isDropdown ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Link 
-                  to={item.href || "/"}
-                  className="dropdown-trigger flex items-center"
-                  aria-haspopup="true" 
-                  aria-expanded="false"
-                >
-                  {item.name}
-                  <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
-                </Link>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 bg-white">
-                {item.items?.map(renderSubMenuItem)}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Link 
-              to={item.href || "/"}
-              className="nav-item"
-            >
-              {item.name}
-            </Link>
-          )}
-        </div>
+        item.isDropdown ? (
+          <DropdownMenu key={item.name}>
+            <DropdownMenuTrigger asChild>
+              <Link 
+                to={item.href || "/"}
+                className="nav-item nav-dropdown-trigger flex items-center"
+                aria-haspopup="true" 
+                aria-expanded="false"
+              >
+                {item.name}
+                <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
+              </Link>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-white">
+              {item.items?.map(renderSubMenuItem)}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <Link 
+            key={item.name}
+            to={item.href || "/"}
+            className="nav-item"
+          >
+            {item.name}
+          </Link>
+        )
       ))}
       <Link to="/contact" className="nav-cta">
         Get Started
