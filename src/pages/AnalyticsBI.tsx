@@ -18,6 +18,11 @@ const AnalyticsBIPage = () => {
           title="Analytics & BI Services"
           description="Transform your raw data into actionable insights with our advanced analytics and visualization services that drive smarter business decisions."
         >
+          // Add this after the ServicesPageWrapper opening tag
+<div style={{ border: '2px solid red', padding: '20px', margin: '20px 0' }}>
+  <h2 style={{ color: 'red' }}>TEST CONTENT - CAN YOU SEE THIS?</h2>
+  <p>This is a test paragraph to check visibility issues.</p>
+</div>
           {/* Comment out the entire ServiceSection block 
           <ServiceSection
             title="Data Visualization & Dashboarding"
