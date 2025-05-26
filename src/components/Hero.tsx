@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -37,9 +36,7 @@ const Hero = () => {
                 We Implement the HubSpot Systems Your Investors Expect
               </h1>
               <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                Stop disappointing your PE firm with fragmented sales operations. We rapidly deploy 
-                scalable HubSpot systems that deliver the growth metrics and operational efficiency 
-                your investors demand - across entire portfolios.
+                PE Operational Excellence Without the Operational Headache. We implement scalable HubSpot systems across PE portfolios - so Operating Partners can focus on strategy and portfolio companies can focus on growth.
               </p>
             </div>
             
