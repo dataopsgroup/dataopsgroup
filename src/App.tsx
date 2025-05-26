@@ -4,6 +4,7 @@ import { RouterProvider, RouteObject } from 'react-router-dom';
 import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
 import CustomCookieBanner from './components/CustomCookieBanner';
+import PerformanceMonitor from './components/performance/PerformanceMonitor';
 import router from './routes';
 import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirect-utils';
 
@@ -30,10 +31,10 @@ function App() {
       return;
     }
     
-    // Simulate loading time
+    // Optimized loading time for better UX
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // Reduced from 1500ms to 1000ms
+    }, 800); // Reduced from 1000ms to 800ms
 
     return () => clearTimeout(timer);
   }, []);
@@ -92,6 +93,9 @@ function App() {
       
       {/* Custom Cookie Banner */}
       <CustomCookieBanner />
+      
+      {/* Performance Monitor for Development */}
+      <PerformanceMonitor />
       
       {/* Using Suspense for lazy-loaded privacy modal */}
       {isPrivacyModalOpen && (

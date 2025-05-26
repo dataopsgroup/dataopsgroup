@@ -21,23 +21,91 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Simplified minification for better compatibility
+    // Enhanced minification for production
     minify: mode === 'production' ? 'esbuild' : false,
-    // Standard modern browser targets
-    target: ['es2020'],
-    // Simplified chunking strategy
+    // Modern browser targets for better optimization
+    target: ['es2020', 'chrome80', 'firefox78', 'safari14'],
+    // Enhanced chunking strategy for optimal loading
     rollupOptions: {
       output: {
+        // More granular chunking for better caching
         manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', 'lucide-react'],
-          'utils': ['clsx', 'tailwind-merge']
+          'react-core': ['react', 'react-dom'],
+          'react-router': ['react-router-dom'],
+          'ui-components': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          'icons': ['lucide-react'],
+          'utils': ['clsx', 'tailwind-merge'],
+          'performance': ['src/utils/performance', 'src/utils/web-vitals']
         },
-        // Simplified file naming
-        chunkFileNames: 'assets/[name].[hash].js',
-        entryFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash][extname]'
+        // Optimized file naming with better cache control
+        chunkFileNames: (chunkInfo) => {
+          // Use deterministic names for vendor chunks
+          if (chunkInfo.name.includes('vendor') || chunkInfo.name.includes('react')) {
+            return 'assets/vendor-[name].[hash].js';
+          }
+          return 'assets/[name].[hash].js';
+        },
+        entryFileNames: 'assets/entry-[name].[hash].js',
+        assetFileNames: (assetInfo) => {
+          // Organize assets by type
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'assets/styles/[name].[hash][extname]';
+          }
+          if (assetInfo.name?.match(/\.(png|jpg|jpeg|gif|svg|webp|avif)$/)) {
+            return 'assets/images/[name].[hash][extname]';
+          }
+          if (assetInfo.name?.match(/\.(woff|woff2|ttf|eot)$/)) {
+            return 'assets/fonts/[name].[hash][extname]';
+          }
+          return 'assets/[name].[hash][extname]';
+        }
+      },
+      // Tree-shaking optimization
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        unknownGlobalSideEffects: false
       }
+    },
+    // Source map generation
+    sourcemap: mode === 'production' ? false : 'inline',
+    // Chunk size warnings
+    chunkSizeWarningLimit: 1000,
+    // CSS code splitting
+    cssCodeSplit: true,
+    // Report compressed size
+    reportCompressedSize: true,
+    // Optimize CSS
+    cssMinify: mode === 'production' ? 'esbuild' : false
+  },
+  // Enhanced CSS processing
+  css: {
+    devSourcemap: mode === 'development',
+    postcss: {
+      plugins: []
     }
+  },
+  // Performance optimizations
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'lucide-react'
+    ],
+    exclude: [
+      // Exclude performance monitoring from pre-bundling
+      'src/utils/performance',
+      'src/utils/web-vitals'
+    ]
+  },
+  // Enhanced esbuild configuration
+  esbuild: {
+    // Drop console and debugger in production
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
+    // Use more aggressive optimization
+    treeShaking: true,
+    // Format for better compression
+    format: 'esm'
   }
 }));
