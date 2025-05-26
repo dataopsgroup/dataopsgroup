@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Linkedin } from 'lucide-react';
 import AdminLink from './AdminLink';
 import { navServices } from '@/data/navigationData';
 import OptimizedImage from './ui/optimized-image';
@@ -25,8 +26,21 @@ const Footer = () => {
               Expert HubSpot consulting for businesses serious about transforming their marketing technology investment into measurable revenue growth.
             </p>
             <div className="footer-contact">
-              <p>Ready to fix your HubSpot?</p>
-              <p><a href="mailto:hello@dataopsgroup.com">hello@dataopsgroup.com</a></p>
+              <p>Ready to transform your HubSpot?</p>
+              <Link to="/contact" className="footer-cta-button">
+                Get Started
+              </Link>
+              <div className="footer-social">
+                <a 
+                  href="https://www.linkedin.com/company/dataopsgroup/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="footer-linkedin-link"
+                  aria-label="Follow DataOps Group on LinkedIn"
+                >
+                  <Linkedin className="footer-linkedin-icon" />
+                </a>
+              </div>
             </div>
           </div>
           
