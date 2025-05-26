@@ -34,12 +34,12 @@ const Hero = () => {
           }}
         />
         
-        {/* Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30" />
-        
         <div className="container mx-auto relative z-10">
-          <div className="max-w-2xl lg:max-w-xl">
-            <div className="space-y-8">
+          <div className="w-[45%] relative">
+            {/* Semi-transparent background only behind text */}
+            <div className="absolute inset-0 bg-white/50 rounded-lg" />
+            
+            <div className="relative z-10 p-8 space-y-8">
               <div>
                 {/* Use resource hints for higher priority assets on page */}
                 <link rel="preload" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" as="image" fetchPriority="high" />
