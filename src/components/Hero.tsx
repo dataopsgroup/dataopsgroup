@@ -40,8 +40,8 @@ const Hero = () => {
               
               {/* Mark as LCP element for monitoring */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
-                Portfolio Company Digital Transformation <span className="text-red-500">Stalling</span>?<br />
-                We Accelerate HubSpot-Driven Growth Across PE Portfolios
+                PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
+                We Implement the HubSpot Systems Your Investors Expect
               </h1>
               <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
                 Stop watching portfolio companies struggle with fragmented sales operations. 
