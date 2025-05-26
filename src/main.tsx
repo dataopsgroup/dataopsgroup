@@ -4,7 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense } from 'react';
+import { StrictMode } from 'react';
 
 // Basic version setup
 if (typeof window !== 'undefined') {
@@ -24,23 +24,7 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// Simple loading fallback
-const LoadingFallback = () => (
-  <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
-    <div className="flex flex-col items-center space-y-4">
-      <div className="relative">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
-        <div className="absolute inset-0 animate-ping rounded-full h-12 w-12 border border-white opacity-20"></div>
-      </div>
-      <div className="text-white text-center">
-        <p className="text-lg font-semibold">DataOps Group</p>
-        <p className="text-sm opacity-90">Loading your experience...</p>
-      </div>
-    </div>
-  </div>
-);
-
-// Simple render function
+// Simple render function - no Suspense wrapper to avoid loading issues
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -48,9 +32,7 @@ const renderApp = () => {
     root.render(
       <StrictMode>
         <HelmetProvider>
-          <Suspense fallback={<LoadingFallback />}>
-            <App />
-          </Suspense>
+          <App />
         </HelmetProvider>
       </StrictMode>
     );

@@ -1,18 +1,16 @@
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RouterProvider, RouteObject } from 'react-router-dom';
 import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
 import CustomCookieBanner from './components/CustomCookieBanner';
 import PerformanceMonitor from './components/performance/PerformanceMonitor';
+import PrivacyModal from './components/PrivacyModal';
 import router from './routes';
 import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirect-utils';
 
-// Lazy-loaded components
-const PrivacyModal = lazy(() => import('./components/PrivacyModal'));
-
 function App() {
-  const [isLoading, setIsLoading] = useState(false); // Changed from true to false
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
@@ -30,8 +28,6 @@ function App() {
       window.location.replace(destinationUrl);
       return;
     }
-    
-    // Remove the artificial loading delay - site should render immediately
   }, []);
 
   // Error boundary for router
@@ -92,12 +88,10 @@ function App() {
       {/* Performance Monitor for Development */}
       <PerformanceMonitor />
       
-      {/* Using Suspense for lazy-loaded privacy modal */}
+      {/* Regular privacy modal - no lazy loading */}
       {isPrivacyModalOpen && (
         <dialog open={isPrivacyModalOpen} className="relative">
-          <Suspense fallback={<div>Loading...</div>}>
-            <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
-          </Suspense>
+          <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
         </dialog>
       )}
     </>
