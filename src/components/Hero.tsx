@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
@@ -60,30 +61,21 @@ const Hero = () => {
             <div className="absolute -top-12 -left-12 w-64 h-64 bg-dataops-100 rounded-full filter blur-3xl opacity-50"></div>
             <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-dataops-200 rounded-full filter blur-3xl opacity-50"></div>
             
-            <div className="relative bg-white rounded-2xl shadow-xl p-8 z-10">
-              {/* Use height and width to prevent CLS */}
-              <div className="grid grid-cols-2 gap-6" style={{
-              minHeight: "320px"
-            }}>
-                <div className="flex flex-col items-center p-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg text-white">
-                  <Database className="h-10 w-10 mb-4" aria-hidden="true" />
-                  <h3 className="text-base font-medium">HubSpot Cleansing</h3>
-                </div>
-                <div className="flex flex-col items-center p-6 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg text-white">
-                  <BarChart2 className="h-10 w-10 mb-4" aria-hidden="true" />
-                  <h3 className="text-base font-medium">Revenue Conversion</h3>
-                </div>
-                <div className="flex flex-col items-center p-6 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg text-white">
-                  <Share2 className="h-10 w-10 mb-4" aria-hidden="true" />
-                  <h3 className="text-base font-medium">Systems Integration</h3>
-                </div>
-                <div className="flex flex-col items-center p-6 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg text-white">
-                  <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mb-4" aria-hidden="true">
-                    <span className="font-bold">+</span>
-                  </div>
-                  <h3 className="text-base font-medium">HubSpot Guidance</h3>
-                </div>
-              </div>
+            <div className="relative z-10">
+              <OptimizedImage 
+                src="/lovable-uploads/da11f004-8dcc-4a9b-80f2-b3d7893140e8.png"
+                alt="Professional working with HubSpot systems and data analytics on computer"
+                className="w-full h-auto rounded-2xl shadow-xl"
+                width={600}
+                height={400}
+                priority={true}
+                isLCP={false}
+                blur={true}
+                objectFit="cover"
+                loading="eager"
+                decoding="sync"
+                threshold={0.1}
+              />
             </div>
           </div>
         </div>
