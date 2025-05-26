@@ -1,15 +1,9 @@
-
-/* Footer - Fixed to bottom of viewport */
+/* Footer - Normal flow layout */
 .fixed-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
   color: white;
   padding: 3rem 0 2rem 0;
   width: 100%;
-  z-index: 30;
   max-height: 50vh;
   overflow-y: auto;
 }
@@ -205,6 +199,7 @@
   color: #f4a261;
 }
 
+/* Remove body padding since footer is no longer fixed */
 /* Add bottom padding to body to prevent content overlap */
 body {
   padding-bottom: 400px; /* Adjust based on footer height */
