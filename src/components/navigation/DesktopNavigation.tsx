@@ -70,7 +70,6 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
                 >
                   {item.name}
                   <ChevronDown className="h-4 w-4 ml-1" aria-hidden="true" />
-                  <span className="sr-only">Toggle {item.name} dropdown</span>
                 </Link>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56 bg-white">
