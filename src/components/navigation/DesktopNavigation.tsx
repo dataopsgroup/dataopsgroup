@@ -32,7 +32,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
     if (subItem.isDropdown && subItem.items) {
       return (
         <DropdownMenuSub key={subItem.name}>
-          <DropdownMenuSubTrigger>
+          <DropdownMenuSubTrigger className="font-body">
             {subItem.name}
           </DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
@@ -45,7 +45,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
         <DropdownMenuItem asChild key={subItem.name}>
           <Link 
             to={subItem.href || "/"}
-            className="w-full cursor-pointer flex items-center"
+            className="w-full cursor-pointer flex items-center font-body"
           >
             {subItem.icon && renderIcon(subItem.icon)}
             {subItem.name}
@@ -63,7 +63,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
             <DropdownMenuTrigger asChild>
               <Link 
                 to={item.href || "/"}
-                className="nav-item nav-dropdown-trigger flex items-center"
+                className="nav-item nav-dropdown-trigger flex items-center font-body"
                 aria-haspopup="true" 
                 aria-expanded="false"
               >
@@ -79,13 +79,13 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
           <Link 
             key={item.name}
             to={item.href || "/"}
-            className="nav-item"
+            className="nav-item font-body"
           >
             {item.name}
           </Link>
         )
       ))}
-      <Link to="/contact" className="nav-cta">
+      <Link to="/contact" className="nav-cta font-body">
         Get Started
       </Link>
     </>

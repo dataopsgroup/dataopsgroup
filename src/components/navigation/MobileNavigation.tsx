@@ -32,7 +32,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
           <li key={subItem.name}>
             {subItem.isDropdown && subItem.items ? (
               <div className="flex flex-col">
-                <div className="py-1 font-medium text-dataops-900 flex items-center">
+                <div className="py-1 font-medium text-dataops-900 flex items-center font-body">
                   {subItem.name}
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </div>
@@ -42,7 +42,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
               <Link
                 to={subItem.href || "/"}
                 onClick={() => setIsOpen(false)}
-                className="text-dataops-900 hover:text-dataops-600 py-1 flex items-center"
+                className="text-dataops-900 hover:text-dataops-600 py-1 flex items-center font-body"
               >
                 {subItem.icon && renderIcon(subItem.icon)}
                 {subItem.name}
@@ -69,7 +69,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
                   <Link
                     to={item.href || "/"}
                     onClick={() => setIsOpen(false)}
-                    className="py-2 font-medium text-dataops-900 hover:text-dataops-600 flex items-center"
+                    className="py-2 font-medium text-dataops-900 hover:text-dataops-600 flex items-center font-body"
                   >
                     {item.name}
                   </Link>
@@ -79,7 +79,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
                 <Link
                   to={item.href || "/"}
                   onClick={() => setIsOpen(false)}
-                  className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4 flex items-center"
+                  className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4 flex items-center font-body"
                 >
                   {item.name}
                 </Link>
@@ -90,7 +90,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
         
         <div className="px-4 pt-2">
           <Link to="/contact" onClick={() => setIsOpen(false)}>
-            <Button className="w-full bg-dataops-600 hover:bg-dataops-700">
+            <Button className="w-full bg-dataops-600 hover:bg-dataops-700 font-body">
               Get Started
             </Button>
           </Link>
