@@ -16,7 +16,7 @@ import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchem
 const Index = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   
-  // Force GitHub sync - Updated deployment timestamp
+  // Force GitHub sync - Updated deployment timestamp again
   console.log('Homepage deployment refresh initiated:', new Date().toISOString());
   
   return (
