@@ -74,7 +74,7 @@
 /* Ensure proper default text color for dropdown triggers */
 [data-radix-dropdown-menu-trigger] {
   background-color: transparent !important;
-  color: #1a202c !important; /* Navy blue default text color */
+  color: #000000 !important; /* Black default text color */
 }
 
 [data-radix-dropdown-menu-trigger]:hover {
