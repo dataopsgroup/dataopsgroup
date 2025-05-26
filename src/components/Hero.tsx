@@ -44,9 +44,9 @@ const Hero = () => {
                 We Implement the HubSpot Systems Your Investors Expect
               </h1>
               <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                Stop watching portfolio companies struggle with fragmented sales operations. 
-                We implement scalable HubSpot systems that drive consistent growth metrics 
-                across your entire portfolio - fast.
+                Stop disappointing your PE firm with fragmented sales operations. We rapidly deploy 
+                scalable HubSpot systems that deliver the growth metrics and operational efficiency 
+                your investors demand - across entire portfolios.
               </p>
             </div>
             
