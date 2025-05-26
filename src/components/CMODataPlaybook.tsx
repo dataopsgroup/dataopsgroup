@@ -1,18 +1,31 @@
+
 import React from 'react';
+
 const CMODataPlaybook = () => {
-  return <section className="cmo-playbook-section">
+  const downloadPlaybook = () => {
+    // For now, we'll show an alert. This can be replaced with actual download functionality
+    alert('Download functionality would be implemented here - could link to a PDF, lead capture form, or landing page');
+  };
+
+  return (
+    <section className="cmo-playbook-section">
       <div className="playbook-container">
         {/* Book Showcase */}
         <div className="book-showcase">
+          <img 
+            src="/api/placeholder/300/400" 
+            alt="The CMO's Data Playbook by Geoff Tucker" 
+            className="book-image"
+          />
           
           <div className="book-highlight">
-            
+            <p className="book-highlight-text">Trusted by 500+ Marketing Leaders</p>
           </div>
         </div>
         
         {/* Content */}
         <div className="playbook-content">
-          
+          <span className="playbook-badge">Free Download</span>
           
           <h2 className="playbook-title">The CMO's Data Playbook</h2>
           <h3 className="playbook-subtitle">Transform Data Into Revenue</h3>
@@ -40,10 +53,14 @@ const CMODataPlaybook = () => {
             </div>
           </div>
           
-          <button className="playbook-cta">Download Free Playbook</button>
+          <button className="playbook-cta" onClick={downloadPlaybook}>
+            Download Free Playbook
+          </button>
           <p className="cta-subtext">No spam. Unsubscribe anytime. Trusted by marketing leaders worldwide.</p>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default CMODataPlaybook;
