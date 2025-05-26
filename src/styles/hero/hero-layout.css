@@ -1,104 +1,39 @@
 
-/* Hero Section Layout with Consultant Background Image */
+/* Hero Section Layout - Simplified */
 
-.hero-section {
-  width: 100%;
-  min-height: 80vh;
-  background-image: url('/lovable-uploads/afb1ced2-4687-47d3-b600-945954edb0fc.png');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+/* Layout is now handled in hero-background.css to avoid conflicts */
+/* This file is kept for any additional layout-specific styles if needed */
+
+/* Text overlay blur effect for readability */
+.hero-text-overlay {
   position: relative;
-  display: flex;
-  align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
+  z-index: 3;
 }
 
-/* Background overlay for better text contrast */
-.hero-section::before {
+.hero-text-overlay::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 55%;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 1;
+  top: -2rem;
+  left: -2rem;
+  right: -2rem;
+  bottom: -2rem;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  z-index: -1;
 }
 
-/* Fallback for browsers without backdrop-filter support */
-@supports not (backdrop-filter: blur(8px)) {
-  .hero-section::before {
+/* Progressive enhancement for backdrop-filter */
+@supports (backdrop-filter: blur(12px)) {
+  .hero-text-overlay::before {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  .hero-text-overlay::before {
     background: rgba(255, 255, 255, 0.85);
-  }
-}
-
-.hero-container {
-  width: 100%;
-  padding: 0 5%;
-  position: relative;
-  z-index: 2;
-  max-width: 1400px;
-}
-
-/* Text content positioning - safe zone on left side */
-.hero-text-column {
-  width: 45%;
-  max-width: 500px;
-  padding-right: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  z-index: 10;
-  position: relative;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 991px) {
-  .hero-section {
-    min-height: 70vh;
-    background-position: center top;
-  }
-  
-  .hero-section::before {
-    right: 0;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-  
-  @supports not (backdrop-filter: blur(6px)) {
-    .hero-section::before {
-      background: rgba(255, 255, 255, 0.9);
-    }
-  }
-  
-  .hero-text-column {
-    width: 100%;
-    max-width: 100%;
-    padding: 2rem;
-    text-align: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    min-height: 60vh;
-    background-position: center top;
-  }
-  
-  .hero-text-column {
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-}
-
-/* For very large screens, prevent excessive stretching */
-@media (min-width: 1600px) {
-  .hero-section {
-    max-width: 1500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 }

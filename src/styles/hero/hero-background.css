@@ -1,0 +1,128 @@
+
+/* Hero Background - Consultant Photo Implementation */
+
+.hero-section {
+  width: 100%;
+  min-height: 80vh;
+  background-image: url('/lovable-uploads/afb1ced2-4687-47d3-b600-945954edb0fc.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  contain: layout style paint;
+  visibility: visible !important;
+  opacity: 1 !important;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Background overlay for better text contrast */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 55%;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(8px)) {
+  .hero-section::before {
+    background: rgba(255, 255, 255, 0.85);
+  }
+}
+
+.hero-container {
+  width: 100%;
+  padding: 0 5%;
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+}
+
+/* Text content positioning - safe zone on left side */
+.hero-text-column {
+  width: 45%;
+  max-width: 500px;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 10;
+  position: relative;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 991px) {
+  .hero-section {
+    min-height: 70vh;
+    background-position: 20% center;
+  }
+  
+  .hero-section::before {
+    right: 0;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  
+  @supports not (backdrop-filter: blur(6px)) {
+    .hero-section::before {
+      background: rgba(255, 255, 255, 0.9);
+    }
+  }
+  
+  .hero-text-column {
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 60vh;
+    background-position: 15% center;
+  }
+  
+  .hero-text-column {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: 50vh;
+    background-position: 10% center;
+  }
+  
+  .hero-text-column {
+    padding: 1rem;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-section {
+    background-image: url('/lovable-uploads/afb1ced2-4687-47d3-b600-945954edb0fc.png');
+  }
+}
+
+/* For very large screens, prevent excessive stretching */
+@media (min-width: 1600px) {
+  .hero-section {
+    max-width: 1500px;
+  }
+}

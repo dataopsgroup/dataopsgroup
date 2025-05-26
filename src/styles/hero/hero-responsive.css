@@ -1,72 +1,13 @@
 
-/* Hero Responsive Design for Consultant Background Image */
+/* Hero Responsive Design - Simplified */
 
-@media (max-width: 991px) {
-  .hero-section {
-    min-height: 70vh;
-    background-position: 20% center;
-  }
-  
-  .hero-container {
-    padding: 2rem 5%;
-  }
-  
-  .hero-text-column {
-    width: 100%;
-    max-width: 100%;
-    padding: 2rem;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border-radius: 12px;
-  }
-  
-  .hero-headline {
-    font-size: 2.5rem;
-  }
-  
-  .hero-cta {
-    font-size: 16px !important;
-    padding: 14px 32px !important;
-  }
-}
+/* Core responsive styles moved to hero-background.css to prevent conflicts */
+/* Additional responsive enhancements can be added here if needed */
 
+/* Enhanced mobile text readability */
 @media (max-width: 768px) {
-  .hero-section {
-    min-height: 60vh;
-    background-position: 15% center;
-  }
-  
-  .hero-text-column {
-    padding: 1.5rem;
-    gap: 1.5rem;
-  }
-  
-  .hero-headline {
-    font-size: 2rem;
-  }
-}
-
-/* Very small screens */
-@media (max-width: 480px) {
-  .hero-section {
-    min-height: 50vh;
-    background-position: 10% center;
-  }
-  
-  .hero-text-column {
-    padding: 1rem;
-  }
-  
-  .hero-headline {
-    font-size: 1.75rem;
-  }
-}
-
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .hero-section {
-    background-image: url('/lovable-uploads/afb1ced2-4687-47d3-b600-945954edb0fc.png');
+  .hero-text-overlay::before {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 }
