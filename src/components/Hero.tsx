@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -50,12 +51,18 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" onClick={trackContactCTAClick}>
-                <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
-                  Schedule a Consultation
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+              <div className="flex flex-col">
+                <Link to="/contact" onClick={trackContactCTAClick}>
+                  <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
+                    Schedule a Consultation
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <div className="mt-3 text-sm text-gray-600 max-w-sm">
+                  <p className="font-medium text-gray-700 mb-1">No-Risk Assessment</p>
+                  <p>We'll audit your HubSpot setup and show you exactly what's wrong - completely free. No obligation, no sales pitch, just honest feedback about your ROI potential.</p>
+                </div>
+              </div>
               <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-6 py-6 text-base" asChild onClick={trackServicesCTAClick}>
                 <Link to="/services">View Our Services</Link>
               </Button>
