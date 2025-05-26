@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Home from '../pages/Home';
+import Index from '../pages/Index';
 import ContactPage from '../pages/Contact';
 import AboutPage from '../pages/AboutPage';
 import ApproachPage from '../pages/ApproachPage';
@@ -11,7 +11,7 @@ import NotFound from '../pages/NotFound';
 export const mainRoutes = [
   {
     path: "/",
-    element: <Home />,
+    element: <Index />,
     errorElement: <NotFound />,
   },
   {
