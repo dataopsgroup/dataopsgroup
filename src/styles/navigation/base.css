@@ -94,3 +94,46 @@
 .mobile-menu-button:hover {
   color: #4F46E5;
 }
+
+/* New navbar styles */
+
+/* Dropdown animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.group:hover .mega-dropdown {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Override any default button styles for navigation */
+.nav-button {
+  @apply font-medium transition-colors;
+}
+
+/* Badge styling */
+.nav-badge {
+  @apply inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary;
+}
+
+/* Success story section in dropdown */
+.success-story-container {
+  @apply bg-gray-50 p-6 flex flex-col justify-between;
+}
+
+/* Mobile menu transition */
+.mobile-menu-transition {
+  @apply transition-all duration-300;
+}
+
+/* Icon styling in navigation */
+.nav-icon {
+  @apply text-primary flex-shrink-0;
+}
