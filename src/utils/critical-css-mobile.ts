@@ -83,7 +83,8 @@ export const deferNonCriticalCSS = () => {
   if (window.innerWidth >= 768) return;
   
   // Convert all stylesheet links to preload and defer loading
-  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+  document.querySelectorAll('link[rel="stylesheet"]').forEach(linkElement => {
+    const link = linkElement as HTMLLinkElement;
     const href = link.getAttribute('href') || '';
     
     // Skip if it's already been processed
