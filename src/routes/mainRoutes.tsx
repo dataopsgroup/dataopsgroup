@@ -7,6 +7,7 @@ import AboutPage from '../pages/AboutPage';
 import ApproachPage from '../pages/ApproachPage';
 import BookLandingPage from '../pages/BookLandingPage';
 import HubSpotAssessmentResultsPage from '../pages/HubSpotAssessmentResultsPage';
+import HubSpotAssessmentPage from '../pages/HubSpotAssessmentPage';
 import NotFound from '../pages/NotFound';
 
 // Define main routes - use Component property for proper React context
@@ -34,6 +35,11 @@ export const mainRoutes: RouteObject[] = [
   {
     path: "/book",
     Component: BookLandingPage,
+    errorElement: React.createElement(NotFound),
+  },
+  {
+    path: "/hubspot-assessment",
+    Component: HubSpotAssessmentPage,
     errorElement: React.createElement(NotFound),
   },
   {

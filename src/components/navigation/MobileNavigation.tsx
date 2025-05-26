@@ -135,7 +135,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
             className="w-full justify-center"
             asChild
           >
-            <Link to="/assessment" onClick={() => {
+            <Link to="/hubspot-assessment" onClick={() => {
               // Track CTA click
               if (window.gtag) {
                 window.gtag('event', 'cta_click', {
