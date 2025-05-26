@@ -12,7 +12,7 @@ import { optimizeThirdPartyScripts, removeModernBrowserPolyfills } from './scrip
 import { preventLayoutShift } from './layout-optimization';
 import { optimizeFontLoading } from './font-optimization';
 import { monitorPerformance } from './monitoring';
-import { initMobileOptimizations, isMobileDevice, optimizeMobileFonts } from './mobile-optimization';
+import { initMobileOptimizations, isMobileDevice } from './mobile-optimization';
 import { initMobileCSSOptimizations } from './mobile-css-optimization';
 
 // Initialize all performance optimizations with aggressive mobile-first approach
@@ -33,7 +33,6 @@ export const initializePerformanceOptimizations = () => {
 const initializeMobileOptimizations = () => {
   // Phase 1: Critical resource optimization (immediate)
   optimizeResourcePriorities();
-  optimizeMobileFonts();
   
   // Phase 2: Remove unnecessary code (immediate)
   removeModernBrowserPolyfills();

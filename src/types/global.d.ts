@@ -1,4 +1,5 @@
 
+
 declare global {
   interface Window {
     // Analytics integrations
@@ -25,6 +26,14 @@ declare global {
     
     // Performance API endpoint
     PERFORMANCE_API_ENDPOINT?: string;
+
+    // Modern features detection for mobile optimization
+    APP_MODERN_FEATURES?: {
+      supportsES2020: boolean;
+      supportsAsyncAwait: boolean;
+      supportsModules: boolean;
+      polyfillsRemoved: boolean;
+    };
   }
 
   // PerformanceObserver interfaces
@@ -77,3 +86,4 @@ declare global {
 
 // Ensure this file is treated as a module
 export {};
+

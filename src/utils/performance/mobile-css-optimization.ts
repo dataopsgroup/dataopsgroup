@@ -1,4 +1,5 @@
 
+
 /**
  * Mobile-specific CSS optimization for PSI requirements
  * Targets 14 KiB unused CSS reduction
@@ -98,7 +99,8 @@ const deferNonCriticalCSS = () => {
   document.head.insertBefore(criticalStyle, document.head.firstChild);
   
   // Defer non-critical stylesheets
-  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+  document.querySelectorAll('link[rel="stylesheet"]').forEach(linkElement => {
+    const link = linkElement as HTMLLinkElement;
     const href = link.getAttribute('href') || '';
     
     // Skip critical CSS files
@@ -155,3 +157,4 @@ export const initMobileCSSOptimizations = () => {
     });
   }
 };
+
