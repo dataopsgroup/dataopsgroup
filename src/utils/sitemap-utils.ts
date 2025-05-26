@@ -1,61 +1,61 @@
+
 import { blogPosts } from '@/data/blog';
 
-// Define all site routes for the sitemap with more accurate lastmod dates
+// Current date for lastmod
+const TODAY = new Date().toISOString().split('T')[0];
+
+// Define verified main routes that actually exist and should be indexed
 export const mainRoutes = [
-  { url: "/", priority: "1.0", changefreq: "weekly", lastmod: "2025-05-19" },
-  { url: "/services", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-19" },
-  { url: "/about", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/approach", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/insights", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-19" },
-  { url: "/case-studies", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/contact", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/get-started", priority: "0.9", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/book", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/whitepapers", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/assessment", priority: "0.9", changefreq: "weekly", lastmod: "2025-05-19" },
-  { url: "/documentation", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/privacy", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-19" },
-  { url: "/terms", priority: "0.5", changefreq: "yearly", lastmod: "2025-05-19" },
-  { url: "/sitemap", priority: "0.3", changefreq: "yearly", lastmod: "2025-05-19" },
-  { url: "/leadership", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/hubspot-assessment-results", priority: "0.7", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/how-to-hire-a-hubspot-expert-in-2025", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-23" },
+  { url: "/", priority: "1.0", changefreq: "weekly", lastmod: TODAY },
+  { url: "/services", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
+  { url: "/about", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/approach", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/insights", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
+  { url: "/case-studies", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/contact", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/book", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { url: "/whitepapers", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { url: "/assessment", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
+  { url: "/hubspot-assessment-results", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { url: "/how-to-hire-a-hubspot-expert-in-2025", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/leadership", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/privacy", priority: "0.3", changefreq: "yearly", lastmod: TODAY },
+  { url: "/terms", priority: "0.3", changefreq: "yearly", lastmod: TODAY }
 ];
 
+// Define verified service routes that actually exist
 export const serviceRoutes = [
-  { url: "/services/analytics-bi", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/services/dataops-implementation", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/services/marketing-operations-revops", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: "2025-05-19" },
-  { url: "/seo-management", priority: "0.6", changefreq: "monthly", lastmod: "2025-05-19" },
+  { url: "/services/analytics-bi", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/services/dataops-implementation", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/services/marketing-operations-revops", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/seo-management", priority: "0.6", changefreq: "monthly", lastmod: TODAY }
 ];
 
-// Generate sitemap XML for the index (main sitemap index file)
+// Generate sitemap index XML
 export const generateSitemapIndex = (baseUrl: string) => {
-  const today = new Date().toISOString().split('T')[0];
-  
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
   xml += '  <sitemap>\n';
   xml += `    <loc>${baseUrl}/sitemaps/main-sitemap.xml</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
+  xml += `    <lastmod>${TODAY}</lastmod>\n`;
   xml += '  </sitemap>\n';
   
   xml += '  <sitemap>\n';
   xml += `    <loc>${baseUrl}/sitemaps/services-sitemap.xml</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
+  xml += `    <lastmod>${TODAY}</lastmod>\n`;
   xml += '  </sitemap>\n';
   
   xml += '  <sitemap>\n';
   xml += `    <loc>${baseUrl}/sitemaps/blog-sitemap.xml</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
+  xml += `    <lastmod>${TODAY}</lastmod>\n`;
   xml += '  </sitemap>\n';
   
   xml += '  <sitemap>\n';
   xml += `    <loc>${baseUrl}/sitemaps/case-studies-sitemap.xml</loc>\n`;
-  xml += `    <lastmod>${today}</lastmod>\n`;
+  xml += `    <lastmod>${TODAY}</lastmod>\n`;
   xml += '  </sitemap>\n';
   
   xml += '</sitemapindex>';
@@ -63,7 +63,7 @@ export const generateSitemapIndex = (baseUrl: string) => {
   return xml;
 };
 
-// Generate sitemap XML for main pages
+// Generate main sitemap XML
 export const generateMainSitemap = (baseUrl: string) => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
@@ -82,7 +82,7 @@ export const generateMainSitemap = (baseUrl: string) => {
   return xml;
 };
 
-// Generate sitemap XML for service pages
+// Generate services sitemap XML
 export const generateServicesSitemap = (baseUrl: string) => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
@@ -101,42 +101,34 @@ export const generateServicesSitemap = (baseUrl: string) => {
   return xml;
 };
 
-// Generate sitemap XML for blog posts - fixed to properly include all blog posts
+// Generate blog sitemap XML (regular blog posts only)
 export const generateBlogSitemap = (baseUrl: string) => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  // Add comment for clarity
-  xml += '  <!-- Blog Posts -->\n';
-  xml += `  <!-- Generated: ${new Date().toISOString()} -->\n`;
-  xml += `  <!-- Total Posts: ${blogPosts.length} -->\n`;
-  
-  // Add blog post routes with actual dates from blog posts
-  // Filter out case studies which will go in their own sitemap
+  // Filter for regular blog posts (exclude case studies)
   const regularBlogPosts = blogPosts.filter(post => 
     (!post.tags || !post.tags.includes('case study')) && 
     (post.category !== "Case Study")
   );
   
+  xml += '  <!-- Blog Posts -->\n';
+  xml += `  <!-- Generated: ${new Date().toISOString()} -->\n`;
+  xml += `  <!-- Total Posts: ${regularBlogPosts.length} -->\n`;
+  
   regularBlogPosts.forEach(post => {
-    // Format the date correctly for lastmod (YYYY-MM-DD)
     const postDate = new Date(post.date);
-    const lastmod = postDate.toISOString().split('T')[0];
-    
-    // Use modifiedDate if available, otherwise use the original date
-    const finalLastmod = post.modifiedDate 
+    const lastmod = post.modifiedDate 
       ? new Date(post.modifiedDate).toISOString().split('T')[0] 
-      : lastmod;
+      : postDate.toISOString().split('T')[0];
+    
+    // Higher priority for featured posts
+    const priority = (post.id === 'hidden-cost-of-failed-hubspot-implementations') ? '0.8' : '0.7';
     
     xml += '  <url>\n';
     xml += `    <loc>${baseUrl}/insights/${post.id}</loc>\n`;
-    xml += `    <lastmod>${finalLastmod}</lastmod>\n`;
+    xml += `    <lastmod>${lastmod}</lastmod>\n`;
     xml += '    <changefreq>monthly</changefreq>\n';
-    
-    // Give higher priority to important posts like the hidden cost post
-    // Instead of using 'featured' which doesn't exist in BlogPost type, we'll check by ID
-    const priority = (post.id === 'hidden-cost-of-failed-hubspot-implementations') ? '0.8' : '0.7';
-    
     xml += `    <priority>${priority}</priority>\n`;
     xml += '  </url>\n';
   });
@@ -146,44 +138,38 @@ export const generateBlogSitemap = (baseUrl: string) => {
   return xml;
 };
 
-// Generate sitemap XML for case studies
+// Generate case studies sitemap XML
 export const generateCaseStudiesSitemap = (baseUrl: string) => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  // Add case study from the main case studies page
+  // Main case studies page
   xml += '  <url>\n';
   xml += `    <loc>${baseUrl}/case-studies</loc>\n`;
-  xml += `    <lastmod>2025-05-19</lastmod>\n`;
+  xml += `    <lastmod>${TODAY}</lastmod>\n`;
   xml += '    <changefreq>monthly</changefreq>\n';
   xml += '    <priority>0.8</priority>\n';
   xml += '  </url>\n';
   
-  // Get all case studies by tag or category
+  // Get case studies from blog posts
   const caseStudies = blogPosts.filter(post => 
     (post.tags && post.tags.includes('case study')) || 
     post.category === "Case Study"
   );
   
-  // Add comment for clarity
   xml += '  <!-- Case Study Posts -->\n';
   xml += `  <!-- Generated: ${new Date().toISOString()} -->\n`;
   xml += `  <!-- Total Case Studies: ${caseStudies.length} -->\n`;
   
-  // Add case study post routes
   caseStudies.forEach(post => {
-    // Format the date correctly for lastmod (YYYY-MM-DD)
     const postDate = new Date(post.date);
-    const lastmod = postDate.toISOString().split('T')[0];
-    
-    // Use modifiedDate if available, otherwise use the original date
-    const finalLastmod = post.modifiedDate 
+    const lastmod = post.modifiedDate 
       ? new Date(post.modifiedDate).toISOString().split('T')[0] 
-      : lastmod;
+      : postDate.toISOString().split('T')[0];
     
     xml += '  <url>\n';
     xml += `    <loc>${baseUrl}/insights/${post.id}</loc>\n`;
-    xml += `    <lastmod>${finalLastmod}</lastmod>\n`;
+    xml += `    <lastmod>${lastmod}</lastmod>\n`;
     xml += '    <changefreq>monthly</changefreq>\n';
     xml += '    <priority>0.8</priority>\n';
     xml += '  </url>\n';
@@ -202,5 +188,45 @@ export const generateAllSitemaps = (baseUrl: string) => {
     services: generateServicesSitemap(baseUrl),
     blog: generateBlogSitemap(baseUrl),
     caseStudies: generateCaseStudiesSitemap(baseUrl)
+  };
+};
+
+// Get summary of included/excluded pages
+export const getSitemapSummary = () => {
+  const regularBlogPosts = blogPosts.filter(post => 
+    (!post.tags || !post.tags.includes('case study')) && 
+    (post.category !== "Case Study")
+  );
+  
+  const caseStudies = blogPosts.filter(post => 
+    (post.tags && post.tags.includes('case study')) || 
+    post.category === "Case Study"
+  );
+  
+  return {
+    included: {
+      mainPages: mainRoutes.length,
+      servicePages: serviceRoutes.length,
+      blogPosts: regularBlogPosts.length,
+      caseStudies: caseStudies.length,
+      total: mainRoutes.length + serviceRoutes.length + regularBlogPosts.length + caseStudies.length + 1 // +1 for case studies main page
+    },
+    excluded: [
+      'Redirect pages (handled by redirectRoutes.tsx)',
+      'Utility pages (/not-found, /404, etc.)',
+      'API endpoints',
+      'Blog redirect routes (/blog, /en/blog/*)',
+      'AMP URLs',
+      'Legacy URLs that redirect'
+    ],
+    priorities: {
+      homepage: '1.0',
+      mainServices: '0.9',
+      assessment: '0.9',
+      importantContent: '0.8',
+      regularContent: '0.7-0.8',
+      supportPages: '0.6-0.7',
+      legal: '0.3'
+    }
   };
 };
