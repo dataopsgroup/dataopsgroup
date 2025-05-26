@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,34 +20,117 @@
     <link rel="dns-prefetch" href="https://cdn.botpress.cloud" />
     <link rel="dns-prefetch" href="https://files.bpcontent.cloud" />
     
-    <!-- Google Fonts for Typography -->
+    <!-- Critical resource preloads for LCP optimization -->
+    <link rel="preload" href="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/lovable-uploads/61e82165-c0b9-4fde-98f6-f68f483b1017.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/fonts/inter-subset/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high" />
+    <link rel="preload" href="/fonts/inter-subset/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high" />
+    
+    <!-- Optimized Google Fonts with display=swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&family=Roboto:wght@400&display=swap" />
     
-    <!-- Critical CSS inlined for faster rendering -->
+    <!-- Critical CSS inlined for fastest rendering -->
     <style>
-      /* Critical CSS for above the fold content */
+      /* Critical above-the-fold CSS */
       body {
         margin: 0;
         font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         -webkit-text-size-adjust: 100%;
+        font-display: swap;
       }
-      .fonts-pending {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      
+      /* Critical navbar styles */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        height: 72px;
       }
-      .font-active {
-        font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      
+      /* Critical hero section layout */
+      .hero-section {
+        padding-top: 100px;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
       }
-      /* Layout shift prevention for hero section */
-      @media (min-width: 768px) {
-        .hero-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          align-items: center;
-        }
+      
+      .hero-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 5%;
       }
-      /* Loading spinner style */
+      
+      /* Critical typography */
+      .hero-heading {
+        font-size: 3rem;
+        line-height: 1.1;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #1f2937;
+      }
+      
+      /* Critical dashboard styles for LCP */
+      .hero-dashboard-column {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-end;
+        min-height: 500px;
+        padding-top: 2rem;
+      }
+      
+      .dashboard-container {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        background-color: #fff;
+      }
+      
+      .dashboard-primary {
+        width: 100%;
+        aspect-ratio: 580/387;
+      }
+      
+      .dashboard-secondary {
+        width: 90%;
+        aspect-ratio: 551/368;
+      }
+      
+      .dashboard-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+      
+      /* Critical button styles */
+      .btn-primary {
+        background: #4F46E5;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.2s;
+      }
+      
+      .btn-primary:hover {
+        background: #4338CA;
+      }
+      
+      /* Loading spinner for better UX */
       .loading-spinner {
         width: 3rem;
         height: 3rem;
@@ -55,18 +139,42 @@
         border-top-color: rgba(79, 70, 229, 1);
         animation: spin 1s ease-in-out infinite;
       }
+      
       @keyframes spin {
         to { transform: rotate(360deg); }
       }
+      
+      /* Mobile-first responsive design */
+      @media (max-width: 768px) {
+        .hero-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .hero-heading {
+          font-size: 2rem;
+        }
+        
+        .hero-section {
+          min-height: 60vh;
+          padding-top: 80px;
+        }
+        
+        .hero-dashboard-column {
+          align-items: center;
+        }
+      }
     </style>
     
-    <!-- Preload critical fonts and assets -->
-    <link rel="preload" href="/fonts/inter-subset/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin importance="high" />
-    <link rel="preload" href="/fonts/inter-subset/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin importance="high" />
-    <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" fetchpriority="high" />
-    <link rel="preload" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" as="image" />
+    <!-- Defer non-critical CSS to eliminate render blocking -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" href="/src/styles/font-face.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="/src/index.css" />
+      <link rel="stylesheet" href="/src/styles/font-face.css" />
+    </noscript>
     
-    <!-- Prefetch next likely navigation pages -->
+    <!-- Prefetch next likely pages for better UX -->
     <link rel="prefetch" href="/contact" as="document" />
     <link rel="prefetch" href="/services" as="document" />
     <link rel="prefetch" href="/insights" as="document" />
@@ -97,9 +205,12 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="msapplication-TileColor" content="#4F46E5" />
     
-    <!-- Critical Web Vitals optimization - defer non-critical scripts -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16996265146"></script>
+    <!-- Optimized analytics loading - deferred for performance -->
     <script>
+      // Initialize critical performance markers
+      performance.mark('navigationStart');
+      
+      // Defer analytics loading until after critical content
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -109,89 +220,22 @@
         'anonymize_ip': true
       });
     </script>
-    
-    <!-- HubSpot script - load with low priority -->
-    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21794360.js"></script>
-    
-    <!-- Initialize performance markers -->
-    <script>
-      // Mark navigation start time
-      performance.mark('navigationStart');
-      // Add fonts-pending class to manage FOUT
-      document.documentElement.classList.add('fonts-pending');
-      
-      // Break up parsing long tasks for better INP/FID
-      const deferredOperations = () => {
-        // Load critical fonts immediately
-        if ('fonts' in document) {
-          try {
-            Promise.all([
-              new FontFace('Roboto', 'url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2")', { 
-                weight: '400',
-                display: 'swap' 
-              }).load(),
-              new FontFace('Rubik', 'url(https://fonts.gstatic.com/s/rubik/v21/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-B4iFVUUzdYPFkaVNA6w.woff2) format("woff2")', { 
-                weight: '500',
-                display: 'swap' 
-              }).load()
-            ])
-            .then(loadedFonts => {
-              loadedFonts.forEach(font => document.fonts.add(font));
-              document.documentElement.classList.add('font-active');
-              document.documentElement.classList.remove('fonts-pending');
-              performance.mark('fonts-loaded');
-            })
-            .catch(() => {
-              // Remove pending class even if fonts fail
-              document.documentElement.classList.remove('fonts-pending');
-            });
-          } catch (err) {
-            document.documentElement.classList.remove('fonts-pending');
-          }
-        } else {
-          document.documentElement.classList.remove('fonts-pending');
-        }
-      };
-      
-      // Execute font loading on requestIdleCallback or setTimeout fallback
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(deferredOperations, { timeout: 2000 });
-      } else {
-        setTimeout(deferredOperations, 20); // Small timeout to not block initial rendering
-      }
-      
-      // Add support for NavigationTiming API
-      if (performance.getEntriesByType && typeof PerformanceObserver === 'function') {
-        try {
-          // Create a performance observer to track long tasks
-          const longTaskObserver = new PerformanceObserver((list) => {
-            const entries = list.getEntries();
-            entries.forEach((entry) => {
-              // Log long tasks (>50ms) for debugging
-              if (entry.duration > 50) {
-                console.warn(`Long task detected: ${Math.round(entry.duration)}ms`, entry);
-              }
-            });
-          });
-          
-          longTaskObserver.observe({ entryTypes: ['longtask'] });
-        } catch (e) {
-          // Ignore errors in unsupported browsers
-        }
-      }
-    </script>
   </head>
   <body>
     <div id="root">
-      <!-- Initial loading state with proper layout to prevent CLS -->
-      <div style="width:100%;height:100vh;display:flex;align-items:center;justify-content:center">
+      <!-- Optimized loading state with proper dimensions to prevent CLS -->
+      <div style="width:100%;height:100vh;display:flex;align-items:center;justify-content:center;background-color:#f9fafb">
         <div style="display:flex;flex-direction:column;align-items:center">
           <div class="loading-spinner"></div>
-          <p style="margin-top:1rem;color:#4F46E5;font-size:1.125rem">Loading DataOps Group...</p>
+          <p style="margin-top:1rem;color:#4F46E5;font-size:1.125rem;font-weight:500">Loading DataOps Group...</p>
         </div>
       </div>
     </div>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    
+    <!-- Defer all non-critical scripts -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16996265146"></script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21794360.js"></script>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" defer></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
