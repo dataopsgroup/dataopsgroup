@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { ChevronRight, BarChart2, Database, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
+
 const Hero = () => {
   // Track CTA click in Google Analytics and HubSpot
   const trackContactCTAClick = () => {
@@ -50,8 +52,8 @@ const Hero = () => {
                   </Button>
                 </Link>
                 <div className="mt-3 text-sm text-gray-600 max-w-sm">
-                  <p className="font-medium text-gray-700 mb-1">No-Risk Assessment</p>
-                  <p>We'll audit your HubSpot setup and show you exactly what's wrong - completely free. No obligation, no sales pitch, just honest feedback about your ROI potential.</p>
+                  <p className="font-medium text-gray-700 mb-1">PE-Approved Assessment - No Risk</p>
+                  <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
                 </div>
               </div>
             </div>
@@ -121,4 +123,5 @@ const Hero = () => {
       </div>
     </>;
 };
+
 export default Hero;
