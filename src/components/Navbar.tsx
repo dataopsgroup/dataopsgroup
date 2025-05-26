@@ -26,13 +26,18 @@ const Navbar = () => {
     };
   }, []);
   
-  // Prevent scrolling when mobile menu is open
+  // Prevent scrolling when mobile menu is open and add menu-open class
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('overflow-hidden');
+      document.body.classList.add('overflow-hidden', 'menu-open');
     } else {
-      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove('overflow-hidden', 'menu-open');
     }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('overflow-hidden', 'menu-open');
+    };
   }, [isOpen]);
   
   return (
