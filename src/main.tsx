@@ -5,17 +5,24 @@ import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
+import { initializePerformanceOptimizations } from './utils/performance-optimization';
 
-// Define app version globally
+// Critical performance setup
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.1.0'; // Incremented for LCP optimizations
+  window.APP_VERSION = '1.2.0'; // Incremented for performance optimizations
+  
+  // Initialize performance optimizations immediately
+  initializePerformanceOptimizations();
 }
 
-// Critical rendering optimized for LCP and FCP
+// Optimized render function with error boundary
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
-    performance.mark('render-start');
+    // Mark render start for performance monitoring
+    if (window.performance && 'mark' in window.performance) {
+      window.performance.mark('react-render-start');
+    }
     
     const root = createRoot(container);
     root.render(
@@ -35,43 +42,42 @@ const renderApp = () => {
       </StrictMode>
     );
     
-    performance.mark('render-complete');
+    // Mark render complete
+    if (window.performance && 'mark' in window.performance) {
+      window.performance.mark('react-render-complete');
+    }
   }
 };
 
-// Immediately render for fast FCP
+// Immediate render for fast FCP
 renderApp();
 
-// Defer all non-critical functionality until after LCP
-if (typeof window !== 'undefined') {
-  // Use requestIdleCallback to defer non-critical work
-  const deferNonCritical = () => {
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(async () => {
-        // Load performance monitoring after initial render
-        const { initWebVitals } = await import('./utils/web-vitals');
-        initWebVitals();
-        
-        // Load analytics after LCP
-        const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
-        setupAnalyticsAndMonitoring();
-      }, { timeout: 3000 });
-    } else {
-      // Fallback for browsers without requestIdleCallback
-      setTimeout(async () => {
-        const { initWebVitals } = await import('./utils/web-vitals');
-        const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
-        
-        initWebVitals();
-        setupAnalyticsAndMonitoring();
-      }, 1000);
+// Defer non-critical functionality
+if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+  window.requestIdleCallback(async () => {
+    try {
+      // Load web vitals monitoring when idle
+      const { initWebVitals } = await import('./utils/web-vitals');
+      initWebVitals();
+      
+      // Load analytics when idle
+      const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
+      setupAnalyticsAndMonitoring();
+    } catch (error) {
+      console.error('Error loading deferred modules:', error);
     }
-  };
-
-  // Wait for LCP before loading non-critical scripts
-  if (document.readyState === 'complete') {
-    deferNonCritical();
-  } else {
-    window.addEventListener('load', deferNonCritical, { once: true });
-  }
+  }, { timeout: 5000 });
+} else {
+  // Fallback for browsers without requestIdleCallback
+  setTimeout(async () => {
+    try {
+      const { initWebVitals } = await import('./utils/web-vitals');
+      const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
+      
+      initWebVitals();
+      setupAnalyticsAndMonitoring();
+    } catch (error) {
+      console.error('Error loading deferred modules:', error);
+    }
+  }, 2000);
 }
