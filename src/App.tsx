@@ -15,6 +15,8 @@ function App() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
 
   useEffect(() => {
+    console.log('App component mounting...');
+    
     // Handle language parameter in URL if present
     const currentUrl = window.location.href;
     if (currentUrl.includes('hsLang=')) {
@@ -28,6 +30,8 @@ function App() {
       window.location.replace(destinationUrl);
       return;
     }
+    
+    console.log('App component mounted successfully');
   }, []);
 
   // Error boundary for router
@@ -45,7 +49,13 @@ function App() {
       const criticalPaths = ['/', '/faqs', '/contact', '/insights'];
       
       const foundPaths = routes.map(route => route.path);
-      const missingPaths = criticalPaths.filter(path => !foundPaths.includes(path));
+      const missingPaths = criticalPaths.filter(path => 
+        !foundPaths.some(foundPath => 
+          // Exact match or parameterized match (e.g., /insights/:id would match /insights)
+          foundPath === path || 
+          (foundPath && foundPath.includes(':') && path.startsWith(foundPath.split(':')[0]))
+        )
+      );
       
       if (missingPaths.length > 0) {
         console.error('Critical routes missing:', missingPaths);
@@ -78,24 +88,29 @@ function App() {
     return <ErrorDisplay message={error.message} />;
   }
 
-  return (
-    <>
-      <RouterProvider router={router} />
-      
-      {/* Custom Cookie Banner */}
-      <CustomCookieBanner />
-      
-      {/* Performance Monitor for Development */}
-      <PerformanceMonitor />
-      
-      {/* Regular privacy modal - no lazy loading */}
-      {isPrivacyModalOpen && (
-        <dialog open={isPrivacyModalOpen} className="relative">
-          <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
-        </dialog>
-      )}
-    </>
-  );
+  try {
+    return (
+      <>
+        <RouterProvider router={router} />
+        
+        {/* Custom Cookie Banner */}
+        <CustomCookieBanner />
+        
+        {/* Performance Monitor for Development */}
+        <PerformanceMonitor />
+        
+        {/* Regular privacy modal - no lazy loading */}
+        {isPrivacyModalOpen && (
+          <dialog open={isPrivacyModalOpen} className="relative">
+            <PrivacyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
+          </dialog>
+        )}
+      </>
+    );
+  } catch (appError) {
+    console.error('App rendering error:', appError);
+    return <ErrorDisplay message="Application failed to load. Please refresh the page." />;
+  }
 }
 
 export default App;

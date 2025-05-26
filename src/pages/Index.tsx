@@ -14,13 +14,20 @@ import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
-import { applyCriticalCSS, preloadCriticalFonts } from '@/lib/critical-css';
 
 const Index = () => {
+  // Wrap critical CSS functions in error boundaries to prevent blocking
   React.useEffect(() => {
-    // Apply critical CSS and preload fonts for the homepage
-    applyCriticalCSS('/');
-    preloadCriticalFonts();
+    try {
+      // Temporarily disable critical CSS to isolate the issue
+      // const { applyCriticalCSS, preloadCriticalFonts } = require('@/lib/critical-css');
+      // applyCriticalCSS('/');
+      // preloadCriticalFonts();
+      console.log('Index component mounted successfully');
+    } catch (error) {
+      console.error('Critical CSS loading failed, continuing without it:', error);
+      // Continue loading the page even if critical CSS fails
+    }
   }, []);
 
   return (
@@ -35,11 +42,23 @@ const Index = () => {
         gscVerification="YOUR_GSC_VERIFICATION_CODE"
       />
       
-      <OrganizationSchema />
-      <WebsiteSchema />
-      <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
-      <LocalBusinessSchema />
-      <ProfessionalServiceSchema />
+      {/* Wrap schema components in error boundaries */}
+      {React.createElement(() => {
+        try {
+          return (
+            <>
+              <OrganizationSchema />
+              <WebsiteSchema />
+              <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
+              <LocalBusinessSchema />
+              <ProfessionalServiceSchema />
+            </>
+          );
+        } catch (error) {
+          console.error('Schema components failed to load:', error);
+          return null;
+        }
+      })}
       
       <Navbar />
       

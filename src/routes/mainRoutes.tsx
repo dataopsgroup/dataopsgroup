@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { RouteObject } from 'react-router-dom';
-import Home from '../pages/Home';
+import Index from '../pages/Index';
 import ContactPage from '../pages/Contact';
 import AboutPage from '../pages/AboutPage';
 import ApproachPage from '../pages/ApproachPage';
@@ -13,7 +13,7 @@ import NotFound from '../pages/NotFound';
 export const mainRoutes: RouteObject[] = [
   {
     path: "/",
-    Component: Home,
+    Component: Index,
     errorElement: React.createElement(NotFound),
   },
   {
