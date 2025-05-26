@@ -52,7 +52,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
     }
   };
 
-  // Function to render mega-menu items with featured section
+  // Function to render mega-menu items without featured section
   const renderMegaMenuDropdown = (item: NavItem) => {
     if (!item.children) return null;
 
@@ -61,8 +61,8 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
     const secondSection = item.children.slice(2, 4);
 
     return (
-      <DropdownMenuContent className="mega-menu-dropdown w-[600px] bg-white border border-gray-200 shadow-xl z-[1200] p-0">
-        <div className="dropdown-grid grid grid-cols-3 gap-0">
+      <DropdownMenuContent className="mega-menu-dropdown w-[500px] bg-white border border-gray-200 shadow-xl z-[1200] p-0">
+        <div className="dropdown-grid grid grid-cols-2 gap-0">
           {/* First Section */}
           <div className="dropdown-section p-4 border-r border-gray-100">
             {firstSection.map((subItem) => (
@@ -97,7 +97,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
           </div>
 
           {/* Second Section */}
-          <div className="dropdown-section p-4 border-r border-gray-100">
+          <div className="dropdown-section p-4">
             {secondSection.map((subItem) => (
               <DropdownMenuItem asChild key={subItem.title} className="p-0 mb-4 last:mb-0">
                 <Link 
@@ -127,28 +127,6 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
                 </Link>
               </DropdownMenuItem>
             ))}
-          </div>
-
-          {/* Featured Section */}
-          <div className="dropdown-feature bg-gray-50 p-6 flex flex-col justify-between">
-            <div>
-              <div className="feature-tag inline-block px-2 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full mb-3">
-                CLIENT SUCCESS STORY
-              </div>
-              <h4 className="feature-title font-semibold text-gray-900 mb-2 font-body">
-                47% Lead Growth in 90 Days
-              </h4>
-              <p className="feature-desc text-sm text-gray-600 mb-4 font-body">
-                See how we transformed Atlas World's HubSpot setup into a revenue-generating machine.
-              </p>
-            </div>
-            <Link 
-              to="/case-studies/atlas-world" 
-              className="feature-link text-dataops-500 hover:text-dataops-600 font-medium text-sm inline-flex items-center transition-colors"
-            >
-              Read Case Study 
-              <ArrowRight className="h-4 w-4 ml-1" />
-            </Link>
           </div>
         </div>
       </DropdownMenuContent>
