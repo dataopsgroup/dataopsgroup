@@ -1,6 +1,6 @@
 
-/* Typography using Google Fonts: Rubik Medium for headlines, Roboto Regular for body text */
-/* Mobile uses Inter for performance optimization */
+/* Typography using Google Fonts: Rubik for headlines, Roboto for body text */
+/* Inter is used on mobile for performance optimization */
 
 /* Font loading state classes for progressive enhancement */
 .fonts-pending {

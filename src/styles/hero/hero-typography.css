@@ -67,19 +67,37 @@
   margin-bottom: 0.25rem;
 }
 
-/* Mobile adjustments */
+/* Mobile adjustments - use Inter for performance */
 @media (max-width: 768px) {
   .hero-heading,
   .hero-headline {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 2rem;
+    font-weight: 600;
   }
   
   .hero-description {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 1rem;
   }
   
   .hero-subheading {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .hero-subtext {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  .hero-risk-assessment {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  .hero-risk-assessment h4 {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 600;
   }
 }
 
