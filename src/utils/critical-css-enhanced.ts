@@ -162,7 +162,7 @@ export const loadNonCriticalCSS = () => {
     link.href = href;
     link.media = 'print';
     link.onload = function() {
-      this.media = 'all';
+      link.media = 'all';
     };
     document.head.appendChild(link);
   });
