@@ -61,7 +61,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
     const secondSection = item.children.slice(2, 4);
 
     return (
-      <DropdownMenuContent className="mega-menu-dropdown w-[600px] bg-white border border-gray-200 shadow-lg z-[1100] p-0">
+      <DropdownMenuContent className="mega-menu-dropdown w-[600px] bg-white border border-gray-200 shadow-xl z-[1200] p-0">
         <div className="dropdown-grid grid grid-cols-3 gap-0">
           {/* First Section */}
           <div className="dropdown-section p-4 border-r border-gray-100">
@@ -164,12 +164,12 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="nav-link-button flex items-center font-body h-auto px-3 py-2 text-gray-700 hover:text-dataops-500 hover:bg-gray-50 transition-colors border-0 shadow-none"
+                  className="nav-link-button flex items-baseline font-body h-auto px-3 py-2 text-gray-700 hover:text-dataops-500 hover:bg-gray-50 transition-colors border-0 shadow-none"
                   aria-haspopup="true" 
                   aria-expanded="false"
                 >
                   {item.title}
-                  <ChevronDown className="h-4 w-4 ml-1 transition-transform" aria-hidden="true" />
+                  <ChevronDown className="h-4 w-4 ml-1 -mb-px transition-transform" aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
               {renderMegaMenuDropdown(item)}

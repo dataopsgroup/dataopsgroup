@@ -27,9 +27,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 90px;
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Logo */
@@ -40,7 +41,7 @@
 }
 
 .logo img {
-  height: 40px;
+  height: 80px;
   width: auto;
 }
 
@@ -180,6 +181,15 @@
 
 /* Mobile styles */
 @media (max-width: 1024px) {
+  .nav-wrapper {
+    height: 70px;
+    padding: 0 15px;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  
   .nav-cta {
     display: none;
   }

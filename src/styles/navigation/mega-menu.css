@@ -12,9 +12,11 @@
   background-color: #ffffff !important;
   border: 1px solid #e5e7eb !important;
   border-radius: 8px !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
-  z-index: 1100 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  z-index: 1200 !important;
   margin-top: 8px !important;
+  max-height: 480px !important;
+  overflow: visible !important;
 }
 
 .dropdown-menu {
@@ -25,13 +27,15 @@
   min-width: 800px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   border: 1px solid #e5e7eb;
   padding: 0;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s;
-  z-index: 1100;
+  z-index: 1200;
+  max-height: 480px;
+  overflow: visible;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -45,6 +49,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0;
   min-height: 280px;
+  max-height: 480px;
 }
 
 .dropdown-section {
@@ -52,6 +57,7 @@
   flex-direction: column;
   gap: 0;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .dropdown-item {
@@ -115,6 +121,8 @@
   flex-direction: column;
   justify-content: space-between;
   border-left: 1px solid #e5e7eb;
+  max-height: 480px;
+  overflow-y: auto;
 }
 
 .feature-tag {
@@ -211,20 +219,26 @@
 
 /* Enhanced mega menu positioning and background */
 [data-radix-popper-content-wrapper] {
-  z-index: 1100 !important;
+  z-index: 1200 !important;
 }
 
 /* Ensure mega menu appears above hero content */
 .mega-menu-dropdown,
 .dropdown-menu-content {
   position: relative;
-  z-index: 1100;
-  background: white;
+  z-index: 1200;
+  background: white !important;
   border: 1px solid #e5e7eb;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 /* Ensure borders between sections are subtle */
 .dropdown-section:not(:last-child) {
   border-right: 1px solid #f3f4f6;
+}
+
+/* Override any background transparency */
+[data-radix-dropdown-menu-content] {
+  background-color: #ffffff !important;
+  backdrop-filter: none !important;
 }

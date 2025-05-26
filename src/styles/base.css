@@ -1,3 +1,4 @@
+
 /* Base Styles for DataOps Group Website */
 
 /* Reset and base styles */
@@ -18,7 +19,13 @@ body {
   color: #374151;
   background-color: #ffffff;
   min-height: 100%;
-  padding-top: 110px; /* Updated to match new navigation height */
+  padding-top: 130px; /* Updated to accommodate larger navigation */
+}
+
+@media (max-width: 1024px) {
+  body {
+    padding-top: 90px; /* Smaller padding for mobile */
+  }
 }
 
 /* Utility classes */
