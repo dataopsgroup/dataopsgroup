@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -12,11 +11,6 @@ interface SemanticLayoutProps {
   skipFooter?: boolean;
 }
 
-/**
- * SemanticLayout component provides a consistent semantic HTML structure
- * across the website with proper heading hierarchy and semantic tags.
- * Uses flex layout to ensure footer is always at the bottom of the viewport.
- */
 const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   children,
   mainClassName,
@@ -24,24 +18,27 @@ const SemanticLayout: React.FC<SemanticLayoutProps> = ({
   skipFooter = false
 }) => {
   return (
-    <div className="flex flex-col min-h-screen"> {/* This creates a container that's at least the height of the viewport */}
+    // Added this wrapper div with flex classes
+    <div className="flex flex-col min-h-screen"> 
       {!skipNav && (
+        // Added z-50 to ensure header stays above content
         <header className="sticky top-0 z-50">
           <Navbar />
         </header>
       )}
       
+      {/* Added flex-grow to push footer down */}
       <main className={cn("main-content pt-[90px] lg:pt-[110px] flex-grow", mainClassName)}>
         {children}
       </main>
       
       {!skipFooter && (
-        <footer className="mt-auto"> {/* mt-auto helps push it to the bottom */}
+        // Added wrapper with mt-auto to push footer to bottom
+        <footer className="mt-auto">
           <Footer />
         </footer>
       )}
       
-      {/* Development-only meta tag validator */}
       {process.env.NODE_ENV === 'development' && (
         <MetaValidator />
       )}
