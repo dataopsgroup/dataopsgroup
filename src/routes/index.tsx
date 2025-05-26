@@ -28,11 +28,11 @@ const createAmpRedirects = () => {
   }).filter(Boolean) as RouteObject[];
 };
 
-// Create assessment route
+// Create assessment route with proper component reference
 const assessmentRoute = {
   path: "/assessment",
-  element: <HubSpotAssessment />,
-  errorElement: <Navigate to="/not-found" replace />
+  Component: HubSpotAssessment,
+  errorElement: React.createElement(() => <Navigate to="/not-found" replace />)
 };
 
 // Combine all routes

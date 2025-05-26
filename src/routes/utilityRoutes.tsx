@@ -2,7 +2,7 @@
 import React from 'react';
 import { RouteObject, Navigate } from 'react-router-dom';
 
-// Import pages
+// Import pages - these are component references, not instantiated components
 import NotFound from '@/pages/NotFound';
 import Privacy from '@/pages/Privacy';
 import Sitemap from '@/pages/Sitemap';
@@ -10,23 +10,23 @@ import FAQs from '@/pages/FAQs';
 import PillarContentPage from '@/pages/PillarContentPage';
 import HubSpotExpertGuidePage from '@/pages/HubSpotExpertGuidePage';
 
-// Define utility routes
+// Define utility routes - use component references, not JSX
 export const utilityRoutes: RouteObject[] = [
   {
     path: "/not-found",
-    element: <NotFound />
+    Component: NotFound
   },
   {
     path: "/404",
-    element: <NotFound />
+    Component: NotFound
   },
   {
     path: "*",
-    element: <NotFound />
+    Component: NotFound
   },
   {
     path: "/privacy",
-    element: <Privacy />
+    Component: Privacy
   },
   {
     path: "/terms",
@@ -34,11 +34,11 @@ export const utilityRoutes: RouteObject[] = [
   },
   {
     path: "/sitemap",
-    element: <Sitemap />
+    Component: Sitemap
   },
   {
     path: "/faqs",
-    element: <FAQs />
+    Component: FAQs
   },
   {
     path: "/docs",
@@ -54,10 +54,10 @@ export const utilityRoutes: RouteObject[] = [
   },
   {
     path: "/pillar-content",
-    element: <PillarContentPage />
+    Component: PillarContentPage
   },
   {
     path: "/how-to-hire-a-hubspot-expert-in-2025",
-    element: <HubSpotExpertGuidePage />
+    Component: HubSpotExpertGuidePage
   }
 ];
