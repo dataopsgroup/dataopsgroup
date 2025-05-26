@@ -57,6 +57,8 @@ export const preloadCriticalResources = () => {
     criticalResources.unshift({
       href: '/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png', 
       as: 'image',
+      type: 'image/png',
+      crossorigin: 'anonymous',
       fetchpriority: 'high'
     });
   }
