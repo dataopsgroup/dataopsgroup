@@ -1,11 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { cn } from "@/lib/utils";
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { NavItem, SubNavItem } from '@/types/navigation';
 import { 
-  ChevronRight,
   LifeBuoy, 
   Rocket, 
   LineChart, 
@@ -26,11 +27,19 @@ interface MobileNavigationProps {
 }
 
 const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, setIsOpen }) => {
-  if (!isOpen) return null;
+  const [openItems, setOpenItems] = useState<string[]>([]);
+  
+  const toggleItem = (title: string) => {
+    setOpenItems((current) => 
+      current.includes(title) 
+        ? current.filter(item => item !== title) 
+        : [...current, title]
+    );
+  };
 
   // Function to render the appropriate icon based on string identifier
   const renderIcon = (iconName?: string) => {
-    const iconProps = { className: "h-4 w-4 mr-2 text-dataops-500", "aria-hidden": true };
+    const iconProps = { className: "h-5 w-5", "aria-hidden": true };
     
     switch (iconName) {
       case 'LifeBuoy': return <LifeBuoy {...iconProps} />;
@@ -47,87 +56,107 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
       default: return null;
     }
   };
-
-  // Recursive function to render nested menu items
-  const renderSubMenu = (items: SubNavItem[] | undefined, level: number = 1) => {
-    if (!items) return null;
-
-    return (
-      <ul className={`pl-${level * 4} flex flex-col space-y-2`}>
-        {items.map((subItem) => (
-          <li key={subItem.title}>
-            <Link
-              to={subItem.href || "/"}
-              onClick={() => setIsOpen(false)}
-              className="text-dataops-900 hover:text-dataops-600 py-2 flex items-start font-body"
-            >
-              <div className="flex items-start w-full">
-                {subItem.icon && renderIcon(subItem.icon)}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-medium">
-                      {subItem.title}
-                    </span>
-                    {subItem.badge && (
-                      <Badge variant="success" className="text-xs">
-                        {subItem.badge}
-                      </Badge>
-                    )}
-                  </div>
-                  {subItem.description && (
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                      {subItem.description}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    );
-  };
-
+  
+  if (!isOpen) return null;
+  
   return (
-    <nav 
-      id="mobile-menu"
-      className="md:hidden absolute top-full left-0 w-full bg-white shadow-md animate-fade-in"
-      aria-label="Mobile Navigation"
-    >
-      <div className="container mx-auto py-4 flex flex-col space-y-4">
-        <ul className="flex flex-col space-y-4">
+    <div className="fixed inset-0 z-50 bg-white lg:hidden overflow-auto">
+      <div className="pt-20 pb-6 px-4">
+        <nav className="flex flex-col space-y-1">
           {navItems.map((item) => (
-            <li key={item.title}>
+            <div key={item.title} className="border-b border-gray-100">
               {item.children ? (
-                <div className="flex flex-col px-4">
-                  <div className="py-2 font-medium text-dataops-900 flex items-center font-body">
+                <div>
+                  <button
+                    className="flex justify-between items-center w-full py-4 text-left text-lg font-medium text-gray-900"
+                    onClick={() => toggleItem(item.title)}
+                  >
                     {item.title}
-                    <ChevronRight className="h-4 w-4 ml-1" />
-                  </div>
-                  {renderSubMenu(item.children)}
+                    <ChevronDown 
+                      className={cn(
+                        "h-5 w-5 text-gray-500 transition-transform",
+                        openItems.includes(item.title) ? "rotate-180" : ""
+                      )} 
+                    />
+                  </button>
+                  
+                  {openItems.includes(item.title) && (
+                    <div className="pl-4 pb-4 space-y-4">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.title}
+                          to={child.href || "/"}
+                          className="flex items-start py-2"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <div className="mr-3 text-primary">
+                            {child.icon && renderIcon(child.icon)}
+                          </div>
+                          <div>
+                            <div className="text-base font-medium text-gray-900 flex items-center">
+                              {child.title}
+                              {child.badge && (
+                                <Badge variant="success" className="ml-2 text-xs">
+                                  {child.badge}
+                                </Badge>
+                              )}
+                            </div>
+                            <p className="mt-1 text-sm text-gray-500">{child.description}</p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <Link
                   to={item.href || "/"}
+                  className="flex items-center justify-between py-4 text-lg font-medium text-gray-900"
                   onClick={() => setIsOpen(false)}
-                  className="text-dataops-900 hover:text-dataops-600 font-medium py-2 px-4 flex items-center font-body"
                 >
                   {item.title}
+                  <ChevronRight className="h-5 w-5 text-gray-500" />
                 </Link>
               )}
-            </li>
+            </div>
           ))}
-        </ul>
+        </nav>
         
-        <div className="px-4 pt-2">
-          <Link to="/contact" onClick={() => setIsOpen(false)}>
-            <Button className="w-full bg-dataops-600 hover:bg-dataops-700 font-body">
-              Get Started
-            </Button>
-          </Link>
+        <div className="mt-8 space-y-4 px-2">
+          <Button
+            variant="outline"
+            className="w-full justify-center"
+            asChild
+          >
+            <Link to="/contact">Contact Us</Link>
+          </Button>
+          
+          <Button
+            className="w-full justify-center"
+            asChild
+          >
+            <Link to="/assessment" onClick={() => {
+              // Track CTA click
+              if (window.gtag) {
+                window.gtag('event', 'cta_click', {
+                  'event_category': 'Engagement',
+                  'event_label': 'Mobile Menu Assessment CTA'
+                });
+              }
+              // Track in HubSpot
+              if (window._hsq) {
+                window._hsq.push(['trackEvent', {
+                  id: 'mobile_menu_assessment_cta_click'
+                }]);
+              }
+              setIsOpen(false);
+            }}>
+              Book Free Assessment
+            </Link>
+          </Button>
         </div>
       </div>
-    </nav>
+    </div>
   );
 };
 
