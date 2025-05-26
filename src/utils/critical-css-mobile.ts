@@ -1,12 +1,11 @@
 
 /**
- * Mobile-first critical CSS optimization
- * Eliminates render-blocking CSS for 90+ PSI score
+ * Simplified mobile CSS optimization
  */
 
-// Ultra-minimal critical CSS for mobile above-the-fold content only
+// Basic critical CSS for mobile
 const MOBILE_CRITICAL_CSS = `
-  /* Mobile-only critical CSS - absolute minimum */
+  /* Mobile-only critical CSS */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; }
   body { 
@@ -59,7 +58,7 @@ const MOBILE_CRITICAL_CSS = `
   }
 `;
 
-// Inject only mobile critical CSS
+// Simple mobile CSS injection
 export const injectMobileCriticalCSS = () => {
   if (typeof document === 'undefined') return;
   
@@ -73,32 +72,28 @@ export const injectMobileCriticalCSS = () => {
   style.id = 'mobile-critical-css';
   style.textContent = MOBILE_CRITICAL_CSS;
   document.head.insertBefore(style, document.head.firstChild);
-  
-  // Mark that mobile optimization is active
-  document.documentElement.setAttribute('data-mobile-optimized', 'true');
 };
 
-// Defer ALL non-critical CSS on mobile
+// Simple CSS deferral for mobile
 export const deferNonCriticalCSS = () => {
   if (window.innerWidth >= 768) return;
   
-  // Convert all stylesheet links to preload and defer loading
+  // Convert stylesheets to preload with minimal delay
   document.querySelectorAll('link[rel="stylesheet"]').forEach(linkElement => {
     const link = linkElement as HTMLLinkElement;
-    const href = link.getAttribute('href') || '';
     
-    // Skip if it's already been processed
+    // Skip if already processed
     if (link.getAttribute('data-deferred')) return;
     
-    // Convert to preload
+    // Convert to preload with shorter delay
     link.rel = 'preload';
     link.as = 'style';
     link.setAttribute('data-deferred', 'true');
     
-    // Load after significant delay on mobile
+    // Load after shorter delay on mobile
     setTimeout(() => {
       link.rel = 'stylesheet';
-    }, 3000);
+    }, 500);
   });
 };
 
@@ -106,6 +101,9 @@ export const deferNonCriticalCSS = () => {
 export const initMobileCSSOptimizations = () => {
   if (window.innerWidth < 768) {
     injectMobileCriticalCSS();
-    deferNonCriticalCSS();
+    // Don't defer CSS immediately to avoid breaking the site
+    setTimeout(() => {
+      deferNonCriticalCSS();
+    }, 1000);
   }
 };

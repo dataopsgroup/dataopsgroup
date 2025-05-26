@@ -1,10 +1,9 @@
 
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { RouterProvider, RouteObject } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
 import CustomCookieBanner from './components/CustomCookieBanner';
-import PerformanceMonitor from './components/performance/PerformanceMonitor';
 import router from './routes';
 import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirect-utils';
 
@@ -31,10 +30,10 @@ function App() {
       return;
     }
     
-    // Optimized loading time for better UX
+    // Simple loading timer
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 800); // Reduced from 1000ms to 800ms
+    }, 300); // Much shorter delay
 
     return () => clearTimeout(timer);
   }, []);
@@ -45,39 +44,6 @@ function App() {
     setError(error instanceof Error ? error : new Error('An unexpected error occurred with routing'));
     return <ErrorDisplay message={(error instanceof Error ? error.message : 'An unexpected error occurred')} />;
   };
-
-  // Validate routes to ensure no critical routes are missing
-  const validateRoutes = (routerObj: any): boolean => {
-    try {
-      // Ensure critical routes exist
-      const routes = routerObj.routes as RouteObject[];
-      const criticalPaths = ['/', '/faqs', '/contact', '/insights'];
-      
-      const foundPaths = routes.map(route => route.path);
-      const missingPaths = criticalPaths.filter(path => !foundPaths.includes(path));
-      
-      if (missingPaths.length > 0) {
-        console.error('Critical routes missing:', missingPaths);
-      }
-      
-      return missingPaths.length === 0;
-    } catch (e) {
-      console.error('Route validation error:', e);
-      return true; // Continue anyway to avoid blocking the app
-    }
-  };
-
-  // Pre-check routes for validation but don't block rendering
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      window.requestIdleCallback(() => {
-        validateRoutes(router);
-      });
-    } else {
-      // Fallback for browsers that don't support requestIdleCallback
-      setTimeout(() => validateRoutes(router), 300);
-    }
-  }, []);
 
   if (isLoading) {
     return <Loading />;
@@ -93,9 +59,6 @@ function App() {
       
       {/* Custom Cookie Banner */}
       <CustomCookieBanner />
-      
-      {/* Performance Monitor for Development */}
-      <PerformanceMonitor />
       
       {/* Using Suspense for lazy-loaded privacy modal */}
       {isPrivacyModalOpen && (

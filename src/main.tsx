@@ -4,17 +4,13 @@ import App from './App.tsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
-import { injectCriticalCSS } from './utils/critical-css-enhanced';
 
-// Enhanced version setup with performance monitoring
+// Simple version setup
 if (typeof window !== 'undefined') {
   window.APP_VERSION = '1.8.0';
-  
-  // Inject critical CSS immediately to prevent render blocking
-  injectCriticalCSS();
 }
 
-// Ultra-lightweight loading fallback for mobile performance
+// Simple loading fallback
 const LoadingFallback = () => (
   <div className="loading-container">
     <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
@@ -24,7 +20,7 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Optimized render function
+// Simple render function
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -41,64 +37,33 @@ const renderApp = () => {
   }
 };
 
-// Immediate render for fastest Time to Interactive
+// Immediate render
 renderApp();
 
-// Ultra-aggressive deferred loading for mobile optimization
+// Simple deferred loading without aggressive optimizations
 const loadDeferredModules = async () => {
   try {
-    const isMobile = window.innerWidth < 768;
-    
-    // Only load performance monitoring on desktop or after significant delay on mobile
-    if (!isMobile) {
-      setTimeout(async () => {
-        try {
-          const { initEnhancedWebVitals } = await import('./utils/core-web-vitals-enhanced');
-          initEnhancedWebVitals();
-        } catch (error) {
-          console.warn('Web vitals failed to load:', error);
-        }
-      }, 1000);
-    } else {
-      // Mobile: delay everything significantly
-      setTimeout(async () => {
-        try {
-          const { initWebVitals } = await import('./utils/web-vitals');
-          initWebVitals();
-        } catch (error) {
-          console.warn('Basic web vitals failed:', error);
-        }
-      }, 5000);
-    }
-    
-    // Mobile-specific ultra-light optimizations
-    if (isMobile) {
-      setTimeout(async () => {
-        try {
-          const { initMobileOptimizations } = await import('./utils/performance/mobile-optimization');
-          initMobileOptimizations();
-        } catch (error) {
-          console.warn('Mobile optimizations failed:', error);
-        }
-      }, 8000);
-    }
-    
+    // Only load basic web vitals after a reasonable delay
+    setTimeout(async () => {
+      try {
+        const { initWebVitals } = await import('./utils/web-vitals');
+        initWebVitals();
+      } catch (error) {
+        console.warn('Web vitals failed to load:', error);
+      }
+    }, 2000);
   } catch (error) {
     console.error('Error loading deferred modules:', error);
   }
 };
 
-// Use optimized timing for module loading
+// Simple timing for module loading
 if (typeof window !== 'undefined') {
-  // On mobile, delay everything significantly
-  const isMobile = window.innerWidth < 768;
-  const delay = isMobile ? 3000 : 100;
-  
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(loadDeferredModules, delay);
+      setTimeout(loadDeferredModules, 500);
     });
   } else {
-    setTimeout(loadDeferredModules, delay);
+    setTimeout(loadDeferredModules, 500);
   }
 }

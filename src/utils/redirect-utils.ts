@@ -1,72 +1,35 @@
 
 /**
- * Utilities for handling redirects and ensuring proper indexing
+ * URL redirect utilities for HubSpot and other redirects
  */
 
-/**
- * Extracts the target URL from a HubSpot encoded CTA URL
- * @param encodedUrl The encoded URL from HubSpot CTA
- * @returns The destination URL or homepage if invalid
- */
-export const handleHubSpotCTARedirect = (encodedUrl: string): string => {
+// Handle HubSpot CTA redirects
+export const handleHubSpotCTARedirect = (searchParams: string): string => {
   try {
-    // Extract the encrypted payload parameter
-    const match = encodedUrl.match(/encryptedPayload=([^&]+)/);
-    if (!match) return '/';
+    const params = new URLSearchParams(searchParams);
+    const destination = params.get('destination') || params.get('url');
     
-    // For security reasons, we redirect to homepage rather than
-    // trying to decode potentially malicious payloads
-    return '/';
+    if (destination) {
+      // Decode the destination URL
+      return decodeURIComponent(destination);
+    }
+    
+    // Default redirect if no destination found
+    return '/contact';
   } catch (error) {
-    console.error('Failed to parse HubSpot CTA URL:', error);
-    return '/';
+    console.error('Error handling HubSpot redirect:', error);
+    return '/contact';
   }
 };
 
-/**
- * Checks if a URL is an AMP version and returns the canonical URL
- * @param url The URL to check
- * @returns The canonical (non-AMP) URL
- */
-export const getCanonicalFromAmpUrl = (url: string): string => {
-  if (url.includes('?hs_amp=true')) {
-    return url.split('?')[0];
-  }
-  return url;
-};
-
-/**
- * Removes HubSpot language parameter from URL
- * @param url URL potentially containing hsLang parameter
- * @returns Clean URL without the language parameter
- */
+// Remove hsLang parameter from URL
 export const removeHsLangParameter = (url: string): string => {
-  if (url.includes('?hsLang=')) {
-    return url.split('?')[0];
+  try {
+    const urlObj = new URL(url);
+    urlObj.searchParams.delete('hsLang');
+    return urlObj.toString();
+  } catch (error) {
+    console.error('Error removing hsLang parameter:', error);
+    return url;
   }
-  
-  if (url.includes('&hsLang=')) {
-    return url.replace(/&hsLang=[^&]+/, '');
-  }
-  
-  return url;
-};
-
-/**
- * Validates that a URL has proper canonical and indexing tags
- * For use in development and testing
- * @param url The URL to validate
- */
-export const validateUrlIndexability = async (url: string): Promise<boolean> => {
-  // This is a placeholder for server-side validation
-  // In a real implementation, this would fetch the URL and check meta tags
-  
-  return true;
-};
-
-export default {
-  handleHubSpotCTARedirect,
-  getCanonicalFromAmpUrl,
-  removeHsLangParameter,
-  validateUrlIndexability
 };
