@@ -1,24 +1,27 @@
+
 import React from 'react';
 import { Search, Wrench, TrendingUp } from 'lucide-react';
+
 const steps = [{
   icon: <Search className="h-10 w-10" />,
-  title: 'Deep Audit',
+  title: 'PE-Standard Assessment',
   subtitle: 'Week 1',
-  description: 'We analyze your data quality, workflow efficiency, and team processes to identify exactly what\'s killing your ROI.',
+  description: 'We audit operations against PE growth expectations and identify gaps that slow portfolio value creation.',
   color: 'bg-blue-500'
 }, {
   icon: <Wrench className="h-10 w-10" />,
-  title: 'Strategic Fix',
-  subtitle: 'Week 2',
-  description: 'We implement the critical changes needed to stop revenue leaks and get your teams aligned.',
+  title: 'Rapid Implementation',
+  subtitle: 'Week 2-3',
+  description: 'We deploy proven HubSpot systems designed for PE portfolio scalability and investor reporting requirements.',
   color: 'bg-orange-500'
 }, {
   icon: <TrendingUp className="h-10 w-10" />,
-  title: 'Optimization & Training',
-  subtitle: 'Week 3',
-  description: 'We fine-tune performance and ensure your team can maintain the improvements long-term.',
+  title: 'Portfolio Optimization',
+  subtitle: 'Week 4',
+  description: 'We optimize for the metrics PE firms track and ensure systems can scale across other portfolio companies.',
   color: 'bg-green-500'
 }];
+
 const Approach = () => {
   return <section id="approach" className="pt-10 pb-16 md:pt-16 md:pb-24 px-4 md:px-8 bg-white">
       <div className="container mx-auto">
@@ -43,4 +46,5 @@ const Approach = () => {
       </div>
     </section>;
 };
+
 export default Approach;
