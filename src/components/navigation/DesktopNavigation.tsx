@@ -141,7 +141,8 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="nav-link-button flex items-center font-body h-auto px-3 py-2 text-black hover:text-dataops-500 transition-colors border-0 shadow-none bg-transparent hover:bg-transparent"
+                  className="nav-link-button flex items-center font-body h-auto px-3 py-2 transition-colors border-0 shadow-none bg-transparent hover:bg-transparent"
+                  style={{ color: '#000000' }}
                   aria-haspopup="true" 
                   aria-expanded="false"
                 >
@@ -155,7 +156,8 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
           <div key={item.title} className="nav-item">
             <Link 
               to={item.href || "/"}
-              className="nav-link text-black hover:text-dataops-500 font-medium font-body transition-colors px-3 py-2 rounded"
+              className="nav-link font-medium font-body transition-colors px-3 py-2 rounded hover:text-dataops-500"
+              style={{ color: '#000000' }}
             >
               {item.title}
             </Link>

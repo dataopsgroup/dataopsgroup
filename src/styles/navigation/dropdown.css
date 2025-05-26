@@ -71,23 +71,17 @@
   }
 }
 
-/* Ensure proper default text color for dropdown triggers */
-[data-radix-dropdown-menu-trigger] {
-  background-color: transparent !important;
-  color: #000000 !important; /* Black default text color */
+/* Force black text color for dropdown triggers with highest specificity */
+[data-radix-dropdown-menu-trigger],
+.nav-link-button,
+.nav-link {
+  color: #000000 !important;
 }
 
-[data-radix-dropdown-menu-trigger]:hover {
-  background-color: transparent !important;
+[data-radix-dropdown-menu-trigger]:hover,
+.nav-link-button:hover,
+.nav-link:hover {
   color: #1a8aeb !important;
-}
-
-[data-radix-dropdown-menu-trigger]:focus {
-  background-color: transparent !important;
-}
-
-[data-radix-dropdown-menu-trigger]:active {
-  background-color: transparent !important;
 }
 
 /* Remove any ghost button backgrounds */
@@ -96,7 +90,7 @@
 }
 
 .nav-link-button:hover {
-  background-color: transparent !important;
+  background-color: #f8f9ff !important;
 }
 
 .nav-link-button:focus {
