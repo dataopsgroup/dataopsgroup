@@ -1,24 +1,23 @@
 
-/* Hero Typography Styles */
+/* Hero Typography Styles - Updated for Clean Readability */
 
 .hero-headline {
   font-family: 'Rubik', system-ui, -apple-system, sans-serif;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 3.5rem;
   line-height: 1.2;
-  color: #14213D;
   margin: 0 0 1.5rem 0;
   text-align: left;
 }
 
-.hero-emphasis {
+/* Split headline colors */
+.hero-headline-black {
+  color: #000000 !important;
+}
+
+.hero-headline-saffron {
+  color: #f4a261 !important;
   display: block;
-  font-family: 'Rubik', system-ui, -apple-system, sans-serif;
-  font-weight: 500;
-  font-size: 3.5rem;
-  line-height: 1.2;
-  color: #FBB03B; /* Changed to saffron color */
-  margin-bottom: 1.5rem;
 }
 
 .hero-description {
@@ -26,13 +25,46 @@
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.6;
-  color: rgba(20, 33, 61, 0.85);
+  color: #ffffff !important;
   margin: 0 0 2rem 0;
   max-width: 550px;
   text-align: left;
 }
 
-/* Premium tagline */
+.hero-subheading {
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #000000 !important;
+  margin: 0 0 0.5rem 0;
+}
+
+.hero-subtext {
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #ffffff !important;
+  margin: 0 0 1.5rem 0;
+}
+
+.hero-risk-assessment {
+  color: #ffffff !important;
+  margin-top: 1rem;
+}
+
+.hero-risk-assessment h4 {
+  font-weight: 600;
+  color: #ffffff !important;
+  margin-bottom: 0.5rem;
+}
+
+.hero-risk-assessment p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Premium tagline - keep existing behavior */
 .hero-text-column .mb-4 span {
   font-size: 0.9rem;
   letter-spacing: 1.5px;
@@ -42,55 +74,91 @@
   font-weight: 600;
 }
 
-/* Mobile-only optimizations - Inter fonts + black headings, white body text */
+/* Mobile optimizations */
 @media (max-width: 768px) {
-  .hero-headline,
-  .hero-emphasis {
+  .hero-headline {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 600;
     font-size: 2.5rem;
     font-display: swap;
   }
   
-  .hero-headline {
-    color: #000000; /* Black for headings on mobile */
+  .hero-headline-black {
+    color: #000000 !important;
   }
   
-  .hero-emphasis {
-    color: #FBB03B; /* Saffron color maintained on mobile */
+  .hero-headline-saffron {
+    color: #f4a261 !important;
   }
   
   .hero-description {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    color: #ffffff; /* White for body text on mobile */
+    color: #ffffff !important;
+    font-display: swap;
+  }
+  
+  .hero-subheading {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    color: #000000 !important;
+    font-display: swap;
+  }
+  
+  .hero-subtext {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    color: #ffffff !important;
     font-display: swap;
   }
   
   .hero-text-column .mb-4 span {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-weight: 600;
-    color: #ffffff; /* White for premium tagline on mobile */
-    font-display: swap;
-  }
-  
-  /* Mobile h2 headings - black for better readability */
-  .hero-text-column h2 {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-weight: 600;
-    color: #000000;
+    color: #ffffff !important;
     font-display: swap;
   }
 }
 
+/* Tablet and larger screens */
 @media (min-width: 992px) {
-  .hero-headline,
-  .hero-emphasis {
+  .hero-headline {
     font-size: 4rem;
   }
   
   .hero-description {
     font-size: 1.25rem;
+  }
+}
+
+/* Desktop text positioning */
+@media (min-width: 1024px) {
+  .hero-description {
+    color: rgba(20, 33, 61, 0.85) !important;
+  }
+  
+  .hero-subheading {
+    color: #14213D !important;
+  }
+  
+  .hero-subtext {
+    color: rgba(20, 33, 61, 0.75) !important;
+  }
+  
+  .hero-risk-assessment {
+    color: #14213D !important;
+  }
+  
+  .hero-risk-assessment h4 {
+    color: #14213D !important;
+  }
+  
+  .hero-risk-assessment p {
+    color: rgba(20, 33, 61, 0.8) !important;
+  }
+  
+  .hero-text-column .mb-4 span {
+    color: #0066CC !important;
   }
 }

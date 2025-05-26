@@ -11,29 +11,33 @@ const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
   return (
     <div className="hero-text-column">
       <div className="hero-text-overlay">
-        {/* Premium Tagline - mobile optimized */}
+        {/* Premium Tagline */}
         <div className="mb-4">
           <span className="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold tracking-wide uppercase md:bg-blue-50 md:text-blue-700 backdrop-blur-sm">
             EXPERT HUBSPOT TRANSFORMATION SPECIALISTS
           </span>
         </div>
         
-        {/* LCP optimized heading - mobile-first text colors with black headings */}
-        <h1 className="hero-headline text-black md:text-[#14213D]">
-          HubSpot Not Delivering ROI?<br />
-          <span className="hero-emphasis text-black md:text-green-600">We Fix That.</span>
+        {/* Split headline with proper color classes */}
+        <h1 className="hero-headline">
+          <span className="hero-headline-black">HubSpot Not Delivering ROI?</span>
+          <span className="hero-headline-saffron">We Fix That.</span>
         </h1>
-        <p className="hero-description text-white md:text-gray-700">
+        
+        {/* White description text */}
+        <p className="hero-description">
           Stop losing money on broken workflows, messy data, and disconnected teams. 
           We rescue HubSpot implementations and turn them into revenue-generating machines.
         </p>
         
         <div className="space-y-6">
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-black md:text-white">
+            {/* Black subheading */}
+            <h2 className="hero-subheading">
               Discover What's Costing You Deals
             </h2>
-            <p className="text-white md:text-gray-700">
+            {/* White supporting text */}
+            <p className="hero-subtext">
               Free 30-minute HubSpot assessment reveals hidden revenue leaks
             </p>
           </div>
@@ -46,12 +50,13 @@ const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
               </Link>
             </div>
             
-            <div className="text-sm text-white/80 md:text-gray-600 italic">
-              <strong className="text-white md:text-gray-900">No-Risk Assessment</strong><br />
-              <span className="text-white/80 md:text-gray-600">
+            {/* Risk assessment section with white text */}
+            <div className="hero-risk-assessment">
+              <h4 className="font-semibold">No-Risk Assessment</h4>
+              <p>
                 We'll audit your HubSpot setup and show you exactly what's wrong - completely free. 
                 No obligation, no sales pitch, just honest feedback about your ROI potential.
-              </span>
+              </p>
             </div>
           </div>
         </div>
