@@ -2,7 +2,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
-import { Phone } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { toast } from 'sonner';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
@@ -176,46 +175,24 @@ const HubSpotAssessmentPage = () => {
       />
       
       <section className="flex-grow pt-32 px-[5%]" aria-labelledby="assessment-heading">
-        <header className="max-w-3xl mx-auto text-center mb-16">
-          <h1 id="assessment-heading" className="text-3xl md:text-4xl font-bold mb-4">
-            Free HubSpot <span className="gradient-text">Assessment</span>
-          </h1>
-          <p className="text-lg text-gray-600">
-            Get a comprehensive evaluation of your HubSpot setup and discover opportunities to maximize your ROI with expert recommendations.
-          </p>
-        </header>
-        
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Contact Information */}
-            <div className="md:col-span-1 space-y-6">
-              <ContactCard>
-                <div className="flex items-start">
-                  <Phone className="w-5 h-5 text-dataops-600 mr-3 mt-1" aria-hidden="true" />
-                  <div>
-                    <h3 className="font-medium mb-1 text-xl">Call Us</h3>
-                    <p className="text-gray-600">
-                      <a href="tel:+14798442052" className="hover:text-dataops-600 transition-colors">
-                        +1 479 844 2052
-                      </a>
-                    </p>
-                    <p className="text-gray-600">Mon-Thu, 9am-5pm CT</p>
-                  </div>
-                </div>
-              </ContactCard>
-            </div>
-            
-            {/* HubSpot Assessment Form */}
-            <div className="md:col-span-2">
-              <ContactCard>
-                <div id="hubspot-assessment-form-container" ref={formContainerRef} className="min-h-[400px]" aria-live="polite">
-                  <div className="flex justify-center items-center h-20">
-                    <p className="text-gray-500">Loading assessment form...</p>
-                  </div>
-                </div>
-              </ContactCard>
-            </div>
+        <div className="container mx-auto max-w-4xl">
+          <div className="mb-16">
+            <h1 id="assessment-heading" className="font-headline text-4xl md:text-5xl font-bold mb-4 text-left">
+              Free HubSpot <span className="gradient-text">Assessment</span>
+            </h1>
+            <p className="font-body text-lg text-gray-600 text-left">
+              Get a comprehensive evaluation of your HubSpot setup and discover opportunities to maximize your ROI with expert recommendations.
+            </p>
           </div>
+          
+          {/* HubSpot Assessment Form */}
+          <ContactCard>
+            <div id="hubspot-assessment-form-container" ref={formContainerRef} className="min-h-[400px]" aria-live="polite">
+              <div className="flex justify-center items-center h-20">
+                <p className="text-gray-500">Loading assessment form...</p>
+              </div>
+            </div>
+          </ContactCard>
         </div>
       </section>
     </SemanticLayout>
