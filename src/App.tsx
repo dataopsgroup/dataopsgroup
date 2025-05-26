@@ -3,6 +3,7 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { RouterProvider, RouteObject } from 'react-router-dom';
 import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
+import CustomCookieBanner from './components/CustomCookieBanner';
 import router from './routes';
 import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirect-utils';
 
@@ -88,6 +89,9 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      
+      {/* Custom Cookie Banner */}
+      <CustomCookieBanner />
       
       {/* Using Suspense for lazy-loaded privacy modal */}
       {isPrivacyModalOpen && (
