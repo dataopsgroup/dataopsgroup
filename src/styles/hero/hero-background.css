@@ -1,123 +1,70 @@
 
-/* Hero Background - Mobile-First Performance Optimization */
+/* Hero Background Styles */
 
-/* Mobile-first: Clean gradient background - no image for optimal performance */
 .hero-section {
-  width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
   position: relative;
+  min-height: 80vh;
+  background-image: url('/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  contain: layout style paint;
-  visibility: visible !important;
-  opacity: 1 !important;
-  will-change: transform;
-  transform: translateZ(0);
+  padding-top: 100px;
 }
 
-/* Mobile text content styling */
 .hero-container {
   width: 100%;
   padding: 0 5%;
   position: relative;
   z-index: 2;
   max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Mobile hero content - optimized for performance */
 .hero-text-column {
-  width: 100%;
-  max-width: 100%;
-  padding: 2rem;
+  width: 45%;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  position: relative;
   z-index: 10;
-  position: relative;
-  color: white;
-  text-align: center;
 }
 
-/* Text overlay for desktop compatibility */
-.hero-text-overlay {
-  position: relative;
-  z-index: 3;
+/* Background blur overlay for text readability */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 55%;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
 }
 
-/* Tablet optimization - keep gradient for performance */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* Mobile responsive */
+@media (max-width: 768px) {
   .hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
-    min-height: 80vh;
+    background-position: 20% center;
+    min-height: 60vh;
+    padding-top: 80px;
+  }
+  
+  .hero-section::before {
+    right: 0;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
   
   .hero-text-column {
-    max-width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
     text-align: center;
-  }
-}
-
-/* Desktop: Restore consultant background image - only for large screens */
-@media (min-width: 1024px) {
-  .hero-section {
-    background-image: url('/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    min-height: 80vh;
-    background-color: #f8f9fa; /* Fallback */
-  }
-
-  /* Desktop overlay for text readability */
-  .hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 55%;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 1;
-  }
-
-  /* Desktop text positioning */
-  .hero-text-column {
-    width: 45%;
-    max-width: 500px;
-    padding-right: 2rem;
-    background: transparent;
-    color: inherit;
-    text-align: left;
-    margin: 0;
-  }
-}
-
-/* Fallback for browsers without backdrop-filter support */
-@supports not (backdrop-filter: blur(8px)) {
-  @media (min-width: 1024px) {
-    .hero-section::before {
-      background: rgba(255, 255, 255, 0.85);
-    }
-  }
-}
-
-/* High DPI displays - desktop only */
-@media (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), 
-       (min-width: 1024px) and (min-resolution: 192dpi) {
-  .hero-section {
-    background-image: url('/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png');
-  }
-}
-
-/* Very large screens */
-@media (min-width: 1600px) {
-  .hero-section {
-    max-width: 1500px;
+    padding: 2rem;
   }
 }

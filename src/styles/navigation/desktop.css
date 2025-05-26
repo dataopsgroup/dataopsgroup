@@ -1,63 +1,12 @@
 
 /* Desktop Navigation Styles */
 
-/* Navigation Menu */
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 48px;
-  flex: 1;
-  justify-content: center;
-}
-
-/* Unified Navigation Item Styling */
-.nav-item,
-.nav-dropdown-trigger {
-  position: relative;
-  text-decoration: none;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: #475569;
-  transition: all 0.2s ease-in-out;
-  background: transparent !important;
-  border: none !important;
-  padding: 12px 0 !important;
-  display: flex;
-  align-items: center;
-  line-height: 1.5;
-  height: auto;
-  white-space: nowrap;
-  letter-spacing: -0.01em;
-}
-
-.nav-item:hover,
-.nav-dropdown-trigger:hover {
-  color: #1e293b !important;
-}
-
-/* Underline effect on hover - unified for all nav items */
-.nav-item::after,
-.nav-dropdown-trigger::after {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #3b82f6;
-  transition: width 0.25s ease-in-out;
-  border-radius: 1px;
-}
-
-.nav-item:hover::after,
-.nav-dropdown-trigger:hover::after {
-  width: 100%;
-}
-
-/* Hide desktop navigation on mobile */
-@media (max-width: 767px) {
-  .nav-menu {
+@media (min-width: 768px) {
+  .mobile-menu {
     display: none;
+  }
+  
+  .desktop-nav {
+    display: flex;
   }
 }

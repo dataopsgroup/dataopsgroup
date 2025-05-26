@@ -7,11 +7,6 @@ import Services from '@/components/Services';
 import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
-import OrganizationSchema from '@/components/seo/OrganizationSchema';
-import WebsiteSchema from '@/components/seo/WebsiteSchema';
-import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
-import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
 
@@ -31,62 +26,19 @@ const Index = () => {
           gscVerification="YOUR_GSC_VERIFICATION_CODE"
         />
         
-        {/* Schema components with error boundaries */}
-        {(() => {
-          try {
-            return (
-              <>
-                <OrganizationSchema />
-                <WebsiteSchema />
-                <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
-                <LocalBusinessSchema />
-                <ProfessionalServiceSchema />
-              </>
-            );
-          } catch (error) {
-            console.error('Schema components error:', error);
-            return null;
-          }
-        })()}
-        
         <Navbar />
         
         <main className="flex-grow">
           <div className="px-[5%] mt-6">
-            {(() => {
-              try {
-                return <BreadcrumbNavigation items={[{ name: "Home", url: "/", current: true }]} />;
-              } catch (error) {
-                console.error('BreadcrumbNavigation error in Index:', error);
-                return <div className="mb-4">Navigation unavailable</div>;
-              }
-            })()}
+            <BreadcrumbNavigation items={[{ name: "Home", url: "/", current: true }]} />
           </div>
           
-          {(() => {
-            try {
-              return <Hero />;
-            } catch (error) {
-              console.error('Hero component error:', error);
-              return <div className="min-h-[400px] flex items-center justify-center">Hero section unavailable</div>;
-            }
-          })()}
+          <Hero />
           
           <div className="px-[5%]">
-            {(() => {
-              try {
-                return (
-                  <>
-                    <Services />
-                    <Approach />
-                    <BookCTA />
-                  </>
-                );
-              } catch (error) {
-                console.error('Content sections error:', error);
-                return <div className="py-8">Content sections unavailable</div>;
-              }
-            })()}
+            <Services />
+            <Approach />
+            <BookCTA />
           </div>
         </main>
         

@@ -4,37 +4,21 @@ import App from './App.tsx';
 import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode } from 'react';
 
 // Basic version setup
 if (typeof window !== 'undefined') {
   window.APP_VERSION = '1.7.2';
-  
-  // Basic service worker registration
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then((registration) => {
-          console.log('SW registered:', registration.scope);
-        })
-        .catch((error) => {
-          console.log('SW registration failed:', error);
-        });
-    });
-  }
 }
 
-// Simple render function - no Suspense wrapper to avoid loading issues
+// Simple render function - removed StrictMode temporarily
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
     const root = createRoot(container);
     root.render(
-      <StrictMode>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
-      </StrictMode>
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     );
   }
 };

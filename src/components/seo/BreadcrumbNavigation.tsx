@@ -47,7 +47,7 @@ const BreadcrumbNavigation = ({ items, className = '' }: BreadcrumbNavigationPro
               const isLast = index === breadcrumbItems.length - 1;
               
               return (
-                <div key={index}>
+                <div key={index} className="flex items-center">
                   <BreadcrumbItem>
                     {isLast ? (
                       <BreadcrumbPage>{item.name}</BreadcrumbPage>
