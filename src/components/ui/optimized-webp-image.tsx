@@ -27,83 +27,84 @@ const OptimizedWebPImage = ({
   sizes = '100vw',
   quality = 85
 }: OptimizedWebPImageProps) => {
-  const [supportsWebP, setSupportsWebP] = useState<boolean | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [imageSrc, setImageSrc] = useState(src);
 
-  // Check WebP support
+  // Simple image loading with fallback
   useEffect(() => {
-    const checkWebPSupport = () => {
-      const webP = new Image();
-      webP.onload = webP.onerror = () => {
-        setSupportsWebP(webP.height === 2);
-      };
-      webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+    // Reset states when src changes
+    setIsLoaded(false);
+    setHasError(false);
+    setImageSrc(src);
+
+    // Test if the image exists
+    const img = new Image();
+    img.onload = () => {
+      setIsLoaded(true);
     };
-    
-    checkWebPSupport();
-  }, []);
-
-  // Generate WebP and fallback sources
-  const getImageSrc = (format: 'webp' | 'jpg') => {
-    const extension = format === 'webp' ? '.webp' : '.jpg';
-    const baseSrc = src.replace(/\.(jpg|jpeg|png)$/i, '');
-    return `${baseSrc}${extension}`;
-  };
-
-  // Generate srcset for responsive images
-  const generateSrcSet = (format: 'webp' | 'jpg') => {
-    const widths = [480, 768, 1024, 1280, 1536];
-    return widths
-      .map(w => `${getImageSrc(format)}?w=${w}&q=${quality} ${w}w`)
-      .join(', ');
-  };
+    img.onerror = () => {
+      console.warn(`Image failed to load: ${src}`);
+      setHasError(true);
+      // Try fallback to original format if it was a WebP
+      if (src.includes('.webp')) {
+        const fallbackSrc = src.replace('.webp', '.jpg');
+        setImageSrc(fallbackSrc);
+      }
+    };
+    img.src = src;
+  }, [src]);
 
   const handleLoad = () => {
     setIsLoaded(true);
+    setHasError(false);
   };
 
-  if (supportsWebP === null) {
-    // Return placeholder while checking WebP support
+  const handleError = () => {
+    console.error(`Failed to load image: ${imageSrc}`);
+    setHasError(true);
+    
+    // Try fallback if we haven't already
+    if (!hasError && imageSrc.includes('.webp')) {
+      const fallbackSrc = imageSrc.replace('.webp', '.jpg');
+      setImageSrc(fallbackSrc);
+    }
+  };
+
+  // Show placeholder while loading or if error occurred
+  if (!isLoaded || hasError) {
     return (
       <div 
-        className={cn('bg-gray-200 animate-pulse', className)}
+        className={cn('bg-gray-200 flex items-center justify-center', className)}
         style={{ width, height, aspectRatio: `${width}/${height}` }}
-        aria-label="Loading image..."
-      />
+        aria-label={hasError ? 'Image failed to load' : 'Loading image...'}
+      >
+        {hasError ? (
+          <span className="text-gray-500 text-sm">Image unavailable</span>
+        ) : (
+          <div className="animate-pulse bg-gray-300 w-full h-full" />
+        )}
+      </div>
     );
   }
 
   return (
-    <picture>
-      {/* WebP source for modern browsers */}
-      {supportsWebP && (
-        <source
-          srcSet={generateSrcSet('webp')}
-          sizes={sizes}
-          type="image/webp"
-        />
+    <img
+      src={imageSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding={priority ? 'sync' : 'async'}
+      className={cn(
+        'transition-opacity duration-300',
+        isLoaded ? 'opacity-100' : 'opacity-0',
+        className
       )}
-      
-      {/* JPEG fallback */}
-      <img
-        src={getImageSrc('jpg')}
-        srcSet={generateSrcSet('jpg')}
-        sizes={sizes}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding={priority ? 'sync' : 'async'}
-        fetchPriority={priority ? 'high' : 'auto'}
-        className={cn(
-          'transition-opacity duration-300',
-          isLoaded ? 'opacity-100' : 'opacity-0',
-          className
-        )}
-        onLoad={handleLoad}
-        style={{ aspectRatio: `${width}/${height}` }}
-      />
-    </picture>
+      onLoad={handleLoad}
+      onError={handleError}
+      style={{ aspectRatio: `${width}/${height}` }}
+    />
   );
 };
 
