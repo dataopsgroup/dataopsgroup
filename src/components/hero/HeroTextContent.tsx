@@ -47,10 +47,12 @@ const HeroTextContent = ({ onCTAClick }: HeroTextContentProps) => {
             </Link>
           </div>
           
-          <div className="text-sm text-gray-600 italic">
-            <strong>No-Risk Assessment</strong><br />
-            We'll audit your HubSpot setup and show you exactly what's wrong - completely free. 
-            No obligation, no sales pitch, just honest feedback about your ROI potential.
+          <div className="text-sm text-white italic">
+            <strong className="text-white">No-Risk Assessment</strong><br />
+            <span className="text-white">
+              We'll audit your HubSpot setup and show you exactly what's wrong - completely free. 
+              No obligation, no sales pitch, just honest feedback about your ROI potential.
+            </span>
           </div>
         </div>
       </div>
