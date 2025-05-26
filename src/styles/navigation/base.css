@@ -63,32 +63,35 @@
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.2s ease;
   background: none;
   border: none;
   cursor: pointer;
   font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  border-radius: 6px;
 }
 
 .nav-link:hover {
   color: #1a8aeb;
+  background-color: #f8f9ff;
 }
 
+/* Navigation button specific styles */
+.nav-link-button {
+  min-height: 40px !important;
+  height: auto !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+}
+
+.nav-link-button:hover {
+  background-color: #f8f9ff !important;
+  color: #1a8aeb !important;
+}
+
+/* Remove the CSS-generated dropdown arrow */
 .dropdown-toggle::after {
-  content: "";
-  display: inline-block;
-  margin-left: 8px;
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  transition: transform 0.2s;
-}
-
-/* Dropdown menu */
-.dropdown:hover .dropdown-toggle::after {
-  transform: rotate(-135deg);
+  display: none !important;
 }
 
 /* CTA buttons */

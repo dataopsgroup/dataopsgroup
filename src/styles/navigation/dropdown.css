@@ -25,13 +25,13 @@
 }
 
 .dropdown-menu-content .dropdown-item:hover {
-  background: #f3f4f6;
-  color: #4F46E5;
+  background: #f8f9ff;
+  color: #1a8aeb;
 }
 
 .dropdown-menu-content .dropdown-item:focus {
-  background: #f3f4f6;
-  color: #4F46E5;
+  background: #f8f9ff;
+  color: #1a8aeb;
   outline: none;
 }
 
@@ -69,4 +69,22 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+}
+
+/* Fix button hover states to prevent dark backgrounds */
+[data-radix-dropdown-menu-trigger] {
+  background-color: transparent !important;
+}
+
+[data-radix-dropdown-menu-trigger]:hover {
+  background-color: #f8f9ff !important;
+  color: #1a8aeb !important;
+}
+
+/* Ensure consistent button heights */
+[data-radix-dropdown-menu-trigger] {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
