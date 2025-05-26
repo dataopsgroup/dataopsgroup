@@ -1,0 +1,184 @@
+
+/* Process Section Container */
+.process-section {
+  background: #ffffff;
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.process-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.process-section .subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Process Timeline Container */
+.process-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Timeline Connector Line */
+.process-timeline::before {
+  content: '';
+  position: absolute;
+  top: 100px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, #f4a261 0%, #e76f51 50%, #2a9d8f 100%);
+  z-index: 1;
+}
+
+/* Individual Process Steps */
+.process-step {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Step Numbers */
+.step-number {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 auto 1.5rem auto;
+  position: relative;
+  z-index: 3;
+}
+
+/* Step 1 - Deep Audit */
+.process-step:nth-child(1) .step-number {
+  background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+}
+
+.process-step:nth-child(1) .step-icon {
+  color: #f4a261;
+}
+
+/* Step 2 - Strategic Fix */
+.process-step:nth-child(2) .step-number {
+  background: linear-gradient(135deg, #e76f51 0%, #d62828 100%);
+}
+
+.process-step:nth-child(2) .step-icon {
+  color: #e76f51;
+}
+
+/* Step 3 - Optimization */
+.process-step:nth-child(3) .step-number {
+  background: linear-gradient(135deg, #2a9d8f 0%, #264653 100%);
+}
+
+.process-step:nth-child(3) .step-icon {
+  color: #2a9d8f;
+}
+
+/* Step Titles */
+.step-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+/* Step Descriptions */
+.step-description {
+  color: #4a5568;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Step Details List */
+.step-details {
+  text-align: left;
+  color: #64748b;
+  font-size: 0.9rem;
+  list-style: none;
+  padding: 0;
+}
+
+.step-details li {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.step-details li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #2a9d8f;
+  font-weight: bold;
+}
+
+/* Week Indicators */
+.week-indicator {
+  display: inline-block;
+  background: #f7fafc;
+  color: #4a5568;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .process-timeline {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .process-timeline::before {
+    display: none;
+  }
+  
+  .process-step {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-section {
+    padding: 4rem 1rem;
+  }
+  
+  .process-section h2 {
+    font-size: 2rem;
+  }
+  
+  .step-title {
+    font-size: 1.3rem;
+  }
+}

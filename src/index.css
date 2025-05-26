@@ -8,6 +8,7 @@
 @import './styles/pillar-content.css';
 @import './styles/hubspot-cookie-banner.css';
 @import './styles/trust-section.css';
+@import './styles/process-section.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
