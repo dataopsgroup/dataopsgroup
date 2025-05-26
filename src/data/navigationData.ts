@@ -11,25 +11,25 @@ export const mainNavItems: NavItem[] = [
         title: "Analytics & BI",
         icon: "LineChart",
         description: "Transform your data into actionable insights with advanced analytics and business intelligence",
-        href: "/analytics-bi",
+        href: "/services/analytics-bi",
       },
       {
         title: "DataOps Implementation",
         icon: "Database",
         description: "Streamline your data operations with expert implementation and optimization services",
-        href: "/dataops-implementation",
+        href: "/services/dataops-implementation",
       },
       {
         title: "Team Training",
         icon: "GraduationCap",
         description: "Empower your team with comprehensive HubSpot training and skill development",
-        href: "/team-training",
+        href: "/services/team-training",
       },
       {
         title: "Marketing Operations & RevOps",
         icon: "Workflow",
         description: "Optimize your revenue operations and marketing processes for maximum efficiency",
-        href: "/marketing-operations-revops",
+        href: "/services/marketing-operations-revops",
       }
     ]
   },
@@ -68,19 +68,19 @@ export const mainNavItems: NavItem[] = [
 export const navServices: SubNavItem[] = [
   {
     title: "Analytics & BI",
-    href: "/analytics-bi",
+    href: "/services/analytics-bi",
   },
   {
     title: "DataOps Implementation", 
-    href: "/dataops-implementation",
+    href: "/services/dataops-implementation",
   },
   {
     title: "Team Training",
-    href: "/team-training",
+    href: "/services/team-training",
   },
   {
     title: "Marketing Operations & RevOps",
-    href: "/marketing-operations-revops",
+    href: "/services/marketing-operations-revops",
   }
 ];
 export const guidesItems: SubNavItem[] = [];

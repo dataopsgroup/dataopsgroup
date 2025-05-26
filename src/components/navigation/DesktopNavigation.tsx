@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ChevronDown, 
   LifeBuoy, 
   Rocket, 
   LineChart, 
@@ -142,12 +141,11 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="nav-link-button flex items-baseline font-body h-auto px-3 py-2 text-gray-700 hover:text-dataops-500 transition-colors border-0 shadow-none bg-transparent hover:bg-transparent"
+                  className="nav-link-button flex items-center font-body h-auto px-3 py-2 text-gray-700 hover:text-dataops-500 transition-colors border-0 shadow-none bg-transparent hover:bg-transparent"
                   aria-haspopup="true" 
                   aria-expanded="false"
                 >
                   {item.title}
-                  <ChevronDown className="h-4 w-4 ml-1 self-center transition-transform" aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
               {renderMegaMenuDropdown(item)}

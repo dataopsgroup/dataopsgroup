@@ -71,7 +71,7 @@
   }
 }
 
-/* Fix button hover states to prevent any backgrounds */
+/* Ensure no blue backgrounds on navigation buttons */
 [data-radix-dropdown-menu-trigger] {
   background-color: transparent !important;
 }
@@ -79,6 +79,31 @@
 [data-radix-dropdown-menu-trigger]:hover {
   background-color: transparent !important;
   color: #1a8aeb !important;
+}
+
+[data-radix-dropdown-menu-trigger]:focus {
+  background-color: transparent !important;
+}
+
+[data-radix-dropdown-menu-trigger]:active {
+  background-color: transparent !important;
+}
+
+/* Remove any ghost button backgrounds */
+.nav-link-button {
+  background-color: transparent !important;
+}
+
+.nav-link-button:hover {
+  background-color: transparent !important;
+}
+
+.nav-link-button:focus {
+  background-color: transparent !important;
+}
+
+.nav-link-button:active {
+  background-color: transparent !important;
 }
 
 /* Ensure consistent button heights */
