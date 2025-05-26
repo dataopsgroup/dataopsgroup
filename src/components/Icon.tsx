@@ -8,9 +8,10 @@ interface IconProps {
 }
 
 const Icon: React.FC<IconProps> = ({ name, className }) => {
-  const LucideIcon = (LucideIcons as Record<string, React.FC<{ className?: string }>>)[name];
+  // Use a more permissive type assertion to handle lucide-react's structure
+  const LucideIcon = (LucideIcons as any)[name];
   
-  if (!LucideIcon) {
+  if (!LucideIcon || typeof LucideIcon !== 'function') {
     console.warn(`Icon "${name}" not found`);
     return null;
   }
