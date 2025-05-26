@@ -27,14 +27,15 @@ export const optimizeResourcePriorities = () => {
         src.includes('gtag') || 
         src.includes('hs-script') || 
         src.includes('facebook') ||
-        src.includes('twitter')) {
+        src.includes('twitter') ||
+        src.includes('botpress')) {
       script.setAttribute('defer', 'true');
       script.setAttribute('fetchpriority', 'low');
     }
   });
 };
 
-// Enhanced critical resource preloading - Updated for consultant background image
+// Enhanced critical resource preloading - FIXED with correct consultant image
 export const preloadCriticalResources = () => {
   if (typeof document === 'undefined') return;
 

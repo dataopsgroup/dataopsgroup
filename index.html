@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,8 +20,8 @@
     <link rel="dns-prefetch" href="https://cdn.botpress.cloud" />
     <link rel="dns-prefetch" href="https://files.bpcontent.cloud" />
     
-    <!-- Critical resource preloads for LCP optimization - Updated for background image -->
-    <link rel="preload" href="/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png" as="image" fetchpriority="high" />
+    <!-- Critical resource preloads for LCP optimization - FIXED: Updated to match actual hero image -->
+    <link rel="preload" href="/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png" as="image" fetchpriority="high" />
     <link rel="preload" href="/fonts/inter-subset/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high" />
     <link rel="preload" href="/fonts/inter-subset/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" fetchpriority="high" />
     
@@ -50,11 +51,11 @@
         height: 72px;
       }
       
-      /* Critical hero section layout with background image */
+      /* Critical hero section layout with CORRECT background image */
       .hero-section {
         padding-top: 100px;
         min-height: 80vh;
-        background-image: url('/lovable-uploads/98b80390-1e73-4256-a9fe-fc237c118c8b.png');
+        background-image: url('/lovable-uploads/dda96630-3254-4551-8fe9-33127763c436.png');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -203,7 +204,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="msapplication-TileColor" content="#4F46E5" />
     
-    <!-- Optimized analytics loading - deferred for performance -->
+    <!-- Optimized analytics loading - deferred for performance with HTTPS fix -->
     <script>
       // Initialize critical performance markers
       performance.mark('navigationStart');
@@ -230,10 +231,10 @@
       </div>
     </div>
     
-    <!-- Defer all non-critical scripts -->
+    <!-- PHASE 2 FIX: Use HTTPS for HubSpot script -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16996265146"></script>
-    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/21794360.js"></script>
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" defer></script>
+    <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/21794360.js" fetchpriority="low"></script>
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module" defer fetchpriority="low"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

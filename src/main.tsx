@@ -8,7 +8,7 @@ import { StrictMode, Suspense } from 'react';
 
 // Critical performance setup
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.3.0'; // Incremented for performance optimizations
+  window.APP_VERSION = '1.4.0'; // Incremented for final PageSpeed optimizations
 }
 
 // Optimized render function with performance monitoring
@@ -48,10 +48,14 @@ const renderApp = () => {
 // Immediate render for fast FCP
 renderApp();
 
-// Defer non-critical functionality to improve performance
+// Enhanced deferred module loading for final PageSpeed optimization
 const loadDeferredModules = async () => {
   try {
-    // Load performance optimizations when idle
+    // Load advanced optimizations first (highest impact)
+    const { initAdvancedOptimizations } = await import('./utils/performance/advanced-optimization');
+    initAdvancedOptimizations();
+    
+    // Load existing performance optimizations
     const { initializePerformanceOptimizations } = await import('./utils/performance/initialization');
     initializePerformanceOptimizations();
     
@@ -59,7 +63,7 @@ const loadDeferredModules = async () => {
     const { initWebVitals } = await import('./utils/web-vitals');
     initWebVitals();
     
-    // Load analytics when idle
+    // Load analytics last (lowest priority)
     const { setupAnalyticsAndMonitoring } = await import('./utils/app-initialization');
     setupAnalyticsAndMonitoring();
   } catch (error) {
@@ -70,9 +74,9 @@ const loadDeferredModules = async () => {
 // Use requestIdleCallback for better performance
 if (typeof window !== 'undefined') {
   if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(loadDeferredModules, { timeout: 3000 });
+    window.requestIdleCallback(loadDeferredModules, { timeout: 2000 });
   } else {
     // Fallback for browsers without requestIdleCallback
-    setTimeout(loadDeferredModules, 1000);
+    setTimeout(loadDeferredModules, 500);
   }
 }
