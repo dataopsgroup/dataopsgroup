@@ -16,19 +16,7 @@ import MetaHead from '@/components/seo/MetaHead';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
 
 const Index = () => {
-  // Wrap critical CSS functions in error boundaries to prevent blocking
-  React.useEffect(() => {
-    try {
-      // Temporarily disable critical CSS to isolate the issue
-      // const { applyCriticalCSS, preloadCriticalFonts } = require('@/lib/critical-css');
-      // applyCriticalCSS('/');
-      // preloadCriticalFonts();
-      console.log('Index component mounted successfully');
-    } catch (error) {
-      console.error('Critical CSS loading failed, continuing without it:', error);
-      // Continue loading the page even if critical CSS fails
-    }
-  }, []);
+  console.log('Index component rendering...');
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -42,23 +30,12 @@ const Index = () => {
         gscVerification="YOUR_GSC_VERIFICATION_CODE"
       />
       
-      {/* Wrap schema components in error boundaries */}
-      {React.createElement(() => {
-        try {
-          return (
-            <>
-              <OrganizationSchema />
-              <WebsiteSchema />
-              <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
-              <LocalBusinessSchema />
-              <ProfessionalServiceSchema />
-            </>
-          );
-        } catch (error) {
-          console.error('Schema components failed to load:', error);
-          return null;
-        }
-      })}
+      {/* Schema components rendered normally */}
+      <OrganizationSchema />
+      <WebsiteSchema />
+      <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
+      <LocalBusinessSchema />
+      <ProfessionalServiceSchema />
       
       <Navbar />
       
