@@ -35,7 +35,7 @@ const Hero = () => {
         />
         
         <div className="container mx-auto relative z-10">
-          <div className="ml-4 md:ml-8 lg:ml-12 max-w-sm md:max-w-md lg:max-w-2xl relative">
+          <div className="mx-4 md:ml-[80px] md:w-[550px] relative">
             {/* Semi-transparent background only behind text - 75% opacity for better readability */}
             <div className="absolute inset-0 bg-white/75 rounded-lg" />
             
