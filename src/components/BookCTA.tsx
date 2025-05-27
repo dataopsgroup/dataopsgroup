@@ -10,7 +10,7 @@ const BookCTA = () => {
   return (
     <section className="section-padding bg-white">
       <div className="container mx-auto px-[5%]">
-        <Card className="overflow-hidden border-0 shadow-xl">
+        <Card className="overflow-hidden border-0 shadow-2xl">
           <CardContent className="p-0">
             <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 md:p-12 relative">
               {/* Subtle background pattern for premium feel */}
@@ -19,14 +19,15 @@ const BookCTA = () => {
               <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
                 <div className="flex justify-center md:justify-start">
                   <div className="relative transform transition-transform hover:scale-105 duration-300">
-                    {/* Glowing effect around book */}
-                    <div className="absolute inset-0 bg-amber-400/20 rounded-lg blur-xl scale-110"></div>
+                    {/* Enhanced glowing effect around book */}
+                    <div className="absolute inset-0 bg-amber-400/30 rounded-lg blur-2xl scale-110"></div>
+                    <div className="absolute inset-0 bg-amber-500/20 rounded-lg blur-xl scale-105"></div>
                     <OptimizedImage 
                       src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
                       alt="The PE Marketing Operations Playbook book cover" 
-                      className="h-auto w-80 md:w-96 rounded-md shadow-2xl relative z-10 border border-amber-400/30"
-                      width={384}
-                      height={576}
+                      className="h-auto w-96 md:w-[420px] rounded-md shadow-2xl relative z-10 border-2 border-amber-400/40"
+                      width={420}
+                      height={630}
                       priority={true}
                       isLCP={true}
                       blur={true}
@@ -39,20 +40,20 @@ const BookCTA = () => {
                 </div>
                 
                 <div className="text-left">
-                  <div className="inline-flex items-center bg-amber-500 text-slate-900 text-sm font-bold px-4 py-2 rounded-full mb-6 shadow-lg">
+                  <div className="inline-flex items-center bg-gradient-to-r from-amber-500 to-amber-400 text-slate-900 text-sm font-bold px-5 py-3 rounded-full mb-6 shadow-lg transform hover:scale-105 transition-transform">
                     <Book className="h-4 w-4 mr-2" />
                     <span>🔥 EXCLUSIVE PE EDITION</span>
                   </div>
                   
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+                  <h3 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
                     THE PE MARKETING OPERATIONS PLAYBOOK
                   </h3>
                   
-                  <p className="text-xl text-amber-400 font-semibold mb-6">
+                  <p className="text-xl md:text-2xl text-amber-400 font-semibold mb-6 leading-relaxed">
                     Framework for Optimizing Portfolio Company Marketing ROI
                   </p>
                   
-                  <p className="text-slate-300 mb-6 text-lg leading-relaxed">
+                  <p className="text-slate-300 mb-8 text-lg leading-relaxed max-w-xl">
                     Essential due diligence insights and operational efficiency frameworks for evaluating and 
                     scaling marketing systems across portfolio companies. From 12+ years optimizing marketing operations 
                     for growth-focused businesses.
@@ -60,26 +61,31 @@ const BookCTA = () => {
                   
                   <div className="space-y-4 mb-8">
                     <div className="flex items-center text-slate-300">
-                      <div className="w-2 h-2 bg-amber-400 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 bg-amber-400 rounded-full mr-4"></div>
                       <span>Due diligence insights for marketing operations</span>
                     </div>
                     <div className="flex items-center text-slate-300">
-                      <div className="w-2 h-2 bg-amber-400 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 bg-amber-400 rounded-full mr-4"></div>
                       <span>ROI measurement and optimization strategies</span>
                     </div>
                     <div className="flex items-center text-slate-300">
-                      <div className="w-2 h-2 bg-amber-400 rounded-full mr-3"></div>
+                      <div className="w-2 h-2 bg-amber-400 rounded-full mr-4"></div>
                       <span>Scaling frameworks across multiple companies</span>
                     </div>
                   </div>
                   
-                  <div className="text-sm text-amber-400 font-medium mb-6">
-                    Limited first edition for PE professionals • Be among the first PE leaders to access this framework
+                  <div className="bg-slate-700/50 border border-amber-400/30 rounded-lg p-4 mb-8">
+                    <div className="text-sm text-amber-400 font-medium mb-1">
+                      Limited first edition for PE professionals
+                    </div>
+                    <div className="text-xs text-slate-400">
+                      Be among the first PE leaders to access this framework
+                    </div>
                   </div>
                   
                   <Link to="/book">
-                    <Button className="bg-amber-500 text-slate-900 hover:bg-amber-400 hover:text-slate-900 font-bold text-lg px-8 py-4 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                      Get Your FREE PE Edition <ChevronRight className="h-5 w-5" />
+                    <Button className="bg-gradient-to-r from-amber-500 to-amber-400 text-slate-900 hover:from-amber-400 hover:to-amber-300 hover:text-slate-900 font-bold text-lg px-10 py-4 shadow-2xl transition-all duration-300 hover:shadow-amber-400/20 hover:scale-105 rounded-lg">
+                      Get Your FREE PE Edition <ChevronRight className="h-5 w-5 ml-1" />
                     </Button>
                   </Link>
                 </div>
