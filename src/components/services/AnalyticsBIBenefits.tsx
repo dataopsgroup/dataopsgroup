@@ -4,15 +4,15 @@ import ServiceBenefits from './ServiceBenefits';
 
 const AnalyticsBIBenefits = () => {
   const benefits = [
-    "Make faster, more confident decisions with data-backed insights",
-    "Identify and capitalize on new business opportunities",
-    "Improve operational efficiency and reduce costs",
-    "Enhance customer experiences through deeper understanding",
-    "Gain competitive advantage through data-driven strategy",
-    "Democratize data access across your organization",
-    "Predict market trends and customer behaviors",
-    "Measure and optimize return on marketing investments",
-    "Align business activities with strategic objectives"
+    "Standardize reporting across portfolio companies",
+    "Make faster, more confident investment decisions with data-backed insights",
+    "Identify and capitalize on new business opportunities across holdings",
+    "Measure marketing ROI with investor-grade accuracy",
+    "Scale proven analytics systems to multiple investments",
+    "Optimize operational efficiency across portfolio companies",
+    "Predict market trends and customer behaviors for strategic planning",
+    "Enhance due diligence processes with comprehensive data analysis",
+    "Create executive dashboards for board-level reporting"
   ];
 
   return (
@@ -20,6 +20,7 @@ const AnalyticsBIBenefits = () => {
       benefits={benefits}
       serviceTitle="Analytics & Business Intelligence"
       isHubSpotTraining={false}
+      ctaText="Schedule Your Analytics Assessment"
     />
   );
 };
