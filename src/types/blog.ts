@@ -7,7 +7,7 @@ export interface BlogPost {
   date: string;
   author: string;
   category?: string;
-  coverImage: string;
+  coverImage?: string;
   featuredImage?: string;
   tags?: string[];
   wordCount?: number;
