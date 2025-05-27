@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -106,7 +107,7 @@ const CaseStudiesGrid = () => {
               <div className="pt-4 border-t border-gray-100 mt-auto">
                 {caseStudy.hasPost ? (
                   <Link to={`/insights/${caseStudy.id}`}>
-                    <Button className="w-full bg-dataops-600 hover:bg-dataops-700 text-white">
+                    <Button className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white">
                       Read Full Case Study
                     </Button>
                   </Link>
@@ -119,29 +120,6 @@ const CaseStudiesGrid = () => {
             </div>
           </Card>
         ))}
-      </div>
-      
-      {/* PE-Focused Call-to-Action */}
-      <div className="bg-gradient-to-r from-dataops-950 to-dataops-800 rounded-2xl p-8 text-center text-white mt-16">
-        <h3 className="text-2xl md:text-3xl font-bold mb-4">
-          Ready to Scale These Results Across Your Portfolio?
-        </h3>
-        <p className="text-lg text-blue-200 mb-6 max-w-2xl mx-auto">
-          Our proven methodologies can be replicated and scaled across multiple portfolio companies, 
-          delivering consistent operational improvements and measurable ROI.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/contact">
-            <Button size="lg" className="bg-saffron-500 hover:bg-saffron-600 text-white px-8">
-              Schedule Portfolio Assessment
-            </Button>
-          </Link>
-          <Link to="/services">
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-dataops-950 px-8">
-              View Our Services
-            </Button>
-          </Link>
-        </div>
       </div>
     </section>
   );
