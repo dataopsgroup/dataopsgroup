@@ -94,7 +94,7 @@ const BlogPostPage = () => {
         // Render case study with visual layout
         <>
           <div className="py-8 px-4">
-            <div className="container mx-auto max-w-3xl">
+            <div className="container mx-auto max-w-6xl">
               <Button 
                 variant="outline" 
                 className="bg-gray-700 text-white hover:bg-gray-800 hover:text-orange-500 transition-colors" 
