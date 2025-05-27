@@ -1,6 +1,21 @@
 
 import { toast } from 'sonner';
 
+export interface GenerateImageParams {
+  positivePrompt: string;
+  model?: string;
+  width?: number;
+  height?: number;
+  numberResults?: number;
+  outputFormat?: string;
+  CFGScale?: number;
+  scheduler?: string;
+  strength?: number;
+  promptWeighting?: "compel" | "sdEmbeds";
+  seed?: number | null;
+  lora?: string[];
+}
+
 export interface GeneratedImage {
   imageURL: string;
   positivePrompt: string;
@@ -95,7 +110,7 @@ export class RunwareService {
     });
   }
 
-  async generateImage(prompt: string): Promise<GeneratedImage> {
+  async generateImage(params: GenerateImageParams): Promise<GeneratedImage> {
     await this.connectionPromise;
 
     if (!this.ws || this.ws.readyState !== WebSocket.OPEN || !this.isAuthenticated) {
@@ -109,16 +124,16 @@ export class RunwareService {
       const message = [{
         taskType: "imageInference",
         taskUUID,
-        positivePrompt: prompt,
-        model: "runware:100@1",
-        width: 1200,
-        height: 630,
-        numberResults: 1,
-        outputFormat: "WEBP",
+        positivePrompt: params.positivePrompt,
+        model: params.model || "runware:100@1",
+        width: params.width || 1024,
+        height: params.height || 1024,
+        numberResults: params.numberResults || 1,
+        outputFormat: params.outputFormat || "WEBP",
         steps: 4,
-        CFGScale: 1,
-        scheduler: "FlowMatchEulerDiscreteScheduler",
-        strength: 0.8
+        CFGScale: params.CFGScale || 1,
+        scheduler: params.scheduler || "FlowMatchEulerDiscreteScheduler",
+        strength: params.strength || 0.8
       }];
 
       this.messageCallbacks.set(taskUUID, (data) => {
