@@ -1,4 +1,3 @@
-
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -30,15 +29,14 @@ export const guidesItems: SubNavItem[] = [
   }
 ];
 
-// Insights dropdown items
+// Insights dropdown items - removed book link, added assessment
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
   { name: 'Case Studies', href: '/case-studies' },
   { name: 'Guides', isDropdown: true, items: guidesItems },
   { 
-    name: 'Buy the Book', 
-    href: '/book', 
-    icon: 'book' // Using a string identifier instead of JSX
+    name: 'HubSpot Assessment', 
+    href: '/assessment'
   }
 ];
 
