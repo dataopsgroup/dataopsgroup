@@ -30,7 +30,9 @@ const TeamTraining = () => {
       <SemanticLayout>
         <ServiceHero 
           title="HubSpot Training & Implementation"
+          tagline="Professional Training That Delivers Results"
           description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
+          ctaText="Book Your HubSpot Strategy Session"
           isHubSpotTraining={true}
           serviceIcon={<Users className="h-24 w-24" />}
           imageSrc="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"

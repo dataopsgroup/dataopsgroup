@@ -68,7 +68,9 @@ const ServiceDetail = () => {
         {/* Hero Section */}
         <ServiceHero 
           title={title}
+          tagline={isHubSpotTraining ? "Professional Training That Delivers Results" : "Operational Excellence for Portfolio Growth"}
           description={description}
+          ctaText={isHubSpotTraining ? "Book Your HubSpot Strategy Session" : "Get Your Custom Strategy"}
           isHubSpotTraining={isHubSpotTraining}
           serviceIcon={service.icon}
         />
