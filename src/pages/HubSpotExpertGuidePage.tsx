@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -10,7 +9,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { SectionId } from '@/types/pillar-content';
 import TableOfContents from '@/components/pillar-content/TableOfContents';
 import ContentSection from '@/components/pillar-content/ContentSection';
-import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
 import ShareButtons from '@/components/ui/ShareButtons';
 import ArticleHeader from '@/components/pillar-content/ArticleHeader';
 
@@ -73,13 +71,6 @@ const HubSpotExpertGuidePage = () => {
     document.getElementById(sectionId)?.focus();
   };
 
-  // Define breadcrumb items
-  const breadcrumbItems = [
-    { name: 'Home', url: '/' },
-    { name: 'Resources', url: '/resources' },
-    { name: 'How to Hire a HubSpot Expert in 2025', url: '/how-to-hire-a-hubspot-expert-in-2025' }
-  ];
-  
   return (
     <SemanticLayout>
       <MetaHead 
@@ -109,11 +100,6 @@ const HubSpotExpertGuidePage = () => {
       />
       
       <div className="container mx-auto px-4 py-16">
-        {/* Breadcrumbs */}
-        <div className="mb-6 ml-[25px]">
-          <BreadcrumbNavigation items={breadcrumbItems} />
-        </div>
-
         {/* Article Header */}
         <ArticleHeader 
           title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs"
