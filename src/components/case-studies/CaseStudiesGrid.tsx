@@ -84,24 +84,21 @@ const CaseStudiesGrid = () => {
             {/* Content Section */}
             <div className="p-6 space-y-4">
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                  <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                <h4 className="font-semibold text-gray-900 mb-2">
                   Challenge
                 </h4>
                 <p className="text-gray-700 text-sm leading-relaxed">{caseStudy.challenge}</p>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                <h4 className="font-semibold text-gray-900 mb-2">
                   Solution
                 </h4>
                 <p className="text-gray-700 text-sm leading-relaxed">{caseStudy.solution}</p>
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                  <span className="w-2 h-2 bg-saffron-500 rounded-full mr-2"></span>
+                <h4 className="font-semibold text-gray-900 mb-2">
                   Result
                 </h4>
                 <p className="text-gray-700 text-sm leading-relaxed font-medium">{caseStudy.result}</p>
