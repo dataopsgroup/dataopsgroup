@@ -21,8 +21,9 @@ const BookNavButton: React.FC<BookNavButtonProps> = ({ onClick, className = "" }
   return (
     <button
       onClick={handleClick}
-      className={`nav-cta-button relative bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg ${className}`}
+      className={`nav-cta-button relative bg-brand-saffron hover:bg-opacity-90 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg ${className}`}
       aria-label="Get free PE marketing playbook"
+      style={{ backgroundColor: '#FBB03B' }}
     >
       <span className="flex items-center gap-2">
         <Book className="h-4 w-4" />

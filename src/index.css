@@ -1,3 +1,4 @@
+
 @import './styles/fonts.css';
 @import './styles/pillar-content.css';
 @tailwind base;
@@ -35,6 +36,12 @@
     --ring: 221 83% 53%;
 
     --radius: 0.5rem;
+    
+    /* Brand Guide Colors */
+    --brand-saffron: #FBB03B;
+    --brand-navy: #14213D;
+    --brand-light-blue: #8CC7E3;
+    --brand-gray: #E6E6E6;
     
     /* Add navbar height variable for consistent spacing */
     --navbar-height: 84px;
@@ -83,7 +90,7 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Font family is now handled in fonts.css */
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   /* Main content spacing */
@@ -91,13 +98,17 @@
     padding-top: calc(var(--navbar-height) + var(--navbar-bottom-spacing));
   }
 
-  /* Even larger heading sizes with more dramatic scaling */
+  /* Brand Guide Typography Hierarchy */
   h1 {
+    font-family: 'Inter', system-ui, sans-serif; /* Inter baseline, upgraded to Rubik when loaded */
     @apply text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight;
+    font-weight: 500; /* Brand guide medium weight */
   }
   
   h2 {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight;
+    font-weight: 500;
   }
   
   /* Specific styling for H2 tags on the /insights page and blog posts */
@@ -105,23 +116,61 @@
   .container h2:not(.text-3xl),
   article h2 {
     font-size: 1.5em !important;
-    @apply font-semibold tracking-tight;
+    font-weight: 500 !important;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   h3 {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply text-4xl md:text-5xl font-semibold tracking-tight;
+    font-weight: 500;
   }
   
   h4 {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply text-3xl md:text-4xl font-medium;
   }
   
   h5 {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply text-2xl md:text-3xl font-medium;
   }
   
   h6 {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply text-xl md:text-2xl font-medium;
+  }
+
+  /* Brand font enhancement when loaded */
+  .fonts-loaded h1,
+  .fonts-loaded h2,
+  .fonts-loaded h3 {
+    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
+  }
+
+  .fonts-loaded .blog-post-content h2,
+  .fonts-loaded .container h2:not(.text-3xl),
+  .fonts-loaded article h2 {
+    font-family: 'Rubik', 'Inter', system-ui, sans-serif !important;
+  }
+
+  /* Body text - Roboto when loaded */
+  .fonts-loaded p,
+  .fonts-loaded div,
+  .fonts-loaded span {
+    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
+  }
+
+  /* Subheadlines - Brand guide styling */
+  .subheadline {
+    font-family: 'Inter', system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+
+  .fonts-loaded .subheadline {
+    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
   }
 
   /* Override heading styles for blog post titles to be more proportional */
@@ -137,26 +186,52 @@
     @apply bg-gradient-to-r from-dataops-700 to-dataops-500;
   }
 
+  /* Brand guide saffron backgrounds */
+  .bg-brand-saffron {
+    background-color: var(--brand-saffron) !important;
+  }
+
   .section-padding {
     @apply py-16 md:py-24 px-4 md:px-8 lg:px-16;
   }
   
-  /* Updated blog post styling with headings matching the blog post headline size */
+  /* Updated blog post styling with brand hierarchy */
   .prose h2 {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply text-3xl md:text-4xl font-bold mt-8 mb-4;
     font-size: 1.5em !important;
+    font-weight: 500 !important;
+  }
+
+  .fonts-loaded .prose h2 {
+    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
   }
   
   .prose h3 {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply text-2xl md:text-3xl font-bold mt-6 mb-3;
+  }
+
+  .fonts-loaded .prose h3 {
+    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
   }
   
   .prose h4 {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply text-xl md:text-2xl font-bold mt-5 mb-2;
+  }
+
+  .fonts-loaded .prose h4 {
+    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
   }
   
   .prose p {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply mb-4 text-gray-700;
+  }
+
+  .fonts-loaded .prose p {
+    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
   }
   
   .prose ul {
@@ -164,11 +239,16 @@
   }
   
   .prose ul li {
+    font-family: 'Inter', system-ui, sans-serif;
     @apply mb-2 text-gray-700;
+  }
+
+  .fonts-loaded .prose ul li {
+    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
   }
 }
 
-/* Table of Contents Styling for Pillar Content - Remove this as it's now in pillar-content.css */
+/* Table of Contents Styling for Pillar Content */
 .table-of-contents-container {
   @apply bg-gray-50 border border-gray-200 rounded-lg p-6 my-8;
 }

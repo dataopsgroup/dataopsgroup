@@ -1,4 +1,3 @@
-
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
@@ -25,8 +24,46 @@ if (typeof window !== 'undefined') {
   window.APP_VERSION = '1.0.7'; // Incremented version for cache busting
 }
 
+// Progressive brand font loading function
+const loadBrandFonts = () => {
+  if (typeof window === 'undefined') return;
+
+  // Create a promise to load brand fonts after critical content
+  const loadFonts = () => {
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap';
+    link.rel = 'stylesheet';
+    
+    // Load fonts asynchronously
+    link.onload = () => {
+      document.body.classList.remove('fonts-pending');
+      document.body.classList.add('fonts-loaded');
+      performance.mark('brand-fonts-loaded');
+    };
+    
+    link.onerror = () => {
+      console.warn('Brand fonts failed to load, falling back to Inter');
+      document.body.classList.remove('fonts-pending');
+    };
+    
+    document.head.appendChild(link);
+  };
+
+  // Load brand fonts after page is interactive
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(loadFonts, 100); // Small delay to prioritize critical content
+    });
+  } else {
+    setTimeout(loadFonts, 100);
+  }
+};
+
 // Initialize essential monitoring right away
 if (typeof window !== 'undefined') {
+  // Add fonts-pending class immediately for progressive enhancement
+  document.body.classList.add('fonts-pending');
+  
   // Initialize web vitals monitoring early
   initWebVitals();
   
@@ -37,8 +74,11 @@ if (typeof window !== 'undefined') {
   // Apply critical CSS for initial route
   applyCriticalCSS(window.location.pathname);
   
-  // Optimize font loading immediately for better LCP
+  // Optimize font loading immediately for better LCP (Inter baseline)
   loadFonts();
+  
+  // Load brand fonts progressively
+  loadBrandFonts();
 }
 
 // Apply critical performance optimizations immediately

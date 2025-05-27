@@ -66,6 +66,14 @@ export default {
 					900: '#0F3C70',
 					950: '#0F172A',
 				},
+				// Brand Guide Colors
+				brand: {
+					saffron: '#FBB03B',
+					navy: '#14213D',
+					lightBlue: '#8CC7E3',
+					gray: '#E6E6E6',
+					black: '#000000'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -76,6 +84,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			fontFamily: {
+				// Progressive font loading strategy
+				'rubik': ['Rubik', 'Inter', 'system-ui', 'sans-serif'],
+				'roboto': ['Roboto', 'Inter', 'system-ui', 'sans-serif'],
+				'inter': ['Inter', 'system-ui', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
