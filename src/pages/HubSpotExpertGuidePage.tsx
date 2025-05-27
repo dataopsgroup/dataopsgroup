@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -9,7 +10,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { SectionId } from '@/types/pillar-content';
 import TableOfContents from '@/components/pillar-content/TableOfContents';
 import ContentSection from '@/components/pillar-content/ContentSection';
-import ShareButtons from '@/components/ui/ShareButtons';
 import ArticleHeader from '@/components/pillar-content/ArticleHeader';
 
 const HubSpotExpertGuidePage = () => {
@@ -100,18 +100,10 @@ const HubSpotExpertGuidePage = () => {
       />
       
       <div className="container mx-auto px-4 py-16">
-        {/* Article Header */}
+        {/* Article Header with integrated social sharing */}
         <ArticleHeader 
           title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs"
         />
-
-        {/* Share buttons */}
-        <div className="mb-8 ml-[25px]">
-          <ShareButtons 
-            title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs" 
-            position="under-title"
-          />
-        </div>
         
         <div className="flex flex-col md:flex-row">
           {/* Table of Contents */}

@@ -11,7 +11,6 @@ import { SectionId } from '@/types/pillar-content';
 import TableOfContents from '@/components/pillar-content/TableOfContents';
 import ContentSection from '@/components/pillar-content/ContentSection';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
-import ShareButtons from '@/components/ui/ShareButtons';
 import ArticleHeader from '@/components/pillar-content/ArticleHeader';
 
 const PillarContentPage = () => {
@@ -114,18 +113,10 @@ const PillarContentPage = () => {
           <BreadcrumbNavigation items={breadcrumbItems} />
         </div>
 
-        {/* Article Header */}
+        {/* Article Header with integrated social sharing */}
         <ArticleHeader 
           title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs"
         />
-
-        {/* Share buttons */}
-        <div className="mb-8 ml-[25px]">
-          <ShareButtons 
-            title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs" 
-            position="under-title"
-          />
-        </div>
         
         <div className="flex flex-col md:flex-row">
           {/* Table of Contents - increased width from 33% to 35% */}
