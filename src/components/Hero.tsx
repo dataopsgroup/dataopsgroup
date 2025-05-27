@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -51,7 +50,9 @@ const Hero = () => {
                     We Implement the HubSpot Systems Your Investors Expect
                   </h1>
                   <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                    PE Operational Excellence Without the Operational Headache. We implement scalable HubSpot systems across PE portfolios - so Operating Partners can focus on strategy and portfolio companies can focus on growth.
+                    64% of PE Portfolio Companies Fail at HubSpot Implementation<br />
+                    Don't be part of the statistic. Get the PE-specific expertise that delivers 
+                    19% higher valuation multiples and 73% faster EBITDA growth.
                   </p>
                 </div>
                 
