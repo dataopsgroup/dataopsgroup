@@ -73,7 +73,7 @@ const CaseStudiesGrid = () => {
                 {caseStudy.icon}
               </div>
               <div className="relative z-10">
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-saffron-500 text-white text-sm font-semibold mb-3">
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-saffron-500 text-saffron-500 text-sm font-semibold mb-3">
                   {caseStudy.resultMetric}
                 </div>
                 <h3 className="text-xl font-bold mb-2">{caseStudy.title}</h3>
