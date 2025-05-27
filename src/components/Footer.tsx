@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AdminLink from './AdminLink';
 import { navServices } from '@/data/navigationData';
 import OptimizedImage from './ui/optimized-image';
+
 const Footer = () => {
   return <footer className="bg-dataops-950 text-white pt-16 mt-auto">
       <div className="container mx-auto px-4">
@@ -45,7 +46,6 @@ const Footer = () => {
             <h2 id="company-navigation" className="text-lg font-semibold mb-6">Company</h2>
             <ul className="space-y-3">
               <li><Link to="/about" className="text-gray-300 hover:text-white" aria-label="Learn about DataOps Group">About Us</Link></li>
-              <li><Link to="/leadership" className="text-gray-300 hover:text-white" aria-label="Meet our leadership team">Leadership</Link></li>
               <li><Link to="/insights" className="text-gray-300 hover:text-white" aria-label="Read our latest insights and articles">Blog</Link></li>
               <li><Link to="/approach" className="text-gray-300 hover:text-white" aria-label="Learn about our methodology">Our Approach</Link></li>
             </ul>
@@ -83,4 +83,5 @@ const Footer = () => {
       </div>
     </footer>;
 };
+
 export default Footer;
