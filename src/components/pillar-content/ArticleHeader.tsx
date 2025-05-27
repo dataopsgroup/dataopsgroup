@@ -12,25 +12,25 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ title, subtitle }) => {
     <div className="article-header">
       <div className="article-meta">
         <span className="content-type">Expert Guide</span>
+        
+        {/* Social sharing icons positioned immediately after Expert Guide pill */}
+        <div className="flex items-center">
+          <ShareButtons 
+            title={title}
+            className="flex-row space-x-2 space-y-0"
+            variant="white"
+          />
+        </div>
+        
         <span className="read-time" style={{ color: '#8CC7E3' }}>
           ⏱️ 15 min read
         </span>
         <span className="last-updated">Updated March 2025</span>
       </div>
       
-      <div className="flex items-start justify-between">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight relative z-10 mb-4 flex-1">
-          {title}
-        </h1>
-        
-        {/* Social sharing icons positioned to the right */}
-        <div className="ml-6 mt-2">
-          <ShareButtons 
-            title={title}
-            className="flex-col space-y-3 space-x-0"
-          />
-        </div>
-      </div>
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight relative z-10 mb-4">
+        {title}
+      </h1>
       
       <div className="article-summary">
         <p className="lead">
