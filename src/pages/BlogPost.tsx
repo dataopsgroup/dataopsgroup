@@ -100,7 +100,7 @@ const BlogPostPage = () => {
                 className="bg-gray-700 text-white hover:bg-gray-800 hover:text-orange-500 transition-colors" 
                 asChild
               >
-                <Link to="/insights">Back to Insights</Link>
+                <Link to="/case-studies">Back to Case Studies</Link>
               </Button>
             </div>
           </div>
