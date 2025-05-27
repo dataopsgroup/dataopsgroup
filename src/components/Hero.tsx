@@ -36,7 +36,7 @@ const Hero = () => {
         
         <div className="container mx-auto relative">
           {/* Absolutely positioned content box */}
-          <div className="absolute left-20 top-1/2 transform -translate-y-1/2 max-w-[500px] z-10">
+          <div className="absolute left-[80px] top-1/2 transform -translate-y-1/2 max-w-[500px] z-10">
             {/* Semi-transparent background only behind text - 75% opacity for better readability */}
             <div className="absolute inset-0 bg-white/75 rounded-lg" />
             
