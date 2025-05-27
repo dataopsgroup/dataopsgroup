@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,7 @@ const Hero = () => {
         />
         
         <div className="container mx-auto relative z-10">
-          <div className="mx-4 sm:ml-8 sm:max-w-sm md:ml-16 md:max-w-md lg:ml-24 lg:max-w-sm xl:ml-32 xl:max-w-xs relative">
+          <div className="mx-4 sm:ml-4 sm:max-w-md md:ml-8 md:max-w-lg lg:ml-12 lg:max-w-xl xl:ml-16 xl:max-w-2xl relative">
             {/* Semi-transparent background only behind text - 75% opacity for better readability */}
             <div className="absolute inset-0 bg-white/75 rounded-lg" />
             
@@ -56,9 +57,9 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex flex-col">
                   <Link to="/contact" onClick={trackContactCTAClick}>
-                    <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base">
+                    <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
                       Get Your PE-Approved Digital Operations Assessment
-                      <ChevronRight className="ml-2 h-4 w-4" />
+                      <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                     </Button>
                   </Link>
                   <div className="mt-3 text-sm text-gray-600 max-w-sm">
