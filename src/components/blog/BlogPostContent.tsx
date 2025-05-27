@@ -2,62 +2,93 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Lightbulb, Target, TrendingUp } from 'lucide-react';
 
 interface BlogPostContentProps {
   content: string;
 }
 
 const BlogPostContent = ({ content }: BlogPostContentProps) => {
+  // Process content to add visual enhancements while preserving SEO structure
+  const processContent = (htmlContent: string) => {
+    // Add key insight boxes for important paragraphs (visual enhancement only)
+    let processedContent = htmlContent;
+    
+    // Wrap specific patterns in enhanced styling (preserve original content)
+    processedContent = processedContent.replace(
+      /<p><strong>Key Insight[^<]*<\/strong>[^<]*<\/p>/gi,
+      (match) => `<div class="key-insight-box">${match}</div>`
+    );
+    
+    return processedContent;
+  };
+
   return (
     <>
-      <div 
-        className="prose prose-lg max-w-none"
-        dangerouslySetInnerHTML={{ __html: content }} 
-      />
+      <div className="blog-content-enhanced max-w-none">
+        <div 
+          className="prose prose-lg"
+          dangerouslySetInnerHTML={{ __html: processContent(content) }} 
+        />
+      </div>
       
-      <style>
-        {`
-        .blog-image-container {
-          margin: 2rem 0;
-          width: 100%;
-        }
-        .blog-post-image {
-          width: 100%;
-          border-radius: 8px;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        figcaption {
-          text-align: center;
-          color: #666;
-          font-size: 0.9rem;
-          margin-top: 0.5rem;
-          font-style: italic;
-        }
-        `}
-      </style>
-      
-      <div className="mt-12 pt-8 border-t border-gray-100">
-        <h3 className="text-xl font-semibold mb-4">Ready to Fix Your HubSpot Ordeal?</h3>
-        <p className="mb-6">
-          Stop throwing money at new leads when your existing contacts could be paying customers. 
-          Schedule a consultation to see how we can convert your HubSpot portal into a revenue engine.
-        </p>
-        <Button asChild className="bg-dataops-600 hover:bg-dataops-700">
-          <Link 
-            to="/contact"
-            onClick={() => {
-              // Track CTA click
-              if (window.gtag) {
-                window.gtag('event', 'cta_click', {
-                  'event_category': 'Engagement',
-                  'event_label': 'Blog Post Bottom CTA',
-                });
-              }
-            }}
-          >
-            Schedule a Consultation
-          </Link>
-        </Button>
+      {/* PE Focus Callout - Visual Enhancement */}
+      <div className="pe-focus-callout my-12">
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0">
+            <div className="w-12 h-12 bg-brand-saffron rounded-lg flex items-center justify-center">
+              <Target className="w-6 h-6 text-white" />
+            </div>
+          </div>
+          <div>
+            <h4 className="text-xl font-semibold text-dataops-950 mb-3">
+              PE Portfolio Application
+            </h4>
+            <p className="text-gray-700 leading-relaxed">
+              This strategy applies directly to portfolio companies looking to optimize their HubSpot investment 
+              and accelerate revenue growth through better data management and operational efficiency.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section - Enhanced Styling */}
+      <div className="blog-cta-section">
+        <div className="bg-gradient-to-br from-dataops-950 to-dataops-800 rounded-2xl p-8 text-white">
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0">
+              <div className="w-12 h-12 bg-brand-saffron rounded-lg flex items-center justify-center">
+                <TrendingUp className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div className="flex-grow">
+              <h3 className="text-xl font-semibold mb-4">Ready to Fix Your HubSpot Ordeal?</h3>
+              <p className="mb-6 text-white/90">
+                Stop throwing money at new leads when your existing contacts could be paying customers. 
+                Schedule a consultation to see how we can convert your HubSpot portal into a revenue engine.
+              </p>
+              <Button 
+                asChild 
+                className="bg-brand-saffron hover:bg-brand-saffron/90 text-dataops-950 font-semibold"
+              >
+                <Link 
+                  to="/contact"
+                  onClick={() => {
+                    // Track CTA click
+                    if (window.gtag) {
+                      window.gtag('event', 'cta_click', {
+                        'event_category': 'Engagement',
+                        'event_label': 'Blog Post Bottom CTA',
+                      });
+                    }
+                  }}
+                >
+                  Schedule a Consultation
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
