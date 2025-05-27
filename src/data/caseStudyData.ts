@@ -1,4 +1,3 @@
-
 export interface CaseStudyData {
   title: string;
   industry: string;
@@ -22,8 +21,8 @@ export const caseStudyDataMap: Record<string, CaseStudyData> = {
   'audio-visual-equipment-wholesaler': {
     title: 'B2B Electronics Distribution',
     industry: 'Manufacturing & Distribution',
-    revenue: '$20M+ Annual Revenue',
-    timeline: '6-Month Engagement',
+    revenue: '$100M Annual Revenue',
+    timeline: '6-Month Implementation + Ongoing Partnership',
     metrics: {
       primary: { value: '47%', label: 'Pipeline Growth' },
       secondary: [
@@ -66,10 +65,16 @@ export const caseStudyDataMap: Record<string, CaseStudyData> = {
         metric: 'User adoption reached 100%'
       },
       {
-        month: 'Month 6+',
-        title: 'Results & Growth',
-        description: 'Sustained pipeline growth and efficiency gains',
-        metric: 'Pipeline growth reached 47%'
+        month: 'Month 7-12',
+        title: 'Optimization & Expansion',
+        description: 'Advanced automation and territory expansion features',
+        metric: 'Process efficiency improved 65%'
+      },
+      {
+        month: 'Month 13+',
+        title: 'Strategic Partnership',
+        description: 'Ongoing optimization and strategic growth initiatives',
+        metric: 'Sustained 47% pipeline growth maintained'
       }
     ]
   },

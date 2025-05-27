@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -11,7 +10,7 @@ const CaseStudiesGrid = () => {
       id: "audio-visual-equipment-wholesaler",
       resultMetric: "47% Pipeline Growth",
       title: "B2B Electronics Distribution",
-      industry: "Manufacturing • $20M+ Revenue",
+      industry: "Manufacturing • $100M Revenue",
       challenge: "Fragmented sales data across multiple locations prevented accurate pipeline forecasting and territory management.",
       solution: "Unified HubSpot implementation with automated territory assignment and real-time reporting dashboards.",
       result: "47% pipeline growth, 15% increase in average order size, and 1-week reduction in sales cycles.",

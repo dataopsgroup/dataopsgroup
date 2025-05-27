@@ -15,7 +15,7 @@ interface ResultsTimelineProps {
 const ResultsTimeline = ({ timeline }: ResultsTimelineProps) => {
   return (
     <div className="bg-gray-50 p-8 rounded-2xl mb-8">
-      <h2 className="text-2xl md:text-3xl font-bold text-dataops-950 mb-8 text-center">18-Month Results Timeline</h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-dataops-950 mb-8 text-center">Implementation & Partnership Timeline</h2>
       
       <div className="relative">
         {/* Timeline line */}
