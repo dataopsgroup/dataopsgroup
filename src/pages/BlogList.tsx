@@ -12,6 +12,8 @@ import MetaHead from '@/components/seo/MetaHead';
 import OptimizedImage from '@/components/ui/optimized-image';
 import { Badge } from '@/components/ui/badge';
 import { Clock, Calendar } from 'lucide-react';
+import DynamicThumbnail from '@/components/blog/DynamicThumbnail';
+import { calculateReadingTime } from '@/utils/thumbnail-generator';
 
 const BlogList = () => {
   const location = useLocation();
@@ -30,12 +32,6 @@ const BlogList = () => {
 
   // Ensure canonical URL is without query parameters
   const canonicalPath = '/insights';
-  
-  // Calculate reading time (rough estimate: 200 words per minute)
-  const calculateReadingTime = (content: string) => {
-    const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
-    return Math.max(1, Math.round(wordCount / 200));
-  };
 
   useEffect(() => {
     // Track page view with blog post count
@@ -120,6 +116,9 @@ const BlogList = () => {
               const formattedPublishDate = publishDate.toISOString();
               const readingTime = calculateReadingTime(post.content);
 
+              // Check if post has a cover image
+              const hasCoverImage = !!post.coverImage;
+              
               // Special case for the post that has a specific image
               const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" 
                 ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" 
@@ -145,24 +144,34 @@ const BlogList = () => {
                       aria-label={`Read article: ${post.title}`}
                     >
                       <CardHeader className="pb-4 relative overflow-hidden">
-                        <figure className="relative overflow-hidden rounded-t-lg mb-4">
-                          <OptimizedImage 
-                            src={coverImage} 
-                            alt={post.title} 
-                            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
-                            width={400} 
-                            height={200} 
-                            loading="lazy" 
-                            objectFit="cover" 
-                            aspectRatio={2 / 1} 
-                            placeholder="/placeholder.svg" 
+                        {/* Conditionally render either existing image or dynamic thumbnail */}
+                        {hasCoverImage ? (
+                          <figure className="relative overflow-hidden rounded-t-lg mb-4">
+                            <OptimizedImage 
+                              src={coverImage} 
+                              alt={post.title} 
+                              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
+                              width={400} 
+                              height={200} 
+                              loading="lazy" 
+                              objectFit="cover" 
+                              aspectRatio={2 / 1} 
+                              placeholder="/placeholder.svg" 
+                            />
+                            {post.category && (
+                              <Badge className="category-tag-enhanced absolute top-3 left-3">
+                                {post.category}
+                              </Badge>
+                            )}
+                          </figure>
+                        ) : (
+                          <DynamicThumbnail
+                            title={post.title}
+                            category={post.category}
+                            readingTime={readingTime}
+                            className="mb-4"
                           />
-                          {post.category && (
-                            <Badge className="category-tag-enhanced absolute top-3 left-3">
-                              {post.category}
-                            </Badge>
-                          )}
-                        </figure>
+                        )}
                         <CardTitle className="text-xl font-semibold group-hover:text-dataops-600 transition-colors leading-tight">
                           {post.title}
                         </CardTitle>
