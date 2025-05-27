@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,7 +7,7 @@ import OptimizedImage from '@/components/ui/optimized-image';
 
 const BookCTA = () => {
   return (
-    <section className="section-padding bg-white">
+    <section id="book-section" className="section-padding bg-white">
       <div className="container mx-auto px-[5%]">
         <Card className="overflow-hidden border-0 shadow-2xl">
           <CardContent className="p-0">

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { NavItem, SubNavItem } from '@/types/navigation';
+import BookNavButton from './BookNavButton';
 import { Book, ChevronRight } from 'lucide-react';
 
 interface MobileNavigationProps {
@@ -61,6 +62,14 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
       aria-label="Mobile Navigation"
     >
       <div className="container mx-auto py-4 flex flex-col space-y-4">
+        {/* Book promotion button for mobile */}
+        <div className="px-4">
+          <BookNavButton 
+            onClick={() => setIsOpen(false)}
+            className="w-full justify-center"
+          />
+        </div>
+        
         <ul className="flex flex-col space-y-4">
           {navItems.map((item) => (
             <li key={item.name}>

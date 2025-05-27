@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ChevronDown, Book } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NavItem, SubNavItem } from '@/types/navigation';
+import BookNavButton from './BookNavButton';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -82,6 +83,10 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
           </li>
         ))}
       </ul>
+      
+      {/* Book promotion button */}
+      <BookNavButton />
+      
       <Link to="/contact">
         <Button className="bg-dataops-600 hover:bg-dataops-700">Get Started</Button>
       </Link>
