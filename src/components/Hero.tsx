@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -35,53 +36,42 @@ const Hero = () => {
         />
         
         <div className="container mx-auto relative z-10">
-          {/* Table layout for structural positioning */}
-          <table className="w-full table-fixed">
-            <tr>
-              {/* Left column - constrained to 45% max width */}
-              <td className="w-[45%] align-top">
-                <div className="mx-2 sm:ml-2 sm:max-w-md md:ml-4 md:max-w-lg lg:ml-6 lg:max-w-xl xl:ml-8 xl:max-w-2xl 2xl:ml-10 relative">
-                  {/* Semi-transparent background only behind text - 75% opacity for better readability */}
-                  <div className="absolute inset-0 bg-white/75 rounded-lg" />
-                  
-                  <div className="relative z-10 p-8 space-y-8">
-                    <div>
-                      {/* Use resource hints for higher priority assets on page */}
-                      <link rel="preload" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" as="image" fetchPriority="high" />
-                      
-                      {/* Mark as LCP element for monitoring */}
-                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
-                        PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
-                        We Implement the HubSpot Systems Your Investors Expect
-                      </h1>
-                      <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                        PE Operational Excellence Without the Operational Headache. We implement scalable HubSpot systems across PE portfolios - so Operating Partners can focus on strategy and portfolio companies can focus on growth.
-                      </p>
-                    </div>
-                    
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex flex-col">
-                        <Link to="/contact" onClick={trackContactCTAClick}>
-                          <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
-                            Get Your PE-Approved Digital Operations Assessment
-                            <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
-                          </Button>
-                        </Link>
-                        <div className="mt-3 text-sm text-gray-600 max-w-sm">
-                          <p className="font-medium text-gray-700 mb-1">PE-Approved Assessment - No Risk</p>
-                          <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
-                        </div>
-                      </div>
-                    </div>
+          {/* Hero box with absolute positioning for precise control */}
+          <div className="absolute left-4 sm:left-6 md:left-8 lg:left-10 top-8 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl z-20">
+            {/* Semi-transparent background only behind text - 75% opacity for better readability */}
+            <div className="absolute inset-0 bg-white/75 rounded-lg" />
+            
+            <div className="relative z-10 p-8 space-y-8">
+              <div>
+                {/* Use resource hints for higher priority assets on page */}
+                <link rel="preload" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" as="image" fetchPriority="high" />
+                
+                {/* Mark as LCP element for monitoring */}
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
+                  PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
+                  We Implement the HubSpot Systems Your Investors Expect
+                </h1>
+                <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
+                  PE Operational Excellence Without the Operational Headache. We implement scalable HubSpot systems across PE portfolios - so Operating Partners can focus on strategy and portfolio companies can focus on growth.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex flex-col">
+                  <Link to="/contact" onClick={trackContactCTAClick}>
+                    <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
+                      Get Your PE-Approved Digital Operations Assessment
+                      <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
+                    </Button>
+                  </Link>
+                  <div className="mt-3 text-sm text-gray-600 max-w-sm">
+                    <p className="font-medium text-gray-700 mb-1">PE-Approved Assessment - No Risk</p>
+                    <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
                   </div>
                 </div>
-              </td>
-              {/* Right column - takes remaining space, naturally contains image area */}
-              <td className="w-[55%] align-top">
-                {/* This column is empty but structurally reserves space for the background image */}
-              </td>
-            </tr>
-          </table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -118,3 +108,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
