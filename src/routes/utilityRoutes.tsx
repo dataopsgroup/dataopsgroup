@@ -1,62 +1,22 @@
 
 import React from 'react';
-import { RouteObject } from 'react-router-dom';
-
-// Import pages
-import NotFound from '@/pages/NotFound';
-import Privacy from '@/pages/Privacy';
-import Terms from '@/pages/Terms';
-import Sitemap from '@/pages/Sitemap';
-import FAQs from '@/pages/FAQs';
-import Documentation from '@/pages/Documentation';
+import { Route } from 'react-router-dom';
+import HubSpotAssessment from '@/pages/HubSpotAssessment';
+import HubSpotAssessmentResultsPage from '@/pages/HubSpotAssessmentResultsPage';
+import GetStartedPage from '@/pages/GetStartedPage';
+import ThankYouPage from '@/pages/ThankYouPage';
+import ContactThankYouPage from '@/pages/ContactThankYouPage';
 import SEODashboard from '@/pages/SEODashboard';
-import PillarContentPage from '@/pages/PillarContentPage';
-import HubSpotExpertGuidePage from '@/pages/HubSpotExpertGuidePage';
+import Sitemap from '@/pages/Sitemap';
+import GenerateImagePage from '@/pages/GenerateImagePage';
 
-// Define utility routes
-export const utilityRoutes: RouteObject[] = [
-  {
-    path: "/not-found",
-    element: <NotFound />
-  },
-  {
-    path: "/404",
-    element: <NotFound />
-  },
-  {
-    path: "*",
-    element: <NotFound />
-  },
-  {
-    path: "/privacy",
-    element: <Privacy />
-  },
-  {
-    path: "/terms",
-    element: <Terms />
-  },
-  {
-    path: "/sitemap",
-    element: <Sitemap />
-  },
-  {
-    path: "/faqs",
-    element: <FAQs />
-  },
-  {
-    path: "/docs",
-    element: <Documentation />
-  },
-  {
-    path: "/seo-dashboard",
-    element: <SEODashboard />
-  },
-  {
-    path: "/pillar-content",
-    element: <PillarContentPage />
-  },
-  {
-    path: "/how-to-hire-a-hubspot-expert-in-2025",
-    element: <HubSpotExpertGuidePage />
-  }
+export const utilityRoutes = [
+  <Route key="assessment" path="/assessment" element={<HubSpotAssessment />} />,
+  <Route key="assessment-results" path="/assessment/results" element={<HubSpotAssessmentResultsPage />} />,
+  <Route key="get-started" path="/get-started" element={<GetStartedPage />} />,
+  <Route key="thank-you" path="/thank-you" element={<ThankYouPage />} />,
+  <Route key="contact-thank-you" path="/contact/thank-you" element={<ContactThankYouPage />} />,
+  <Route key="seo-dashboard" path="/admin/seo" element={<SEODashboard />} />,
+  <Route key="sitemap-page" path="/sitemap" element={<Sitemap />} />,
+  <Route key="generate-image" path="/generate-image" element={<GenerateImagePage />} />,
 ];
