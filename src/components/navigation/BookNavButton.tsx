@@ -27,7 +27,7 @@ const BookNavButton: React.FC<BookNavButtonProps> = ({ onClick, className = "" }
     >
       <span className="flex items-center gap-2">
         <Book className="h-4 w-4" />
-        <span>📖 Free Playbook</span>
+        <span>Free Playbook</span>
       </span>
       <span className="new-badge absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
         NEW
