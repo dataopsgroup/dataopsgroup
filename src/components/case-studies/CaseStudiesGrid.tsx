@@ -63,7 +63,7 @@ const CaseStudiesGrid = () => {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch auto-rows-fr">
         {caseStudies.map((caseStudy, index) => (
           <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0 bg-white flex flex-col h-full">
             {/* Professional Header Section */}
