@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,8 +23,8 @@ const Hero = () => {
   };
 
   return <>
-      <div className="relative pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50 overflow-hidden">
-        {/* Background Image - Force cache refresh */}
+      <div className="relative pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50 min-h-[500px]">
+        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-no-repeat"
           style={{
@@ -35,42 +34,46 @@ const Hero = () => {
           }}
         />
         
-        <div className="container mx-auto relative z-10">
-          {/* Hero box with absolute positioning for precise control */}
-          <div className="absolute left-4 sm:left-6 md:left-8 lg:left-10 top-8 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl z-20">
-            {/* Semi-transparent background only behind text - 75% opacity for better readability */}
-            <div className="absolute inset-0 bg-white/75 rounded-lg" />
-            
-            <div className="relative z-10 p-8 space-y-8">
-              <div>
-                {/* Use resource hints for higher priority assets on page */}
-                <link rel="preload" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" as="image" fetchPriority="high" />
+        {/* CSS Grid Layout Container */}
+        <div className="container mx-auto relative z-10 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full items-start">
+            {/* Hero Content - Takes up left portion with margin constraints */}
+            <div className="lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+              {/* Semi-transparent background only behind text */}
+              <div className="bg-white/75 rounded-lg p-8 space-y-8">
+                <div>
+                  {/* Use resource hints for higher priority assets on page */}
+                  <link rel="preload" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" as="image" fetchPriority="high" />
+                  
+                  {/* Mark as LCP element for monitoring */}
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
+                    PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
+                    We Implement the HubSpot Systems Your Investors Expect
+                  </h1>
+                  <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
+                    PE Operational Excellence Without the Operational Headache. We implement scalable HubSpot systems across PE portfolios - so Operating Partners can focus on strategy and portfolio companies can focus on growth.
+                  </p>
+                </div>
                 
-                {/* Mark as LCP element for monitoring */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
-                  PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
-                  We Implement the HubSpot Systems Your Investors Expect
-                </h1>
-                <p className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                  PE Operational Excellence Without the Operational Headache. We implement scalable HubSpot systems across PE portfolios - so Operating Partners can focus on strategy and portfolio companies can focus on growth.
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="flex flex-col">
-                  <Link to="/contact" onClick={trackContactCTAClick}>
-                    <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
-                      Get Your PE-Approved Digital Operations Assessment
-                      <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
-                    </Button>
-                  </Link>
-                  <div className="mt-3 text-sm text-gray-600 max-w-sm">
-                    <p className="font-medium text-gray-700 mb-1">PE-Approved Assessment - No Risk</p>
-                    <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col">
+                    <Link to="/contact" onClick={trackContactCTAClick}>
+                      <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
+                        Get Your PE-Approved Digital Operations Assessment
+                        <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
+                      </Button>
+                    </Link>
+                    <div className="mt-3 text-sm text-gray-600 max-w-sm">
+                      <p className="font-medium text-gray-700 mb-1">PE-Approved Assessment - No Risk</p>
+                      <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            
+            {/* Right side - Empty space for background image visibility */}
+            <div className="hidden lg:block lg:col-span-6 xl:col-span-7"></div>
           </div>
         </div>
       </div>
@@ -108,4 +111,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
