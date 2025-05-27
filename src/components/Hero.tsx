@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -35,11 +34,9 @@ const Hero = () => {
         />
         
         <div className="container mx-auto relative z-10">
-          <div className="w-[45%] relative">
+          <div className="absolute left-[25px] top-0 bottom-0 flex items-center max-w-[45%]">
             {/* Semi-transparent background only behind text - 75% opacity for better readability */}
-            <div className="absolute inset-0 bg-white/75 rounded-lg" />
-            
-            <div className="relative z-10 p-8 space-y-8">
+            <div className="bg-white/75 rounded-lg p-8 space-y-8">
               <div>
                 {/* Use resource hints for higher priority assets on page */}
                 <link rel="preload" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" as="image" fetchPriority="high" />
