@@ -1,7 +1,6 @@
 
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import DataOpsImplementationHero from '@/components/services/DataOpsImplementationHero';
 import DataOpsImplementationContent from '@/components/services/DataOpsImplementationContent';
@@ -12,7 +11,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const DataOpsImplementation = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <DataOpsImplementationSchema />
       <ServiceSchema 
         name="DataOps Implementation for HubSpot" 
@@ -26,9 +25,8 @@ const DataOpsImplementation = () => {
           { name: "DataOps Implementation", url: "/services/dataops-implementation" }
         ]} 
       />
-      <Navbar />
       
-      <main>
+      <SemanticLayout>
         <DataOpsImplementationHero />
 
         {/* Content Section */}
@@ -47,9 +45,8 @@ const DataOpsImplementation = () => {
         </section>
         
         <CTABanner />
-      </main>
-      <Footer />
-    </div>
+      </SemanticLayout>
+    </>
   );
 };
 

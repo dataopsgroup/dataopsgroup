@@ -1,7 +1,6 @@
 
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import MarketingOperationsRevOpsSchema from '@/components/services/MarketingOperationsRevOpsSchema';
 import MarketingOperationsRevOpsHero from '@/components/services/MarketingOperationsRevOpsHero';
@@ -11,7 +10,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const MarketingOperationsRevOps = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <MarketingOperationsRevOpsSchema />
       <BreadcrumbSchema 
         items={[
@@ -20,9 +19,8 @@ const MarketingOperationsRevOps = () => {
           { name: "Marketing Operations & RevOps", url: "/services/marketing-operations-revops" }
         ]} 
       />
-      <Navbar />
       
-      <main>
+      <SemanticLayout>
         <MarketingOperationsRevOpsHero />
 
         {/* Content Section */}
@@ -41,9 +39,8 @@ const MarketingOperationsRevOps = () => {
         </section>
         
         <CTABanner />
-      </main>
-      <Footer />
-    </div>
+      </SemanticLayout>
+    </>
   );
 };
 

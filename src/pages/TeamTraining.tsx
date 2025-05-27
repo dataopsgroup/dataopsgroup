@@ -1,7 +1,6 @@
 
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import ServiceHero from '@/components/services/ServiceHero';
 import ServiceBenefits from '@/components/services/ServiceBenefits';
@@ -20,7 +19,7 @@ const TeamTraining = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <ServiceSchema 
         name="HubSpot Training & Implementation"
         description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
@@ -28,8 +27,7 @@ const TeamTraining = () => {
         serviceOutput="Improved team proficiency with HubSpot, maximized platform ROI, and streamlined operations"
       />
       
-      <Navbar />
-      <main>
+      <SemanticLayout>
         <ServiceHero 
           title="HubSpot Training & Implementation"
           description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
@@ -59,9 +57,8 @@ const TeamTraining = () => {
         </section>
         
         <CTABanner />
-      </main>
-      <Footer />
-    </div>
+      </SemanticLayout>
+    </>
   );
 };
 

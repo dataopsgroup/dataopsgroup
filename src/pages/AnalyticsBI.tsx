@@ -1,7 +1,6 @@
 
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
 import AnalyticsBIContent from '@/components/services/AnalyticsBIContent';
@@ -12,7 +11,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const AnalyticsBI = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <AnalyticsBISchema />
       <BreadcrumbSchema 
         items={[
@@ -21,9 +20,8 @@ const AnalyticsBI = () => {
           { name: "Analytics & BI", url: "/services/analytics-bi" }
         ]} 
       />
-      <Navbar />
       
-      <main>
+      <SemanticLayout>
         <AnalyticsBIHero />
 
         {/* Content Section */}
@@ -42,9 +40,8 @@ const AnalyticsBI = () => {
         </section>
         
         <CTABanner />
-      </main>
-      <Footer />
-    </div>
+      </SemanticLayout>
+    </>
   );
 };
 
