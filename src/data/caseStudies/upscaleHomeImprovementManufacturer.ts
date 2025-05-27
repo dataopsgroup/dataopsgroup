@@ -4,8 +4,8 @@ import { CaseStudyData } from '@/types/caseStudy';
 export const upscaleHomeImprovementManufacturer: CaseStudyData = {
   title: 'Home Improvement Manufacturing',
   industry: 'Manufacturing • Premium Products',
-  revenue: 'Decades-Old Manufacturer',
-  timeline: '15-Month Engagement',
+  revenue: '$100M+ Multi-State Operations',
+  timeline: '2022-Present • Ongoing Partnership',
   metrics: {
     primary: { value: 'Complete', label: 'Digital Transformation' },
     secondary: [
@@ -52,6 +52,12 @@ export const upscaleHomeImprovementManufacturer: CaseStudyData = {
       title: 'Digital Catalog',
       description: 'Integrated catalog system with lead registration',
       metric: 'Complete digital transformation achieved'
+    },
+    {
+      month: '2023-Present',
+      title: 'Ongoing Optimization',
+      description: 'Continuous system improvements and strategic growth support',
+      metric: 'Sustained partnership delivering ongoing value'
     }
   ]
 };
