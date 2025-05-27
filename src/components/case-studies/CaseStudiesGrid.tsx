@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -66,7 +65,7 @@ const CaseStudiesGrid = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {caseStudies.map((caseStudy, index) => (
-          <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0 bg-white">
+          <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0 bg-white flex flex-col h-full">
             {/* Professional Header Section */}
             <div className="bg-gradient-to-r from-dataops-950 to-dataops-800 text-white p-6 relative overflow-hidden">
               <div className="absolute top-0 right-0 opacity-10 transform translate-x-4 -translate-y-2">
@@ -82,7 +81,7 @@ const CaseStudiesGrid = () => {
             </div>
             
             {/* Content Section */}
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-4 flex-grow flex flex-col">
               <div>
                 <h4 className="font-semibold text-gray-900 mb-2">
                   Challenge
@@ -104,7 +103,7 @@ const CaseStudiesGrid = () => {
                 <p className="text-gray-700 text-sm leading-relaxed font-medium">{caseStudy.result}</p>
               </div>
               
-              <div className="pt-4 border-t border-gray-100">
+              <div className="pt-4 border-t border-gray-100 mt-auto">
                 {caseStudy.hasPost ? (
                   <Link to={`/insights/${caseStudy.id}`}>
                     <Button className="w-full bg-dataops-600 hover:bg-dataops-700 text-white">
