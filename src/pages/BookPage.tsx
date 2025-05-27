@@ -100,11 +100,17 @@ const BookPage = () => {
             </div>
             
             <div className="mt-8">
-              <Button className="bg-dataops-600 hover:bg-dataops-700 text-white text-lg px-8 py-6">
-                Pre-Order Now
-              </Button>
+              <a 
+                href="https://a.co/d/j6o9K5B" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <Button className="bg-dataops-600 hover:bg-dataops-700 text-white text-lg px-8 py-6">
+                  Pre-Order Now
+                </Button>
+              </a>
               <p className="text-sm text-gray-500 mt-2">
-                Release Date: October 15, 2025
+                Release Date: June 6, 2025
               </p>
             </div>
           </div>
