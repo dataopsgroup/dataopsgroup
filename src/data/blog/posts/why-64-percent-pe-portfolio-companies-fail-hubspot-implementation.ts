@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 export const why64PercentPEPortfolioCompaniesFailHubspotImplementation: BlogPost = {
@@ -143,7 +142,6 @@ export const why64PercentPEPortfolioCompaniesFailHubspotImplementation: BlogPost
   date: "May 28, 2025",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/pe-hubspot-implementation-failure.png",
   tags: ["private-equity", "hubspot-implementation", "portfolio-companies", "revenue-operations", "pe-value-creation"],
   wordCount: 1247,
   readingTime: 6

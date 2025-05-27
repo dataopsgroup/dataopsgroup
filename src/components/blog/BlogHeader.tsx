@@ -11,7 +11,7 @@ interface BlogHeaderProps {
   date: string;
   author: string;
   category: string;
-  coverImage: string;
+  coverImage?: string;
 }
 
 const BlogHeader: React.FC<BlogHeaderProps> = ({
@@ -124,23 +124,25 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
         </div>
       </div>
 
-      {/* Hero Image */}
-      <div className="relative mt-8">
-        <figure className="relative overflow-hidden">
-          <OptimizedImage
-            src={coverImage}
-            alt={title}
-            className="w-full h-auto"
-            width={1200}
-            height={630}
-            objectFit="cover"
-            priority={true}
-            aspectRatio={1200/630}
-            placeholder="/placeholder.svg"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-        </figure>
-      </div>
+      {/* Hero Image - Only render if coverImage exists */}
+      {coverImage && (
+        <div className="relative mt-8">
+          <figure className="relative overflow-hidden">
+            <OptimizedImage
+              src={coverImage}
+              alt={title}
+              className="w-full h-auto"
+              width={1200}
+              height={630}
+              objectFit="cover"
+              priority={true}
+              aspectRatio={1200/630}
+              placeholder="/placeholder.svg"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </figure>
+        </div>
+      )}
     </div>
   );
 };
