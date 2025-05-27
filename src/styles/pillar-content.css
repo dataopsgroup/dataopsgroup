@@ -1,12 +1,20 @@
 
 /* Table of Contents Styling for Pillar Content */
 .table-of-contents-container {
-  background: #f8f9fa;  /* Pale gray color */
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 0;
-  margin: 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   position: relative;
+}
+
+.table-of-contents-container h2 {
+  color: #14213D;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .table-of-contents ul {
@@ -22,76 +30,352 @@
 }
 
 .table-of-contents button {
-  color: #0066cc;
+  color: #4a5568;
   text-decoration: none;
   width: 100%;
   display: block;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: all 0.3s ease;
   border: none;
   background: transparent;
   cursor: pointer;
   font-size: 0.95rem;
   text-align: left;
-  border-radius: 0;
+  border-radius: 8px;
   margin: 0;
   position: relative;
   white-space: normal;
-  padding-right: 1.5rem !important; /* Ensure enough right padding for all buttons */
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.table-of-contents button:last-child {
+  border-bottom: none;
 }
 
 .table-of-contents button:hover {
-  color: #0052a3;
-  background-color: #e9ecef;
+  color: #FBB03B;
+  background-color: #fffbeb;
+  transform: translateX(4px);
 }
 
 /* Active TOC link styling */
 .table-of-contents button.active {
   font-weight: 600;
-  background-color: #e9ecef;
-  color: #0052a3;
-  border-left: 3px solid #0066cc;
-  padding-left: calc(0.75rem - 3px); /* Compensate for the border to prevent shifting */
+  background: linear-gradient(90deg, rgba(251, 176, 59, 0.1) 0%, transparent 100%);
+  color: #14213D;
+  border-left: 4px solid #FBB03B;
+  padding-left: calc(1rem - 4px);
 }
 
-/* Perfect alignment between TOC title and main content title */
-.sidebar-content-wrapper {
-  padding-top: 0; /* Removed extra padding - we handle this in the parent container */
+/* Article Header Styling */
+.article-header {
+  background: linear-gradient(135deg, #14213D 0%, #2d3748 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Improve spacing between TOC title and main content title */
-.sidebar-content-title {
-  @apply mb-6;
+.article-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(251, 176, 59, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.article-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.content-type, .read-time, .last-updated {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.article-summary {
+  position: relative;
+  z-index: 1;
+}
+
+.article-summary .lead {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 1.5rem 0;
+  color: #cbd5e0;
+  font-weight: 400;
+}
+
+.expertise-badge {
+  background: #FBB03B;
+  color: #14213D;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced Section Styling */
+.pillar-content h2 {
+  color: #14213D !important;
+  font-size: 1.8rem !important;
+  margin: 3rem 0 1.5rem 0 !important;
+  padding: 1rem 0 1rem 1.5rem !important;
+  border-left: 4px solid #FBB03B !important;
+  background: linear-gradient(90deg, rgba(251, 176, 59, 0.1) 0%, transparent 100%) !important;
+  border-radius: 0 8px 8px 0 !important;
+  font-weight: 600 !important;
+}
+
+.pillar-content h3 {
+  color: #2d3748 !important;
+  font-size: 1.4rem !important;
+  margin: 2rem 0 1rem 0 !important;
+  padding-bottom: 0.5rem !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+  font-weight: 600 !important;
+}
+
+.pillar-content h4 {
+  color: #4a5568 !important;
+  font-size: 1.2rem !important;
+  margin: 1.5rem 0 0.75rem 0 !important;
+  font-weight: 600 !important;
+}
+
+/* Callout Box Styling */
+.key-insight-callout {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1px solid #f59e0b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+}
+
+.callout-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.callout-content h4 {
+  color: #92400e;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.pe-focus-box {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #3b82f6;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.pe-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.pe-icon {
+  font-size: 1.2rem;
+}
+
+.pe-header h4 {
+  color: #1e40af;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.pricing-highlight {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1px solid #22c55e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+}
+
+.pricing-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.price-icon {
+  font-size: 1.2rem;
+}
+
+.pricing-header h4 {
+  color: #15803d;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.action-checklist {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.action-checklist h4 {
+  color: #14213D;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+}
+
+.checklist-item:last-child {
+  margin-bottom: 0;
+}
+
+.checkmark {
+  background: #22c55e;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.item-text {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.expert-tip {
+  background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+  border: 1px solid #a855f7;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.1);
+}
+
+.tip-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.tip-label {
+  font-weight: 600;
+  color: #7c3aed;
+}
+
+.tip-text {
+  color: #6b46c1;
+  line-height: 1.5;
+}
+
+.warning-box {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 1px solid #ef4444;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+}
+
+.warning-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.warning-text {
+  color: #dc2626;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 /* Better spacing for content sections */
 .pillar-content-section {
-  @apply mb-12;
-}
-
-/* Ensure header elements have proper spacing */
-.pillar-content h1 {
-  @apply text-4xl font-bold mb-6;
-}
-
-.pillar-content h2 {
-  @apply text-2xl font-bold mb-4 mt-8;
+  margin-bottom: 3rem;
 }
 
 /* Add precise padding to pillar content area with exact pixel values */
 .pillar-content {
   padding-left: 20px;
   padding-right: 25px;
-  margin-top: 0; /* Remove top margin */
-  padding-top: 0; /* Remove top padding */
+  margin-top: 0;
+  padding-top: 0;
+  line-height: 1.7;
+}
+
+.pillar-content p {
+  margin-bottom: 1.25rem;
+  color: #4a5568;
+}
+
+.pillar-content ul {
+  margin-bottom: 1.5rem;
+}
+
+.pillar-content ul li {
+  margin-bottom: 0.5rem;
+  color: #4a5568;
 }
 
 /* Animation for section transitions */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -104,5 +388,24 @@ section[tabindex="-1"] {
   .table-of-contents-container {
     max-height: 300px;
     overflow-y: auto;
+    padding: 1.5rem;
+  }
+  
+  .article-header {
+    padding: 2rem 1.5rem;
+  }
+  
+  .article-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .pillar-content h2 {
+    font-size: 1.5rem !important;
+    padding: 0.75rem 0 0.75rem 1rem !important;
+  }
+  
+  .pillar-content h3 {
+    font-size: 1.2rem !important;
   }
 }

@@ -12,6 +12,7 @@ import TableOfContents from '@/components/pillar-content/TableOfContents';
 import ContentSection from '@/components/pillar-content/ContentSection';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
 import ShareButtons from '@/components/ui/ShareButtons';
+import ArticleHeader from '@/components/pillar-content/ArticleHeader';
 
 const PillarContentPage = () => {
   const sectionIds: SectionId[] = [
@@ -108,21 +109,22 @@ const PillarContentPage = () => {
       />
       
       <div className="container mx-auto px-4 py-16">
-        {/* Title and navigation elements */}
+        {/* Breadcrumbs */}
         <div className="mb-6 ml-[25px]">
-          {/* Breadcrumbs */}
           <BreadcrumbNavigation items={breadcrumbItems} />
-          
-          {/* Title heading */}
-          <div className="flex flex-wrap justify-between items-center mb-6 relative">
-            <h1 className="text-3xl font-bold">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
-            
-            {/* Share buttons - positioned under the word "How" */}
-            <ShareButtons 
-              title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs" 
-              position="under-title"
-            />
-          </div>
+        </div>
+
+        {/* Article Header */}
+        <ArticleHeader 
+          title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs"
+        />
+
+        {/* Share buttons */}
+        <div className="mb-8 ml-[25px]">
+          <ShareButtons 
+            title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs" 
+            position="under-title"
+          />
         </div>
         
         <div className="flex flex-col md:flex-row">
