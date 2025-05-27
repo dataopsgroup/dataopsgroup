@@ -14,6 +14,7 @@ import BlogPostSchema from '@/components/seo/BlogPostSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import BlogPostContent from '@/components/blog/BlogPostContent';
 import BlogPostNotFound from '@/components/blog/BlogPostNotFound';
+import CaseStudyPage from '@/components/case-study/CaseStudyPage';
 import useScrollToAnchor from '@/hooks/useScrollToAnchor';
 import usePostAnalytics from '@/hooks/usePostAnalytics';
 
@@ -51,6 +52,9 @@ const BlogPostPage = () => {
     return <BlogPostNotFound />;
   }
 
+  // Check if this is a case study
+  const isCaseStudy = post.category === 'Case Study';
+
   // Define breadcrumbs for this post
   const breadcrumbs = [
     { name: 'Home', url: '/' },
@@ -64,10 +68,6 @@ const BlogPostPage = () => {
     ...(post.tags || []).map(tag => tag.toLowerCase()),
     ...post.title.toLowerCase().replace(/[^\w\s]/gi, '').split(' ')
   ].filter(Boolean).join(', ');
-
-  // Format date for time element
-  const publishDate = new Date(post.date);
-  const formattedPublishDate = publishDate.toISOString();
 
   return (
     <SemanticLayout>
@@ -90,11 +90,11 @@ const BlogPostPage = () => {
       {post && <BlogPostSchema post={post} />}
       <BreadcrumbSchema items={breadcrumbs} />
       
-      <article className="py-16 md:py-24 px-4">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto">
-            {/* Back button to Insights with orange hover state */}
-            <div className="mb-6">
+      {isCaseStudy ? (
+        // Render case study with visual layout
+        <>
+          <div className="py-8 px-4">
+            <div className="container mx-auto max-w-3xl">
               <Button 
                 variant="outline" 
                 className="bg-gray-700 text-white hover:bg-gray-800 hover:text-orange-500 transition-colors" 
@@ -103,32 +103,53 @@ const BlogPostPage = () => {
                 <Link to="/insights">Back to Insights</Link>
               </Button>
             </div>
-            
-            <header>
-              <BlogHeader 
-                title={post.title}
-                date={post.date}
-                author={post.author}
-                category={post.category || ''}
-                coverImage={post.coverImage}
-              />
-            </header>
-
-            <div className="blog-content">
-              <BlogPostContent content={post.content} />
-            </div>
           </div>
-        </div>
-      </article>
+          <CaseStudyPage post={post} />
+        </>
+      ) : (
+        // Render regular blog post
+        <>
+          <article className="py-16 md:py-24 px-4">
+            <div className="container mx-auto">
+              <div className="max-w-3xl mx-auto">
+                {/* Back button to Insights with orange hover state */}
+                <div className="mb-6">
+                  <Button 
+                    variant="outline" 
+                    className="bg-gray-700 text-white hover:bg-gray-800 hover:text-orange-500 transition-colors" 
+                    asChild
+                  >
+                    <Link to="/insights">Back to Insights</Link>
+                  </Button>
+                </div>
+                
+                <header>
+                  <BlogHeader 
+                    title={post.title}
+                    date={post.date}
+                    author={post.author}
+                    category={post.category || ''}
+                    coverImage={post.coverImage}
+                  />
+                </header>
 
-      {/* Related Posts Section */}
-      <aside aria-labelledby="related-posts-heading">
-        <RelatedPosts relatedPosts={relatedPosts} currentPostId={post.id} />
-      </aside>
-      
-      <section aria-label="Call to Action">
-        <CTABanner />
-      </section>
+                <div className="blog-content">
+                  <BlogPostContent content={post.content} />
+                </div>
+              </div>
+            </div>
+          </article>
+
+          {/* Related Posts Section */}
+          <aside aria-labelledby="related-posts-heading">
+            <RelatedPosts relatedPosts={relatedPosts} currentPostId={post.id} />
+          </aside>
+          
+          <section aria-label="Call to Action">
+            <CTABanner />
+          </section>
+        </>
+      )}
     </SemanticLayout>
   );
 };
