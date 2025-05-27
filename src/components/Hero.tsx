@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,7 @@ const Hero = () => {
         />
         
         <div className="container mx-auto relative z-10">
-          <div className="mx-4 md:ml-[40px] md:w-[550px] relative">
+          <div className="mx-4 sm:ml-8 sm:max-w-md md:ml-16 md:max-w-lg lg:ml-24 lg:max-w-xl xl:ml-32 xl:max-w-2xl relative">
             {/* Semi-transparent background only behind text - 75% opacity for better readability */}
             <div className="absolute inset-0 bg-white/75 rounded-lg" />
             
