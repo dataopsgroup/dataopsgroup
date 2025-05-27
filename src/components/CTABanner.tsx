@@ -10,14 +10,14 @@ const CTABanner = () => {
           Ready to Transform Your Data Operations?
         </h2>
         <p className="text-lg mb-8 max-w-2xl mx-auto">
-          Book a consultation today and discover how our expert team can help you maximize your HubSpot investment.
+          Get in touch today and discover how our expert team can help you maximize your HubSpot investment.
         </p>
         <Link 
           to="/contact" 
           className="inline-flex bg-white text-dataops-900 px-8 py-3 rounded-md text-lg font-medium hover:bg-dataops-50 transition-colors"
-          aria-label="Contact us to book a consultation"
+          aria-label="Contact us to get in touch"
         >
-          Book a Consultation
+          Get In Touch
         </Link>
       </div>
     </section>

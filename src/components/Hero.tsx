@@ -59,7 +59,7 @@ const Hero = () => {
                   <div className="flex flex-col">
                     <Link to="/contact" onClick={trackContactCTAClick}>
                       <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
-                        Get Your PE-Approved Digital Operations Assessment
+                        Get In Touch
                         <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                       </Button>
                     </Link>

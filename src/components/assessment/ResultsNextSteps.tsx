@@ -19,7 +19,7 @@ const ResultsNextSteps: React.FC<ResultsNextStepsProps> = ({ onEmailResults }) =
           asChild
           className="bg-dataops-600 hover:bg-dataops-700 text-white"
         >
-          <a href="/contact">Request Free Consultation</a>
+          <a href="/contact">Get In Touch</a>
         </Button>
         <Button 
           variant="outline"
