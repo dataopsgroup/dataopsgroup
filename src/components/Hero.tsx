@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -39,7 +40,7 @@ const Hero = () => {
             <tr>
               {/* Left column - constrained to 45% max width */}
               <td className="w-[45%] align-top">
-                <div className="mx-2 sm:ml-2 sm:max-w-md md:ml-4 md:max-w-lg lg:ml-6 lg:max-w-xl xl:ml-8 xl:max-w-2xl relative">
+                <div className="mx-2 sm:ml-2 sm:max-w-md md:ml-4 md:max-w-lg lg:ml-6 lg:max-w-xl xl:ml-8 xl:max-w-2xl 2xl:ml-10 relative">
                   {/* Semi-transparent background only behind text - 75% opacity for better readability */}
                   <div className="absolute inset-0 bg-white/75 rounded-lg" />
                   
