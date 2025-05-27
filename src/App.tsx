@@ -3,7 +3,6 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { RouterProvider, RouteObject } from 'react-router-dom';
 import Loading from './components/Loading';
 import ErrorDisplay from './components/ErrorDisplay';
-import ScrollToTop from './components/ScrollToTop';
 import router from './routes';
 import { handleHubSpotCTARedirect, removeHsLangParameter } from './utils/redirect-utils';
 
@@ -88,7 +87,6 @@ function App() {
 
   return (
     <>
-      <ScrollToTop />
       <RouterProvider router={router} />
       
       {/* Using Suspense for lazy-loaded privacy modal */}
