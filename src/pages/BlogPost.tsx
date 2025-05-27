@@ -28,7 +28,12 @@ const BlogPostPage = () => {
   const canonicalPath = `/insights/${postId}`;
   
   useEffect(() => {
+    console.log('BlogPost useEffect triggered');
+    console.log('postId from params:', postId);
+    console.log('Available blog posts:', blogPosts.map(p => p.id));
+    
     const foundPost = blogPosts.find(p => p.id === postId);
+    console.log('Found post:', foundPost ? foundPost.title : 'Not found');
     
     if (foundPost) {
       setPost(foundPost);
@@ -36,6 +41,7 @@ const BlogPostPage = () => {
       const otherPosts = blogPosts.filter(p => p.id !== postId);
       setRelatedPosts(otherPosts.slice(0, 3)); // Take up to 3 posts
     } else {
+      console.error('Post not found for ID:', postId);
       toast({
         title: "Post not found",
         description: "We couldn't find the blog post you're looking for.",
@@ -49,6 +55,7 @@ const BlogPostPage = () => {
   usePostAnalytics(post);
 
   if (!post) {
+    console.log('Rendering BlogPostNotFound because post is null');
     return <BlogPostNotFound />;
   }
 

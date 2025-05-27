@@ -26,9 +26,9 @@ function generateBlogPostSchema(post: BlogPost, baseUrl: string) {
   const isoDate = formatDateToISO(post.date);
   const modifiedDate = post.modifiedDate ? formatDateToISO(post.modifiedDate) : isoDate;
   
-  // Get the best image to use
+  // Get the best image to use - handle optional coverImage
   const imageUrl = getPostImageUrl(post);
-  const fullImageUrl = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`;
+  const fullImageUrl = imageUrl ? (imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`) : `${baseUrl}/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png`;
   
   return {
     "@context": "https://schema.org",
@@ -65,9 +65,9 @@ function formatDateToISO(dateString: string): string {
   return new Date(dateString).toISOString();
 }
 
-// Get post image URL
-function getPostImageUrl(post: BlogPost): string {
-  return post.featuredImage || post.coverImage;
+// Get post image URL - handle optional images
+function getPostImageUrl(post: BlogPost): string | null {
+  return post.featuredImage || post.coverImage || null;
 }
 
 // Calculate word count if not provided
