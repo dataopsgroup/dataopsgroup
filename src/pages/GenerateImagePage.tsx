@@ -1,4 +1,4 @@
-
+//comment//
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import BlogImageGenerator from '@/components/blog/BlogImageGenerator';
