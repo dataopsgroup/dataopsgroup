@@ -293,7 +293,7 @@
 
   /* Enhanced Blog Content */
   .blog-content-enhanced {
-    @apply prose prose-lg prose-gray max-w-none;
+    @apply text-lg leading-relaxed text-gray-700 max-w-none;
   }
 
   .blog-content-enhanced h2 {
