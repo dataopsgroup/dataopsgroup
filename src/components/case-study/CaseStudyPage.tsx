@@ -43,7 +43,7 @@ const CaseStudyPage = ({ post }: CaseStudyPageProps) => {
             'Clean, reliable database with accurate pipeline tracking',
             'Eliminated duplicate records and established data hygiene'
           ],
-          timeline: [
+          resultsTimeline: [
             {
               month: 'Month 1-2',
               title: 'Data Foundation',
@@ -99,7 +99,7 @@ const CaseStudyPage = ({ post }: CaseStudyPageProps) => {
             'Clean, organized database with proper associations',
             'Automated workflows and compliance-friendly processes'
           ],
-          timeline: [
+          resultsTimeline: [
             {
               month: 'Month 1-3',
               title: 'Platform Restart',
@@ -155,7 +155,7 @@ const CaseStudyPage = ({ post }: CaseStudyPageProps) => {
             'Automated data hygiene processes and validation',
             'Integrated contract renewal monitoring and revenue tracking'
           ],
-          timeline: [
+          resultsTimeline: [
             {
               month: 'Month 1-2',
               title: 'Requirements Analysis',
@@ -211,7 +211,7 @@ const CaseStudyPage = ({ post }: CaseStudyPageProps) => {
             'Updated landing pages with proper lead tracking',
             'Integrated digital catalog with lead registration'
           ],
-          timeline: [
+          resultsTimeline: [
             {
               month: 'Month 1-3',
               title: 'Emergency Fixes',
@@ -266,7 +266,7 @@ const CaseStudyPage = ({ post }: CaseStudyPageProps) => {
           solutions={caseData.solutions}
         />
         
-        <ResultsTimeline timeline={caseData.timeline} />
+        <ResultsTimeline timeline={caseData.resultsTimeline} />
         
         <PEInsightsGrid />
         
