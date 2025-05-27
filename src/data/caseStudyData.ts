@@ -82,14 +82,14 @@ export const caseStudyDataMap: Record<string, CaseStudyData> = {
   'multi-national-specialty-insurance': {
     title: 'Specialty Insurance Provider',
     industry: 'Financial Services',
-    revenue: 'Multi-National Operations',
-    timeline: '12-Month Engagement',
+    revenue: '$1B+ Annual Revenue',
+    timeline: '6-Month Engagement',
     metrics: {
       primary: { value: '100%', label: 'User Adoption' },
       secondary: [
         { value: '85%', label: 'Process Efficiency' },
-        { value: '12 months', label: 'ROI Timeline' },
-        { value: '50%', label: 'Report Automation' }
+        { value: '6 months', label: 'Implementation' },
+        { value: '90%', label: 'Report Automation' }
       ]
     },
     problems: [
