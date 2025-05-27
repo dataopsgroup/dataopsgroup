@@ -140,7 +140,7 @@ class RunwareService {
 }
 
 const BlogImageGenerator = () => {
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey, setApiKey] = useState('deLRWbx5DoVHBHE5chV4bzJn1JbmnuWs');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
 
@@ -209,8 +209,8 @@ const BlogImageGenerator = () => {
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
             />
-            <p className="text-xs text-gray-500 mt-1">
-              Get your API key from <a href="https://runware.ai/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">runware.ai</a>
+            <p className="text-xs text-green-600 mt-1">
+              ✓ API key pre-filled and ready to use
             </p>
           </div>
 
