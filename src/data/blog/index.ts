@@ -1,3 +1,4 @@
+
 import { BlogPost } from '@/types/blog';
 
 // Import all blog posts
@@ -39,9 +40,11 @@ import { whatDoesAHubSpotConsultantCost } from './posts/what-does-a-hubspot-cons
 import { saasHealthcareAchievesRemarkableInsights } from './posts/saas-healthcare-achieves-remarkable-insights';
 import { hubspotBlogBestPractices } from './posts/hubspot-blog-best-practices';
 import { leadTiersCaseStudy } from './posts/lead-tiers-case-study';
+import { why64PercentPEPortfolioCompaniesFailHubspotImplementation } from './posts/why-64-percent-pe-portfolio-companies-fail-hubspot-implementation';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
+  why64PercentPEPortfolioCompaniesFailHubspotImplementation,
   hiddenCostOfFailedHubspotImplementations,
   leadTiersCaseStudy,
   hubspotBlogBestPractices,
@@ -84,6 +87,7 @@ export const blogPosts: BlogPost[] = [
 
 // Export individual posts for direct access if needed
 export {
+  why64PercentPEPortfolioCompaniesFailHubspotImplementation,
   hiddenCostOfFailedHubspotImplementations,
   leadTiersCaseStudy,
   hubspotBlogBestPractices,
