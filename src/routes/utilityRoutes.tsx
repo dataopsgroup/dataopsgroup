@@ -7,7 +7,6 @@ import ThankYouPage from '@/pages/ThankYouPage';
 import ContactThankYouPage from '@/pages/ContactThankYouPage';
 import SEODashboard from '@/pages/SEODashboard';
 import Sitemap from '@/pages/Sitemap';
-import GenerateImagePage from '@/pages/GenerateImagePage';
 import NotFound from '@/pages/NotFound';
 
 export const utilityRoutes = [
@@ -44,11 +43,6 @@ export const utilityRoutes = [
   {
     path: "/sitemap",
     element: <Sitemap />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/generate-image",
-    element: <GenerateImagePage />,
     errorElement: <NotFound />,
   },
 ];
