@@ -1,16 +1,17 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import SampleChapterModal from '@/components/book/SampleChapterModal';
-import { Book, ChevronRight } from 'lucide-react';
+import SampleChapterForm from '@/components/book/SampleChapterForm';
+import { Book, ChevronRight, Download } from 'lucide-react';
 
 const BookLandingPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const scrollToForm = () => {
+    const formSection = document.getElementById('sample-chapter-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -78,6 +79,10 @@ const BookLandingPage = () => {
           .cta-gradient {
             background: linear-gradient(135deg, #1e293b, #334155);
           }
+          
+          .form-gradient {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+          }
         `}</style>
       </Helmet>
       
@@ -111,10 +116,10 @@ const BookLandingPage = () => {
                     Pre-Order Now <ChevronRight className="h-5 w-5 ml-2" />
                   </a>
                   <button 
-                    onClick={openModal}
+                    onClick={scrollToForm}
                     className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center"
                   >
-                    Read Sample Chapter
+                    Get Sample Chapter
                   </button>
                 </div>
               </div>
@@ -271,14 +276,80 @@ const BookLandingPage = () => {
                 Pre-Order Now <ChevronRight className="h-5 w-5 ml-2" />
               </a>
               <button 
-                onClick={openModal}
+                onClick={scrollToForm}
                 className="border-2 border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center"
               >
-                Download Sample Chapter
+                Get Sample Chapter
               </button>
             </div>
             <div className="mt-8 opacity-80 text-lg">
               Release Date: June 6, 2025
+            </div>
+          </div>
+        </section>
+
+        {/* Sample Chapter Form Section */}
+        <section id="sample-chapter-form" className="form-gradient py-20">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center bg-blue-100 text-blue-700 text-sm px-4 py-2 rounded-full mb-6">
+                  <Download className="h-4 w-4 mr-2" />
+                  <span className="font-semibold">Free Sample Chapter</span>
+                </div>
+                <h2 className="text-4xl font-bold text-gray-800 mb-4">Download Your Free Sample</h2>
+                <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                  Get the introduction and first chapter of "The CMO's Data Playbook" delivered to your inbox instantly. 
+                  See exactly how this framework can transform your marketing data strategy.
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-6">What You'll Get:</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start">
+                        <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                          <span className="text-green-600 text-sm">✓</span>
+                        </div>
+                        <div>
+                          <strong className="text-gray-800">Complete Introduction</strong>
+                          <p className="text-gray-600 text-sm">Understanding the data transformation challenge</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                          <span className="text-green-600 text-sm">✓</span>
+                        </div>
+                        <div>
+                          <strong className="text-gray-800">Chapter 1: Data Origins</strong>
+                          <p className="text-gray-600 text-sm">How to identify and audit your current data sources</p>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                          <span className="text-green-600 text-sm">✓</span>
+                        </div>
+                        <div>
+                          <strong className="text-gray-800">Bonus Worksheet</strong>
+                          <p className="text-gray-600 text-sm">Data audit checklist to get started immediately</p>
+                        </div>
+                      </li>
+                    </ul>
+                    
+                    <div className="mt-8 p-4 bg-blue-50 rounded-lg">
+                      <p className="text-blue-800 text-sm">
+                        <strong>Instant Download:</strong> You'll receive the PDF within minutes of submitting the form.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <SampleChapterForm />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -303,9 +374,6 @@ const BookLandingPage = () => {
       </main>
       
       <Footer />
-      
-      {/* Sample Chapter Modal */}
-      <SampleChapterModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
