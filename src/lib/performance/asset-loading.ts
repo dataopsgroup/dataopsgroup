@@ -75,101 +75,32 @@ export const optimizeAssetLoading = () => {
   });
 };
 
-// Flag to track if script reordering has already been done
-const scriptReorderingFlag = '__SCRIPT_REORDERING_DONE__';
-
-// Extracted function to avoid duplicate declarations and prevent multiple executions
-export const reorderScripts = (
-  criticalScripts: HTMLScriptElement[], 
-  thirdPartyScripts: HTMLScriptElement[], 
-  analyticsScripts: HTMLScriptElement[]
-) => {
-  // Safety check: only run once per page/document to prevent duplicate script issues
-  if ((window as any)[scriptReorderingFlag]) {
-    return; // Exit if already executed
-  }
-  
-  try {
-    // Clone all scripts
-    const scriptClones = [...criticalScripts, ...thirdPartyScripts, ...analyticsScripts].map(script => {
-      const clone = document.createElement('script');
-      
-      // Copy all attributes
-      Array.from(script.attributes).forEach(attr => {
-        clone.setAttribute(attr.name, attr.value);
-      });
-      
-      // Copy inline script content
-      if (!script.src) {
-        clone.textContent = script.textContent;
-      }
-      
-      return {
-        original: script,
-        clone: clone
-      };
-    });
-    
-    // Remove originals and insert clones in optimal order
-    scriptClones.forEach(({ original, clone }) => {
-      if (original.parentNode) {
-        original.parentNode.removeChild(original);
-        document.body.appendChild(clone);
-      }
-    });
-    
-    // Mark as done to prevent duplicate execution
-    (window as any)[scriptReorderingFlag] = true;
-  } catch (error) {
-    console.error('Error during script reordering:', error);
-    // Don't set the flag if execution failed, allowing for potential retry
-  }
-};
-
-// Optimize resource order through dynamic insertion - made safer with checks
+// Optimize resource order - simplified to avoid duplicate variable declarations
 export const optimizeResourceOrder = () => {
   if (typeof document === 'undefined') return;
   
-  // Skip if already executed
-  if ((window as any)[scriptReorderingFlag]) {
+  // Skip if already optimized to prevent duplicate execution
+  if ((window as any).__RESOURCE_ORDER_OPTIMIZED__) {
     return;
   }
   
-  // Collect all script elements
-  const scripts = Array.from(document.querySelectorAll('script'));
+  // Mark as optimized
+  (window as any).__RESOURCE_ORDER_OPTIMIZED__ = true;
   
-  // Categorize scripts
-  const criticalScripts: HTMLScriptElement[] = [];
-  const thirdPartyScripts: HTMLScriptElement[] = [];
-  const analyticsScripts: HTMLScriptElement[] = [];
-  
-  scripts.forEach(script => {
+  // Simple resource prioritization without complex reordering
+  document.querySelectorAll('script').forEach(script => {
     const src = script.getAttribute('src') || '';
     
-    if (!src) {
-      // Inline scripts are usually critical
-      criticalScripts.push(script);
-    } else if (src.includes('analytics') || 
-               src.includes('gtag') || 
-               src.includes('gtm') || 
-               src.includes('hs-script') || 
-               src.includes('facebook')) {
-      analyticsScripts.push(script);
-    } else if (src.includes('//') || src.includes('://')) {
-      thirdPartyScripts.push(script);
-    } else {
-      criticalScripts.push(script);
+    // Set appropriate loading priorities
+    if (src.includes('analytics') || 
+        src.includes('gtag') || 
+        src.includes('gtm') || 
+        src.includes('hs-script') || 
+        src.includes('facebook')) {
+      script.setAttribute('fetchpriority', 'low');
+      if (!script.hasAttribute('async')) {
+        script.async = true;
+      }
     }
   });
-  
-  // Reorder scripts by removing and reinserting them - with safer approach
-  if (document.readyState !== 'complete') {
-    window.addEventListener('load', () => {
-      if (!(window as any)[scriptReorderingFlag]) {
-        reorderScripts(criticalScripts, thirdPartyScripts, analyticsScripts);
-      }
-    }, { once: true });  // Use once option to ensure handler runs only once
-  } else {
-    reorderScripts(criticalScripts, thirdPartyScripts, analyticsScripts);
-  }
 };

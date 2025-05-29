@@ -4,7 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense, lazy } from 'react';
+import { StrictMode, Suspense } from 'react';
 import { initWebVitals } from './utils/web-vitals';
 import { setupAnalyticsAndMonitoring, initializeApp } from './utils/app-initialization';
 import { 
@@ -22,7 +22,7 @@ import { applyCriticalCSS, loadFonts } from './lib/critical-css';
 
 // Define app version globally
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.0.8'; // Incremented for SSG support
+  window.APP_VERSION = '1.0.9'; // Incremented for SSG support and bug fixes
 }
 
 // Progressive brand font loading function
@@ -85,7 +85,7 @@ if (typeof window !== 'undefined') {
 // Apply critical performance optimizations immediately
 setupResourceHints();
 
-// Enhanced application rendering with performance tracking and SSG support
+// Enhanced application rendering with performance tracking
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
@@ -94,39 +94,23 @@ const renderApp = () => {
     
     const root = createRoot(container);
     
-    // Check if we're in SSG mode (pre-rendered content exists)
-    const isSSG = container.innerHTML.trim().length > 0 && !container.innerHTML.includes('Loading DataOps Group...');
-    
-    if (isSSG) {
-      // For pre-rendered content, hydrate instead of render
-      root.render(
-        <StrictMode>
-          <HelmetProvider>
-            <Suspense fallback={null}>
-              <App />
-            </Suspense>
-          </HelmetProvider>
-        </StrictMode>
-      );
-    } else {
-      // For client-side rendering, show loading state
-      root.render(
-        <StrictMode>
-          <HelmetProvider>
-            <Suspense fallback={
-              <div className="w-full h-screen flex items-center justify-center">
-                <div className="flex flex-col items-center">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-dataops-600 mb-4"></div>
-                  <p className="text-dataops-600 text-lg">Loading DataOps Group...</p>
-                </div>
+    // Standard client-side rendering
+    root.render(
+      <StrictMode>
+        <HelmetProvider>
+          <Suspense fallback={
+            <div className="w-full h-screen flex items-center justify-center">
+              <div className="flex flex-col items-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-dataops-600 mb-4"></div>
+                <p className="text-dataops-600 text-lg">Loading DataOps Group...</p>
               </div>
-            }>
-              <App />
-            </Suspense>
-          </HelmetProvider>
-        </StrictMode>
-      );
-    }
+            </div>
+          }>
+            <App />
+          </Suspense>
+        </HelmetProvider>
+      </StrictMode>
+    );
     
     // Mark render completion
     performance.mark('render-complete');
@@ -160,8 +144,7 @@ if (typeof window !== 'undefined') {
         '/contact',
         '/insights',
         '/services',
-        '/approach',
-        '/faqs'
+        '/approach'
       ]),
       priority: 'medium' 
     },
