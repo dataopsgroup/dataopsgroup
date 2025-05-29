@@ -26,11 +26,8 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
 }
 
 /**
- * Enhanced OptimizedImage with modern format support and Core Web Vitals optimizations
- * - Supports WebP/AVIF with fallbacks using <picture> element
- * - Generates responsive srcsets for different screen sizes
- * - Optimizes LCP images with preload hints
- * - Uses intersection observer for efficient lazy loading
+ * Simplified OptimizedImage with better error handling and server-side compatibility
+ * Focuses on Core Web Vitals while maintaining stability
  */
 const OptimizedImage = ({
   src,
@@ -68,101 +65,83 @@ const OptimizedImage = ({
     threshold
   });
 
-  // Determine loading strategy
+  // Determine loading strategy with safer defaults
   const shouldLoad = priority || isLCP || isInView;
   const imageLoading = loading || (priority || isLCP ? 'eager' : 'lazy');
   const imageDecoding = decoding || (priority || isLCP ? 'sync' : 'async');
 
-  // Generate responsive srcsets
-  const srcSet = shouldLoad ? generateSrcSet(src, responsiveBreakpoints) : '';
+  // Generate responsive srcsets with error handling
+  let srcSet = '';
+  try {
+    srcSet = shouldLoad ? generateSrcSet(src, responsiveBreakpoints) : '';
+  } catch (error) {
+    console.warn('Failed to generate srcSet:', error);
+    srcSet = '';
+  }
 
-  // Generate WebP and AVIF sources for modern browsers
+  // Simplified modern format support
   const getModernFormatSrc = (format: 'webp' | 'avif') => {
-    if (!src.includes('lovable-uploads')) return '';
-    return `${src.replace(/\.(jpg|jpeg|png)$/i, `.${format}`)}`;
+    if (!enableModernFormats || !src.includes('lovable-uploads')) return '';
+    try {
+      return src.replace(/\.(jpg|jpeg|png)$/i, `.${format}`);
+    } catch {
+      return '';
+    }
   };
 
-  // Generate srcset for modern formats
-  const getModernFormatSrcSet = (format: 'webp' | 'avif') => {
-    if (!srcSet) return '';
-    return srcSet.replace(/\.(jpg|jpeg|png)/gi, `.${format}`);
-  };
+  // Create the base image element with proper error boundaries
+  const createImageElement = (imgSrc: string, imgSrcSet?: string) => (
+    <img
+      ref={imgRef}
+      src={shouldLoad ? imgSrc : placeholder}
+      alt={alt}
+      width={width}
+      height={height}
+      className={`${className || ''} max-w-full transition-all duration-300 ${
+        blur && !isLoaded && shouldLoad ? 'blur-sm scale-105' : ''
+      }`}
+      style={{ objectFit }}
+      srcSet={imgSrcSet || srcSet}
+      sizes={sizes}
+      loading={imageLoading}
+      decoding={imageDecoding}
+      // Fixed: Use lowercase 'fetchpriority' for React compatibility
+      {...(isLCP && { fetchpriority: 'high' })}
+      onLoad={handleLoad}
+      onError={handleError}
+      {...props}
+    />
+  );
 
+  // Main image element with graceful fallbacks
   const imageElement = (
     <>
-      {/* Add preload for LCP images */}
-      {isLCP && shouldLoad && (
-        <>
-          <link rel="preload" as="image" href={src} fetchPriority="high" />
-          {enableModernFormats && (
-            <>
-              <link rel="preload" as="image" href={getModernFormatSrc('webp')} type="image/webp" fetchPriority="high" />
-              <link rel="preload" as="image" href={getModernFormatSrc('avif')} type="image/avif" fetchPriority="high" />
-            </>
-          )}
-        </>
+      {/* Preload for LCP images with error handling */}
+      {isLCP && shouldLoad && typeof document !== 'undefined' && (
+        <link rel="preload" as="image" href={src} fetchPriority="high" />
       )}
 
       {enableModernFormats && shouldLoad ? (
         <picture>
-          {/* AVIF format for best compression */}
+          {/* Modern format sources with error boundaries */}
           <source
             type="image/avif"
-            srcSet={getModernFormatSrcSet('avif')}
+            srcSet={getModernFormatSrc('avif') || undefined}
             sizes={sizes}
           />
-          
-          {/* WebP format for wider support */}
           <source
             type="image/webp"
-            srcSet={getModernFormatSrcSet('webp')}
+            srcSet={getModernFormatSrc('webp') || undefined}
             sizes={sizes}
           />
-          
-          {/* Fallback to original format */}
-          <img
-            ref={imgRef}
-            src={shouldLoad ? src : placeholder}
-            alt={alt}
-            width={width}
-            height={height}
-            className={`${className || ''} max-w-full transition-all duration-300 ${
-              blur && !isLoaded && shouldLoad ? 'blur-sm scale-105' : ''
-            }`}
-            style={{ objectFit }}
-            srcSet={srcSet}
-            sizes={sizes}
-            loading={imageLoading}
-            decoding={imageDecoding}
-            fetchPriority={isLCP ? 'high' : 'auto'}
-            onLoad={handleLoad}
-            onError={handleError}
-            {...props}
-          />
+          {/* Always include fallback */}
+          {createImageElement(src)}
         </picture>
       ) : (
-        <img
-          ref={imgRef}
-          src={shouldLoad ? src : placeholder}
-          alt={alt}
-          width={width}
-          height={height}
-          className={`${className || ''} max-w-full transition-all duration-300 ${
-            blur && !isLoaded && shouldLoad ? 'blur-sm scale-105' : ''
-          }`}
-          style={{ objectFit }}
-          srcSet={srcSet}
-          sizes={sizes}
-          loading={imageLoading}
-          decoding={imageDecoding}
-          fetchPriority={isLCP ? 'high' : 'auto'}
-          onLoad={handleLoad}
-          onError={handleError}
-          {...props}
-        />
+        createImageElement(src)
       )}
 
-      {/* Noscript fallback */}
+      {/* Server-side rendering fallback */}
       <noscript>
         <img
           src={src}
@@ -176,6 +155,7 @@ const OptimizedImage = ({
     </>
   );
 
+  // Aspect ratio wrapper if needed
   if (aspectRatio) {
     return (
       <AspectRatio ratio={aspectRatio} className={`overflow-hidden ${className || ''}`}>

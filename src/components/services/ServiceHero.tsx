@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import OptimizedImage from '@/components/ui/optimized-image';
+import ImageErrorBoundary from '@/components/ui/image-error-boundary';
 
 interface ServiceHeroProps {
   title: string;
@@ -42,26 +43,30 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
           </div>
           
           <div className="lg:col-span-3 flex justify-end">
-            {imageSrc ? (
-              <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
-                <OptimizedImage 
-                  src={imageSrc}
-                  alt={imageAlt || "Service visualization"}
-                  width={600}
-                  height={375}
-                  className="w-full h-full object-cover"
-                  objectFit="cover"
-                />
-              </div>
-            ) : (
-              <div className="relative bg-white rounded-2xl shadow-2xl p-12 z-10 w-full max-w-xl border border-gray-100">
-                <div className="flex justify-center items-center h-72 w-full rounded-lg bg-gray-50">
-                  <div className="text-brand-saffron" aria-hidden="true">
-                    {serviceIcon}
+            <ImageErrorBoundary>
+              {imageSrc ? (
+                <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
+                  <OptimizedImage 
+                    src={imageSrc}
+                    alt={imageAlt || "Service visualization"}
+                    width={600}
+                    height={375}
+                    className="w-full h-full object-cover"
+                    objectFit="cover"
+                    priority={true}
+                    isLCP={true}
+                  />
+                </div>
+              ) : (
+                <div className="relative bg-white rounded-2xl shadow-2xl p-12 z-10 w-full max-w-xl border border-gray-100">
+                  <div className="flex justify-center items-center h-72 w-full rounded-lg bg-gray-50">
+                    <div className="text-brand-saffron" aria-hidden="true">
+                      {serviceIcon}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </ImageErrorBoundary>
           </div>
         </div>
       </div>
