@@ -3,6 +3,28 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { prerender } from 'vite-plugin-prerender-spa';
+
+// Define all routes for pre-rendering
+const routesToPrerender = [
+  '/',
+  '/about',
+  '/approach',
+  '/contact',
+  '/book',
+  '/services',
+  '/services/marketing-operations-revops',
+  '/services/analytics-bi',
+  '/services/dataops-implementation',
+  '/services/team-training',
+  '/insights',
+  '/assessment',
+  '/get-started',
+  '/thank-you',
+  '/contact/thank-you',
+  '/sitemap',
+  '/how-to-hire-a-hubspot-expert-in-2025'
+];
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -14,6 +36,26 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === 'development' &&
     componentTagger(),
+    // Add SSG pre-rendering plugin
+    mode === 'production' && prerender({
+      staticDir: path.join(__dirname, 'dist'),
+      routes: routesToPrerender,
+      renderer: '@prerenderer/renderer-puppeteer',
+      rendererOptions: {
+        maxConcurrentRoutes: 4,
+        renderAfterTime: 500,
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      },
+      postProcess(renderedRoute) {
+        // Ensure proper meta tags and content are rendered
+        renderedRoute.html = renderedRoute.html.replace(
+          /<title>(.*?)<\/title>/,
+          '<title>$1</title>'
+        );
+        return renderedRoute;
+      }
+    })
   ].filter(Boolean),
   resolve: {
     alias: {
