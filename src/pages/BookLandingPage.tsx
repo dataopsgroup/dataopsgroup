@@ -327,22 +327,7 @@ const BookLandingPage = () => {
                           <p className="text-gray-600 text-sm">How to identify and audit your current data sources</p>
                         </div>
                       </li>
-                      <li className="flex items-start">
-                        <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
-                          <span className="text-green-600 text-sm">✓</span>
-                        </div>
-                        <div>
-                          <strong className="text-gray-800">Bonus Worksheet</strong>
-                          <p className="text-gray-600 text-sm">Data audit checklist to get started immediately</p>
-                        </div>
-                      </li>
                     </ul>
-                    
-                    <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-                      <p className="text-blue-800 text-sm">
-                        <strong>Instant Download:</strong> You'll receive the PDF within minutes of submitting the form.
-                      </p>
-                    </div>
                   </div>
                   
                   <div>

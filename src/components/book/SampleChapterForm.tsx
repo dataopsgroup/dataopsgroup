@@ -37,6 +37,19 @@ const SampleChapterForm = () => {
     };
   }, []);
 
+  const triggerFileDownload = () => {
+    // Convert Google Drive view link to direct download link
+    const downloadUrl = 'https://drive.google.com/uc?export=download&id=1I5hdGjfk62vYf_rMBWlrhrrj6p6SUS6h';
+    
+    // Create temporary download link and trigger download
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'CMO-Data-Playbook-Sample-Chapter.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const initializeForm = () => {
     // Wait for DOM to be ready
     setTimeout(() => {
@@ -49,6 +62,10 @@ const SampleChapterForm = () => {
             target: "#hubspot-sample-chapter-form",
             onFormSubmit: () => {
               console.log('Sample chapter form submitted successfully');
+              
+              // Trigger file download
+              triggerFileDownload();
+              
               // Optional: Add analytics tracking here
               if (window.gtag) {
                 window.gtag('event', 'form_submission', {
