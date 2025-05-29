@@ -16,7 +16,9 @@ const BookCTASection: React.FC<BookCTASectionProps> = ({ onScrollToForm }) => {
         </p>
         <div className="flex flex-col sm:flex-row gap-5 justify-center">
           <a 
-            href="#" 
+            href="https://a.co/d/1VQNwrN" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center justify-center"
           >
             Pre-Order Now <ChevronRight className="h-5 w-5 ml-2" />

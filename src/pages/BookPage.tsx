@@ -101,7 +101,7 @@ const BookPage = () => {
             
             <div className="mt-8">
               <a 
-                href="https://a.co/d/j6o9K5B" 
+                href="https://a.co/d/1VQNwrN" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >

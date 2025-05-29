@@ -28,7 +28,9 @@ const BookHeroSection: React.FC<BookHeroSectionProps> = ({ onScrollToForm }) => 
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a 
-                href="#pre-order" 
+                href="https://a.co/d/1VQNwrN" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center justify-center"
               >
                 Pre-Order Now <ChevronRight className="h-5 w-5 ml-2" />
