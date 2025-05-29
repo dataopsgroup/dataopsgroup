@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Book } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface BookNavButtonProps {
   onClick?: () => void;
@@ -8,20 +9,11 @@ interface BookNavButtonProps {
 }
 
 const BookNavButton: React.FC<BookNavButtonProps> = ({ onClick, className = "" }) => {
-  const handleClick = () => {
-    const bookSection = document.getElementById('book-section');
-    if (bookSection) {
-      bookSection.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (onClick) {
-      onClick();
-    }
-  };
-
   return (
-    <button
-      onClick={handleClick}
-      className={`nav-cta-button relative bg-brand-saffron hover:bg-opacity-90 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg ${className}`}
+    <Link
+      to="/book"
+      onClick={onClick}
+      className={`nav-cta-button relative bg-brand-saffron hover:bg-opacity-90 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg inline-block ${className}`}
       aria-label="Get free PE marketing playbook"
       style={{ backgroundColor: '#FBB03B' }}
     >
@@ -32,7 +24,7 @@ const BookNavButton: React.FC<BookNavButtonProps> = ({ onClick, className = "" }
       <span className="new-badge absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
         NEW
       </span>
-    </button>
+    </Link>
   );
 };
 
