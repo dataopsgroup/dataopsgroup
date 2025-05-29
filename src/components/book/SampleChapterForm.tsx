@@ -62,7 +62,7 @@ const SampleChapterForm = () => {
               formLoadedRef.current = true;
               // Hide loading message
               const loadingElement = document.querySelector('#hubspot-sample-chapter-form .loading-message');
-              if (loadingElement) {
+              if (loadingElement && loadingElement instanceof HTMLElement) {
                 loadingElement.style.display = 'none';
               }
             }
