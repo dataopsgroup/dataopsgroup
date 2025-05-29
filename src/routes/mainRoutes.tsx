@@ -5,6 +5,7 @@ import ContactPage from '../pages/Contact';
 import AboutPage from '../pages/AboutPage';
 import ApproachPage from '../pages/ApproachPage';
 import BookLandingPage from '../pages/BookLandingPage';
+import HubSpotExpertGuidePage from '../pages/HubSpotExpertGuidePage';
 import NotFound from '../pages/NotFound';
 
 // Define main routes for better organization
@@ -32,6 +33,11 @@ export const mainRoutes = [
   {
     path: "/book",
     element: <BookLandingPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/how-to-hire-a-hubspot-expert-in-2025",
+    element: <HubSpotExpertGuidePage />,
     errorElement: <NotFound />,
   }
 ];
