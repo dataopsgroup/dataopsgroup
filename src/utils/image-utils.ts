@@ -1,7 +1,7 @@
 
 /**
- * Utility functions for image optimization and loading
- * Combined from both OptimizedImage and ProgressiveImage implementations
+ * Enhanced utility functions for image optimization and loading
+ * Supports modern formats, responsive images, and performance monitoring
  */
 
 /**
@@ -57,18 +57,27 @@ export const reportLCPMetric = (src: string): void => {
 };
 
 /**
- * Generate srcset strings for responsive images
+ * Enhanced srcset generation with intelligent breakpoint selection
  */
 export const generateSrcSet = (src: string, widths: number[] = [640, 768, 1024, 1280, 1536]): string => {
   if (!src || src.startsWith('data:') || src.startsWith('blob:')) {
     return '';
   }
   
-  // Only generate srcset for images that support it
-  if (src.includes('lovable-uploads')) {
-    // For demonstration - in real implementation this would generate proper srcset
+  // Enhanced srcset generation for Lovable uploads and other supported sources
+  if (src.includes('lovable-uploads') || src.includes('unsplash.com')) {
     return widths
-      .map(width => `${src}?w=${width} ${width}w`)
+      .map(width => {
+        if (src.includes('unsplash.com')) {
+          // Unsplash supports dynamic resizing
+          const unsplashParams = `?w=${width}&q=85&fm=auto&fit=crop`;
+          return `${src}${unsplashParams} ${width}w`;
+        } else {
+          // For Lovable uploads, use width parameter
+          const separator = src.includes('?') ? '&' : '?';
+          return `${src}${separator}w=${width}&q=85 ${width}w`;
+        }
+      })
       .join(', ');
   }
   
@@ -76,48 +85,50 @@ export const generateSrcSet = (src: string, widths: number[] = [640, 768, 1024, 
 };
 
 /**
- * Check if the browser supports modern image formats
+ * Check if the browser supports modern image formats (cached results)
  */
+const formatSupport = new Map<string, boolean>();
+
 export const supportsImageFormat = async (format: 'webp' | 'avif'): Promise<boolean> => {
   if (typeof document === 'undefined') return false;
   
-  if (format === 'webp') {
-    const webpData = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-    const img = document.createElement('img');
-    
-    return new Promise(resolve => {
-      img.onload = () => {
-        const result = img.width > 0 && img.height > 0;
-        resolve(result);
-      };
-      img.onerror = () => {
-        resolve(false);
-      };
-      img.src = webpData;
-    });
+  // Return cached result if available
+  if (formatSupport.has(format)) {
+    return formatSupport.get(format)!;
   }
   
-  if (format === 'avif') {
-    const avifData = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
-    const img = document.createElement('img');
-    
-    return new Promise(resolve => {
-      img.onload = () => {
-        const result = img.width > 0 && img.height > 0;
-        resolve(result);
-      };
-      img.onerror = () => {
-        resolve(false);
-      };
-      img.src = avifData;
-    });
-  }
+  const testImages = {
+    webp: 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=',
+    avif: 'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A='
+  };
   
-  return false;
+  const img = document.createElement('img');
+  
+  return new Promise(resolve => {
+    const timeout = setTimeout(() => {
+      formatSupport.set(format, false);
+      resolve(false);
+    }, 500); // 500ms timeout
+    
+    img.onload = () => {
+      clearTimeout(timeout);
+      const result = img.width > 0 && img.height > 0;
+      formatSupport.set(format, result);
+      resolve(result);
+    };
+    
+    img.onerror = () => {
+      clearTimeout(timeout);
+      formatSupport.set(format, false);
+      resolve(false);
+    };
+    
+    img.src = testImages[format];
+  });
 };
 
 /**
- * Get optimal image format based on browser support
+ * Get optimal image format based on browser support (with caching)
  */
 export const getOptimalFormat = async (): Promise<'avif' | 'webp' | 'jpg'> => {
   try {
@@ -127,4 +138,47 @@ export const getOptimalFormat = async (): Promise<'avif' | 'webp' | 'jpg'> => {
     console.error('Error checking image format support:', e);
   }
   return 'jpg';
+};
+
+/**
+ * Calculate optimal sizes attribute based on component usage
+ */
+export const calculateSizes = (
+  componentType: 'hero' | 'card' | 'thumbnail' | 'full-width' = 'full-width'
+): string => {
+  const sizesMaps = {
+    hero: '(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px',
+    card: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px',
+    thumbnail: '(max-width: 768px) 25vw, 150px',
+    'full-width': '100vw'
+  };
+  
+  return sizesMaps[componentType];
+};
+
+/**
+ * Preload critical images for better LCP
+ */
+export const preloadCriticalImage = (src: string, formats: string[] = ['avif', 'webp']) => {
+  if (typeof document === 'undefined') return;
+  
+  // Preload modern formats first
+  formats.forEach(format => {
+    const modernSrc = src.replace(/\.(jpg|jpeg|png)$/i, `.${format}`);
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = modernSrc;
+    link.type = `image/${format}`;
+    link.setAttribute('fetchpriority', 'high');
+    document.head.appendChild(link);
+  });
+  
+  // Also preload original format as fallback
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = src;
+  link.setAttribute('fetchpriority', 'high');
+  document.head.appendChild(link);
 };

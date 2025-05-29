@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef, RefObject } from 'react';
-import { reportLCPMetric } from '@/utils/image-utils';
+import { reportLCPMetric, preloadCriticalImage } from '@/utils/image-utils';
 
 interface UseOptimizedImageProps {
   src: string;
@@ -21,8 +21,8 @@ interface UseOptimizedImageReturn {
 }
 
 /**
- * Enhanced hook for optimized image loading with intersection observer
- * Combines features from both OptimizedImage and ProgressiveImage
+ * Enhanced hook for optimized image loading with modern format support
+ * Combines intersection observer, format detection, and performance monitoring
  */
 export const useOptimizedImage = ({
   src,
@@ -63,29 +63,14 @@ export const useOptimizedImage = ({
     };
   }, [priority, isLCP, rootMargin, threshold]);
   
-  // Preload LCP images
+  // Enhanced preloading for LCP images with modern formats
   useEffect(() => {
     if ((priority || isLCP) && typeof document !== 'undefined') {
-      const preloadLink = document.querySelector(`link[rel="preload"][href="${src}"]`);
-      
-      if (!preloadLink) {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = src;
-        link.as = 'image';
-        link.setAttribute('fetchpriority', 'high');
-        document.head.appendChild(link);
-        
-        return () => {
-          if (link.parentNode) {
-            link.parentNode.removeChild(link);
-          }
-        };
-      }
+      preloadCriticalImage(src);
     }
   }, [src, priority, isLCP]);
   
-  // Pre-validate image exists
+  // Pre-validate image exists with better error handling
   useEffect(() => {
     if (typeof Image !== 'undefined' && src && src !== placeholder) {
       const img = new Image();
@@ -100,10 +85,17 @@ export const useOptimizedImage = ({
     }
   }, [src, placeholder]);
   
-  // Report LCP for important images
+  // Enhanced LCP reporting
   useEffect(() => {
     if (!isLCP || !isLoaded) return;
+    
+    // Report LCP metrics
     reportLCPMetric(src);
+    
+    // Mark the image as LCP candidate for Core Web Vitals monitoring
+    if (imgRef.current) {
+      imgRef.current.setAttribute('data-lcp-candidate', 'true');
+    }
   }, [isLCP, isLoaded, src]);
   
   // Clean up any object URLs when component unmounts
@@ -118,21 +110,26 @@ export const useOptimizedImage = ({
   const handleLoad = () => {
     setIsLoaded(true);
     
-    // Priority hint for hero images
+    // Enhanced priority hints for hero images
     if (isLCP && imgRef.current) {
       imgRef.current.setAttribute('fetchpriority', 'high');
+      imgRef.current.setAttribute('data-loaded-at', Date.now().toString());
     }
     
-    // Report LCP if it's a hero image using alternative method from ProgressiveImage
+    // Enhanced LCP measurement for better monitoring
     if (isLCP && window.performance && 'measure' in window.performance) {
       try {
-        window.performance.measure('lcp-image-loaded', 'navigationStart');
+        const navigationStart = window.performance.timing?.navigationStart || 0;
+        const loadTime = Date.now() - navigationStart;
+        
         if (window.gtag) {
-          const lcpTiming = window.performance.getEntriesByName('lcp-image-loaded')[0];
-          window.gtag('event', 'web_vitals', {
-            metric_name: 'LCP',
-            metric_value: lcpTiming.duration,
-            metric_delta: 0
+          window.gtag('event', 'lcp_image_loaded', {
+            'event_category': 'Performance',
+            'event_label': `LCP Image: ${src.split('/').pop()}`,
+            'value': loadTime,
+            'custom_map': {
+              'metric_1': 'lcp_time'
+            }
           });
         }
       } catch (e) {
@@ -144,7 +141,7 @@ export const useOptimizedImage = ({
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     console.error(`Failed to load image: ${src}`);
     
-    // Try to load from cache if available
+    // Enhanced fallback strategy
     if ('caches' in window) {
       window.caches.match(src).then(response => {
         if (response) {
@@ -162,6 +159,15 @@ export const useOptimizedImage = ({
       });
     } else if (imgRef.current) {
       imgRef.current.src = placeholder;
+    }
+    
+    // Report image loading errors for monitoring
+    if (window.gtag) {
+      window.gtag('event', 'image_load_error', {
+        'event_category': 'Performance',
+        'event_label': src,
+        'value': 1
+      });
     }
   };
   

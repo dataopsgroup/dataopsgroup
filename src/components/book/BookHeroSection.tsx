@@ -1,12 +1,18 @@
+
 import React from 'react';
 import { Book, ChevronRight } from 'lucide-react';
+import OptimizedImage from '@/components/ui/optimized-image';
+import { calculateSizes } from '@/utils/image-utils';
+
 interface BookHeroSectionProps {
   onScrollToForm: () => void;
 }
+
 const BookHeroSection: React.FC<BookHeroSectionProps> = ({
   onScrollToForm
 }) => {
-  return <section className="hero-gradient py-20 relative overflow-hidden">
+  return (
+    <section className="hero-gradient py-20 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-20 items-center">
           <div className="hero-text max-w-lg">
@@ -20,20 +26,42 @@ const BookHeroSection: React.FC<BookHeroSectionProps> = ({
             <h2 className="text-2xl font-semibold text-blue-600 mb-4">
               TRANSFORM DATA INTO REVENUE
             </h2>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">Sixty days to harness your marketing data's origins, journey, and destiny for C-suite impact.
-A practical guide for marketing executives who want to turn their data into strategic business value.</p>
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              Sixty days to harness your marketing data's origins, journey, and destiny for C-suite impact.
+              A practical guide for marketing executives who want to turn their data into strategic business value.
+            </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="https://a.co/d/1VQNwrN" target="_blank" rel="noopener noreferrer" className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center justify-center">
+              <a 
+                href="https://a.co/d/1VQNwrN" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center justify-center"
+              >
                 Pre-Order Now <ChevronRight className="h-5 w-5 ml-2" />
               </a>
-              <button onClick={onScrollToForm} className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center">
+              <button 
+                onClick={onScrollToForm} 
+                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center justify-center"
+              >
                 Get Sample Chapter
               </button>
             </div>
           </div>
           
           <div className="book-container relative max-w-md mx-auto">
-            <img src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" alt="The CMO's Data Playbook book cover" className="book-cover w-full rounded-3xl shadow-2xl transition-all duration-500" />
+            <OptimizedImage
+              src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png"
+              alt="The CMO's Data Playbook book cover"
+              width={400}
+              height={600}
+              className="book-cover w-full rounded-3xl shadow-2xl transition-all duration-500"
+              priority={true}
+              isLCP={true}
+              enableModernFormats={true}
+              sizes={calculateSizes('card')}
+              responsiveBreakpoints={[320, 480, 640, 800]}
+              objectFit="cover"
+            />
             <div className="floating-elements absolute inset-0 pointer-events-none">
               <div className="floating-stat absolute top-20 -right-4 bg-white px-4 py-3 rounded-xl shadow-lg text-sm font-semibold text-gray-800">
                 📈 60-Day Framework
@@ -48,6 +76,8 @@ A practical guide for marketing executives who want to turn their data into stra
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default BookHeroSection;

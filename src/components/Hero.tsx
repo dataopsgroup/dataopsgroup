@@ -3,8 +3,14 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { preloadCriticalImage } from '@/utils/image-utils';
 
 const Hero = () => {
+  // Preload the hero background image for better LCP
+  React.useEffect(() => {
+    preloadCriticalImage('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
+  }, []);
+
   // Track CTA click in Google Analytics and HubSpot
   const trackContactCTAClick = () => {
     // Track CTA click in Google Analytics
@@ -22,13 +28,14 @@ const Hero = () => {
     }
   };
 
-  return <>
+  return (
+    <>
       <div className="relative pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50 min-h-[500px]">
-        {/* Background Image */}
+        {/* Enhanced Background Image with Preload */}
         <div 
           className="absolute inset-0 bg-cover bg-no-repeat"
           style={{
-            backgroundImage: `url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png?v=${Date.now()}')`,
+            backgroundImage: `url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png')`,
             backgroundPosition: 'center right',
             backgroundSize: 'cover'
           }}
@@ -42,9 +49,6 @@ const Hero = () => {
               {/* Semi-transparent background only behind text */}
               <div className="bg-white/75 rounded-lg p-8 space-y-8">
                 <div>
-                  {/* Use resource hints for higher priority assets on page */}
-                  <link rel="preload" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" as="image" fetchPriority="high" />
-                  
                   {/* Mark as LCP element for monitoring */}
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
                     PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
@@ -118,7 +122,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </>;
+    </>
+  );
 };
 
 export default Hero;
