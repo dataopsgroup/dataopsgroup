@@ -10,8 +10,7 @@
 export { setupResourceHints } from './performance/resource-hints';
 export { 
   optimizeAssetLoading, 
-  optimizeResourceOrder,
-  reorderScripts
+  optimizeResourceOrder
 } from './performance/asset-loading';
 export { 
   setupClientCaching, 
