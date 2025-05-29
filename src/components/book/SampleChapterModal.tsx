@@ -8,12 +8,6 @@ interface SampleChapterModalProps {
   onClose: () => void;
 }
 
-declare global {
-  interface Window {
-    hbspt: any;
-  }
-}
-
 const SampleChapterModal: React.FC<SampleChapterModalProps> = ({ isOpen, onClose }) => {
   const formContainerRef = useRef<HTMLDivElement>(null);
   const formLoadedRef = useRef(false);
