@@ -42,18 +42,7 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
           </div>
           
           <div className="lg:col-span-3 flex justify-end">
-            {isHubSpotTraining ? (
-              <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
-                <OptimizedImage 
-                  src="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"
-                  alt="HubSpot training session with a facilitator and attendees"
-                  width={600}
-                  height={375}
-                  className="w-full h-full object-cover"
-                  objectFit="cover"
-                />
-              </div>
-            ) : imageSrc ? (
+            {imageSrc ? (
               <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
                 <OptimizedImage 
                   src={imageSrc}
