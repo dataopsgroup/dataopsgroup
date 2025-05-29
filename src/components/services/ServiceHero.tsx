@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import OptimizedImage from '@/components/ui/optimized-image';
 import ImageErrorBoundary from '@/components/ui/image-error-boundary';
 
 interface ServiceHeroProps {
@@ -46,15 +45,18 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
             <ImageErrorBoundary>
               {imageSrc ? (
                 <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
-                  <OptimizedImage 
+                  <img 
                     src={imageSrc}
                     alt={imageAlt || "Service visualization"}
                     width={600}
                     height={375}
                     className="w-full h-full object-cover"
-                    objectFit="cover"
-                    priority={true}
-                    isLCP={true}
+                    loading="eager"
+                    fetchPriority="high"
+                    onError={(e) => {
+                      console.warn(`Failed to load hero image: ${imageSrc}`);
+                      // Don't replace with placeholder, let error boundary handle it
+                    }}
                   />
                 </div>
               ) : (
