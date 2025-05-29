@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Download } from 'lucide-react';
 import SampleChapterForm from './SampleChapterForm';
-
 const BookSampleChapterSection = () => {
-  return (
-    <section id="sample-chapter-form" className="form-gradient py-20">
+  return <section id="sample-chapter-form" className="form-gradient py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -14,10 +11,7 @@ const BookSampleChapterSection = () => {
               <span className="font-semibold">Free Sample Chapter</span>
             </div>
             <h2 className="text-4xl font-bold text-gray-800 mb-4">Download Your Free Sample</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Get the introduction and first chapter of "The CMO's Data Playbook" delivered to your inbox instantly. 
-              See exactly how this framework can transform your marketing data strategy.
-            </p>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Get the introduction and first chapter of &quot;The CMO's Data Playbook&quot; downloaded to your browser instantly. See exactly how this framework can transform your marketing data strategy.</p>
           </div>
           
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
@@ -53,8 +47,6 @@ const BookSampleChapterSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default BookSampleChapterSection;
