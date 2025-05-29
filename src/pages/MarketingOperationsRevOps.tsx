@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import MarketingOperationsRevOpsSchema from '@/components/services/MarketingOperationsRevOpsSchema';
@@ -11,6 +12,11 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 const MarketingOperationsRevOps = () => {
   return (
     <>
+      <Helmet>
+        <title>Marketing Operations & RevOps | DataOps Group</title>
+        <meta name="description" content="Streamline your marketing operations and revenue operations with expert HubSpot consulting services for improved ROI and team alignment." />
+      </Helmet>
+      
       <MarketingOperationsRevOpsSchema />
       <BreadcrumbSchema 
         items={[

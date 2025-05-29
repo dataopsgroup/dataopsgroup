@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import ServiceHero from '@/components/services/ServiceHero';
@@ -20,6 +21,11 @@ const TeamTraining = () => {
 
   return (
     <>
+      <Helmet>
+        <title>HubSpot Training & Implementation | DataOps Group</title>
+        <meta name="description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+      </Helmet>
+      
       <ServiceSchema 
         name="HubSpot Training & Implementation"
         description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."

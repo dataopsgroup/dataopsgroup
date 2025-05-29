@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
@@ -12,6 +13,11 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 const AnalyticsBI = () => {
   return (
     <>
+      <Helmet>
+        <title>Analytics & Business Intelligence | DataOps Group</title>
+        <meta name="description" content="Transform your data into actionable insights with expert analytics and business intelligence consulting for HubSpot users." />
+      </Helmet>
+      
       <AnalyticsBISchema />
       <BreadcrumbSchema 
         items={[

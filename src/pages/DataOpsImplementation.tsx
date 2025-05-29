@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import DataOpsImplementationHero from '@/components/services/DataOpsImplementationHero';
@@ -12,6 +13,11 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 const DataOpsImplementation = () => {
   return (
     <>
+      <Helmet>
+        <title>DataOps Implementation for HubSpot | DataOps Group</title>
+        <meta name="description" content="Professional DataOps implementation services for HubSpot. Clean data, optimized workflows, and maximum value from your CRM investment." />
+      </Helmet>
+      
       <DataOpsImplementationSchema />
       <ServiceSchema 
         name="DataOps Implementation for HubSpot" 
