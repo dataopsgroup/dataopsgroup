@@ -4,95 +4,102 @@ import { Loader2 } from 'lucide-react';
 
 const SampleChapterForm = () => {
   const formLoadedRef = useRef(false);
+  const initAttempts = useRef(0);
 
   useEffect(() => {
-    // Check if HubSpot script already exists
-    const existingScript = document.querySelector('script[src*="js.hsforms.net"]');
+    const maxAttempts = 5;
     
-    if (existingScript) {
-      // Script already loaded, try to create form
-      initializeForm();
-    } else {
-      // Load HubSpot forms script
-      const script = document.createElement('script');
-      script.src = '//js.hsforms.net/forms/embed/v2.js';
-      script.charset = 'utf-8';
-      script.async = true;
+    const initializeForm = () => {
+      // Prevent infinite initialization attempts
+      if (formLoadedRef.current || initAttempts.current >= maxAttempts) {
+        return;
+      }
       
-      script.onload = () => {
-        initializeForm();
-      };
+      initAttempts.current += 1;
+
+      // Check if HubSpot is available
+      if (typeof window !== 'undefined' && window.hbspt && window.hbspt.forms) {
+        try {
+          const targetElement = document.getElementById('hubspot-sample-chapter-form');
+          if (targetElement && !formLoadedRef.current) {
+            window.hbspt.forms.create({
+              portalId: "21794360",
+              formId: "2b7d8957-6b71-4c86-bb95-3c29e0d17e8a",
+              region: "na1",
+              target: "#hubspot-sample-chapter-form",
+              onFormSubmit: () => {
+                console.log('Sample chapter form submitted successfully');
+                triggerFileDownload();
+                
+                if (window.gtag) {
+                  window.gtag('event', 'form_submission', {
+                    'event_category': 'Book',
+                    'event_label': 'Sample Chapter Download',
+                    'value': 1
+                  });
+                }
+              },
+              onFormReady: () => {
+                formLoadedRef.current = true;
+                const loadingElement = document.querySelector('#hubspot-sample-chapter-form .loading-message');
+                if (loadingElement && loadingElement instanceof HTMLElement) {
+                  loadingElement.style.display = 'none';
+                }
+              }
+            });
+          }
+        } catch (error) {
+          console.error('Error creating HubSpot form:', error);
+          showErrorMessage();
+        }
+      } else {
+        // Load HubSpot script if not available
+        loadHubSpotScript();
+      }
+    };
+
+    const loadHubSpotScript = () => {
+      const existingScript = document.querySelector('script[src*="js.hsforms.net"]');
       
-      script.onerror = () => {
-        console.error('Failed to load HubSpot forms script');
-        showErrorMessage();
-      };
-      
-      document.head.appendChild(script);
-    }
+      if (!existingScript) {
+        const script = document.createElement('script');
+        script.src = '//js.hsforms.net/forms/embed/v2.js';
+        script.charset = 'utf-8';
+        script.async = true;
+        
+        script.onload = () => {
+          setTimeout(initializeForm, 100);
+        };
+        
+        script.onerror = () => {
+          console.error('Failed to load HubSpot forms script');
+          showErrorMessage();
+        };
+        
+        document.head.appendChild(script);
+      } else {
+        setTimeout(initializeForm, 100);
+      }
+    };
+
+    // Start initialization
+    setTimeout(initializeForm, 100);
 
     return () => {
-      // Cleanup when component unmounts
       formLoadedRef.current = false;
+      initAttempts.current = 0;
     };
   }, []);
 
   const triggerFileDownload = () => {
-    // Convert Google Drive view link to direct download link
     const downloadUrl = 'https://drive.google.com/uc?export=download&id=1I5hdGjfk62vYf_rMBWlrhrrj6p6SUS6h';
     
-    // Create temporary download link and trigger download
     const link = document.createElement('a');
     link.href = downloadUrl;
     link.download = 'CMO-Data-Playbook-Sample-Chapter.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  const initializeForm = () => {
-    // Wait for DOM to be ready
-    setTimeout(() => {
-      if (window.hbspt && document.getElementById('hubspot-sample-chapter-form') && !formLoadedRef.current) {
-        try {
-          window.hbspt.forms.create({
-            portalId: "21794360",
-            formId: "2b7d8957-6b71-4c86-bb95-3c29e0d17e8a",
-            region: "na1",
-            target: "#hubspot-sample-chapter-form",
-            onFormSubmit: () => {
-              console.log('Sample chapter form submitted successfully');
-              
-              // Trigger file download
-              triggerFileDownload();
-              
-              // Optional: Add analytics tracking here
-              if (window.gtag) {
-                window.gtag('event', 'form_submission', {
-                  'event_category': 'Book',
-                  'event_label': 'Sample Chapter Download',
-                  'value': 1
-                });
-              }
-            },
-            onFormReady: () => {
-              formLoadedRef.current = true;
-              // Hide loading message
-              const loadingElement = document.querySelector('#hubspot-sample-chapter-form .loading-message');
-              if (loadingElement && loadingElement instanceof HTMLElement) {
-                loadingElement.style.display = 'none';
-              }
-            }
-          });
-        } catch (error) {
-          console.error('Error creating HubSpot form:', error);
-          showErrorMessage();
-        }
-      } else if (!formLoadedRef.current) {
-        // Retry after a short delay
-        setTimeout(initializeForm, 500);
-      }
-    }, 100);
   };
 
   const showErrorMessage = () => {
