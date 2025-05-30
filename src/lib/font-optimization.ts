@@ -23,6 +23,9 @@ const fontState: FontLoadingState = {
   }
 };
 
+// Predefined font weights array for type safety
+const FONT_WEIGHTS: FontWeights[] = [300, 400, 500, 600, 700];
+
 // Enhanced font preloading with consistent strategy
 export const preloadCriticalFonts = () => {
   if (typeof document === 'undefined') return;
@@ -170,11 +173,10 @@ export const getFontStatus = (weight: FontWeights = 400): FontStatus => {
   return fontState.inter[weight];
 };
 
-// Get overall font loading progress
+// Get overall font loading progress - Fixed TypeScript error
 export const getFontLoadingProgress = (): { loaded: number; total: number; percentage: number } => {
-  const weights = Object.keys(fontState.inter) as FontWeights[];
-  const loaded = weights.filter(weight => fontState.inter[weight] === 'loaded').length;
-  const total = weights.length;
+  const loaded = FONT_WEIGHTS.filter(weight => fontState.inter[weight] === 'loaded').length;
+  const total = FONT_WEIGHTS.length;
   
   return {
     loaded,
