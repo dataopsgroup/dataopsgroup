@@ -1,49 +1,48 @@
 
 /**
- * Asset loading optimization module for improved resource loading
+ * Universal asset loading optimization module
+ * Consistent performance optimizations across all devices
  */
 
-// Enhanced asset loading with priority hints
+// Universal asset loading with consistent priority hints
 export const optimizeAssetLoading = () => {
   if (typeof document === 'undefined') return;
 
-  // Set fetchpriority for images based on viewport position
+  // Universal image optimization - consistent across all devices
   document.querySelectorAll('img').forEach(img => {
     const rect = img.getBoundingClientRect();
     
-    // Critical above-the-fold images
+    // Critical above-the-fold images - universal criteria
     if (rect.top < window.innerHeight) {
       if (!img.hasAttribute('fetchpriority')) {
         img.fetchPriority = 'high';
       }
       
-      // Add loading=eager for visible images
       if (!img.hasAttribute('loading')) {
         img.loading = 'eager';
       }
     } else {
-      // Below-fold images
+      // Below-fold images - universal lazy loading
       if (!img.hasAttribute('fetchpriority')) {
         img.fetchPriority = 'low';
       }
       
-      // Add loading=lazy for below-fold images
       if (!img.hasAttribute('loading')) {
         img.loading = 'lazy';
       }
     }
     
-    // Ensure all images have decoding attribute
+    // Universal decoding strategy
     if (!img.hasAttribute('decoding')) {
       img.decoding = rect.top < window.innerHeight ? 'sync' : 'async';
     }
   });
 
-  // Prioritize script loading
+  // Universal script loading prioritization
   document.querySelectorAll('script').forEach(script => {
     const src = script.getAttribute('src') || '';
     
-    // Mark analytics and tracking scripts as low priority
+    // Universal low priority for analytics and tracking scripts
     if (src.includes('analytics') || 
         src.includes('gtag') || 
         src.includes('gtm') || 
@@ -55,13 +54,13 @@ export const optimizeAssetLoading = () => {
       }
     }
     
-    // First-party scripts should be higher priority than third-party
+    // Universal high priority for first-party scripts
     if (src && !src.includes('//') && !src.includes('://')) {
       script.setAttribute('fetchpriority', 'high');
     }
   });
 
-  // Add version cache busting to dynamic resources
+  // Universal cache busting for dynamic resources
   document.querySelectorAll('link[href*=".css"], script[src*=".js"]').forEach(element => {
     const url = element.getAttribute('href') || element.getAttribute('src') || '';
     if (url && !url.includes('?v=') && !url.includes('lovable-uploads')) {
@@ -75,7 +74,7 @@ export const optimizeAssetLoading = () => {
   });
 };
 
-// Optimize resource order - simplified to avoid duplicate variable declarations
+// Universal resource order optimization
 export const optimizeResourceOrder = () => {
   if (typeof document === 'undefined') return;
   
@@ -87,11 +86,11 @@ export const optimizeResourceOrder = () => {
   // Mark as optimized
   (window as any).__RESOURCE_ORDER_OPTIMIZED__ = true;
   
-  // Simple resource prioritization without complex reordering
+  // Universal resource prioritization - consistent across all devices
   document.querySelectorAll('script').forEach(script => {
     const src = script.getAttribute('src') || '';
     
-    // Set appropriate loading priorities
+    // Universal priority settings
     if (src.includes('analytics') || 
         src.includes('gtag') || 
         src.includes('gtm') || 

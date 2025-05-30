@@ -1,29 +1,30 @@
 
 /**
- * Client-side caching optimization module
+ * Universal client-side caching optimization module
+ * Consistent caching strategies across all devices
  */
 
-// Configure client-side cache headers through service worker
+// Universal client-side cache setup
 export const setupClientCaching = () => {
-  // App version for cache busting
-  const appVersion = '1.0.7'; // Should match the version in service worker
+  // Universal app version for cache busting
+  const appVersion = '1.0.7';
   
-  // Register service worker if browser supports it
+  // Universal service worker registration
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js')
         .then(registration => {
-          // Check for updates every hour
+          // Universal update check interval
           setInterval(() => {
             registration.update();
           }, 60 * 60 * 1000);
           
-          // Handle waiting service worker
+          // Universal waiting service worker handling
           if (registration.waiting) {
             notifyUserOfUpdate(registration);
           }
           
-          // Listen for new service workers
+          // Universal new service worker listening
           registration.addEventListener('updatefound', () => {
             const newWorker = registration.installing;
             if (newWorker) {
@@ -40,7 +41,7 @@ export const setupClientCaching = () => {
         });
     });
     
-    // Handle service worker updates
+    // Universal service worker update handling
     let refreshing = false;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
       if (refreshing) return;
@@ -48,32 +49,28 @@ export const setupClientCaching = () => {
       window.location.reload();
     });
     
-    // Listen for messages from the service worker
+    // Universal message listening
     navigator.serviceWorker.addEventListener('message', (event) => {
       if (event.data && event.data.type === 'CACHE_UPDATED') {
-        // Notify user that new content is available
         console.log('New content is available. Please refresh the page.');
       }
     });
   }
 
-  // Apply versioning to dynamic resources
+  // Universal versioning
   window.APP_VERSION = appVersion;
 };
 
-// Notify user of available service worker update
+// Universal user notification for updates
 const notifyUserOfUpdate = (registration: ServiceWorkerRegistration) => {
-  // Create a toast notification to inform the user of an update
   console.log('New version available! Ready to update.');
   
-  // You can use your UI library to show a toast notification here
   if (typeof window !== 'undefined' && window.confirm('New version available! Would you like to update now?')) {
-    // Send message to service worker to skip waiting
     registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
   }
 };
 
-// Clear service worker caches
+// Universal cache clearing
 export const clearCaches = () => {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then((registration) => {
@@ -82,9 +79,9 @@ export const clearCaches = () => {
   }
 };
 
-// Enhanced fetch function with prioritization
+// Universal fetch function with consistent caching strategy
 export const fetchWithCaching = (url: string, options: RequestInit = {}) => {
-  // Determine appropriate caching strategy based on URL pattern
+  // Universal caching strategy based on URL pattern
   const isStatic = /\.(png|jpg|jpeg|gif|svg|webp|woff|woff2|ttf|eot)$/.test(url);
   const isApi = url.includes('/api/') || url.endsWith('.json');
   const isDynamic = url.includes('/dynamic/') || url.includes('user-specific');
@@ -100,11 +97,11 @@ export const fetchWithCaching = (url: string, options: RequestInit = {}) => {
     cacheControl = 'public, max-age=86400'; // 1 day default
   }
   
-  // Add headers to request
+  // Universal headers
   const headers = new Headers(options.headers || {});
   headers.append('X-Requested-With', 'XMLHttpRequest');
   
-  // Create final options with cache headers
+  // Universal fetch options
   const fetchOptions: RequestInit = {
     ...options,
     headers,
@@ -114,13 +111,13 @@ export const fetchWithCaching = (url: string, options: RequestInit = {}) => {
   return fetch(url, fetchOptions);
 };
 
-// Preload critical assets by extension type
+// Universal critical asset preloading
 export const preloadCriticalAssetsByType = (assetType: 'font' | 'image' | 'script' | 'style') => {
   if (typeof document === 'undefined') return;
   
   const preloadUrls: string[] = [];
   
-  // Add appropriate URLs based on asset type
+  // Universal asset URLs
   switch (assetType) {
     case 'font':
       preloadUrls.push(
@@ -134,14 +131,14 @@ export const preloadCriticalAssetsByType = (assetType: 'font' | 'image' | 'scrip
       );
       break;
     case 'script':
-      // Critical scripts would go here
+      // Universal critical scripts
       break;
     case 'style':
-      // Critical styles would go here
+      // Universal critical styles
       break;
   }
   
-  // Create preload links for these assets
+  // Universal preload link creation
   preloadUrls.forEach(url => {
     const link = document.createElement('link');
     link.rel = 'preload';

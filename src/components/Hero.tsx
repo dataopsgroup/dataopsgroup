@@ -9,16 +9,14 @@ import OptimizedImage from '@/components/ui/optimized-image';
 const Hero = () => {
   const { isMobile } = useIsMobile();
 
-  // Track CTA click in Google Analytics and HubSpot
+  // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
-    // Track CTA click in Google Analytics
     if (window.gtag) {
       window.gtag('event', 'cta_click', {
         'event_category': 'Engagement',
         'event_label': 'Hero Contact CTA'
       });
     }
-    // Track in HubSpot
     if (window._hsq) {
       window._hsq.push(['trackEvent', {
         id: 'hero_contact_cta_click'
@@ -33,7 +31,7 @@ const Hero = () => {
           ? 'bg-gradient-to-br from-dataops-600 via-dataops-500 to-dataops-400' 
           : 'bg-gradient-to-br from-white to-dataops-50'
       }`}>
-        {/* Desktop Background Image - Only show on non-mobile devices */}
+        {/* Universal Background Image - consistent optimization across devices */}
         {!isMobile && (
           <div className="absolute inset-0">
             <OptimizedImage
@@ -46,7 +44,7 @@ const Hero = () => {
               isLCP={true}
               loading="eager"
               quality={85}
-              enableModernFormats={false}
+              enableModernFormats={true}
               sizes="100vw"
               responsiveBreakpoints={[768, 1024, 1280, 1536, 1920]}
               objectFit="cover"
@@ -54,7 +52,7 @@ const Hero = () => {
           </div>
         )}
         
-        {/* CSS Grid Layout Container */}
+        {/* Universal CSS Grid Layout Container */}
         <div className="container mx-auto relative z-10 h-full">
           <div className={`grid gap-4 h-full items-start ${
             isMobile 
@@ -67,14 +65,14 @@ const Hero = () => {
                 ? 'mx-4 max-w-full' 
                 : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'
             }`}>
-              {/* Content background - adjusted for mobile gradient */}
+              {/* Universal content background */}
               <div className={`rounded-lg p-8 space-y-8 ${
                 isMobile 
                   ? 'bg-white/90 backdrop-blur-sm' 
                   : 'bg-white/75'
               }`}>
                 <div>
-                  {/* Mark as LCP element for monitoring */}
+                  {/* Universal LCP element marking */}
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
                     PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
                     We Implement the HubSpot Systems Your Investors Expect

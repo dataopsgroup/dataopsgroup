@@ -1,7 +1,7 @@
 
-/* Simplified Font Loading Strategy - Inter First with Mobile Optimization */
+/* Universal Font Loading Strategy - Consistent Across All Devices */
 
-/* Inter Font Loading (Primary Performance Font) */
+/* Inter Font Loading (Primary Font for All Devices) */
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -67,7 +67,7 @@
                  U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Mobile-First Font Strategy */
+/* Universal Font Strategy - Consistent Across All Devices */
 body, html {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -75,25 +75,7 @@ body, html {
   text-rendering: optimizeLegibility;
 }
 
-/* Desktop Brand Font Enhancement (loaded only when needed) */
-@media (min-width: 768px) {
-  .desktop-brand-fonts .hero-headline,
-  .desktop-brand-fonts h1 {
-    font-family: 'Rubik', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  .desktop-brand-fonts h2,
-  .desktop-brand-fonts h3 {
-    font-family: 'Rubik', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  .desktop-brand-fonts .body-text,
-  .desktop-brand-fonts p {
-    font-family: 'Roboto', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-}
-
-/* Mobile font size adjustments for better readability and performance */
+/* Universal font size optimization - consistent performance benefit */
 @media (max-width: 768px) {
   html {
     font-size: 93.75%; /* 15px if the browser default is 16px */

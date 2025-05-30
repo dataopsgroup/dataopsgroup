@@ -26,7 +26,8 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
 }
 
 /**
- * Optimized image component with better error handling and React attribute compatibility
+ * Optimized image component with universal performance optimizations
+ * Uses consistent loading strategies across all devices
  */
 const OptimizedImage = ({
   src,
@@ -64,12 +65,12 @@ const OptimizedImage = ({
     threshold
   });
 
-  // For priority/LCP images, always load immediately
+  // Universal loading strategy - no device-specific logic
   const shouldLoad = priority || isLCP || isInView;
   const imageLoading = loading || (priority || isLCP ? 'eager' : 'lazy');
   const imageDecoding = decoding || (priority || isLCP ? 'sync' : 'async');
 
-  // Generate responsive srcsets with error handling
+  // Generate responsive srcsets with consistent quality across all devices
   let srcSet = '';
   try {
     srcSet = shouldLoad ? generateSrcSet(src, responsiveBreakpoints) : '';
@@ -78,11 +79,10 @@ const OptimizedImage = ({
     srcSet = '';
   }
 
-  // Enhanced error handling - fallback to original image for hero backgrounds
+  // Consistent error handling for all devices
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     console.warn(`Failed to load image: ${src}`);
     
-    // If this is a background/hero image, try to fallback to original instead of placeholder
     if (imgRef.current && imgRef.current.src !== src) {
       imgRef.current.src = src;
     }
@@ -90,13 +90,12 @@ const OptimizedImage = ({
     handleError(e);
   };
 
-  // Only attempt modern formats for supported sources
+  // Universal modern format support - consistent across all devices
   const shouldUseModernFormats = enableModernFormats && 
     (src.includes('unsplash.com') || src.includes('images.unsplash.com'));
 
-  // Create the base image element
+  // Create the base image element with universal optimizations
   const createImageElement = (imgSrc: string, imgSrcSet?: string) => {
-    // Build fetchPriority prop correctly for React
     const fetchPriorityProp = isLCP ? { fetchPriority: 'high' as const } : {};
     
     return (
@@ -122,7 +121,7 @@ const OptimizedImage = ({
     );
   };
 
-  // Main image element with conditional modern format support
+  // Universal modern format handling
   const imageElement = shouldUseModernFormats ? (
     <picture>
       <source
@@ -141,7 +140,6 @@ const OptimizedImage = ({
     createImageElement(src)
   );
 
-  // Aspect ratio wrapper if needed
   if (aspectRatio) {
     return (
       <AspectRatio ratio={aspectRatio} className={`overflow-hidden ${className || ''}`}>
