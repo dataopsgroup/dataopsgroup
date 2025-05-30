@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import ImageErrorBoundary from '@/components/ui/image-error-boundary';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface ServiceHeroProps {
   title: string;
@@ -42,33 +42,31 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
           </div>
           
           <div className="lg:col-span-3 flex justify-end">
-            <ImageErrorBoundary>
-              {imageSrc ? (
-                <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
-                  <img 
-                    src={imageSrc}
-                    alt={imageAlt || "Service visualization"}
-                    width={600}
-                    height={375}
-                    className="w-full h-full object-cover"
-                    loading="eager"
-                    fetchPriority="high"
-                    onError={(e) => {
-                      console.warn(`Failed to load hero image: ${imageSrc}`);
-                      // Don't replace with placeholder, let error boundary handle it
-                    }}
-                  />
-                </div>
-              ) : (
-                <div className="relative bg-white rounded-2xl shadow-2xl p-12 z-10 w-full max-w-xl border border-gray-100">
-                  <div className="flex justify-center items-center h-72 w-full rounded-lg bg-gray-50">
-                    <div className="text-brand-saffron" aria-hidden="true">
-                      {serviceIcon}
-                    </div>
+            {imageSrc ? (
+              <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
+                <OptimizedImage
+                  src={imageSrc}
+                  alt={imageAlt || "Service visualization"}
+                  width={600}
+                  height={375}
+                  className="w-full h-full object-cover"
+                  priority={false}
+                  loading="lazy"
+                  quality={80}
+                  enableModernFormats={true}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 600px"
+                  responsiveBreakpoints={[400, 600, 800, 1200]}
+                />
+              </div>
+            ) : (
+              <div className="relative bg-white rounded-2xl shadow-2xl p-12 z-10 w-full max-w-xl border border-gray-100">
+                <div className="flex justify-center items-center h-72 w-full rounded-lg bg-gray-50">
+                  <div className="text-brand-saffron" aria-hidden="true">
+                    {serviceIcon}
                   </div>
                 </div>
-              )}
-            </ImageErrorBoundary>
+              </div>
+            )}
           </div>
         </div>
       </div>

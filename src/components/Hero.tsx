@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { preloadCriticalImage } from '@/utils/image-utils';
 import { useIsMobile } from '@/hooks/use-mobile';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
   const { isMobile } = useIsMobile();
@@ -42,14 +43,23 @@ const Hero = () => {
       }`}>
         {/* Desktop Background Image - Only show on non-mobile devices */}
         {!isMobile && (
-          <div 
-            className="absolute inset-0 bg-cover bg-no-repeat"
-            style={{
-              backgroundImage: `url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png')`,
-              backgroundPosition: 'center right',
-              backgroundSize: 'cover'
-            }}
-          />
+          <div className="absolute inset-0">
+            <OptimizedImage
+              src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png"
+              alt="Hero background"
+              width={1920}
+              height={1080}
+              className="w-full h-full object-cover"
+              priority={true}
+              isLCP={true}
+              loading="eager"
+              quality={85}
+              enableModernFormats={true}
+              sizes="100vw"
+              responsiveBreakpoints={[768, 1024, 1280, 1536, 1920]}
+              objectFit="cover"
+            />
+          </div>
         )}
         
         {/* CSS Grid Layout Container */}
