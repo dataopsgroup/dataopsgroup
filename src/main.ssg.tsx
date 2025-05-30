@@ -58,3 +58,6 @@ if (typeof window !== 'undefined') {
     }
   }
 }
+
+// Export for vite-ssg
+export { render as createApp };
