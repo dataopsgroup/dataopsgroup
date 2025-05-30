@@ -9,6 +9,14 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
+    {
+  "scripts": {
+    "backup": "node scripts/backup-current-site.js",
+    "check-ssg": "node scripts/ssg-compatibility-check.js",
+    "test-ssg": "node scripts/test-ssg-build.js",
+    "build:ssg": "vite build --config vite.config.ssg.ts",
+    "preview:ssg": "vite preview --config vite.config.ssg.ts"
+  }
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
