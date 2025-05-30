@@ -2,7 +2,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import OptimizedImage from '@/components/ui/optimized-image';
 
 interface ServiceHeroProps {
   title: string;
@@ -44,18 +43,20 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
           <div className="lg:col-span-3 flex justify-end">
             {imageSrc ? (
               <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
-                <OptimizedImage
+                <img
                   src={imageSrc}
                   alt={imageAlt || "Service visualization"}
-                  width={600}
-                  height={375}
                   className="w-full h-full object-cover"
-                  priority={false}
                   loading="lazy"
-                  quality={80}
-                  enableModernFormats={true}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 600px"
-                  responsiveBreakpoints={[400, 600, 800, 1200]}
+                  onError={(e) => {
+                    console.warn('Service image failed to load:', imageSrc);
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement!.innerHTML = `
+                      <div class="flex justify-center items-center h-full w-full rounded-lg bg-gray-50">
+                        <div class="text-brand-saffron">${serviceIcon}</div>
+                      </div>
+                    `;
+                  }}
                 />
               </div>
             ) : (

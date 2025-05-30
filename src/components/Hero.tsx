@@ -4,7 +4,6 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
   const { isMobile } = useIsMobile();
@@ -31,23 +30,18 @@ const Hero = () => {
           ? 'bg-gradient-to-br from-dataops-600 via-dataops-500 to-dataops-400' 
           : 'bg-gradient-to-br from-white to-dataops-50'
       }`}>
-        {/* Universal Background Image - consistent optimization across devices */}
+        {/* Background Image - using standard img with fallback */}
         {!isMobile && (
           <div className="absolute inset-0">
-            <OptimizedImage
+            <img
               src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png"
               alt="Hero background"
-              width={1920}
-              height={1080}
               className="w-full h-full object-cover"
-              priority={true}
-              isLCP={true}
               loading="eager"
-              quality={85}
-              enableModernFormats={true}
-              sizes="100vw"
-              responsiveBreakpoints={[768, 1024, 1280, 1536, 1920]}
-              objectFit="cover"
+              onError={(e) => {
+                console.warn('Hero background image failed to load');
+                e.currentTarget.style.display = 'none';
+              }}
             />
           </div>
         )}
@@ -73,7 +67,7 @@ const Hero = () => {
               }`}>
                 <div>
                   {/* Universal LCP element marking */}
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading">
                     PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
                     We Implement the HubSpot Systems Your Investors Expect
                   </h1>
