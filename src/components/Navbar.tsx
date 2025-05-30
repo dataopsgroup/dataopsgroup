@@ -13,6 +13,9 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    // SSR guard - only run in browser
+    if (typeof window === 'undefined') return;
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
@@ -20,6 +23,21 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // SSR-safe logo error handler
+  const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (typeof console !== 'undefined') {
+      console.warn('Logo failed to load');
+    }
+    e.currentTarget.alt = 'DataOps Group';
+    e.currentTarget.style.background = '#1e4f9c';
+    e.currentTarget.style.color = 'white';
+    e.currentTarget.style.display = 'flex';
+    e.currentTarget.style.alignItems = 'center';
+    e.currentTarget.style.justifyContent = 'center';
+    e.currentTarget.style.width = '200px';
+    e.currentTarget.style.height = '60px';
+  };
 
   return (
     <nav 
@@ -37,17 +55,7 @@ const Navbar = () => {
             alt="DataOps Group Logo"
             className="h-16 md:h-20 w-auto"
             loading="eager"
-            onError={(e) => {
-              console.warn('Logo failed to load');
-              e.currentTarget.alt = 'DataOps Group';
-              e.currentTarget.style.background = '#1e4f9c';
-              e.currentTarget.style.color = 'white';
-              e.currentTarget.style.display = 'flex';
-              e.currentTarget.style.alignItems = 'center';
-              e.currentTarget.style.justifyContent = 'center';
-              e.currentTarget.style.width = '200px';
-              e.currentTarget.style.height = '60px';
-            }}
+            onError={handleLogoError}
           />
         </Link>
         

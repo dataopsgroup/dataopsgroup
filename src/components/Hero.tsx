@@ -10,6 +10,9 @@ const Hero = () => {
 
   // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
+    // SSR guard for analytics
+    if (typeof window === 'undefined') return;
+    
     if (window.gtag) {
       window.gtag('event', 'cta_click', {
         'event_category': 'Engagement',
@@ -21,6 +24,14 @@ const Hero = () => {
         id: 'hero_contact_cta_click'
       }]);
     }
+  };
+
+  // SSR-safe image error handler
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (typeof console !== 'undefined') {
+      console.warn('Hero background image failed to load');
+    }
+    e.currentTarget.style.display = 'none';
   };
 
   return (
@@ -38,10 +49,7 @@ const Hero = () => {
               alt="Hero background"
               className="w-full h-full object-cover"
               loading="eager"
-              onError={(e) => {
-                console.warn('Hero background image failed to load');
-                e.currentTarget.style.display = 'none';
-              }}
+              onError={handleImageError}
             />
           </div>
         )}

@@ -20,7 +20,15 @@ function App() {
     // Mark app as hydrated for SSG compatibility
     if (typeof window !== 'undefined') {
       document.body.classList.add('app-hydrated');
-      performance.mark('app-hydrated');
+      
+      // Only use performance API if available
+      if ('performance' in window && 'mark' in window.performance) {
+        try {
+          performance.mark('app-hydrated');
+        } catch (error) {
+          // Silently fail if performance marking fails
+        }
+      }
     }
   }, []);
 
