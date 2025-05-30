@@ -4,12 +4,17 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { preloadCriticalImage } from '@/utils/image-utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Hero = () => {
-  // Preload the hero background image for better LCP
+  const { isMobile } = useIsMobile();
+
+  // Only preload the hero background image for desktop
   React.useEffect(() => {
-    preloadCriticalImage('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
-  }, []);
+    if (!isMobile && typeof window !== 'undefined') {
+      preloadCriticalImage('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
+    }
+  }, [isMobile]);
 
   // Track CTA click in Google Analytics and HubSpot
   const trackContactCTAClick = () => {
@@ -30,24 +35,42 @@ const Hero = () => {
 
   return (
     <>
-      <div className="relative pt-24 pb-16 md:py-32 px-4 bg-gradient-to-br from-white to-dataops-50 min-h-[500px]">
-        {/* Enhanced Background Image with Preload */}
-        <div 
-          className="absolute inset-0 bg-cover bg-no-repeat"
-          style={{
-            backgroundImage: `url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png')`,
-            backgroundPosition: 'center right',
-            backgroundSize: 'cover'
-          }}
-        />
+      <div className={`relative pt-24 pb-16 md:py-32 px-4 min-h-[500px] ${
+        isMobile 
+          ? 'bg-gradient-to-br from-dataops-600 via-dataops-500 to-dataops-400' 
+          : 'bg-gradient-to-br from-white to-dataops-50'
+      }`}>
+        {/* Desktop Background Image - Only show on non-mobile devices */}
+        {!isMobile && (
+          <div 
+            className="absolute inset-0 bg-cover bg-no-repeat"
+            style={{
+              backgroundImage: `url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png')`,
+              backgroundPosition: 'center right',
+              backgroundSize: 'cover'
+            }}
+          />
+        )}
         
         {/* CSS Grid Layout Container */}
         <div className="container mx-auto relative z-10 h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 h-full items-start">
-            {/* Hero Content - Takes up left portion with margin constraints */}
-            <div className="lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
-              {/* Semi-transparent background only behind text */}
-              <div className="bg-white/75 rounded-lg p-8 space-y-8">
+          <div className={`grid gap-4 h-full items-start ${
+            isMobile 
+              ? 'grid-cols-1' 
+              : 'grid-cols-1 lg:grid-cols-12'
+          }`}>
+            {/* Hero Content */}
+            <div className={`space-y-8 ${
+              isMobile 
+                ? 'mx-4 max-w-full' 
+                : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'
+            }`}>
+              {/* Content background - adjusted for mobile gradient */}
+              <div className={`rounded-lg p-8 space-y-8 ${
+                isMobile 
+                  ? 'bg-white/90 backdrop-blur-sm' 
+                  : 'bg-white/75'
+              }`}>
                 <div>
                   {/* Mark as LCP element for monitoring */}
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading" data-lcp="true">
@@ -87,8 +110,10 @@ const Hero = () => {
               </div>
             </div>
             
-            {/* Right side - Empty space for background image visibility */}
-            <div className="hidden lg:block lg:col-span-6 xl:col-span-7"></div>
+            {/* Right side - Empty space for background image visibility (desktop only) */}
+            {!isMobile && (
+              <div className="hidden lg:block lg:col-span-6 xl:col-span-7"></div>
+            )}
           </div>
         </div>
       </div>
