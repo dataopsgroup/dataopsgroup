@@ -3,19 +3,11 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { preloadCriticalImage } from '@/utils/image-utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
   const { isMobile } = useIsMobile();
-
-  // Only preload the hero background image for desktop
-  React.useEffect(() => {
-    if (!isMobile && typeof window !== 'undefined') {
-      preloadCriticalImage('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
-    }
-  }, [isMobile]);
 
   // Track CTA click in Google Analytics and HubSpot
   const trackContactCTAClick = () => {
@@ -54,7 +46,7 @@ const Hero = () => {
               isLCP={true}
               loading="eager"
               quality={85}
-              enableModernFormats={true}
+              enableModernFormats={false}
               sizes="100vw"
               responsiveBreakpoints={[768, 1024, 1280, 1536, 1920]}
               objectFit="cover"

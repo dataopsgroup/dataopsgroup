@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { mainNavItems } from '@/data/navigationData';
 import DesktopNavigation from './navigation/DesktopNavigation';
 import MobileNavigation from './navigation/MobileNavigation';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,10 +38,17 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
-          <img 
-            src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
-            alt="DataOps Group Logo" 
-            className="h-16 md:h-20" 
+          <OptimizedImage
+            src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+            alt="DataOps Group Logo"
+            width={200}
+            height={80}
+            className="h-16 md:h-20 w-auto"
+            priority={true}
+            loading="eager"
+            quality={90}
+            enableModernFormats={false}
+            sizes="200px"
           />
         </Link>
         

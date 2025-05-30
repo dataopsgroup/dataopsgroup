@@ -26,8 +26,7 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
 }
 
 /**
- * Simplified OptimizedImage with better error handling and server-side compatibility
- * Focuses on Core Web Vitals while maintaining stability
+ * Optimized image component with better error handling and React attribute compatibility
  */
 const OptimizedImage = ({
   src,
@@ -65,7 +64,7 @@ const OptimizedImage = ({
     threshold
   });
 
-  // Determine loading strategy with safer defaults
+  // For priority/LCP images, always load immediately
   const shouldLoad = priority || isLCP || isInView;
   const imageLoading = loading || (priority || isLCP ? 'eager' : 'lazy');
   const imageDecoding = decoding || (priority || isLCP ? 'sync' : 'async');
@@ -79,80 +78,67 @@ const OptimizedImage = ({
     srcSet = '';
   }
 
-  // Simplified modern format support
-  const getModernFormatSrc = (format: 'webp' | 'avif') => {
-    if (!enableModernFormats || !src.includes('lovable-uploads')) return '';
-    try {
-      return src.replace(/\.(jpg|jpeg|png)$/i, `.${format}`);
-    } catch {
-      return '';
+  // Enhanced error handling - fallback to original image for hero backgrounds
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.warn(`Failed to load image: ${src}`);
+    
+    // If this is a background/hero image, try to fallback to original instead of placeholder
+    if (imgRef.current && imgRef.current.src !== src) {
+      imgRef.current.src = src;
     }
+    
+    handleError(e);
   };
 
-  // Create the base image element with proper error boundaries
-  const createImageElement = (imgSrc: string, imgSrcSet?: string) => (
-    <img
-      ref={imgRef}
-      src={shouldLoad ? imgSrc : placeholder}
-      alt={alt}
-      width={width}
-      height={height}
-      className={`${className || ''} max-w-full transition-all duration-300 ${
-        blur && !isLoaded && shouldLoad ? 'blur-sm scale-105' : ''
-      }`}
-      style={{ objectFit }}
-      srcSet={imgSrcSet || srcSet}
-      sizes={sizes}
-      loading={imageLoading}
-      decoding={imageDecoding}
-      // Fixed: Use lowercase 'fetchpriority' for React compatibility
-      {...(isLCP && { fetchpriority: 'high' })}
-      onLoad={handleLoad}
-      onError={handleError}
-      {...props}
-    />
-  );
+  // Only attempt modern formats for supported sources
+  const shouldUseModernFormats = enableModernFormats && 
+    (src.includes('unsplash.com') || src.includes('images.unsplash.com'));
 
-  // Main image element with graceful fallbacks
-  const imageElement = (
-    <>
-      {/* Preload for LCP images with error handling */}
-      {isLCP && shouldLoad && typeof document !== 'undefined' && (
-        <link rel="preload" as="image" href={src} fetchPriority="high" />
-      )}
+  // Create the base image element
+  const createImageElement = (imgSrc: string, imgSrcSet?: string) => {
+    // Build fetchPriority prop correctly for React
+    const fetchPriorityProp = isLCP ? { fetchPriority: 'high' as const } : {};
+    
+    return (
+      <img
+        ref={imgRef}
+        src={shouldLoad ? imgSrc : placeholder}
+        alt={alt}
+        width={width}
+        height={height}
+        className={`${className || ''} max-w-full transition-all duration-300 ${
+          blur && !isLoaded && shouldLoad ? 'blur-sm scale-105' : ''
+        }`}
+        style={{ objectFit }}
+        srcSet={imgSrcSet || srcSet}
+        sizes={sizes}
+        loading={imageLoading}
+        decoding={imageDecoding}
+        onLoad={handleLoad}
+        onError={handleImageError}
+        {...fetchPriorityProp}
+        {...props}
+      />
+    );
+  };
 
-      {enableModernFormats && shouldLoad ? (
-        <picture>
-          {/* Modern format sources with error boundaries */}
-          <source
-            type="image/avif"
-            srcSet={getModernFormatSrc('avif') || undefined}
-            sizes={sizes}
-          />
-          <source
-            type="image/webp"
-            srcSet={getModernFormatSrc('webp') || undefined}
-            sizes={sizes}
-          />
-          {/* Always include fallback */}
-          {createImageElement(src)}
-        </picture>
-      ) : (
-        createImageElement(src)
-      )}
-
-      {/* Server-side rendering fallback */}
-      <noscript>
-        <img
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className={className}
-          style={{ objectFit }}
-        />
-      </noscript>
-    </>
+  // Main image element with conditional modern format support
+  const imageElement = shouldUseModernFormats ? (
+    <picture>
+      <source
+        type="image/avif"
+        srcSet={src.replace(/\.(jpg|jpeg|png)$/i, '.avif')}
+        sizes={sizes}
+      />
+      <source
+        type="image/webp"
+        srcSet={src.replace(/\.(jpg|jpeg|png)$/i, '.webp')}
+        sizes={sizes}
+      />
+      {createImageElement(src)}
+    </picture>
+  ) : (
+    createImageElement(src)
   );
 
   // Aspect ratio wrapper if needed

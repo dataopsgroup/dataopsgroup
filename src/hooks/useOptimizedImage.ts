@@ -21,8 +21,7 @@ interface UseOptimizedImageReturn {
 }
 
 /**
- * Simplified and stabilized hook for optimized image loading
- * Focuses on reliability over complex optimizations
+ * Enhanced hook for optimized image loading with better priority handling
  */
 export const useOptimizedImage = ({
   src,
@@ -35,9 +34,10 @@ export const useOptimizedImage = ({
 }: UseOptimizedImageProps): UseOptimizedImageReturn => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  // For priority/LCP images, start with isInView = true to prevent lazy loading conflicts
   const [isInView, setIsInView] = useState(priority || isLCP);
   
-  // Simplified intersection observer with better error handling
+  // Enhanced intersection observer - only for non-priority images
   useEffect(() => {
     if (priority || isLCP || !imgRef.current || typeof window === 'undefined') {
       return;
@@ -78,7 +78,7 @@ export const useOptimizedImage = ({
     };
   }, [priority, isLCP, rootMargin, threshold]);
   
-  // Simplified preloading for critical images
+  // Enhanced preloading for critical images
   useEffect(() => {
     if ((priority || isLCP) && typeof document !== 'undefined') {
       try {
@@ -89,7 +89,7 @@ export const useOptimizedImage = ({
     }
   }, [src, priority, isLCP]);
   
-  // Simple LCP reporting without complex measurements
+  // Enhanced LCP reporting
   useEffect(() => {
     if (!isLCP || !isLoaded) return;
     
@@ -98,6 +98,7 @@ export const useOptimizedImage = ({
       
       if (imgRef.current) {
         imgRef.current.setAttribute('data-lcp-candidate', 'true');
+        imgRef.current.setAttribute('data-loaded-at', Date.now().toString());
       }
     } catch (error) {
       console.warn('LCP reporting failed:', error);
@@ -106,26 +107,12 @@ export const useOptimizedImage = ({
   
   const handleLoad = () => {
     setIsLoaded(true);
-    
-    // Simple priority hints for important images
-    if (isLCP && imgRef.current) {
-      try {
-        imgRef.current.setAttribute('data-loaded-at', Date.now().toString());
-      } catch (error) {
-        console.warn('Failed to set load timestamp:', error);
-      }
-    }
   };
   
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     console.warn(`Failed to load image: ${src}`);
     
-    // Simple fallback strategy
-    if (imgRef.current && imgRef.current.src !== placeholder) {
-      imgRef.current.src = placeholder;
-    }
-    
-    // Optional error reporting
+    // Enhanced error reporting
     if (typeof window !== 'undefined' && window.gtag) {
       try {
         window.gtag('event', 'image_load_error', {
