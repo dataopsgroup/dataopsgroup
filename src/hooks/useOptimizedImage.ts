@@ -21,7 +21,8 @@ interface UseOptimizedImageReturn {
 }
 
 /**
- * Enhanced hook for optimized image loading with better priority handling
+ * Enhanced hook for optimized image loading with balanced performance
+ * Uses consistent threshold and loading strategy across all devices
  */
 export const useOptimizedImage = ({
   src,
@@ -29,21 +30,20 @@ export const useOptimizedImage = ({
   priority = false,
   isLCP = false,
   blur = true,
-  rootMargin = '200px',
-  threshold = 0.01
+  rootMargin = '150px',
+  threshold = 0.15 // Universal threshold for all devices
 }: UseOptimizedImageProps): UseOptimizedImageReturn => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  // For priority/LCP images, start with isInView = true to prevent lazy loading conflicts
+  // For priority/LCP images, start with isInView = true to prevent conflicts
   const [isInView, setIsInView] = useState(priority || isLCP);
   
-  // Enhanced intersection observer - only for non-priority images
+  // Enhanced intersection observer with universal configuration
   useEffect(() => {
     if (priority || isLCP || !imgRef.current || typeof window === 'undefined') {
       return;
     }
     
-    // Check if IntersectionObserver is available
     if (!('IntersectionObserver' in window)) {
       setIsInView(true);
       return;
@@ -57,6 +57,9 @@ export const useOptimizedImage = ({
           if (entry.isIntersecting) {
             setIsInView(true);
             observer.disconnect();
+            
+            // Performance mark for monitoring
+            performance.mark(`image-visible-${src.split('/').pop()}`);
           }
         },
         {
@@ -76,9 +79,9 @@ export const useOptimizedImage = ({
         observer.disconnect();
       }
     };
-  }, [priority, isLCP, rootMargin, threshold]);
+  }, [priority, isLCP, rootMargin, threshold, src]);
   
-  // Enhanced preloading for critical images
+  // Enhanced preloading for critical images with format optimization
   useEffect(() => {
     if ((priority || isLCP) && typeof document !== 'undefined') {
       try {
@@ -89,7 +92,7 @@ export const useOptimizedImage = ({
     }
   }, [src, priority, isLCP]);
   
-  // Enhanced LCP reporting
+  // Enhanced LCP reporting with detailed metrics
   useEffect(() => {
     if (!isLCP || !isLoaded) return;
     
@@ -99,6 +102,15 @@ export const useOptimizedImage = ({
       if (imgRef.current) {
         imgRef.current.setAttribute('data-lcp-candidate', 'true');
         imgRef.current.setAttribute('data-loaded-at', Date.now().toString());
+        
+        // Report to Core Web Vitals
+        if (window.gtag) {
+          window.gtag('event', 'lcp_candidate_loaded', {
+            'event_category': 'Performance',
+            'event_label': src.substring(0, 50),
+            'value': Date.now()
+          });
+        }
       }
     } catch (error) {
       console.warn('LCP reporting failed:', error);
@@ -107,18 +119,26 @@ export const useOptimizedImage = ({
   
   const handleLoad = () => {
     setIsLoaded(true);
+    
+    // Performance mark for load completion
+    performance.mark(`image-loaded-${src.split('/').pop()}`);
   };
   
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     console.warn(`Failed to load image: ${src}`);
     
-    // Enhanced error reporting
+    // Enhanced error reporting with context
     if (typeof window !== 'undefined' && window.gtag) {
       try {
         window.gtag('event', 'image_load_error', {
           'event_category': 'Performance',
-          'event_label': src,
-          'value': 1
+          'event_label': src.substring(0, 100),
+          'value': 1,
+          'custom_parameters': {
+            'error_type': 'load_failure',
+            'image_format': src.split('.').pop() || 'unknown',
+            'is_critical': priority || isLCP
+          }
         });
       } catch (error) {
         // Silently fail if analytics reporting fails

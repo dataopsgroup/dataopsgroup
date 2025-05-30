@@ -1,67 +1,283 @@
 
 /**
- * Interaction-based loading optimization module
+ * Enhanced interaction-based loading with balanced optimizations for all devices
+ * Implements consistent lazy loading thresholds and intelligent preloading
  */
 
-// Dynamically prioritize loading based on user interaction
+interface InteractionLoadingConfig {
+  lazyThreshold: number;
+  preloadDelay: number;
+  interactionTypes: string[];
+  enablePrefetch: boolean;
+}
+
+// Universal configuration for all devices
+const UNIVERSAL_CONFIG: InteractionLoadingConfig = {
+  lazyThreshold: 0.15, // Consistent 15% threshold for all devices
+  preloadDelay: 50, // Universal 50ms delay for smooth interactions
+  interactionTypes: ['mouseenter', 'touchstart', 'focus'], // Support both mouse and touch
+  enablePrefetch: true
+};
+
+let isSetup = false;
+let interactionObserver: IntersectionObserver | null = null;
+let preloadedRoutes = new Set<string>();
+
+/**
+ * Enhanced setup with universal interaction handling
+ */
 export const setupInteractionBasedLoading = () => {
-  if (typeof document === 'undefined') return;
+  if (typeof window === 'undefined' || isSetup) return;
   
-  // Track user interactions to prioritize resources
-  const interactionEvents = ['click', 'touchstart', 'mouseover'];
+  isSetup = true;
   
-  interactionEvents.forEach(eventType => {
-    document.addEventListener(eventType, (e) => {
-      const target = e.target as HTMLElement;
-      
-      // Check if interaction is with a link
-      if (target.tagName === 'A' || target.closest('a')) {
-        const link = target.tagName === 'A' ? target : target.closest('a');
-        if (!link) return;
-        
-        const href = link.getAttribute('href');
-        if (!href || href.startsWith('#')) return;
-        
-        // For internal links, prefetch the page
-        if (href.startsWith('/') && !link.hasAttribute('data-prefetched')) {
-          const prefetch = document.createElement('link');
-          prefetch.rel = 'prefetch';
-          prefetch.href = href;
-          prefetch.as = 'document';
-          document.head.appendChild(prefetch);
-          link.setAttribute('data-prefetched', 'true');
-        }
-      }
-      
-      // Check if interaction is with a button that might load content
-      if (target.tagName === 'BUTTON' || target.closest('button')) {
-        // Look for images or data attributes that might indicate content to load
-        const button = target.tagName === 'BUTTON' ? target : target.closest('button');
-        if (!button) return;
-        
-        // Check for data attributes indicating content to load
-        const contentTarget = button.getAttribute('data-loads-content') || 
-                             button.getAttribute('data-target') ||
-                             button.getAttribute('aria-controls');
-                             
-        if (contentTarget) {
-          const targetElement = document.getElementById(contentTarget);
-          if (targetElement) {
-            // Prefetch images within the target element
-            targetElement.querySelectorAll('img').forEach(img => {
-              const src = img.getAttribute('src');
-              if (src && !img.hasAttribute('data-prefetched')) {
-                const imgPreload = document.createElement('link');
-                imgPreload.rel = 'prefetch';
-                imgPreload.href = src;
-                imgPreload.as = 'image';
-                document.head.appendChild(imgPreload);
-                img.setAttribute('data-prefetched', 'true');
-              }
-            });
+  // Universal intersection observer for lazy loading
+  setupLazyLoadingObserver();
+  
+  // Universal interaction preloading
+  setupInteractionPreloading();
+  
+  // Universal critical resource prefetching
+  setupCriticalResourcePrefetching();
+  
+  // Enhanced scroll-based optimizations
+  setupScrollOptimizations();
+};
+
+/**
+ * Enhanced lazy loading observer with consistent threshold
+ */
+const setupLazyLoadingObserver = () => {
+  if (!('IntersectionObserver' in window)) return;
+  
+  try {
+    interactionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            
+            // Universal lazy loading trigger
+            if (element.hasAttribute('data-lazy')) {
+              loadLazyElement(element);
+              interactionObserver?.unobserve(element);
+            }
           }
-        }
+        });
+      },
+      {
+        rootMargin: '150px', // Universal margin for all devices
+        threshold: UNIVERSAL_CONFIG.lazyThreshold
       }
-    }, { passive: true });
+    );
+    
+    // Observe all lazy elements universally
+    document.querySelectorAll('[data-lazy]').forEach(element => {
+      interactionObserver?.observe(element);
+    });
+    
+  } catch (error) {
+    console.error('Failed to setup lazy loading observer:', error);
+  }
+};
+
+/**
+ * Enhanced interaction preloading with universal event handling
+ */
+const setupInteractionPreloading = () => {
+  // Universal link preloading on interaction
+  document.addEventListener('mouseenter', handleLinkPreload, { passive: true, capture: true });
+  document.addEventListener('touchstart', handleLinkPreload, { passive: true, capture: true });
+  document.addEventListener('focus', handleLinkPreload, { passive: true, capture: true });
+  
+  // Universal route preloading
+  document.addEventListener('mouseover', handleRoutePreload, { passive: true });
+  document.addEventListener('touchstart', handleRoutePreload, { passive: true });
+};
+
+/**
+ * Enhanced link preloading with intelligent route detection
+ */
+const handleLinkPreload = (event: Event) => {
+  const target = event.target as HTMLElement;
+  const link = target.closest('a[href]') as HTMLAnchorElement;
+  
+  if (!link || !link.href) return;
+  
+  // Universal preloading delay
+  setTimeout(() => {
+    if (document.contains(link)) {
+      preloadRoute(link.href);
+    }
+  }, UNIVERSAL_CONFIG.preloadDelay);
+};
+
+/**
+ * Enhanced route preloading with caching
+ */
+const handleRoutePreload = (event: Event) => {
+  const target = event.target as HTMLElement;
+  const link = target.closest('a[href]') as HTMLAnchorElement;
+  
+  if (!link || !link.href || preloadedRoutes.has(link.href)) return;
+  
+  // Check if it's an internal route
+  if (link.hostname === window.location.hostname) {
+    preloadRoute(link.href);
+  }
+};
+
+/**
+ * Enhanced critical resource prefetching
+ */
+const setupCriticalResourcePrefetching = () => {
+  if (!UNIVERSAL_CONFIG.enablePrefetch) return;
+  
+  // Universal critical routes for all devices
+  const criticalRoutes = ['/contact', '/services', '/insights'];
+  
+  // Prefetch after initial load
+  setTimeout(() => {
+    criticalRoutes.forEach(route => {
+      if (!preloadedRoutes.has(route)) {
+        preloadRoute(window.location.origin + route);
+      }
+    });
+  }, 2000); // Universal 2s delay
+};
+
+/**
+ * Enhanced scroll-based optimizations
+ */
+const setupScrollOptimizations = () => {
+  let scrollTimeout: number;
+  let isScrolling = false;
+  
+  const handleScroll = () => {
+    if (!isScrolling) {
+      isScrolling = true;
+      
+      // Universal scroll optimizations
+      requestAnimationFrame(() => {
+        // Lazy load visible elements
+        document.querySelectorAll('[data-lazy]:not([data-loaded])').forEach(element => {
+          const rect = element.getBoundingClientRect();
+          if (rect.top < window.innerHeight + 300) { // Universal threshold
+            loadLazyElement(element as HTMLElement);
+          }
+        });
+        
+        isScrolling = false;
+      });
+    }
+    
+    // Universal scroll end detection
+    clearTimeout(scrollTimeout);
+    scrollTimeout = window.setTimeout(() => {
+      // Prefetch next likely content after scroll stops
+      prefetchNextLikelyContent();
+    }, 150);
+  };
+  
+  window.addEventListener('scroll', handleScroll, { passive: true });
+};
+
+/**
+ * Enhanced lazy element loading
+ */
+const loadLazyElement = (element: HTMLElement) => {
+  try {
+    const src = element.getAttribute('data-src');
+    const srcset = element.getAttribute('data-srcset');
+    
+    if (element.tagName === 'IMG') {
+      const img = element as HTMLImageElement;
+      if (srcset) img.srcset = srcset;
+      if (src) img.src = src;
+    } else if (element.tagName === 'SOURCE') {
+      const source = element as HTMLSourceElement;
+      if (srcset) source.srcset = srcset;
+      if (src) source.src = src;
+    }
+    
+    element.setAttribute('data-loaded', 'true');
+    element.removeAttribute('data-lazy');
+    
+  } catch (error) {
+    console.error('Failed to load lazy element:', error);
+  }
+};
+
+/**
+ * Enhanced route preloading with error handling
+ */
+const preloadRoute = (href: string) => {
+  if (preloadedRoutes.has(href)) return;
+  
+  try {
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = href;
+    link.setAttribute('fetchpriority', 'low');
+    
+    link.onload = () => {
+      preloadedRoutes.add(href);
+    };
+    
+    link.onerror = () => {
+      console.warn(`Failed to prefetch route: ${href}`);
+    };
+    
+    document.head.appendChild(link);
+    
+  } catch (error) {
+    console.error('Failed to preload route:', error);
+  }
+};
+
+/**
+ * Enhanced next content prefetching
+ */
+const prefetchNextLikelyContent = () => {
+  // Universal logic for predicting next content
+  const currentPath = window.location.pathname;
+  const nextRoutes: string[] = [];
+  
+  if (currentPath === '/') {
+    nextRoutes.push('/services', '/insights', '/contact');
+  } else if (currentPath.startsWith('/services')) {
+    nextRoutes.push('/contact', '/insights');
+  } else if (currentPath.startsWith('/insights')) {
+    nextRoutes.push('/services', '/contact');
+  }
+  
+  nextRoutes.forEach(route => {
+    if (!preloadedRoutes.has(route)) {
+      setTimeout(() => preloadRoute(window.location.origin + route), 100);
+    }
   });
+};
+
+/**
+ * Enhanced cleanup function
+ */
+export const cleanupInteractionLoading = () => {
+  if (interactionObserver) {
+    interactionObserver.disconnect();
+    interactionObserver = null;
+  }
+  
+  preloadedRoutes.clear();
+  isSetup = false;
+};
+
+/**
+ * Get current interaction loading status
+ */
+export const getInteractionLoadingStatus = () => {
+  return {
+    isSetup,
+    preloadedRoutesCount: preloadedRoutes.size,
+    observerActive: !!interactionObserver
+  };
 };

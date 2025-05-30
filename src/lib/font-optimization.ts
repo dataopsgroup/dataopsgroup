@@ -1,9 +1,10 @@
 
 /**
- * Font optimization utilities for improved font loading performance
+ * Enhanced font optimization utilities with balanced performance for all devices
+ * Implements consistent font loading strategy and proper fallback handling
  */
 
-// Font loading status tracking
+// Enhanced font loading status tracking
 type FontStatus = 'unloaded' | 'loading' | 'loaded' | 'error';
 type FontWeights = 300 | 400 | 500 | 600 | 700;
 
@@ -22,32 +23,59 @@ const fontState: FontLoadingState = {
   }
 };
 
-// Use the CSS Font Loading API to load fonts programmatically
+// Enhanced font preloading with consistent strategy
+export const preloadCriticalFonts = () => {
+  if (typeof document === 'undefined') return;
+  
+  // Universal critical font weights for all devices
+  const criticalWeights = [400, 600];
+  
+  criticalWeights.forEach(weight => {
+    // Preload WOFF2 (primary)
+    const linkWoff2 = document.createElement('link');
+    linkWoff2.rel = 'preload';
+    linkWoff2.as = 'font';
+    linkWoff2.type = 'font/woff2';
+    linkWoff2.href = `/fonts/inter-subset/inter-latin-${weight}-normal.woff2`;
+    linkWoff2.crossOrigin = 'anonymous';
+    linkWoff2.setAttribute('fetchpriority', 'high');
+    
+    // Preload WOFF (fallback)
+    const linkWoff = document.createElement('link');
+    linkWoff.rel = 'preload';
+    linkWoff.as = 'font';
+    linkWoff.type = 'font/woff';
+    linkWoff.href = `/fonts/inter-subset/inter-latin-${weight}-normal.woff`;
+    linkWoff.crossOrigin = 'anonymous';
+    linkWoff.setAttribute('fetchpriority', 'low');
+    
+    document.head.appendChild(linkWoff2);
+    document.head.appendChild(linkWoff);
+  });
+};
+
+// Enhanced CSS Font Loading API implementation
 export const loadFonts = async (
   fontWeights: FontWeights[] = [400, 700], 
   timeout = 3000
 ): Promise<void> => {
-  // Skip if document is not available (SSR) or Font Loading API is not supported
   if (typeof document === 'undefined' || !('fonts' in document)) {
     return;
   }
 
-  // Create a promise for each font weight
   const fontPromises = fontWeights.map(weight => {
     if (fontState.inter[weight] !== 'unloaded') {
-      return Promise.resolve(); // Already loaded or loading
+      return Promise.resolve();
     }
     
     fontState.inter[weight] = 'loading';
     
-    // Font descriptors for Inter font
     const fontDescriptors: FontFaceDescriptors = {
       style: 'normal',
       weight: weight.toString(),
       display: 'swap'
     };
     
-    // Create FontFace instance for the specific weight
     const font = new FontFace(
       'Inter', 
       `url('/fonts/inter-subset/inter-latin-${weight}-normal.woff2') format('woff2'), 
@@ -55,24 +83,23 @@ export const loadFonts = async (
       fontDescriptors
     );
 
-    // Add font to document.fonts and track loading
     return Promise.race([
       font.load()
         .then(loadedFont => {
           document.fonts.add(loadedFont);
           fontState.inter[weight] = 'loaded';
           
-          // Apply font-active class when fonts are loaded
-          if (document.documentElement) {
-            document.documentElement.classList.add('font-active');
-            document.documentElement.classList.add(`font-active-${weight}`);
-          }
+          // Universal font-active class for all devices
+          document.documentElement.classList.add('font-active');
+          document.documentElement.classList.add(`font-active-${weight}`);
+          
+          // Performance mark for monitoring
+          performance.mark(`font-loaded-${weight}`);
         })
         .catch(err => {
           console.error(`Failed to load Inter font weight ${weight}:`, err);
           fontState.inter[weight] = 'error';
         }),
-      // Timeout to avoid waiting too long
       new Promise((_, reject) => 
         setTimeout(() => reject(new Error(`Font loading timed out for Inter ${weight}`)), timeout)
       ).catch(err => {
@@ -84,9 +111,58 @@ export const loadFonts = async (
   
   try {
     await Promise.all(fontPromises);
+    performance.mark('all-fonts-loaded');
   } catch (err) {
     console.warn('Some fonts failed to load:', err);
   }
+};
+
+// Enhanced font optimization setup with consistent strategy
+export const setupFontOptimization = () => {
+  if (typeof document === 'undefined') return;
+  
+  // Universal font loading classes
+  document.documentElement.classList.add('fonts-pending');
+  
+  // Preload critical fonts immediately
+  preloadCriticalFonts();
+  
+  // Load critical fonts with consistent strategy
+  loadFonts([400, 700])
+    .then(() => {
+      // Progressive enhancement - load additional weights
+      setTimeout(() => {
+        loadFonts([300, 500, 600]);
+      }, 1000);
+    })
+    .finally(() => {
+      // Remove pending class after timeout to prevent indefinite waiting
+      setTimeout(() => {
+        document.documentElement.classList.remove('fonts-pending');
+      }, 3000);
+    });
+};
+
+// Enhanced connection-aware font loading
+export const shouldReduceFontLoading = (): boolean => {
+  if (typeof navigator === 'undefined') return false;
+  
+  // Check for data saving preferences
+  if ('connection' in navigator) {
+    const connection = (navigator as any).connection;
+    if (connection) {
+      // Respect save-data header
+      if (connection.saveData) return true;
+      
+      // Optimize for slow connections universally
+      if (['slow-2g', '2g'].includes(connection.effectiveType)) return true;
+      
+      // Consider bandwidth limitations
+      if (connection.downlink && connection.downlink < 1.5) return true;
+    }
+  }
+  
+  return false;
 };
 
 // Get current font loading status
@@ -94,42 +170,15 @@ export const getFontStatus = (weight: FontWeights = 400): FontStatus => {
   return fontState.inter[weight];
 };
 
-// Optimize font loading based on current page needs
-export const setupFontOptimization = () => {
-  if (typeof document === 'undefined') return;
+// Get overall font loading progress
+export const getFontLoadingProgress = (): { loaded: number; total: number; percentage: number } => {
+  const weights = Object.keys(fontState.inter) as FontWeights[];
+  const loaded = weights.filter(weight => fontState.inter[weight] === 'loaded').length;
+  const total = weights.length;
   
-  // Add CSS class to indicate fonts haven't loaded yet
-  document.documentElement.classList.add('fonts-pending');
-  
-  // Load critical fonts immediately
-  loadFonts([400, 700])
-    .then(() => {
-      // Load secondary fonts after critical fonts
-      setTimeout(() => {
-        loadFonts([300, 500, 600]);
-      }, 1000);
-    });
-  
-  // Handle font loading failures by removing waiting class after timeout
-  setTimeout(() => {
-    document.documentElement.classList.remove('fonts-pending');
-  }, 3000); // 3 second timeout as maximum wait
-};
-
-// Detect user preferences for reduced data usage
-export const shouldReduceFontLoading = (): boolean => {
-  // Use Save-Data header when available
-  if (typeof navigator !== 'undefined' && 'connection' in navigator) {
-    const connection = (navigator as any).connection;
-    if (connection && connection.saveData) {
-      return true; // User has activated data saving mode
-    }
-    
-    // Check for slow connections
-    if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')) {
-      return true;
-    }
-  }
-  
-  return false;
+  return {
+    loaded,
+    total,
+    percentage: Math.round((loaded / total) * 100)
+  };
 };
