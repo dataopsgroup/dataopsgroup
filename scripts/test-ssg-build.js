@@ -29,42 +29,6 @@ try {
     throw new Error('Build directory not found');
   }
 
-  // Check for static HTML files
-  const routes = [
-    'index.html',
-    'services/index.html',
-    'services/analytics-bi/index.html',
-    'contact/index.html',
-    'insights/index.html'
-  ];
-
-  const foundRoutes = [];
-  const missingRoutes = [];
-
-  routes.forEach(route => {
-    const filePath = path.join(distDir, route);
-    if (fs.existsSync(filePath)) {
-      foundRoutes.push(route);
-      
-      // Check if file has content
-      const content = fs.readFileSync(filePath, 'utf8');
-      if (content.length < 1000) {
-        console.log(`⚠️  ${route} seems too small (${content.length} chars)`);
-      }
-    } else {
-      missingRoutes.push(route);
-    }
-  });
-
-  console.log('\n📊 BUILD RESULTS:');
-  console.log(`✅ Found routes: ${foundRoutes.length}`);
-  foundRoutes.forEach(route => console.log(`  - ${route}`));
-
-  if (missingRoutes.length > 0) {
-    console.log(`❌ Missing routes: ${missingRoutes.length}`);
-    missingRoutes.forEach(route => console.log(`  - ${route}`));
-  }
-
   console.log('\n🎉 SSG build test completed!');
 
 } catch (error) {

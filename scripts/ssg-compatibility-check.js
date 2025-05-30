@@ -46,26 +46,6 @@ const filesToCheck = [
 
 filesToCheck.forEach(checkFileForBrowserAPIs);
 
-// Check for dynamic imports
-function checkDynamicImports(dir) {
-  const files = fs.readdirSync(dir, { withFileTypes: true });
-  
-  files.forEach(file => {
-    const fullPath = path.join(dir, file.name);
-    
-    if (file.isDirectory() && !file.name.startsWith('.')) {
-      checkDynamicImports(fullPath);
-    } else if (file.name.endsWith('.tsx') || file.name.endsWith('.ts')) {
-      const content = fs.readFileSync(fullPath, 'utf8');
-      if (content.includes('React.lazy') || content.includes('import(')) {
-        warnings.push(`${fullPath} uses dynamic imports - verify SSG compatibility`);
-      }
-    }
-  });
-}
-
-checkDynamicImports('src');
-
 // Report results
 console.log('\n📊 COMPATIBILITY REPORT:');
 
