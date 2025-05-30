@@ -89,7 +89,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
   
   /* Main content spacing */
@@ -97,15 +97,15 @@
     padding-top: calc(var(--navbar-height) + var(--navbar-bottom-spacing));
   }
 
-  /* Brand Guide Typography Hierarchy */
+  /* Simplified Typography Hierarchy - Inter First */
   h1 {
-    font-family: 'Inter', system-ui, sans-serif; /* Inter baseline, upgraded to Rubik when loaded */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight;
-    font-weight: 500; /* Brand guide medium weight */
+    font-weight: 500;
   }
   
   h2 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight;
     font-weight: 500;
   }
@@ -116,60 +116,41 @@
   article h2 {
     font-size: 1.5em !important;
     font-weight: 500 !important;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
   
   h3 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-4xl md:text-5xl font-semibold tracking-tight;
     font-weight: 500;
   }
   
   h4 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-3xl md:text-4xl font-medium;
   }
   
   h5 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-2xl md:text-3xl font-medium;
   }
   
   h6 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-xl md:text-2xl font-medium;
   }
 
-  /* Brand font enhancement when loaded */
-  .fonts-loaded h1,
-  .fonts-loaded h2,
-  .fonts-loaded h3 {
-    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
+  /* Body text - Inter first */
+  p, div, span {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  .fonts-loaded .blog-post-content h2,
-  .fonts-loaded .container h2:not(.text-3xl),
-  .fonts-loaded article h2 {
-    font-family: 'Rubik', 'Inter', system-ui, sans-serif !important;
-  }
-
-  /* Body text - Roboto when loaded */
-  .fonts-loaded p,
-  .fonts-loaded div,
-  .fonts-loaded span {
-    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
-  }
-
-  /* Subheadlines - Brand guide styling */
+  /* Subheadlines */
   .subheadline {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 400;
-  }
-
-  .fonts-loaded .subheadline {
-    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
   }
 
   /* Override heading styles for blog post titles to be more proportional */
@@ -194,43 +175,27 @@
     @apply py-16 md:py-24 px-4 md:px-8 lg:px-16;
   }
   
-  /* Updated blog post styling with brand hierarchy */
+  /* Updated blog post styling with Inter hierarchy */
   .prose h2 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-3xl md:text-4xl font-bold mt-8 mb-4;
     font-size: 1.5em !important;
     font-weight: 500 !important;
   }
-
-  .fonts-loaded .prose h2 {
-    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
-  }
   
   .prose h3 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-2xl md:text-3xl font-bold mt-6 mb-3;
-  }
-
-  .fonts-loaded .prose h3 {
-    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
   }
   
   .prose h4 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply text-xl md:text-2xl font-bold mt-5 mb-2;
-  }
-
-  .fonts-loaded .prose h4 {
-    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
   }
   
   .prose p {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply mb-4 text-gray-700;
-  }
-
-  .fonts-loaded .prose p {
-    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
   }
   
   .prose ul {
@@ -238,12 +203,8 @@
   }
   
   .prose ul li {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     @apply mb-2 text-gray-700;
-  }
-
-  .fonts-loaded .prose ul li {
-    font-family: 'Roboto', 'Inter', system-ui, sans-serif;
   }
 }
 

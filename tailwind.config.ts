@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -86,10 +85,11 @@ export default {
 				}
 			},
 			fontFamily: {
-				// Enhanced brand font stack with proper fallbacks
-				'rubik': ['Rubik', 'Inter', 'system-ui', 'sans-serif'],
-				'roboto': ['Roboto', 'Inter', 'system-ui', 'sans-serif'],
-				'inter': ['Inter', 'system-ui', 'sans-serif'],
+				// Simplified font stack - Inter as primary with system fallbacks
+				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+				// Keep brand fonts for desktop (will be conditionally loaded)
+				'rubik': ['Rubik', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+				'roboto': ['Roboto', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
