@@ -1,27 +1,21 @@
 
 # SSG Scripts to Add to package.json
 
-Add these scripts to your package.json file manually:
+Add these scripts to your package.json for SSG testing:
 
 ```json
 {
   "scripts": {
-    "backup": "node scripts/backup-current-site.js",
-    "check-ssg": "node scripts/ssg-compatibility-check.js",
-    "test-ssg": "node scripts/test-ssg-build.js",
     "build:ssg": "vite build --config vite.config.ssg.ts",
+    "test:ssg": "node scripts/test-ssg-build.js",
     "preview:ssg": "vite preview --config vite.config.ssg.ts"
   }
 }
 ```
 
-## Next Steps:
+These scripts will:
+- `build:ssg`: Build using SSG configuration
+- `test:ssg`: Test the SSG build process
+- `preview:ssg`: Preview the SSG build locally
 
-1. **Manual step**: Add the above scripts to your package.json
-2. Run: `npm run backup` (create backup)
-3. Run: `npm run check-ssg` (compatibility check)
-4. Run: `npm run build:ssg` (test SSG build)
-5. Run: `npm run preview:ssg` (preview SSG build)
-
-## Rollback Plan:
-If issues arise, restore files from the backup directory created in step 2.
+Note: Add these manually to package.json or have your build system include them.

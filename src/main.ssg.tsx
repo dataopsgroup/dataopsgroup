@@ -1,5 +1,6 @@
 
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import { renderToString } from 'react-dom/server';
 import { StrictMode } from 'react';
 import { StaticRouter } from 'react-router-dom/server';
 import { HelmetProvider } from 'react-helmet-async';
@@ -12,46 +13,48 @@ import './styles/font-face.css';
  * Handles server-side rendering for static site generation
  */
 
-// SSG render function
+// SSG render function for static generation
 export function render(url: string) {
   const helmetContext = {};
   
+  const html = renderToString(
+    <StrictMode>
+      <HelmetProvider context={helmetContext}>
+        <StaticRouter location={url}>
+          <App />
+        </StaticRouter>
+      </HelmetProvider>
+    </StrictMode>
+  );
+  
   return {
-    html: `
-      <div id="root">
-        ${renderToString(
-          <StrictMode>
-            <HelmetProvider context={helmetContext}>
-              <StaticRouter location={url}>
-                <App />
-              </StaticRouter>
-            </HelmetProvider>
-          </StrictMode>
-        )}
-      </div>
-    `,
+    html,
     head: helmetContext
   };
 }
 
-// Client-side hydration
+// Client-side hydration for interactivity
 if (typeof window !== 'undefined') {
   const container = document.getElementById("root");
   if (container) {
-    const root = createRoot(container);
-    root.render(
-      <StrictMode>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
-      </StrictMode>
-    );
+    // Use hydrateRoot for SSG pages, createRoot for CSR fallback
+    if (container.hasChildNodes()) {
+      hydrateRoot(container,
+        <StrictMode>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </StrictMode>
+      );
+    } else {
+      const root = createRoot(container);
+      root.render(
+        <StrictMode>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </StrictMode>
+      );
+    }
   }
-}
-
-// Helper function for rendering (would need react-dom/server in production)
-function renderToString(element: React.ReactElement): string {
-  // This is a placeholder - in real SSG we'd use ReactDOMServer.renderToString
-  // For now, return empty string to avoid build errors
-  return '';
 }
