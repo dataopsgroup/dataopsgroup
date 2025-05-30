@@ -13,7 +13,7 @@ import './styles/font-face.css';
  */
 
 // SSG render function
-export function render(url: string, context: any = {}) {
+export function render(url: string) {
   const helmetContext = {};
   
   return {
@@ -22,7 +22,7 @@ export function render(url: string, context: any = {}) {
         ${renderToString(
           <StrictMode>
             <HelmetProvider context={helmetContext}>
-              <StaticRouter location={url} context={context}>
+              <StaticRouter location={url}>
                 <App />
               </StaticRouter>
             </HelmetProvider>
