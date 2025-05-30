@@ -2,7 +2,7 @@
 import React from 'react';
 import { Book, ChevronRight } from 'lucide-react';
 import OptimizedImage from '@/components/ui/optimized-image';
-import { calculateSizes } from '@/utils/image-utils';
+import { calculateOptimalSizes } from '@/utils/image-utils';
 
 interface BookHeroSectionProps {
   onScrollToForm: () => void;
@@ -58,7 +58,7 @@ const BookHeroSection: React.FC<BookHeroSectionProps> = ({
               priority={true}
               isLCP={true}
               enableModernFormats={true}
-              sizes={calculateSizes('card')}
+              sizes={calculateOptimalSizes('card')}
               responsiveBreakpoints={[320, 480, 640, 800]}
               objectFit="cover"
             />
