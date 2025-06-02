@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -77,7 +76,7 @@ const HubSpotExpertGuidePage = () => {
         title="How to Hire a HubSpot Expert in 2025: Consultant Guide & Integration Costs" 
         description="Your complete guide to hiring the right HubSpot expert or consultant for your business needs, including implementation costs, evaluation criteria, and key questions to ask."
         keywords="HubSpot experts, HubSpot consultants, HubSpot implementation, HubSpot integration, HubSpot consultant costs" 
-        canonicalPath="/how-to-hire-a-hubspot-expert-in-2025" 
+        canonicalPath={`${typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com'}/how-to-hire-a-hubspot-expert-in-2025`} 
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Article",

@@ -1,0 +1,13 @@
+# Performance optimization files
+src/lib/performance/
+src/services/performance-monitoring.ts
+src/types/performance.ts
+
+# Modified core files
+src/main.tsx
+src/App.tsx
+vite.config.ts
+
+# New utility files
+src/utils/performance/
+src/services/api.ts 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -8,16 +7,39 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, Book } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { cn } from "@/lib/utils";
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const BookPage = () => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  const bookCoverImage = '/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png';
+
+  // Define breadcrumbs for schema
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'The CMO\'s Data Playbook', url: '/book' }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>The CMO's Data Playbook | DataOps Group</title>
         <meta name="description" content="Transform data into revenue with The CMO's Data Playbook. Sixty days to harness your marketing data's origins, journey, and destiny for C-Suite impact." />
         <meta name="keywords" content="cmo data playbook, marketing data, data transformation, revenue optimization" />
-        <link rel="canonical" href="/book" />
-        
+        <link rel="canonical" href={`${baseUrl}/book`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="book" />
+        <meta property="og:title" content="The CMO's Data Playbook | DataOps Group" />
+        <meta property="og:description" content="Transform data into revenue with The CMO's Data Playbook. Sixty days to harness your marketing data's origins, journey, and destiny for C-Suite impact." />
+        <meta property="og:url" content={`${baseUrl}/book`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="The CMO's Data Playbook | DataOps Group" />
+        <meta name="twitter:description" content="Transform data into revenue with The CMO's Data Playbook. Sixty days to harness your marketing data's origins, journey, and destiny for C-Suite impact." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
         {/* Schema markup for the book */}
         <script type="application/ld+json">{`
           {
@@ -28,8 +50,8 @@ const BookPage = () => {
               "@type": "Person",
               "name": "Geoff Tucker"
             },
-            "url": "https://dataops.group/book",
-            "image": "${window.location.origin}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png",
+            "url": "${baseUrl}/book",
+            "image": "${baseUrl}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png",
             "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
             "publisher": {
               "@type": "Organization",
@@ -38,6 +60,10 @@ const BookPage = () => {
           }
         `}</script>
       </Helmet>
+      
+      {/* Schema Markup */}
+      <BreadcrumbSchema items={breadcrumbs} />
+      
       <Navbar />
       
       {/* Removed the redundant Insights navigation bar that was here */}
@@ -50,11 +76,20 @@ const BookPage = () => {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12">
-          <div className="flex justify-center pt-48"> {/* Increased padding from pt-16 to pt-48 */}
-            <img 
-              src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
-              alt="The CMO's Data Playbook book cover" 
-              className="h-auto max-w-sm rounded-lg shadow-xl" 
+          <div className="flex justify-center pt-48">
+            <OptimizedImage 
+              src={bookCoverImage}
+              alt="The CMO's Data Playbook book cover"
+              width={400}
+              height={600}
+              priority={true}
+              aspectRatio={2/3}
+              className="h-auto max-w-sm rounded-lg shadow-xl"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+              quality={90}
+              enableModernFormats={true}
+              loading="eager"
+              decoding="sync"
             />
           </div>
           

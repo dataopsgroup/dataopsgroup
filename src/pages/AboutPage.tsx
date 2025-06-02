@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -8,12 +7,27 @@ import { Linkedin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const AboutPage = () => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>About Geoff Tucker | DataOps Group</title>
         <meta name="description" content="Learn more about Geoff Tucker, a seasoned data professional with over 15 years of experience in data operations, strategy, and analytics." />
-        <link rel="canonical" href="/about" />
+        <link rel="canonical" href={`${baseUrl}/about`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="profile" />
+        <meta property="og:title" content="About Geoff Tucker | DataOps Group" />
+        <meta property="og:description" content="Learn more about Geoff Tucker, a seasoned data professional with over 15 years of experience in data operations, strategy, and analytics." />
+        <meta property="og:url" content={`${baseUrl}/about`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Geoff Tucker | DataOps Group" />
+        <meta name="twitter:description" content="Learn more about Geoff Tucker, a seasoned data professional with over 15 years of experience in data operations, strategy, and analytics." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       <Navbar />
 

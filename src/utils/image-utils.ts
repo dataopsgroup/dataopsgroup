@@ -1,4 +1,3 @@
-
 /**
  * Enhanced utility functions for balanced image optimization across all devices
  * Implements intelligent responsive images and consistent modern format support
@@ -12,31 +11,43 @@ export const generateSrcSet = (src: string, widths: number[] = [480, 640, 768, 1
     return '';
   }
   
-  // Enhanced srcset for different image sources
-  if (src.includes('lovable-uploads') || src.includes('unsplash.com') || src.includes('images.unsplash.com')) {
-    return widths
-      .map(width => {
-        if (src.includes('unsplash.com') || src.includes('images.unsplash.com')) {
-          // Optimized Unsplash parameters for balanced performance
-          const params = new URLSearchParams({
-            w: width.toString(),
-            q: quality.toString(),
-            fm: 'auto',
-            fit: 'crop',
-            auto: 'format'
-          });
-          const baseUrl = src.split('?')[0];
-          return `${baseUrl}?${params.toString()} ${width}w`;
-        } else {
-          // Enhanced Lovable uploads with quality optimization
-          const separator = src.includes('?') ? '&' : '?';
-          return `${src}${separator}w=${width}&q=${quality}&fm=auto ${width}w`;
-        }
-      })
-      .join(', ');
+  try {
+    // Enhanced srcset for different image sources
+    if (src.includes('lovable-uploads') || src.includes('unsplash.com') || src.includes('images.unsplash.com')) {
+      return widths
+        .map(width => {
+          if (src.includes('unsplash.com') || src.includes('images.unsplash.com')) {
+            // Optimized Unsplash parameters for balanced performance
+            const params = new URLSearchParams({
+              w: width.toString(),
+              q: quality.toString(),
+              fm: 'auto',
+              fit: 'crop',
+              auto: 'format'
+            });
+            const baseUrl = src.split('?')[0];
+            return `${baseUrl}?${params.toString()} ${width}w`;
+          } else {
+            // Enhanced Lovable uploads with quality optimization
+            const separator = src.includes('?') ? '&' : '?';
+            return `${src}${separator}w=${width}&q=${quality}&fm=auto ${width}w`;
+          }
+        })
+        .join(', ');
+    }
+    
+    // Handle local images safely
+    if (src.startsWith('/')) {
+      return widths
+        .map(width => `${src}?w=${width}&q=${quality} ${width}w`)
+        .join(', ');
+    }
+    
+    return '';
+  } catch (error) {
+    console.warn('Failed to generate srcSet:', error);
+    return '';
   }
-  
-  return '';
 };
 
 /**
@@ -199,14 +210,15 @@ export const getOptimalQuality = (
   imageType: 'photo' | 'illustration' | 'icon' | 'logo' = 'photo',
   isRetina: boolean = false
 ): number => {
-  const qualityMap = {
-    photo: isRetina ? 75 : 85,
-    illustration: isRetina ? 80 : 90,
-    icon: 95,
-    logo: 95
+  const baseQuality = {
+    photo: 85,
+    illustration: 90,
+    icon: 100,
+    logo: 100
   };
   
-  return qualityMap[imageType];
+  // Reduce quality for retina displays to maintain performance
+  return isRetina ? Math.min(baseQuality[imageType] - 10, 85) : baseQuality[imageType];
 };
 
 /**
@@ -227,8 +239,43 @@ export const isLocalAsset = (src: string): boolean => {
  * Get versioned image source for cache control
  */
 export const getImageSrc = (src: string): string => {
-  if (isLocalAsset(src) && typeof window !== 'undefined' && window.APP_VERSION) {
-    return `${src}?v=${window.APP_VERSION}`;
+  if (!src) return '';
+  
+  try {
+    // Handle absolute URLs
+    if (src.startsWith('http://') || src.startsWith('https://')) {
+      return src;
+    }
+    
+    // Handle relative URLs
+    if (src.startsWith('/')) {
+      return src;
+    }
+    
+    // Handle Lovable uploads
+    if (src.includes('lovable-uploads')) {
+      return src;
+    }
+    
+    // Default to relative path
+    return `/${src}`;
+  } catch (error) {
+    console.warn('Failed to process image source:', error);
+    return src;
   }
-  return src;
+};
+
+/**
+ * Safe image format detection
+ */
+export const getImageFormat = (src: string): string => {
+  if (!src) return '';
+  
+  try {
+    const extension = src.split('.').pop()?.toLowerCase() || '';
+    return extension === 'jpg' ? 'jpeg' : extension;
+  } catch (error) {
+    console.warn('Failed to detect image format:', error);
+    return '';
+  }
 };

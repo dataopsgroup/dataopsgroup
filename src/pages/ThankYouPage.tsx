@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,8 +6,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ArrowDownToLine } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const ThankYouPage = () => {
+  const whitepaperImage = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d";
+
   return (
     <div className="page-container">
       <Helmet>
@@ -37,10 +39,18 @@ const ThankYouPage = () => {
               </CardHeader>
               <CardContent className="p-6">
                 <div className="aspect-[3/4] bg-gray-100 rounded-md mb-4 flex items-center justify-center overflow-hidden">
-                  <img 
-                    src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
-                    alt="2025 DataOps Transformation Guide whitepaper cover" 
+                  <OptimizedImage 
+                    src={whitepaperImage}
+                    alt="2025 DataOps Transformation Guide whitepaper cover"
+                    width={400}
+                    height={533}
+                    aspectRatio={3/4}
                     className="object-cover w-full h-full"
+                    quality={85}
+                    enableModernFormats={true}
+                    loading="eager"
+                    decoding="sync"
+                    sizes="(max-width: 640px) 100vw, 400px"
                   />
                 </div>
                 <h3 className="font-bold text-lg mb-2">2025 DataOps Transformation Guide</h3>

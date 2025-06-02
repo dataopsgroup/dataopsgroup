@@ -1,13 +1,13 @@
+import React, { lazy } from 'react';
 
-import React from 'react';
-import HubSpotAssessment from '@/pages/HubSpotAssessment';
-import HubSpotAssessmentResultsPage from '@/pages/HubSpotAssessmentResultsPage';
-import GetStartedPage from '@/pages/GetStartedPage';
-import ThankYouPage from '@/pages/ThankYouPage';
-import ContactThankYouPage from '@/pages/ContactThankYouPage';
-import SEODashboard from '@/pages/SEODashboard';
-import Sitemap from '@/pages/Sitemap';
-import NotFound from '@/pages/NotFound';
+const HubSpotAssessment = lazy(() => import('@/pages/HubSpotAssessment'));
+const HubSpotAssessmentResultsPage = lazy(() => import('@/pages/HubSpotAssessmentResultsPage'));
+const GetStartedPage = lazy(() => import('@/pages/GetStartedPage'));
+const ThankYouPage = lazy(() => import('@/pages/ThankYouPage'));
+const ContactThankYouPage = lazy(() => import('@/pages/ContactThankYouPage'));
+const SEODashboard = lazy(() => import('@/pages/SEODashboard'));
+const Sitemap = lazy(() => import('@/pages/Sitemap'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
 
 export const utilityRoutes = [
   {

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -19,11 +18,27 @@ const TeamTraining = () => {
     "Improved adoption rates across your organization"
   ];
 
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+
   return (
     <>
       <Helmet>
         <title>HubSpot Training & Implementation | DataOps Group</title>
         <meta name="description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+        <link rel="canonical" href={`${baseUrl}/services/team-training`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="HubSpot Training & Implementation | DataOps Group" />
+        <meta property="og:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+        <meta property="og:url" content={`${baseUrl}/services/team-training`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="HubSpot Training & Implementation | DataOps Group" />
+        <meta name="twitter:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
       <ServiceSchema 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,6 +10,8 @@ import ApproachBenefits from '@/components/approach/ApproachBenefits';
 import ApproachSidebar from '@/components/approach/ApproachSidebar';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
+const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+
 const ApproachPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -18,7 +19,20 @@ const ApproachPage = () => {
         <title>Our Approach to DataOps - DataOps Group</title>
         <meta name="description" content="Learn about our systematic approach to implementing DataOps in your organization through discovery, strategy, implementation, and optimization." />
         <meta name="keywords" content="dataops approach, data methodology, data transformation process, agile data management, data strategy, data implementation" />
-        <link rel="canonical" href="/approach" />
+        <link rel="canonical" href={`${baseUrl}/approach`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Our Approach to DataOps - DataOps Group" />
+        <meta property="og:description" content="Learn about our systematic approach to implementing DataOps in your organization through discovery, strategy, implementation, and optimization." />
+        <meta property="og:url" content={`${baseUrl}/approach`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Our Approach to DataOps - DataOps Group" />
+        <meta name="twitter:description" content="Learn about our systematic approach to implementing DataOps in your organization through discovery, strategy, implementation, and optimization." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       <BreadcrumbSchema 
         items={[

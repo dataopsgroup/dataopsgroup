@@ -1,4 +1,3 @@
-
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
@@ -19,10 +18,70 @@ import {
 import { scheduleTasks, runWhenIdle } from './lib/task-scheduler';
 import { monitorRouteChanges } from './utils/route-monitoring';
 import { applyCriticalCSS, loadFonts } from './lib/critical-css';
+import { PerformanceMonitor } from './services/performance-monitoring';
+
+// Add type definitions
+declare global {
+  var APP_VERSION: string;
+  var gtag: (command: string, action: string, params?: Record<string, any>) => void;
+}
 
 // Define app version globally
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.0.9'; // Incremented for SSG support and bug fixes
+  window.APP_VERSION = '1.0.9';
+  
+  // Enhanced performance monitoring
+  const performanceMetrics = {
+    navigationStart: performance.now(),
+    firstPaint: 0,
+    firstContentfulPaint: 0,
+    largestContentfulPaint: 0,
+    timeToInteractive: 0,
+    totalBlockingTime: 0,
+    cumulativeLayoutShift: 0
+  };
+
+  // Monitor Core Web Vitals
+  const observer = new PerformanceObserver((list) => {
+    for (const entry of list.getEntries()) {
+      switch (entry.entryType) {
+        case 'paint':
+          if (entry.name === 'first-paint') {
+            performanceMetrics.firstPaint = entry.startTime;
+          } else if (entry.name === 'first-contentful-paint') {
+            performanceMetrics.firstContentfulPaint = entry.startTime;
+          }
+          break;
+        case 'largest-contentful-paint':
+          performanceMetrics.largestContentfulPaint = entry.startTime;
+          break;
+        case 'layout-shift':
+          if ('value' in entry) {
+            performanceMetrics.cumulativeLayoutShift += (entry as any).value;
+          }
+          break;
+      }
+    }
+  });
+
+  observer.observe({ entryTypes: ['paint', 'largest-contentful-paint', 'layout-shift'] });
+
+  // Report metrics when page is fully loaded
+  window.addEventListener('load', () => {
+    performanceMetrics.timeToInteractive = performance.now() - performanceMetrics.navigationStart;
+    
+    // Report to analytics
+    if (window.gtag) {
+      window.gtag('event', 'performance_metrics', {
+        first_paint: performanceMetrics.firstPaint,
+        first_contentful_paint: performanceMetrics.firstContentfulPaint,
+        largest_contentful_paint: performanceMetrics.largestContentfulPaint,
+        time_to_interactive: performanceMetrics.timeToInteractive,
+        total_blocking_time: performanceMetrics.totalBlockingTime,
+        cumulative_layout_shift: performanceMetrics.cumulativeLayoutShift
+      });
+    }
+  });
 }
 
 // Progressive brand font loading function
@@ -31,23 +90,17 @@ const loadBrandFonts = () => {
 
   // Create a promise to load brand fonts after critical content
   const loadFonts = () => {
-    const link = document.createElement('link');
-    link.href = 'https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap';
-    link.rel = 'stylesheet';
-    
-    // Load fonts asynchronously
-    link.onload = () => {
-      document.body.classList.remove('fonts-pending');
-      document.body.classList.add('fonts-loaded');
-      performance.mark('brand-fonts-loaded');
-    };
-    
-    link.onerror = () => {
-      console.warn('Brand fonts failed to load, falling back to Inter');
-      document.body.classList.remove('fonts-pending');
-    };
-    
-    document.head.appendChild(link);
+    // Add font-active-desktop class for desktop devices
+    if (window.innerWidth >= 1024) {
+      document.body.classList.add('font-active-desktop');
+    } else {
+      document.body.classList.add('font-active-mobile');
+    }
+
+    // Remove pending class and add loaded class
+    document.body.classList.remove('fonts-pending');
+    document.body.classList.add('fonts-loaded');
+    performance.mark('brand-fonts-loaded');
   };
 
   // Load brand fonts after page is interactive
@@ -80,6 +133,9 @@ if (typeof window !== 'undefined') {
   
   // Load brand fonts progressively
   loadBrandFonts();
+  
+  // Use new performance monitor
+  PerformanceMonitor.init();
 }
 
 // Apply critical performance optimizations immediately
