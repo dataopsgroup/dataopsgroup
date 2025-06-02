@@ -3,7 +3,6 @@ import React, { lazy } from 'react';
 const BlogList = lazy(() => import('../pages/BlogList'));
 const BlogPost = lazy(() => import('../pages/BlogPost'));
 const CaseStudiesPage = lazy(() => import('../pages/CaseStudies'));
-const Whitepapers = lazy(() => import('../pages/Whitepapers'));
 const FAQs = lazy(() => import('../pages/FAQs'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
@@ -21,11 +20,6 @@ export const insightRoutes = [
   {
     path: "/case-studies",
     element: <CaseStudiesPage />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/whitepapers",
-    element: <Whitepapers />,
     errorElement: <NotFound />,
   },
   {
