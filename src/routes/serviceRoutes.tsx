@@ -5,7 +5,6 @@ const AnalyticsBI = lazy(() => import('../pages/AnalyticsBI'));
 const DataOpsImplementation = lazy(() => import('../pages/DataOpsImplementation'));
 const TeamTraining = lazy(() => import('../pages/TeamTraining'));
 const MarketingOperationsRevOps = lazy(() => import('../pages/MarketingOperationsRevOps'));
-const SEOManagement = lazy(() => import('../pages/SEOManagement'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
 export const serviceRoutes = [
@@ -34,9 +33,4 @@ export const serviceRoutes = [
     element: <MarketingOperationsRevOps />,
     errorElement: <NotFound />,
   },
-  {
-    path: "/seo-management",
-    element: <SEOManagement />,
-    errorElement: <NotFound />,
-  }
 ];
