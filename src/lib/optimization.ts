@@ -1,9 +1,14 @@
-
 /**
  * Optimization utilities for JavaScript performance
  */
 
 // Debounce function to limit how often a function can be called
+/**
+ * Debounces a function, ensuring it is only called after a specified wait time has elapsed since the last call.
+ * @param func The function to debounce.
+ * @param wait The wait time in milliseconds.
+ * @returns A debounced version of the function.
+ */
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number
@@ -24,6 +29,11 @@ export function debounce<T extends (...args: any[]) => any>(
 }
 
 // Memoize function results to avoid duplicate calculations
+/**
+ * Memoizes the result of a function to avoid duplicate calculations.
+ * @param func The function to memoize.
+ * @returns A memoized version of the function.
+ */
 export function memoize<T extends (...args: any[]) => any>(
   func: T
 ): (...args: Parameters<T>) => ReturnType<T> {
@@ -42,6 +52,12 @@ export function memoize<T extends (...args: any[]) => any>(
 }
 
 // Throttle a function to limit execution rate
+/**
+ * Throttles a function, ensuring it is only called at most once every limit milliseconds.
+ * @param func The function to throttle.
+ * @param limit The minimum time between calls in milliseconds.
+ * @returns A throttled version of the function.
+ */
 export function throttle<T extends (...args: any[]) => any>(
   func: T,
   limit: number
@@ -58,6 +74,12 @@ export function throttle<T extends (...args: any[]) => any>(
 }
 
 // Dynamic import utility for code splitting
+/**
+ * Dynamically imports a module with a timeout for code splitting.
+ * @param importFn The import function.
+ * @param timeout The timeout in milliseconds (default 5000).
+ * @returns The imported module or throws on timeout.
+ */
 export async function lazyImport<T>(
   importFn: () => Promise<T>,
   timeout = 5000
@@ -75,7 +97,11 @@ export async function lazyImport<T>(
   }
 }
 
-// Resource prefetcher for anticipated user interactions
+/**
+ * Prefetches a resource (script, style, image, or fetch) using requestIdleCallback for non-blocking loading.
+ * @param url The resource URL to prefetch.
+ * @param type The type of resource (default 'fetch').
+ */
 export function prefetchResource(url: string, type: 'script' | 'style' | 'image' | 'fetch' = 'fetch') {
   if (typeof window === 'undefined') return;
   
@@ -117,7 +143,13 @@ export function prefetchResource(url: string, type: 'script' | 'style' | 'image'
   });
 }
 
-// Script loader with performance tracking
+/**
+ * Loads a script dynamically and returns a promise that resolves when loaded.
+ * @param src The script source URL.
+ * @param async Whether to load the script asynchronously (default true).
+ * @param defer Whether to defer script execution (default true).
+ * @returns Promise that resolves when the script is loaded.
+ */
 export function loadScript(src: string, async = true, defer = true): Promise<void> {
   return new Promise((resolve, reject) => {
     // Check if the script is already loaded
@@ -138,7 +170,10 @@ export function loadScript(src: string, async = true, defer = true): Promise<voi
   });
 }
 
-// Optimize image loading
+/**
+ * Optimizes a single image element by setting loading and decoding attributes and handling errors.
+ * @param imageEl The image element to optimize.
+ */
 export function optimizeImage(imageEl: HTMLImageElement) {
   // Add loading attribute if not present
   if (!imageEl.getAttribute('loading')) {
@@ -158,7 +193,9 @@ export function optimizeImage(imageEl: HTMLImageElement) {
   };
 }
 
-// Optimize all images on a page
+/**
+ * Optimizes all images on the page by applying optimizeImage to each.
+ */
 export function optimizeAllImages() {
   if (typeof document === 'undefined') return;
   
@@ -166,7 +203,10 @@ export function optimizeAllImages() {
   allImages.forEach(img => optimizeImage(img));
 }
 
-// When the page is idle, run low-priority optimizations
+/**
+ * Runs a callback when the browser is idle, using requestIdleCallback if available.
+ * @param callback The function to run when idle.
+ */
 export function runWhenIdle(callback: () => void) {
   if (typeof window === 'undefined') return;
   
@@ -178,7 +218,9 @@ export function runWhenIdle(callback: () => void) {
   }
 }
 
-// Clean up memory leaks for single page applications
+/**
+ * Cleans up unused resources and hints garbage collection for single page apps.
+ */
 export function cleanupUnusedResources() {
   // Remove unnecessary event listeners
   // Clear unused cache and arrays

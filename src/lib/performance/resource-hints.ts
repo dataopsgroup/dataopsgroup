@@ -1,9 +1,13 @@
-
 /**
  * Resource hints optimization module for improved asset loading
  */
 
-// Enhanced resource hints for critical resources
+/**
+ * Sets up resource hints for critical domains and prefetches likely next navigations.
+ * - Adds preconnect and dns-prefetch for important third-party domains.
+ * - Uses IntersectionObserver to prefetch visible internal links.
+ * - Runs on page load and during idle time for minimal impact.
+ */
 export const setupResourceHints = () => {
   if (typeof document === 'undefined') return;
   

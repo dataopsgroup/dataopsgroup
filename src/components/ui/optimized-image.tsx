@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { useOptimizedImage } from '@/hooks/useOptimizedImage';
-import { generateSrcSet, supportsImageFormat } from '@/utils/image-utils';
+import { generateSrcSet, supportsImageFormat, getImageSrc, getImageFormat } from '@/utils/image-utils';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -50,6 +49,10 @@ const OptimizedImage = ({
   responsiveBreakpoints = [480, 640, 768, 1024, 1280, 1536, 1920],
   ...props
 }: OptimizedImageProps) => {
+  // Safe source handling
+  const safeSrc = getImageSrc(src);
+  const imageFormat = getImageFormat(safeSrc);
+
   const {
     imgRef,
     isLoaded,
@@ -57,7 +60,7 @@ const OptimizedImage = ({
     handleLoad,
     handleError
   } = useOptimizedImage({
-    src,
+    src: safeSrc,
     placeholder,
     priority,
     isLCP,
@@ -78,7 +81,7 @@ const OptimizedImage = ({
       const optimalBreakpoints = responsiveBreakpoints.filter(bp => 
         !width || bp <= width * 1.5
       );
-      srcSet = generateSrcSet(src, optimalBreakpoints, quality);
+      srcSet = generateSrcSet(safeSrc, optimalBreakpoints, quality);
     }
   } catch (error) {
     console.warn('Failed to generate srcSet:', error);
@@ -87,13 +90,13 @@ const OptimizedImage = ({
 
   // Enhanced error handling with progressive fallbacks
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    console.warn(`Failed to load image: ${src}`);
+    console.warn(`Failed to load image: ${safeSrc}`);
     
     const img = e.currentTarget;
     
     // Try fallback to original format if modern format failed
     if (img.src.includes('.webp') || img.src.includes('.avif')) {
-      const originalSrc = src.replace(/\.(webp|avif)$/i, match => 
+      const originalSrc = safeSrc.replace(/\.(webp|avif)$/i, match => 
         match.includes('webp') ? '.jpg' : '.jpg'
       );
       img.src = originalSrc;
@@ -111,11 +114,11 @@ const OptimizedImage = ({
   // Enhanced modern format support with better fallback chain
   const createPictureElement = () => {
     if (!enableModernFormats || !shouldLoad) {
-      return createImageElement(src);
+      return createImageElement(safeSrc);
     }
 
-    const baseUrl = src.split('?')[0];
-    const params = src.includes('?') ? src.split('?')[1] : '';
+    const baseUrl = safeSrc.split('?')[0];
+    const params = safeSrc.includes('?') ? safeSrc.split('?')[1] : '';
     const paramString = params ? `?${params}` : '';
 
     return (
@@ -133,7 +136,7 @@ const OptimizedImage = ({
           sizes={sizes}
         />
         {/* Original format fallback */}
-        {createImageElement(src)}
+        {createImageElement(safeSrc)}
       </picture>
     );
   };

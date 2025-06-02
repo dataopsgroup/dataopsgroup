@@ -1,12 +1,12 @@
+import React, { lazy } from 'react';
 
-import React from 'react';
-import Services from '../pages/Services';
-import AnalyticsBI from '../pages/AnalyticsBI';
-import DataOpsImplementation from '../pages/DataOpsImplementation';
-import TeamTraining from '../pages/TeamTraining';
-import MarketingOperationsRevOps from '../pages/MarketingOperationsRevOps';
-import SEOManagement from '../pages/SEOManagement';
-import NotFound from '../pages/NotFound';
+const Services = lazy(() => import('../pages/Services'));
+const AnalyticsBI = lazy(() => import('../pages/AnalyticsBI'));
+const DataOpsImplementation = lazy(() => import('../pages/DataOpsImplementation'));
+const TeamTraining = lazy(() => import('../pages/TeamTraining'));
+const MarketingOperationsRevOps = lazy(() => import('../pages/MarketingOperationsRevOps'));
+const SEOManagement = lazy(() => import('../pages/SEOManagement'));
+const NotFound = lazy(() => import('../pages/NotFound'));
 
 export const serviceRoutes = [
   {
