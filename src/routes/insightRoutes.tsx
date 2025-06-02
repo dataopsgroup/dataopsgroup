@@ -1,11 +1,11 @@
+import React, { lazy } from 'react';
 
-import React from 'react';
-import BlogList from '../pages/BlogList';
-import BlogPost from '../pages/BlogPost';
-import CaseStudiesPage from '../pages/CaseStudies';
-import Whitepapers from '../pages/Whitepapers';
-import FAQs from '../pages/FAQs';
-import NotFound from '../pages/NotFound';
+const BlogList = lazy(() => import('../pages/BlogList'));
+const BlogPost = lazy(() => import('../pages/BlogPost'));
+const CaseStudiesPage = lazy(() => import('../pages/CaseStudies'));
+const Whitepapers = lazy(() => import('../pages/Whitepapers'));
+const FAQs = lazy(() => import('../pages/FAQs'));
+const NotFound = lazy(() => import('../pages/NotFound'));
 
 export const insightRoutes = [
   {

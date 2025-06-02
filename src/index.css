@@ -36,6 +36,12 @@
 
     --radius: 0.5rem;
     
+    /* Brand Guide Colors */
+    --brand-saffron: #FBB03B;
+    --brand-navy: #14213D;
+    --brand-light-blue: #8CC7E3;
+    --brand-gray: #E6E6E6;
+    
     /* Add navbar height variable for consistent spacing */
     --navbar-height: 84px;
     --navbar-bottom-spacing: 25px;
@@ -83,7 +89,6 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Font family is now handled in fonts.css */
   }
   
   /* Main content spacing */
@@ -91,13 +96,13 @@
     padding-top: calc(var(--navbar-height) + var(--navbar-bottom-spacing));
   }
 
-  /* Even larger heading sizes with more dramatic scaling */
+  /* Mobile Typography Hierarchy - Inter First */
   h1 {
-    @apply text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
   }
   
   h2 {
-    @apply text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight;
+    @apply text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight;
   }
   
   /* Specific styling for H2 tags on the /insights page and blog posts */
@@ -105,23 +110,35 @@
   .container h2:not(.text-3xl),
   article h2 {
     font-size: 1.5em !important;
-    @apply font-semibold tracking-tight;
+    font-weight: 500 !important;
   }
   
   h3 {
-    @apply text-4xl md:text-5xl font-semibold tracking-tight;
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight;
   }
   
   h4 {
-    @apply text-3xl md:text-4xl font-medium;
+    @apply text-xl md:text-2xl lg:text-3xl font-medium;
   }
   
   h5 {
-    @apply text-2xl md:text-3xl font-medium;
+    @apply text-lg md:text-xl lg:text-2xl font-medium;
   }
   
   h6 {
-    @apply text-xl md:text-2xl font-medium;
+    @apply text-base md:text-lg lg:text-xl font-medium;
+  }
+
+  /* Body text */
+  p, div, span {
+    @apply text-base md:text-lg;
+  }
+
+  /* Subheadlines */
+  .subheadline {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
   }
 
   /* Override heading styles for blog post titles to be more proportional */
@@ -137,38 +154,171 @@
     @apply bg-gradient-to-r from-dataops-700 to-dataops-500;
   }
 
+  /* Brand guide saffron backgrounds */
+  .bg-brand-saffron {
+    background-color: var(--brand-saffron) !important;
+  }
+
   .section-padding {
     @apply py-16 md:py-24 px-4 md:px-8 lg:px-16;
   }
   
-  /* Updated blog post styling with headings matching the blog post headline size */
+  /* Updated blog post styling */
   .prose h2 {
-    @apply text-3xl md:text-4xl font-bold mt-8 mb-4;
-    font-size: 1.5em !important;
+    @apply text-2xl md:text-3xl font-bold mt-8 mb-4;
   }
   
   .prose h3 {
-    @apply text-2xl md:text-3xl font-bold mt-6 mb-3;
+    @apply text-xl md:text-2xl font-bold mt-6 mb-3;
   }
   
   .prose h4 {
-    @apply text-xl md:text-2xl font-bold mt-5 mb-2;
+    @apply text-lg md:text-xl font-bold mt-5 mb-2;
   }
   
   .prose p {
     @apply mb-4 text-gray-700;
   }
   
-  .prose ul {
-    @apply mb-6 pl-6 list-disc;
-  }
-  
-  .prose ul li {
-    @apply mb-2 text-gray-700;
+  /* Desktop Typography Overrides */
+  @media (min-width: 1024px) {
+    h1 {
+      @apply text-5xl lg:text-6xl xl:text-7xl;
+    }
+    
+    h2 {
+      @apply text-4xl lg:text-5xl xl:text-6xl;
+    }
+    
+    h3 {
+      @apply text-3xl lg:text-4xl xl:text-5xl;
+    }
+    
+    h4 {
+      @apply text-2xl lg:text-3xl xl:text-4xl;
+    }
+    
+    h5 {
+      @apply text-xl lg:text-2xl xl:text-3xl;
+    }
+    
+    h6 {
+      @apply text-lg lg:text-xl xl:text-2xl;
+    }
+    
+    p, div, span {
+      @apply text-lg lg:text-xl;
+    }
   }
 }
 
-/* Table of Contents Styling for Pillar Content - Remove this as it's now in pillar-content.css */
+/* Enhanced Blog Styling Classes */
+@layer components {
+  /* Professional Blog Card Styling */
+  .blog-card-enhanced {
+    @apply bg-white border border-gray-200 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-100 hover:-translate-y-1;
+  }
+
+  /* Category Tag Enhancement */
+  .category-tag-enhanced {
+    @apply bg-brand-saffron text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider;
+  }
+
+  /* Blog Excerpt Styling */
+  .blog-excerpt {
+    @apply text-gray-600 leading-relaxed;
+  }
+
+  /* Read Time Styling */
+  .read-time {
+    @apply text-gray-500 font-medium;
+  }
+
+  /* Blog Post Header Enhancement */
+  .blog-post-header-enhanced {
+    @apply bg-gradient-to-br from-dataops-950 via-dataops-900 to-dataops-800 text-white py-16 mb-8 relative overflow-hidden;
+  }
+
+  .blog-post-header-enhanced::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-brand-navy/20 to-transparent;
+  }
+
+  /* Blog Post Title Enhancement */
+  .blog-post-title-enhanced {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight relative z-10;
+    font-family: 'Rubik', 'Inter', system-ui, sans-serif;
+  }
+
+  /* Social Share Buttons */
+  .social-share-btn {
+    @apply p-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors duration-200;
+  }
+
+  /* Enhanced Blog Content */
+  .blog-content-enhanced {
+    @apply text-lg leading-relaxed text-gray-700 max-w-none;
+  }
+
+  .blog-content-enhanced h2 {
+    @apply text-2xl md:text-3xl font-bold text-dataops-950 mt-12 mb-6 pb-3 border-b-2 border-brand-saffron relative;
+  }
+
+  .blog-content-enhanced h3 {
+    @apply text-xl md:text-2xl font-semibold text-dataops-800 mt-8 mb-4;
+  }
+
+  .blog-content-enhanced h4 {
+    @apply text-lg md:text-xl font-semibold text-dataops-700 mt-6 mb-3;
+  }
+
+  .blog-content-enhanced p {
+    @apply leading-relaxed text-gray-700 mb-6;
+  }
+
+  .blog-content-enhanced ul {
+    @apply space-y-2 mb-6 list-none;
+  }
+
+  .blog-content-enhanced ul li {
+    @apply relative pl-6;
+  }
+
+  .blog-content-enhanced ul li::before {
+    content: '→';
+    @apply absolute left-0 text-brand-saffron font-bold;
+  }
+
+  .blog-content-enhanced blockquote {
+    @apply border-l-4 border-brand-saffron bg-gray-50 pl-6 py-4 italic text-gray-700 my-8;
+  }
+
+  /* Key Insight Box */
+  .key-insight-box {
+    @apply bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 my-8 relative;
+  }
+
+  .key-insight-box::before {
+    content: '💡';
+    @apply absolute -top-3 -left-3 text-2xl bg-white rounded-full p-2 shadow-md;
+  }
+
+  .key-insight-box p {
+    @apply text-blue-900 font-medium mb-0;
+  }
+
+  /* PE Focus Callout */
+  .pe-focus-callout {
+    @apply bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-6;
+  }
+
+  /* Blog CTA Section */
+  .blog-cta-section {
+    @apply mt-16 pt-8 border-t border-gray-200;
+  }
+}
+
+/* Table of Contents Styling for Pillar Content */
 .table-of-contents-container {
   @apply bg-gray-50 border border-gray-200 rounded-lg p-6 my-8;
 }

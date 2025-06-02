@@ -1,4 +1,3 @@
-
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -30,15 +29,17 @@ export const guidesItems: SubNavItem[] = [
   }
 ];
 
-// Insights dropdown items
+// Insights dropdown items - removed Guides dropdown, added HubSpot Expert Guide directly
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
   { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Guides', isDropdown: true, items: guidesItems },
   { 
-    name: 'Buy the Book', 
-    href: '/book', 
-    icon: 'book' // Using a string identifier instead of JSX
+    name: 'How to Hire a HubSpot Expert in 2025', 
+    href: '/how-to-hire-a-hubspot-expert-in-2025' 
+  },
+  { 
+    name: 'HubSpot Assessment', 
+    href: '/assessment'
   }
 ];
 

@@ -1,62 +1,48 @@
+import React, { lazy } from 'react';
 
-import React from 'react';
-import { RouteObject } from 'react-router-dom';
+const HubSpotAssessment = lazy(() => import('@/pages/HubSpotAssessment'));
+const HubSpotAssessmentResultsPage = lazy(() => import('@/pages/HubSpotAssessmentResultsPage'));
+const GetStartedPage = lazy(() => import('@/pages/GetStartedPage'));
+const ThankYouPage = lazy(() => import('@/pages/ThankYouPage'));
+const ContactThankYouPage = lazy(() => import('@/pages/ContactThankYouPage'));
+const SEODashboard = lazy(() => import('@/pages/SEODashboard'));
+const Sitemap = lazy(() => import('@/pages/Sitemap'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
 
-// Import pages
-import NotFound from '@/pages/NotFound';
-import Privacy from '@/pages/Privacy';
-import Terms from '@/pages/Terms';
-import Sitemap from '@/pages/Sitemap';
-import FAQs from '@/pages/FAQs';
-import Documentation from '@/pages/Documentation';
-import SEODashboard from '@/pages/SEODashboard';
-import PillarContentPage from '@/pages/PillarContentPage';
-import HubSpotExpertGuidePage from '@/pages/HubSpotExpertGuidePage';
-
-// Define utility routes
-export const utilityRoutes: RouteObject[] = [
+export const utilityRoutes = [
   {
-    path: "/not-found",
-    element: <NotFound />
+    path: "/assessment",
+    element: <HubSpotAssessment />,
+    errorElement: <NotFound />,
   },
   {
-    path: "/404",
-    element: <NotFound />
+    path: "/assessment/results",
+    element: <HubSpotAssessmentResultsPage />,
+    errorElement: <NotFound />,
   },
   {
-    path: "*",
-    element: <NotFound />
+    path: "/get-started",
+    element: <GetStartedPage />,
+    errorElement: <NotFound />,
   },
   {
-    path: "/privacy",
-    element: <Privacy />
+    path: "/thank-you",
+    element: <ThankYouPage />,
+    errorElement: <NotFound />,
   },
   {
-    path: "/terms",
-    element: <Terms />
+    path: "/contact/thank-you",
+    element: <ContactThankYouPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/admin/seo",
+    element: <SEODashboard />,
+    errorElement: <NotFound />,
   },
   {
     path: "/sitemap",
-    element: <Sitemap />
+    element: <Sitemap />,
+    errorElement: <NotFound />,
   },
-  {
-    path: "/faqs",
-    element: <FAQs />
-  },
-  {
-    path: "/docs",
-    element: <Documentation />
-  },
-  {
-    path: "/seo-dashboard",
-    element: <SEODashboard />
-  },
-  {
-    path: "/pillar-content",
-    element: <PillarContentPage />
-  },
-  {
-    path: "/how-to-hire-a-hubspot-expert-in-2025",
-    element: <HubSpotExpertGuidePage />
-  }
 ];

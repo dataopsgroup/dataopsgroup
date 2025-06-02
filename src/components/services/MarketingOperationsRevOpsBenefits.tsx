@@ -4,22 +4,23 @@ import ServiceBenefits from './ServiceBenefits';
 
 const MarketingOperationsRevOpsBenefits = () => {
   const benefits = [
-    "Improved marketing ROI with data-driven decision making",
-    "Unified view of marketing performance across all channels",
-    "Enhanced customer segmentation and targeting",
-    "Better attribution of marketing efforts to revenue",
-    "Streamlined reporting and time savings",
-    "Improved campaign optimization and performance",
-    "Greater marketing and sales alignment",
-    "Increased conversion rates and customer acquisition",
-    "Clear visualization of marketing metrics for leadership"
+    "Standardize marketing processes across portfolio companies",
+    "Scale proven revenue systems to multiple investments",
+    "Measure marketing ROI with investor-grade accuracy",
+    "Optimize customer acquisition costs across holdings",
+    "Implement predictable revenue generation systems",
+    "Create standardized reporting for board presentations",
+    "Accelerate time-to-value for new portfolio acquisitions",
+    "Build scalable marketing operations frameworks",
+    "Enhance portfolio company valuations through operational excellence"
   ];
 
   return (
     <ServiceBenefits 
       benefits={benefits}
-      serviceTitle="Marketing Data Management & Analytics"
+      serviceTitle="Marketing Operations & RevOps"
       isHubSpotTraining={false}
+      ctaText="Get Your RevOps Strategy"
     />
   );
 };

@@ -1,5 +1,6 @@
 
 # robots.txt for dataopsgroup.com
+# Cache refresh: 2025-05-30 17:45:00 UTC - Force complete cache invalidation
 
 User-agent: *
 Allow: /
@@ -48,47 +49,40 @@ Disallow: /*&gclid=
 # Sitemap
 Sitemap: https://dataopsgroup.com/sitemap.xml
 
-# Crawl delay to prevent overloading the server
-Crawl-delay: 10
+# Reduced crawl delay to prevent timeouts
+Crawl-delay: 2
 
-# Additional rules for specific bots
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 2
+
+# Allow Google Mobile Crawler specifically
+User-agent: Googlebot-Mobile
+Allow: /
+Crawl-delay: 1
+
+# Allow Google and other search engine bots
+User-agent: Mediapartners-Google
+Allow: /
+
 User-agent: AdsBot-Google
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /lovable-uploads/
 
-User-agent: Mediapartners-Google
-Allow: /
-
-# Allow Google Mobile Crawler specifically
-User-agent: Googlebot-Mobile
-Allow: /
-
-# Allow Google and other search engine bots
-User-agent: Googlebot
-Allow: /
-
-User-agent: bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
 User-agent: BingPreview
 Allow: /
-
-# Add new rules for improved Googlebot crawling
-User-agent: Googlebot
-Crawl-delay: 5
-Allow: /sitemap.xml
-Allow: /sitemaps/
-
-# Add special instructions for Microsoft Bingbot
-User-agent: bingbot
-Crawl-delay: 8
-Allow: /sitemap.xml
-Allow: /sitemaps/

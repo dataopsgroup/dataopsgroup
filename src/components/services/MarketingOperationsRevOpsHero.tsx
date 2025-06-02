@@ -1,17 +1,19 @@
 
 import React from 'react';
 import ServiceHero from './ServiceHero';
-import { BarChart2 } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 
 const MarketingOperationsRevOpsHero = () => {
   return (
     <ServiceHero
-      title="Marketing Data Management & Analytics"
-      description="Leverage your marketing data to gain insights, improve campaign performance, and drive revenue growth with our comprehensive marketing data management and analytics services."
+      title="Optimize Marketing ROI Across Portfolio Companies"
+      tagline="Revenue Operations That Scale"
+      description="Transform your portfolio companies' marketing and revenue operations with systematic processes that drive predictable growth and maximize investment returns."
+      ctaText="Schedule Your RevOps Optimization"
       isHubSpotTraining={false}
-      serviceIcon={<BarChart2 size={64} />}
-      imageSrc="/lovable-uploads/269cf082-a0cd-445e-8738-c2aee0f60336.png"
-      imageAlt="Marketing analytics dashboard showing traffic metrics, conversions and engagement statistics"
+      serviceIcon={<TrendingUp size={64} />}
+      imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80"
+      imageAlt="Business analytics dashboard showing revenue operations and marketing performance metrics"
     />
   );
 };

@@ -1,21 +1,45 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { Book, ChevronRight } from 'lucide-react';
+import BookHeroSection from '@/components/book/BookHeroSection';
+import BookStatsSection from '@/components/book/BookStatsSection';
+import BookDiscoverySection from '@/components/book/BookDiscoverySection';
+import BookAuthorSection from '@/components/book/BookAuthorSection';
+import BookCTASection from '@/components/book/BookCTASection';
+import BookSampleChapterSection from '@/components/book/BookSampleChapterSection';
+import BookContactSection from '@/components/book/BookContactSection';
+
+const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
 const BookLandingPage = () => {
+  const scrollToForm = () => {
+    const formSection = document.getElementById('sample-chapter-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>The CMO's Data Playbook - Transform Data Into Revenue | DataOps Group</title>
         <meta name="description" content="Discover how to harness your marketing data and transform it into revenue with The CMO's Data Playbook by Geoff Tucker." />
         <meta name="keywords" content="data playbook, marketing data, cmo data, revenue optimization, data strategy, marketing operations" />
-        <link rel="canonical" href="/book" />
-        
+        <link rel="canonical" href={`${baseUrl}/book`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="book" />
+        <meta property="og:title" content="The CMO's Data Playbook - Transform Data Into Revenue | DataOps Group" />
+        <meta property="og:description" content="Discover how to harness your marketing data and transform it into revenue with The CMO's Data Playbook by Geoff Tucker." />
+        <meta property="og:url" content={`${baseUrl}/book`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="The CMO's Data Playbook - Transform Data Into Revenue | DataOps Group" />
+        <meta name="twitter:description" content="Discover how to harness your marketing data and transform it into revenue with The CMO's Data Playbook by Geoff Tucker." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
         {/* Schema markup for the book */}
         <script type="application/ld+json">{`
           {
@@ -26,8 +50,8 @@ const BookLandingPage = () => {
               "@type": "Person",
               "name": "Geoff Tucker"
             },
-            "url": "https://dataops.group/book",
-            "image": "${window.location.origin}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png",
+            "url": "${baseUrl}/book",
+            "image": "${baseUrl}/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png",
             "description": "Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.",
             "publisher": {
               "@type": "Organization",
@@ -35,119 +59,62 @@ const BookLandingPage = () => {
             }
           }
         `}</script>
+
+        {/* Custom styles for enhanced design */}
+        <style>{`
+          .floating-stat {
+            animation: float 3s ease-in-out infinite;
+          }
+          
+          .floating-stat:nth-child(1) {
+            animation-delay: 0s;
+          }
+          
+          .floating-stat:nth-child(2) {
+            animation-delay: 1s;
+          }
+          
+          .floating-stat:nth-child(3) {
+            animation-delay: 2s;
+          }
+          
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+          }
+          
+          .book-cover:hover {
+            transform: translateY(-10px) rotateY(5deg);
+          }
+          
+          .discover-card:hover {
+            transform: translateY(-5px);
+          }
+          
+          .hero-gradient {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+          }
+          
+          .cta-gradient {
+            background: linear-gradient(135deg, #1e293b, #334155);
+          }
+          
+          .form-gradient {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+          }
+        `}</style>
       </Helmet>
+      
       <Navbar />
       
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-dataops-50 to-white py-16 md:py-24 px-[5%]">
-          <div className="container mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="order-2 md:order-1">
-                <div className="inline-flex items-center bg-dataops-100 text-dataops-700 text-sm px-3 py-1 rounded-full mb-6">
-                  <Book className="h-4 w-4 mr-2" />
-                  <span>New Release</span>
-                </div>
-                <h1 className="text-3xl md:text-5xl font-bold mb-6 text-gray-800">
-                  THE CMO's DATA PLAYBOOK
-                </h1>
-                <h2 className="text-xl md:text-2xl font-medium mb-6 text-dataops-600">
-                  TRANSFORM DATA INTO REVENUE
-                </h2>
-                <p className="text-lg text-gray-700 mb-8">
-                  Sixty Days to Harness Your Marketing Data's Origins, Journey, and Destiny for C-Suite Impact.
-                  A practical guide for marketing executives who want to turn their data into strategic business value.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button className="bg-dataops-600 hover:bg-dataops-700 text-white text-lg px-8 py-6">
-                    Pre-Order Now <ChevronRight className="h-4 w-4" />
-                  </Button>
-                  <Button variant="outline" className="border-dataops-600 text-dataops-600 hover:bg-dataops-50 text-lg px-8 py-6">
-                    Learn More
-                  </Button>
-                </div>
-              </div>
-              <div className="order-1 md:order-2 flex justify-center">
-                <div className="relative">
-                  <img 
-                    src="/lovable-uploads/582dcdb7-2cb4-4457-ae45-10121eef53a2.png" 
-                    alt="The CMO's Data Playbook book cover" 
-                    className="h-auto max-w-sm rounded-lg shadow-2xl transform md:-rotate-6 hover:rotate-0 transition-transform duration-300" 
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Book Features */}
-        <section className="py-16 bg-white px-[5%]">
-          <div className="container mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center">What You'll Discover</h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="p-6 bg-dataops-50 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">Data Organization Framework</h3>
-                <p className="text-gray-700">
-                  Learn how to identify and organize the most valuable data in your marketing ecosystem for maximum impact.
-                </p>
-              </div>
-              <div className="p-6 bg-green-50 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">Executive Communication</h3>
-                <p className="text-gray-700">
-                  Master techniques to communicate data insights effectively to C-suite executives and stakeholders.
-                </p>
-              </div>
-              <div className="p-6 bg-rose-50 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">Revenue Acceleration</h3>
-                <p className="text-gray-700">
-                  Develop strategies that transform marketing data into tangible business revenue and growth.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* About the Author */}
-        <section className="py-16 bg-gray-50 px-[5%]">
-          <div className="container mx-auto">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">About the Author</h2>
-              <div className="flex flex-col md:flex-row gap-8 items-center">
-                <img 
-                  src="/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png" 
-                  alt="Geoff Tucker" 
-                  className="h-64 w-64 object-cover rounded-full border-4 border-white shadow-lg" 
-                />
-                <div>
-                  <h3 className="text-xl font-bold mb-4">Geoff Tucker</h3>
-                  <p className="text-gray-700 mb-4">
-                    Geoff Tucker is a data strategy expert with over 15 years of experience helping Fortune 500 companies transform their marketing data operations. 
-                    As the founder of DataOps Group, he has developed methodologies that have helped companies reclaim millions in wasted marketing spend.
-                  </p>
-                  <p className="text-gray-700">
-                    His approach combines technical expertise with a deep understanding of marketing challenges, allowing him to bridge the gap between data science and business strategy.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Pre-order CTA */}
-        <section className="py-16 bg-gradient-to-br from-dataops-600 to-dataops-800 text-white px-[5%]">
-          <div className="container mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Be Among the First to Read</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Pre-order your copy today and receive exclusive bonus content including case studies and worksheets.
-            </p>
-            <Button className="bg-white text-dataops-700 hover:bg-gray-100 text-lg px-8 py-6">
-              Pre-Order Now <ChevronRight className="h-4 w-4" />
-            </Button>
-            <p className="text-sm mt-4 text-white/80">
-              Release Date: October 15, 2025
-            </p>
-          </div>
-        </section>
+        <BookHeroSection onScrollToForm={scrollToForm} />
+        <BookStatsSection />
+        <BookDiscoverySection />
+        <BookAuthorSection />
+        <BookCTASection onScrollToForm={scrollToForm} />
+        <BookSampleChapterSection />
+        <BookContactSection />
       </main>
       
       <Footer />

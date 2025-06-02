@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LineChart, Settings, TrendingUp, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,28 +10,28 @@ export const services = [
     icon: <LineChart className="h-10 w-10 text-white" />,
     title: 'Analytics & BI',
     description: 'Transform raw data into actionable insights with advanced analytics and visualization.',
-    gradient: 'from-purple-500 to-purple-600' // Purple
+    gradient: 'from-slate-800 to-slate-900' // Dark navy - professional
   },
   {
     id: "dataops-implementation",
     icon: <Settings className="h-10 w-10 text-white" />,
     title: 'DataOps Implementation',
     description: 'Streamline your data operations with automated workflows and processes.',
-    gradient: 'from-green-500 to-green-600' // Green
+    gradient: 'from-teal-600 to-teal-700' // Deep teal - professional
   },
   {
     id: "team-training",
     icon: <Users className="h-10 w-10 text-white" />,
     title: 'HubSpot Training & Implementation',
     description: 'Expert training and implementation to maximize your HubSpot investment.',
-    gradient: 'from-amber-500 to-amber-600' // Amber/Yellow
+    gradient: 'from-amber-500 to-amber-600' // Keep brand saffron color
   },
   {
     id: "marketing-operations-revops",
     icon: <TrendingUp className="h-10 w-10 text-white" />,
     title: 'Marketing Operations & RevOps',
     description: 'Optimize your marketing and revenue operations for improved performance and ROI.',
-    gradient: 'from-pink-500 to-rose-600' // Pink/Rose
+    gradient: 'from-gray-600 to-gray-700' // Charcoal gray - sophisticated
   }
 ];
 

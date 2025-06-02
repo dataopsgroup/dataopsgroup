@@ -6,12 +6,14 @@ import { LineChart } from 'lucide-react';
 const AnalyticsBIHero = () => {
   return (
     <ServiceHero
-      title="Analytics & Business Intelligence"
-      description="Transform your raw data into actionable insights with our advanced analytics and visualization services that drive smarter business decisions."
+      title="Turn Raw Data Into Investment Intelligence"
+      tagline="Advanced Analytics That Drive Portfolio Performance"
+      description="Transform your HubSpot data into actionable insights with our advanced analytics and visualization services that empower PE firms to make data-driven investment decisions across their portfolio."
+      ctaText="Get Your Custom Analytics Strategy"
       isHubSpotTraining={false}
       serviceIcon={<LineChart size={64} />}
-      imageSrc="/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1.png"
-      imageAlt="Code visualization showing data analytics programming"
+      imageSrc="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+      imageAlt="Data analytics dashboard with charts and graphs showing business intelligence metrics"
     />
   );
 };

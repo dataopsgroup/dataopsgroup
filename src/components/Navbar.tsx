@@ -13,34 +13,49 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    // SSR guard - only run in browser
+    if (typeof window === 'undefined') return;
+    
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // SSR-safe logo error handler
+  const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (typeof console !== 'undefined') {
+      console.warn('Logo failed to load');
+    }
+    e.currentTarget.alt = 'DataOps Group';
+    e.currentTarget.style.background = '#1e4f9c';
+    e.currentTarget.style.color = 'white';
+    e.currentTarget.style.display = 'flex';
+    e.currentTarget.style.alignItems = 'center';
+    e.currentTarget.style.justifyContent = 'center';
+    e.currentTarget.style.width = '200px';
+    e.currentTarget.style.height = '60px';
+  };
 
   return (
     <nav 
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 pb-[25px] border-b border-gray-200",
+        "fixed top-0 w-full z-50 border-b border-gray-200 pb-[25px]",
         scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       )}
       aria-label="Main navigation"
+      style={{ transition: 'background-color 0.2s ease, box-shadow 0.2s ease' }}
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
-          <img 
-            src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
-            alt="DataOps Group Logo" 
-            className="h-16 md:h-20" 
+          <img
+            src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+            alt="DataOps Group Logo"
+            className="h-16 md:h-20 w-auto"
+            loading="eager"
+            onError={handleLogoError}
           />
         </Link>
         

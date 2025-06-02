@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -10,8 +9,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { SectionId } from '@/types/pillar-content';
 import TableOfContents from '@/components/pillar-content/TableOfContents';
 import ContentSection from '@/components/pillar-content/ContentSection';
-import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
-import ShareButtons from '@/components/ui/ShareButtons';
+import ArticleHeader from '@/components/pillar-content/ArticleHeader';
 
 const HubSpotExpertGuidePage = () => {
   const sectionIds: SectionId[] = [
@@ -72,20 +70,13 @@ const HubSpotExpertGuidePage = () => {
     document.getElementById(sectionId)?.focus();
   };
 
-  // Define breadcrumb items
-  const breadcrumbItems = [
-    { name: 'Home', url: '/' },
-    { name: 'Resources', url: '/resources' },
-    { name: 'How to Hire a HubSpot Expert in 2025', url: '/how-to-hire-a-hubspot-expert-in-2025' }
-  ];
-  
   return (
     <SemanticLayout>
       <MetaHead 
         title="How to Hire a HubSpot Expert in 2025: Consultant Guide & Integration Costs" 
         description="Your complete guide to hiring the right HubSpot expert or consultant for your business needs, including implementation costs, evaluation criteria, and key questions to ask."
         keywords="HubSpot experts, HubSpot consultants, HubSpot implementation, HubSpot integration, HubSpot consultant costs" 
-        canonicalPath="/how-to-hire-a-hubspot-expert-in-2025" 
+        canonicalPath={`${typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com'}/how-to-hire-a-hubspot-expert-in-2025`} 
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Article",
@@ -108,22 +99,10 @@ const HubSpotExpertGuidePage = () => {
       />
       
       <div className="container mx-auto px-4 py-16">
-        {/* Title and navigation elements */}
-        <div className="mb-6 ml-[25px]">
-          {/* Breadcrumbs */}
-          <BreadcrumbNavigation items={breadcrumbItems} />
-          
-          {/* Title heading */}
-          <div className="flex flex-wrap justify-between items-center mb-6 relative">
-            <h1 className="text-3xl font-bold">How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs</h1>
-            
-            {/* Share buttons - positioned under the word "How" */}
-            <ShareButtons 
-              title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs" 
-              position="under-title"
-            />
-          </div>
-        </div>
+        {/* Article Header with integrated social sharing */}
+        <ArticleHeader 
+          title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs"
+        />
         
         <div className="flex flex-col md:flex-row">
           {/* Table of Contents */}

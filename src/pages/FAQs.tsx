@@ -21,6 +21,8 @@ import faqCategories, {
 import { validateFAQData } from '@/utils/route-monitoring';
 
 const FAQsPage = () => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+
   // Validate FAQ data on component mount
   useEffect(() => {
     // Validate FAQ data structure to ensure it's working properly
@@ -65,7 +67,20 @@ const FAQsPage = () => {
         <title>Frequently Asked Questions - DataOps Group</title>
         <meta name="description" content="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals." />
         <meta name="keywords" content="HubSpot FAQs, HubSpot consultant, data quality, marketing ROI, sales and marketing alignment, HubSpot optimization, statistical process control, data cleaning, reporting dashboards, HubSpot experts" />
-        <link rel="canonical" href="https://dataopsgroup.com/faqs" />
+        <link rel="canonical" href={`${baseUrl}/faqs`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Frequently Asked Questions - DataOps Group" />
+        <meta property="og:description" content="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals." />
+        <meta property="og:url" content={`${baseUrl}/faqs`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Frequently Asked Questions - DataOps Group" />
+        <meta name="twitter:description" content="Find answers to common questions about HubSpot optimization, data quality, marketing ROI, sales and marketing alignment, and our approach to fixing messy HubSpot portals." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
       <FAQPageSchema items={formattedFAQs} url="/faqs" />

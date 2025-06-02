@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef, RefObject } from 'react';
-import { reportLCPMetric } from '@/utils/image-utils';
+import { reportLCPMetric, preloadCriticalImage } from '@/utils/image-utils';
 
 interface UseOptimizedImageProps {
   src: string;
@@ -21,8 +21,8 @@ interface UseOptimizedImageReturn {
 }
 
 /**
- * Enhanced hook for optimized image loading with intersection observer
- * Combines features from both OptimizedImage and ProgressiveImage
+ * Enhanced hook for optimized image loading with balanced performance
+ * Uses consistent threshold and loading strategy across all devices
  */
 export const useOptimizedImage = ({
   src,
@@ -30,138 +30,119 @@ export const useOptimizedImage = ({
   priority = false,
   isLCP = false,
   blur = true,
-  rootMargin = '200px',
-  threshold = 0.01
+  rootMargin = '150px',
+  threshold = 0.15 // Universal threshold for all devices
 }: UseOptimizedImageProps): UseOptimizedImageReturn => {
   const imgRef = useRef<HTMLImageElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  // For priority/LCP images, start with isInView = true to prevent conflicts
   const [isInView, setIsInView] = useState(priority || isLCP);
   
-  // Set up intersection observer for non-priority images
+  // Enhanced intersection observer with universal configuration
   useEffect(() => {
-    if (priority || isLCP || !imgRef.current) {
+    if (priority || isLCP || !imgRef.current || typeof window === 'undefined') {
       return;
     }
     
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin,
-        threshold
-      }
-    );
+    if (!('IntersectionObserver' in window)) {
+      setIsInView(true);
+      return;
+    }
     
-    observer.observe(imgRef.current);
+    let observer: IntersectionObserver;
+    
+    try {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.disconnect();
+            
+            // Performance mark for monitoring
+            performance.mark(`image-visible-${src.split('/').pop()}`);
+          }
+        },
+        {
+          rootMargin,
+          threshold
+        }
+      );
+      
+      observer.observe(imgRef.current);
+    } catch (error) {
+      console.warn('IntersectionObserver failed, showing image immediately:', error);
+      setIsInView(true);
+    }
     
     return () => {
-      observer.disconnect();
+      if (observer) {
+        observer.disconnect();
+      }
     };
-  }, [priority, isLCP, rootMargin, threshold]);
+  }, [priority, isLCP, rootMargin, threshold, src]);
   
-  // Preload LCP images
+  // Enhanced preloading for critical images with format optimization
   useEffect(() => {
     if ((priority || isLCP) && typeof document !== 'undefined') {
-      const preloadLink = document.querySelector(`link[rel="preload"][href="${src}"]`);
-      
-      if (!preloadLink) {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = src;
-        link.as = 'image';
-        link.setAttribute('fetchpriority', 'high');
-        document.head.appendChild(link);
-        
-        return () => {
-          if (link.parentNode) {
-            link.parentNode.removeChild(link);
-          }
-        };
+      try {
+        preloadCriticalImage(src);
+      } catch (error) {
+        console.warn('Failed to preload critical image:', error);
       }
     }
   }, [src, priority, isLCP]);
   
-  // Pre-validate image exists
-  useEffect(() => {
-    if (typeof Image !== 'undefined' && src && src !== placeholder) {
-      const img = new Image();
-      img.src = src;
-      
-      img.onerror = () => {
-        console.warn(`Image preload failed: ${src}, will use placeholder`);
-        if (imgRef.current && imgRef.current.src !== placeholder) {
-          imgRef.current.src = placeholder;
-        }
-      };
-    }
-  }, [src, placeholder]);
-  
-  // Report LCP for important images
+  // Enhanced LCP reporting with detailed metrics
   useEffect(() => {
     if (!isLCP || !isLoaded) return;
-    reportLCPMetric(src);
-  }, [isLCP, isLoaded, src]);
-  
-  // Clean up any object URLs when component unmounts
-  useEffect(() => {
-    return () => {
-      if (imgRef.current?.src && imgRef.current.src.startsWith('blob:')) {
-        URL.revokeObjectURL(imgRef.current.src);
+    
+    try {
+      reportLCPMetric(src);
+      
+      if (imgRef.current) {
+        imgRef.current.setAttribute('data-lcp-candidate', 'true');
+        imgRef.current.setAttribute('data-loaded-at', Date.now().toString());
+        
+        // Report to Core Web Vitals
+        if (window.gtag) {
+          window.gtag('event', 'lcp_candidate_loaded', {
+            'event_category': 'Performance',
+            'event_label': src.substring(0, 50),
+            'value': Date.now()
+          });
+        }
       }
-    };
-  }, []);
+    } catch (error) {
+      console.warn('LCP reporting failed:', error);
+    }
+  }, [isLCP, isLoaded, src]);
   
   const handleLoad = () => {
     setIsLoaded(true);
     
-    // Priority hint for hero images
-    if (isLCP && imgRef.current) {
-      imgRef.current.setAttribute('fetchpriority', 'high');
-    }
-    
-    // Report LCP if it's a hero image using alternative method from ProgressiveImage
-    if (isLCP && window.performance && 'measure' in window.performance) {
-      try {
-        window.performance.measure('lcp-image-loaded', 'navigationStart');
-        if (window.gtag) {
-          const lcpTiming = window.performance.getEntriesByName('lcp-image-loaded')[0];
-          window.gtag('event', 'web_vitals', {
-            metric_name: 'LCP',
-            metric_value: lcpTiming.duration,
-            metric_delta: 0
-          });
-        }
-      } catch (e) {
-        console.error('Error measuring LCP:', e);
-      }
-    }
+    // Performance mark for load completion
+    performance.mark(`image-loaded-${src.split('/').pop()}`);
   };
   
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    console.error(`Failed to load image: ${src}`);
+    console.warn(`Failed to load image: ${src}`);
     
-    // Try to load from cache if available
-    if ('caches' in window) {
-      window.caches.match(src).then(response => {
-        if (response) {
-          return response.blob();
-        }
-        // Fall back to placeholder
-        if (imgRef.current) {
-          imgRef.current.src = placeholder;
-        }
-      }).catch(() => {
-        // Final fallback - use placeholder
-        if (imgRef.current) {
-          imgRef.current.src = placeholder;
-        }
-      });
-    } else if (imgRef.current) {
-      imgRef.current.src = placeholder;
+    // Enhanced error reporting with context
+    if (typeof window !== 'undefined' && window.gtag) {
+      try {
+        window.gtag('event', 'image_load_error', {
+          'event_category': 'Performance',
+          'event_label': src.substring(0, 100),
+          'value': 1,
+          'custom_parameters': {
+            'error_type': 'load_failure',
+            'image_format': src.split('.').pop() || 'unknown',
+            'is_critical': priority || isLCP
+          }
+        });
+      } catch (error) {
+        // Silently fail if analytics reporting fails
+      }
     }
   };
   

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,7 +9,9 @@ import ServiceBenefits from '@/components/services/ServiceBenefits';
 import HubSpotTrainingContent from '@/components/services/HubSpotTrainingContent';
 import GenericServiceContent from '@/components/services/GenericServiceContent';
 import ServiceSchema from '@/components/seo/ServiceSchema';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { Button } from '@/components/ui/button';
+import { Helmet } from 'react-helmet';
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
@@ -52,23 +53,51 @@ const ServiceDetail = () => {
   const description = isHubSpotTraining ? hubspotDescription : service.description;
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
+  // Define breadcrumbs for schema
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services' },
+    { name: title, url: `/services/${serviceId}` }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>{title} | DataOps Group</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={`${baseUrl}/services/${serviceId}`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${title} | DataOps Group`} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={`${baseUrl}/services/${serviceId}`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${title} | DataOps Group`} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
+      </Helmet>
+      
+      {/* Schema Markup */}
       <ServiceSchema 
         name={title}
         description={description}
-        url={`/services/${serviceId}`}
-        serviceOutput={isHubSpotTraining 
-          ? "Improved team proficiency with HubSpot, maximized platform ROI, and streamlined operations" 
-          : "Optimized data operations, improved business insights, and enhanced marketing and sales performance"}
+        url={`${baseUrl}/services/${serviceId}`}
+        image={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`}
       />
+      <BreadcrumbSchema items={breadcrumbs} />
       
       <Navbar />
       <main>
         {/* Hero Section */}
         <ServiceHero 
           title={title}
+          tagline={isHubSpotTraining ? "Professional Training That Delivers Results" : "Operational Excellence for Portfolio Growth"}
           description={description}
+          ctaText={isHubSpotTraining ? "Book Your HubSpot Strategy Session" : "Get Your Custom Strategy"}
           isHubSpotTraining={isHubSpotTraining}
           serviceIcon={service.icon}
         />

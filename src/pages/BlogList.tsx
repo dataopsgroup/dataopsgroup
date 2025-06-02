@@ -9,6 +9,11 @@ import { format } from 'date-fns';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import OptimizedImage from '@/components/ui/optimized-image';
+import { Badge } from '@/components/ui/badge';
+import { Clock, Calendar } from 'lucide-react';
+import DynamicThumbnail from '@/components/blog/DynamicThumbnail';
+import { calculateReadingTime } from '@/utils/thumbnail-generator';
+
 const BlogList = () => {
   const location = useLocation();
 
@@ -26,6 +31,9 @@ const BlogList = () => {
 
   // Ensure canonical URL is without query parameters
   const canonicalPath = '/insights';
+
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+
   useEffect(() => {
     // Track page view with blog post count
     if (window.gtag) {
@@ -46,35 +54,47 @@ const BlogList = () => {
       window._hsq.push(['trackPageView']);
     }
   }, [filteredBlogPosts, location.pathname]);
-  return <SemanticLayout>
-      <MetaHead title="Insights | DataOps Group" description="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." keywords="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation" canonicalPath={canonicalPath} ogType="website" ogTitle="Expert HubSpot Insights | DataOps Group" ogDescription="Discover actionable insights on HubSpot data management, marketing analytics, and revenue generation strategies." />
+
+  return (
+    <SemanticLayout>
+      <MetaHead 
+        title="Insights | DataOps Group" 
+        description="Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group." 
+        keywords="hubspot insights, marketing data, marketing analytics, sales analytics, data management, revenue generation" 
+        canonicalPath="/insights" 
+        ogType="website" 
+        ogTitle="Expert HubSpot Insights | DataOps Group" 
+        ogDescription="Discover actionable insights on HubSpot data management, marketing analytics, and revenue generation strategies." 
+        ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+        siteName="DataOps Group"
+      />
       
       {/* Schema Markup */}
       <BreadcrumbSchema items={breadcrumbs} />
       <script type="application/ld+json">
         {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "Insights | DataOps Group",
-        "description": "Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "DataOps Group",
-          "logo": {
-            "@type": "ImageObject",
-            "url": `${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Insights | DataOps Group",
+          "description": "Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "DataOps Group",
+            "logo": {
+              "@type": "ImageObject",
+              "url": `${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+            }
+          },
+          "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": filteredBlogPosts.map((post, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "url": `${window.location.origin}/insights/${post.id}`,
+              "name": post.title
+            }))
           }
-        },
-        "mainEntity": {
-          "@type": "ItemList",
-          "itemListElement": filteredBlogPosts.map((post, index) => ({
-            "@type": "ListItem",
-            "position": index + 1,
-            "url": `${window.location.origin}/insights/${post.id}`,
-            "name": post.title
-          }))
-        }
-      })}
+        })}
       </script>
       
       <section className="bg-gradient-to-br from-white to-dataops-50 py-16 md:py-24">
@@ -94,52 +114,107 @@ const BlogList = () => {
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredBlogPosts.map((post, index) => {
-            // Format date for time element
-            const publishDate = new Date(post.date);
-            const formattedPublishDate = publishDate.toISOString();
+              // Format date for time element
+              const publishDate = new Date(post.date);
+              const formattedPublishDate = publishDate.toISOString();
+              const readingTime = calculateReadingTime(post.content);
 
-            // Special case for the post that has a specific image
-            const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" : post.coverImage;
-            return <article key={post.id} className="h-full">
-                  <Card className="flex flex-col h-full hover:shadow-lg transition-shadow">
-                    <Link to={`/insights/${post.id}`} className="flex flex-col h-full" onClick={() => {
-                  // Track blog post click
-                  if (window.gtag) {
-                    window.gtag('event', 'select_content', {
-                      content_type: 'blog_post',
-                      content_id: post.id,
-                      item_list_name: 'Blog Posts',
-                      index: index
-                    });
-                  }
-                }} aria-label={`Read article: ${post.title}`}>
-                      <CardHeader className="pb-4">
-                        <figure>
-                          <OptimizedImage src={coverImage} alt={post.title} className="w-full h-48 object-cover rounded-t-lg mb-6" width={400} height={200} loading="lazy" objectFit="cover" aspectRatio={2 / 1} placeholder="/placeholder.svg" />
-                        </figure>
-                        <CardTitle className="text-xl font-semibold hover:text-dataops-600 transition-colors py-0 pt-3">
+              // Check if post has a cover image
+              const hasCoverImage = !!post.coverImage;
+              
+              // Special case for the post that has a specific image
+              const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" 
+                ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" 
+                : post.coverImage;
+
+              return (
+                <article key={post.id} className="h-full">
+                  <Card className="blog-card-enhanced h-full flex flex-col group">
+                    <Link 
+                      to={`/insights/${post.id}`} 
+                      className="flex flex-col h-full" 
+                      onClick={() => {
+                        // Track blog post click
+                        if (window.gtag) {
+                          window.gtag('event', 'select_content', {
+                            content_type: 'blog_post',
+                            content_id: post.id,
+                            item_list_name: 'Blog Posts',
+                            index: index
+                          });
+                        }
+                      }} 
+                      aria-label={`Read article: ${post.title}`}
+                    >
+                      <CardHeader className="pb-4 relative overflow-hidden">
+                        {/* Conditionally render either existing image or dynamic thumbnail */}
+                        {hasCoverImage ? (
+                          <figure className="relative overflow-hidden rounded-t-lg mb-4">
+                            <OptimizedImage 
+                              src={coverImage} 
+                              alt={post.title} 
+                              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
+                              width={400} 
+                              height={200} 
+                              loading="lazy" 
+                              objectFit="cover" 
+                              aspectRatio={2 / 1} 
+                              placeholder="/placeholder.svg" 
+                            />
+                            {post.category && (
+                              <Badge className="category-tag-enhanced absolute top-3 left-3">
+                                {post.category}
+                              </Badge>
+                            )}
+                          </figure>
+                        ) : (
+                          <DynamicThumbnail
+                            title={post.title}
+                            category={post.category}
+                            readingTime={readingTime}
+                            className="mb-4"
+                          />
+                        )}
+                        <CardTitle className="text-xl font-semibold group-hover:text-dataops-600 transition-colors leading-tight">
                           {post.title}
                         </CardTitle>
                       </CardHeader>
-                      <CardContent className="flex-grow">
-                        <CardDescription className="text-gray-700">
+                      
+                      <CardContent className="flex-grow px-6">
+                        <CardDescription className="text-gray-700 leading-relaxed blog-excerpt">
                           {post.excerpt}
                         </CardDescription>
                       </CardContent>
-                      <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-100">
-                        <div className="text-sm text-gray-500">
-                          <time dateTime={formattedPublishDate}>
-                            {format(new Date(post.date), 'MMMM dd, yyyy')}
-                          </time> · {post.author}
+                      
+                      <CardFooter className="px-6 pb-6">
+                        <div className="w-full">
+                          <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
+                            <div className="flex items-center gap-3">
+                              <div className="flex items-center gap-1">
+                                <Calendar className="w-4 h-4" />
+                                <time dateTime={formattedPublishDate}>
+                                  {format(new Date(post.date), 'MMM dd, yyyy')}
+                                </time>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Clock className="w-4 h-4" />
+                                <span className="read-time">{readingTime} min read</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-600">By {post.author}</span>
+                            <span className="text-dataops-600 group-hover:text-dataops-800 font-medium text-sm transition-colors">
+                              Read More →
+                            </span>
+                          </div>
                         </div>
-                        <span className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
-                          Read More
-                        </span>
                       </CardFooter>
                     </Link>
                   </Card>
-                </article>;
-          })}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -147,6 +222,8 @@ const BlogList = () => {
       <section aria-label="Call to Action">
         <CTABanner />
       </section>
-    </SemanticLayout>;
+    </SemanticLayout>
+  );
 };
+
 export default BlogList;

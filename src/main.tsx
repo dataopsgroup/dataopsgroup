@@ -1,10 +1,9 @@
-
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense, lazy } from 'react';
+import { StrictMode, Suspense } from 'react';
 import { initWebVitals } from './utils/web-vitals';
 import { setupAnalyticsAndMonitoring, initializeApp } from './utils/app-initialization';
 import { 
@@ -19,14 +18,106 @@ import {
 import { scheduleTasks, runWhenIdle } from './lib/task-scheduler';
 import { monitorRouteChanges } from './utils/route-monitoring';
 import { applyCriticalCSS, loadFonts } from './lib/critical-css';
+import { PerformanceMonitor } from './services/performance-monitoring';
+
+// Add type definitions
+declare global {
+  var APP_VERSION: string;
+  var gtag: (command: string, action: string, params?: Record<string, any>) => void;
+}
 
 // Define app version globally
 if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.0.7'; // Incremented version for cache busting
+  window.APP_VERSION = '1.0.9';
+  
+  // Enhanced performance monitoring
+  const performanceMetrics = {
+    navigationStart: performance.now(),
+    firstPaint: 0,
+    firstContentfulPaint: 0,
+    largestContentfulPaint: 0,
+    timeToInteractive: 0,
+    totalBlockingTime: 0,
+    cumulativeLayoutShift: 0
+  };
+
+  // Monitor Core Web Vitals
+  const observer = new PerformanceObserver((list) => {
+    for (const entry of list.getEntries()) {
+      switch (entry.entryType) {
+        case 'paint':
+          if (entry.name === 'first-paint') {
+            performanceMetrics.firstPaint = entry.startTime;
+          } else if (entry.name === 'first-contentful-paint') {
+            performanceMetrics.firstContentfulPaint = entry.startTime;
+          }
+          break;
+        case 'largest-contentful-paint':
+          performanceMetrics.largestContentfulPaint = entry.startTime;
+          break;
+        case 'layout-shift':
+          if ('value' in entry) {
+            performanceMetrics.cumulativeLayoutShift += (entry as any).value;
+          }
+          break;
+      }
+    }
+  });
+
+  observer.observe({ entryTypes: ['paint', 'largest-contentful-paint', 'layout-shift'] });
+
+  // Report metrics when page is fully loaded
+  window.addEventListener('load', () => {
+    performanceMetrics.timeToInteractive = performance.now() - performanceMetrics.navigationStart;
+    
+    // Report to analytics
+    if (window.gtag) {
+      window.gtag('event', 'performance_metrics', {
+        first_paint: performanceMetrics.firstPaint,
+        first_contentful_paint: performanceMetrics.firstContentfulPaint,
+        largest_contentful_paint: performanceMetrics.largestContentfulPaint,
+        time_to_interactive: performanceMetrics.timeToInteractive,
+        total_blocking_time: performanceMetrics.totalBlockingTime,
+        cumulative_layout_shift: performanceMetrics.cumulativeLayoutShift
+      });
+    }
+  });
 }
+
+// Progressive brand font loading function
+const loadBrandFonts = () => {
+  if (typeof window === 'undefined') return;
+
+  // Create a promise to load brand fonts after critical content
+  const loadFonts = () => {
+    // Add font-active-desktop class for desktop devices
+    if (window.innerWidth >= 1024) {
+      document.body.classList.add('font-active-desktop');
+    } else {
+      document.body.classList.add('font-active-mobile');
+    }
+
+    // Remove pending class and add loaded class
+    document.body.classList.remove('fonts-pending');
+    document.body.classList.add('fonts-loaded');
+    performance.mark('brand-fonts-loaded');
+  };
+
+  // Load brand fonts after page is interactive
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(loadFonts, 100); // Small delay to prioritize critical content
+    });
+  } else {
+    setTimeout(loadFonts, 100);
+  }
+};
 
 // Initialize essential monitoring right away
 if (typeof window !== 'undefined') {
+  // Add fonts-pending class immediately for progressive enhancement
+  document.body.classList.add('fonts-pending');
+  
   // Initialize web vitals monitoring early
   initWebVitals();
   
@@ -37,8 +128,14 @@ if (typeof window !== 'undefined') {
   // Apply critical CSS for initial route
   applyCriticalCSS(window.location.pathname);
   
-  // Optimize font loading immediately for better LCP
+  // Optimize font loading immediately for better LCP (Inter baseline)
   loadFonts();
+  
+  // Load brand fonts progressively
+  loadBrandFonts();
+  
+  // Use new performance monitor
+  PerformanceMonitor.init();
 }
 
 // Apply critical performance optimizations immediately
@@ -52,6 +149,8 @@ const renderApp = () => {
     performance.mark('render-start');
     
     const root = createRoot(container);
+    
+    // Standard client-side rendering
     root.render(
       <StrictMode>
         <HelmetProvider>
@@ -101,8 +200,7 @@ if (typeof window !== 'undefined') {
         '/contact',
         '/insights',
         '/services',
-        '/approach',
-        '/faqs'
+        '/approach'
       ]),
       priority: 'medium' 
     },

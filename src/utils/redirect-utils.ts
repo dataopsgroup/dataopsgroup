@@ -64,9 +64,52 @@ export const validateUrlIndexability = async (url: string): Promise<boolean> => 
   return true;
 };
 
+/**
+ * Creates a proper 301 redirect response
+ * @param destination The destination URL
+ * @returns Response object with proper redirect headers
+ */
+export const createSEOFriendlyRedirect = (destination: string): Response => {
+  return new Response(null, {
+    status: 301,
+    headers: {
+      'Location': destination,
+      'Cache-Control': 'public, max-age=31536000', // Cache for 1 year
+      'X-Robots-Tag': 'noindex'
+    }
+  });
+};
+
+/**
+ * Checks if request is from a search engine bot
+ * Client-side version of bot detection
+ * @param userAgent The user agent string
+ * @returns True if request is from a bot
+ */
+export const isSearchEngineBot = (userAgent: string): boolean => {
+  const botPatterns = [
+    /googlebot/i,
+    /bingbot/i,
+    /slurp/i,
+    /duckduckbot/i,
+    /baiduspider/i,
+    /yandexbot/i,
+    /facebookexternalhit/i,
+    /twitterbot/i,
+    /linkedinbot/i,
+    /applebot/i,
+    /ia_archiver/i
+  ];
+  
+  return botPatterns.some(pattern => pattern.test(userAgent));
+};
+
 export default {
   handleHubSpotCTARedirect,
   getCanonicalFromAmpUrl,
   removeHsLangParameter,
-  validateUrlIndexability
+  validateUrlIndexability,
+  createSEOFriendlyRedirect,
+  isSearchEngineBot
 };
+

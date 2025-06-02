@@ -1,5 +1,5 @@
 
-// Service Worker Event Handlers
+// Service Worker Event Handlers with Bot Detection
 
 // Install event - cache core assets by category
 self.addEventListener('install', event => {
@@ -34,21 +34,32 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch event with different strategies based on request type
+// Primary fetch event with bot detection
 self.addEventListener('fetch', event => {
-  // Skip non-GET requests and third-party requests
-  if (event.request.method !== 'GET' || 
-      !event.request.url.startsWith(self.location.origin)) {
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+  
+  // Skip third-party requests
+  if (!event.request.url.startsWith(self.location.origin)) {
     return;
   }
   
   // Skip analytics requests
   if (event.request.url.includes('googletagmanager.com') || 
-      event.request.url.includes('hs-scripts.com')) {
+      event.request.url.includes('hs-scripts.com') ||
+      event.request.url.includes('google-analytics.com')) {
     return;
   }
   
-  // Get the appropriate cache configuration for this request
+  // CRITICAL: Handle search engine bots differently
+  if (isSearchEngineBot(event.request)) {
+    event.respondWith(handleBotRequest(event.request));
+    return;
+  }
+  
+  // Regular user requests - apply normal caching strategies
   const cacheConfig = getCacheConfigForRequest(event.request);
   
   // Select caching strategy based on the type of resource
@@ -74,6 +85,9 @@ self.addEventListener('fetch', event => {
 self.addEventListener('fetch', event => {
   // Only run this for HTML navigation when the first handler didn't respond
   if (event.request.mode !== 'navigate') return;
+  
+  // Skip if this is a bot request (already handled above)
+  if (isSearchEngineBot(event.request)) return;
   
   event.respondWith(
     fetch(event.request)
@@ -101,3 +115,4 @@ self.addEventListener('message', (event) => {
     );
   }
 });
+

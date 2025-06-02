@@ -5,19 +5,16 @@ import { Search, Wrench, TrendingUp } from 'lucide-react';
 const steps = [{
   icon: <Search className="h-10 w-10" />,
   title: 'PE-Standard Assessment',
-  subtitle: 'Week 1',
   description: 'We audit operations against PE growth expectations and identify gaps that slow portfolio value creation.',
   color: 'bg-blue-500'
 }, {
   icon: <Wrench className="h-10 w-10" />,
   title: 'Rapid Implementation',
-  subtitle: 'Week 2-3',
   description: 'We deploy proven HubSpot systems designed for PE portfolio scalability and investor reporting requirements.',
   color: 'bg-orange-500'
 }, {
   icon: <TrendingUp className="h-10 w-10" />,
   title: 'Portfolio Optimization',
-  subtitle: 'Week 4',
   description: 'We optimize for the metrics PE firms track and ensure systems can scale across other portfolio companies.',
   color: 'bg-green-500'
 }];
@@ -38,8 +35,7 @@ const Approach = () => {
                 {step.icon}
               </div>
               
-              <h3 className="text-xl font-bold mb-2">Step {index + 1}: {step.title}</h3>
-              <p className="text-sm font-medium text-gray-500 mb-3">({step.subtitle})</p>
+              <h3 className="text-xl font-bold mb-4">Step {index + 1}: {step.title}</h3>
               <p className="text-center text-gray-600">{step.description}</p>
             </div>)}
         </div>

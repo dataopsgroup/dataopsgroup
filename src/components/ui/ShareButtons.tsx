@@ -7,12 +7,14 @@ interface ShareButtonsProps {
   title: string;
   className?: string;
   position?: 'default' | 'under-title';
+  variant?: 'default' | 'white';
 }
 
 const ShareButtons: React.FC<ShareButtonsProps> = ({
   title,
   className = '',
   position = 'default',
+  variant = 'default',
 }) => {
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
@@ -53,32 +55,37 @@ const ShareButtons: React.FC<ShareButtonsProps> = ({
     });
   };
   
+  // Determine button styling based on variant
+  const buttonClass = variant === 'white' 
+    ? "text-white hover:text-gray-200 transition-colors"
+    : "text-gray-600 hover:text-dataops-600 transition-colors";
+  
   return (
     <div className={`flex items-center space-x-3 ${position === 'under-title' ? 'absolute top-9 left-0' : ''} ${className}`}>
       <button 
         onClick={handleShareLinkedIn}
         aria-label="Share on LinkedIn"
-        className="text-gray-600 hover:text-dataops-600 transition-colors mt-[5px]"
+        className={buttonClass}
       >
-        <Linkedin size={18} />
+        <Linkedin size={16} />
         <span className="sr-only">Share on LinkedIn</span>
       </button>
       
       <button 
         onClick={handleShareTwitter}
         aria-label="Share on Twitter"
-        className="text-gray-600 hover:text-dataops-600 transition-colors mt-[5px]"
+        className={buttonClass}
       >
-        <Twitter size={18} />
+        <Twitter size={16} />
         <span className="sr-only">Share on Twitter</span>
       </button>
       
       <button 
         onClick={handleCopyLink}
         aria-label="Copy link to clipboard"
-        className="text-gray-600 hover:text-dataops-600 transition-colors mt-[5px]"
+        className={buttonClass}
       >
-        {copied ? <Check size={18} /> : <Copy size={18} />}
+        {copied ? <Check size={16} /> : <Copy size={16} />}
         <span className="sr-only">Copy link</span>
       </button>
     </div>

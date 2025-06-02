@@ -165,15 +165,4 @@ const Contact = () => {
   );
 };
 
-// Add HubSpot form typing to window object
-declare global {
-  interface Window {
-    hbspt?: {
-      forms: {
-        create: (config: any) => void;
-      };
-    };
-  }
-}
-
 export default Contact;

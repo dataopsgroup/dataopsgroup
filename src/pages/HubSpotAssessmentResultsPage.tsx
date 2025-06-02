@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -6,8 +5,18 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import CTABanner from '@/components/CTABanner';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const HubSpotAssessmentResultsPage = () => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+
+  // Define breadcrumbs for schema
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'HubSpot Assessment', url: '/hubspot-assessment' },
+    { name: 'Results', url: '/hubspot-assessment-results' }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -16,7 +25,58 @@ const HubSpotAssessmentResultsPage = () => {
           name="description" 
           content="Your HubSpot Implementation Assessment results have been sent to your email. Review your personalized recommendations and next steps to improve your HubSpot implementation."
         />
+        <link rel="canonical" href={`${baseUrl}/hubspot-assessment-results`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="HubSpot Assessment Results Sent | DataOps Group" />
+        <meta property="og:description" content="Your HubSpot Implementation Assessment results have been sent to your email. Review your personalized recommendations and next steps to improve your HubSpot implementation."
+        />
+        <meta property="og:url" content={`${baseUrl}/hubspot-assessment-results`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} /> {/* Using a default image */}
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="HubSpot Assessment Results Sent | DataOps Group" />
+        <meta name="twitter:description" content="Your HubSpot Implementation Assessment results have been sent to your email. Review your personalized recommendations and next steps to improve your HubSpot implementation."
+        />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} /> {/* Using a default image */}
+        <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
+      
+      {/* Schema Markup */}
+      <BreadcrumbSchema items={breadcrumbs} />
+      <script type="application/ld+json">{`
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "HubSpot Assessment Results | DataOps Group",
+          "description": "Your HubSpot Implementation Assessment results have been sent to your email. Review your personalized recommendations and next steps to improve your HubSpot implementation.",
+          "url": "${baseUrl}/hubspot-assessment-results",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "${baseUrl}/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "HubSpot Assessment",
+                "item": "${baseUrl}/hubspot-assessment"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Results",
+                "item": "${baseUrl}/hubspot-assessment-results"
+              }
+            ]
+          }
+        }
+      `}</script>
       
       <Navbar />
       

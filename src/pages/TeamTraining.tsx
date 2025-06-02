@@ -1,7 +1,6 @@
-
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import { Helmet } from 'react-helmet-async';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import ServiceHero from '@/components/services/ServiceHero';
 import ServiceBenefits from '@/components/services/ServiceBenefits';
@@ -19,8 +18,29 @@ const TeamTraining = () => {
     "Improved adoption rates across your organization"
   ];
 
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <Helmet>
+        <title>HubSpot Training & Implementation | DataOps Group</title>
+        <meta name="description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+        <link rel="canonical" href={`${baseUrl}/services/team-training`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="HubSpot Training & Implementation | DataOps Group" />
+        <meta property="og:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+        <meta property="og:url" content={`${baseUrl}/services/team-training`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="HubSpot Training & Implementation | DataOps Group" />
+        <meta name="twitter:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
+      </Helmet>
+      
       <ServiceSchema 
         name="HubSpot Training & Implementation"
         description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
@@ -28,11 +48,12 @@ const TeamTraining = () => {
         serviceOutput="Improved team proficiency with HubSpot, maximized platform ROI, and streamlined operations"
       />
       
-      <Navbar />
-      <main>
+      <SemanticLayout>
         <ServiceHero 
           title="HubSpot Training & Implementation"
+          tagline="Professional Training That Delivers Results"
           description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
+          ctaText="Book Your HubSpot Strategy Session"
           isHubSpotTraining={true}
           serviceIcon={<Users className="h-24 w-24" />}
           imageSrc="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"
@@ -59,9 +80,8 @@ const TeamTraining = () => {
         </section>
         
         <CTABanner />
-      </main>
-      <Footer />
-    </div>
+      </SemanticLayout>
+    </>
   );
 };
 
