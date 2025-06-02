@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef, RefObject } from 'react';
 import { reportLCPMetric, preloadCriticalImage } from '@/utils/image-utils';
 
@@ -34,16 +33,18 @@ export const useOptimizedImage = ({
   threshold = 0.15 // Universal threshold for all devices
 }: UseOptimizedImageProps): UseOptimizedImageReturn => {
   const imgRef = useRef<HTMLImageElement>(null);
+  // During SSR, isInView is true for priority/LCP, false otherwise
+  const [isInView, setIsInView] = useState(typeof window === 'undefined' ? (priority || isLCP) : (priority || isLCP));
   const [isLoaded, setIsLoaded] = useState(false);
-  // For priority/LCP images, start with isInView = true to prevent conflicts
-  const [isInView, setIsInView] = useState(priority || isLCP);
   
   // Enhanced intersection observer with universal configuration
   useEffect(() => {
-    if (priority || isLCP || !imgRef.current || typeof window === 'undefined') {
+    // Only run in browser and if not priority/LCP (which are eager loaded)
+    if (typeof window === 'undefined' || priority || isLCP || !imgRef.current) {
       return;
     }
     
+    // Fallback if IntersectionObserver is not supported (e.g., older browsers)
     if (!('IntersectionObserver' in window)) {
       setIsInView(true);
       return;
@@ -58,8 +59,10 @@ export const useOptimizedImage = ({
             setIsInView(true);
             observer.disconnect();
             
-            // Performance mark for monitoring
-            performance.mark(`image-visible-${src.split('/').pop()}`);
+            // Performance mark for monitoring (only in browser)
+            if (typeof performance !== 'undefined' && performance.mark) {
+               performance.mark(`image-visible-${src.split('/').pop()}`);
+            }
           }
         },
         {
@@ -92,9 +95,9 @@ export const useOptimizedImage = ({
     }
   }, [src, priority, isLCP]);
   
-  // Enhanced LCP reporting with detailed metrics
+  // Enhanced LCP reporting with detailed metrics (only in browser)
   useEffect(() => {
-    if (!isLCP || !isLoaded) return;
+    if (!isLCP || !isLoaded || typeof window === 'undefined') return;
     
     try {
       reportLCPMetric(src);
@@ -103,7 +106,7 @@ export const useOptimizedImage = ({
         imgRef.current.setAttribute('data-lcp-candidate', 'true');
         imgRef.current.setAttribute('data-loaded-at', Date.now().toString());
         
-        // Report to Core Web Vitals
+        // Report to Core Web Vitals (only if gtag is available)
         if (window.gtag) {
           window.gtag('event', 'lcp_candidate_loaded', {
             'event_category': 'Performance',
@@ -120,14 +123,16 @@ export const useOptimizedImage = ({
   const handleLoad = () => {
     setIsLoaded(true);
     
-    // Performance mark for load completion
-    performance.mark(`image-loaded-${src.split('/').pop()}`);
+    // Performance mark for load completion (only in browser)
+    if (typeof performance !== 'undefined' && performance.mark) {
+      performance.mark(`image-loaded-${src.split('/').pop()}`);
+    }
   };
   
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     console.warn(`Failed to load image: ${src}`);
     
-    // Enhanced error reporting with context
+    // Enhanced error reporting with context (only in browser if gtag available)
     if (typeof window !== 'undefined' && window.gtag) {
       try {
         window.gtag('event', 'image_load_error', {

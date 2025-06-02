@@ -56,7 +56,7 @@ const OptimizedImage = ({
   const {
     imgRef,
     isLoaded,
-    isInView,
+    isInView, // This will be true for priority/LCP during SSR
     handleLoad,
     handleError
   } = useOptimizedImage({
@@ -68,14 +68,19 @@ const OptimizedImage = ({
     threshold
   });
 
-  // Universal loading strategy - consistent threshold for all devices
+  // Determine if the image should load based on priority/LCP or visibility
+  // During SSR, isInView from the hook will be true for priority/LCP
   const shouldLoad = priority || isLCP || isInView;
+
+  // Universal loading strategy - consistent threshold for all devices
+  // Use eager loading for priority/LCP, lazy otherwise (both during SSR and client-side)
   const imageLoading = loading || (priority || isLCP ? 'eager' : 'lazy');
   const imageDecoding = decoding || (priority || isLCP ? 'sync' : 'async');
 
   // Enhanced responsive srcsets with intelligent breakpoint selection
   let srcSet = '';
   try {
+    // Generate srcSet during SSR if it's a priority/LCP image
     if (shouldLoad) {
       // Filter breakpoints based on image dimensions for optimal performance
       const optimalBreakpoints = responsiveBreakpoints.filter(bp => 
@@ -90,6 +95,9 @@ const OptimizedImage = ({
 
   // Enhanced error handling with progressive fallbacks
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    // Only run in browser environment
+    if (typeof window === 'undefined') return;
+
     console.warn(`Failed to load image: ${safeSrc}`);
     
     const img = e.currentTarget;
@@ -97,7 +105,7 @@ const OptimizedImage = ({
     // Try fallback to original format if modern format failed
     if (img.src.includes('.webp') || img.src.includes('.avif')) {
       const originalSrc = safeSrc.replace(/\.(webp|avif)$/i, match => 
-        match.includes('webp') ? '.jpg' : '.jpg'
+        match.includes('webp') ? '.jpg' : '.jpg' // Assuming .jpg as a common fallback
       );
       img.src = originalSrc;
       return;
@@ -113,8 +121,14 @@ const OptimizedImage = ({
 
   // Enhanced modern format support with better fallback chain
   const createPictureElement = () => {
-    if (!enableModernFormats || !shouldLoad) {
-      return createImageElement(safeSrc);
+    // Only render picture element with sources in browser or if shouldLoad during SSR
+    if (!enableModernFormats || (!shouldLoad && typeof window === 'undefined')) {
+       return createImageElement(safeSrc);
+    }
+    
+    // In browser and not shouldLoad, render placeholder first then let JS load
+    if (!shouldLoad && typeof window !== 'undefined') {
+      return createImageElement(placeholder);
     }
 
     const baseUrl = safeSrc.split('?')[0];
@@ -143,30 +157,34 @@ const OptimizedImage = ({
 
   // Enhanced image element with better performance attributes
   const createImageElement = (imgSrc: string) => {
-    const fetchPriorityProp = isLCP ? { fetchPriority: 'high' as const } : 
+     const fetchPriorityProp = isLCP ? { fetchPriority: 'high' as const } : 
                               priority ? { fetchPriority: 'high' as const } : 
                               { fetchPriority: 'auto' as const };
-    
+
+    // During SSR, set src and srcSet based on shouldLoad
+    const finalSrc = (typeof window === 'undefined' && shouldLoad) || typeof window !== 'undefined' ? imgSrc : placeholder;
+    const finalSrcSet = (typeof window === 'undefined' && shouldLoad) || typeof window !== 'undefined' ? srcSet : undefined;
+
     return (
       <img
         ref={imgRef}
-        src={shouldLoad ? imgSrc : placeholder}
+        src={finalSrc}
         alt={alt}
         width={width}
         height={height}
         className={`${className || ''} max-w-full transition-all duration-300 ${
-          blur && !isLoaded && shouldLoad ? 'blur-sm scale-105' : ''
+          blur && !isLoaded && shouldLoad && typeof window !== 'undefined' ? 'blur-sm scale-105' : ''
         }`}
         style={{ 
           objectFit,
           aspectRatio: aspectRatio ? `${aspectRatio}` : undefined
         }}
-        srcSet={srcSet}
+        srcSet={finalSrcSet}
         sizes={sizes}
         loading={imageLoading}
         decoding={imageDecoding}
-        onLoad={handleLoad}
-        onError={handleImageError}
+        onLoad={typeof window !== 'undefined' ? handleLoad : undefined}
+        onError={typeof window !== 'undefined' ? handleImageError : undefined}
         {...fetchPriorityProp}
         {...props}
       />
@@ -182,7 +200,7 @@ const OptimizedImage = ({
         ratio={aspectRatio} 
         className={`overflow-hidden ${className || ''}`}
         style={{
-          backgroundColor: !isLoaded ? '#f3f4f6' : 'transparent'
+          backgroundColor: (blur && !isLoaded && shouldLoad && typeof window !== 'undefined') ? '#f3f4f6' : 'transparent'
         }}
       >
         {imageElement}
