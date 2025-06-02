@@ -5,7 +5,6 @@ const HubSpotAssessmentResultsPage = lazy(() => import('@/pages/HubSpotAssessmen
 const GetStartedPage = lazy(() => import('@/pages/GetStartedPage'));
 const ThankYouPage = lazy(() => import('@/pages/ThankYouPage'));
 const ContactThankYouPage = lazy(() => import('@/pages/ContactThankYouPage'));
-const SEODashboard = lazy(() => import('@/pages/SEODashboard'));
 const Sitemap = lazy(() => import('@/pages/Sitemap'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
@@ -33,11 +32,6 @@ export const utilityRoutes = [
   {
     path: "/contact/thank-you",
     element: <ContactThankYouPage />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/admin/seo",
-    element: <SEODashboard />,
     errorElement: <NotFound />,
   },
   {
