@@ -142,4 +142,9 @@
   .approach-step-title {
     @apply text-xl font-bold mb-4 leading-relaxed;
   }
+
+  /* Approach Benefit Heading - Fixed sizing for card constraints */
+  .approach-benefit-heading {
+    @apply text-base md:text-lg font-semibold mb-2 leading-tight;
+  }
 }
