@@ -7,7 +7,7 @@ import { utilityRoutes } from './utilityRoutes';
 import { redirectRoutes } from './redirectRoutes';
 import { blogRedirectRoutes } from './blogRedirectRoutes';
 import { apiRoutes } from './apiRoutes';
-import ErrorBoundary from '@/components/ErrorBoundary';
+import RouteErrorBoundary from '@/components/RouteErrorBoundary';
 
 // Enhanced router configuration with error boundary wrapping
 const routes = [
@@ -15,7 +15,7 @@ const routes = [
   ...serviceRoutes,
   ...insightRoutes.map(route => ({
     ...route,
-    errorElement: <ErrorBoundary />
+    errorElement: <RouteErrorBoundary />
   })),
   ...utilityRoutes,
   ...redirectRoutes,
