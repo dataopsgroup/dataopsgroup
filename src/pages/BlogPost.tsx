@@ -10,6 +10,8 @@ import useScrollToAnchor from '@/hooks/useScrollToAnchor';
 import usePostAnalytics from '@/hooks/usePostAnalytics';
 
 const BlogPostPage = () => {
+  console.log('BlogPostPage component rendering');
+  
   // Add safety check for React hooks
   if (typeof React.useState !== 'function' || typeof React.useEffect !== 'function') {
     console.error('React hooks not available - React may not be loaded properly');
@@ -18,7 +20,13 @@ const BlogPostPage = () => {
 
   const { post, relatedPosts, loading, error } = useBlogPost();
   
-  console.log('BlogPost component rendering');
+  console.log('BlogPostPage state:', { 
+    hasPost: !!post, 
+    postTitle: post?.title, 
+    loading, 
+    error,
+    relatedPostsCount: relatedPosts.length 
+  });
   
   // Use our custom hooks with safety checks
   try {
@@ -29,6 +37,7 @@ const BlogPostPage = () => {
   }
 
   if (loading) {
+    console.log('Rendering loading state');
     return (
       <SemanticLayout>
         <div className="py-16 px-4 text-center">
@@ -45,6 +54,7 @@ const BlogPostPage = () => {
   }
 
   const isCaseStudy = post.category === 'Case Study';
+  console.log('Rendering blog post:', post.title, 'isCaseStudy:', isCaseStudy);
 
   return (
     <SemanticLayout>

@@ -5,27 +5,27 @@ const BlogList = lazy(() => import('../pages/BlogList'));
 const BlogPostPage = lazy(() => import('../pages/BlogPost'));
 const CaseStudiesPage = lazy(() => import('../pages/CaseStudies'));
 const FAQs = lazy(() => import('../pages/FAQs'));
-const NotFound = lazy(() => import('../pages/NotFound'));
+const RouteErrorBoundary = lazy(() => import('../components/RouteErrorBoundary'));
 
 export const insightRoutes = [
   {
     path: "/insights",
     element: <BlogList />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/insights/:postId",
     element: <BlogPostPage />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/case-studies",
     element: <CaseStudiesPage />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/faqs",
     element: <FAQs />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   }
 ];

@@ -13,14 +13,13 @@ export const useBlogPost = () => {
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
   
-  console.log('useBlogPost hook called');
-  console.log('postId from URL params:', postId);
+  console.log('useBlogPost hook called with postId:', postId);
   console.log('Available blog posts:', blogPosts?.length || 0);
+  console.log('All blog post IDs:', blogPosts.map(p => p.id));
   
   useEffect(() => {
     console.log('useBlogPost useEffect triggered');
-    console.log('postId from params:', postId);
-    console.log('Available blog posts:', blogPosts.map(p => p.id));
+    console.log('Looking for postId:', postId);
     
     try {
       setLoading(true);
@@ -41,20 +40,25 @@ export const useBlogPost = () => {
       }
       
       const foundPost = blogPosts.find(p => p.id === postId);
-      console.log('Found post:', foundPost ? foundPost.title : 'Not found');
+      console.log('Search result for postId', postId, ':', foundPost ? 'FOUND' : 'NOT FOUND');
       
       if (foundPost) {
+        console.log('Successfully found post:', foundPost.title);
         setPost(foundPost);
+        
+        // Get related posts (excluding current post)
         const otherPosts = blogPosts.filter(p => p.id !== postId);
         setRelatedPosts(otherPosts.slice(0, 3));
         setError(null);
       } else {
         console.error('Post not found for ID:', postId);
+        console.error('Available IDs:', blogPosts.map(p => p.id));
         setError(`Blog post with ID "${postId}" not found`);
+        
         if (toast) {
           toast({
             title: "Post not found",
-            description: "We couldn't find the blog post you're looking for.",
+            description: `We couldn't find the blog post "${postId}".`,
             variant: "destructive"
           });
         }
@@ -62,10 +66,29 @@ export const useBlogPost = () => {
     } catch (err) {
       console.error('Error in useBlogPost useEffect:', err);
       setError('An error occurred while loading the blog post');
+      
+      if (toast) {
+        toast({
+          title: "Error loading post",
+          description: "There was an error loading the blog post.",
+          variant: "destructive"
+        });
+      }
     } finally {
       setLoading(false);
     }
   }, [postId, toast]);
+
+  // Additional debugging info
+  useEffect(() => {
+    console.log('Current state:', { 
+      postId, 
+      post: post?.title || 'null', 
+      loading, 
+      error,
+      relatedPostsCount: relatedPosts.length 
+    });
+  }, [postId, post, loading, error, relatedPosts]);
 
   return { post, relatedPosts, loading, error };
 };
