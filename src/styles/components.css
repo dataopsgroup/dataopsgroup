@@ -1,3 +1,4 @@
+
 /* Enhanced Blog Styling Classes */
 @layer components {
   /* Professional Blog Card Styling */
@@ -26,7 +27,7 @@
   }
 
   .insights-page .blog-excerpt {
-    @apply text-xl leading-relaxed text-gray-700; /* 25% larger supporting text */
+    @apply text-lg leading-relaxed text-gray-700; /* Changed from text-xl to text-lg */
   }
 
   .insights-page .blog-card-enhanced time,
