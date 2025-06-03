@@ -20,16 +20,16 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
           <div 
-            className="lg:col-span-2 space-y-6 relative p-8 rounded-xl"
+            className="lg:col-span-2 space-y-6 relative p-8 rounded-xl border border-gray-100"
             style={{
               backgroundImage: `url(/lovable-uploads/d7a76753-96fc-40c6-879a-5d868afa4c06.png)`,
-              backgroundSize: 'cover',
+              backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
           >
-            {/* Overlay for better text readability */}
-            <div className="absolute inset-0 bg-white/85 rounded-xl"></div>
+            {/* Subtle overlay for text readability */}
+            <div className="absolute inset-0 bg-white/70 rounded-xl"></div>
             
             {/* Content with higher z-index */}
             <div className="relative z-10">
