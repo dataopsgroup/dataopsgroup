@@ -3,6 +3,7 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const Hero = () => {
   const {
     isMobile
@@ -32,47 +33,102 @@ const Hero = () => {
     }
     e.currentTarget.style.display = 'none';
   };
-  return <>
+
+  return (
+    <>
       <div className={`relative pt-24 pb-16 md:py-32 px-4 min-h-[500px] ${isMobile ? 'bg-gradient-to-br from-dataops-600 via-dataops-500 to-dataops-400' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
-        {/* Background Image - optimized with explicit dimensions */}
-        {!isMobile && <div className="absolute inset-0">
-            <img src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" alt="Hero background" className="w-full h-full object-cover" loading="eager" fetchPriority="high" width="1920" height="1080" onError={handleImageError} />
-          </div>}
+        {/* Background Image - Desktop only */}
+        {!isMobile && (
+          <div className="absolute inset-0">
+            <img 
+              src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" 
+              alt="Hero background" 
+              className="w-full h-full object-cover" 
+              loading="eager" 
+              fetchPriority="high" 
+              width="1920" 
+              height="1080" 
+              onError={handleImageError} 
+            />
+          </div>
+        )}
         
-        {/* Universal CSS Grid Layout Container */}
+        {/* Content Container */}
         <div className="container mx-auto relative z-10 h-full">
           <div className={`grid gap-4 h-full items-start ${isMobile ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-12'}`}>
             {/* Hero Content */}
-            <div className={`space-y-8 ${isMobile ? 'mx-4 max-w-full' : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'}`}>
-              {/* Universal content background */}
-              <div className={`rounded-lg p-8 space-y-8 ${isMobile ? 'bg-white/90 backdrop-blur-sm' : 'bg-white/75'}`}>
+            <div className={`space-y-8 ${isMobile 
+              ? 'w-[90%] mx-auto max-w-full' 
+              : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'
+            }`}>
+              {/* Mobile: No card background, Desktop: Keep white semi-transparent card */}
+              <div className={`space-y-8 ${isMobile 
+                ? 'py-8' 
+                : 'bg-white/75 rounded-lg p-8'
+              }`}>
                 <div>
-                  {/* Universal LCP element marking */}
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading">
-                    We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className="text-green-600">100 Days</span>
+                  {/* Hero Heading */}
+                  <h1 className={`font-bold leading-relaxed ${isMobile 
+                    ? 'text-4xl text-white' 
+                    : 'text-3xl md:text-4xl lg:text-5xl text-[#403E43]'
+                  }`} id="hero-heading">
+                    We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in{' '}
+                    <span className={`${isMobile 
+                      ? 'inline-block bg-green-500 text-white px-3 py-1 rounded-full text-3xl font-bold' 
+                      : 'text-green-600'
+                    }`}>
+                      100 Days
+                    </span>
                   </h1>
-                  <div className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                    <p className="mb-4">We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
-                    <p className="font-medium text-gray-800 mb-4"></p>
-                    <ul className="list-disc pl-6 space-y-1 mb-4">
-                      <li>19% higher valuation multiples</li>
-                      <li>73% faster EBITDA growth</li>
-                      <li>$18-22 ROI per $1 invested</li>
+                  
+                  <div className={`mt-6 leading-relaxed ${isMobile 
+                    ? 'text-xl text-white max-w-full' 
+                    : 'text-lg md:text-xl text-gray-700 max-w-lg'
+                  }`}>
+                    <p className="mb-6">
+                      We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
+                    </p>
+                    
+                    <ul className={`space-y-3 mb-6 ${isMobile ? 'text-white' : 'list-disc pl-6'}`}>
+                      <li className={isMobile ? 'flex items-center' : ''}>
+                        {isMobile && <span className="text-green-300 mr-3 text-xl">→</span>}
+                        19% higher valuation multiples
+                      </li>
+                      <li className={isMobile ? 'flex items-center' : ''}>
+                        {isMobile && <span className="text-green-300 mr-3 text-xl">→</span>}
+                        73% faster EBITDA growth
+                      </li>
+                      <li className={isMobile ? 'flex items-center' : ''}>
+                        {isMobile && <span className="text-green-300 mr-3 text-xl">→</span>}
+                        $18-22 ROI per $1 invested
+                      </li>
                     </ul>
                   </div>
                 </div>
                 
+                {/* CTA Section */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex flex-col">
                     <Link to="/contact" onClick={trackContactCTAClick}>
-                      <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
+                      <Button className={`${isMobile 
+                        ? 'bg-white text-dataops-600 hover:bg-gray-100 px-8 py-6 text-lg font-semibold w-full' 
+                        : 'bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base'
+                      } whitespace-normal`}>
                         Get In Touch
                         <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                       </Button>
                     </Link>
-                    <div className="mt-3 text-sm text-gray-600 max-w-sm">
-                      <p className="font-medium text-gray-700 mb-1">Confidential | No Risk</p>
-                      <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
+                    
+                    <div className={`mt-4 max-w-sm ${isMobile 
+                      ? 'text-white text-base' 
+                      : 'text-sm text-gray-600'
+                    }`}>
+                      <p className={`font-medium mb-2 ${isMobile ? 'text-green-200' : 'text-gray-700'}`}>
+                        Confidential | No Risk
+                      </p>
+                      <p className="leading-relaxed">
+                        We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -114,6 +170,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </>;
+    </>
+  );
 };
+
 export default Hero;
