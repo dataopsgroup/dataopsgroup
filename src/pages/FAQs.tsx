@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -9,6 +10,7 @@ import FAQPageSchema from '@/components/seo/FAQPageSchema';
 import FAQHero from '@/components/faqs/FAQHero';
 import FAQCategory from '@/components/faqs/FAQCategory';
 import FAQHelp from '@/components/faqs/FAQHelp';
+import FAQTableOfContents from '@/components/faqs/FAQTableOfContents';
 
 // Import FAQ data
 import faqCategories, { 
@@ -92,6 +94,8 @@ const FAQsPage = () => {
       
       <section className="py-16 px-4 bg-white" aria-label="Frequently Asked Questions">
         <div className="container mx-auto">
+          <FAQTableOfContents categories={faqCategories} />
+          
           <div className="flex flex-col space-y-8">
             {faqCategories && Array.isArray(faqCategories) ? (
               faqCategories.map((category) => (
