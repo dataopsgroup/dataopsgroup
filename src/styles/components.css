@@ -137,4 +137,9 @@
   .blog-cta-section {
     @apply mt-16 pt-8 border-t border-gray-200;
   }
+
+  /* Service Card Title Enhancement */
+  .service-card-title {
+    @apply text-xl font-semibold text-white leading-relaxed;
+  }
 }

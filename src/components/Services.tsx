@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { LineChart, Settings, TrendingUp, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -54,7 +55,7 @@ const Services = () => {
               <Card className={`border-0 overflow-hidden h-full bg-gradient-to-br ${service.gradient} text-white hover:shadow-xl transition-shadow`}>
                 <CardHeader>
                   <div className="mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl font-semibold text-white">{service.title}</CardTitle>
+                  <CardTitle className="service-card-title">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-white/90">{service.description}</CardDescription>
