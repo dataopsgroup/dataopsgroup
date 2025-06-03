@@ -1,3 +1,4 @@
+
 import React, { lazy } from 'react';
 
 const Index = lazy(() => import('../pages/Index'));
