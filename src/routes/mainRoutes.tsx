@@ -2,23 +2,20 @@
 import React, { lazy } from 'react';
 
 const Index = lazy(() => import('../pages/Index'));
-const ContactPage = lazy(() => import('../pages/Contact'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const ApproachPage = lazy(() => import('../pages/ApproachPage'));
+const Contact = lazy(() => import('../pages/Contact'));
 const BookLandingPage = lazy(() => import('../pages/BookLandingPage'));
-const HubSpotExpertGuidePage = lazy(() => import('../pages/HubSpotExpertGuidePage'));
+const BookPage = lazy(() => import('../pages/BookPage'));
+const HubSpotAssessment = lazy(() => import('../pages/HubSpotAssessment'));
+const HubSpotAssessmentResultsPage = lazy(() => import('../pages/HubSpotAssessmentResultsPage'));
+const CaseStudies = lazy(() => import('../pages/CaseStudies'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
-// Define main routes for better organization
 export const mainRoutes = [
   {
     path: "/",
     element: <Index />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/contact",
-    element: <ContactPage />,
     errorElement: <NotFound />,
   },
   {
@@ -27,8 +24,13 @@ export const mainRoutes = [
     errorElement: <NotFound />,
   },
   {
-    path: "/approach",
+    path: "/approach", 
     element: <ApproachPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
     errorElement: <NotFound />,
   },
   {
@@ -37,8 +39,23 @@ export const mainRoutes = [
     errorElement: <NotFound />,
   },
   {
-    path: "/how-to-hire-a-hubspot-expert-in-2025",
-    element: <HubSpotExpertGuidePage />,
+    path: "/book-page",
+    element: <BookPage />,
     errorElement: <NotFound />,
-  }
+  },
+  {
+    path: "/assessment",
+    element: <HubSpotAssessment />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/hubspot-assessment-results",
+    element: <HubSpotAssessmentResultsPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/case-studies",
+    element: <CaseStudies />,
+    errorElement: <NotFound />,
+  },
 ];
