@@ -31,7 +31,7 @@
 
   .insights-page .blog-card-enhanced time,
   .insights-page .blog-card-enhanced .read-time {
-    @apply text-xl; /* 25% larger date and meta text */
+    @apply text-sm; /* Same size as author name and Read More link */
   }
 
   /* Blog Post Header Enhancement */
