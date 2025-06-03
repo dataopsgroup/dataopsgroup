@@ -1,0 +1,43 @@
+
+/* Font Loading Strategies and States */
+
+/* Mobile First Font Strategy - Inter for Mobile */
+body, html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Desktop Font Strategy - Roboto for Body, Rubik for Headlines */
+@media (min-width: 1024px) {
+  body, html {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* Font Loading States */
+.fonts-pending {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.font-active-mobile {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.font-active-desktop {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.font-active-desktop h1,
+.font-active-desktop h2,
+.font-active-desktop h3,
+.font-active-desktop h4,
+.font-active-desktop h5,
+.font-active-desktop h6 {
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
