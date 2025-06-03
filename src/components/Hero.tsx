@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -48,11 +49,11 @@ const Hero = () => {
             {/* Content wrapper - simplified for mobile */}
             <div className={`space-y-8 ${isMobile ? '' : 'bg-gray-500/90 rounded-lg p-8'}`}>
               <div>
-                {/* Main headline with improved mobile typography */}
-                <h1 className={`font-bold text-white ${isMobile ? 'text-4xl leading-tight' : 'text-3xl md:text-4xl lg:text-5xl leading-tight'}`} id="hero-heading">
+                {/* Main headline with improved responsive line heights */}
+                <h1 className={`font-bold text-white ${isMobile ? 'text-4xl leading-normal' : 'text-3xl md:text-4xl lg:text-5xl leading-relaxed md:leading-normal lg:leading-snug'}`} id="hero-heading">
                   Turn PE Portfolio Operations Into Profit Drivers in <span className="text-yellow-300">100 Days</span>
                 </h1>
-                <div className={`mt-6 max-w-lg text-lg text-white ${isMobile ? '' : 'md:text-xl'}`}>
+                <div className={`mt-6 max-w-lg text-lg text-white leading-relaxed ${isMobile ? '' : 'md:text-xl'}`}>
                   <p className="mb-4">We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
                   <p className="font-medium mb-4"></p>
                   <ul className="list-disc pl-6 space-y-1 mb-4">
@@ -71,7 +72,7 @@ const Hero = () => {
                       <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                     </Button>
                   </Link>
-                  <div className={`mt-3 text-sm max-w-sm text-white/90`}>
+                  <div className={`mt-3 text-sm max-w-sm text-white/90 leading-relaxed`}>
                     <p className={`font-medium mb-1 text-white`}>Confidential | No Risk</p>
                     <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
                   </div>
@@ -89,7 +90,7 @@ const Hero = () => {
     {/* Trusted Companies Section */}
     <div className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 leading-normal md:leading-relaxed">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="bg-white p-6 rounded-lg shadow-sm">
