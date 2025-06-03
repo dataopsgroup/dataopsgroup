@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -49,10 +50,10 @@ const Hero = () => {
             <div className={`space-y-8 ${isMobile ? '' : 'bg-gray-500/90 rounded-lg p-8'}`}>
               <div>
                 {/* Main headline with improved mobile typography */}
-                <h1 className={`font-bold ${isMobile ? 'text-4xl text-white leading-tight' : 'text-3xl md:text-4xl lg:text-5xl leading-tight text-[#403E43]'}`} id="hero-heading">
+                <h1 className={`font-bold text-white ${isMobile ? 'text-4xl leading-tight' : 'text-3xl md:text-4xl lg:text-5xl leading-tight'}`} id="hero-heading">
                   We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className="text-yellow-300">100 Days</span>
                 </h1>
-                <div className={`mt-6 max-w-lg ${isMobile ? 'text-lg text-white' : 'text-lg md:text-xl text-gray-700'}`}>
+                <div className={`mt-6 max-w-lg text-lg text-white ${isMobile ? '' : 'md:text-xl'}`}>
                   <p className="mb-4">We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
                   <p className="font-medium mb-4"></p>
                   <ul className="list-disc pl-6 space-y-1 mb-4">
@@ -66,13 +67,13 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex flex-col">
                   <Link to="/contact" onClick={trackContactCTAClick}>
-                    <Button className="bg-white hover:bg-gray-50 text-dataops-600 px-6 py-6 text-base whitespace-normal">
+                    <Button className="bg-brand-navy hover:bg-dataops-800 text-white px-6 py-6 text-base whitespace-normal">
                       Get In Touch
                       <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                     </Button>
                   </Link>
-                  <div className={`mt-3 text-sm max-w-sm ${isMobile ? 'text-white/90' : 'text-gray-600'}`}>
-                    <p className={`font-medium mb-1 ${isMobile ? 'text-white' : 'text-gray-700'}`}>Confidential | No Risk</p>
+                  <div className={`mt-3 text-sm max-w-sm text-white/90`}>
+                    <p className={`font-medium mb-1 text-white`}>Confidential | No Risk</p>
                     <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
                   </div>
                 </div>
