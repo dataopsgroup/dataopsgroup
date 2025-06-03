@@ -12,10 +12,20 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   aspectRatio?: number;
   objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
   loading?: 'lazy' | 'eager';
+  // Add missing props that were being used
+  isLCP?: boolean;
+  placeholder?: string;
+  quality?: number;
+  enableModernFormats?: boolean;
+  sizes?: string;
+  responsiveBreakpoints?: number[];
+  decoding?: 'sync' | 'async' | 'auto';
+  threshold?: number;
+  blur?: boolean;
 }
 
 /**
- * Simplified optimized image component for debugging
+ * Simplified optimized image component
  */
 const OptimizedImage = ({
   src,
@@ -27,15 +37,26 @@ const OptimizedImage = ({
   aspectRatio,
   objectFit = 'cover',
   loading,
+  // Handle the missing props (use them where possible, ignore where not needed)
+  isLCP,
+  placeholder,
+  quality,
+  enableModernFormats,
+  sizes,
+  responsiveBreakpoints,
+  decoding,
+  threshold,
+  blur,
   ...props
 }: OptimizedImageProps) => {
-  // Simplified image loading
-  const imageLoading = loading || (priority ? 'eager' : 'lazy');
+  // Determine loading strategy
+  const imageLoading = loading || (priority || isLCP ? 'eager' : 'lazy');
+  const imageDecoding = decoding || (priority || isLCP ? 'sync' : 'async');
 
   // Simple error handler
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     console.warn(`Failed to load image: ${src}`);
-    e.currentTarget.style.display = 'none';
+    // Don't hide the image, just log the error
   };
 
   const imageElement = (
@@ -50,6 +71,8 @@ const OptimizedImage = ({
         aspectRatio: aspectRatio ? `${aspectRatio}` : undefined
       }}
       loading={imageLoading}
+      decoding={imageDecoding}
+      sizes={sizes}
       onError={handleImageError}
       {...props}
     />
