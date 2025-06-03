@@ -173,8 +173,9 @@ export const logValidationResults = (results: LinkValidationResult[]): void => {
 
 /**
  * Run complete link validation
+ * Returns validation results for further processing
  */
-export const runLinkValidation = (): void => {
+export const runLinkValidation = (): LinkValidationResult[] => {
   const results = validateAllNavigationLinks();
   logValidationResults(results);
   return results;
