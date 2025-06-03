@@ -11,6 +11,8 @@ import FAQHero from '@/components/faqs/FAQHero';
 import FAQCategory from '@/components/faqs/FAQCategory';
 import FAQHelp from '@/components/faqs/FAQHelp';
 import FAQTableOfContents from '@/components/faqs/FAQTableOfContents';
+import FAQSearch from '@/components/faqs/FAQSearch';
+import FAQSearchResults from '@/components/faqs/FAQSearchResults';
 
 // Import FAQ data
 import faqCategories, { 
@@ -21,6 +23,7 @@ import faqCategories, {
   hubspotExpertFAQs 
 } from '@/data/faqs';
 import { validateFAQData } from '@/utils/route-monitoring';
+import { useFAQSearch } from '@/hooks/useFAQSearch';
 
 const FAQsPage = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
@@ -34,6 +37,17 @@ const FAQsPage = () => {
       console.error('FAQ data validation failed. This could cause rendering issues.');
     }
   }, []);
+
+  // Initialize search functionality
+  const {
+    searchTerm,
+    selectedCategory,
+    isSearchActive,
+    searchResults,
+    handleSearch,
+    clearSearch,
+    handleCategoryFilter
+  } = useFAQSearch(faqCategories);
   
   // Combine all FAQ items for schema markup
   const allFAQs = [
@@ -94,21 +108,36 @@ const FAQsPage = () => {
       
       <section className="py-16 px-4 bg-white" aria-label="Frequently Asked Questions">
         <div className="container mx-auto">
-          <FAQTableOfContents categories={faqCategories} />
-          
-          <div className="flex flex-col space-y-8">
-            {faqCategories && Array.isArray(faqCategories) ? (
-              faqCategories.map((category) => (
-                <FAQCategory key={category.id} category={category} />
-              ))
-            ) : (
-              <div className="p-6 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-600">
-                  Error loading FAQ content. Please try refreshing the page.
-                </p>
+          <FAQSearch
+            categories={faqCategories}
+            onSearch={handleSearch}
+            onCategoryFilter={handleCategoryFilter}
+            onClear={clearSearch}
+            selectedCategory={selectedCategory}
+            isSearchActive={isSearchActive}
+          />
+
+          {isSearchActive ? (
+            <FAQSearchResults results={searchResults} searchTerm={searchTerm} />
+          ) : (
+            <>
+              <FAQTableOfContents categories={faqCategories} />
+              
+              <div className="flex flex-col space-y-8">
+                {faqCategories && Array.isArray(faqCategories) ? (
+                  faqCategories.map((category) => (
+                    <FAQCategory key={category.id} category={category} />
+                  ))
+                ) : (
+                  <div className="p-6 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-600">
+                      Error loading FAQ content. Please try refreshing the page.
+                    </p>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </>
+          )}
           
           <aside aria-label="Additional Help" className="mt-12">
             <FAQHelp />
