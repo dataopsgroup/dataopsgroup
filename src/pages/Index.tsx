@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import Services from '@/components/Services';
@@ -12,12 +12,19 @@ import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
+import { initPerformanceMonitoring, trackPerformanceMark } from '@/lib/performance-monitor';
 
 const Index = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
   
-  // Comment: Force GitHub sync - Updated deployment timestamp again
-  console.log('Homepage deployment refresh initiated:', new Date().toISOString());
+  // Initialize performance monitoring
+  useEffect(() => {
+    initPerformanceMonitoring();
+    trackPerformanceMark('index-page-rendered');
+  }, []);
+  
+  // Comment: Performance optimized deployment timestamp
+  console.log('Homepage performance optimization deployed:', new Date().toISOString());
   
   return (
     <SemanticLayout>
@@ -55,14 +62,12 @@ const Index = () => {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         
-        {/* Preload critical resources */}
-        <link rel="preload" as="image" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" />
+        {/* Performance optimization hints */}
+        <link rel="preload" as="image" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" fetchPriority="high" />
         <link rel="preload" as="image" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
-        <link rel="preload" as="image" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" as="image" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" fetchPriority="high" />
         
-        {/* Mobile touch action for better tap targets */}
+        {/* Mobile touch action optimization */}
         <style type="text/css">{`
           button, a, .tap-target {
             touch-action: manipulation;
@@ -80,6 +85,17 @@ const Index = () => {
               line-height: 1.3 !important;
             }
           }
+          
+          /* Prevent layout shifts during font loading */
+          .hero-container {
+            min-height: 500px;
+          }
+          
+          @media (min-width: 768px) {
+            .hero-container {
+              min-height: 600px;
+            }
+          }
         `}</style>
       </Helmet>
       
@@ -90,7 +106,7 @@ const Index = () => {
       <LocalBusinessSchema />
       <ProfessionalServiceSchema />
       
-      {/* Main content sections */}
+      {/* Main content sections with performance optimization */}
       <section aria-labelledby="hero-heading">
         <Hero />
       </section>
