@@ -51,6 +51,11 @@ const BlogList = () => {
     }
   }, [filteredBlogPosts, location.pathname]);
 
+  // Add debugging for blog posts
+  console.log('BlogList component rendering');
+  console.log('Available blog posts:', filteredBlogPosts.length);
+  console.log('Blog post IDs:', filteredBlogPosts.map(p => p.id));
+
   return (
     <SemanticLayout>
       <MetaHead 

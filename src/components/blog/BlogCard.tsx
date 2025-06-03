@@ -30,14 +30,18 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
     : post.coverImage;
 
   const handleCardClick = () => {
-    // Track blog post click
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'select_content', {
-        content_type: 'blog_post',
-        content_id: post.id,
-        item_list_name: 'Blog Posts',
-        index: index
-      });
+    // Track blog post click with safety checks
+    try {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'select_content', {
+          content_type: 'blog_post',
+          content_id: post.id,
+          item_list_name: 'Blog Posts',
+          index: index
+        });
+      }
+    } catch (error) {
+      console.warn('Analytics tracking failed:', error);
     }
   };
 
