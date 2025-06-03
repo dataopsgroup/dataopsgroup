@@ -52,7 +52,7 @@ const Hero = () => {
                     We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className="text-green-600">100 Days</span>
                   </h1>
                   <div className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                    <p className="mb-4">We are PE-specialized consultants who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
+                    <p className="mb-4">We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
                     <p className="font-medium text-gray-800 mb-4">Achieve</p>
                     <ul className="list-disc pl-6 space-y-1 mb-4">
                       <li>19% higher valuation multiples</li>
