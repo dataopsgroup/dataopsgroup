@@ -1,12 +1,12 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const Hero = () => {
-  const { isMobile } = useIsMobile();
+  const {
+    isMobile
+  } = useIsMobile();
 
   // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
@@ -32,7 +32,6 @@ const Hero = () => {
     }
     e.currentTarget.style.display = 'none';
   };
-
   return <>
     <div className={`relative pt-24 pb-16 md:py-32 px-4 min-h-[500px] ${isMobile ? 'bg-dataops-600' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
       {/* Background Image - desktop only */}
@@ -50,7 +49,7 @@ const Hero = () => {
               <div>
                 {/* Main headline with improved mobile typography */}
                 <h1 className={`font-bold ${isMobile ? 'text-4xl text-white leading-tight' : 'text-3xl md:text-4xl lg:text-5xl leading-tight text-[#403E43]'}`} id="hero-heading">
-                  We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className="text-green-600">100 Days</span>
+                  We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className="text-yellow-300">100 Days</span>
                 </h1>
                 <div className={`mt-6 max-w-lg ${isMobile ? 'text-lg text-white' : 'text-lg md:text-xl text-gray-700'}`}>
                   <p className="mb-4">We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
@@ -117,5 +116,4 @@ const Hero = () => {
     </div>
   </>;
 };
-
 export default Hero;
