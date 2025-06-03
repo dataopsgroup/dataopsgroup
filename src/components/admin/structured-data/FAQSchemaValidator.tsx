@@ -6,13 +6,13 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, XCircle, ExternalLink, Loader2 } from 'lucide-react';
-import { validateFAQSchema, validateAllFAQPages } from '@/utils/schema-validation';
-import { ValidationResult } from '@/types/structured-data';
+import { validateFAQSchema, validateAllFAQPages, isBulkResult, isSingleResult } from '@/utils/schema-validation';
+import { FAQValidationResult, BulkValidationResult } from '@/types/structured-data';
 import { FAQ_URLS } from '@/constants/faq-validation';
 import { useToast } from '@/hooks/use-toast';
 
 interface FAQSchemaValidatorProps {
-  onValidationComplete: (results: ValidationResult) => void;
+  onValidationComplete: (results: FAQValidationResult | BulkValidationResult) => void;
   selectedUrl: string;
   onUrlChange: (url: string) => void;
 }
@@ -27,7 +27,7 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
   onUrlChange
 }) => {
   const [isValidating, setIsValidating] = useState(false);
-  const [lastValidation, setLastValidation] = useState<ValidationResult | null>(null);
+  const [lastValidation, setLastValidation] = useState<FAQValidationResult | BulkValidationResult | null>(null);
   const { toast } = useToast();
 
   const handleValidation = useCallback(async () => {
@@ -166,7 +166,7 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               Quick Results
-              {lastValidation.isBulk ? (
+              {isBulkResult(lastValidation) ? (
                 <Badge variant={lastValidation.summary.totalErrors === 0 ? "default" : "destructive"}>
                   {lastValidation.summary.totalErrors === 0 ? (
                     <><CheckCircle className="h-3 w-3 mr-1" />All Valid</>
@@ -175,8 +175,8 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
                   )}
                 </Badge>
               ) : (
-                <Badge variant={lastValidation.isValid ? "default" : "destructive"}>
-                  {lastValidation.isValid ? (
+                <Badge variant={isSingleResult(lastValidation) && lastValidation.isValid ? "default" : "destructive"}>
+                  {isSingleResult(lastValidation) && lastValidation.isValid ? (
                     <><CheckCircle className="h-3 w-3 mr-1" />Valid</>
                   ) : (
                     <><XCircle className="h-3 w-3 mr-1" />Issues Found</>
@@ -186,7 +186,7 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {lastValidation.isBulk ? (
+            {isBulkResult(lastValidation) ? (
               <div className="space-y-2">
                 <p className="text-sm text-gray-600 mb-3">
                   Tested {lastValidation.results.length} FAQ pages
@@ -206,19 +206,19 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">
-                    {lastValidation.faqCount || 0}
+                    {isSingleResult(lastValidation) ? lastValidation.faqCount : 0}
                   </div>
                   <div className="text-sm text-gray-600">FAQ Items Found</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-red-600">
-                    {lastValidation.errors?.length || 0}
+                    {isSingleResult(lastValidation) ? lastValidation.errors?.length || 0 : 0}
                   </div>
                   <div className="text-sm text-gray-600">Errors</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-yellow-600">
-                    {lastValidation.warnings?.length || 0}
+                    {isSingleResult(lastValidation) ? lastValidation.warnings?.length || 0 : 0}
                   </div>
                   <div className="text-sm text-gray-600">Warnings</div>
                 </div>

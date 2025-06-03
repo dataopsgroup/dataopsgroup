@@ -9,6 +9,20 @@ import {
 import { FAQ_URLS, VALIDATION_CONFIG } from '@/constants/faq-validation';
 
 /**
+ * Type guard to check if result is a bulk validation result
+ */
+export const isBulkResult = (result: FAQValidationResult | BulkValidationResult): result is BulkValidationResult => {
+  return 'isBulk' in result && result.isBulk === true;
+};
+
+/**
+ * Type guard to check if result is a single FAQ validation result
+ */
+export const isSingleResult = (result: FAQValidationResult | BulkValidationResult): result is FAQValidationResult => {
+  return !('isBulk' in result);
+};
+
+/**
  * Validates FAQ schema for a given URL
  * @param url - The URL to validate
  * @returns Promise<FAQValidationResult> - Validation results

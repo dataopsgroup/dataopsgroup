@@ -1,12 +1,11 @@
 
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, Component, ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertCircle } from 'lucide-react';
-import { ValidationResult } from '@/types/structured-data';
-import { ErrorBoundary } from 'react-error-boundary';
+import { FAQValidationResult, BulkValidationResult } from '@/types/structured-data';
 
 // Lazy load components for better performance
 const FAQSchemaValidator = React.lazy(() => import('@/components/admin/structured-data/FAQSchemaValidator'));
@@ -15,19 +14,47 @@ const SchemaTestResults = React.lazy(() => import('@/components/admin/structured
 const FAQSchemaHealth = React.lazy(() => import('@/components/admin/structured-data/FAQSchemaHealth'));
 
 /**
- * Error Fallback Component for error boundaries
+ * Simple Error Boundary Component
  */
-const ErrorFallback: React.FC<{ error: Error }> = ({ error }) => (
-  <Card className="border-red-200 bg-red-50">
-    <CardContent className="p-6">
-      <div className="flex items-center gap-2 text-red-700 mb-2">
-        <AlertCircle className="h-5 w-5" />
-        <span className="font-medium">Something went wrong</span>
-      </div>
-      <p className="text-red-600 text-sm">{error.message}</p>
-    </CardContent>
-  </Card>
-);
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error?: Error;
+}
+
+class SimpleErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundaryState> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: any) {
+    console.error('Error boundary caught an error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-2 text-red-700 mb-2">
+              <AlertCircle className="h-5 w-5" />
+              <span className="font-medium">Something went wrong</span>
+            </div>
+            <p className="text-red-600 text-sm">
+              {this.state.error?.message || 'An unexpected error occurred'}
+            </p>
+          </CardContent>
+        </Card>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 /**
  * Loading Skeleton Component
@@ -44,7 +71,7 @@ const LoadingSkeleton: React.FC = () => (
  * Provides comprehensive FAQ schema validation and optimization tools
  */
 const StructuredDataTest: React.FC = () => {
-  const [validationResults, setValidationResults] = useState<ValidationResult | null>(null);
+  const [validationResults, setValidationResults] = useState<FAQValidationResult | BulkValidationResult | null>(null);
   const [selectedUrl, setSelectedUrl] = useState('/faqs');
 
   return (
@@ -83,7 +110,7 @@ const StructuredDataTest: React.FC = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <SimpleErrorBoundary>
                     <Suspense fallback={<LoadingSkeleton />}>
                       <FAQSchemaValidator 
                         onValidationComplete={setValidationResults}
@@ -91,7 +118,7 @@ const StructuredDataTest: React.FC = () => {
                         onUrlChange={setSelectedUrl}
                       />
                     </Suspense>
-                  </ErrorBoundary>
+                  </SimpleErrorBoundary>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -105,11 +132,11 @@ const StructuredDataTest: React.FC = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <SimpleErrorBoundary>
                     <Suspense fallback={<LoadingSkeleton />}>
                       <RichSnippetsPreview url={selectedUrl} />
                     </Suspense>
-                  </ErrorBoundary>
+                  </SimpleErrorBoundary>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -123,11 +150,11 @@ const StructuredDataTest: React.FC = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <SimpleErrorBoundary>
                     <Suspense fallback={<LoadingSkeleton />}>
                       <SchemaTestResults results={validationResults} />
                     </Suspense>
-                  </ErrorBoundary>
+                  </SimpleErrorBoundary>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -141,11 +168,11 @@ const StructuredDataTest: React.FC = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ErrorBoundary FallbackComponent={ErrorFallback}>
+                  <SimpleErrorBoundary>
                     <Suspense fallback={<LoadingSkeleton />}>
                       <FAQSchemaHealth results={validationResults} />
                     </Suspense>
-                  </ErrorBoundary>
+                  </SimpleErrorBoundary>
                 </CardContent>
               </Card>
             </TabsContent>

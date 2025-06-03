@@ -4,11 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown, Target, AlertCircle } from 'lucide-react';
-import { ValidationResult, HealthMetric, OptimizationRecommendation } from '@/types/structured-data';
+import { FAQValidationResult, BulkValidationResult, HealthMetric, OptimizationRecommendation } from '@/types/structured-data';
 import { HEALTH_SCORE_THRESHOLDS, PERFORMANCE_PENALTIES } from '@/constants/faq-validation';
+import { isBulkResult, isSingleResult } from '@/utils/schema-validation';
 
 interface FAQSchemaHealthProps {
-  results: ValidationResult | null;
+  results: FAQValidationResult | BulkValidationResult | null;
 }
 
 /**
@@ -19,24 +20,28 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
   const healthScore = useMemo(() => {
     if (!results) return 0;
     
-    if (results.isBulk) {
+    if (isBulkResult(results)) {
       const totalPages = results.results.length;
       const validPages = results.results.filter(r => r.isValid).length;
       return Math.round((validPages / totalPages) * 100);
     }
     
-    const totalItems = results.faqCount || 0;
-    const validItems = results.validItems || 0;
-    const errors = results.errors?.length || 0;
-    const warnings = results.warnings?.length || 0;
+    if (isSingleResult(results)) {
+      const totalItems = results.faqCount || 0;
+      const validItems = results.validItems || 0;
+      const errors = results.errors?.length || 0;
+      const warnings = results.warnings?.length || 0;
+      
+      if (totalItems === 0) return 0;
+      
+      const baseScore = (validItems / totalItems) * 100;
+      const errorPenalty = errors * PERFORMANCE_PENALTIES.ERROR_PENALTY;
+      const warningPenalty = warnings * PERFORMANCE_PENALTIES.WARNING_PENALTY;
+      
+      return Math.max(0, Math.round(baseScore - errorPenalty - warningPenalty));
+    }
     
-    if (totalItems === 0) return 0;
-    
-    const baseScore = (validItems / totalItems) * 100;
-    const errorPenalty = errors * PERFORMANCE_PENALTIES.ERROR_PENALTY;
-    const warningPenalty = warnings * PERFORMANCE_PENALTIES.WARNING_PENALTY;
-    
-    return Math.max(0, Math.round(baseScore - errorPenalty - warningPenalty));
+    return 0;
   }, [results]);
 
   const healthStatus = useMemo(() => {
@@ -55,13 +60,13 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
   const healthMetrics: HealthMetric[] = useMemo(() => [
     {
       label: 'Schema Completeness',
-      value: results?.isBulk ? 85 : Math.min(100, (results?.faqCount || 0) * 20),
+      value: isBulkResult(results) ? 85 : Math.min(100, (isSingleResult(results) ? results.faqCount : 0) * 20),
       trend: 'up',
       description: 'All required schema properties present'
     },
     {
       label: 'Answer Quality',
-      value: results?.isBulk ? 78 : 82,
+      value: isBulkResult(results) ? 78 : 82,
       trend: 'up',
       description: 'Optimal answer length and formatting'
     },
@@ -121,9 +126,9 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
             </div>
           </div>
           <div className="mt-4 text-sm text-gray-600">
-            {results.isBulk 
+            {isBulkResult(results) 
               ? `Based on ${results.results.length} FAQ pages tested`
-              : `Based on ${results.faqCount || 0} FAQ items tested`
+              : `Based on ${isSingleResult(results) ? results.faqCount : 0} FAQ items tested`
             }
           </div>
         </CardContent>
