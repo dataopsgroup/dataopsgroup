@@ -68,16 +68,21 @@ export const loadFonts = async (
         { style: 'normal', weight: weight.toString(), display: 'swap' }
       );
 
-      return font.load()
-        .then(loadedFont => {
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error(`Font loading timed out for Roboto ${weight}`)), timeout);
+      });
+
+      return Promise.race([
+        font.load().then(loadedFont => {
           document.fonts.add(loadedFont);
           fontState.roboto[weight] = 'loaded';
           performance.mark(`roboto-font-loaded-${weight}`);
-        })
-        .catch(err => {
-          console.error(`Failed to load Roboto font weight ${weight}:`, err);
-          fontState.roboto[weight] = 'error';
-        });
+        }),
+        timeoutPromise
+      ]).catch(err => {
+        console.warn(`Failed to load Roboto font weight ${weight}:`, err);
+        fontState.roboto[weight] = 'error';
+      });
     });
 
     const rubikPromises = fontWeights.map(weight => {
@@ -93,16 +98,21 @@ export const loadFonts = async (
         { style: 'normal', weight: weight.toString(), display: 'swap' }
       );
 
-      return font.load()
-        .then(loadedFont => {
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error(`Font loading timed out for Rubik ${weight}`)), timeout);
+      });
+
+      return Promise.race([
+        font.load().then(loadedFont => {
           document.fonts.add(loadedFont);
           fontState.rubik[weight] = 'loaded';
           performance.mark(`rubik-font-loaded-${weight}`);
-        })
-        .catch(err => {
-          console.error(`Failed to load Rubik font weight ${weight}:`, err);
-          fontState.rubik[weight] = 'error';
-        });
+        }),
+        timeoutPromise
+      ]).catch(err => {
+        console.warn(`Failed to load Rubik font weight ${weight}:`, err);
+        fontState.rubik[weight] = 'error';
+      });
     });
 
     fontPromises = [...robotoPromises, ...rubikPromises];
@@ -110,6 +120,11 @@ export const loadFonts = async (
     // Add desktop font class when both font families are loaded
     Promise.all(fontPromises).then(() => {
       document.documentElement.classList.add('font-active-desktop');
+      document.documentElement.classList.add('desktop-brand-fonts');
+    }).catch(err => {
+      console.warn('Some desktop fonts failed to load:', err);
+      // Still add desktop-brand-fonts class as fallback
+      document.documentElement.classList.add('desktop-brand-fonts');
     });
   }
   
