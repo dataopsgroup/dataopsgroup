@@ -9,6 +9,15 @@ interface FAQSchemaHealthProps {
   results: any;
 }
 
+type TrendDirection = 'up' | 'down';
+
+interface HealthMetric {
+  label: string;
+  value: number;
+  trend: TrendDirection;
+  description: string;
+}
+
 const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
   if (!results) {
     return (
@@ -50,23 +59,23 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
 
   const status = getHealthStatus(healthScore);
 
-  const healthMetrics = [
+  const healthMetrics: HealthMetric[] = [
     {
       label: 'Schema Completeness',
       value: results.isBulk ? 85 : Math.min(100, (results.faqCount || 0) * 20),
-      trend: 'up' as const,
+      trend: 'up',
       description: 'All required schema properties present'
     },
     {
       label: 'Answer Quality',
       value: results.isBulk ? 78 : 82,
-      trend: 'up' as const,
+      trend: 'up',
       description: 'Optimal answer length and formatting'
     },
     {
       label: 'Rich Snippets Eligibility',
       value: healthScore,
-      trend: (healthScore > 75 ? 'up' : 'down') as const,
+      trend: healthScore > 75 ? 'up' : 'down',
       description: 'Likelihood of appearing as rich snippets'
     }
   ];
