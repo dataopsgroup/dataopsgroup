@@ -53,7 +53,7 @@ const Hero = () => {
                   </h1>
                   <div className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
                     <p className="mb-4">We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
-                    <p className="font-medium text-gray-800 mb-4">Achieve</p>
+                    <p className="font-medium text-gray-800 mb-4"></p>
                     <ul className="list-disc pl-6 space-y-1 mb-4">
                       <li>19% higher valuation multiples</li>
                       <li>73% faster EBITDA growth</li>
