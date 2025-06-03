@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -35,23 +36,27 @@ const BlogList = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
   useEffect(() => {
-    // Track page view with blog post count
-    if (window.gtag) {
-      window.gtag('event', 'view_item_list', {
-        item_list_name: 'Blog Posts',
-        items: filteredBlogPosts.map((post, index) => ({
-          item_id: post.id,
-          item_name: post.title,
-          item_category: post.category || 'Blog',
-          index: index + 1
-        }))
-      });
-    }
+    // Track page view with blog post count - with safety checks
+    try {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'view_item_list', {
+          item_list_name: 'Blog Posts',
+          items: filteredBlogPosts.map((post, index) => ({
+            item_id: post.id,
+            item_name: post.title,
+            item_category: post.category || 'Blog',
+            index: index + 1
+          }))
+        });
+      }
 
-    // Track in HubSpot - use path without query params
-    if (window._hsq) {
-      window._hsq.push(['setPath', location.pathname]);
-      window._hsq.push(['trackPageView']);
+      // Track in HubSpot - use path without query params - with safety checks
+      if (typeof window !== 'undefined' && window._hsq) {
+        window._hsq.push(['setPath', location.pathname]);
+        window._hsq.push(['trackPageView']);
+      }
+    } catch (error) {
+      console.warn('Analytics tracking failed:', error);
     }
   }, [filteredBlogPosts, location.pathname]);
 
@@ -82,7 +87,7 @@ const BlogList = () => {
             "name": "DataOps Group",
             "logo": {
               "@type": "ImageObject",
-              "url": `${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+              "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
             }
           },
           "mainEntity": {
@@ -90,7 +95,7 @@ const BlogList = () => {
             "itemListElement": filteredBlogPosts.map((post, index) => ({
               "@type": "ListItem",
               "position": index + 1,
-              "url": `${window.location.origin}/insights/${post.id}`,
+              "url": `${baseUrl}/insights/${post.id}`,
               "name": post.title
             }))
           }
