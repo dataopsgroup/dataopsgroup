@@ -1,4 +1,3 @@
-
 /**
  * Enhanced font optimization utilities with bifurcated desktop/mobile strategy
  * Mobile: Inter, Desktop: Roboto (body) + Rubik (headlines)
@@ -121,20 +120,19 @@ export const loadFonts = async (
         { style: 'normal', weight: weight.toString(), display: 'swap' }
       );
 
-      // Create timeout promise
-      const timeoutPromise = new Promise<void>((_, reject) => {
+      // Create proper timeout promise that returns void
+      const timeoutPromise = new Promise<never>((_, reject) => {
         setTimeout(() => reject(new Error(`Font loading timed out for Inter ${weight}`)), timeout);
       });
 
-      // Race font loading against timeout
+      // Use Promise.race with proper error handling
       return Promise.race([
-        font.load()
-          .then(loadedFont => {
-            document.fonts.add(loadedFont);
-            fontState.inter[weight] = 'loaded';
-            document.documentElement.classList.add('font-active-mobile');
-            performance.mark(`inter-font-loaded-${weight}`);
-          }),
+        font.load().then(loadedFont => {
+          document.fonts.add(loadedFont);
+          fontState.inter[weight] = 'loaded';
+          document.documentElement.classList.add('font-active-mobile');
+          performance.mark(`inter-font-loaded-${weight}`);
+        }),
         timeoutPromise
       ]).catch(err => {
         console.warn(`Failed to load Inter font weight ${weight}:`, err);
