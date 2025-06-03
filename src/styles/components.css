@@ -145,6 +145,6 @@
 
   /* Approach Benefit Heading - Fixed sizing for card constraints */
   .approach-benefit-heading {
-    @apply text-base md:text-lg font-semibold mb-2 leading-tight;
+    @apply text-base font-semibold mb-2 leading-tight;
   }
 }
