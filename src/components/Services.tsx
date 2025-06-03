@@ -53,12 +53,16 @@ const Services = () => {
           {services.map((service, index) => (
             <Link to={`/services/${service.id}`} key={index} className="block transition-transform hover:scale-105">
               <Card className={`border-0 overflow-hidden h-full bg-gradient-to-br ${service.gradient} text-white hover:shadow-xl transition-shadow`}>
-                <CardHeader>
+                <CardHeader className="pb-3">
                   <div className="mb-4">{service.icon}</div>
-                  <CardTitle className="service-card-title">{service.title}</CardTitle>
+                  <CardTitle className="text-lg font-semibold text-white leading-tight hyphens-auto break-words">
+                    {service.title}
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-white/90">{service.description}</CardDescription>
+                <CardContent className="pt-0">
+                  <CardDescription className="text-white/90 text-sm leading-relaxed">
+                    {service.description}
+                  </CardDescription>
                 </CardContent>
               </Card>
             </Link>

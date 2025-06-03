@@ -138,11 +138,6 @@
     @apply mt-16 pt-8 border-t border-gray-200;
   }
 
-  /* Service Card Title Enhancement */
-  .service-card-title {
-    @apply text-xl font-semibold text-white leading-relaxed;
-  }
-
   /* Approach Step Title Enhancement */
   .approach-step-title {
     @apply text-xl font-bold mb-4 leading-relaxed;
