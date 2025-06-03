@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -28,8 +29,18 @@ const HubSpotExpertGuidePage = () => {
     'conclusion'
   ];
   
-  const location = useLocation();
-  const navigate = useNavigate();
+  // Initialize hooks with error handling
+  let location, navigate;
+  try {
+    location = useLocation();
+    navigate = useNavigate();
+  } catch (error) {
+    console.error('Router context error:', error);
+    // Fallback for when router context is not available
+    location = { hash: '', pathname: '/how-to-hire-a-hubspot-expert-in-2025' };
+    navigate = () => {};
+  }
+  
   const [activeSection, setActiveSection] = useState<SectionId>('introduction');
   
   // Get active section based on scroll
@@ -45,23 +56,31 @@ const HubSpotExpertGuidePage = () => {
   
   // Update active section based on URL hash
   useEffect(() => {
-    const hash = location.hash.slice(1);
-    if (hash && sectionIds.includes(hash as SectionId)) {
-      setActiveSection(hash as SectionId);
-      // Scroll to top when changing sections
-      window.scrollTo(0, 0);
-    } else if (!hash) {
+    if (location && location.hash) {
+      const hash = location.hash.slice(1);
+      if (hash && sectionIds.includes(hash as SectionId)) {
+        setActiveSection(hash as SectionId);
+        // Scroll to top when changing sections
+        window.scrollTo(0, 0);
+      }
+    } else if (!location?.hash) {
       setActiveSection('introduction');
     }
-  }, [location.hash, sectionIds]);
+  }, [location?.hash, sectionIds]);
   
   // Handle TOC link clicks
   const handleSectionClick = (sectionId: SectionId) => {
     setActiveSection(sectionId);
-    navigate(`/how-to-hire-a-hubspot-expert-in-2025#${sectionId}`, { 
-      replace: true,
-      state: { manualNavigation: true } // Add state to indicate this is a manual navigation
-    });
+    
+    if (navigate && typeof navigate === 'function') {
+      navigate(`/how-to-hire-a-hubspot-expert-in-2025#${sectionId}`, { 
+        replace: true,
+        state: { manualNavigation: true }
+      });
+    } else {
+      // Fallback for when navigate is not available
+      window.location.hash = sectionId;
+    }
     
     // Scroll to top when changing sections
     window.scrollTo(0, 0);
