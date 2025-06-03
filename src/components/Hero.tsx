@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -48,7 +49,7 @@ const Hero = () => {
             <div className={`space-y-8 ${isMobile ? '' : 'bg-white/75 rounded-lg p-8'}`}>
               <div>
                 {/* Main headline with improved mobile typography */}
-                <h1 className={`font-bold leading-relaxed ${isMobile ? 'text-4xl text-white' : 'text-3xl md:text-4xl lg:text-5xl leading-tight text-[#403E43]'}`} id="hero-heading">
+                <h1 className={`font-bold ${isMobile ? 'text-4xl text-white leading-tight' : 'text-3xl md:text-4xl lg:text-5xl leading-tight text-[#403E43]'}`} id="hero-heading">
                   We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className="text-green-600">100 Days</span>
                 </h1>
                 <div className={`mt-6 max-w-lg ${isMobile ? 'text-lg text-white' : 'text-lg md:text-xl text-gray-700'}`}>
@@ -65,7 +66,7 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex flex-col">
                   <Link to="/contact" onClick={trackContactCTAClick}>
-                    <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
+                    <Button className="bg-white hover:bg-gray-50 text-dataops-600 px-6 py-6 text-base whitespace-normal">
                       Get In Touch
                       <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                     </Button>
