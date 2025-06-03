@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -76,8 +75,7 @@ const Hero = () => {
                 <div>
                   {/* Universal LCP element marking */}
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading">
-                    PE Portfolio Company Digital Operations <span className="text-red-500">Falling Behind</span>?<br />
-                    We Implement the HubSpot Systems Your Investors Expect
+                    We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in 100 Days
                   </h1>
                   <div className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
                     <p className="mb-4">
