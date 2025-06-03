@@ -4,6 +4,10 @@ import App from './App.tsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
+import { setupFontOptimization } from '@/lib/font-optimization';
+
+// Activate font optimization immediately
+setupFontOptimization();
 
 // Simplified main entry point for debugging
 const renderApp = () => {
