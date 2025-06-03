@@ -49,18 +49,18 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {services.map((service, index) => (
             <Link to={`/services/${service.id}`} key={index} className="block transition-transform hover:scale-105">
               <Card className={`border-0 overflow-hidden h-full bg-gradient-to-br ${service.gradient} text-white hover:shadow-xl transition-shadow`}>
                 <CardHeader className="pb-3">
                   <div className="mb-4">{service.icon}</div>
-                  <CardTitle className="text-lg font-semibold text-white leading-tight hyphens-auto break-words">
+                  <CardTitle className="text-xl font-semibold text-white leading-tight">
                     {service.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <CardDescription className="text-white/90 text-sm leading-relaxed">
+                  <CardDescription className="text-white/90 text-base leading-relaxed">
                     {service.description}
                   </CardDescription>
                 </CardContent>
