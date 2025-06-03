@@ -1,5 +1,5 @@
+
 import { useState, useEffect, useRef, RefObject } from 'react';
-import { reportLCPMetric, preloadCriticalImage } from '@/utils/image-utils';
 
 interface UseOptimizedImageProps {
   src: string;
@@ -21,7 +21,6 @@ interface UseOptimizedImageReturn {
 
 /**
  * Enhanced hook for optimized image loading with balanced performance
- * Uses consistent threshold and loading strategy across all devices
  */
 export const useOptimizedImage = ({
   src,
@@ -30,21 +29,18 @@ export const useOptimizedImage = ({
   isLCP = false,
   blur = true,
   rootMargin = '150px',
-  threshold = 0.15 // Universal threshold for all devices
+  threshold = 0.15
 }: UseOptimizedImageProps): UseOptimizedImageReturn => {
   const imgRef = useRef<HTMLImageElement>(null);
-  // During SSR, isInView is true for priority/LCP, false otherwise
   const [isInView, setIsInView] = useState(typeof window === 'undefined' ? (priority || isLCP) : (priority || isLCP));
   const [isLoaded, setIsLoaded] = useState(false);
   
   // Enhanced intersection observer with universal configuration
   useEffect(() => {
-    // Only run in browser and if not priority/LCP (which are eager loaded)
     if (typeof window === 'undefined' || priority || isLCP || !imgRef.current) {
       return;
     }
     
-    // Fallback if IntersectionObserver is not supported (e.g., older browsers)
     if (!('IntersectionObserver' in window)) {
       setIsInView(true);
       return;
@@ -59,7 +55,6 @@ export const useOptimizedImage = ({
             setIsInView(true);
             observer.disconnect();
             
-            // Performance mark for monitoring (only in browser)
             if (typeof performance !== 'undefined' && performance.mark) {
                performance.mark(`image-visible-${src.split('/').pop()}`);
             }
@@ -84,46 +79,9 @@ export const useOptimizedImage = ({
     };
   }, [priority, isLCP, rootMargin, threshold, src]);
   
-  // Enhanced preloading for critical images with format optimization
-  useEffect(() => {
-    if ((priority || isLCP) && typeof document !== 'undefined') {
-      try {
-        preloadCriticalImage(src);
-      } catch (error) {
-        console.warn('Failed to preload critical image:', error);
-      }
-    }
-  }, [src, priority, isLCP]);
-  
-  // Enhanced LCP reporting with detailed metrics (only in browser)
-  useEffect(() => {
-    if (!isLCP || !isLoaded || typeof window === 'undefined') return;
-    
-    try {
-      reportLCPMetric(src);
-      
-      if (imgRef.current) {
-        imgRef.current.setAttribute('data-lcp-candidate', 'true');
-        imgRef.current.setAttribute('data-loaded-at', Date.now().toString());
-        
-        // Report to Core Web Vitals (only if gtag is available)
-        if (window.gtag) {
-          window.gtag('event', 'lcp_candidate_loaded', {
-            'event_category': 'Performance',
-            'event_label': src.substring(0, 50),
-            'value': Date.now()
-          });
-        }
-      }
-    } catch (error) {
-      console.warn('LCP reporting failed:', error);
-    }
-  }, [isLCP, isLoaded, src]);
-  
   const handleLoad = () => {
     setIsLoaded(true);
     
-    // Performance mark for load completion (only in browser)
     if (typeof performance !== 'undefined' && performance.mark) {
       performance.mark(`image-loaded-${src.split('/').pop()}`);
     }
@@ -132,18 +90,12 @@ export const useOptimizedImage = ({
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     console.warn(`Failed to load image: ${src}`);
     
-    // Enhanced error reporting with context (only in browser if gtag available)
-    if (typeof window !== 'undefined' && window.gtag) {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
       try {
-        window.gtag('event', 'image_load_error', {
+        (window as any).gtag('event', 'image_load_error', {
           'event_category': 'Performance',
           'event_label': src.substring(0, 100),
-          'value': 1,
-          'custom_parameters': {
-            'error_type': 'load_failure',
-            'image_format': src.split('.').pop() || 'unknown',
-            'is_critical': priority || isLCP
-          }
+          'value': 1
         });
       } catch (error) {
         // Silently fail if analytics reporting fails

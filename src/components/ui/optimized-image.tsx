@@ -12,7 +12,6 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   aspectRatio?: number;
   objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
   loading?: 'lazy' | 'eager';
-  // Add missing props that were being used
   isLCP?: boolean;
   placeholder?: string;
   quality?: number;
@@ -25,7 +24,7 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
 }
 
 /**
- * Simplified optimized image component
+ * Optimized image component with comprehensive prop support
  */
 const OptimizedImage = ({
   src,
@@ -37,7 +36,6 @@ const OptimizedImage = ({
   aspectRatio,
   objectFit = 'cover',
   loading,
-  // Handle the missing props (use them where possible, ignore where not needed)
   isLCP,
   placeholder,
   quality,
