@@ -35,7 +35,7 @@ const Approach = () => {
                 {step.icon}
               </div>
               
-              <h3 className="text-xl font-bold mb-4">Step {index + 1}: {step.title}</h3>
+              <h3 className="approach-step-title">Step {index + 1}: {step.title}</h3>
               <p className="text-center text-gray-600">{step.description}</p>
             </div>)}
         </div>

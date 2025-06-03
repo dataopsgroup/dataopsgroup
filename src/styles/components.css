@@ -142,4 +142,9 @@
   .service-card-title {
     @apply text-xl font-semibold text-white leading-relaxed;
   }
+
+  /* Approach Step Title Enhancement */
+  .approach-step-title {
+    @apply text-xl font-bold mb-4 leading-relaxed;
+  }
 }
