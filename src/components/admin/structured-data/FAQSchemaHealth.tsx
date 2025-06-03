@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { TrendingUp, TrendingDown, Minus, Target, AlertCircle } from 'lucide-react';
+import { TrendingUp, TrendingDown, Target, AlertCircle } from 'lucide-react';
 
 interface FAQSchemaHealthProps {
   results: any;
@@ -54,26 +54,20 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
     {
       label: 'Schema Completeness',
       value: results.isBulk ? 85 : Math.min(100, (results.faqCount || 0) * 20),
-      trend: 'up',
+      trend: 'up' as const,
       description: 'All required schema properties present'
     },
     {
       label: 'Answer Quality',
       value: results.isBulk ? 78 : 82,
-      trend: 'up',
+      trend: 'up' as const,
       description: 'Optimal answer length and formatting'
     },
     {
       label: 'Rich Snippets Eligibility',
       value: healthScore,
-      trend: healthScore > 75 ? 'up' : 'down',
+      trend: (healthScore > 75 ? 'up' : 'down') as const,
       description: 'Likelihood of appearing as rich snippets'
-    },
-    {
-      label: 'Technical Compliance',
-      value: results.errors?.length > 0 ? 65 : 95,
-      trend: results.errors?.length > 0 ? 'down' : 'up',
-      description: 'JSON-LD syntax and structure validation'
     }
   ];
 
@@ -91,13 +85,6 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
       description: 'Ensure answers are 40-300 characters for best rich snippet display',
       impact: 'Medium',
       effort: 'Medium'
-    },
-    {
-      priority: 'Low',
-      title: 'Add More FAQ Items',
-      description: 'Increase FAQ coverage to capture more search queries',
-      impact: 'Medium',
-      effort: 'High'
     }
   ];
 
@@ -133,7 +120,7 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
       </Card>
 
       {/* Health Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {healthMetrics.map((metric, index) => (
           <Card key={index}>
             <CardContent className="p-4">
@@ -141,10 +128,8 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
                 <span className="font-medium text-sm">{metric.label}</span>
                 {metric.trend === 'up' ? (
                   <TrendingUp className="h-4 w-4 text-green-600" />
-                ) : metric.trend === 'down' ? (
-                  <TrendingDown className="h-4 w-4 text-red-600" />
                 ) : (
-                  <Minus className="h-4 w-4 text-gray-400" />
+                  <TrendingDown className="h-4 w-4 text-red-600" />
                 )}
               </div>
               <div className="flex items-center gap-2 mb-2">
@@ -171,7 +156,7 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
               <div key={index} className="border border-gray-200 rounded-lg p-4">
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex items-center gap-2">
-                    <Badge variant={rec.priority === 'High' ? 'destructive' : rec.priority === 'Medium' ? 'default' : 'secondary'}>
+                    <Badge variant={rec.priority === 'High' ? 'destructive' : 'default'}>
                       {rec.priority}
                     </Badge>
                     <span className="font-medium">{rec.title}</span>
@@ -188,22 +173,6 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
                 <div className="text-sm text-gray-600">{rec.description}</div>
               </div>
             ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Historical Trends (Placeholder) */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Health Trend (Last 30 Days)</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="h-32 bg-gray-50 rounded-lg flex items-center justify-center">
-            <div className="text-gray-500 text-sm">
-              Health tracking chart would appear here
-              <br />
-              <span className="text-xs">(Feature coming soon)</span>
-            </div>
           </div>
         </CardContent>
       </Card>
