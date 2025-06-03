@@ -22,8 +22,8 @@
   }
 
   /* Insights Page Specific Styling */
-  .insights-page .blog-card-enhanced .text-xl {
-    @apply text-sm font-semibold; /* 50% smaller headlines */
+  .insights-page .blog-card-enhanced h3 {
+    @apply text-sm font-semibold !important; /* 50% smaller headlines */
   }
 
   .insights-page .blog-excerpt {
