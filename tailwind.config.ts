@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -85,9 +86,8 @@ export default {
 				}
 			},
 			fontFamily: {
-				// Simplified font stack - Inter as primary with system fallbacks
+				// Google Fonts with proper fallbacks
 				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-				// Keep brand fonts for desktop (will be conditionally loaded)
 				'rubik': ['Rubik', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 				'roboto': ['Roboto', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 			},

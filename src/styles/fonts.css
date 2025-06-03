@@ -1,16 +1,42 @@
 
-/* Enhanced Font Loading Strategy - Mobile First with Desktop Optimization */
+/* Simplified Google Fonts Strategy */
 
-/* Import font face declarations */
-@import './fonts/inter-font-faces.css';
-@import './fonts/roboto-font-faces.css';
-@import './fonts/rubik-font-faces.css';
+/* Mobile First Font Strategy - Inter for Mobile */
+body, html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
-/* Import font loading strategies */
-@import './fonts/font-loading-strategies.css';
+/* Desktop Font Strategy - Roboto for Body, Rubik for Headlines */
+@media (min-width: 1024px) {
+  body, html {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6,
+  .font-rubik {
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
 
-/* Import typography utilities */
-@import './fonts/typography-utilities.css';
+/* Desktop brand fonts class for enhanced loading */
+.desktop-brand-fonts {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
 
-/* Import performance optimizations */
-@import './fonts/font-performance.css';
+.desktop-brand-fonts h1,
+.desktop-brand-fonts h2,
+.desktop-brand-fonts h3,
+.desktop-brand-fonts h4,
+.desktop-brand-fonts h5,
+.desktop-brand-fonts h6,
+.desktop-brand-fonts .font-rubik {
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Font Loading States */
+.fonts-pending {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}

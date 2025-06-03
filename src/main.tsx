@@ -4,12 +4,8 @@ import App from './App.tsx';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
-import { setupFontOptimization } from '@/lib/font-optimization';
 
-// Activate font optimization immediately
-setupFontOptimization();
-
-// Simplified main entry point for debugging
+// Simplified main entry point - Google Fonts handles optimization
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {

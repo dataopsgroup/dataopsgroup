@@ -11,14 +11,21 @@
     <meta name="theme-color" content="#4F46E5" />
     
     <!-- Critical DNS and connection setup -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://js.hs-scripts.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="preconnect" href="https://cdn.botpress.cloud" crossorigin />
     <link rel="preconnect" href="https://files.bpcontent.cloud" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://js.hs-scripts.com" />
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     <link rel="dns-prefetch" href="https://cdn.botpress.cloud" />
     <link rel="dns-prefetch" href="https://files.bpcontent.cloud" />
+    
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Rubik:wght@300;400;500;700&display=swap" />
     
     <!-- Critical CSS inlined for faster rendering -->
     <style>
@@ -49,10 +56,6 @@
         to { transform: rotate(360deg) }
       }
     </style>
-    
-    <!-- Preload critical Inter fonts only -->
-    <link rel="preload" href="/fonts/inter-subset/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin importance="high" />
-    <link rel="preload" href="/fonts/inter-subset/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin importance="high" />
     
     <!-- Preload critical images -->
     <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" fetchpriority="high" />
@@ -109,7 +112,7 @@
         'anonymize_ip': true
       });
       
-      // Simplified font loading - Inter is already declared in CSS
+      // Simplified font loading - Google Fonts handles optimization
       const deferredOperations = () => {
         // Add desktop brand fonts class on larger screens
         if (window.innerWidth >= 768) {
