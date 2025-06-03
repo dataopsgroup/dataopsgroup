@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -105,7 +106,7 @@ const CaseStudiesGrid = () => {
               
               <div className="pt-4 border-t border-gray-100 mt-auto">
                 {caseStudy.hasPost ? (
-                  <Link to={`/insights/${caseStudy.id}`}>
+                  <Link to={`/case-studies/${caseStudy.id}`}>
                     <Button className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white">
                       Read Full Case Study
                     </Button>
