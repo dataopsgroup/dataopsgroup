@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const Hero = () => {
   const {
     isMobile
@@ -46,7 +46,7 @@ const Hero = () => {
           {/* Hero Content */}
           <div className={`space-y-8 ${isMobile ? 'px-4 max-w-full' : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'}`}>
             {/* Content wrapper - simplified for mobile */}
-            <div className={`space-y-8 ${isMobile ? '' : 'bg-white/90 rounded-lg p-8'}`}>
+            <div className={`space-y-8 ${isMobile ? '' : 'bg-gray-500/90 rounded-lg p-8'}`}>
               <div>
                 {/* Main headline with improved mobile typography */}
                 <h1 className={`font-bold ${isMobile ? 'text-4xl text-white leading-tight' : 'text-3xl md:text-4xl lg:text-5xl leading-tight text-[#403E43]'}`} id="hero-heading">
