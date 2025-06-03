@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -52,7 +50,7 @@ const Hero = () => {
               <div>
                 {/* Main headline with improved mobile typography */}
                 <h1 className={`font-bold text-white ${isMobile ? 'text-4xl leading-tight' : 'text-3xl md:text-4xl lg:text-5xl leading-tight'}`} id="hero-heading">
-                  Turn PE Portfolio Company Operations Into Profit Drivers in <span className="text-yellow-300">100 Days</span>
+                  Turn PE Portfolio Operations Into Profit Drivers in <span className="text-yellow-300">100 Days</span>
                 </h1>
                 <div className={`mt-6 max-w-lg text-lg text-white ${isMobile ? '' : 'md:text-xl'}`}>
                   <p className="mb-4">We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
@@ -120,4 +118,3 @@ const Hero = () => {
   </>;
 };
 export default Hero;
-
