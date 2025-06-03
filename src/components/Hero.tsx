@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const Hero = () => {
   const {
     isMobile
@@ -32,6 +34,7 @@ const Hero = () => {
     }
     e.currentTarget.style.display = 'none';
   };
+
   return <>
       <div className={`relative pt-24 pb-16 md:py-32 px-4 min-h-[500px] ${isMobile ? 'bg-gradient-to-br from-dataops-600 via-dataops-500 to-dataops-400' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
         {/* Background Image - optimized with explicit dimensions */}
@@ -43,18 +46,18 @@ const Hero = () => {
         <div className="container mx-auto relative z-10 h-full">
           <div className={`grid gap-4 h-full items-start ${isMobile ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-12'}`}>
             {/* Hero Content */}
-            <div className={`space-y-8 ${isMobile ? 'mx-4 max-w-full' : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'}`}>
-              {/* Universal content background */}
-              <div className={`rounded-lg p-8 space-y-8 ${isMobile ? 'bg-white/90 backdrop-blur-sm' : 'bg-white/75'}`}>
+            <div className={`space-y-8 ${isMobile ? 'w-[90%] mx-auto max-w-full' : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'}`}>
+              {/* Mobile: Full-width content, Desktop: White card background */}
+              <div className={`space-y-8 ${isMobile ? 'py-8' : 'rounded-lg p-8 bg-white/75'}`}>
                 <div>
                   {/* Universal LCP element marking */}
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading">
-                    We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className="text-green-600">100 Days</span>
+                  <h1 className={`font-bold leading-relaxed ${isMobile ? 'text-4xl text-white' : 'text-3xl md:text-4xl lg:text-5xl leading-tight text-[#403E43]'}`} id="hero-heading">
+                    We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className={`${isMobile ? 'text-6xl block font-extrabold bg-white text-dataops-600 px-4 py-2 rounded-lg my-4 text-center' : 'text-green-600'}`}>100 Days</span>
                   </h1>
-                  <div className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
+                  <div className={`mt-6 max-w-lg ${isMobile ? 'text-xl text-white leading-loose' : 'text-lg md:text-xl text-gray-700'}`}>
                     <p className="mb-4">We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
-                    <p className="font-medium text-gray-800 mb-4"></p>
-                    <ul className="list-disc pl-6 space-y-1 mb-4">
+                    <p className="font-medium mb-4"></p>
+                    <ul className={`list-disc pl-6 space-y-1 mb-4 ${isMobile ? 'text-white' : ''}`}>
                       <li>19% higher valuation multiples</li>
                       <li>73% faster EBITDA growth</li>
                       <li>$18-22 ROI per $1 invested</li>
@@ -65,13 +68,13 @@ const Hero = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex flex-col">
                     <Link to="/contact" onClick={trackContactCTAClick}>
-                      <Button className="bg-dataops-600 hover:bg-dataops-700 px-6 py-6 text-base whitespace-normal">
+                      <Button className={`px-6 py-6 text-base whitespace-normal ${isMobile ? 'bg-white text-dataops-600 hover:bg-gray-100 text-lg font-semibold py-8' : 'bg-dataops-600 hover:bg-dataops-700'}`}>
                         Get In Touch
                         <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                       </Button>
                     </Link>
-                    <div className="mt-3 text-sm text-gray-600 max-w-sm">
-                      <p className="font-medium text-gray-700 mb-1">Confidential | No Risk</p>
+                    <div className={`mt-3 text-sm max-w-sm ${isMobile ? 'text-white' : 'text-gray-600'}`}>
+                      <p className={`font-medium mb-1 ${isMobile ? 'text-white' : 'text-gray-700'}`}>Confidential | No Risk</p>
                       <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
                     </div>
                   </div>
@@ -116,4 +119,5 @@ const Hero = () => {
       </div>
     </>;
 };
+
 export default Hero;
