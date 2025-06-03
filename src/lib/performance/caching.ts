@@ -1,3 +1,4 @@
+
 /**
  * Universal client-side caching optimization module
  * Consistent caching strategies across all devices
@@ -135,10 +136,7 @@ export const preloadCriticalAssetsByType = (assetType: 'font' | 'image' | 'scrip
   // Universal asset URLs
   switch (assetType) {
     case 'font':
-      preloadUrls.push(
-        '/fonts/inter-subset/inter-latin-400-normal.woff2',
-        '/fonts/inter-subset/inter-latin-600-normal.woff2'
-      );
+      // Google Fonts are preloaded in index.html, no additional preloading needed
       break;
     case 'image':
       preloadUrls.push(

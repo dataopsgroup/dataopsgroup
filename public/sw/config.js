@@ -18,26 +18,7 @@ const STATIC_CONTENT = {
     '/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.png', // create-pro-level-hubspot-lead-score-model
     '/lovable-uploads/66cb018a-41fa-4046-a81f-5c632b199583.png', // 3-tips-for-smart-workflows
     '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png', // hidden-cost-of-failed-hubspot-implementations
-    // Other static images and font files
-  ]
-};
-
-// New category for font files with specific caching
-const FONT_FILES = {
-  name: 'fonts-v3',
-  maxAge: 31536000, // 1 year in seconds
-  immutable: true,
-  resources: [
-    '/fonts/inter-subset/inter-latin-300-normal.woff',
-    '/fonts/inter-subset/inter-latin-300-normal.woff2',
-    '/fonts/inter-subset/inter-latin-400-normal.woff',
-    '/fonts/inter-subset/inter-latin-400-normal.woff2',
-    '/fonts/inter-subset/inter-latin-500-normal.woff',
-    '/fonts/inter-subset/inter-latin-500-normal.woff2',
-    '/fonts/inter-subset/inter-latin-600-normal.woff',
-    '/fonts/inter-subset/inter-latin-600-normal.woff2',
-    '/fonts/inter-subset/inter-latin-700-normal.woff',
-    '/fonts/inter-subset/inter-latin-700-normal.woff2',
+    // Other static images
   ]
 };
 
