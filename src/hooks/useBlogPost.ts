@@ -53,6 +53,7 @@ export const useBlogPost = () => {
       } else {
         console.error('Post not found for ID:', postId);
         console.error('Available IDs:', blogPosts.map(p => p.id));
+        console.error('ERROR BOUNDARY TEST: Invalid blog post ID requested');
         setError(`Blog post with ID "${postId}" not found`);
         
         if (toast) {
@@ -65,6 +66,7 @@ export const useBlogPost = () => {
       }
     } catch (err) {
       console.error('Error in useBlogPost useEffect:', err);
+      console.error('ERROR BOUNDARY TEST: Exception in blog post loading');
       setError('An error occurred while loading the blog post');
       
       if (toast) {
