@@ -11,6 +11,7 @@ const FAQHubSpotExperts = lazy(() => import('../pages/FAQHubSpotExperts'));
 const FAQDataQuality = lazy(() => import('../pages/FAQDataQuality'));
 const FAQOurApproach = lazy(() => import('../pages/FAQOurApproach'));
 const FAQHubSpotModules = lazy(() => import('../pages/FAQHubSpotModules'));
+const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
 const RouteErrorBoundary = lazy(() => import('../components/RouteErrorBoundary'));
 
 export const insightRoutes = [
@@ -62,6 +63,11 @@ export const insightRoutes = [
   {
     path: "/faqs/hubspot-modules",
     element: <FAQHubSpotModules />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/structured-data-test",
+    element: <StructuredDataTest />,
     errorElement: <RouteErrorBoundary />,
   }
 ];
