@@ -1,4 +1,5 @@
 
+
 @import './styles/fonts.css';
 @import './styles/pillar-content.css';
 @tailwind base;
@@ -99,13 +100,37 @@
 
   /* Enhanced Heading Typography - Consistent sizing for all content within headings */
   h1, h1 * {
-    font-size: inherit !important;
     @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+    font-size: 2.25rem !important; /* 36px */
+  }
+  
+  @media (min-width: 768px) {
+    h1, h1 * {
+      font-size: 3rem !important; /* 48px */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    h1, h1 * {
+      font-size: 3.75rem !important; /* 60px */
+    }
   }
   
   h2, h2 * {
-    font-size: inherit !important;
     @apply text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight;
+    font-size: 1.875rem !important; /* 30px */
+  }
+  
+  @media (min-width: 768px) {
+    h2, h2 * {
+      font-size: 2.25rem !important; /* 36px */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    h2, h2 * {
+      font-size: 3rem !important; /* 48px */
+    }
   }
   
   /* Specific styling for H2 tags on the /insights page and blog posts */
@@ -119,28 +144,76 @@
   .blog-post-content h2 *, 
   .container h2:not(.text-3xl) *,
   article h2 * {
-    font-size: inherit !important;
-    font-weight: inherit !important;
+    font-size: 1.5em !important;
+    font-weight: 500 !important;
   }
   
   h3, h3 * {
-    font-size: inherit !important;
     @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight;
+    font-size: 1.5rem !important; /* 24px */
+  }
+  
+  @media (min-width: 768px) {
+    h3, h3 * {
+      font-size: 1.875rem !important; /* 30px */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    h3, h3 * {
+      font-size: 2.25rem !important; /* 36px */
+    }
   }
   
   h4, h4 * {
-    font-size: inherit !important;
     @apply text-xl md:text-2xl lg:text-3xl font-medium;
+    font-size: 1.25rem !important; /* 20px */
+  }
+  
+  @media (min-width: 768px) {
+    h4, h4 * {
+      font-size: 1.5rem !important; /* 24px */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    h4, h4 * {
+      font-size: 1.875rem !important; /* 30px */
+    }
   }
   
   h5, h5 * {
-    font-size: inherit !important;
     @apply text-lg md:text-xl lg:text-2xl font-medium;
+    font-size: 1.125rem !important; /* 18px */
+  }
+  
+  @media (min-width: 768px) {
+    h5, h5 * {
+      font-size: 1.25rem !important; /* 20px */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    h5, h5 * {
+      font-size: 1.5rem !important; /* 24px */
+    }
   }
   
   h6, h6 * {
-    font-size: inherit !important;
     @apply text-base md:text-lg lg:text-xl font-medium;
+    font-size: 1rem !important; /* 16px */
+  }
+  
+  @media (min-width: 768px) {
+    h6, h6 * {
+      font-size: 1.125rem !important; /* 18px */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    h6, h6 * {
+      font-size: 1.25rem !important; /* 20px */
+    }
   }
 
   /* Body text */
@@ -213,38 +286,8 @@
     @apply mb-4 text-gray-700;
   }
   
-  /* Desktop Typography Overrides */
+  /* Desktop Typography Overrides - Removed duplicate media queries since we handle them above */
   @media (min-width: 1024px) {
-    h1, h1 * {
-      font-size: inherit !important;
-      @apply text-5xl lg:text-6xl xl:text-7xl;
-    }
-    
-    h2, h2 * {
-      font-size: inherit !important;
-      @apply text-4xl lg:text-5xl xl:text-6xl;
-    }
-    
-    h3, h3 * {
-      font-size: inherit !important;
-      @apply text-3xl lg:text-4xl xl:text-5xl;
-    }
-    
-    h4, h4 * {
-      font-size: inherit !important;
-      @apply text-2xl lg:text-3xl xl:text-4xl;
-    }
-    
-    h5, h5 * {
-      font-size: inherit !important;
-      @apply text-xl lg:text-2xl xl:text-3xl;
-    }
-    
-    h6, h6 * {
-      font-size: inherit !important;
-      @apply text-lg lg:text-xl xl:text-2xl;
-    }
-    
     p, div, span {
       @apply text-lg lg:text-xl;
     }
@@ -397,3 +440,4 @@
 .table-of-contents a:hover {
   @apply text-dataops-800 underline;
 }
+
