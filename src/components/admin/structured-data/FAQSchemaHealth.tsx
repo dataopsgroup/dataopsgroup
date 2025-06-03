@@ -1,36 +1,27 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown, Target, AlertCircle } from 'lucide-react';
+import { ValidationResult, HealthMetric, OptimizationRecommendation } from '@/types/structured-data';
+import { HEALTH_SCORE_THRESHOLDS, PERFORMANCE_PENALTIES } from '@/constants/faq-validation';
 
 interface FAQSchemaHealthProps {
-  results: any;
+  results: ValidationResult | null;
 }
 
-type TrendDirection = 'up' | 'down';
-
-interface HealthMetric {
-  label: string;
-  value: number;
-  trend: TrendDirection;
-  description: string;
-}
-
+/**
+ * Professional FAQ Schema Health monitoring component
+ * Displays health metrics, scores, and optimization recommendations
+ */
 const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
-  if (!results) {
-    return (
-      <div className="text-center text-gray-500 py-8">
-        Run a validation test to see schema health metrics here.
-      </div>
-    );
-  }
-
-  const calculateHealthScore = (results: any) => {
+  const healthScore = useMemo(() => {
+    if (!results) return 0;
+    
     if (results.isBulk) {
       const totalPages = results.results.length;
-      const validPages = results.results.filter((r: any) => r.isValid).length;
+      const validPages = results.results.filter(r => r.isValid).length;
       return Math.round((validPages / totalPages) * 100);
     }
     
@@ -42,45 +33,47 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
     if (totalItems === 0) return 0;
     
     const baseScore = (validItems / totalItems) * 100;
-    const errorPenalty = errors * 10;
-    const warningPenalty = warnings * 5;
+    const errorPenalty = errors * PERFORMANCE_PENALTIES.ERROR_PENALTY;
+    const warningPenalty = warnings * PERFORMANCE_PENALTIES.WARNING_PENALTY;
     
     return Math.max(0, Math.round(baseScore - errorPenalty - warningPenalty));
-  };
+  }, [results]);
 
-  const healthScore = calculateHealthScore(results);
-  
-  const getHealthStatus = (score: number) => {
-    if (score >= 90) return { label: 'Excellent', color: 'text-green-600', bg: 'bg-green-100' };
-    if (score >= 75) return { label: 'Good', color: 'text-blue-600', bg: 'bg-blue-100' };
-    if (score >= 60) return { label: 'Fair', color: 'text-yellow-600', bg: 'bg-yellow-100' };
+  const healthStatus = useMemo(() => {
+    if (healthScore >= HEALTH_SCORE_THRESHOLDS.EXCELLENT) {
+      return { label: 'Excellent', color: 'text-green-600', bg: 'bg-green-100' };
+    }
+    if (healthScore >= HEALTH_SCORE_THRESHOLDS.GOOD) {
+      return { label: 'Good', color: 'text-blue-600', bg: 'bg-blue-100' };
+    }
+    if (healthScore >= HEALTH_SCORE_THRESHOLDS.FAIR) {
+      return { label: 'Fair', color: 'text-yellow-600', bg: 'bg-yellow-100' };
+    }
     return { label: 'Needs Improvement', color: 'text-red-600', bg: 'bg-red-100' };
-  };
+  }, [healthScore]);
 
-  const status = getHealthStatus(healthScore);
-
-  const healthMetrics: HealthMetric[] = [
+  const healthMetrics: HealthMetric[] = useMemo(() => [
     {
       label: 'Schema Completeness',
-      value: results.isBulk ? 85 : Math.min(100, (results.faqCount || 0) * 20),
+      value: results?.isBulk ? 85 : Math.min(100, (results?.faqCount || 0) * 20),
       trend: 'up',
       description: 'All required schema properties present'
     },
     {
       label: 'Answer Quality',
-      value: results.isBulk ? 78 : 82,
+      value: results?.isBulk ? 78 : 82,
       trend: 'up',
       description: 'Optimal answer length and formatting'
     },
     {
       label: 'Rich Snippets Eligibility',
       value: healthScore,
-      trend: healthScore > 75 ? 'up' : 'down',
+      trend: healthScore > HEALTH_SCORE_THRESHOLDS.GOOD ? 'up' : 'down',
       description: 'Likelihood of appearing as rich snippets'
     }
-  ];
+  ], [results, healthScore]);
 
-  const recommendations = [
+  const recommendations: OptimizationRecommendation[] = useMemo(() => [
     {
       priority: 'High',
       title: 'Fix Schema Errors',
@@ -95,7 +88,15 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
       impact: 'Medium',
       effort: 'Medium'
     }
-  ];
+  ], []);
+
+  if (!results) {
+    return (
+      <div className="text-center text-gray-500 py-8">
+        Run a validation test to see schema health metrics here.
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -104,8 +105,8 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
             Schema Health Score
-            <Badge className={`${status.bg} ${status.color} border-0`}>
-              {status.label}
+            <Badge className={`${healthStatus.bg} ${healthStatus.color} border-0`}>
+              {healthStatus.label}
             </Badge>
           </CardTitle>
         </CardHeader>
@@ -189,4 +190,4 @@ const FAQSchemaHealth: React.FC<FAQSchemaHealthProps> = ({ results }) => {
   );
 };
 
-export default FAQSchemaHealth;
+export default React.memo(FAQSchemaHealth);

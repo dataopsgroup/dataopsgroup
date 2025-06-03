@@ -1,73 +1,101 @@
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, XCircle, AlertCircle, ExternalLink } from 'lucide-react';
-import { validateFAQSchema } from '@/utils/schema-validation';
+import { CheckCircle, XCircle, ExternalLink, Loader2 } from 'lucide-react';
+import { validateFAQSchema, validateAllFAQPages } from '@/utils/schema-validation';
+import { ValidationResult } from '@/types/structured-data';
+import { FAQ_URLS } from '@/constants/faq-validation';
+import { useToast } from '@/hooks/use-toast';
 
 interface FAQSchemaValidatorProps {
-  onValidationComplete: (results: any) => void;
+  onValidationComplete: (results: ValidationResult) => void;
   selectedUrl: string;
   onUrlChange: (url: string) => void;
 }
 
+/**
+ * Professional FAQ Schema Validator component
+ * Provides validation capabilities with proper error handling and user feedback
+ */
 const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
   onValidationComplete,
   selectedUrl,
   onUrlChange
 }) => {
   const [isValidating, setIsValidating] = useState(false);
-  const [lastValidation, setLastValidation] = useState<any>(null);
+  const [lastValidation, setLastValidation] = useState<ValidationResult | null>(null);
+  const { toast } = useToast();
 
-  const faqUrls = [
-    '/faqs',
-    '/faqs/hubspot-services',
-    '/faqs/hubspot-experts',
-    '/faqs/data-quality',
-    '/faqs/our-approach',
-    '/faqs/hubspot-modules'
-  ];
+  const handleValidation = useCallback(async () => {
+    if (!selectedUrl.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please select or enter a valid URL",
+        variant: "destructive"
+      });
+      return;
+    }
 
-  const handleValidation = async () => {
     setIsValidating(true);
     try {
       const results = await validateFAQSchema(selectedUrl);
       setLastValidation(results);
       onValidationComplete(results);
+      
+      toast({
+        title: "Validation Complete",
+        description: `Found ${results.faqCount} FAQ items with ${results.errors.length} errors`,
+        variant: results.isValid ? "default" : "destructive"
+      });
     } catch (error) {
       console.error('Validation error:', error);
+      toast({
+        title: "Validation Failed",
+        description: "An error occurred while validating the schema",
+        variant: "destructive"
+      });
     } finally {
       setIsValidating(false);
     }
-  };
+  }, [selectedUrl, onValidationComplete, toast]);
 
-  const handleBulkValidation = async () => {
+  const handleBulkValidation = useCallback(async () => {
     setIsValidating(true);
     try {
-      const bulkResults = await Promise.all(
-        faqUrls.map(url => validateFAQSchema(url))
-      );
-      const combinedResults = {
-        isBulk: true,
-        results: bulkResults,
-        urls: faqUrls
-      };
-      setLastValidation(combinedResults);
-      onValidationComplete(combinedResults);
+      const bulkResults = await validateAllFAQPages();
+      setLastValidation(bulkResults);
+      onValidationComplete(bulkResults);
+      
+      toast({
+        title: "Bulk Validation Complete",
+        description: `Validated ${bulkResults.results.length} pages with ${bulkResults.summary.totalErrors} total errors`,
+        variant: bulkResults.summary.totalErrors === 0 ? "default" : "destructive"
+      });
     } catch (error) {
       console.error('Bulk validation error:', error);
+      toast({
+        title: "Bulk Validation Failed",
+        description: "An error occurred while validating all FAQ pages",
+        variant: "destructive"
+      });
     } finally {
       setIsValidating(false);
     }
-  };
+  }, [onValidationComplete, toast]);
 
-  const openGoogleRichResultsTest = () => {
+  const openGoogleRichResultsTest = useCallback(() => {
     const baseUrl = window.location.origin;
     const testUrl = `https://search.google.com/test/rich-results?url=${encodeURIComponent(baseUrl + selectedUrl)}`;
-    window.open(testUrl, '_blank');
+    window.open(testUrl, '_blank', 'noopener,noreferrer');
+  }, [selectedUrl]);
+
+  const getUrlDisplayName = (url: string): string => {
+    if (url === '/faqs') return 'Main FAQ Page';
+    return url.replace('/faqs/', '').replace('-', ' ').toUpperCase();
   };
 
   return (
@@ -79,11 +107,12 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
             id="url-select"
             value={selectedUrl}
             onChange={(e) => onUrlChange(e.target.value)}
-            className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md"
+            className="w-full mt-1 px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            disabled={isValidating}
           >
-            {faqUrls.map(url => (
+            {FAQ_URLS.map(url => (
               <option key={url} value={url}>
-                {url === '/faqs' ? 'Main FAQ Page' : url.replace('/faqs/', '').replace('-', ' ').toUpperCase()}
+                {getUrlDisplayName(url)}
               </option>
             ))}
           </select>
@@ -96,6 +125,7 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
             placeholder="/custom-faq-page"
             value={selectedUrl}
             onChange={(e) => onUrlChange(e.target.value)}
+            disabled={isValidating}
           />
         </div>
       </div>
@@ -103,9 +133,10 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
       <div className="flex flex-wrap gap-3">
         <Button 
           onClick={handleValidation}
-          disabled={isValidating}
+          disabled={isValidating || !selectedUrl.trim()}
           className="flex items-center gap-2"
         >
+          {isValidating && <Loader2 className="h-4 w-4 animate-spin" />}
           {isValidating ? 'Validating...' : 'Validate Schema'}
         </Button>
         
@@ -113,7 +144,9 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
           variant="outline"
           onClick={handleBulkValidation}
           disabled={isValidating}
+          className="flex items-center gap-2"
         >
+          {isValidating && <Loader2 className="h-4 w-4 animate-spin" />}
           Validate All FAQ Pages
         </Button>
         
@@ -121,6 +154,7 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
           variant="outline"
           onClick={openGoogleRichResultsTest}
           className="flex items-center gap-2"
+          disabled={!selectedUrl.trim()}
         >
           <ExternalLink className="h-4 w-4" />
           Google Rich Results Test
@@ -132,15 +166,21 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               Quick Results
-              {lastValidation.isValid ? (
-                <Badge variant="default" className="bg-green-100 text-green-800">
-                  <CheckCircle className="h-3 w-3 mr-1" />
-                  Valid
+              {lastValidation.isBulk ? (
+                <Badge variant={lastValidation.summary.totalErrors === 0 ? "default" : "destructive"}>
+                  {lastValidation.summary.totalErrors === 0 ? (
+                    <><CheckCircle className="h-3 w-3 mr-1" />All Valid</>
+                  ) : (
+                    <><XCircle className="h-3 w-3 mr-1" />Issues Found</>
+                  )}
                 </Badge>
               ) : (
-                <Badge variant="destructive">
-                  <XCircle className="h-3 w-3 mr-1" />
-                  Issues Found
+                <Badge variant={lastValidation.isValid ? "default" : "destructive"}>
+                  {lastValidation.isValid ? (
+                    <><CheckCircle className="h-3 w-3 mr-1" />Valid</>
+                  ) : (
+                    <><XCircle className="h-3 w-3 mr-1" />Issues Found</>
+                  )}
                 </Badge>
               )}
             </CardTitle>
@@ -151,9 +191,9 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
                 <p className="text-sm text-gray-600 mb-3">
                   Tested {lastValidation.results.length} FAQ pages
                 </p>
-                {lastValidation.results.map((result: any, index: number) => (
+                {lastValidation.results.map((result, index) => (
                   <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span className="text-sm">{lastValidation.urls[index]}</span>
+                    <span className="text-sm">{getUrlDisplayName(lastValidation.urls[index])}</span>
                     {result.isValid ? (
                       <CheckCircle className="h-4 w-4 text-green-600" />
                     ) : (
@@ -171,7 +211,7 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
                   <div className="text-sm text-gray-600">FAQ Items Found</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">
+                  <div className="text-2xl font-bold text-red-600">
                     {lastValidation.errors?.length || 0}
                   </div>
                   <div className="text-sm text-gray-600">Errors</div>
@@ -191,4 +231,4 @@ const FAQSchemaValidator: React.FC<FAQSchemaValidatorProps> = ({
   );
 };
 
-export default FAQSchemaValidator;
+export default React.memo(FAQSchemaValidator);

@@ -1,5 +1,19 @@
 
-export const validateFAQSchema = async (url: string) => {
+import { 
+  FAQValidationResult, 
+  BulkValidationResult, 
+  ValidationError, 
+  ValidationWarning,
+  RichResultsEligibility 
+} from '@/types/structured-data';
+import { FAQ_URLS, VALIDATION_CONFIG } from '@/constants/faq-validation';
+
+/**
+ * Validates FAQ schema for a given URL
+ * @param url - The URL to validate
+ * @returns Promise<FAQValidationResult> - Validation results
+ */
+export const validateFAQSchema = async (url: string): Promise<FAQValidationResult> => {
   // Simulate schema validation - in a real implementation, this would:
   // 1. Fetch the page HTML
   // 2. Extract JSON-LD structured data
@@ -9,10 +23,10 @@ export const validateFAQSchema = async (url: string) => {
   console.log(`Validating FAQ schema for: ${url}`);
   
   // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1500));
+  await new Promise(resolve => setTimeout(resolve, VALIDATION_CONFIG.VALIDATION_DELAY));
   
   // Mock validation results based on URL
-  const mockResults = {
+  const mockResults: FAQValidationResult = {
     isValid: true,
     faqCount: 6,
     validItems: 6,
@@ -58,35 +72,40 @@ export const validateFAQSchema = async (url: string) => {
   return mockResults;
 };
 
-export const validateAllFAQPages = async () => {
-  const faqUrls = [
-    '/faqs',
-    '/faqs/hubspot-services',
-    '/faqs/hubspot-experts',
-    '/faqs/data-quality',
-    '/faqs/our-approach',
-    '/faqs/hubspot-modules'
-  ];
+/**
+ * Validates all FAQ pages in bulk
+ * @returns Promise<BulkValidationResult> - Bulk validation results
+ */
+export const validateAllFAQPages = async (): Promise<BulkValidationResult> => {
+  try {
+    const results = await Promise.all(
+      FAQ_URLS.map(url => validateFAQSchema(url))
+    );
 
-  const results = await Promise.all(
-    faqUrls.map(url => validateFAQSchema(url))
-  );
-
-  return {
-    isBulk: true,
-    results,
-    urls: faqUrls,
-    summary: {
-      totalPages: faqUrls.length,
-      validPages: results.filter(r => r.isValid).length,
-      totalFAQs: results.reduce((sum, r) => sum + r.faqCount, 0),
-      totalErrors: results.reduce((sum, r) => sum + r.errors.length, 0),
-      totalWarnings: results.reduce((sum, r) => sum + r.warnings.length, 0)
-    }
-  };
+    return {
+      isBulk: true,
+      results,
+      urls: [...FAQ_URLS],
+      summary: {
+        totalPages: FAQ_URLS.length,
+        validPages: results.filter(r => r.isValid).length,
+        totalFAQs: results.reduce((sum, r) => sum + r.faqCount, 0),
+        totalErrors: results.reduce((sum, r) => sum + r.errors.length, 0),
+        totalWarnings: results.reduce((sum, r) => sum + r.warnings.length, 0)
+      }
+    };
+  } catch (error) {
+    console.error('Bulk validation failed:', error);
+    throw new Error('Failed to validate FAQ pages');
+  }
 };
 
-export const checkGoogleRichResultsEligibility = (schemaData: any) => {
+/**
+ * Checks Google Rich Results eligibility for FAQ schema
+ * @param schemaData - The schema data to validate
+ * @returns RichResultsEligibility - Eligibility results
+ */
+export const checkGoogleRichResultsEligibility = (schemaData: any): RichResultsEligibility => {
   const requirements = [
     {
       name: 'Valid JSON-LD syntax',
@@ -100,7 +119,7 @@ export const checkGoogleRichResultsEligibility = (schemaData: any) => {
     },
     {
       name: 'Minimum 2 FAQ items',
-      check: () => schemaData.mainEntity?.length >= 2,
+      check: () => schemaData.mainEntity?.length >= VALIDATION_CONFIG.MIN_FAQ_ITEMS,
       required: true
     },
     {
@@ -111,7 +130,8 @@ export const checkGoogleRichResultsEligibility = (schemaData: any) => {
     {
       name: 'Answer length optimization',
       check: () => schemaData.mainEntity?.every((q: any) => 
-        q.acceptedAnswer?.text?.length >= 40 && q.acceptedAnswer?.text?.length <= 300
+        q.acceptedAnswer?.text?.length >= VALIDATION_CONFIG.MIN_ANSWER_LENGTH && 
+        q.acceptedAnswer?.text?.length <= VALIDATION_CONFIG.MAX_ANSWER_LENGTH
       ),
       required: false
     }
