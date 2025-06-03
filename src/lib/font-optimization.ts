@@ -121,6 +121,12 @@ export const loadFonts = async (
         { style: 'normal', weight: weight.toString(), display: 'swap' }
       );
 
+      // Create timeout promise
+      const timeoutPromise = new Promise<void>((_, reject) => {
+        setTimeout(() => reject(new Error(`Font loading timed out for Inter ${weight}`)), timeout);
+      });
+
+      // Race font loading against timeout
       return Promise.race([
         font.load()
           .then(loadedFont => {
@@ -128,18 +134,12 @@ export const loadFonts = async (
             fontState.inter[weight] = 'loaded';
             document.documentElement.classList.add('font-active-mobile');
             performance.mark(`inter-font-loaded-${weight}`);
-          })
-          .catch(err => {
-            console.error(`Failed to load Inter font weight ${weight}:`, err);
-            fontState.inter[weight] = 'error';
           }),
-        new Promise((_, reject) => 
-          setTimeout(() => reject(new Error(`Font loading timed out for Inter ${weight}`)), timeout)
-        ).catch(err => {
-          console.warn(err);
-          fontState.inter[weight] = 'error';
-        })
-      ]);
+        timeoutPromise
+      ]).catch(err => {
+        console.warn(`Failed to load Inter font weight ${weight}:`, err);
+        fontState.inter[weight] = 'error';
+      });
     });
   } else {
     // Desktop: Load Roboto and Rubik fonts
