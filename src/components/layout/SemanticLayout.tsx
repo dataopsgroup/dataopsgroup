@@ -1,26 +1,25 @@
 
 import React from 'react';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
-import ScrollToTop from '../ScrollToTop';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
+import CookieBanner from '@/components/CookieBanner';
 
 interface SemanticLayoutProps {
   children: React.ReactNode;
-  mainClassName?: string;
 }
 
-const SemanticLayout: React.FC<SemanticLayoutProps> = ({ children, mainClassName }) => {
+const SemanticLayout = ({ children }: SemanticLayoutProps) => {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className={`flex-1 ${mainClassName || ''}`}>
-          {children}
-        </main>
-        <Footer />
-      </div>
-    </>
+      <Navbar />
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
+      <CookieBanner />
+    </div>
   );
 };
 
