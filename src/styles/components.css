@@ -143,8 +143,8 @@
     @apply text-xl font-bold mb-4 leading-relaxed;
   }
 
-  /* Approach Benefit Heading - Fixed sizing for card constraints */
+  /* Approach Benefit Heading - Updated for better hierarchy */
   .approach-benefit-heading {
-    @apply text-base font-semibold mb-2 leading-tight !important;
+    @apply text-lg font-semibold mb-2 leading-tight !important;
   }
 }
