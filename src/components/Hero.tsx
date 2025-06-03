@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -80,17 +79,14 @@ const Hero = () => {
                   </h1>
                   <div className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
                     <p className="mb-4">
-                      64% of PE Portfolio Companies Fail at HubSpot Implementation<br />
-                      Don't Join the Statistics. Get the PE-Specific Expertise That Delivers:
+                      PE-specialized consultants who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
                     </p>
+                    <p className="font-medium text-gray-800 mb-4">Achieve</p>
                     <ul className="list-disc pl-6 space-y-1 mb-4">
-                      <li>19% Higher Valuation Multiples</li>
-                      <li>73% Faster EBITDA Growth</li>
-                      <li>$18-$22 ROI Per Dollar Invested</li>
+                      <li>19% higher valuation multiples</li>
+                      <li>73% faster EBITDA growth</li>
+                      <li>$18-22 ROI per $1 invested</li>
                     </ul>
-                    <p className="font-medium text-gray-800">
-                      The data proves it: Expert implementation makes all the difference.
-                    </p>
                   </div>
                 </div>
                 
