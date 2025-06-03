@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
@@ -25,6 +26,11 @@ const routesToPrerender = [
   '/pillar-content',
   '/hubspot-assessment-results',
   '/faqs',
+  '/faqs/hubspot-services',
+  '/faqs/hubspot-experts',
+  '/faqs/data-quality',
+  '/faqs/our-approach',
+  '/faqs/hubspot-modules',
   '/404'
 ];
 
