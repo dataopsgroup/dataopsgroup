@@ -3,15 +3,15 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const Hero = () => {
-  const { isMobile } = useIsMobile();
+  const {
+    isMobile
+  } = useIsMobile();
 
   // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
     // SSR guard for analytics
     if (typeof window === 'undefined') return;
-    
     if (window.gtag) {
       window.gtag('event', 'cta_click', {
         'event_category': 'Engagement',
@@ -32,46 +32,20 @@ const Hero = () => {
     }
     e.currentTarget.style.display = 'none';
   };
-
-  return (
-    <>
-      <div className={`relative pt-24 pb-16 md:py-32 px-4 min-h-[500px] ${
-        isMobile 
-          ? 'bg-gradient-to-br from-dataops-600 via-dataops-500 to-dataops-400' 
-          : 'bg-gradient-to-br from-white to-dataops-50'
-      }`}>
+  return <>
+      <div className={`relative pt-24 pb-16 md:py-32 px-4 min-h-[500px] ${isMobile ? 'bg-gradient-to-br from-dataops-600 via-dataops-500 to-dataops-400' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
         {/* Background Image - using standard img with fallback */}
-        {!isMobile && (
-          <div className="absolute inset-0">
-            <img
-              src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png"
-              alt="Hero background"
-              className="w-full h-full object-cover"
-              loading="eager"
-              onError={handleImageError}
-            />
-          </div>
-        )}
+        {!isMobile && <div className="absolute inset-0">
+            <img src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" alt="Hero background" className="w-full h-full object-cover" loading="eager" onError={handleImageError} />
+          </div>}
         
         {/* Universal CSS Grid Layout Container */}
         <div className="container mx-auto relative z-10 h-full">
-          <div className={`grid gap-4 h-full items-start ${
-            isMobile 
-              ? 'grid-cols-1' 
-              : 'grid-cols-1 lg:grid-cols-12'
-          }`}>
+          <div className={`grid gap-4 h-full items-start ${isMobile ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-12'}`}>
             {/* Hero Content */}
-            <div className={`space-y-8 ${
-              isMobile 
-                ? 'mx-4 max-w-full' 
-                : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'
-            }`}>
+            <div className={`space-y-8 ${isMobile ? 'mx-4 max-w-full' : 'lg:col-span-6 xl:col-span-5 ml-4 sm:ml-6 md:ml-8 lg:ml-10 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl'}`}>
               {/* Universal content background */}
-              <div className={`rounded-lg p-8 space-y-8 ${
-                isMobile 
-                  ? 'bg-white/90 backdrop-blur-sm' 
-                  : 'bg-white/75'
-              }`}>
+              <div className={`rounded-lg p-8 space-y-8 ${isMobile ? 'bg-white/90 backdrop-blur-sm' : 'bg-white/75'}`}>
                 <div>
                   {/* Universal LCP element marking */}
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-[#403E43]" id="hero-heading">
@@ -99,7 +73,7 @@ const Hero = () => {
                       </Button>
                     </Link>
                     <div className="mt-3 text-sm text-gray-600 max-w-sm">
-                      <p className="font-medium text-gray-700 mb-1">PE-Approved Assessment - No Risk</p>
+                      <p className="font-medium text-gray-700 mb-1">Confidential | No Risk</p>
                       <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
                     </div>
                   </div>
@@ -108,9 +82,7 @@ const Hero = () => {
             </div>
             
             {/* Right side - Empty space for background image visibility (desktop only) */}
-            {!isMobile && (
-              <div className="hidden lg:block lg:col-span-6 xl:col-span-7"></div>
-            )}
+            {!isMobile && <div className="hidden lg:block lg:col-span-6 xl:col-span-7"></div>}
           </div>
         </div>
       </div>
@@ -144,8 +116,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Hero;
