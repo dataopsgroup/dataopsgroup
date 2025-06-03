@@ -21,6 +21,19 @@
     @apply text-gray-500 font-medium;
   }
 
+  /* Insights Page Specific Styling */
+  .insights-page .blog-card-enhanced .text-xl {
+    @apply text-sm font-semibold; /* 50% smaller headlines */
+  }
+
+  .insights-page .blog-excerpt {
+    @apply text-xl leading-relaxed text-gray-700; /* 25% larger supporting text */
+  }
+
+  .insights-page .text-sm {
+    @apply text-xl; /* 25% larger date and meta text */
+  }
+
   /* Blog Post Header Enhancement */
   .blog-post-header-enhanced {
     @apply bg-gradient-to-br from-dataops-950 via-dataops-900 to-dataops-800 text-white py-16 mb-8 relative overflow-hidden;

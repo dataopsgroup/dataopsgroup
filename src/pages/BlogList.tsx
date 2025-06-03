@@ -93,12 +93,14 @@ const BlogList = () => {
         })}
       </script>
       
-      <BlogListHero />
-      <BlogListGrid posts={filteredBlogPosts} />
+      <div className="insights-page">
+        <BlogListHero />
+        <BlogListGrid posts={filteredBlogPosts} />
 
-      <section aria-label="Call to Action">
-        <CTABanner />
-      </section>
+        <section aria-label="Call to Action">
+          <CTABanner />
+        </section>
+      </div>
     </SemanticLayout>
   );
 };
