@@ -30,7 +30,8 @@
     @apply text-xl leading-relaxed text-gray-700; /* 25% larger supporting text */
   }
 
-  .insights-page .text-sm {
+  .insights-page .blog-card-enhanced time,
+  .insights-page .blog-card-enhanced .read-time {
     @apply text-xl; /* 25% larger date and meta text */
   }
 
