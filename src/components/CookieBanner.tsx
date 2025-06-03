@@ -12,32 +12,63 @@ const CookieBanner = () => {
       // Show banner after a slight delay to not block initial render
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
+    } else if (cookieConsent === 'accepted') {
+      // Load HubSpot if consent was previously given
+      loadHubSpotTracking();
     }
   }, []);
+
+  const loadHubSpotTracking = () => {
+    // Only load HubSpot if not already loaded
+    if (!document.getElementById('hs-script-loader')) {
+      const hubspotScript = document.createElement('script');
+      hubspotScript.async = true;
+      hubspotScript.defer = true;
+      hubspotScript.src = '//js.hs-scripts.com/21794360.js';
+      hubspotScript.id = 'hs-script-loader';
+      document.head.appendChild(hubspotScript);
+    }
+  };
 
   const handleAccept = () => {
     localStorage.setItem('cookie-consent', 'accepted');
     setIsVisible(false);
     
-    // Enable tracking if user accepts
+    // Enable Google Analytics tracking
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'granted',
         'ad_storage': 'granted'
       });
     }
+    
+    // Load and enable HubSpot tracking
+    loadHubSpotTracking();
+    
+    // Set HubSpot consent when it loads
+    const checkHubSpot = setInterval(() => {
+      if (window._hsq) {
+        window._hsq.push(['doNotTrack', false]);
+        clearInterval(checkHubSpot);
+      }
+    }, 100);
   };
 
   const handleDecline = () => {
     localStorage.setItem('cookie-consent', 'declined');
     setIsVisible(false);
     
-    // Disable tracking if user declines
+    // Disable Google Analytics tracking
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'denied',
         'ad_storage': 'denied'
       });
+    }
+    
+    // Disable HubSpot tracking if it's already loaded
+    if (window._hsq) {
+      window._hsq.push(['doNotTrack', true]);
     }
   };
 

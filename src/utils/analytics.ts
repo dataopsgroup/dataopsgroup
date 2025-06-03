@@ -4,9 +4,14 @@
  * Centralized implementation to avoid duplicate tracking code
  */
 
+// Check if user has consented to tracking
+const hasTrackingConsent = (): boolean => {
+  return localStorage.getItem('cookie-consent') === 'accepted';
+};
+
 // Track initial page view after analytics has loaded
 export const trackInitialPageView = () => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !hasTrackingConsent()) return;
   
   trackPageView({
     page_title: document.title,
@@ -23,14 +28,14 @@ export const trackPageView = (params: {
   page_path: string;
   send_page_view?: boolean;
 }) => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !hasTrackingConsent()) return;
   
   // Track in Google Analytics
   if (window.gtag) {
     window.gtag('event', 'page_view', params);
   }
   
-  // Track in HubSpot
+  // Track in HubSpot if loaded and consented
   if (window._hsq) {
     window._hsq.push(['setPath', params.page_path + (window.location.search || '')]);
     window._hsq.push(['trackPageView']);
@@ -48,30 +53,34 @@ export const setupRouteChangeTracking = () => {
     
     // Small timeout to ensure title and page have updated
     setTimeout(() => {
-      trackPageView({
-        page_title: document.title,
-        page_location: window.location.href,
-        page_path: window.location.pathname,
-        send_page_view: true
-      });
+      if (hasTrackingConsent()) {
+        trackPageView({
+          page_title: document.title,
+          page_location: window.location.href,
+          page_path: window.location.pathname,
+          send_page_view: true
+        });
+      }
     }, 100);
   };
   
   // Also capture browser back/forward navigation
   window.addEventListener('popstate', () => {
     setTimeout(() => {
-      trackPageView({
-        page_title: document.title,
-        page_location: window.location.href,
-        page_path: window.location.pathname
-      });
+      if (hasTrackingConsent()) {
+        trackPageView({
+          page_title: document.title,
+          page_location: window.location.href,
+          page_path: window.location.pathname
+        });
+      }
     }, 100);
   });
 };
 
 // Track custom events in all analytics systems
 export const trackEvent = (eventName: string, params: Record<string, any>) => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !hasTrackingConsent()) return;
   
   // Track in Google Analytics
   if (window.gtag) {
@@ -83,4 +92,3 @@ export const trackEvent = (eventName: string, params: Record<string, any>) => {
     window._hsq.push(['trackEvent', { name: eventName, ...params }]);
   }
 };
-

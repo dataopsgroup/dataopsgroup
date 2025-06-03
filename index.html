@@ -95,6 +95,20 @@
       // Mark navigation start time
       performance.mark('navigationStart');
       
+      // Initialize Google Analytics with consent mode
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'AW-16996265146', {
+        'send_page_view': false,
+        'cookie_flags': 'samesite=none;secure',
+        'anonymize_ip': true
+      });
+      
       // Simplified font loading - Inter is already declared in CSS
       const deferredOperations = () => {
         // Add desktop brand fonts class on larger screens
@@ -111,32 +125,14 @@
         setTimeout(deferredOperations, 20);
       }
       
-      // Load analytics after initial render to avoid LCP blocking
+      // Load Google Analytics script after initial render
       window.addEventListener('load', function() {
-        // Google Analytics - load async after page load
         const gtag = document.createElement('script');
         gtag.async = true;
         gtag.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16996265146';
         document.head.appendChild(gtag);
         
-        gtag.onload = function() {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-16996265146', {
-            'send_page_view': false,
-            'cookie_flags': 'samesite=none;secure',
-            'anonymize_ip': true
-          });
-        };
-        
-        // HubSpot script - load async after page load
-        const hubspot = document.createElement('script');
-        hubspot.async = true;
-        hubspot.defer = true;
-        hubspot.src = '//js.hs-scripts.com/21794360.js';
-        hubspot.id = 'hs-script-loader';
-        document.head.appendChild(hubspot);
+        // HubSpot will be loaded conditionally by the cookie banner
       });
     </script>
   </head>
