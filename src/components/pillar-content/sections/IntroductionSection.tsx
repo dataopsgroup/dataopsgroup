@@ -1,10 +1,9 @@
-
 import React from 'react';
 
 const IntroductionSection: React.FC = () => {
   return (
     <section id="introduction" className="p-4" tabIndex={-1}>
-      <h1 className="text-3xl font-bold mb-6">How to Hire a HubSpot Expert in 2025: Consultant Guide &amp; Integration Costs</h1>
+      <h1 className="text-3xl font-bold leading-snug mb-6">How to Hire a HubSpot Expert in 2025: Consultant Guide &amp; Integration Costs</h1>
       
       <p className="mb-4">Finding the right HubSpot expert can be the difference between simply using another marketing tool and unleashing a growth engine that transforms your entire business. If you've been struggling with disconnected systems, manual processes, or a HubSpot setup that feels more complicated than helpful, you're not alone.</p>
       
