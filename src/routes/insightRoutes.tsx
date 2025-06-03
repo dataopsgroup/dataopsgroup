@@ -2,7 +2,7 @@
 import React, { lazy } from 'react';
 
 const BlogList = lazy(() => import('../pages/BlogList'));
-const BlogPost = lazy(() => import('../pages/BlogPost'));
+const BlogPostPage = lazy(() => import('../pages/BlogPost'));
 const CaseStudiesPage = lazy(() => import('../pages/CaseStudies'));
 const FAQs = lazy(() => import('../pages/FAQs'));
 const NotFound = lazy(() => import('../pages/NotFound'));
@@ -15,7 +15,7 @@ export const insightRoutes = [
   },
   {
     path: "/insights/:postId",
-    element: <BlogPost />,
+    element: <BlogPostPage />,
     errorElement: <NotFound />,
   },
   {
