@@ -46,8 +46,8 @@ const MetaHead = ({
   locale = 'en_US',
   alternateUrls = []
 }: MetaHeadProps) => {
-  // Determine if we're in the browser environment
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  // Use production base URL consistently
+  const baseUrl = 'https://dataopsgroup.com';
   
   // Format title
   const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
@@ -105,6 +105,8 @@ const MetaHead = ({
       <meta property="og:title" content={ogTitle || fullTitle} />
       <meta property="og:description" content={ogDescription || description} />
       <meta property="og:image" content={fullOgImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
       <meta property="og:url" content={fullCanonicalUrl} />
       <meta property="og:site_name" content={siteName} />
       
