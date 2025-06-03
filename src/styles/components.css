@@ -1,4 +1,3 @@
-
 /* Enhanced Blog Styling Classes */
 @layer components {
   /* Professional Blog Card Styling */
@@ -23,7 +22,7 @@
 
   /* Insights Page Specific Styling */
   .insights-page .blog-card-enhanced h3 {
-    @apply text-sm font-semibold !important; /* 50% smaller headlines */
+    @apply text-xl font-semibold !important; /* Same size as summary text */
   }
 
   .insights-page .blog-excerpt {
