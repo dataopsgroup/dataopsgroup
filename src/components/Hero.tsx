@@ -1,12 +1,12 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const Hero = () => {
-  const { isMobile } = useIsMobile();
+  const {
+    isMobile
+  } = useIsMobile();
 
   // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
@@ -32,21 +32,11 @@ const Hero = () => {
     }
     e.currentTarget.style.display = 'none';
   };
-
   return <>
       <div className={`relative pt-24 pb-16 md:py-32 px-4 min-h-[500px] ${isMobile ? 'bg-gradient-to-br from-dataops-600 via-dataops-500 to-dataops-400' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
         {/* Background Image - optimized with explicit dimensions */}
         {!isMobile && <div className="absolute inset-0">
-            <img 
-              src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" 
-              alt="Hero background" 
-              className="w-full h-full object-cover" 
-              loading="eager"
-              fetchPriority="high"
-              width="1920"
-              height="1080"
-              onError={handleImageError} 
-            />
+            <img src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" alt="Hero background" className="w-full h-full object-cover" loading="eager" fetchPriority="high" width="1920" height="1080" onError={handleImageError} />
           </div>}
         
         {/* Universal CSS Grid Layout Container */}
@@ -62,9 +52,7 @@ const Hero = () => {
                     We Implement HubSpot Systems for PE Portfolio Companies to Deliver Operational Excellence in <span className="text-green-600">100 Days</span>
                   </h1>
                   <div className="mt-6 text-lg md:text-xl text-gray-700 max-w-lg">
-                    <p className="mb-4">
-                      PE-specialized consultants who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
-                    </p>
+                    <p className="mb-4">We are PE-specialized consultants who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.</p>
                     <p className="font-medium text-gray-800 mb-4">Achieve</p>
                     <ul className="list-disc pl-6 space-y-1 mb-4">
                       <li>19% higher valuation multiples</li>
@@ -128,5 +116,4 @@ const Hero = () => {
       </div>
     </>;
 };
-
 export default Hero;
