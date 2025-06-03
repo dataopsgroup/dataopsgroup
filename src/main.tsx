@@ -1,164 +1,25 @@
+
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 import './styles/font-face.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StrictMode, Suspense } from 'react';
-import { initWebVitals } from './utils/web-vitals';
-import { setupAnalyticsAndMonitoring, initializeApp } from './utils/app-initialization';
-import { 
-  setupResourceHints, 
-  optimizeAssetLoading, 
-  setupClientCaching,
-  prefetchCriticalRoutes,
-  optimizeResourceOrder,
-  setupInteractionBasedLoading,
-  prerenderNextLikelyPage
-} from './lib/performance-optimizations';
-import { scheduleTasks, runWhenIdle } from './lib/task-scheduler';
-import { monitorRouteChanges } from './utils/route-monitoring';
-import { applyCriticalCSS, loadFonts } from './lib/critical-css';
-import { PerformanceMonitor } from './services/performance-monitoring';
 
-// Add type definitions
-declare global {
-  var APP_VERSION: string;
-  var gtag: (command: string, action: string, params?: Record<string, any>) => void;
-}
-
-// Define app version globally
-if (typeof window !== 'undefined') {
-  window.APP_VERSION = '1.0.9';
-  
-  // Enhanced performance monitoring
-  const performanceMetrics = {
-    navigationStart: performance.now(),
-    firstPaint: 0,
-    firstContentfulPaint: 0,
-    largestContentfulPaint: 0,
-    timeToInteractive: 0,
-    totalBlockingTime: 0,
-    cumulativeLayoutShift: 0
-  };
-
-  // Monitor Core Web Vitals
-  const observer = new PerformanceObserver((list) => {
-    for (const entry of list.getEntries()) {
-      switch (entry.entryType) {
-        case 'paint':
-          if (entry.name === 'first-paint') {
-            performanceMetrics.firstPaint = entry.startTime;
-          } else if (entry.name === 'first-contentful-paint') {
-            performanceMetrics.firstContentfulPaint = entry.startTime;
-          }
-          break;
-        case 'largest-contentful-paint':
-          performanceMetrics.largestContentfulPaint = entry.startTime;
-          break;
-        case 'layout-shift':
-          if ('value' in entry) {
-            performanceMetrics.cumulativeLayoutShift += (entry as any).value;
-          }
-          break;
-      }
-    }
-  });
-
-  observer.observe({ entryTypes: ['paint', 'largest-contentful-paint', 'layout-shift'] });
-
-  // Report metrics when page is fully loaded
-  window.addEventListener('load', () => {
-    performanceMetrics.timeToInteractive = performance.now() - performanceMetrics.navigationStart;
-    
-    // Report to analytics
-    if (window.gtag) {
-      window.gtag('event', 'performance_metrics', {
-        first_paint: performanceMetrics.firstPaint,
-        first_contentful_paint: performanceMetrics.firstContentfulPaint,
-        largest_contentful_paint: performanceMetrics.largestContentfulPaint,
-        time_to_interactive: performanceMetrics.timeToInteractive,
-        total_blocking_time: performanceMetrics.totalBlockingTime,
-        cumulative_layout_shift: performanceMetrics.cumulativeLayoutShift
-      });
-    }
-  });
-}
-
-// Progressive brand font loading function
-const loadBrandFonts = () => {
-  if (typeof window === 'undefined') return;
-
-  // Create a promise to load brand fonts after critical content
-  const loadFonts = () => {
-    // Add font-active-desktop class for desktop devices
-    if (window.innerWidth >= 1024) {
-      document.body.classList.add('font-active-desktop');
-    } else {
-      document.body.classList.add('font-active-mobile');
-    }
-
-    // Remove pending class and add loaded class
-    document.body.classList.remove('fonts-pending');
-    document.body.classList.add('fonts-loaded');
-    performance.mark('brand-fonts-loaded');
-  };
-
-  // Load brand fonts after page is interactive
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(loadFonts, 100); // Small delay to prioritize critical content
-    });
-  } else {
-    setTimeout(loadFonts, 100);
-  }
-};
-
-// Initialize essential monitoring right away
-if (typeof window !== 'undefined') {
-  // Add fonts-pending class immediately for progressive enhancement
-  document.body.classList.add('fonts-pending');
-  
-  // Initialize web vitals monitoring early
-  initWebVitals();
-  
-  // Mark navigation start for performance measurements
-  performance.mark('app-init-start');
-  performance.mark('navigation-start');
-  
-  // Apply critical CSS for initial route
-  applyCriticalCSS(window.location.pathname);
-  
-  // Optimize font loading immediately for better LCP (Inter baseline)
-  loadFonts();
-  
-  // Load brand fonts progressively
-  loadBrandFonts();
-  
-  // Use new performance monitor
-  PerformanceMonitor.init();
-}
-
-// Apply critical performance optimizations immediately
-setupResourceHints();
-
-// Enhanced application rendering with performance tracking
+// Simplified main entry point for debugging
 const renderApp = () => {
   const container = document.getElementById("root");
   if (container) {
-    // Report First Paint to performance monitoring
-    performance.mark('render-start');
-    
     const root = createRoot(container);
     
-    // Standard client-side rendering
     root.render(
       <StrictMode>
         <HelmetProvider>
           <Suspense fallback={
             <div className="w-full h-screen flex items-center justify-center">
               <div className="flex flex-col items-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-dataops-600 mb-4"></div>
-                <p className="text-dataops-600 text-lg">Loading DataOps Group...</p>
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
+                <p className="text-blue-600 text-lg">Loading DataOps Group...</p>
               </div>
             </div>
           }>
@@ -167,128 +28,17 @@ const renderApp = () => {
         </HelmetProvider>
       </StrictMode>
     );
-    
-    // Mark render completion
-    performance.mark('render-complete');
-    performance.measure('total-render-time', 'render-start', 'render-complete');
-    performance.measure('navigation-to-render', 'navigation-start', 'render-complete');
-    
-    // Monitor route changes for performance tracking
-    monitorRouteChanges();
   }
 };
 
-// Immediately render the app for fast initial paint
+// Render immediately
 renderApp();
 
-// Schedule remaining initializations based on priority
-if (typeof window !== 'undefined') {
-  scheduleTasks([
-    // High priority tasks - run immediately but non-blocking
-    { 
-      task: optimizeAssetLoading, 
-      priority: 'high' 
-    },
-    
-    // Medium priority tasks - run soon but yield to user interaction
-    { 
-      task: () => setupClientCaching(),
-      priority: 'medium'
-    },
-    { 
-      task: () => prefetchCriticalRoutes([
-        '/contact',
-        '/insights',
-        '/services',
-        '/approach'
-      ]),
-      priority: 'medium' 
-    },
-    
-    // Low priority tasks - run during idle time
-    { 
-      task: setupAnalyticsAndMonitoring, 
-      priority: 'low' 
-    },
-    {
-      task: optimizeResourceOrder,
-      priority: 'low'
-    },
-    {
-      task: setupInteractionBasedLoading,
-      priority: 'low'
-    },
-    {
-      task: prerenderNextLikelyPage,
-      priority: 'low'
-    }
-  ]);
-  
-  // Handle page visibility changes to optimize for foreground/background
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') {
-      // Prioritize responsiveness when page is visible
-      performance.mark('page-visible');
-      
-      // Optimize media loading when page becomes visible
-      optimizeAssetLoading();
-    } else {
-      // Cancel unnecessary work when page is hidden
-      performance.mark('page-hidden');
-    }
-  });
-  
-  // Initialize remaining app features
-  runWhenIdle(initializeApp);
-  
-  // Report performance metrics when the page is fully loaded
-  window.addEventListener('load', () => {
-    performance.mark('app-loaded');
-    performance.measure('app-startup-time', 'app-init-start', 'app-loaded');
-    performance.measure('navigation-to-load', 'navigation-start', 'app-loaded');
-    
-    // Report Core Web Vitals metrics to console for development
-    if (process.env.NODE_ENV === 'development') {
-      const observer = new PerformanceObserver((list) => {
-        const entries = list.getEntries();
-        entries.forEach((entry) => {
-          if (['largest-contentful-paint', 'layout-shift', 'first-input'].includes(entry.entryType)) {
-            console.info(`[Performance] ${entry.entryType}:`, entry);
-          }
-        });
-      });
-      
-      try {
-        observer.observe({ type: 'largest-contentful-paint', buffered: true });
-        observer.observe({ type: 'layout-shift', buffered: true });
-        observer.observe({ type: 'first-input', buffered: true });
-      } catch (e) {
-        console.error('Failed to observe performance entries:', e);
-      }
-    }
-    
-    // Report performance data after load
-    setTimeout(() => {
-      const startupTiming = performance.getEntriesByName('app-startup-time')[0];
-      const renderTiming = performance.getEntriesByName('total-render-time')[0];
-      const navigationToRenderTiming = performance.getEntriesByName('navigation-to-render')[0];
-      const navigationToLoadTiming = performance.getEntriesByName('navigation-to-load')[0];
-      
-      if (window.gtag) {
-        window.gtag('event', 'performance', {
-          startup_time: Math.round(startupTiming?.duration || 0),
-          render_time: Math.round(renderTiming?.duration || 0),
-          navigation_to_render: Math.round(navigationToRenderTiming?.duration || 0),
-          navigation_to_load: Math.round(navigationToLoadTiming?.duration || 0),
-          user_agent: navigator.userAgent,
-          viewport_width: window.innerWidth,
-          viewport_height: window.innerHeight
-        });
-      }
-      
-      // Clear marks and measures to avoid memory leaks
-      performance.clearMarks();
-      performance.clearMeasures();
-    }, 0);
-  });
-}
+// Basic error handling
+window.addEventListener('error', (event) => {
+  console.error('Application error:', event.error);
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('Unhandled promise rejection:', event.reason);
+});
