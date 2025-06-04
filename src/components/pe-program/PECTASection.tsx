@@ -1,18 +1,10 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Clock, Shield, CheckCircle } from 'lucide-react';
-
 const PECTASection = () => {
-  const guaranteePoints = [
-    "Battle-tested methodology proven across dozens of portfolio companies",
-    "Industry-specific expertise that identifies opportunities others miss",
-    "Systematic approach that reduces implementation risk to near zero"
-  ];
-
-  return (
-    <section className="py-16 md:py-24 bg-dataops-950 text-white">
+  const guaranteePoints = ["Battle-tested methodology proven across dozens of portfolio companies", "Industry-specific expertise that identifies opportunities others miss", "Systematic approach that reduces implementation risk to near zero"];
+  return <section className="py-16 md:py-24 bg-dataops-950 text-white">
       <div className="container mx-auto px-4">
         {/* Urgency Section */}
         <div className="text-center mb-16">
@@ -56,14 +48,10 @@ const PECTASection = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link to="/contact">
-              <Button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-semibold px-8 py-4 text-lg">
-                Schedule Your Strategic Assessment
-              </Button>
+              
             </Link>
             <Link to="/contact">
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-dataops-950 px-8 py-4 text-lg">
-                Download Detailed Program Guide
-              </Button>
+              
             </Link>
           </div>
           
@@ -90,12 +78,10 @@ const PECTASection = () => {
           <div>
             <p className="font-semibold mb-4 text-blue-100">Why We Can Make This Promise:</p>
             <div className="space-y-3">
-              {guaranteePoints.map((point, index) => (
-                <div key={index} className="flex items-start">
+              {guaranteePoints.map((point, index) => <div key={index} className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
                   <p className="text-blue-100">{point}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -118,8 +104,6 @@ const PECTASection = () => {
           </p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PECTASection;
