@@ -17,24 +17,26 @@ interface ServiceHeroProps {
 const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, serviceIcon, backgroundImage }: ServiceHeroProps) => {
   const { isMobile } = useIsMobile();
   
-  // Use charcoal gray background on mobile for performance, image on desktop
-  // Default to showing image unless explicitly mobile (handle undefined state)
-  const shouldShowImage = isMobile !== true && backgroundImage;
-  const backgroundStyle = shouldShowImage ? {
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
-  } : {};
+  // Simplified background logic - use image on desktop, solid color on mobile
+  const shouldShowBackgroundImage = !isMobile && backgroundImage;
 
   return (
     <section 
-      className={`pt-32 pb-16 px-4 relative ${isMobile === true ? 'bg-gray-700' : 'bg-gradient-to-br from-white to-gray-50'}`}
-      style={backgroundStyle}
+      className={`pt-32 pb-16 px-4 relative min-h-[600px] ${
+        isMobile 
+          ? 'bg-gray-700' 
+          : 'bg-gradient-to-br from-white to-gray-50'
+      }`}
+      style={shouldShowBackgroundImage ? {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      } : {}}
     >
-      {/* Background overlay for 75% opacity - only show on desktop with image */}
-      {shouldShowImage && (
-        <div className="absolute inset-0 bg-white/75"></div>
+      {/* Background overlay - only show when background image is present */}
+      {shouldShowBackgroundImage && (
+        <div className="absolute inset-0 bg-white/75 z-0"></div>
       )}
       
       <div className="container mx-auto relative z-10">
