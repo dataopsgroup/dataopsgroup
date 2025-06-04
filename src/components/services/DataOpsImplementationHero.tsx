@@ -12,7 +12,7 @@ const DataOpsImplementationHero = () => {
       ctaText="Get Your DataOps Assessment"
       isHubSpotTraining={false}
       serviceIcon={<Settings size={64} />}
-      backgroundImage="/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png"
+      backgroundImage="/lovable-uploads/2fc3d3e7-168d-4f40-b0c2-cc1e9605353e.png"
     />
   );
 };
