@@ -1,7 +1,7 @@
+
 import * as React from "react"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { cn } from "@/lib/utils"
-import OptimizedImage from "./optimized-image"
 
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
@@ -21,33 +21,13 @@ Avatar.displayName = AvatarPrimitive.Root.displayName
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, src, alt, ...props }, ref) => {
-  const size = className?.match(/h-(\d+)/)?.[1] || "10";
-  const width = parseInt(size) * 4; // Convert to pixels
-  const height = width; // Keep aspect ratio 1:1
-
-  return (
-    <AvatarPrimitive.Image
-      ref={ref}
-      className={cn("aspect-square h-full w-full", className)}
-      {...props}
-    >
-      <OptimizedImage
-        src={src || ""}
-        alt={alt || ""}
-        width={width}
-        height={height}
-        aspectRatio={1}
-        className="object-cover"
-        quality={90}
-        enableModernFormats={true}
-        loading="eager"
-        decoding="sync"
-        sizes={`${width}px`}
-      />
-    </AvatarPrimitive.Image>
-  );
-})
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Image
+    ref={ref}
+    className={cn("aspect-square h-full w-full object-cover", className)}
+    {...props}
+  />
+))
 AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
 const AvatarFallback = React.forwardRef<
