@@ -3,10 +3,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
-import ServiceHero from '@/components/services/ServiceHero';
 import ServiceBenefits from '@/components/services/ServiceBenefits';
 import HubSpotTrainingContent from '@/components/services/HubSpotTrainingContent';
-import { Users } from 'lucide-react';
+import TeamTrainingHero from '@/components/services/TeamTrainingHero';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 
 const TeamTraining = () => {
@@ -38,7 +37,7 @@ const TeamTraining = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HubSpot Implementation and Training | DataOps Group" />
         <meta name="twitter:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
-        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
@@ -50,15 +49,7 @@ const TeamTraining = () => {
       />
       
       <SemanticLayout>
-        <ServiceHero 
-          title="HubSpot Implementation and Training"
-          tagline="Professional Training That Delivers Results"
-          description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
-          ctaText="Book Your HubSpot Strategy Session"
-          isHubSpotTraining={true}
-          serviceIcon={<Users className="h-24 w-24" />}
-          backgroundImage="/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png"
-        />
+        <TeamTrainingHero />
 
         {/* Content Section */}
         <section className="py-16 px-4">
