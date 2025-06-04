@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
@@ -61,25 +60,5 @@ export default defineConfig(({ mode }) => ({
         },
       },
     },
-  },
-  ssg: {
-    enabled: mode === 'production',
-    script: 'async',
-    routes: routesToPrerender,
-    crittersOptions: {
-      reduceInlineStyles: false,
-    },
-    onBeforePageRender: (route: string, indexHTML: string) => {
-      // Add pre-render modifications for better SEO
-      return indexHTML.replace(
-        /<head>/,
-        `<head>
-          <meta name="generator" content="Vite + React + SSG" />
-          <meta name="robots" content="index, follow" />
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        `
-      );
-    }
   }
 }));
