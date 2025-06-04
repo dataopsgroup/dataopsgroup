@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { TrendingUp, Clock, DollarSign } from 'lucide-react';
 
 const PEInvestmentSection = () => {
   const operationalImprovements = [
@@ -36,12 +35,7 @@ const PEInvestmentSection = () => {
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {/* Operational Efficiency */}
           <div className="bg-gray-50 rounded-lg p-8">
-            <div className="flex items-center mb-6">
-              <div className="bg-dataops-100 p-3 rounded-lg mr-4">
-                <TrendingUp className="h-6 w-6 text-dataops-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Operational Efficiency</h3>
-            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Operational Efficiency</h3>
             <div className="space-y-4">
               {operationalImprovements.map((metric, index) => (
                 <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
@@ -54,12 +48,7 @@ const PEInvestmentSection = () => {
 
           {/* Financial Impact */}
           <div className="bg-gray-50 rounded-lg p-8">
-            <div className="flex items-center mb-6">
-              <div className="bg-green-100 p-3 rounded-lg mr-4">
-                <DollarSign className="h-6 w-6 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Financial Impact</h3>
-            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Financial Impact</h3>
             <div className="space-y-4">
               {financialReturns.map((metric, index) => (
                 <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
@@ -72,12 +61,7 @@ const PEInvestmentSection = () => {
 
           {/* Time & Resource Value */}
           <div className="bg-gray-50 rounded-lg p-8">
-            <div className="flex items-center mb-6">
-              <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                <Clock className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Time & Resource Value</h3>
-            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Time & Resource Value</h3>
             <div className="space-y-4">
               {timeValue.map((metric, index) => (
                 <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
