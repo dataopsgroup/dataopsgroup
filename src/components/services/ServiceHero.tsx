@@ -56,13 +56,7 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
           </div>
           
           <div className="lg:col-span-3 flex justify-end">
-            <div className="relative bg-white rounded-2xl shadow-2xl p-12 z-10 w-full max-w-xl border border-gray-100">
-              <div className="flex justify-center items-center h-72 w-full rounded-lg bg-gray-50">
-                <div className="text-brand-saffron" aria-hidden="true">
-                  {serviceIcon}
-                </div>
-              </div>
-            </div>
+            {/* Icon container removed */}
           </div>
         </div>
       </div>
