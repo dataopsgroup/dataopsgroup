@@ -1,10 +1,11 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const PEHeroSection = () => {
   return (
-    <section className="bg-gradient-to-br from-dataops-950 to-dataops-600 text-white pt-20 md:pt-24 pb-16 md:pb-24">
+    <section className="bg-gradient-to-br from-dataops-950 to-dataops-600 text-white pt-[89px] md:pt-[105px] pb-16 md:pb-24">
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-3xl md:text-5xl font-bold mb-6 max-w-4xl mx-auto">
           The 100-Day Portfolio Company Transformation Program
