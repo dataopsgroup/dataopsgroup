@@ -140,7 +140,7 @@ const PEProgramDetails = () => {
                     {phase.title}
                   </h3>
                   <p className="text-dataops-600 font-semibold mb-2">{phase.subtitle}</p>
-                  <p className="text-gray-600 italic">"{phase.tagline}"</p>
+                  <p className="text-gray-600">{phase.tagline}</p>
                 </div>
                 {expandedPhase === phaseIndex ? (
                   <ChevronUp className="h-6 w-6 text-gray-400" />
