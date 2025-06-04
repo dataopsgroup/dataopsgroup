@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -32,8 +33,8 @@ const ServiceHero = ({
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'
   } : {}}>
-      {/* Background overlay - only show when background image is present */}
-      {shouldShowBackgroundImage && <div className="absolute inset-0 z-0 bg-transparent"></div>}
+      {/* Background overlay - 50% white overlay when background image is present */}
+      {shouldShowBackgroundImage && <div className="absolute inset-0 z-0 bg-white/50"></div>}
       
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
