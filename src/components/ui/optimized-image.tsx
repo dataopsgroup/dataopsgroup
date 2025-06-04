@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { calculateOptimalSizes, reportLCPMetric } from '@/utils/image-utils';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -21,10 +22,11 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   decoding?: 'sync' | 'async' | 'auto';
   threshold?: number;
   blur?: boolean;
+  componentType?: 'hero' | 'card' | 'thumbnail' | 'full-width' | 'sidebar';
 }
 
 /**
- * Optimized image component with comprehensive prop support
+ * Optimized image component with comprehensive prop support and LCP optimization
  */
 const OptimizedImage = ({
   src,
@@ -45,16 +47,40 @@ const OptimizedImage = ({
   decoding,
   threshold,
   blur,
+  componentType = 'full-width',
   ...props
 }: OptimizedImageProps) => {
-  // Determine loading strategy
-  const imageLoading = loading || (priority || isLCP ? 'eager' : 'lazy');
-  const imageDecoding = decoding || (priority || isLCP ? 'sync' : 'async');
+  // Determine loading strategy with enhanced LCP detection
+  const isAboveFold = priority || isLCP || componentType === 'hero';
+  const imageLoading = loading || (isAboveFold ? 'eager' : 'lazy');
+  const imageDecoding = decoding || (isAboveFold ? 'sync' : 'async');
+  const fetchPriority = isAboveFold ? 'high' : 'low';
 
-  // Simple error handler
+  // Calculate intelligent sizes if not provided
+  const imageSizes = sizes || calculateOptimalSizes(componentType);
+
+  // Enhanced error handler
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     console.warn(`Failed to load image: ${src}`);
-    // Don't hide the image, just log the error
+    // Report to analytics if available
+    if (window.gtag) {
+      window.gtag('event', 'image_load_error', {
+        event_category: 'Performance',
+        event_label: src.substring(0, 100),
+        value: 1
+      });
+    }
+  };
+
+  // Enhanced load handler with LCP reporting
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (isAboveFold || isLCP) {
+      reportLCPMetric(src);
+    }
+    
+    if (props.onLoad) {
+      props.onLoad(e);
+    }
   };
 
   const imageElement = (
@@ -70,8 +96,10 @@ const OptimizedImage = ({
       }}
       loading={imageLoading}
       decoding={imageDecoding}
-      sizes={sizes}
+      fetchPriority={fetchPriority as any}
+      sizes={imageSizes}
       onError={handleImageError}
+      onLoad={handleImageLoad}
       {...props}
     />
   );

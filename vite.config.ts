@@ -1,3 +1,4 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { resolve } from "path";
@@ -25,8 +26,33 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-tooltip'],
+          // Core React ecosystem
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          
+          // UI framework components
+          ui: [
+            '@radix-ui/react-accordion', 
+            '@radix-ui/react-dialog', 
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-select',
+            '@radix-ui/react-scroll-area'
+          ],
+          
+          // Charts and data visualization
+          charts: ['recharts', 'embla-carousel-react'],
+          
+          // Forms and validation
+          forms: ['react-hook-form', '@hookform/resolvers', 'zod'],
+          
+          // Date utilities
+          dates: ['date-fns'],
+          
+          // Analytics and performance
+          analytics: ['@tanstack/react-query'],
+          
+          // Icons and assets
+          icons: ['lucide-react']
         },
       },
     },

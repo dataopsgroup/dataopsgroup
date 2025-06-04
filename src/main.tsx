@@ -1,43 +1,22 @@
 
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
-import { HelmetProvider } from 'react-helmet-async';
-import { StrictMode, Suspense } from 'react';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+import { initializeAllOptimizations } from "./lib/performance-optimizations";
+import { initWebVitals } from "./utils/performance/core-vitals";
 
-// Simplified main entry point - Google Fonts handles optimization
-const renderApp = () => {
-  const container = document.getElementById("root");
-  if (container) {
-    const root = createRoot(container);
-    
-    root.render(
-      <StrictMode>
-        <HelmetProvider>
-          <Suspense fallback={
-            <div className="w-full h-screen flex items-center justify-center">
-              <div className="flex flex-col items-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
-                <p className="text-blue-600 text-lg">Loading DataOps Group...</p>
-              </div>
-            </div>
-          }>
-            <App />
-          </Suspense>
-        </HelmetProvider>
-      </StrictMode>
-    );
-  }
-};
+// Initialize performance optimizations as early as possible
+if (typeof window !== 'undefined') {
+  // Initialize Core Web Vitals monitoring
+  initWebVitals();
+  
+  // Initialize performance optimizations
+  initializeAllOptimizations();
+}
 
-// Render immediately
-renderApp();
-
-// Basic error handling
-window.addEventListener('error', (event) => {
-  console.error('Application error:', event.error);
-});
-
-window.addEventListener('unhandledrejection', (event) => {
-  console.error('Unhandled promise rejection:', event.reason);
-});
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);

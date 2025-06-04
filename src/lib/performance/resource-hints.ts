@@ -1,84 +1,159 @@
+
 /**
- * Resource hints optimization module for improved asset loading
+ * Enhanced resource hints and preloading for optimal performance
  */
 
 /**
- * Sets up resource hints for critical domains and prefetches likely next navigations.
- * - Adds preconnect and dns-prefetch for important third-party domains.
- * - Uses IntersectionObserver to prefetch visible internal links.
- * - Runs on page load and during idle time for minimal impact.
+ * Setup critical resource hints and preloading
  */
 export const setupResourceHints = () => {
   if (typeof document === 'undefined') return;
   
-  // Add preconnect for important domains with DNS prefetch fallbacks
+  // Add preconnect hints for critical domains
   const criticalDomains = [
     'https://fonts.googleapis.com',
     'https://fonts.gstatic.com',
-    'https://js.hs-scripts.com',
     'https://www.googletagmanager.com',
-    'https://cdn.botpress.cloud',
-    'https://files.bpcontent.cloud'
+    'https://www.google-analytics.com'
   ];
   
   criticalDomains.forEach(domain => {
-    // Only add if not already present
-    if (!document.querySelector(`link[rel="preconnect"][href="${domain}"]`)) {
-      const preconnect = document.createElement('link');
-      preconnect.rel = 'preconnect';
-      preconnect.href = domain;
-      preconnect.crossOrigin = 'anonymous';
-      document.head.appendChild(preconnect);
-      
-      // Add DNS prefetch as fallback for browsers that don't support preconnect
-      const dnsPrefetch = document.createElement('link');
-      dnsPrefetch.rel = 'dns-prefetch';
-      dnsPrefetch.href = domain;
-      document.head.appendChild(dnsPrefetch);
+    if (!document.querySelector(`link[href="${domain}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = domain;
+      link.crossOrigin = 'anonymous';
+      document.head.appendChild(link);
     }
   });
   
-  // Dynamically prefetch likely next navigations based on links in view
-  const prefetchVisibleLinks = () => {
-    const visibleLinks = document.querySelectorAll('a[href^="/"]:not([data-prefetched])');
-    
-    // Use IntersectionObserver to only prefetch links that are visible
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const link = entry.target as HTMLAnchorElement;
-            const href = link.getAttribute('href');
-            
-            if (href && !href.includes('#') && !document.querySelector(`link[rel="prefetch"][href="${href}"]`)) {
-              const prefetchLink = document.createElement('link');
-              prefetchLink.rel = 'prefetch';
-              prefetchLink.href = href;
-              prefetchLink.as = 'document';
-              document.head.appendChild(prefetchLink);
-              link.dataset.prefetched = 'true';
-              
-              // Stop observing this link
-              observer.unobserve(link);
-            }
-          }
-        });
-      }, { rootMargin: '200px' });
-      
-      visibleLinks.forEach(link => {
-        observer.observe(link);
-      });
-    }
-  };
+  // Preload critical fonts with proper font-display
+  preloadCriticalFonts();
   
-  // Run once on load and then on idle
-  if ('requestIdleCallback' in window) {
-    window.addEventListener('load', () => {
-      window.requestIdleCallback(() => prefetchVisibleLinks());
-    });
-  } else {
-    window.addEventListener('load', () => {
-      setTimeout(prefetchVisibleLinks, 1000);
-    });
+  // Setup intelligent prefetching
+  setupIntelligentPrefetching();
+  
+  // Preload critical route assets
+  preloadCriticalRouteAssets();
+};
+
+/**
+ * Preload critical fonts with enhanced loading strategy
+ */
+const preloadCriticalFonts = () => {
+  const criticalFonts = [
+    {
+      href: 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2',
+      type: 'font/woff2',
+      weight: '400'
+    },
+    {
+      href: 'https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2',
+      type: 'font/woff2',
+      weight: '400'
+    }
+  ];
+  
+  criticalFonts.forEach(font => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'font';
+    link.href = font.href;
+    link.type = font.type;
+    link.crossOrigin = 'anonymous';
+    document.head.appendChild(link);
+  });
+};
+
+/**
+ * Setup intelligent prefetching based on user behavior
+ */
+const setupIntelligentPrefetching = () => {
+  let prefetchTimeout: number;
+  
+  // Prefetch on hover with delay
+  document.addEventListener('mouseover', (e) => {
+    const link = (e.target as Element).closest('a[href]') as HTMLAnchorElement;
+    if (link && link.href && link.hostname === location.hostname) {
+      clearTimeout(prefetchTimeout);
+      prefetchTimeout = setTimeout(() => {
+        prefetchRoute(link.href);
+      }, 100);
+    }
+  });
+  
+  // Cancel prefetch if mouse leaves quickly
+  document.addEventListener('mouseout', (e) => {
+    const link = (e.target as Element).closest('a[href]');
+    if (link) {
+      clearTimeout(prefetchTimeout);
+    }
+  });
+  
+  // Prefetch on touch for mobile
+  document.addEventListener('touchstart', (e) => {
+    const link = (e.target as Element).closest('a[href]') as HTMLAnchorElement;
+    if (link && link.href && link.hostname === location.hostname) {
+      prefetchRoute(link.href);
+    }
+  }, { passive: true });
+};
+
+/**
+ * Prefetch route assets
+ */
+const prefetchRoute = (href: string) => {
+  if (document.querySelector(`link[href="${href}"][rel="prefetch"]`)) {
+    return; // Already prefetched
   }
+  
+  const link = document.createElement('link');
+  link.rel = 'prefetch';
+  link.href = href;
+  document.head.appendChild(link);
+};
+
+/**
+ * Preload critical route assets
+ */
+const preloadCriticalRouteAssets = () => {
+  // Preload hero images based on current route
+  const currentPath = window.location.pathname;
+  
+  if (currentPath === '/') {
+    // Preload hero image for homepage
+    preloadImage('/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', 'high');
+  } else if (currentPath.startsWith('/insights')) {
+    // Preload common blog assets
+    preloadImage('/lovable-uploads/ef47b612-1fd8-4f88-9d56-a3f9e8de8378.png', 'high');
+  }
+};
+
+/**
+ * Preload image with specific priority
+ */
+const preloadImage = (src: string, priority: 'high' | 'low' = 'low') => {
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = src;
+  link.setAttribute('fetchpriority', priority);
+  document.head.appendChild(link);
+};
+
+/**
+ * Setup DNS prefetch for external domains
+ */
+export const setupDNSPrefetch = () => {
+  const externalDomains = [
+    'https://images.unsplash.com',
+    'https://www.googletagmanager.com'
+  ];
+  
+  externalDomains.forEach(domain => {
+    const link = document.createElement('link');
+    link.rel = 'dns-prefetch';
+    link.href = domain;
+    document.head.appendChild(link);
+  });
 };
