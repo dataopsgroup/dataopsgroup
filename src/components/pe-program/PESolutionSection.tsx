@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Target, Cog, Rocket } from 'lucide-react';
 const PESolutionSection = () => {
@@ -40,7 +41,7 @@ const PESolutionSection = () => {
                 {item.description}
               </p>
               <ul className="space-y-2">
-                {item.details.map((detail, idx) => <li key={idx} className="text-sm text-gray-600 flex items-start">
+                {item.details.map((detail, idx) => <li key={idx} className="text-base text-gray-600 flex items-start">
                     <span className="text-dataops-600 mr-2">•</span>
                     {detail}
                   </li>)}
