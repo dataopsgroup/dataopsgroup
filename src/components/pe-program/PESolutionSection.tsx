@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { Target, Cog, Rocket } from 'lucide-react';
+
 const PESolutionSection = () => {
   const differentiators = [{
     icon: Target,
@@ -17,7 +19,9 @@ const PESolutionSection = () => {
     description: "Foundation results in 100 days, full transformation in 6-18 months",
     details: ["Immediate operational improvements while building long-term capability", "Your team becomes 90% self-sufficient, with us as strategic partners"]
   }];
-  return <section className="py-16 md:py-24 bg-white">
+
+  return (
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -32,21 +36,30 @@ const PESolutionSection = () => {
         <h3 className="text-2xl font-bold text-center text-gray-900 mb-12">What Makes Us Different?</h3>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {differentiators.map((item, index) => <div key={index} className="bg-gray-50 p-8 rounded-lg">
-              
-              
+          {differentiators.map((item, index) => (
+            <div key={index} className="bg-gray-50 p-8 rounded-lg">
+              <item.icon className="h-8 w-8 text-dataops-600 mb-4" />
+              <h4 className="text-xl font-semibold text-gray-900 mb-3">
+                {item.title}
+              </h4>
               <p className="text-gray-600 mb-4">
                 {item.description}
               </p>
-              <ul className="space-y-2">
-                {item.details.map((detail, idx) => <li key={idx} className="text-sm text-gray-600 flex items-start">
-                    <span className="text-dataops-600 mr-2">•</span>
-                    {detail}
-                  </li>)}
-              </ul>
-            </div>)}
+              <div className="space-y-3">
+                {item.details.map((detail, idx) => (
+                  <div key={idx} className="bg-brand-saffron/10 border border-brand-saffron/20 rounded-lg p-3">
+                    <p className="text-sm text-gray-700">
+                      {detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default PESolutionSection;
