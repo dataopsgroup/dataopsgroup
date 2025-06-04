@@ -1,33 +1,24 @@
-
 import React from 'react';
 import { AlertCircle, TrendingDown, Database, Users } from 'lucide-react';
-
 const PEProblemSection = () => {
-  const problems = [
-    {
-      icon: Database,
-      title: "Fragmented systems",
-      description: "that hide critical business insights"
-    },
-    {
-      icon: TrendingDown,
-      title: "Manual processes",
-      description: "that limit scalability and growth"
-    },
-    {
-      icon: AlertCircle,
-      title: "Inconsistent data",
-      description: "that makes board reporting a nightmare"
-    },
-    {
-      icon: Users,
-      title: "Disconnected teams",
-      description: "working from different sources of truth"
-    }
-  ];
-
-  return (
-    <section className="py-16 md:py-24 bg-gray-50">
+  const problems = [{
+    icon: Database,
+    title: "Fragmented systems",
+    description: "that hide critical business insights"
+  }, {
+    icon: TrendingDown,
+    title: "Manual processes",
+    description: "that limit scalability and growth"
+  }, {
+    icon: AlertCircle,
+    title: "Inconsistent data",
+    description: "that makes board reporting a nightmare"
+  }, {
+    icon: Users,
+    title: "Disconnected teams",
+    description: "working from different sources of truth"
+  }];
+  return <section className="py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -39,8 +30,7 @@ const PEProblemSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {problems.map((problem, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-sm border">
+          {problems.map((problem, index) => <div key={index} className="bg-white p-6 rounded-lg shadow-sm border">
               <problem.icon className="h-8 w-8 text-red-500 mb-4" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 {problem.title}
@@ -48,18 +38,15 @@ const PEProblemSection = () => {
               <p className="text-gray-600">
                 {problem.description}
               </p>
-            </div>
-          ))}
+            </div>)}
         </div>
 
         <div className="text-center">
-          <p className="text-xl font-semibold text-dataops-600">
+          <p className="font-semibold text-dataops-600 text-2xl">
             While your competitors are building unified, data-driven operations that accelerate EBITDA growth.
           </p>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PEProblemSection;
