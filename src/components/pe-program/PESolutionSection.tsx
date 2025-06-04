@@ -1,5 +1,6 @@
 import React from 'react';
 import { Target, Cog, Rocket } from 'lucide-react';
+
 const PESolutionSection = () => {
   const differentiators = [{
     icon: Target,
@@ -17,11 +18,13 @@ const PESolutionSection = () => {
     description: "Foundation results in 100 days, full transformation in 6-18 months",
     details: ["Immediate operational improvements while building long-term capability", "Your team becomes 90% self-sufficient, with us as strategic partners"]
   }];
-  return <section className="py-16 md:py-24 bg-white">
+  return (
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            The Only 100-Day Program Built for PE Portfolio Companies
+            The Only 100-Day Program Built<br />
+            for PE Portfolio Companies
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto">
             Our systematic approach transforms operational chaos into the unified, efficient systems your investment committee expects—without disrupting daily operations.
@@ -46,6 +49,8 @@ const PESolutionSection = () => {
             </div>)}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default PESolutionSection;
