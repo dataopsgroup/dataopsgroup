@@ -1,26 +1,7 @@
 
 import React from 'react';
-import { DollarSign, TrendingUp, Target } from 'lucide-react';
 
 const PEInvestmentSection = () => {
-  const investmentLevels = [
-    {
-      title: "Foundation Package",
-      range: "$75,000 - $100,000",
-      description: "Essential operational improvements and system foundation"
-    },
-    {
-      title: "Complete Transformation",
-      range: "$150,000 - $250,000",
-      description: "Full 100-day program with comprehensive optimization"
-    },
-    {
-      title: "Portfolio-Wide Standardization",
-      range: "Custom pricing for 3+ companies",
-      description: "Standardized implementation across multiple portfolio companies"
-    }
-  ];
-
   const roiMetrics = [
     { metric: "25-40%", description: "improvement in sales productivity metrics" },
     { metric: "30-50%", description: "reduction in administrative overhead" },
@@ -48,34 +29,24 @@ const PEInvestmentSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Program Investment & Expected Returns
+            Program Investment and Expected Returns
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-12">
-          {/* Investment Levels */}
+          {/* Portfolio-Wide Standardization */}
           <div>
-            <div className="flex items-center mb-6">
-              <DollarSign className="h-8 w-8 text-dataops-600 mr-3" />
-              <h3 className="text-xl font-bold text-gray-900">Investment Levels</h3>
-            </div>
-            <div className="space-y-4">
-              {investmentLevels.map((level, index) => (
-                <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-1">{level.title}</h4>
-                  <p className="text-dataops-600 font-bold mb-2">{level.range}</p>
-                  <p className="text-sm text-gray-600">{level.description}</p>
-                </div>
-              ))}
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Portfolio-Wide Standardization</h3>
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-gray-900 mb-1">Portfolio-Wide Standardization</h4>
+              <p className="text-dataops-600 font-bold mb-2">Custom pricing for 3+ companies</p>
+              <p className="text-sm text-gray-600">Standardized implementation across multiple portfolio companies</p>
             </div>
           </div>
 
           {/* ROI Metrics */}
           <div>
-            <div className="flex items-center mb-6">
-              <TrendingUp className="h-8 w-8 text-dataops-600 mr-3" />
-              <h3 className="text-xl font-bold text-gray-900">Typical ROI Metrics</h3>
-            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Typical ROI Metrics</h3>
             <div className="space-y-4">
               {roiMetrics.map((metric, index) => (
                 <div key={index} className="bg-gray-50 p-4 rounded-lg">
@@ -88,10 +59,7 @@ const PEInvestmentSection = () => {
 
           {/* Value Examples */}
           <div>
-            <div className="flex items-center mb-6">
-              <Target className="h-8 w-8 text-dataops-600 mr-3" />
-              <h3 className="text-xl font-bold text-gray-900">Value Creation Examples</h3>
-            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Value Creation Examples</h3>
             <div className="space-y-4">
               {valueExamples.map((example, index) => (
                 <div key={index} className="bg-gray-50 p-4 rounded-lg">
