@@ -49,7 +49,7 @@ const PEValueCreationPage = () => {
         })}
       </script>
 
-      <main className="flex-1">
+      <main className="flex-1 pt-0">
         <PEHeroSection />
         <PEProblemSection />
         <PESolutionSection />
