@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -56,8 +57,7 @@ const TeamTraining = () => {
           ctaText="Book Your HubSpot Strategy Session"
           isHubSpotTraining={true}
           serviceIcon={<Users className="h-24 w-24" />}
-          imageSrc="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"
-          imageAlt="HubSpot training session with a facilitator and attendees"
+          backgroundImage="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"
         />
 
         {/* Content Section */}
