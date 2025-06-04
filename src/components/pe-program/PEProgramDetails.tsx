@@ -143,9 +143,9 @@ const PEProgramDetails = () => {
                   <p className="text-gray-600">{phase.tagline}</p>
                 </div>
                 {expandedPhase === phaseIndex ? (
-                  <ChevronUp className="h-6 w-6 text-gray-400" />
+                  <ChevronUp className="h-8 w-8 text-gray-400" />
                 ) : (
-                  <ChevronDown className="h-6 w-6 text-gray-400" />
+                  <ChevronDown className="h-8 w-8 text-gray-400" />
                 )}
               </button>
 
