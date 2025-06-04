@@ -10,6 +10,7 @@ const BookPage = lazy(() => import('../pages/BookPage'));
 const HubSpotAssessment = lazy(() => import('../pages/HubSpotAssessment'));
 const HubSpotAssessmentResultsPage = lazy(() => import('../pages/HubSpotAssessmentResultsPage'));
 const CaseStudies = lazy(() => import('../pages/CaseStudies'));
+const HubSpotExpertGuidePage = lazy(() => import('../pages/HubSpotExpertGuidePage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
 export const mainRoutes = [
@@ -56,6 +57,11 @@ export const mainRoutes = [
   {
     path: "/case-studies",
     element: <CaseStudies />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/how-to-hire-a-hubspot-expert-in-2025",
+    element: <HubSpotExpertGuidePage />,
     errorElement: <NotFound />,
   },
 ];
