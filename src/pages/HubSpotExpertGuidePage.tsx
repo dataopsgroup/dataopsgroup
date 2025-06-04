@@ -1,142 +1,37 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
-import MetaHead from '@/components/seo/MetaHead';
-import '../styles/pillar-content.css';
-import useActiveSection from '@/hooks/useActiveSection';
-import useScrollToAnchor from '@/hooks/useScrollToAnchor';
-import { setupInteractionBasedLoading } from '@/lib/performance/interaction-loading';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { SectionId } from '@/types/pillar-content';
-import TableOfContents from '@/components/pillar-content/TableOfContents';
-import ContentSection from '@/components/pillar-content/ContentSection';
-import ArticleHeader from '@/components/pillar-content/ArticleHeader';
+import PillarContent from '@/components/PillarContent';
+import { setupInteractionBasedLoading } from '@/lib/performance/interaction';
+import pillarContentData from '@/data/pillar-content/hubspot-expert-guide.json';
 
 const HubSpotExpertGuidePage = () => {
-  const sectionIds: SectionId[] = [
-    'introduction',
-    'understanding-experts',
-    'types-expertise',
-    'beyond-agency-safety',
-    'when-need-expert',
-    'evaluating-qualifications',
-    'pricing-guide',
-    'step-by-step-process',
-    'essential-questions',
-    'maximizing-partnership',
-    'success-stories',
-    'common-pitfalls',
-    'conclusion'
-  ];
-  
-  // Initialize hooks with error handling
-  let location, navigate;
-  try {
-    location = useLocation();
-    navigate = useNavigate();
-  } catch (error) {
-    console.error('Router context error:', error);
-    // Fallback for when router context is not available
-    location = { hash: '', pathname: '/how-to-hire-a-hubspot-expert-in-2025' };
-    navigate = () => {};
-  }
-  
-  const [activeSection, setActiveSection] = useState<SectionId>('introduction');
-  
-  // Get active section based on scroll
-  const activeId = useActiveSection(sectionIds, 120);
-  
-  // Handle scroll to anchor when page loads with hash, but disable for manual navigation
-  useScrollToAnchor([], true);
-  
-  // Setup interaction-based loading for performance
-  React.useEffect(() => {
+  useEffect(() => {
     setupInteractionBasedLoading();
   }, []);
-  
-  // Update active section based on URL hash
-  useEffect(() => {
-    if (location && location.hash) {
-      const hash = location.hash.slice(1);
-      if (hash && sectionIds.includes(hash as SectionId)) {
-        setActiveSection(hash as SectionId);
-        // Scroll to top when changing sections
-        window.scrollTo(0, 0);
-      }
-    } else if (!location?.hash) {
-      setActiveSection('introduction');
-    }
-  }, [location?.hash, sectionIds]);
-  
-  // Handle TOC link clicks
-  const handleSectionClick = (sectionId: SectionId) => {
-    setActiveSection(sectionId);
-    
-    if (navigate && typeof navigate === 'function') {
-      navigate(`/how-to-hire-a-hubspot-expert-in-2025#${sectionId}`, { 
-        replace: true,
-        state: { manualNavigation: true }
-      });
-    } else {
-      // Fallback for when navigate is not available
-      window.location.hash = sectionId;
-    }
-    
-    // Scroll to top when changing sections
-    window.scrollTo(0, 0);
-    
-    // For accessibility and screen readers
-    document.getElementById(sectionId)?.focus();
-  };
 
   return (
     <SemanticLayout>
-      <MetaHead 
-        title="How to Hire a HubSpot Expert in 2025: Consultant Guide & Integration Costs" 
-        description="Your complete guide to hiring the right HubSpot expert or consultant for your business needs, including implementation costs, evaluation criteria, and key questions to ask."
-        keywords="HubSpot experts, HubSpot consultants, HubSpot implementation, HubSpot integration, HubSpot consultant costs" 
-        canonicalPath={`${typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com'}/how-to-hire-a-hubspot-expert-in-2025`} 
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": "How to Hire a HubSpot Expert in 2025: Consultant Guide & Integration Costs",
-          "author": {
-            "@type": "Person",
-            "name": "Geoff Tucker"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "DataOps Group",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://dataopsgroup.com/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png"
-            }
-          },
-          "datePublished": "2025-05-23",
-          "dateModified": "2025-05-23"
-        }}
-      />
-      
-      <div className="container mx-auto px-4 py-16">
-        {/* Article Header with integrated social sharing */}
-        <ArticleHeader 
-          title="How to Hire a HubSpot Expert in 2025: Consultant Guide and Integration Costs"
-        />
+      <Helmet>
+        <title>How to Hire a HubSpot Expert: Complete Guide for 2024 | DataOps Group</title>
+        <meta name="description" content="Complete guide to hiring HubSpot experts. Learn how to find, evaluate, and work with certified HubSpot consultants for maximum ROI." />
+        <meta name="keywords" content="HubSpot expert, HubSpot consultant, hire HubSpot specialist, HubSpot implementation" />
+        <link rel="canonical" href="https://www.dataopsgroup.com/hubspot-expert-guide" />
         
-        <div className="flex flex-col md:flex-row">
-          {/* Table of Contents */}
-          <div className="w-full md:w-[33%]">
-            <TableOfContents 
-              sectionIds={sectionIds}
-              activeSection={activeSection}
-              handleSectionClick={handleSectionClick}
-            />
-          </div>
-          
-          {/* Main content */}
-          <ContentSection activeSection={activeSection} />
-        </div>
-      </div>
+        {/* Open Graph tags */}
+        <meta property="og:title" content="How to Hire a HubSpot Expert: Complete Guide for 2024" />
+        <meta property="og:description" content="Complete guide to hiring HubSpot experts. Learn how to find, evaluate, and work with certified HubSpot consultants for maximum ROI." />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://www.dataopsgroup.com/hubspot-expert-guide" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="How to Hire a HubSpot Expert: Complete Guide for 2024" />
+        <meta name="twitter:description" content="Complete guide to hiring HubSpot experts. Learn how to find, evaluate, and work with certified HubSpot consultants for maximum ROI." />
+      </Helmet>
+      
+      <PillarContent data={pillarContentData} />
     </SemanticLayout>
   );
 };
