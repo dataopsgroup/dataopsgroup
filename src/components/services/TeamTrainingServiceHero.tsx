@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Users } from 'lucide-react';
 
 interface TeamTrainingServiceHeroProps {
   title: string;
@@ -52,8 +51,8 @@ const TeamTrainingServiceHero = ({
       )}
       
       <div className="container mx-auto relative z-10" style={shouldShowBackgroundImage ? { transform: 'scaleX(-1)' } : {}}>
-        <div className="grid lg:grid-cols-5 gap-12 items-center">
-          {/* Wider content area specifically for Team Training - lg:col-span-3 instead of 2 */}
+        <div className="grid lg:grid-cols-3 gap-12 items-center">
+          {/* Full width content area for Team Training */}
           <div className="lg:col-span-3 space-y-6 relative p-8 rounded-xl border border-gray-100 bg-white/80 backdrop-blur-sm">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-saffron/10 text-brand-navy text-sm font-medium mb-2">
               <span className="w-2 h-2 bg-brand-saffron rounded-full mr-2"></span>
@@ -72,13 +71,6 @@ const TeamTrainingServiceHero = ({
               <Button className="bg-brand-saffron hover:bg-brand-saffron/90 text-white px-8 py-6 text-base font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" asChild>
                 <Link to="/contact">{ctaText}</Link>
               </Button>
-            </div>
-          </div>
-          
-          {/* Smaller right column for balance */}
-          <div className="lg:col-span-2 flex justify-end">
-            <div className="text-brand-navy/20">
-              <Users className="h-32 w-32" />
             </div>
           </div>
         </div>
