@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -9,7 +10,7 @@ import {
   CarouselNext, 
   CarouselPrevious 
 } from '@/components/ui/carousel';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
 import OptimizedImage from '@/components/ui/optimized-image';
 import DynamicThumbnail from '@/components/blog/DynamicThumbnail';
 import { calculateReadingTime } from '@/utils/thumbnail-generator';
@@ -100,9 +101,9 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                             className="w-full h-40 rounded-t-lg"
                           />
                         )}
-                        <CardTitle className="text-base font-semibold hover:text-dataops-600 transition-colors mt-4">
+                        <h3 className="!text-base font-semibold hover:text-dataops-600 transition-colors mt-4 leading-tight">
                           {post.title}
-                        </CardTitle>
+                        </h3>
                       </CardHeader>
                       <CardContent className="flex-grow">
                         <CardDescription className="text-gray-700 text-sm">
