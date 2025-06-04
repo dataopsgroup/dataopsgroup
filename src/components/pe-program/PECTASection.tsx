@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -61,7 +60,19 @@ const PECTASection = () => {
 
           <div className="mb-8">
             <Link to="/contact">
-              <Button className="bg-saffron-500 hover:bg-saffron-600 text-black font-bold px-8 py-3 text-lg">
+              <Button 
+                className="text-black font-bold px-8 py-3 text-lg"
+                style={{ 
+                  backgroundColor: '#FBB03B',
+                  borderColor: '#FBB03B'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#e09935';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FBB03B';
+                }}
+              >
                 Get Our Portfolio Assessment
               </Button>
             </Link>
@@ -115,7 +126,19 @@ const PECTASection = () => {
           </p>
           
           <Link to="/contact">
-            <Button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-bold px-10 py-4 text-xl">
+            <Button 
+              className="text-dataops-950 font-bold px-10 py-4 text-xl"
+              style={{ 
+                backgroundColor: '#FBB03B',
+                borderColor: '#FBB03B'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#e09935';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#FBB03B';
+              }}
+            >
               Get Started Today - Schedule Assessment
             </Button>
           </Link>
@@ -129,4 +152,3 @@ const PECTASection = () => {
 };
 
 export default PECTASection;
-
