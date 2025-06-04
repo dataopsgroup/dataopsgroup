@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Users } from 'lucide-react';
 
 interface TeamTrainingServiceHeroProps {
   title: string;
@@ -75,11 +73,9 @@ const TeamTrainingServiceHero = ({
             </div>
           </div>
           
-          {/* Smaller right column for balance */}
-          <div className="lg:col-span-2 flex justify-end">
-            <div className="text-brand-navy/20">
-              <Users className="h-32 w-32" />
-            </div>
+          {/* Empty right column for balance - keeps the grid structure */}
+          <div className="lg:col-span-2">
+            {/* Empty space to maintain layout */}
           </div>
         </div>
       </div>
