@@ -22,11 +22,15 @@ export const setupInteractionPreloading = () => {
 };
 
 /**
- * Enhanced link preloading with intelligent route detection
+ * Enhanced link preloading with intelligent route detection and proper type checking
  */
 const handleLinkPreload = (event: Event) => {
-  const target = event.target as HTMLElement;
-  const link = target.closest('a[href]') as HTMLAnchorElement;
+  // Add proper type checking to prevent "closest is not a function" error
+  const target = event.target;
+  if (!target || typeof target !== 'object' || !('closest' in target)) return;
+  
+  const htmlTarget = target as HTMLElement;
+  const link = htmlTarget.closest('a[href]') as HTMLAnchorElement;
   
   if (!link || !link.href) return;
   
@@ -39,11 +43,15 @@ const handleLinkPreload = (event: Event) => {
 };
 
 /**
- * Enhanced route preloading with caching
+ * Enhanced route preloading with caching and proper type checking
  */
 const handleRoutePreload = (event: Event) => {
-  const target = event.target as HTMLElement;
-  const link = target.closest('a[href]') as HTMLAnchorElement;
+  // Add proper type checking to prevent runtime errors
+  const target = event.target;
+  if (!target || typeof target !== 'object' || !('closest' in target)) return;
+  
+  const htmlTarget = target as HTMLElement;
+  const link = htmlTarget.closest('a[href]') as HTMLAnchorElement;
   
   if (!link || !link.href || preloadedRoutes.has(link.href)) return;
   
@@ -99,9 +107,6 @@ export const setupCriticalResourcePrefetching = () => {
   }, 2000); // Universal 2s delay
 };
 
-/**
- * Enhanced cleanup function for route preloading
- */
 export const cleanupRoutePreloading = () => {
   preloadedRoutes.clear();
 };

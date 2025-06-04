@@ -3,16 +3,26 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { initializeAllOptimizations } from "./lib/performance-optimizations";
-import { initWebVitals } from "./utils/performance/core-vitals";
 
-// Initialize performance optimizations as early as possible
+// Initialize performance optimizations with error handling
 if (typeof window !== 'undefined') {
-  // Initialize Core Web Vitals monitoring
-  initWebVitals();
-  
-  // Initialize performance optimizations
-  initializeAllOptimizations();
+  try {
+    // Initialize Core Web Vitals monitoring
+    import('./utils/performance/core-vitals').then(({ initWebVitals }) => {
+      initWebVitals();
+    }).catch(error => {
+      console.warn('Failed to initialize Web Vitals:', error);
+    });
+    
+    // Initialize performance optimizations
+    import('./lib/performance-optimizations').then(({ initializeAllOptimizations }) => {
+      initializeAllOptimizations();
+    }).catch(error => {
+      console.warn('Failed to initialize performance optimizations:', error);
+    });
+  } catch (error) {
+    console.warn('Failed to initialize performance features:', error);
+  }
 }
 
 createRoot(document.getElementById("root")!).render(
