@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Clock, Shield, CheckCircle } from 'lucide-react';
-
 const PECTASection = () => {
   const guaranteePoints = ["Battle-tested methodology proven across dozens of portfolio companies", "Industry-specific expertise that identifies opportunities others miss", "Systematic approach that reduces implementation risk to near zero"];
-  
   return <section className="py-16 md:py-24 bg-dataops-950 text-white">
       <div className="container mx-auto px-4">
         {/* Urgency Section */}
@@ -26,19 +23,10 @@ const PECTASection = () => {
             </p>
             <div className="text-left space-y-2 mt-4">
               <p className="text-blue-100"><strong>Why We Limit Capacity:</strong></p>
-              <ul className="space-y-3 text-blue-100 list-none">
-                <li className="flex">
-                  <span className="text-saffron-500 mr-3 flex-shrink-0">•</span>
-                  <span>Dedicated team assignments ensure continuity and deep knowledge transfer</span>
-                </li>
-                <li className="flex">
-                  <span className="text-saffron-500 mr-3 flex-shrink-0">•</span>
-                  <span>Quality outcomes require focused attention, not rushed implementations</span>
-                </li>
-                <li className="flex">
-                  <span className="text-saffron-500 mr-3 flex-shrink-0">•</span>
-                  <span>Our methodology works because we don't cut corners or over-commit</span>
-                </li>
+              <ul className="space-y-1 text-blue-100">
+                <li>• Dedicated team assignments ensure continuity and deep knowledge transfer</li>
+                <li>• Quality outcomes require focused attention, not rushed implementations</li>
+                <li>• Our methodology works because we don't cut corners or over-commit</li>
               </ul>
             </div>
           </div>
@@ -56,26 +44,6 @@ const PECTASection = () => {
               <p className="text-blue-100"><strong>Step 2:</strong> Receive your custom 100-Day Roadmap and ROI projections</p>
               <p className="text-blue-100"><strong>Step 3:</strong> Begin transformation with immediate operational improvements</p>
             </div>
-          </div>
-
-          <div className="mb-8">
-            <Link to="/contact">
-              <Button 
-                className="text-black font-bold px-8 py-3 text-lg"
-                style={{ 
-                  backgroundColor: '#FBB03B',
-                  borderColor: '#FBB03B'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#e09935';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FBB03B';
-                }}
-              >
-                Get Our Portfolio Assessment
-              </Button>
-            </Link>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -112,7 +80,7 @@ const PECTASection = () => {
             <div className="space-y-3">
               {guaranteePoints.map((point, index) => <div key={index} className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <p className="text-blue-100">{point}</p>
+                  
                 </div>)}
             </div>
           </div>
@@ -126,19 +94,7 @@ const PECTASection = () => {
           </p>
           
           <Link to="/contact">
-            <Button 
-              className="text-dataops-950 font-bold px-10 py-4 text-xl"
-              style={{ 
-                backgroundColor: '#FBB03B',
-                borderColor: '#FBB03B'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#e09935';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#FBB03B';
-              }}
-            >
+            <Button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-bold px-10 py-4 text-xl">
               Get Started Today - Schedule Assessment
             </Button>
           </Link>
@@ -150,5 +106,4 @@ const PECTASection = () => {
       </div>
     </section>;
 };
-
 export default PECTASection;
