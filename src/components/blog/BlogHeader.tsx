@@ -93,33 +93,30 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
           </h1>
 
           {/* Social Share */}
-          <div className="flex items-center gap-4 mb-8">
-            <span className="text-white/80 text-sm font-medium">Share:</span>
-            <div className="flex items-center gap-3">
-              <button 
-                onClick={handleShareLinkedIn}
-                aria-label="Share on LinkedIn"
-                className="social-share-btn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </button>
-              
-              <button 
-                onClick={handleShareTwitter}
-                aria-label="Share on Twitter"
-                className="social-share-btn"
-              >
-                <Twitter className="w-5 h-5" />
-              </button>
-              
-              <button 
-                onClick={handleCopyLink}
-                aria-label="Copy link to clipboard"
-                className="social-share-btn"
-              >
-                {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-              </button>
-            </div>
+          <div className="flex items-center gap-3 mb-8">
+            <button 
+              onClick={handleShareLinkedIn}
+              aria-label="Share on LinkedIn"
+              className="social-share-btn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </button>
+            
+            <button 
+              onClick={handleShareTwitter}
+              aria-label="Share on Twitter"
+              className="social-share-btn"
+            >
+              <Twitter className="w-5 h-5" />
+            </button>
+            
+            <button 
+              onClick={handleCopyLink}
+              aria-label="Copy link to clipboard"
+              className="social-share-btn"
+            >
+              {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+            </button>
           </div>
         </div>
       </div>
