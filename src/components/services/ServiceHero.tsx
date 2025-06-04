@@ -18,7 +18,9 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
   const { isMobile } = useIsMobile();
   
   // Use charcoal gray background on mobile for performance, image on desktop
-  const backgroundStyle = !isMobile && backgroundImage ? {
+  // Default to showing image unless explicitly mobile (handle undefined state)
+  const shouldShowImage = isMobile !== true && backgroundImage;
+  const backgroundStyle = shouldShowImage ? {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -27,11 +29,11 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
 
   return (
     <section 
-      className={`pt-32 pb-16 px-4 relative ${isMobile ? 'bg-gray-700' : 'bg-gradient-to-br from-white to-gray-50'}`}
+      className={`pt-32 pb-16 px-4 relative ${isMobile === true ? 'bg-gray-700' : 'bg-gradient-to-br from-white to-gray-50'}`}
       style={backgroundStyle}
     >
       {/* Background overlay for 75% opacity - only show on desktop with image */}
-      {!isMobile && backgroundImage && (
+      {shouldShowImage && (
         <div className="absolute inset-0 bg-white/75"></div>
       )}
       
