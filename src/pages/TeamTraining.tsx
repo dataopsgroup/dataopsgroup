@@ -32,13 +32,13 @@ const TeamTraining = () => {
         <meta property="og:title" content="HubSpot Training & Implementation | DataOps Group" />
         <meta property="og:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
         <meta property="og:url" content={`${baseUrl}/services/team-training`} />
-        <meta property="og:image" content={`${baseUrl}/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
         <meta property="og:site_name" content="DataOps Group" />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HubSpot Training & Implementation | DataOps Group" />
         <meta name="twitter:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
-        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png`} />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
@@ -57,7 +57,7 @@ const TeamTraining = () => {
           ctaText="Book Your HubSpot Strategy Session"
           isHubSpotTraining={true}
           serviceIcon={<Users className="h-24 w-24" />}
-          backgroundImage="/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png"
+          backgroundImage="/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png"
         />
 
         {/* Content Section */}
