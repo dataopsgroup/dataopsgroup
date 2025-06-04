@@ -60,7 +60,7 @@ const PECTASection = () => {
             </div>
             
             <p className="text-gray-600 mt-6">
-              Schedule your strategy session to secure your spot for Q2 2025.
+              Schedule your strategy session to secure your spot for Q3 2025.
             </p>
           </div>
         </div>
