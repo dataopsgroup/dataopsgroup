@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -30,12 +31,13 @@ const ServiceHero = ({
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
+    backgroundRepeat: 'no-repeat',
+    transform: 'scaleX(-1)'
   } : {}}>
       {/* Background overlay - 50% white overlay when background image is present */}
-      {shouldShowBackgroundImage && <div className="absolute inset-0 z-0 bg-transparent"></div>}
+      {shouldShowBackgroundImage && <div className="absolute inset-0 z-0 bg-white/50" style={{ transform: 'scaleX(-1)' }}></div>}
       
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10" style={shouldShowBackgroundImage ? { transform: 'scaleX(-1)' } : {}}>
         <div className="grid lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-2 space-y-6 relative p-8 rounded-xl border border-gray-100 bg-white/80 backdrop-blur-sm">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-saffron/10 text-brand-navy text-sm font-medium mb-2">
