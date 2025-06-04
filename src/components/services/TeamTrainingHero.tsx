@@ -12,8 +12,7 @@ const TeamTrainingHero = () => {
       ctaText="Book Your HubSpot Strategy Session"
       isHubSpotTraining={true}
       serviceIcon={<Users size={64} />}
-      imageSrc="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-      imageAlt="Professional team training session with people collaborating around laptops and computers in modern office setting"
+      backgroundImage="/lovable-uploads/d7a76753-96fc-40c6-879a-5d868afa4c06.png"
     />
   );
 };
