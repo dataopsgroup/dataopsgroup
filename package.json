@@ -10,10 +10,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "backup": "node scripts/backup-current-site.js",
-    "check-ssg": "node scripts/ssg-compatibility-check.js",
-    "test-ssg": "node scripts/test-ssg-build.js",
-    "build:ssg": "vite build --mode production",
-    "preview:ssg": "vite preview --mode production",
     "tag-changes": "node scripts/tag-changes.cjs"
   },
   "dependencies": {
