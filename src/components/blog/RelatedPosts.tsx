@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -101,7 +100,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                             className="w-full h-40 rounded-t-lg"
                           />
                         )}
-                        <CardTitle className="text-lg font-semibold hover:text-dataops-600 transition-colors mt-4">
+                        <CardTitle className="text-base font-semibold hover:text-dataops-600 transition-colors mt-4">
                           {post.title}
                         </CardTitle>
                       </CardHeader>
