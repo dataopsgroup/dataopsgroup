@@ -41,6 +41,10 @@ npx vite preview --config vite.config.ssg.ts
 - **Cause**: Components using window, document, or other browser-only APIs
 - **Solution**: Add guards like `if (typeof window !== 'undefined')`
 
+### 5. Script execution errors
+- **Cause**: Shebang or syntax issues in Node.js scripts
+- **Solution**: Remove shebang lines and ensure proper CommonJS syntax
+
 ## Files Created/Modified for SSG Support
 
 1. **vite.config.ssg.ts** - SSG-specific Vite configuration
@@ -56,3 +60,8 @@ npx vite preview --config vite.config.ssg.ts
 ## Package.json Note
 
 Since package.json is read-only in this project, all SSG commands must be run directly using npx or node, rather than through npm scripts.
+
+## Error Resolution Log
+
+- **Fixed**: Removed shebang from test-ssg-build.cjs to prevent syntax errors
+- **Fixed**: Updated script to use proper CommonJS syntax without ES modules

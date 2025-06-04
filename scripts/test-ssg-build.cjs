@@ -1,6 +1,4 @@
 
-#!/usr/bin/env node
-
 /**
  * Test SSG Build Script
  * Validates SSG build output
@@ -21,7 +19,7 @@ try {
 
   // Run SSG build
   console.log('🔨 Building with SSG...');
-  execSync('npm run build:ssg', { stdio: 'inherit' });
+  execSync('npx vite-ssg build --config vite.config.ssg.ts', { stdio: 'inherit' });
 
   // Validate build output
   const distDir = './dist';
