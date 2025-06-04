@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PEHeroSection = () => {
   return (
-    <section className="bg-gradient-to-br from-dataops-950 to-dataops-600 text-white mt-[16px] pt-16 pb-16 md:pb-24">
+    <section className="bg-gradient-to-br from-dataops-950 to-dataops-600 text-white mt-[8px] pt-16 pb-16 md:pb-24">
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-3xl md:text-5xl font-bold mb-6 max-w-4xl mx-auto">
           The 100-Day Portfolio Company Transformation Program
