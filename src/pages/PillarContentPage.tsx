@@ -28,7 +28,10 @@ const PillarContentPage = () => {
 
   return (
     <SemanticLayout>
-      <PillarContent data={pillarContentData} />
+      <PillarContent 
+        title={pillarContentData.title}
+        description={pillarContentData.description}
+      />
     </SemanticLayout>
   );
 };

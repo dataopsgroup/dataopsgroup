@@ -6,6 +6,29 @@
  * functions from their respective modules and coordinates initialization
  */
 
+// Import all performance optimization functions
+import { setupResourceHints, setupDNSPrefetch } from './performance/resource-hints';
+import { 
+  optimizeAssetLoading, 
+  optimizeResourceOrder
+} from './performance/asset-loading';
+import { 
+  setupClientCaching, 
+  fetchWithCaching 
+} from './performance/caching';
+import { 
+  prefetchCriticalRoutes, 
+  prerenderNextLikelyPage 
+} from './performance/prefetching';
+import { 
+  setupInteractionBasedLoading 
+} from './performance/interaction';
+import { 
+  initializeJSOptimizations,
+  deferNonCriticalJS,
+  optimizeComponentRendering
+} from './performance/js-optimization';
+
 // Re-export all performance optimization functions
 export { setupResourceHints, setupDNSPrefetch } from './performance/resource-hints';
 export { 

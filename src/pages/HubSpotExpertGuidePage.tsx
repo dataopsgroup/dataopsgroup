@@ -31,7 +31,10 @@ const HubSpotExpertGuidePage = () => {
         <meta name="twitter:description" content="Complete guide to hiring HubSpot experts. Learn how to find, evaluate, and work with certified HubSpot consultants for maximum ROI." />
       </Helmet>
       
-      <PillarContent data={pillarContentData} />
+      <PillarContent 
+        title={pillarContentData.title}
+        description={pillarContentData.description}
+      />
     </SemanticLayout>
   );
 };
