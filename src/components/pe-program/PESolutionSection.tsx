@@ -1,55 +1,88 @@
+
 import React from 'react';
-import { Target, Cog, Rocket } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { CheckCircle, Target, Clock, TrendingUp } from 'lucide-react';
+
 const PESolutionSection = () => {
-  const differentiators = [{
-    icon: Target,
-    title: "PE-Native Understanding",
-    description: "We speak your language: EBITDA, value creation, exit multiples",
-    details: ["Built-in board reporting and investor communication frameworks", "Designed around your 3-7 year value creation timeline"]
-  }, {
-    icon: Cog,
-    title: "Battle-Tested Methodology",
-    description: "Proven across dozens of portfolio company transformations",
-    details: ["Industry-specific templates that reduce implementation risk", "Systematic quality controls ensure consistent outcomes"]
-  }, {
-    icon: Rocket,
-    title: "Rapid Time-to-Value",
-    description: "Foundation results in 100 days, full transformation in 6-18 months",
-    details: ["Immediate operational improvements while building long-term capability", "Your team becomes 90% self-sufficient, with us as strategic partners"]
-  }];
-  return <section className="py-16 md:py-24 bg-white">
+  const solutions = [
+    {
+      icon: Target,
+      title: "Systematic Assessment",
+      description: "Complete operational audit with prioritized improvement roadmap"
+    },
+    {
+      icon: Clock,
+      title: "Rapid Implementation",
+      description: "100-day transformation program with weekly milestone tracking"
+    },
+    {
+      icon: TrendingUp,
+      title: "Measurable Results",
+      description: "Documented efficiency gains and EBITDA impact analysis"
+    }
+  ];
+
+  const benefits = [
+    "Unified data architecture across all business functions",
+    "Automated workflows that eliminate manual bottlenecks",
+    "Real-time visibility into operational performance",
+    "Scalable systems that support aggressive growth targets",
+    "Team training and knowledge transfer for sustainability"
+  ];
+
+  return (
+    <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            The Only 100-Day Program Built<br />
-            for PE Portfolio Companies
+            The Only 100-Day Program That Delivers Working Systems, Not Reports
           </h2>
-          <p className="text-gray-600 max-w-4xl mx-auto text-2xl">
-            Our systematic approach transforms operational chaos into the unified, efficient systems your investment committee expects—without disrupting daily operations.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            We've systematized the transformation process specifically for PE portfolio companies, 
+            delivering operational infrastructure that accelerates value creation
           </p>
         </div>
 
-        <h3 className="text-2xl font-bold text-center text-gray-900 mb-12">What Makes Us Different?</h3>
-
-        <div className="grid lg:grid-cols-3 gap-8">
-          {differentiators.map((item, index) => <div key={index} className="bg-gray-50 p-8 rounded-lg">
-              
-              <h4 className="text-xl font-semibold text-gray-900 mb-3">
-                {item.title}
-              </h4>
-              <p className="text-gray-600 mb-4">
-                {item.description}
-              </p>
-              <div className="space-y-3">
-                {item.details.map((detail, idx) => <div key={idx} className="bg-brand-saffron/10 border border-brand-saffron/20 rounded-lg p-3">
-                    <p className="text-sm text-gray-700">
-                      {detail}
-                    </p>
-                  </div>)}
+        {/* Solution Components */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {solutions.map((solution, index) => (
+            <div key={index} className="text-center">
+              <div className="bg-dataops-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <solution.icon className="h-8 w-8 text-dataops-600" />
               </div>
-            </div>)}
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{solution.title}</h3>
+              <p className="text-gray-600">{solution.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Benefits List */}
+        <div className="bg-gray-50 rounded-lg p-8 mb-12">
+          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+            What You Get
+          </h3>
+          <div className="max-w-3xl mx-auto">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="flex items-start mb-4">
+                <CheckCircle className="h-6 w-6 text-green-500 mr-4 mt-0.5 flex-shrink-0" />
+                <p className="text-gray-700">{benefit}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center">
+          <Link to="/contact">
+            <Button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-semibold px-8 py-3 text-lg bg-brand-saffron">
+              Get Your Custom Assessment
+            </Button>
+          </Link>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default PESolutionSection;

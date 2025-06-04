@@ -1,4 +1,7 @@
+
 import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
 
 const PEProgramDetails = () => {
@@ -127,7 +130,7 @@ const PEProgramDetails = () => {
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto space-y-6 mb-12">
           {phases.map((phase, phaseIndex) => (
             <div key={phaseIndex} className="bg-white rounded-lg shadow-sm border overflow-hidden">
               <button
@@ -187,6 +190,15 @@ const PEProgramDetails = () => {
               )}
             </div>
           ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center">
+          <Link to="/contact">
+            <Button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-semibold px-8 py-3 text-lg bg-brand-saffron">
+              Get Your Custom Assessment
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

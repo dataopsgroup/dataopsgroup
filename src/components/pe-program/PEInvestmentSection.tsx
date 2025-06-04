@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const PEInvestmentSection = () => {
   const operationalImprovements = [
@@ -74,13 +76,22 @@ const PEInvestmentSection = () => {
         </div>
 
         {/* Portfolio-Wide Standardization */}
-        <div className="bg-dataops-50 border border-dataops-200 rounded-lg p-8 text-center">
+        <div className="bg-dataops-50 border border-dataops-200 rounded-lg p-8 text-center mb-12">
           <h3 className="text-2xl font-bold text-gray-900 mb-4">Portfolio-Wide Standardization</h3>
           <p className="text-dataops-600 font-bold text-lg mb-2">Custom pricing for 3+ companies</p>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Standardized implementation across multiple portfolio companies with economies of scale, 
             shared best practices, and unified reporting capabilities
           </p>
+        </div>
+
+        {/* CTA Button */}
+        <div className="flex justify-center">
+          <Link to="/contact">
+            <Button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-semibold px-8 py-3 text-lg bg-brand-saffron">
+              Get Your Custom Assessment
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
