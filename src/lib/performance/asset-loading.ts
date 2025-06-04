@@ -1,3 +1,4 @@
+
 /**
  * Universal asset loading optimization module
  * Consistent performance optimizations across all devices

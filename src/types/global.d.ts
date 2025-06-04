@@ -1,8 +1,8 @@
-
 declare global {
   interface Window {
     // Analytics integrations
-    gtag?: (command: string, action: string, params?: Record<string, any>) => void;
+    gtag?: (...args: any[]) => void;
+    dataLayer?: any[];
     _hsq?: any[];
     
     // Performance monitoring APIs with vendor prefixes
@@ -16,7 +16,7 @@ declare global {
         didTimeout: boolean;
         timeRemaining: () => number;
       }) => void,
-      options?: { timeout: number }
+      options?: { timeout?: number }
     ) => number;
     cancelIdleCallback?: (handle: number) => void;
 
@@ -25,6 +25,23 @@ declare global {
     
     // Performance API endpoint
     PERFORMANCE_API_ENDPOINT?: string;
+    
+    // App version for cache busting
+    __analytics_initialized?: boolean;
+    
+    // App version for cache busting
+    __performanceUtils?: {
+      progressiveHydration: (element: Element, callback: () => void) => void;
+      scheduleTask: (callback: () => void, priority?: string) => void;
+    };
+    
+    // App version for cache busting
+    __RESOURCE_ORDER_OPTIMIZED__?: boolean;
+    
+    // App version for cache busting
+    scheduler?: {
+      postTask: (callback: () => void, options?: { priority: string }) => void;
+    };
   }
 
   // PerformanceObserver interfaces
@@ -77,3 +94,15 @@ declare global {
 
 // Ensure this file is treated as a module
 export {};
+
+interface HTMLImageElement {
+  fetchPriority?: string;
+}
+
+interface HTMLScriptElement {
+  fetchPriority?: string;
+}
+
+interface HTMLLinkElement {
+  fetchPriority?: string;
+}

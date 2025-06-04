@@ -3,6 +3,20 @@
  * JavaScript execution optimization for improved performance scores
  */
 
+// Extend window interface for our custom properties
+declare global {
+  interface Window {
+    __analytics_initialized?: boolean;
+    __performanceUtils?: {
+      progressiveHydration: (element: Element, callback: () => void) => void;
+      scheduleTask: (callback: () => void, priority?: string) => void;
+    };
+    scheduler?: {
+      postTask: (callback: () => void, options?: { priority: string }) => void;
+    };
+  }
+}
+
 /**
  * Defer non-critical JavaScript execution until after page load
  */
@@ -75,9 +89,9 @@ const initializeNonCriticalComponents = () => {
  */
 export const optimizeComponentRendering = () => {
   // Break up long tasks using scheduler.postTask if available
-  if ('scheduler' in window && 'postTask' in window.scheduler) {
+  if ('scheduler' in window && window.scheduler && 'postTask' in window.scheduler) {
     return (callback: () => void, priority: 'user-blocking' | 'user-visible' | 'background' = 'user-visible') => {
-      window.scheduler.postTask(callback, { priority });
+      window.scheduler!.postTask(callback, { priority });
     };
   }
   

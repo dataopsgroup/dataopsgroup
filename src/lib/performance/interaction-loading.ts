@@ -150,7 +150,7 @@ const setupCriticalResourcePrefetching = () => {
  * Enhanced scroll-based optimizations
  */
 const setupScrollOptimizations = () => {
-  let scrollTimeout: number;
+  let scrollTimeout: ReturnType<typeof setTimeout>;
   let isScrolling = false;
   
   const handleScroll = () => {
@@ -173,7 +173,7 @@ const setupScrollOptimizations = () => {
     
     // Universal scroll end detection
     clearTimeout(scrollTimeout);
-    scrollTimeout = window.setTimeout(() => {
+    scrollTimeout = setTimeout(() => {
       // Prefetch next likely content after scroll stops
       prefetchNextLikelyContent();
     }, 150);

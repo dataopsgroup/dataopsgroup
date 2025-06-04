@@ -69,7 +69,7 @@ const preloadCriticalFonts = () => {
  * Setup intelligent prefetching based on user behavior
  */
 const setupIntelligentPrefetching = () => {
-  let prefetchTimeout: number;
+  let prefetchTimeout: ReturnType<typeof setTimeout>;
   
   // Prefetch on hover with delay
   document.addEventListener('mouseover', (e) => {
