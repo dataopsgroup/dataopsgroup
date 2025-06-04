@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/carousel';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import OptimizedImage from '@/components/ui/optimized-image';
+import DynamicThumbnail from '@/components/blog/DynamicThumbnail';
+import { calculateReadingTime } from '@/utils/thumbnail-generator';
 
 interface RelatedPostsProps {
   relatedPosts: BlogPost[];
@@ -69,24 +71,36 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                 ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png"
                 : post.coverImage;
                 
+              const hasCoverImage = !!coverImage;
+              const readingTime = calculateReadingTime(post.content);
+                
               return (
                 <CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
                   <Card className="h-full hover:shadow-lg transition-shadow">
                     <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
                       <CardHeader className="pb-4">
-                        <div className="w-full h-40 rounded-t-lg overflow-hidden">
-                          <OptimizedImage 
-                            src={coverImage} 
-                            alt={post.title} 
-                            width={320}
-                            height={160}
-                            className="w-full h-full"
-                            aspectRatio={2/1}
-                            objectFit="cover"
-                            loading={index === 0 ? "eager" : "lazy"}
-                            placeholder="/placeholder.svg"
+                        {hasCoverImage ? (
+                          <div className="w-full h-40 rounded-t-lg overflow-hidden">
+                            <OptimizedImage 
+                              src={coverImage} 
+                              alt={post.title} 
+                              width={320}
+                              height={160}
+                              className="w-full h-full"
+                              aspectRatio={2/1}
+                              objectFit="cover"
+                              loading={index === 0 ? "eager" : "lazy"}
+                              placeholder="/placeholder.svg"
+                            />
+                          </div>
+                        ) : (
+                          <DynamicThumbnail
+                            title={post.title}
+                            category={post.category}
+                            readingTime={readingTime}
+                            className="w-full h-40 rounded-t-lg"
                           />
-                        </div>
+                        )}
                         <CardTitle className="text-lg font-semibold hover:text-dataops-600 transition-colors mt-4">
                           {post.title}
                         </CardTitle>
