@@ -36,6 +36,10 @@ const PESocialProofSection = () => {
             <h3 className="text-2xl font-bold text-gray-900">By the Numbers</h3>
           </div>
           
+          <p className="text-center text-lg text-gray-700 mb-8">
+            HubSpot offers PE firms $18–$22 in value per $1 spent when properly implemented⁴
+          </p>
+          
           <div className="grid md:grid-cols-3 gap-8">
             {statistics.map((stat, index) => (
               <div key={index} className="text-center bg-white p-8 rounded-lg shadow-sm border">
@@ -54,6 +58,7 @@ const PESocialProofSection = () => {
             <p>¹ Source: Salesforce State of Sales Report 2024</p>
             <p>² Source: Nucleus Research: Marketing Automation ROI Study</p>
             <p>³ Source: HubSpot Sales Enablement Report</p>
+            <p>⁴ Source: <a href="https://www.hubspot.com/hubfs/HubSpot%20ROI%20Report%202023/2023%20Annual%20ROI%20Report.pdf" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-700 underline">HubSpot ROI Report 2023</a></p>
           </div>
         </div>
       </div>
