@@ -1,6 +1,5 @@
 import React from 'react';
 import { Target, Cog, Rocket } from 'lucide-react';
-
 const PESolutionSection = () => {
   const differentiators = [{
     icon: Target,
@@ -18,8 +17,7 @@ const PESolutionSection = () => {
     description: "Foundation results in 100 days, full transformation in 6-18 months",
     details: ["Immediate operational improvements while building long-term capability", "Your team becomes 90% self-sufficient, with us as strategic partners"]
   }];
-  return (
-    <section className="py-16 md:py-24 bg-white">
+  return <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -35,7 +33,7 @@ const PESolutionSection = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {differentiators.map((item, index) => <div key={index} className="bg-gray-50 p-8 rounded-lg">
-              <item.icon className="h-12 w-12 text-dataops-600 mb-6" />
+              
               
               <p className="text-gray-600 mb-4">
                 {item.description}
@@ -49,8 +47,6 @@ const PESolutionSection = () => {
             </div>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PESolutionSection;
