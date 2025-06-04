@@ -1,9 +1,9 @@
 
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 interface ServiceHeroProps {
   title: string;
   description: string;
@@ -13,6 +13,7 @@ interface ServiceHeroProps {
   serviceIcon: React.ReactNode;
   backgroundImage?: string;
 }
+
 const ServiceHero = ({
   title,
   description,
@@ -22,28 +23,23 @@ const ServiceHero = ({
   serviceIcon,
   backgroundImage
 }: ServiceHeroProps) => {
-  const {
-    isMobile
-  } = useIsMobile();
+  const { isMobile } = useIsMobile();
 
   // Simplified background logic - use image on desktop, solid color on mobile
   const shouldShowBackgroundImage = !isMobile && backgroundImage;
-  return <section className={`pt-32 pb-16 px-4 relative min-h-[600px] ${isMobile ? 'bg-gray-700' : 'bg-gradient-to-br from-white to-gray-50'}`} style={shouldShowBackgroundImage ? {
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    transform: 'scaleX(-1)'
-  } : {}}>
-      {/* Background overlay - 50% white overlay when background image is present */}
-      {shouldShowBackgroundImage && <div className="absolute inset-0 z-0" style={{ 
-        transform: 'scaleX(-1)',
-        backgroundImage: 'url(/lovable-uploads/b4d5f9df-edfe-4dbd-a912-9a917c3b2535.png)',
+
+  return (
+    <section 
+      className={`pt-32 pb-16 px-4 relative min-h-[600px] ${isMobile ? 'bg-gray-700' : 'bg-gradient-to-br from-white to-gray-50'}`} 
+      style={shouldShowBackgroundImage ? {
+        backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        opacity: 0.5
-      }}></div>}
+        transform: 'scaleX(-1)'
+      } : {}}
+    >
+      {/* Remove the hardcoded grid overlay that was being applied to all service pages */}
       
       <div className="container mx-auto relative z-10" style={shouldShowBackgroundImage ? { transform: 'scaleX(-1)' } : {}}>
         <div className="grid lg:grid-cols-5 gap-12 items-center">
@@ -73,7 +69,8 @@ const ServiceHero = ({
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
-export default ServiceHero;
 
+export default ServiceHero;
