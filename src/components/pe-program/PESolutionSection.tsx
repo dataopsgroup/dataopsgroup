@@ -24,7 +24,7 @@ const PESolutionSection = () => {
             The Only 100-Day Program Built<br />
             for PE Portfolio Companies
           </h2>
-          <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+          <p className="text-gray-600 max-w-4xl mx-auto text-2xl">
             Our systematic approach transforms operational chaos into the unified, efficient systems your investment committee expects—without disrupting daily operations.
           </p>
         </div>
