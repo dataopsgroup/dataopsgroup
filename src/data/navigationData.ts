@@ -1,3 +1,4 @@
+
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -17,6 +18,10 @@ export const navServices: SubNavItem[] = [
   { 
     name: 'Marketing Operations & RevOps', 
     href: '/services/marketing-operations-revops'
+  },
+  { 
+    name: 'PE Value Creation Program', 
+    href: '/pe-value-creation-program'
   },
   // Removed other services that don't have route definitions in App.tsx
 ];
