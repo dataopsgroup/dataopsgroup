@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 interface ServiceHeroProps {
   title: string;
   description: string;
@@ -13,37 +11,33 @@ interface ServiceHeroProps {
   serviceIcon: React.ReactNode;
   backgroundImage?: string;
 }
+const ServiceHero = ({
+  title,
+  description,
+  tagline,
+  ctaText,
+  isHubSpotTraining,
+  serviceIcon,
+  backgroundImage
+}: ServiceHeroProps) => {
+  const {
+    isMobile
+  } = useIsMobile();
 
-const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, serviceIcon, backgroundImage }: ServiceHeroProps) => {
-  const { isMobile } = useIsMobile();
-  
   // Simplified background logic - use image on desktop, solid color on mobile
   const shouldShowBackgroundImage = !isMobile && backgroundImage;
-
-  return (
-    <section 
-      className={`pt-32 pb-16 px-4 relative min-h-[600px] ${
-        isMobile 
-          ? 'bg-gray-700' 
-          : 'bg-gradient-to-br from-white to-gray-50'
-      }`}
-      style={shouldShowBackgroundImage ? {
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      } : {}}
-    >
+  return <section className={`pt-32 pb-16 px-4 relative min-h-[600px] ${isMobile ? 'bg-gray-700' : 'bg-gradient-to-br from-white to-gray-50'}`} style={shouldShowBackgroundImage ? {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  } : {}}>
       {/* Background overlay - only show when background image is present */}
-      {shouldShowBackgroundImage && (
-        <div className="absolute inset-0 bg-white/50 z-0"></div>
-      )}
+      {shouldShowBackgroundImage && <div className="absolute inset-0 z-0 bg-transparent"></div>}
       
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
-          <div 
-            className="lg:col-span-2 space-y-6 relative p-8 rounded-xl border border-gray-100 bg-white/80 backdrop-blur-sm"
-          >
+          <div className="lg:col-span-2 space-y-6 relative p-8 rounded-xl border border-gray-100 bg-white/80 backdrop-blur-sm">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-saffron/10 text-brand-navy text-sm font-medium mb-2">
               <span className="w-2 h-2 bg-brand-saffron rounded-full mr-2"></span>
               Our Services
@@ -69,8 +63,6 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ServiceHero;
