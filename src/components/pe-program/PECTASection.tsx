@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -23,10 +24,19 @@ const PECTASection = () => {
             </p>
             <div className="text-left space-y-2 mt-4">
               <p className="text-blue-100"><strong>Why We Limit Capacity:</strong></p>
-              <ul className="space-y-1 text-blue-100">
-                <li>• Dedicated team assignments ensure continuity and deep knowledge transfer</li>
-                <li>• Quality outcomes require focused attention, not rushed implementations</li>
-                <li>• Our methodology works because we don't cut corners or over-commit</li>
+              <ul className="space-y-3 text-blue-100 list-none">
+                <li className="flex">
+                  <span className="text-saffron-500 mr-3 flex-shrink-0">•</span>
+                  <span>Dedicated team assignments ensure continuity and deep knowledge transfer</span>
+                </li>
+                <li className="flex">
+                  <span className="text-saffron-500 mr-3 flex-shrink-0">•</span>
+                  <span>Quality outcomes require focused attention, not rushed implementations</span>
+                </li>
+                <li className="flex">
+                  <span className="text-saffron-500 mr-3 flex-shrink-0">•</span>
+                  <span>Our methodology works because we don't cut corners or over-commit</span>
+                </li>
               </ul>
             </div>
           </div>
