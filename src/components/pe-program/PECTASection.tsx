@@ -1,10 +1,13 @@
 
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Clock, Shield, CheckCircle } from 'lucide-react';
+
 const PECTASection = () => {
   const guaranteePoints = ["Battle-tested methodology proven across dozens of portfolio companies", "Industry-specific expertise that identifies opportunities others miss", "Systematic approach that reduces implementation risk to near zero"];
+  
   return <section className="py-16 md:py-24 bg-dataops-950 text-white">
       <div className="container mx-auto px-4">
         {/* Urgency Section */}
@@ -54,6 +57,14 @@ const PECTASection = () => {
               <p className="text-blue-100"><strong>Step 2:</strong> Receive your custom 100-Day Roadmap and ROI projections</p>
               <p className="text-blue-100"><strong>Step 3:</strong> Begin transformation with immediate operational improvements</p>
             </div>
+          </div>
+
+          <div className="mb-8">
+            <Link to="/contact">
+              <Button className="bg-saffron-500 hover:bg-saffron-600 text-black font-bold px-8 py-3 text-lg">
+                Get Our Portfolio Assessment
+              </Button>
+            </Link>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -116,4 +127,6 @@ const PECTASection = () => {
       </div>
     </section>;
 };
+
 export default PECTASection;
+
