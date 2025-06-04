@@ -1,16 +1,8 @@
 
 import React from 'react';
-import { Quote, TrendingUp } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 
 const PESocialProofSection = () => {
-  const testimonials = [{
-    quote: "The Hypha team understood our PE timeline pressure and delivered exactly what our investment committee needed to see. The operational improvements were evident within 60 days, and the exit-ready systems gave us a significant valuation advantage.",
-    attribution: "Portfolio Operations Manager, $500M Manufacturing Company"
-  }, {
-    quote: "Unlike other consultants who disappeared after implementation, Hypha built our internal capability. We're now self-sufficient for 90% of our needs and call them for strategic guidance.",
-    attribution: "CEO, $100M Healthcare Services Company"
-  }];
-
   const statistics = [{
     percentage: "87%",
     description: "of portfolio companies achieve measurable operational improvements within 90 days"
@@ -32,23 +24,6 @@ const PESocialProofSection = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Portfolio companies consistently achieve measurable improvements and enhanced valuations
           </p>
-        </div>
-
-        {/* Testimonials */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
-              <div className="flex items-start mb-6">
-                <Quote className="h-8 w-8 text-dataops-600 mr-4 flex-shrink-0 mt-1" />
-                <blockquote className="text-lg text-gray-700 leading-relaxed">
-                  "{testimonial.quote}"
-                </blockquote>
-              </div>
-              <footer className="text-sm font-medium text-gray-600">
-                — {testimonial.attribution}
-              </footer>
-            </div>
-          ))}
         </div>
 
         {/* Statistics */}
