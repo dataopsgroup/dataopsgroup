@@ -36,7 +36,7 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
     >
       {/* Background overlay - only show when background image is present */}
       {shouldShowBackgroundImage && (
-        <div className="absolute inset-0 bg-white/75 z-0"></div>
+        <div className="absolute inset-0 bg-white/50 z-0"></div>
       )}
       
       <div className="container mx-auto relative z-10">
