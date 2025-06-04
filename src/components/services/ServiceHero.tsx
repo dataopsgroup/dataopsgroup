@@ -17,13 +17,16 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
   return (
     <section 
       className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-gray-50 relative"
-      style={backgroundImage ? {
-        backgroundImage: `url(${backgroundImage})`,
+      style={{
+        backgroundImage: `url(/lovable-uploads/65fd7f79-de45-4aa5-8e21-bd1bf48a66ba.png)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
-      } : {}}
+      }}
     >
+      {/* Background overlay for 50% opacity */}
+      <div className="absolute inset-0 bg-white/50"></div>
+      
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
           <div 
