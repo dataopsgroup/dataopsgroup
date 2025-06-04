@@ -162,7 +162,7 @@ const PEProgramDetails = () => {
                           <h5 className="font-medium text-gray-700 mb-3">Activities:</h5>
                           <ul className="space-y-2">
                             {week.items.map((item, itemIndex) => (
-                              <li key={itemIndex} className="text-sm text-gray-600 flex items-start">
+                              <li key={itemIndex} className="text-base text-gray-600 flex items-start">
                                 <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                                 {item}
                               </li>
@@ -174,7 +174,7 @@ const PEProgramDetails = () => {
                           <h5 className="font-medium text-gray-700 mb-3">Deliverables:</h5>
                           <ul className="space-y-2">
                             {week.deliverables.map((deliverable, delIndex) => (
-                              <li key={delIndex} className="text-sm text-gray-600 flex items-start">
+                              <li key={delIndex} className="text-base text-gray-600 flex items-start">
                                 <span className="text-dataops-600 mr-2">•</span>
                                 {deliverable}
                               </li>
