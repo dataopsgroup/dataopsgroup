@@ -12,7 +12,7 @@ const AnalyticsBIHero = () => {
       ctaText="Get Your Custom Analytics Strategy"
       isHubSpotTraining={false}
       serviceIcon={<LineChart size={64} />}
-      backgroundImage="/lovable-uploads/cca1a356-0ee9-47e2-84fb-b2e81102f6c0.png"
+      backgroundImage="/lovable-uploads/19030af7-03fb-4761-99d8-c54a6ad7f790.png"
     />
   );
 };
