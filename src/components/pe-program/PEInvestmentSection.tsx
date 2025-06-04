@@ -1,55 +1,50 @@
 
 import React from 'react';
+import { TrendingUp, Clock, DollarSign } from 'lucide-react';
 
 const PEInvestmentSection = () => {
-  const roiMetrics = [
+  const operationalImprovements = [
     { metric: "25-40%", description: "improvement in sales productivity metrics" },
     { metric: "30-50%", description: "reduction in administrative overhead" },
-    { metric: "90%+", description: "forecast accuracy improvement" },
-    { metric: "2-5%", description: "EBITDA margin improvement through operational efficiency" }
+    { metric: "90%+", description: "forecast accuracy improvement" }
   ];
 
-  const valueExamples = [
-    {
-      title: "$50M Revenue Company",
-      value: "$1.5-2.5M annual operational improvement"
-    },
-    {
-      title: "Exit Multiple Impact",
-      value: "10-20% valuation premium for digital readiness"
-    },
-    {
-      title: "Time Savings",
-      value: "15-20 hours/week recovered per department"
-    }
+  const financialReturns = [
+    { metric: "2-5%", description: "EBITDA margin improvement through operational efficiency" },
+    { metric: "10-20%", description: "valuation premium for digital readiness at exit" },
+    { metric: "$1.5-2.5M", description: "annual operational improvement for $50M revenue company" }
+  ];
+
+  const timeValue = [
+    { metric: "15-20 hours", description: "recovered per department weekly" },
+    { metric: "100 days", description: "to full operational transformation" },
+    { metric: "90/10 model", description: "transition to sustainable self-management" }
   ];
 
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             Program Returns
           </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Systematic transformation delivers measurable value across operational efficiency, financial performance, and organizational capability
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Portfolio-Wide Standardization */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Portfolio-Wide Standardization</h3>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-gray-900 mb-1">Portfolio-Wide Standardization</h4>
-              <p className="text-dataops-600 font-bold mb-2">Custom pricing for 3+ companies</p>
-              <p className="text-sm text-gray-600">Standardized implementation across multiple portfolio companies</p>
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          {/* Operational Efficiency */}
+          <div className="bg-gray-50 rounded-lg p-8">
+            <div className="flex items-center mb-6">
+              <div className="bg-dataops-100 p-3 rounded-lg mr-4">
+                <TrendingUp className="h-6 w-6 text-dataops-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Operational Efficiency</h3>
             </div>
-          </div>
-
-          {/* ROI Metrics */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Typical ROI Metrics</h3>
             <div className="space-y-4">
-              {roiMetrics.map((metric, index) => (
-                <div key={index} className="bg-gray-50 p-4 rounded-lg">
+              {operationalImprovements.map((metric, index) => (
+                <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
                   <div className="text-2xl font-bold text-dataops-600 mb-1">{metric.metric}</div>
                   <p className="text-gray-600">{metric.description}</p>
                 </div>
@@ -57,18 +52,51 @@ const PEInvestmentSection = () => {
             </div>
           </div>
 
-          {/* Value Examples */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Value Creation Examples</h3>
+          {/* Financial Impact */}
+          <div className="bg-gray-50 rounded-lg p-8">
+            <div className="flex items-center mb-6">
+              <div className="bg-green-100 p-3 rounded-lg mr-4">
+                <DollarSign className="h-6 w-6 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Financial Impact</h3>
+            </div>
             <div className="space-y-4">
-              {valueExamples.map((example, index) => (
-                <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">{example.title}</h4>
-                  <p className="text-dataops-600 font-bold">{example.value}</p>
+              {financialReturns.map((metric, index) => (
+                <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="text-2xl font-bold text-green-600 mb-1">{metric.metric}</div>
+                  <p className="text-gray-600">{metric.description}</p>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* Time & Resource Value */}
+          <div className="bg-gray-50 rounded-lg p-8">
+            <div className="flex items-center mb-6">
+              <div className="bg-blue-100 p-3 rounded-lg mr-4">
+                <Clock className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">Time & Resource Value</h3>
+            </div>
+            <div className="space-y-4">
+              {timeValue.map((metric, index) => (
+                <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="text-2xl font-bold text-blue-600 mb-1">{metric.metric}</div>
+                  <p className="text-gray-600">{metric.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Portfolio-Wide Standardization */}
+        <div className="bg-dataops-50 border border-dataops-200 rounded-lg p-8 text-center">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">Portfolio-Wide Standardization</h3>
+          <p className="text-dataops-600 font-bold text-lg mb-2">Custom pricing for 3+ companies</p>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Standardized implementation across multiple portfolio companies with economies of scale, 
+            shared best practices, and unified reporting capabilities
+          </p>
         </div>
       </div>
     </section>
