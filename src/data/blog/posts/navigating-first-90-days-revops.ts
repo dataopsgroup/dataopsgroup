@@ -10,8 +10,6 @@ export const navigatingFirst90DaysRevops: BlogPost = {
   category: "Insights",
   coverImage: "/lovable-uploads/ef47b612-1fd8-4f88-9d56-a3f9e8de8378.png",
   content: `
-    <p style="text-align: center;"><span style="color: #0600ff;">Prefer to listen? Click the 'play' button.</span></p>
-    
     <p>After years of helping dozens of organizations optimize their HubSpot implementations, I've noticed clear patterns in what makes RevOps transformations succeed or fail. Whether you're stepping into a new RevOps leadership role or revamping your existing operations, these are the strategies I've seen consistently drive successful outcomes.</p>
     
     <p>When I work with companies implementing or optimizing their HubSpot instance, the foundation always begins with relationship-building and system mapping. Too often, I see organizations rush to configure their CRM without first understanding the business processes it needs to support.</p>
