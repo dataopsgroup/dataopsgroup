@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -35,7 +36,14 @@ const ServiceHero = ({
     transform: 'scaleX(-1)'
   } : {}}>
       {/* Background overlay - 50% white overlay when background image is present */}
-      {shouldShowBackgroundImage && <div className="absolute inset-0 z-0 bg-white/50" style={{ transform: 'scaleX(-1)' }}></div>}
+      {shouldShowBackgroundImage && <div className="absolute inset-0 z-0" style={{ 
+        transform: 'scaleX(-1)',
+        backgroundImage: 'url(/lovable-uploads/b4d5f9df-edfe-4dbd-a912-9a917c3b2535.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        opacity: 0.5
+      }}></div>}
       
       <div className="container mx-auto relative z-10" style={shouldShowBackgroundImage ? { transform: 'scaleX(-1)' } : {}}>
         <div className="grid lg:grid-cols-5 gap-12 items-center">
@@ -68,3 +76,4 @@ const ServiceHero = ({
     </section>;
 };
 export default ServiceHero;
+
