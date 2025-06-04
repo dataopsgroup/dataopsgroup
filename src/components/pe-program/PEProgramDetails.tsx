@@ -7,7 +7,7 @@ const PEProgramDetails = () => {
 
   const phases = [
     {
-      title: "Phase 1: Foundation & Quick Wins",
+      title: "Phase 1: Foundation and Quick Wins",
       subtitle: "Days 1-30",
       tagline: "Get immediate momentum while building systematic excellence",
       weeks: [
@@ -52,7 +52,7 @@ const PEProgramDetails = () => {
           title: "Week 5-8: System Unification",
           items: [
             "HubSpot Configuration: Industry-specific setup optimized for your business model",
-            "Data Migration & Cleanup: Clean, standardized data with quality validation",
+            "Data Migration and Cleanup: Clean, standardized data with quality validation",
             "Process Automation: Eliminate manual work and reduce human error",
             "Reporting Infrastructure: Real-time dashboards for operational visibility"
           ],
@@ -64,12 +64,12 @@ const PEProgramDetails = () => {
           ]
         },
         {
-          title: "Week 9-10: Integration & Testing",
+          title: "Week 9-10: Integration and Testing",
           items: [
             "System Integrations: Connect HubSpot with existing business-critical systems",
             "User Acceptance Testing: Validate functionality with actual business scenarios",
             "Performance Optimization: Fine-tune for speed and reliability",
-            "Security & Compliance: Ensure data protection and regulatory compliance"
+            "Security and Compliance: Ensure data protection and regulatory compliance"
           ],
           deliverables: [
             "Integration Test Results",
@@ -81,7 +81,7 @@ const PEProgramDetails = () => {
       ]
     },
     {
-      title: "Phase 3: Optimization & Handoff",
+      title: "Phase 3: Optimization and Handoff",
       subtitle: "Days 71-100",
       tagline: "Ensure sustainable success and team empowerment",
       weeks: [
