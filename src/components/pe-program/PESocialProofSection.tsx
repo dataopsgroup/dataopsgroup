@@ -38,7 +38,7 @@ const PESocialProofSection = () => {
           
           {/* HubSpot ROI Text */}
           <div className="text-center mb-8">
-            <p className="text-lg text-dataops-600 font-semibold">
+            <p className="text-xl text-red-600 font-semibold">
               HubSpot offers PE firms $18–$22 in value per $1 spent when properly implemented⁴
             </p>
           </div>
