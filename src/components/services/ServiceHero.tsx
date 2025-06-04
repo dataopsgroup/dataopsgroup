@@ -24,8 +24,8 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
         backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* Background overlay for 50% opacity */}
-      <div className="absolute inset-0 bg-white/50"></div>
+      {/* Background overlay for 75% opacity */}
+      <div className="absolute inset-0 bg-white/75"></div>
       
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
