@@ -6,7 +6,7 @@ import { Users } from 'lucide-react';
 const TeamTrainingHero = () => {
   return (
     <ServiceHero
-      title="Empower Your Teams With Expert HubSpot Mastery"
+      title="HubSpot Implementation and Training"
       tagline="Professional Training That Delivers Results"
       description="Accelerate your portfolio companies' growth with comprehensive HubSpot training and implementation that transforms marketing teams into high-performing revenue engines."
       ctaText="Book Your HubSpot Strategy Session"

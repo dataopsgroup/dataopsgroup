@@ -24,26 +24,26 @@ const TeamTraining = () => {
   return (
     <>
       <Helmet>
-        <title>HubSpot Training & Implementation | DataOps Group</title>
+        <title>HubSpot Implementation and Training | DataOps Group</title>
         <meta name="description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
         <link rel="canonical" href={`${baseUrl}/services/team-training`} />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="HubSpot Training & Implementation | DataOps Group" />
+        <meta property="og:title" content="HubSpot Implementation and Training | DataOps Group" />
         <meta property="og:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
         <meta property="og:url" content={`${baseUrl}/services/team-training`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
         <meta property="og:site_name" content="DataOps Group" />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HubSpot Training & Implementation | DataOps Group" />
+        <meta name="twitter:title" content="HubSpot Implementation and Training | DataOps Group" />
         <meta name="twitter:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
       <ServiceSchema 
-        name="HubSpot Training & Implementation"
+        name="HubSpot Implementation and Training"
         description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
         url="/services/team-training"
         serviceOutput="Improved team proficiency with HubSpot, maximized platform ROI, and streamlined operations"
@@ -51,7 +51,7 @@ const TeamTraining = () => {
       
       <SemanticLayout>
         <ServiceHero 
-          title="HubSpot Training & Implementation"
+          title="HubSpot Implementation and Training"
           tagline="Professional Training That Delivers Results"
           description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
           ctaText="Book Your HubSpot Strategy Session"
@@ -71,7 +71,7 @@ const TeamTraining = () => {
               <div>
                 <ServiceBenefits 
                   benefits={benefits}
-                  serviceTitle="HubSpot Training & Implementation"
+                  serviceTitle="HubSpot Implementation and Training"
                   isHubSpotTraining={true}
                 />
               </div>
