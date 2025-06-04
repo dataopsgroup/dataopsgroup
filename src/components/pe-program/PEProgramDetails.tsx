@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, CheckCircle } from 'lucide-react';
 
@@ -175,7 +174,7 @@ const PEProgramDetails = () => {
                           <ul className="space-y-2">
                             {week.deliverables.map((deliverable, delIndex) => (
                               <li key={delIndex} className="text-base text-gray-600 flex items-start">
-                                <span className="text-dataops-600 mr-2">•</span>
+                                <span className="text-dataops-600 mr-2 mt-0.5 leading-none">•</span>
                                 {deliverable}
                               </li>
                             ))}
