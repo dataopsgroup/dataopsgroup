@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -42,7 +41,7 @@ const Navbar = () => {
   return (
     <nav 
       className={cn(
-        "fixed top-0 w-full z-50 border-b border-gray-200 pb-[25px]",
+        "fixed top-0 w-full z-50 border-b border-gray-200",
         scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       )}
       aria-label="Main navigation"
