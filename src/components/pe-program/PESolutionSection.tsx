@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Target, Cog, Rocket } from 'lucide-react';
 const PESolutionSection = () => {
@@ -34,14 +33,12 @@ const PESolutionSection = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           {differentiators.map((item, index) => <div key={index} className="bg-gray-50 p-8 rounded-lg">
               <item.icon className="h-12 w-12 text-dataops-600 mb-6" />
-              <h4 className="text-xl font-bold text-gray-900 mb-4">
-                {item.title}
-              </h4>
+              
               <p className="text-gray-600 mb-4">
                 {item.description}
               </p>
               <ul className="space-y-2">
-                {item.details.map((detail, idx) => <li key={idx} className="text-base text-gray-600 flex items-start">
+                {item.details.map((detail, idx) => <li key={idx} className="text-sm text-gray-600 flex items-start">
                     <span className="text-dataops-600 mr-2">•</span>
                     {detail}
                   </li>)}
