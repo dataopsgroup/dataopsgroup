@@ -18,12 +18,100 @@
       "dest": "/about.html"
     },
     {
+      "src": "/approach",
+      "dest": "/approach.html"
+    },
+    {
       "src": "/contact",
       "dest": "/contact.html"
     },
     {
-      "src": "/blog/(.*)",
-      "dest": "/blog/[slug].html"
+      "src": "/book",
+      "dest": "/book.html"
+    },
+    {
+      "src": "/services",
+      "dest": "/services.html"
+    },
+    {
+      "src": "/services/marketing-operations-revops",
+      "dest": "/services/marketing-operations-revops.html"
+    },
+    {
+      "src": "/services/analytics-bi",
+      "dest": "/services/analytics-bi.html"
+    },
+    {
+      "src": "/services/dataops-implementation",
+      "dest": "/services/dataops-implementation.html"
+    },
+    {
+      "src": "/services/team-training",
+      "dest": "/services/team-training.html"
+    },
+    {
+      "src": "/insights",
+      "dest": "/insights.html"
+    },
+    {
+      "src": "/assessment",
+      "dest": "/assessment.html"
+    },
+    {
+      "src": "/get-started",
+      "dest": "/get-started.html"
+    },
+    {
+      "src": "/thank-you",
+      "dest": "/thank-you.html"
+    },
+    {
+      "src": "/contact/thank-you",
+      "dest": "/contact/thank-you.html"
+    },
+    {
+      "src": "/sitemap",
+      "dest": "/sitemap.html"
+    },
+    {
+      "src": "/how-to-hire-a-hubspot-expert-in-2025",
+      "dest": "/how-to-hire-a-hubspot-expert-in-2025.html"
+    },
+    {
+      "src": "/pillar-content",
+      "dest": "/pillar-content.html"
+    },
+    {
+      "src": "/hubspot-assessment-results",
+      "dest": "/hubspot-assessment-results.html"
+    },
+    {
+      "src": "/faqs",
+      "dest": "/faqs.html"
+    },
+    {
+      "src": "/faqs/hubspot-services",
+      "dest": "/faqs/hubspot-services.html"
+    },
+    {
+      "src": "/faqs/hubspot-experts",
+      "dest": "/faqs/hubspot-experts.html"
+    },
+    {
+      "src": "/faqs/data-quality",
+      "dest": "/faqs/data-quality.html"
+    },
+    {
+      "src": "/faqs/our-approach",
+      "dest": "/faqs/our-approach.html"
+    },
+    {
+      "src": "/faqs/hubspot-modules",
+      "dest": "/faqs/hubspot-modules.html"
+    },
+    {
+      "src": "/404",
+      "dest": "/404.html"
     }
   ],
   "headers": [
