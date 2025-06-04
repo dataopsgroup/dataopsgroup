@@ -1,34 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/about",
-      "dest": "/about.html"
-    },
-    {
-      "src": "/contact",
-      "dest": "/contact.html"
-    },
-    {
-      "src": "/blog/(.*)",
-      "dest": "/blog/[slug].html"
-    }
-  ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -38,7 +8,7 @@
           "value": "index, follow"
         },
         {
-          "key": "Cache-Control", 
+          "key": "Cache-Control",
           "value": "public, max-age=3600, no-transform"
         }
       ]
@@ -60,7 +30,7 @@
       "source": "/robots.txt",
       "headers": [
         {
-          "key": "Content-Type", 
+          "key": "Content-Type",
           "value": "text/plain"
         },
         {
