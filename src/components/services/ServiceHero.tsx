@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ServiceHeroProps {
   title: string;
@@ -14,18 +15,25 @@ interface ServiceHeroProps {
 }
 
 const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, serviceIcon, backgroundImage }: ServiceHeroProps) => {
+  const { isMobile } = useIsMobile();
+  
+  // Use charcoal gray background on mobile for performance, image on desktop
+  const backgroundStyle = !isMobile && backgroundImage ? {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  } : {};
+
   return (
     <section 
-      className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-gray-50 relative"
-      style={{
-        backgroundImage: `url(/lovable-uploads/65fd7f79-de45-4aa5-8e21-bd1bf48a66ba.png)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className={`pt-32 pb-16 px-4 relative ${isMobile ? 'bg-gray-700' : 'bg-gradient-to-br from-white to-gray-50'}`}
+      style={backgroundStyle}
     >
-      {/* Background overlay for 75% opacity */}
-      <div className="absolute inset-0 bg-white/75"></div>
+      {/* Background overlay for 75% opacity - only show on desktop with image */}
+      {!isMobile && backgroundImage && (
+        <div className="absolute inset-0 bg-white/75"></div>
+      )}
       
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 items-center">

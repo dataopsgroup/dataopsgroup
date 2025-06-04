@@ -12,6 +12,7 @@ const MarketingOperationsRevOpsHero = () => {
       ctaText="Schedule Your RevOps Optimization"
       isHubSpotTraining={false}
       serviceIcon={<TrendingUp size={64} />}
+      backgroundImage="/lovable-uploads/8e172b27-c069-4481-aefd-2aabd61a3529.png"
     />
   );
 };
