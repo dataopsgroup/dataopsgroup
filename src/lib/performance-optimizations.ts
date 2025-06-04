@@ -22,7 +22,7 @@ export {
 } from './performance/prefetching';
 export { 
   setupInteractionBasedLoading 
-} from './performance/interaction-loading';
+} from './performance/interaction';
 export { 
   initializeJSOptimizations,
   deferNonCriticalJS,
