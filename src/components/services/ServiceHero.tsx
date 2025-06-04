@@ -24,11 +24,6 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
         backgroundRepeat: 'no-repeat'
       } : {}}
     >
-      {/* Background overlay for text readability when background image is present */}
-      {backgroundImage && (
-        <div className="absolute inset-0 bg-white/90"></div>
-      )}
-      
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-5 gap-12 items-center">
           <div 
