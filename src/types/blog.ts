@@ -12,6 +12,7 @@ export interface BlogPost {
   tags?: string[];
   modifiedDate?: string;
   wordCount?: number;
+  readingTime?: number;
   seo?: {
     metaDescription?: string;
     keywords?: string;
