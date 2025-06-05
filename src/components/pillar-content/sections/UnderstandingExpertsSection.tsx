@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const UnderstandingExpertsSection: React.FC = () => {
@@ -70,6 +69,17 @@ const UnderstandingExpertsSection: React.FC = () => {
         <li>Industry-specific compliance requirements (HIPAA, SOX, GDPR)</li>
         <li>Unique pricing models or contract structures</li>
         <li>Multi-brand or multi-entity business structures</li>
+      </ul>
+      
+      <p>
+        When implementations go wrong, the consequences extend beyond just the platform:
+      </p>
+      
+      <ul className="list-disc pl-6 space-y-2">
+        <li>Lost focus on campaign optimization and lead generation</li>
+        <li>Delayed product launches or marketing initiatives</li>
+        <li>Reduced team productivity due to divided attention</li>
+        <li>Potential revenue impact from suboptimal marketing performance</li>
       </ul>
       
       <h3>When to Choose Each Option</h3>
