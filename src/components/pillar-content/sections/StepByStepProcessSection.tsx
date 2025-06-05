@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { KeyInsightCallout, ExpertTip, ActionChecklist } from '../VisualCallouts';
 
@@ -49,7 +48,7 @@ const StepByStepProcessSection: React.FC = () => {
       </KeyInsightCallout>
       
       <p>
-        Profound.ly has emerged as a specialized marketplace specifically for HubSpot talent, offering a curated selection of verified experts with detailed profiles showing their specific HubSpot experience, integration capabilities, and client results.
+        <a href="https://www.profound.ly" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Profound.ly</a> has emerged as a specialized marketplace specifically for HubSpot talent, offering a curated selection of verified experts with detailed profiles showing their specific HubSpot experience, integration capabilities, and client results.
       </p>
       
       <h3>Phase 3: Initial Screening and Shortlisting</h3>
