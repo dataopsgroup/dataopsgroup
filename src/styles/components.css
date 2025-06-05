@@ -1,5 +1,6 @@
 
 
+
 /* Enhanced Blog Styling Classes */
 @layer components {
   /* Professional Blog Card Styling */
@@ -149,45 +150,18 @@
     @apply text-lg font-semibold mb-2 leading-tight !important;
   }
 
-  /* Hero component crawler visibility - minimal rules only */
+  /* Hero component crawler visibility - minimal rules only for text elements */
   .hero-heading {
-    display: block !important;
     visibility: visible !important;
   }
 
   .hero-text {
-    display: block !important;
     visibility: visible !important;
   }
 
   .hero-button {
-    display: inline-block !important;
-    visibility: visible !important;
-  }
-
-  .hero-content {
-    display: block !important;
-    visibility: visible !important;
-  }
-
-  .hero-section {
-    display: block !important;
-    visibility: visible !important;
-  }
-
-  .hero-container {
-    display: block !important;
-    visibility: visible !important;
-  }
-
-  .hero-grid {
-    display: block !important;
-    visibility: visible !important;
-  }
-
-  .hero-content-box {
-    display: block !important;
     visibility: visible !important;
   }
 }
+
 
