@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import ShareButtons from '@/components/ui/ShareButtons';
@@ -91,7 +92,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
       <div className="article-meta">
         <div className="flex items-center">
           <ShareButtons title={title} className="flex-row space-x-2 space-y-0 mr-3" variant="white" />
-          <span className="content-type">Expert Guide</span>
+          <span className="content-type">👨‍🏫 Expert Guide</span>
         </div>
         
         <span className="read-time" style={{
