@@ -13,9 +13,9 @@ const FAQHubSpotModules = () => {
   return (
     <CategoryPageLayout
       category={category}
-      title="HubSpot Modules FAQ - DataOps Group"
-      description="Get answers about HubSpot modules, custom development, FAQ implementation, and best practices for HubSpot CMS development."
-      keywords="HubSpot modules FAQ, HubSpot CMS development, custom modules, FAQ implementation, HubSpot development"
+      title="HubSpot CMS Modules FAQ - Custom Development & Implementation | DataOps Group"
+      description="Technical FAQ about HubSpot CMS modules, custom development, theme creation, and website optimization. Expert answers for developers and marketing teams."
+      keywords="HubSpot modules FAQ, CMS development questions, custom modules, HubSpot themes, website development, CMS Hub questions, module creation, HubSpot CMS technical FAQ"
       canonicalPath="/faqs/hubspot-modules"
     />
   );

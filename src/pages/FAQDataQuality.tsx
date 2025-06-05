@@ -13,9 +13,9 @@ const FAQDataQuality = () => {
   return (
     <CategoryPageLayout
       category={category}
-      title="Data Quality FAQ - DataOps Group"
-      description="Learn about data quality management, data cleaning, enrichment, and best practices for maintaining clean HubSpot data."
-      keywords="data quality FAQ, data cleaning, data enrichment, HubSpot data management, data governance, data operations"
+      title="HubSpot Data Quality FAQ - Data Cleaning & Management | DataOps Group"
+      description="Expert answers about HubSpot data quality, cleaning messy databases, data governance, and maintaining accurate contact information. Learn best practices for data management."
+      keywords="HubSpot data quality FAQ, data cleaning questions, database cleanup, data governance, contact data management, duplicate removal, data standardization, CRM data quality"
       canonicalPath="/faqs/data-quality"
     />
   );

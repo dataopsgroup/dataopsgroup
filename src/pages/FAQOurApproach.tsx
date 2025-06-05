@@ -13,9 +13,9 @@ const FAQOurApproach = () => {
   return (
     <CategoryPageLayout
       category={category}
-      title="Our Approach FAQ - DataOps Group"
-      description="Understand DataOps Group's methodology, implementation process, and statistical process control approach to HubSpot optimization."
-      keywords="DataOps methodology FAQ, HubSpot implementation approach, statistical process control, data-driven decisions"
+      title="DataOps Methodology FAQ - Our HubSpot Implementation Approach | DataOps Group"
+      description="Learn about DataOps Group's proven methodology for HubSpot implementations. Statistical process control, data-driven decisions, and systematic optimization approaches explained."
+      keywords="DataOps methodology FAQ, HubSpot implementation approach, statistical process control, data-driven methodology, systematic optimization, implementation process, consulting methodology"
       canonicalPath="/faqs/our-approach"
     />
   );

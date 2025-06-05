@@ -13,9 +13,9 @@ const FAQHubSpotServices = () => {
   return (
     <CategoryPageLayout
       category={category}
-      title="HubSpot Services FAQ - DataOps Group"
-      description="Find answers to common questions about HubSpot implementation, optimization, portal repair, and consulting services from DataOps Group."
-      keywords="HubSpot services FAQ, HubSpot implementation, HubSpot optimization, HubSpot consultant, portal repair, data quality"
+      title="HubSpot Services FAQ - Implementation & Optimization | DataOps Group"
+      description="Expert answers about HubSpot implementation services, portal optimization, data migration, and consulting. Learn about costs, timelines, and what to expect from professional HubSpot services."
+      keywords="HubSpot services FAQ, HubSpot implementation cost, portal optimization questions, HubSpot consulting services, data migration FAQ, HubSpot setup questions, professional services pricing"
       canonicalPath="/faqs/hubspot-services"
     />
   );
