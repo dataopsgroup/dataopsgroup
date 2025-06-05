@@ -1,18 +1,13 @@
-
 import React from 'react';
-
 const IntroductionSection: React.FC = () => {
-  return (
-    <section id="introduction" className="prose prose-lg max-w-none" tabIndex={-1}>
+  return <section id="introduction" className="prose prose-lg max-w-none" tabIndex={-1}>
       <h2 className="text-2xl font-bold mb-6">Introduction: The HubSpot Expert Decision That Will Make or Break Your Growth</h2>
       
       <p className="lead text-xl text-gray-700 mb-6">
         Your HubSpot subscription costs thousands annually, but that's just the beginning. The real investment—and the real risk—lies in who you choose to implement and optimize your system.
       </p>
       
-      <p>
-        After helping over 200 companies transform their HubSpot implementations since 2012, I've seen the stark difference between businesses that thrive with HubSpot and those that struggle. The differentiator isn't the platform—it's the expertise behind the strategy.
-      </p>
+      <p>After helping over 30 companies transform their HubSpot implementations since 2012, I've seen the stark difference between businesses that thrive with HubSpot and those that struggle. The differentiator isn't the platform—it's the expertise behind the strategy.</p>
       
       <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 my-8">
         <h3 className="text-lg font-semibold text-amber-800 mb-3">⚠️ The Hidden Cost of Wrong Decisions</h3>
@@ -93,8 +88,6 @@ const IntroductionSection: React.FC = () => {
         Let's begin with understanding the landscape of HubSpot expertise and why the traditional 
         "hire an agency" approach often falls short.
       </p>
-    </section>
-  );
+    </section>;
 };
-
 export default IntroductionSection;
