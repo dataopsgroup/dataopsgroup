@@ -44,7 +44,10 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
-        <link rel="canonical" href={`${baseUrl}${canonicalPath}`} />
+        {/* Point canonical to main FAQ page to prevent duplication */}
+        <link rel="canonical" href={`${baseUrl}/faqs`} />
+        {/* Add noindex to prevent duplicate content issues */}
+        <meta name="robots" content="noindex, follow" />
         
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
@@ -60,7 +63,7 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
-      <FAQPageSchema items={formattedFAQs} url={canonicalPath} />
+      {/* Remove FAQPageSchema from category pages to avoid duplicate structured data */}
       <BreadcrumbSchema items={breadcrumbs} />
       
       <section className="bg-gradient-to-br from-white to-dataops-50 py-16 md:py-24">
@@ -70,6 +73,12 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
               {category.title} <span className="gradient-text">FAQ</span>
             </h1>
             <p className="text-lg text-gray-700">{description}</p>
+            <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-700">
+                💡 <strong>Tip:</strong> For the complete FAQ collection, visit our{' '}
+                <a href="/faqs" className="underline hover:text-blue-800">main FAQ page</a>.
+              </p>
+            </div>
           </div>
         </div>
       </section>

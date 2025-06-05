@@ -82,6 +82,7 @@ const FAQsPage = () => {
         <title>HubSpot FAQ - Expert Answers to Common Questions | DataOps Group</title>
         <meta name="description" content="Get expert answers to your HubSpot questions. Comprehensive FAQ covering implementation, data quality, expert hiring, and best practices from certified consultants." />
         <meta name="keywords" content="HubSpot FAQ, HubSpot questions, HubSpot implementation FAQ, data quality questions, HubSpot expert hiring, marketing operations FAQ, RevOps questions, HubSpot consultant answers" />
+        {/* Canonical tag pointing to self to establish this as the primary FAQ page */}
         <link rel="canonical" href={`${baseUrl}/faqs`} />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="author" content="DataOps Group" />
