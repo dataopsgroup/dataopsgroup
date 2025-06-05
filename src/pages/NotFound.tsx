@@ -4,10 +4,30 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Home, ArrowLeft } from 'lucide-react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
+import MetaHead from '@/components/seo/MetaHead';
 
 const NotFound = () => {
   return (
     <SemanticLayout>
+      <MetaHead
+        title="Page Not Found (404) - DataOps Group"
+        description="The page you're looking for doesn't exist. Return to our homepage or browse our services, insights, and resources."
+        canonicalPath="/404"
+        noindex={true}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Page Not Found",
+          "description": "Error 404 - Page not found",
+          "url": "https://dataopsgroup.com/404",
+          "mainEntity": {
+            "@type": "WebPageElement",
+            "cssSelector": "main",
+            "name": "404 Error Content"
+          }
+        }}
+      />
+      
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="max-w-md mx-auto text-center px-4">
           <div className="mb-8">

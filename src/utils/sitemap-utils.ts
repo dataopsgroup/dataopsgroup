@@ -18,7 +18,7 @@ export const mainRoutes = [
   { url: "/whitepapers", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
   { url: "/assessment", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
   { url: "/hubspot-assessment-results", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
-  { url: "/how-to-hire-a-hubspot-expert-in-2025", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/guides/hubspot-expert", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/leadership", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
   { url: "/privacy", priority: "0.3", changefreq: "yearly", lastmod: TODAY },
   { url: "/terms", priority: "0.3", changefreq: "yearly", lastmod: TODAY }

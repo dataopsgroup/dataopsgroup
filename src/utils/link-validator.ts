@@ -21,7 +21,7 @@ const VALID_ROUTES = [
   '/about',
   '/approach', 
   '/book',
-  '/how-to-hire-a-hubspot-expert-in-2025',
+  '/guides/hubspot-expert',
   
   // Service routes
   '/services',
@@ -66,7 +66,7 @@ export const extractNavigationLinks = (): string[] => {
     '/services/marketing-operations-revops',
     '/insights',
     '/case-studies',
-    '/how-to-hire-a-hubspot-expert-in-2025',
+    '/guides/hubspot-expert',
     '/assessment',
     '/about',
     '/approach',

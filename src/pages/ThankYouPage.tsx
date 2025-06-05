@@ -1,24 +1,41 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowDownToLine } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/ui/optimized-image';
+import MetaHead from '@/components/seo/MetaHead';
 
 const ThankYouPage = () => {
   const whitepaperImage = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d";
 
   return (
     <div className="page-container">
-      <Helmet>
-        <title>Thank You - DataOps Group</title>
-        <meta name="description" content="Thank you for contacting DataOps Group. Our team will be in touch with you shortly to discuss your data operation needs." />
-        <meta name="keywords" content="thank you, contact confirmation, dataops resources" />
-        <link rel="canonical" href="/thank-you" />
-      </Helmet>
+      <MetaHead
+        title="Thank You - DataOps Group"
+        description="Thank you for your interest in DataOps Group. Download our free resources and learn how we can help transform your data operations."
+        canonicalPath="/thank-you"
+        noindex={true}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Thank You - DataOps Group",
+          "description": "Thank you page with free resources",
+          "url": "https://dataopsgroup.com/thank-you",
+          "mainEntity": {
+            "@type": "DigitalDocument",
+            "name": "2025 DataOps Transformation Guide",
+            "description": "Learn how to implement DataOps practices in your organization and drive significant business outcomes with our comprehensive guide.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "DataOps Group"
+            }
+          }
+        }}
+      />
       <Navbar />
       <main className="content-wrapper pt-24 pb-16">
         <div className="container mx-auto px-4">
