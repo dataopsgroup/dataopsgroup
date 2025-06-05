@@ -48,6 +48,30 @@ const RelatedContent: React.FC = () => {
 
   return (
     <div className="mt-12 space-y-8 related-content-cards">
+      {/* Call to Action - Moved to top */}
+      <section className="bg-gradient-to-r from-dataops-50 to-saffron-50 border border-dataops-200 rounded-lg p-8 text-center">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to Find Your HubSpot Expert?</h2>
+        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+          Don't let a failed implementation cost your business. Get expert guidance from certified HubSpot specialists 
+          who understand integrations, data quality, and marketing operations.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            to="/book"
+            className="inline-flex items-center justify-center px-6 py-3 bg-dataops-600 text-white font-semibold rounded-lg hover:bg-dataops-700 transition-colors"
+          >
+            Book a Strategy Call
+            <ArrowRight className="h-5 w-5 ml-2" />
+          </Link>
+          <Link
+            to="/assessment"
+            className="inline-flex items-center justify-center px-6 py-3 border border-dataops-600 text-dataops-600 font-semibold rounded-lg hover:bg-dataops-50 transition-colors"
+          >
+            Take Our Assessment
+          </Link>
+        </div>
+      </section>
+
       {/* Related Articles */}
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Reading</h2>
@@ -96,30 +120,6 @@ const RelatedContent: React.FC = () => {
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="bg-gradient-to-r from-dataops-50 to-saffron-50 border border-dataops-200 rounded-lg p-8 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to Find Your HubSpot Expert?</h2>
-        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-          Don't let a failed implementation cost your business. Get expert guidance from certified HubSpot specialists 
-          who understand integrations, data quality, and marketing operations.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            to="/book"
-            className="inline-flex items-center justify-center px-6 py-3 bg-dataops-600 text-white font-semibold rounded-lg hover:bg-dataops-700 transition-colors"
-          >
-            Book a Strategy Call
-            <ArrowRight className="h-5 w-5 ml-2" />
-          </Link>
-          <Link
-            to="/assessment"
-            className="inline-flex items-center justify-center px-6 py-3 border border-dataops-600 text-dataops-600 font-semibold rounded-lg hover:bg-dataops-50 transition-colors"
-          >
-            Take Our Assessment
-          </Link>
         </div>
       </section>
     </div>
