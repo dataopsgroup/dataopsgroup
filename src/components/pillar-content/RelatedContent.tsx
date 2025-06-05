@@ -97,7 +97,7 @@ const RelatedContent: React.FC = () => {
               to={category.link}
               className="group block p-4 bg-gray-50 border border-gray-200 rounded-lg hover:bg-white hover:border-dataops-300 hover:shadow-sm transition-all duration-200"
             >
-              <h3 className="text-base font-medium text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
+              <h3 className="text-sm font-medium text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
                 {category.title}
               </h3>
               <p className="text-sm text-gray-600 mb-2">{category.description}</p>
