@@ -23,27 +23,39 @@ const TeamTraining = () => {
   return (
     <>
       <Helmet>
-        <title>HubSpot Implementation and Training | DataOps Group</title>
-        <meta name="description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+        <title>HubSpot Training & Implementation | Expert Team Training | Portfolio Company Growth | DataOps Group</title>
+        <meta name="description" content="Accelerate portfolio company growth with comprehensive HubSpot training and implementation. Expert-led training programs that maximize platform adoption and drive measurable results." />
+        <meta name="keywords" content="HubSpot training, HubSpot implementation, team training, portfolio company training, HubSpot certification, marketing training, sales training, CRM training, platform adoption" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="author" content="DataOps Group" />
         <link rel="canonical" href={`${baseUrl}/services/team-training`} />
+        
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="HubSpot Implementation and Training | DataOps Group" />
-        <meta property="og:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
+        <meta property="og:title" content="HubSpot Training & Implementation for Portfolio Companies" />
+        <meta property="og:description" content="Expert HubSpot training programs that transform marketing teams into high-performing revenue engines. Customized for portfolio company growth." />
         <meta property="og:url" content={`${baseUrl}/services/team-training`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
+        <meta property="og:image:alt" content="HubSpot Training and Implementation Services" />
         <meta property="og:site_name" content="DataOps Group" />
+        
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HubSpot Implementation and Training | DataOps Group" />
-        <meta name="twitter:description" content="Expert HubSpot training services to maximize your team's platform proficiency and drive measurable business results." />
-        <meta property="og:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
+        <meta name="twitter:title" content="HubSpot Training & Implementation Services" />
+        <meta name="twitter:description" content="Expert HubSpot training that accelerates portfolio company growth and maximizes platform ROI through proven implementation strategies." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/0fa57601-c63b-40e0-8e0f-78fc9104bd6c.png`} />
         <meta name="twitter:site" content="@dataops_group" />
+        
+        {/* Additional SEO tags */}
+        <meta name="article:section" content="Training Services" />
+        <meta name="article:tag" content="HubSpot Training" />
+        <meta name="article:tag" content="Team Training" />
+        <meta name="article:tag" content="Portfolio Growth" />
       </Helmet>
       
       <ServiceSchema 
         name="HubSpot Implementation and Training"
-        description="Expert HubSpot training and implementation services to help your team maximize the platform's capabilities and drive measurable business results."
+        description="Expert HubSpot training and implementation services that accelerate portfolio company growth by transforming marketing teams into high-performing revenue engines."
         url="/services/team-training"
         serviceOutput="Improved team proficiency with HubSpot, maximized platform ROI, and streamlined operations"
       />
@@ -51,7 +63,6 @@ const TeamTraining = () => {
       <SemanticLayout>
         <TeamTrainingHero />
 
-        {/* Content Section */}
         <section className="py-16 px-4">
           <div className="container mx-auto">
             <div className="grid lg:grid-cols-3 gap-16">
