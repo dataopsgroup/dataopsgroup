@@ -14,20 +14,20 @@ const HubSpotExpertGuidePage = () => {
   return (
     <SemanticLayout>
       <Helmet>
-        <title>How to Hire a HubSpot Expert: Complete Guide for 2024 | DataOps Group</title>
+        <title>How to Hire a HubSpot Expert: Complete Guide for 2025 | DataOps Group</title>
         <meta name="description" content="Complete guide to hiring HubSpot experts. Learn how to find, evaluate, and work with certified HubSpot consultants for maximum ROI." />
         <meta name="keywords" content="HubSpot expert, HubSpot consultant, hire HubSpot specialist, HubSpot implementation" />
-        <link rel="canonical" href="https://www.dataopsgroup.com/hubspot-expert-guide" />
+        <link rel="canonical" href="https://www.dataopsgroup.com/guides/hubspot-expert" />
         
         {/* Open Graph tags */}
-        <meta property="og:title" content="How to Hire a HubSpot Expert: Complete Guide for 2024" />
+        <meta property="og:title" content="How to Hire a HubSpot Expert: Complete Guide for 2025" />
         <meta property="og:description" content="Complete guide to hiring HubSpot experts. Learn how to find, evaluate, and work with certified HubSpot consultants for maximum ROI." />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://www.dataopsgroup.com/hubspot-expert-guide" />
+        <meta property="og:url" content="https://www.dataopsgroup.com/guides/hubspot-expert" />
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="How to Hire a HubSpot Expert: Complete Guide for 2024" />
+        <meta name="twitter:title" content="How to Hire a HubSpot Expert: Complete Guide for 2025" />
         <meta name="twitter:description" content="Complete guide to hiring HubSpot experts. Learn how to find, evaluate, and work with certified HubSpot consultants for maximum ROI." />
       </Helmet>
       

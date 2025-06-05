@@ -1,17 +1,14 @@
 
 import React from 'react';
-import { SectionId } from '@/types/pillar-content';
 
 interface TableOfContentsProps {
-  activeSection: SectionId;
-  onSectionChange: (sectionId: SectionId) => void;
+  activeSection: string;
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({
-  activeSection,
-  onSectionChange
+  activeSection
 }) => {
-  const sections: { id: SectionId; title: string; subsections?: string[] }[] = [
+  const sections = [
     {
       id: 'introduction',
       title: 'Introduction: The HubSpot Expert Decision'
@@ -66,6 +63,20 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
     }
   ];
 
+  const handleSectionClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 100; // Account for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <nav className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
       <h2 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h2>
@@ -73,7 +84,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
         {sections.map((section, index) => (
           <li key={section.id}>
             <button
-              onClick={() => onSectionChange(section.id)}
+              onClick={() => handleSectionClick(section.id)}
               className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                 activeSection === section.id
                   ? 'bg-dataops-100 text-dataops-700 font-medium'
