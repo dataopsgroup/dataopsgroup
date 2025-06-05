@@ -47,6 +47,10 @@ const VALID_ROUTES = [
   '/privacy',
   '/terms',
   
+  // Admin routes
+  '/admin/structured-data',
+  '/admin/vitals',
+  
   // Dynamic routes (patterns)
   '/insights/:postId',
   '/case-studies/:caseStudyId'
