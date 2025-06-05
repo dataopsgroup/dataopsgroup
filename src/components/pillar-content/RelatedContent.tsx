@@ -71,7 +71,7 @@ const RelatedContent: React.FC = () => {
                     <span className="inline-block px-2 py-1 text-xs font-medium text-dataops-700 bg-dataops-100 rounded mb-2">
                       {article.category}
                     </span>
-                    <h3 className="font-semibold text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
+                    <h3 className="text-base font-semibold text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
                       {article.title}
                     </h3>
                     <p className="text-sm text-gray-600 mb-3">{article.description}</p>
@@ -97,7 +97,7 @@ const RelatedContent: React.FC = () => {
               to={category.link}
               className="group block p-4 bg-gray-50 border border-gray-200 rounded-lg hover:bg-white hover:border-dataops-300 hover:shadow-sm transition-all duration-200"
             >
-              <h3 className="font-medium text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
+              <h3 className="text-base font-medium text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
                 {category.title}
               </h3>
               <p className="text-sm text-gray-600 mb-2">{category.description}</p>
