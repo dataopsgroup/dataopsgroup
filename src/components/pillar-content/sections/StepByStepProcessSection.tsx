@@ -51,6 +51,20 @@ const StepByStepProcessSection: React.FC = () => {
         <a href="https://www.profound.ly" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Profound.ly</a> has emerged as a specialized marketplace specifically for HubSpot talent, offering a curated selection of verified experts with detailed profiles showing their specific HubSpot experience, integration capabilities, and client results.
       </p>
       
+      <h3>Why Upwork and Fiverr Aren't Right for Critical HubSpot Implementations</h3>
+      
+      <p>
+        While platforms like Upwork and Fiverr offer access to thousands of freelancers, they're fundamentally unsuited for complex HubSpot implementations that drive PE portfolio company value creation. Enterprise software implementations already face daunting failure rates, with <strong>50-75% of all ERP implementations categorized as failures</strong> and <strong>30% of software projects terminated before completion</strong>, often due to <strong>poor or inadequate testing</strong> (29% of failures) and insufficient expertise. The freelance marketplace model exacerbates these risks significantly.
+      </p>
+      
+      <p>
+        On these platforms, <strong>quality of freelancers can vary greatly</strong> since "anyone can sign up as a freelancer on Fiverr without any formal verification of their skills or qualifications". <strong>90% of jobs posted on Upwork were canceled or closed without anyone hired</strong>, indicating widespread client dissatisfaction. Even experienced freelance professionals acknowledge that <strong>the responsibility for quality assurance falls entirely on you</strong> as the client, requiring you to "vet applicants" and "manage the project effectively" yourself.
+      </p>
+      
+      <p>
+        For PE portfolio companies where <strong>40% of ERP systems experience operational disruption</strong> and <strong>17% of IT projects risk collapsing the company itself</strong>, the stakes are simply too high for the trial-and-error approach these platforms require. Your portfolio company transformation demands proven expertise, systematic quality controls, and accountability that marketplace freelancers cannot provide.
+      </p>
+      
       <h3>Phase 3: Initial Screening and Shortlisting</h3>
       
       <p>
