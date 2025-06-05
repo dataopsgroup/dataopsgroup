@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { getCanonicalFromAmpUrl } from '../utils/redirect-utils';
@@ -22,6 +21,7 @@ export const redirectRoutes = [
     path: "/hubspot-assessment-results",
     element: <Navigate to="/assessment/results" replace />,
   },
+  // Fix the HubSpot expert guide redirect
   {
     path: "/how-to-hire-a-hubspot-expert-in-2025",
     element: <Navigate to="/guides/hubspot-expert" replace />,

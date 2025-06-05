@@ -14,7 +14,6 @@ import MaximizingPartnershipSection from './sections/MaximizingPartnershipSectio
 import SuccessStoriesSection from './sections/SuccessStoriesSection';
 import CommonPitfallsSection from './sections/CommonPitfallsSection';
 import ConclusionSection from './sections/ConclusionSection';
-import DefaultSection from './sections/DefaultSection';
 
 interface ContentSectionProps {
   activeSection: SectionId;
@@ -28,27 +27,27 @@ const ContentSection: React.FC<ContentSectionProps> = ({ activeSection }) => {
       case 'understanding-experts':
         return <UnderstandingExpertsSection />;
       case 'types-expertise':
-        return <DefaultSection sectionId="types-expertise" />;
+        return <TypesExpertiseSection />;
       case 'beyond-agency-safety':
-        return <DefaultSection sectionId="beyond-agency-safety" />;
+        return <BeyondAgencySafetySection />;
       case 'when-need-expert':
-        return <DefaultSection sectionId="when-need-expert" />;
+        return <WhenNeedExpertSection />;
       case 'evaluating-qualifications':
-        return <DefaultSection sectionId="evaluating-qualifications" />;
+        return <EvaluatingQualificationsSection />;
       case 'pricing-guide':
-        return <DefaultSection sectionId="pricing-guide" />;
+        return <PricingGuideSection />;
       case 'step-by-step-process':
-        return <DefaultSection sectionId="step-by-step-process" />;
+        return <StepByStepProcessSection />;
       case 'essential-questions':
-        return <DefaultSection sectionId="essential-questions" />;
+        return <EssentialQuestionsSection />;
       case 'maximizing-partnership':
-        return <DefaultSection sectionId="maximizing-partnership" />;
+        return <MaximizingPartnershipSection />;
       case 'success-stories':
-        return <DefaultSection sectionId="success-stories" />;
+        return <SuccessStoriesSection />;
       case 'common-pitfalls':
-        return <DefaultSection sectionId="common-pitfalls" />;
+        return <CommonPitfallsSection />;
       case 'conclusion':
-        return <DefaultSection sectionId="conclusion" />;
+        return <ConclusionSection />;
       default:
         return <IntroductionSection />;
     }
