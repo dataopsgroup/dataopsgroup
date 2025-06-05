@@ -60,6 +60,18 @@ const UnderstandingExpertsSection: React.FC = () => {
         <li><strong>Scalable Resources:</strong> Can handle larger projects without junior staff</li>
       </ul>
       
+      <p>
+        These scenarios often require enterprise-level expertise:
+      </p>
+      
+      <ul className="list-disc pl-6 space-y-2">
+        <li>Complex approval workflows spanning multiple departments</li>
+        <li>Custom reporting needs that combine data from multiple sources</li>
+        <li>Industry-specific compliance requirements (HIPAA, SOX, GDPR)</li>
+        <li>Unique pricing models or contract structures</li>
+        <li>Multi-brand or multi-entity business structures</li>
+      </ul>
+      
       <h3>When to Choose Each Option</h3>
       
       <div className="grid md:grid-cols-3 gap-6 my-8">
