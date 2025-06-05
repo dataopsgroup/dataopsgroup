@@ -1,0 +1,138 @@
+
+/* Hero Section Styles - Optimized for SEO and Crawler Visibility */
+
+.hero-section {
+  position: relative;
+  min-height: 600px;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.7);
+  z-index: 2;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  z-index: 10;
+}
+
+.hero-content-box {
+  max-width: 600px;
+  padding: 2rem 0;
+}
+
+/* Critical: Ensure H1 is always visible to crawlers */
+.hero-heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: white;
+  /* Ensure visibility for crawlers */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  clip: auto !important;
+  overflow: visible !important;
+}
+
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-heading {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-text {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 768px) {
+  .hero-text {
+    font-size: 1.25rem;
+  }
+}
+
+.hero-button {
+  background-color: #FBB03B;
+  color: #0F172A;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.hero-button:hover {
+  background-color: #f59e0b;
+  transform: translateY(-1px);
+}
+
+/* Mobile-specific overrides */
+@media (max-width: 767px) {
+  .hero-section {
+    background-color: #1e40af;
+    color: white;
+  }
+  
+  .hero-heading {
+    font-size: 1.875rem;
+    color: white;
+  }
+}

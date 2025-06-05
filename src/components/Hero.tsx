@@ -60,22 +60,22 @@ const Hero = () => {
             <div className="hero-content">
               {/* Content wrapper with explicit dimensions */}
               <div className="hero-content-box">
-                <div>
-                  {/* Main headline with improved responsive sizing */}
-                  <h1 className="hero-heading" id="hero-heading">
-                    Turn PE Portfolio Operations Into Profit Drivers in <span className="text-yellow-300">100 Days</span>
+                <header>
+                  {/* Main headline with improved SEO structure - ensuring it's always visible */}
+                  <h1 className="hero-heading" id="main-heading">
+                    PE Portfolio Operations Platform | HubSpot Implementation for Private Equity
                   </h1>
-                  <div className="space-y-4">
-                    <p className="hero-text">
-                      We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
-                    </p>
-                    <p className="font-medium mb-4"></p>
-                    <ul className="list-disc pl-6 space-y-1 mb-4 hero-text">
-                      <li>19% higher valuation multiples</li>
-                      <li>73% faster EBITDA growth</li>
-                      <li>$18-22 ROI per $1 invested</li>
-                    </ul>
-                  </div>
+                </header>
+                <div className="space-y-4">
+                  <p className="hero-text">
+                    Transform PE portfolio operations into profit drivers with our specialized HubSpot platform. Achieve 19% higher valuations, 73% faster EBITDA growth, and $18-22 ROI. 100-day implementation for private equity firms.
+                  </p>
+                  <p className="font-medium mb-4"></p>
+                  <ul className="list-disc pl-6 space-y-1 mb-4 hero-text">
+                    <li>19% higher valuation multiples</li>
+                    <li>73% faster EBITDA growth</li>
+                    <li>$18-22 ROI per $1 invested</li>
+                  </ul>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
@@ -102,34 +102,36 @@ const Hero = () => {
       </div>
 
       {/* Trusted Companies Section */}
-      <div className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 leading-normal md:leading-relaxed">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-dataops-600 mb-2">47%</div>
-              <p className="text-gray-700 font-medium mb-1">Increased qualified leads</p>
-              <p className="text-sm text-gray-500">in 90 days</p>
-              <p className="text-xs text-gray-400 mt-2">Audio Visual Equipment Wholesaler</p>
-            </div>
+      <section aria-labelledby="trusted-companies-heading">
+        <div className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4 text-center">
+            <h2 id="trusted-companies-heading" className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 leading-normal md:leading-relaxed">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
             
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-dataops-600 mb-2">28%</div>
-              <p className="text-gray-700 font-medium mb-1">Reduced sales cycle</p>
-              <p className="text-sm text-gray-500">time to close</p>
-              <p className="text-xs text-gray-400 mt-2">Multi-National Insurance</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-dataops-600 mb-2">35%</div>
-              <p className="text-gray-700 font-medium mb-1">Improvement in close rates</p>
-              <p className="text-sm text-gray-500">deal conversion</p>
-              <p className="text-xs text-gray-400 mt-2">SaaS Healthcare</p>
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <div className="text-3xl font-bold text-dataops-600 mb-2">47%</div>
+                <p className="text-gray-700 font-medium mb-1">Increased qualified leads</p>
+                <p className="text-sm text-gray-500">in 90 days</p>
+                <p className="text-xs text-gray-400 mt-2">Audio Visual Equipment Wholesaler</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <div className="text-3xl font-bold text-dataops-600 mb-2">28%</div>
+                <p className="text-gray-700 font-medium mb-1">Reduced sales cycle</p>
+                <p className="text-sm text-gray-500">time to close</p>
+                <p className="text-xs text-gray-400 mt-2">Multi-National Insurance</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <div className="text-3xl font-bold text-dataops-600 mb-2">35%</div>
+                <p className="text-gray-700 font-medium mb-1">Improvement in close rates</p>
+                <p className="text-sm text-gray-500">deal conversion</p>
+                <p className="text-xs text-gray-400 mt-2">SaaS Healthcare</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };
