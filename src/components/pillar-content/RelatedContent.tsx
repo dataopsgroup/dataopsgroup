@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -46,7 +47,7 @@ const RelatedContent: React.FC = () => {
   ];
 
   return (
-    <div className="mt-12 space-y-8">
+    <div className="mt-12 space-y-8 related-content-cards">
       {/* Related Articles */}
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Reading</h2>
