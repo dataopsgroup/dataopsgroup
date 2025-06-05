@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const baseUrl = 'https://dataops.group';
 
-// Define all routes with priorities and change frequencies
+// Define all routes with priorities and change frequencies - updated with clean URLs
 const routes = [
   // Main pages - highest priority
   { url: '/', changefreq: 'weekly', priority: 1.0, lastmod: new Date() },
@@ -27,11 +27,25 @@ const routes = [
   // Content pages
   { url: '/approach', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
   { url: '/insights', changefreq: 'weekly', priority: 0.7, lastmod: new Date() },
-  { url: '/how-to-hire-a-hubspot-expert-in-2025', changefreq: 'monthly', priority: 0.75, lastmod: new Date() },
+  { url: '/guides/hubspot-expert', changefreq: 'monthly', priority: 0.75, lastmod: new Date() },
+  { url: '/case-studies', changefreq: 'monthly', priority: 0.7, lastmod: new Date() },
+  
+  // Tools and utilities
+  { url: '/assessment', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
+  { url: '/assessment/results', changefreq: 'monthly', priority: 0.5, lastmod: new Date() },
+  
+  // FAQ pages
+  { url: '/faqs', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
+  { url: '/faqs/services', changefreq: 'monthly', priority: 0.5, lastmod: new Date() },
+  { url: '/faqs/experts', changefreq: 'monthly', priority: 0.5, lastmod: new Date() },
+  { url: '/faqs/data-quality', changefreq: 'monthly', priority: 0.5, lastmod: new Date() },
+  { url: '/faqs/approach', changefreq: 'monthly', priority: 0.5, lastmod: new Date() },
+  { url: '/faqs/modules', changefreq: 'monthly', priority: 0.5, lastmod: new Date() },
   
   // Utility pages
-  { url: '/assessment', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
   { url: '/sitemap', changefreq: 'monthly', priority: 0.5, lastmod: new Date() },
+  { url: '/privacy', changefreq: 'yearly', priority: 0.3, lastmod: new Date() },
+  { url: '/terms', changefreq: 'yearly', priority: 0.3, lastmod: new Date() },
 ];
 
 async function generateEnhancedSitemap() {

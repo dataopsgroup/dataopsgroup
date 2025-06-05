@@ -1,29 +1,28 @@
+
 import React, { lazy } from 'react';
 
-const HubSpotAssessment = lazy(() => import('@/pages/HubSpotAssessment'));
-const HubSpotAssessmentResultsPage = lazy(() => import('@/pages/HubSpotAssessmentResultsPage'));
 const GetStartedPage = lazy(() => import('@/pages/GetStartedPage'));
 const ThankYouPage = lazy(() => import('@/pages/ThankYouPage'));
 const ContactThankYouPage = lazy(() => import('@/pages/ContactThankYouPage'));
 const Sitemap = lazy(() => import('@/pages/Sitemap'));
+const Privacy = lazy(() => import('@/pages/Privacy'));
+const Terms = lazy(() => import('@/pages/Terms'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
 export const utilityRoutes = [
-  {
-    path: "/assessment",
-    element: <HubSpotAssessment />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/assessment/results",
-    element: <HubSpotAssessmentResultsPage />,
-    errorElement: <NotFound />,
-  },
+  // Tools and utilities
   {
     path: "/get-started",
     element: <GetStartedPage />,
     errorElement: <NotFound />,
   },
+  {
+    path: "/sitemap",
+    element: <Sitemap />,
+    errorElement: <NotFound />,
+  },
+  
+  // Thank you pages
   {
     path: "/thank-you",
     element: <ThankYouPage />,
@@ -34,9 +33,16 @@ export const utilityRoutes = [
     element: <ContactThankYouPage />,
     errorElement: <NotFound />,
   },
+  
+  // Legal pages
   {
-    path: "/sitemap",
-    element: <Sitemap />,
+    path: "/privacy",
+    element: <Privacy />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/terms",
+    element: <Terms />,
     errorElement: <NotFound />,
   },
 ];

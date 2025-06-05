@@ -13,7 +13,39 @@ const AmpRedirectHandler = () => {
 
 // 301 Redirects
 export const redirectRoutes = [
-  // Documentation redirect (added to fix canonical issue)
+  // New redirects for cleaned URLs
+  {
+    path: "/book-page",
+    element: <Navigate to="/book" replace />,
+  },
+  {
+    path: "/hubspot-assessment-results",
+    element: <Navigate to="/assessment/results" replace />,
+  },
+  {
+    path: "/how-to-hire-a-hubspot-expert-in-2025",
+    element: <Navigate to="/guides/hubspot-expert" replace />,
+  },
+  
+  // FAQ URL cleanups
+  {
+    path: "/faqs/hubspot-services",
+    element: <Navigate to="/faqs/services" replace />,
+  },
+  {
+    path: "/faqs/hubspot-experts",
+    element: <Navigate to="/faqs/experts" replace />,
+  },
+  {
+    path: "/faqs/our-approach",
+    element: <Navigate to="/faqs/approach" replace />,
+  },
+  {
+    path: "/faqs/hubspot-modules",
+    element: <Navigate to="/faqs/modules" replace />,
+  },
+  
+  // Documentation redirect
   {
     path: "/documentation",
     element: <Navigate to="/" replace />,
@@ -103,7 +135,7 @@ export const redirectRoutes = [
     element: <Navigate to="/insights" replace />,
   },
   
-  // NEW: Additional redirects for legacy URLs
+  // Additional redirects for legacy URLs
   {
     path: "/hubspot-case-studies",
     element: <Navigate to="/case-studies" replace />,
@@ -113,7 +145,7 @@ export const redirectRoutes = [
     element: <Navigate to="/" replace />,
   },
   
-  // NEW: Resource guides redirects
+  // Resource guides redirects
   {
     path: "/data-quality-dimensions-guide",
     element: <Navigate to="/insights" replace />,
@@ -135,7 +167,7 @@ export const redirectRoutes = [
     element: <Navigate to="/insights" replace />,
   },
   
-  // NEW: Tool and assessment redirects
+  // Tool and assessment redirects
   {
     path: "/data-strategy-assessment",
     element: <Navigate to="/assessment" replace />,
@@ -149,19 +181,19 @@ export const redirectRoutes = [
     element: <Navigate to="/services/dataops-implementation" replace />,
   },
   
-  // NEW: Fix for AMP URLs - use a dedicated component that can access route params
+  // AMP URLs
   {
     path: "/en/blog/:postId",
     element: <AmpRedirectHandler />,
   },
   
-  // NEW: Search page redirect
+  // Search page redirect
   {
     path: "/search",
     element: <Navigate to="/insights" replace />,
   },
   
-  // NEW: Additional URLs with hsLang parameter
+  // Additional URLs with hsLang parameter
   {
     path: "/how-much-is-bad-data-costing-your-business",
     element: <Navigate to="/insights/true-cost-of-bad-data" replace />,

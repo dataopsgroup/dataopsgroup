@@ -6,7 +6,6 @@ const AboutPage = lazy(() => import('../pages/AboutPage'));
 const ApproachPage = lazy(() => import('../pages/ApproachPage'));
 const Contact = lazy(() => import('../pages/Contact'));
 const BookLandingPage = lazy(() => import('../pages/BookLandingPage'));
-const BookPage = lazy(() => import('../pages/BookPage'));
 const HubSpotAssessment = lazy(() => import('../pages/HubSpotAssessment'));
 const HubSpotAssessmentResultsPage = lazy(() => import('../pages/HubSpotAssessmentResultsPage'));
 const CaseStudies = lazy(() => import('../pages/CaseStudies'));
@@ -35,23 +34,20 @@ export const mainRoutes = [
     element: <Contact />,
     errorElement: <NotFound />,
   },
+  // Consolidated to single book page
   {
     path: "/book",
     element: <BookLandingPage />,
     errorElement: <NotFound />,
   },
-  {
-    path: "/book-page",
-    element: <BookPage />,
-    errorElement: <NotFound />,
-  },
+  // Assessment with clean URLs
   {
     path: "/assessment",
     element: <HubSpotAssessment />,
     errorElement: <NotFound />,
   },
   {
-    path: "/hubspot-assessment-results",
+    path: "/assessment/results",
     element: <HubSpotAssessmentResultsPage />,
     errorElement: <NotFound />,
   },
@@ -60,8 +56,9 @@ export const mainRoutes = [
     element: <CaseStudies />,
     errorElement: <NotFound />,
   },
+  // Shortened guide URL
   {
-    path: "/how-to-hire-a-hubspot-expert-in-2025",
+    path: "/guides/hubspot-expert",
     element: <HubSpotExpertGuidePage />,
     errorElement: <NotFound />,
   },

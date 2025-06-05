@@ -14,6 +14,7 @@ const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
 const RouteErrorBoundary = lazy(() => import('../components/RouteErrorBoundary'));
 
 export const insightRoutes = [
+  // Blog and insights
   {
     path: "/insights",
     element: <BlogList />,
@@ -24,23 +25,27 @@ export const insightRoutes = [
     element: <BlogPostPage />,
     errorElement: <RouteErrorBoundary />,
   },
+  
+  // Case studies
   {
     path: "/case-studies/:caseStudyId",
     element: <CaseStudyDetailPage />,
     errorElement: <RouteErrorBoundary />,
   },
+  
+  // FAQ sections - organized under /faqs
   {
     path: "/faqs",
     element: <FAQs />,
     errorElement: <RouteErrorBoundary />,
   },
   {
-    path: "/faqs/hubspot-services",
+    path: "/faqs/services",
     element: <FAQHubSpotServices />,
     errorElement: <RouteErrorBoundary />,
   },
   {
-    path: "/faqs/hubspot-experts",
+    path: "/faqs/experts",
     element: <FAQHubSpotExperts />,
     errorElement: <RouteErrorBoundary />,
   },
@@ -50,15 +55,17 @@ export const insightRoutes = [
     errorElement: <RouteErrorBoundary />,
   },
   {
-    path: "/faqs/our-approach",
+    path: "/faqs/approach",
     element: <FAQOurApproach />,
     errorElement: <RouteErrorBoundary />,
   },
   {
-    path: "/faqs/hubspot-modules",
+    path: "/faqs/modules",
     element: <FAQHubSpotModules />,
     errorElement: <RouteErrorBoundary />,
   },
+  
+  // Testing and admin
   {
     path: "/structured-data-test",
     element: <StructuredDataTest />,
