@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -26,7 +27,6 @@ const Index = () => {
           name="description" 
           content="Transform PE portfolio operations into profit drivers with our specialized HubSpot platform. Achieve 19% higher valuations, 73% faster EBITDA growth, and $18-22 ROI. 100-day implementation for private equity firms." 
         />
-        
         <meta name="keywords" content="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations, sales operations, revenue operations" />
         <link rel="canonical" href={`${baseUrl}/`} />
         
@@ -90,28 +90,26 @@ const Index = () => {
       <LocalBusinessSchema />
       <ProfessionalServiceSchema />
       
-      {/* Main content sections with proper semantic structure */}
-      <main>
-        <section aria-labelledby="main-heading">
-          <Hero />
-        </section>
-        
-        <section aria-label="Chatbot Services">
-          <ChatbotSection />
-        </section>
-        
-        <section aria-label="Our Services">
-          <Services />
-        </section>
-        
-        <section aria-label="Our Approach">
-          <Approach />
-        </section>
-        
-        <section aria-label="Book a Consultation">
-          <BookCTA />
-        </section>
-      </main>
+      {/* Main content sections */}
+      <section aria-labelledby="hero-heading">
+        <Hero />
+      </section>
+      
+      <section aria-label="Chatbot Services">
+        <ChatbotSection />
+      </section>
+      
+      <section aria-label="Our Services">
+        <Services />
+      </section>
+      
+      <section aria-label="Our Approach">
+        <Approach />
+      </section>
+      
+      <section aria-label="Book a Consultation">
+        <BookCTA />
+      </section>
     </SemanticLayout>
   );
 };
