@@ -1,3 +1,4 @@
+
 import React from 'react';
 const IntroductionSection: React.FC = () => {
   return <section id="introduction" className="prose prose-lg max-w-none" tabIndex={-1}>
@@ -64,10 +65,10 @@ const IntroductionSection: React.FC = () => {
       </p>
       
       <ul>
-        <li><strong>23% increase in lead conversion rates</strong> within the first quarter</li>
-        <li><strong>35% reduction in sales cycle length</strong> through better lead scoring and nurturing</li>
-        <li><strong>40% improvement in marketing ROI</strong> from proper attribution and optimization</li>
-        <li><strong>60% increase in sales productivity</strong> through automated workflows and better data</li>
+        <li><strong>Up to 300% increase in lead conversion rates</strong> (Forrester Research)</li>
+        <li><strong>8-14% reduction in sales cycle length</strong> (Nucleus Research)</li>
+        <li><strong>14.5% improvement in sales productivity</strong> (Nucleus Research)</li>
+        <li><strong>86% improvement in customer acquisition rates</strong> (State of HubSpot Report, 2023)</li>
       </ul>
       
       <p>
