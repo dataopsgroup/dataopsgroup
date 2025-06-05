@@ -1,3 +1,4 @@
+
 import React from 'react';
 const IntroductionSection: React.FC = () => {
   return <section id="introduction" className="prose prose-lg max-w-none" tabIndex={-1}>
@@ -25,7 +26,7 @@ const IntroductionSection: React.FC = () => {
       
       <ul>
         <li><strong>Implemented HubSpot for 30+ companies</strong> across industries from startups to Fortune 500</li>
-        <li><strong>Rescued 50+ failed implementations</strong> from other agencies and consultants</li>
+        <li><strong>Rescued dozens of failed implementations</strong> from other agencies and consultants</li>
         <li><strong>Trained hundreds of internal teams</strong> on HubSpot best practices</li>
         <li><strong>Maintained HubSpot certifications since 2012</strong> across all hubs and specializations</li>
       </ul>
