@@ -91,7 +91,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
                   : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
               }`}
             >
-              <span className="text-gray-400 mr-2">{(index + 1).toString().padStart(2, '0')}.</span>
+              <span className="text-gray-400 mr-2">{index + 1}.</span>
               {section.title}
             </button>
           </li>
