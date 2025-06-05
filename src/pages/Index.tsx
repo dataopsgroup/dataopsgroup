@@ -22,7 +22,7 @@ const Index = () => {
   return (
     <SemanticLayout>
       <Helmet>
-        <title>HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group</title>
+        <title>PE Portfolio Operations Platform | HubSpot Implementation for Private Equity</title>
         <meta 
           name="description" 
           content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize ROI, and turn your CRM into a revenue-generating machine. Free audit." 
@@ -35,7 +35,7 @@ const Index = () => {
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group" />
+        <meta property="og:title" content="PE Portfolio Operations Platform | HubSpot Implementation for Private Equity" />
         <meta property="og:description" content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize ROI, and turn your CRM into a revenue-generating machine. Free audit." />
         <meta property="og:url" content={`${baseUrl}/`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
@@ -45,7 +45,7 @@ const Index = () => {
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HubSpot ROI Not Meeting Expectations? We Fix That | DataOps Group" />
+        <meta name="twitter:title" content="PE Portfolio Operations Platform | HubSpot Implementation for Private Equity" />
         <meta name="twitter:description" content="Stop losing money on underperforming HubSpot. We rescue broken implementations, optimize ROI, and turn your CRM into a revenue-generating machine. Free audit." />
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta name="twitter:site" content="@dataops_group" />
