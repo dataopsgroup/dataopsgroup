@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 const IntroductionSection: React.FC = () => {
   return <section id="introduction" className="prose prose-lg max-w-none" tabIndex={-1}>
@@ -39,7 +37,7 @@ const IntroductionSection: React.FC = () => {
       <h3>What You'll Learn</h3>
       
       <div className="grid md:grid-cols-2 gap-6 my-8">
-        <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="bg-gray-50 p-4 rounded-lg">
           <h4 className="font-semibold text-gray-900 mb-3">🎯 Strategic Clarity</h4>
           <ul className="text-sm space-y-1">
             <li>• When you actually need an expert vs. internal resources</li>
@@ -48,7 +46,7 @@ const IntroductionSection: React.FC = () => {
           </ul>
         </div>
         
-        <div className="bg-gray-50 p-6 rounded-lg">
+        <div className="bg-gray-50 p-4 rounded-lg">
           <h4 className="font-semibold text-gray-900 mb-3">💰 Financial Protection</h4>
           <ul className="text-sm space-y-1">
             <li>• Real pricing ranges for different types of work</li>
@@ -93,4 +91,3 @@ const IntroductionSection: React.FC = () => {
     </section>;
 };
 export default IntroductionSection;
-
