@@ -46,6 +46,8 @@
   white-space: normal;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #f1f5f9;
+  hyphens: none;
+  word-break: normal;
 }
 
 .table-of-contents button:last-child {
@@ -105,6 +107,8 @@
   font-size: 0.9rem;
   font-weight: 600;
   backdrop-filter: blur(10px);
+  hyphens: none;
+  word-break: normal;
 }
 
 .article-summary {
@@ -118,6 +122,8 @@
   margin: 1.5rem 0;
   color: #cbd5e0;
   font-weight: 400;
+  hyphens: none;
+  word-break: normal;
 }
 
 .expertise-badge {
@@ -132,9 +138,31 @@
   margin-top: 1rem;
   position: relative;
   z-index: 1;
+  hyphens: none;
+  word-break: normal;
 }
 
-/* Enhanced Section Styling - Single Column Layout */
+/* Enhanced Section Styling - Single Column Layout with Hyphenation Disabled */
+.pillar-content {
+  padding-left: 20px;
+  padding-right: 25px;
+  margin-top: 0;
+  padding-top: 0;
+  line-height: 1.7;
+  
+  /* Single column layout for all screen sizes */
+  column-count: 1;
+  
+  /* Disable hyphenation for all content */
+  hyphens: none;
+  word-break: normal;
+}
+
+.pillar-content * {
+  hyphens: none !important;
+  word-break: normal !important;
+}
+
 .pillar-content h2 {
   color: #14213D !important;
   font-size: 1.8rem !important;
@@ -144,6 +172,8 @@
   background: linear-gradient(90deg, rgba(251, 176, 59, 0.1) 0%, transparent 100%) !important;
   border-radius: 0 8px 8px 0 !important;
   font-weight: 600 !important;
+  hyphens: none !important;
+  word-break: normal !important;
 }
 
 .pillar-content h2:first-child {
@@ -157,6 +187,8 @@
   padding-bottom: 0.5rem !important;
   border-bottom: 2px solid #e2e8f0 !important;
   font-weight: 600 !important;
+  hyphens: none !important;
+  word-break: normal !important;
 }
 
 .pillar-content h4 {
@@ -164,25 +196,16 @@
   font-size: 1.2rem !important;
   margin: 1.5rem 0 0.75rem 0 !important;
   font-weight: 600 !important;
-}
-
-/* Single Column Layout */
-.pillar-content {
-  padding-left: 20px;
-  padding-right: 25px;
-  margin-top: 0;
-  padding-top: 0;
-  line-height: 1.7;
-  
-  /* Single column layout for all screen sizes */
-  column-count: 1;
+  hyphens: none !important;
+  word-break: normal !important;
 }
 
 .pillar-content p {
   margin-bottom: 1.25rem;
   color: #4a5568;
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
+  hyphens: none;
+  word-break: normal;
 }
 
 .pillar-content ul {
@@ -192,6 +215,8 @@
 .pillar-content ul li {
   margin-bottom: 0.5rem;
   color: #4a5568;
+  hyphens: none;
+  word-break: normal;
 }
 
 /* Section spacing */
@@ -212,6 +237,11 @@
   box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
 }
 
+.key-insight-callout * {
+  hyphens: none !important;
+  word-break: normal !important;
+}
+
 .callout-icon {
   font-size: 1.5rem;
   flex-shrink: 0;
@@ -222,6 +252,8 @@
   margin: 0 0 0.5rem 0;
   font-size: 1.1rem;
   font-weight: 600;
+  hyphens: none;
+  word-break: normal;
 }
 
 .pricing-highlight {
@@ -231,6 +263,11 @@
   padding: 1.5rem;
   margin: 2rem 0;
   box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
+}
+
+.pricing-highlight * {
+  hyphens: none !important;
+  word-break: normal !important;
 }
 
 .pricing-header {
@@ -249,6 +286,8 @@
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
+  hyphens: none;
+  word-break: normal;
 }
 
 .action-checklist {
@@ -260,11 +299,18 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
+.action-checklist * {
+  hyphens: none !important;
+  word-break: normal !important;
+}
+
 .action-checklist h4 {
   color: #14213D;
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
   font-weight: 600;
+  hyphens: none;
+  word-break: normal;
 }
 
 .checklist-item {
@@ -297,6 +343,8 @@
 .item-text {
   flex: 1;
   line-height: 1.5;
+  hyphens: none;
+  word-break: normal;
 }
 
 .expert-tip {
@@ -311,6 +359,11 @@
   box-shadow: 0 2px 8px rgba(168, 85, 247, 0.1);
 }
 
+.expert-tip * {
+  hyphens: none !important;
+  word-break: normal !important;
+}
+
 .tip-icon {
   font-size: 1.2rem;
   flex-shrink: 0;
@@ -319,11 +372,15 @@
 .tip-label {
   font-weight: 600;
   color: #7c3aed;
+  hyphens: none;
+  word-break: normal;
 }
 
 .tip-text {
   color: #6b46c1;
   line-height: 1.5;
+  hyphens: none;
+  word-break: normal;
 }
 
 .warning-box {
@@ -338,6 +395,11 @@
   box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
 }
 
+.warning-box * {
+  hyphens: none !important;
+  word-break: normal !important;
+}
+
 .warning-icon {
   font-size: 1.2rem;
   flex-shrink: 0;
@@ -347,6 +409,8 @@
   color: #dc2626;
   line-height: 1.5;
   font-weight: 500;
+  hyphens: none;
+  word-break: normal;
 }
 
 /* Animation for smooth scrolling */
