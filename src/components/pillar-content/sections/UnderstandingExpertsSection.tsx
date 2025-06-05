@@ -20,7 +20,7 @@ const UnderstandingExpertsSection: React.FC = () => {
       
       <div className="bg-red-50 border border-red-200 rounded-lg p-6 my-6">
         <h4 className="text-lg font-semibold text-red-800 mb-3">❌ Common Agency Problems</h4>
-        <ul className="text-red-700 space-y-2">
+        <ul className="text-red-700 space-y-2 list-disc pl-6">
           <li><strong>Knowledge Transfer Issues:</strong> Junior implementers lack the experience to handle complex integrations</li>
           <li><strong>Template Approaches:</strong> One-size-fits-all implementations that don't match your business model</li>
           <li><strong>High Overhead Costs:</strong> You pay for office space, management layers, and business development</li>
@@ -37,7 +37,7 @@ const UnderstandingExpertsSection: React.FC = () => {
       
       <div className="bg-green-50 border border-green-200 rounded-lg p-6 my-6">
         <h4 className="text-lg font-semibold text-green-800 mb-3">✅ Expert Advantages</h4>
-        <ul className="text-green-700 space-y-2">
+        <ul className="text-green-700 space-y-2 list-disc pl-6">
           <li><strong>Direct Senior-Level Work:</strong> The person planning your strategy also implements it</li>
           <li><strong>Specialized Deep Knowledge:</strong> Experts often focus on specific industries or use cases</li>
           <li><strong>Cost Efficiency:</strong> 30-50% lower costs due to reduced overhead</li>
@@ -66,11 +66,11 @@ const UnderstandingExpertsSection: React.FC = () => {
         <div className="bg-gray-50 p-6 rounded-lg">
           <h4 className="font-semibold text-gray-900 mb-3">🏢 Large Agency</h4>
           <p className="text-sm mb-3"><strong>Choose when:</strong></p>
-          <ul className="text-sm space-y-1">
-            <li>• Enterprise-level complexity</li>
-            <li>• Need ongoing managed services</li>
-            <li>• Require 24/7 support coverage</li>
-            <li>• Internal procurement requires agency relationships</li>
+          <ul className="text-sm space-y-1 list-disc pl-4">
+            <li>Enterprise-level complexity</li>
+            <li>Need ongoing managed services</li>
+            <li>Require 24/7 support coverage</li>
+            <li>Internal procurement requires agency relationships</li>
           </ul>
           <p className="text-sm mt-3 text-gray-600"><strong>Investment:</strong> $15,000-$50,000+ setup</p>
         </div>
@@ -78,11 +78,11 @@ const UnderstandingExpertsSection: React.FC = () => {
         <div className="bg-gray-50 p-6 rounded-lg">
           <h4 className="font-semibold text-gray-900 mb-3">👤 Independent Expert</h4>
           <p className="text-sm mb-3"><strong>Choose when:</strong></p>
-          <ul className="text-sm space-y-1">
-            <li>• Clear, defined project scope</li>
-            <li>• Budget constraints are important</li>
-            <li>• Need specialized expertise</li>
-            <li>• Prefer direct relationships</li>
+          <ul className="text-sm space-y-1 list-disc pl-4">
+            <li>Clear, defined project scope</li>
+            <li>Budget constraints are important</li>
+            <li>Need specialized expertise</li>
+            <li>Prefer direct relationships</li>
           </ul>
           <p className="text-sm mt-3 text-gray-600"><strong>Investment:</strong> $5,000-$20,000 setup</p>
         </div>
@@ -90,11 +90,11 @@ const UnderstandingExpertsSection: React.FC = () => {
         <div className="bg-gray-50 p-6 rounded-lg">
           <h4 className="font-semibold text-gray-900 mb-3">🎯 Boutique Team</h4>
           <p className="text-sm mb-3"><strong>Choose when:</strong></p>
-          <ul className="text-sm space-y-1">
-            <li>• Complex multi-hub implementations</li>
-            <li>• Need ongoing strategic support</li>
-            <li>• Want expert-level work with backup</li>
-            <li>• Value long-term partnerships</li>
+          <ul className="text-sm space-y-1 list-disc pl-4">
+            <li>Complex multi-hub implementations</li>
+            <li>Need ongoing strategic support</li>
+            <li>Want expert-level work with backup</li>
+            <li>Value long-term partnerships</li>
           </ul>
           <p className="text-sm mt-3 text-gray-600"><strong>Investment:</strong> $8,000-$30,000 setup</p>
         </div>
