@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 import ArticleHeader from './pillar-content/ArticleHeader';
 import TableOfContents from './pillar-content/TableOfContents';
-import AuthorBio from './pillar-content/AuthorBio';
 import RelatedContent from './pillar-content/RelatedContent';
 import useActiveSection from '@/hooks/useActiveSection';
 import useScrollToAnchor from '@/hooks/useScrollToAnchor';
@@ -108,7 +107,6 @@ const PillarContent: React.FC<PillarContentProps> = ({
               <TableOfContents 
                 activeSection={activeSection}
               />
-              <AuthorBio />
             </div>
           </div>
           
