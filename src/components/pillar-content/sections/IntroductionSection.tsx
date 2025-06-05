@@ -24,7 +24,7 @@ const IntroductionSection: React.FC = () => {
       </p>
       
       <ul>
-        <li><strong>Implemented HubSpot for 200+ companies</strong> across industries from startups to Fortune 500</li>
+        <li><strong>Implemented HubSpot for 30+ companies</strong> across industries from startups to Fortune 500</li>
         <li><strong>Rescued 50+ failed implementations</strong> from other agencies and consultants</li>
         <li><strong>Trained hundreds of internal teams</strong> on HubSpot best practices</li>
         <li><strong>Maintained HubSpot certifications since 2012</strong> across all hubs and specializations</li>
