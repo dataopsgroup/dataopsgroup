@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Users, BarChart3 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const RelatedContent: React.FC = () => {
   const relatedArticles = [
@@ -9,21 +8,18 @@ const RelatedContent: React.FC = () => {
       title: "What Does a HubSpot Consultant Cost?",
       description: "Detailed breakdown of HubSpot consultant pricing and ROI calculations",
       link: "/insights/what-does-a-hubspot-consultant-cost",
-      icon: BarChart3,
       category: "Pricing"
     },
     {
       title: "Marketing Operations RevOps Service",
       description: "Our comprehensive marketing operations and revenue operations service",
       link: "/services/marketing-operations-revops",
-      icon: Users,
       category: "Service"
     },
     {
       title: "HubSpot Implementation Case Studies",
       description: "Real-world examples of successful HubSpot implementations",
       link: "/case-studies",
-      icon: BookOpen,
       category: "Case Study"
     }
   ];
@@ -55,35 +51,27 @@ const RelatedContent: React.FC = () => {
       <section>
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Reading</h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {relatedArticles.map((article, index) => {
-            const IconComponent = article.icon;
-            return (
-              <Link
-                key={index}
-                to={article.link}
-                className="group block p-6 bg-white border border-gray-200 rounded-lg hover:border-dataops-300 hover:shadow-md transition-all duration-200"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <IconComponent className="h-6 w-6 text-dataops-600" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="inline-block px-2 py-1 text-xs font-medium text-dataops-700 bg-dataops-100 rounded mb-2">
-                      {article.category}
-                    </span>
-                    <h3 className="text-base font-semibold text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
-                      {article.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-3">{article.description}</p>
-                    <div className="flex items-center text-sm text-dataops-600 group-hover:text-dataops-700">
-                      <span>Read more</span>
-                      <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
+          {relatedArticles.map((article, index) => (
+            <Link
+              key={index}
+              to={article.link}
+              className="group block p-6 bg-white border border-gray-200 rounded-lg hover:border-dataops-300 hover:shadow-md transition-all duration-200"
+            >
+              <div className="space-y-4">
+                <span className="inline-block px-2 py-1 text-xs font-medium text-dataops-700 bg-dataops-100 rounded">
+                  {article.category}
+                </span>
+                <h3 className="text-base font-semibold text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
+                  {article.title}
+                </h3>
+                <p className="text-sm text-gray-600 mb-3">{article.description}</p>
+                <div className="flex items-center text-sm text-dataops-600 group-hover:text-dataops-700">
+                  <span>Read more</span>
+                  <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </Link>
-            );
-          })}
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
