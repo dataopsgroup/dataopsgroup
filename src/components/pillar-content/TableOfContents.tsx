@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface TableOfContentsProps {
@@ -78,7 +77,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({
   };
 
   return (
-    <nav className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+    <nav className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm table-of-contents">
       <h2 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h2>
       <ul className="space-y-2">
         {sections.map((section, index) => (

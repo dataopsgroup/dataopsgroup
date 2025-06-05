@@ -42,6 +42,14 @@
     }
   }
 
+  /* Table of Contents text sizing override */
+  .table-of-contents button,
+  .table-of-contents button *,
+  .table-of-contents span {
+    font-size: 0.875rem !important; /* text-sm equivalent */
+    line-height: 1.25 !important;
+  }
+
   /* Override heading styles for blog post titles to be more proportional */
   h1.blog-post-title {
     @apply text-2xl md:text-3xl font-bold !important;
