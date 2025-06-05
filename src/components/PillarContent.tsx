@@ -1,8 +1,12 @@
 
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { ChevronRight, Home } from 'lucide-react';
 import ArticleHeader from './pillar-content/ArticleHeader';
 import TableOfContents from './pillar-content/TableOfContents';
+import AuthorBio from './pillar-content/AuthorBio';
+import RelatedContent from './pillar-content/RelatedContent';
 import useActiveSection from '@/hooks/useActiveSection';
 import useScrollToAnchor from '@/hooks/useScrollToAnchor';
 
@@ -60,30 +64,51 @@ const PillarContent: React.FC<PillarContentProps> = ({
             "description": description,
             "author": {
               "@type": "Person",
-              "name": "Geoff Tucker"
+              "name": "Geoff Tucker",
+              "url": "https://www.dataopsgroup.com/about",
+              "knowsAbout": ["HubSpot Implementation", "Marketing Operations", "Data Integration", "Revenue Operations"],
+              "hasCredential": "HubSpot Certified Expert since 2012"
             },
             "publisher": {
               "@type": "Organization",
-              "name": "DataOps Group"
+              "name": "DataOps Group",
+              "url": "https://www.dataopsgroup.com"
             },
             "mainEntityOfPage": {
               "@type": "WebPage",
               "@id": "https://www.dataopsgroup.com/guides/hubspot-expert"
+            },
+            "expertise": "HubSpot Implementation and Marketing Operations",
+            "audience": {
+              "@type": "Audience",
+              "audienceType": "Business leaders, marketing directors, operations managers"
             }
           })}
         </script>
       </Helmet>
 
       <div className="container mx-auto px-4 py-8">
+        {/* Breadcrumb Navigation */}
+        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
+          <Link to="/" className="hover:text-dataops-600 flex items-center">
+            <Home className="h-4 w-4" />
+          </Link>
+          <ChevronRight className="h-4 w-4" />
+          <span className="text-gray-400">Guides</span>
+          <ChevronRight className="h-4 w-4" />
+          <span className="font-medium text-gray-900">How to Hire a HubSpot Expert</span>
+        </nav>
+
         <ArticleHeader title={title} />
         
         <div className="flex flex-col lg:flex-row gap-8 mt-8">
           {/* Table of Contents - Left Sidebar */}
           <div className="lg:w-1/3">
-            <div className="sticky top-24">
+            <div className="sticky top-24 space-y-6">
               <TableOfContents 
                 activeSection={activeSection}
               />
+              <AuthorBio />
             </div>
           </div>
           
@@ -104,6 +129,9 @@ const PillarContent: React.FC<PillarContentProps> = ({
               <CommonPitfallsSection />
               <ConclusionSection />
             </div>
+            
+            {/* Related Content Section */}
+            <RelatedContent />
           </div>
         </div>
       </div>
