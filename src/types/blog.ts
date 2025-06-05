@@ -10,6 +10,8 @@ export interface BlogPost {
   coverImage?: string;
   featuredImage?: string;
   tags?: string[];
+  modifiedDate?: string;
+  wordCount?: number;
   seo?: {
     metaDescription?: string;
     keywords?: string;

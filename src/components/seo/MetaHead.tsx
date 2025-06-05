@@ -58,6 +58,10 @@ const MetaHead = ({
   // Ensure image URLs are absolute
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
   
+  // Get Twitter metadata from blogPost if available
+  const twitterTitle = blogPost?.seo?.twitterTitle || ogTitle || fullTitle;
+  const twitterDescription = blogPost?.seo?.twitterDescription || ogDescription || description;
+  
   // If this is a blog post, use blog post data for meta tags
   if (blogPost && isArticle) {
     ogType = 'article';
@@ -124,8 +128,8 @@ const MetaHead = ({
       
       {/* Twitter */}
       <meta name="twitter:card" content={twitterCard} />
-      <meta name="twitter:title" content={ogTitle || fullTitle} />
-      <meta name="twitter:description" content={ogDescription || description} />
+      <meta name="twitter:title" content={twitterTitle} />
+      <meta name="twitter:description" content={twitterDescription} />
       <meta name="twitter:image" content={fullOgImage} />
       <meta name="twitter:site" content="@dataops_group" />
       {author && <meta name="twitter:creator" content={`@${author.toLowerCase().replace(/\s+/g, '')}`} />}

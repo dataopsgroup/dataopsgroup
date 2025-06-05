@@ -29,8 +29,6 @@ const BlogPostSEO = ({ post, postId }: BlogPostSEOProps) => {
 
   const ogTitle = post.seo?.ogTitle || post.title;
   const ogDescription = post.seo?.ogDescription || post.excerpt;
-  const twitterTitle = post.seo?.twitterTitle || post.title;
-  const twitterDescription = post.seo?.twitterDescription || post.excerpt;
 
   return (
     <>
@@ -43,8 +41,6 @@ const BlogPostSEO = ({ post, postId }: BlogPostSEOProps) => {
         ogImage={post.featuredImage || post.coverImage}
         ogTitle={ogTitle}
         ogDescription={ogDescription}
-        twitterTitle={twitterTitle}
-        twitterDescription={twitterDescription}
         author={post.author}
         publishDate={post.date}
         blogPost={post}
