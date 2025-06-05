@@ -19,23 +19,32 @@ const BlogPostSEO = ({ post, postId }: BlogPostSEOProps) => {
     { name: post?.title || '', url: `/insights/${postId}` },
   ];
 
-  const keywordsList = [
+  // Use custom SEO metadata if available, otherwise fall back to defaults
+  const metaDescription = post.seo?.metaDescription || post.excerpt;
+  const keywords = post.seo?.keywords || [
     post.category?.toLowerCase() || '',
     ...(post.tags || []).map(tag => tag.toLowerCase()),
     ...post.title.toLowerCase().replace(/[^\w\s]/gi, '').split(' ')
   ].filter(Boolean).join(', ');
 
+  const ogTitle = post.seo?.ogTitle || post.title;
+  const ogDescription = post.seo?.ogDescription || post.excerpt;
+  const twitterTitle = post.seo?.twitterTitle || post.title;
+  const twitterDescription = post.seo?.twitterDescription || post.excerpt;
+
   return (
     <>
       <MetaHead
         title={post.title}
-        description={post.excerpt}
-        keywords={keywordsList}
+        description={metaDescription}
+        keywords={keywords}
         canonicalPath={canonicalPath}
         ogType="article"
         ogImage={post.featuredImage || post.coverImage}
-        ogTitle={post.title}
-        ogDescription={post.excerpt}
+        ogTitle={ogTitle}
+        ogDescription={ogDescription}
+        twitterTitle={twitterTitle}
+        twitterDescription={twitterDescription}
         author={post.author}
         publishDate={post.date}
         blogPost={post}

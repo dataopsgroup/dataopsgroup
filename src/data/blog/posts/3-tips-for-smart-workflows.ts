@@ -24,5 +24,13 @@ export const tipsForSmartWorkflows: BlogPost = {
     
     <p>What are you three favorite go-to workflows? Add a comment below. I'd love to see what you've built.</p>
   `,
-  tags: ["workflows", "hubspot", "database management", "automation"]
+  tags: ["workflows", "hubspot", "database management", "automation"],
+  seo: {
+    metaDescription: "Learn 3 essential HubSpot workflows for data organization: state standardization, ZIP code routing, and automated field maintenance. Keep your database clean and organized.",
+    keywords: "hubspot workflows, data organization, database management, hubspot automation, contact management, data standardization",
+    ogTitle: "3 Smart HubSpot Workflows for Data Organization",
+    ogDescription: "Essential HubSpot workflows that keep your data clean and contacts organized. State standardization, ZIP routing, and automated maintenance.",
+    twitterTitle: "3 Essential HubSpot Workflows for Clean Data",
+    twitterDescription: "Simple but powerful HubSpot workflows for state organization, ZIP routing, and automated database maintenance. Keep your data clean."
+  }
 };

@@ -6,11 +6,16 @@ export interface BlogPost {
   content: string;
   date: string;
   author: string;
-  category?: string;
+  category: string;
   coverImage?: string;
   featuredImage?: string;
   tags?: string[];
-  wordCount?: number;
-  readingTime?: number;
-  modifiedDate?: string;
+  seo?: {
+    metaDescription?: string;
+    keywords?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    twitterTitle?: string;
+    twitterDescription?: string;
+  };
 }

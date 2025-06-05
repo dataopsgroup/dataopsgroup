@@ -33,5 +33,13 @@ export const hiddenRevenueLeak: BlogPost = {
     
     <p>Related post: <a href="/insights/true-cost-of-bad-data">The True Cost of Bad Data: Beyond the 1-10-100 Rule</a></p>
   `,
-  tags: ["data quality", "sales data", "revenue leaks", "CRM"]
+  tags: ["data quality", "sales data", "revenue leaks", "CRM"],
+  seo: {
+    metaDescription: "Poor sales data quality costs companies 10-30% of potential revenue. Learn how leaky CRM data drains millions and discover proven solutions to fix it.",
+    keywords: "sales data quality, revenue leaks, crm data problems, sales productivity, data governance, sales performance optimization",
+    ogTitle: "Hidden Revenue Leak: Poor Sales Data Quality Costs Millions",
+    ogDescription: "Salespeople waste 30% of their time on bad data instead of selling. Discover how poor data quality costs companies millions in lost revenue.",
+    twitterTitle: "Sales Data Quality is Costing You Millions",
+    twitterDescription: "67% of sales leaders don't realize poor data quality costs 10-30% of potential revenue. Learn how to fix your revenue leaks."
+  }
 };

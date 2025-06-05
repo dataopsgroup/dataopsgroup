@@ -43,5 +43,13 @@ export const customerAcquisitionCost: BlogPost = {
     <h2>Ready to discover your actual acquisition costs and ensure sustainable growth? Let's build you a comprehensive CAC dashboard that reveals the truth behind your customer economics.</h2>
     
     <h2>Get Your True CAC Analysis →</h2>
-  `
+  `,
+  seo: {
+    metaDescription: "76% of failed companies miscalculated Customer Acquisition Cost. Learn the comprehensive CAC formula that includes hidden costs and prevents unprofitable growth.",
+    keywords: "customer acquisition cost, cac calculation, customer economics, marketing roi, sales cost analysis, ltv cac ratio, acquisition cost optimization",
+    ogTitle: "Customer Acquisition Cost Calculation That Saves Companies",
+    ogDescription: "Most companies underestimate CAC by 40-60%. Learn the comprehensive formula that includes sales costs, technology, and hidden expenses.",
+    twitterTitle: "CAC Calculation Mistakes That Kill Companies",
+    twitterDescription: "76% of failed high-growth companies miscalculated CAC. Don't make the same mistake. Learn the complete cost calculation formula."
+  }
 };

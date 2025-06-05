@@ -47,5 +47,13 @@ export const trueCostOfBadData: BlogPost = {
     <p>Want to calculate the true cost of bad data in your organization? Schedule a consultation to discover how we can help protect your marketing leadership position.</p>
     
     <p>Related Reading: Stop Buying Contact Lists: Here's Why It Always Fails</p>
-  `
+  `,
+  seo: {
+    metaDescription: "Poor data quality costs the US economy $3.1 trillion annually. Learn the true costs beyond the 1-10-100 rule and proven strategies to protect your marketing budget.",
+    keywords: "bad data costs, data quality, data governance, marketing data management, crm data quality, data validation, database management",
+    ogTitle: "True Cost of Bad Data: Beyond the 1-10-100 Rule",
+    ogDescription: "IBM estimates poor data quality costs $3.1 trillion annually. Discover hidden costs and learn proven prevention strategies for your organization.",
+    twitterTitle: "Bad Data Costs More Than You Think",
+    twitterDescription: "The 1-10-100 rule understates the real impact. Poor data quality costs $3.1 trillion annually. Learn prevention strategies that save millions."
+  }
 };

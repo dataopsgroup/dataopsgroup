@@ -11,5 +11,14 @@ export const hiddenCostOfFailedHubspotImplementations: BlogPost = {
   category: "Insights", 
   coverImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png",
   featuredImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png",
-  content
+  content,
+  tags: ["hubspot implementation", "marketing automation", "roi optimization", "business transformation"],
+  seo: {
+    metaDescription: "Discover the hidden costs of failed HubSpot implementations beyond subscription fees. Learn warning signs and proven rescue strategies to transform your HubSpot ROI.",
+    keywords: "failed hubspot implementation, hubspot roi, marketing automation failure, hubspot rescue plan, implementation costs, hubspot optimization",
+    ogTitle: "The Hidden Cost of Failed HubSpot Implementations",
+    ogDescription: "When HubSpot implementations fail, costs extend beyond subscription fees. Learn proven rescue strategies to transform your investment.",
+    twitterTitle: "Hidden Costs of Failed HubSpot Implementations",
+    twitterDescription: "67% of companies don't achieve expected ROI from marketing automation. Learn how to rescue failing HubSpot implementations."
+  }
 };

@@ -34,5 +34,13 @@ export const customerSegmentationMistake: BlogPost = {
     <h2>Want to discover which customer segments are most profitable for your business? Let's analyze your customer data together and uncover hidden revenue opportunities.</h2>
     
     <h2>Book Your Customer Segmentation Analysis →</h2>
-  `
+  `,
+  seo: {
+    metaDescription: "76% of B2B companies make costly customer segmentation mistakes. Learn how advanced segmentation strategies drive 10% higher revenue growth and better customer targeting.",
+    keywords: "customer segmentation, b2b customer profiling, customer profitability analysis, ideal customer profile, segmentation strategy, customer lifetime value",
+    ogTitle: "$1M Customer Segmentation Mistake Most B2B Companies Make",
+    ogDescription: "Only 14% of organizations segment customers by profitability. Discover how proper segmentation achieves 38% higher retention and 22% lower acquisition costs.",
+    twitterTitle: "B2B Customer Segmentation Mistakes Cost Millions",
+    twitterDescription: "Advanced customer segmentation drives 10% higher revenue growth, yet 76% of B2B companies still use basic demographics. Learn the right approach."
+  }
 };
