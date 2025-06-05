@@ -46,8 +46,8 @@
   .table-of-contents button,
   .table-of-contents button *,
   .table-of-contents span {
-    font-size: 0.875rem !important; /* text-sm equivalent */
-    line-height: 1.25 !important;
+    font-size: 1rem !important; /* text-base equivalent */
+    line-height: 1.5 !important;
   }
 
   /* Override heading styles for blog post titles to be more proportional */
