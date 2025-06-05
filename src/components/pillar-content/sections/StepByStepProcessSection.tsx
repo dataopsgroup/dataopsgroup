@@ -54,7 +54,7 @@ const StepByStepProcessSection: React.FC = () => {
       <h3>Why Upwork and Fiverr Aren't Right for Critical HubSpot Implementations</h3>
       
       <p>
-        While platforms like Upwork and Fiverr offer access to thousands of freelancers, they're fundamentally unsuited for complex HubSpot implementations that drive PE portfolio company value creation. Enterprise software implementations already face daunting failure rates, with <strong>50-75% of all ERP implementations categorized as failures</strong> and <strong>30% of software projects terminated before completion</strong>, often due to <strong>poor or inadequate testing</strong> (29% of failures) and insufficient expertise. The freelance marketplace model exacerbates these risks significantly.
+        While platforms like Upwork and Fiverr offer access to thousands of freelancers, they're fundamentally unsuited for complex HubSpot implementations. Enterprise software implementations already face daunting failure rates, with <strong>50-75% of all ERP implementations categorized as failures</strong> and <strong>30% of software projects terminated before completion</strong>, often due to <strong>poor or inadequate testing</strong> (29% of failures) and insufficient expertise. The freelance marketplace model exacerbates these risks significantly.
       </p>
       
       <p>
