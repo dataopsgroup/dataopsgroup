@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -29,7 +28,7 @@ const Footer = () => {
           <nav aria-labelledby="services-navigation">
             <h2 id="services-navigation" className="text-lg font-semibold mb-6">Services</h2>
             <ul className="space-y-3">
-              {navServices.map(service => <li key={service.href}>
+              {navServices.filter(service => service.name !== 'All Services').map(service => <li key={service.href}>
                   <Link to={service.href} className="text-gray-300 hover:text-white" aria-label={`Explore our ${service.name} services`}>
                     {service.name}
                   </Link>
