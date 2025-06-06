@@ -24,15 +24,10 @@ const BookCTA = () => {
             or learn more <a href="/about" className="text-yellow-300 hover:text-white underline font-medium">about our team</a>.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link to="/contact">
               <Button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-semibold px-8 py-3 text-lg">
                 Get Your Free Assessment
-              </Button>
-            </Link>
-            <Link to="/data-operations-assessment">
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-dataops-600 px-8 py-3 text-lg">
-                Take Our Quiz
               </Button>
             </Link>
           </div>
