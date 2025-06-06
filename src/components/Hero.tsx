@@ -81,7 +81,7 @@ const Hero = () => {
                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
                   <div className="flex flex-col">
                     <Link to="/contact" onClick={trackContactCTAClick}>
-                      <Button className="hero-button">
+                      <Button className="hero-button text-3xl">
                         Get In Touch
                         <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                       </Button>
