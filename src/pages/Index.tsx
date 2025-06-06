@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -126,7 +125,7 @@ const Index = () => {
                 <p className="text-gray-600 mb-4 flex-grow">
                   Calculate potential revenue gains and efficiency improvements from RevOps
                 </p>
-                <a href="/revops-roi-calculator" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
+                <a href="/revops-roi-calculator" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
                   Calculate ROI
                 </a>
               </div>
