@@ -11,7 +11,7 @@ export const whatDoesAHubSpotConsultantCost: BlogPost = {
   coverImage: "/lovable-uploads/a47266d7-28ef-4bce-bb22-ed541dc80559.png",
   content: `
     <div style="margin-bottom: 2rem; text-align: center;">
-      <a href="/guides/hubspot-expert" style="display: inline-block; background-color: #1A8AEB; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: background-color 0.2s;">
+      <a href="/guides/hubspot-expert" style="display: inline-block; background-color: #FBB03B; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: background-color 0.2s;">
         📖 Read Our Complete Guide on How to Hire a HubSpot Expert in 2025
       </a>
     </div>
