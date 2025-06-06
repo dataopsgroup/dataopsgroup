@@ -178,7 +178,7 @@ const HubSpotAssessment = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead
-        title="HubSpot Implementation Assessment Quiz | DataOps Group"
+        title="Free DataOps Maturity Assessment - 10-Minute Data Operations Audit"
         description="Evaluate your current HubSpot implementation and identify key improvement opportunities with our interactive assessment quiz."
         keywords="HubSpot implementation, HubSpot assessment, CRM assessment, HubSpot ROI, HubSpot optimization"
         ogType="website"
