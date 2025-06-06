@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -13,7 +14,7 @@ const Footer = () => {
             <div className="">
               <OptimizedImage src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" alt="DataOps Group Logo" width={180} height={50} className="mb-6" />
             </div>
-            <p className="text-gray-300 mb-6">
+            <p className="text-sm text-gray-300 mb-6">
               Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
               efficiency and innovation through expert consulting and <Link to="/" className="hover:text-white underline" aria-label="Visit our homepage">tailored solutions</Link>.
             </p>
@@ -26,15 +27,15 @@ const Footer = () => {
           </section>
           
           <nav aria-labelledby="services-navigation">
-            <h2 id="services-navigation" className="text-lg font-semibold mb-6">Services</h2>
+            <h2 id="services-navigation" className="text-base font-semibold mb-6">Services</h2>
             <ul className="space-y-3">
               {navServices.filter(service => service.name !== 'All Services').map(service => <li key={service.href}>
-                  <Link to={service.href} className="text-gray-300 hover:text-white" aria-label={`Explore our ${service.name} services`}>
+                  <Link to={service.href} className="text-sm text-gray-300 hover:text-white" aria-label={`Explore our ${service.name} services`}>
                     {service.name}
                   </Link>
                 </li>)}
               <li>
-                <Link to="/services" className="text-gray-300 hover:text-white" aria-label="View all our services">
+                <Link to="/services" className="text-sm text-gray-300 hover:text-white" aria-label="View all our services">
                   All Services
                 </Link>
               </li>
@@ -42,35 +43,35 @@ const Footer = () => {
           </nav>
           
           <nav aria-labelledby="company-navigation">
-            <h2 id="company-navigation" className="text-lg font-semibold mb-6">Company</h2>
+            <h2 id="company-navigation" className="text-base font-semibold mb-6">Company</h2>
             <ul className="space-y-3">
-              <li><Link to="/about" className="text-gray-300 hover:text-white" aria-label="Learn about DataOps Group">About Us</Link></li>
-              <li><Link to="/insights" className="text-gray-300 hover:text-white" aria-label="Read our latest insights and articles">Blog</Link></li>
-              <li><Link to="/approach" className="text-gray-300 hover:text-white" aria-label="Learn about our methodology">Our Approach</Link></li>
+              <li><Link to="/about" className="text-sm text-gray-300 hover:text-white" aria-label="Learn about DataOps Group">About Us</Link></li>
+              <li><Link to="/insights" className="text-sm text-gray-300 hover:text-white" aria-label="Read our latest insights and articles">Blog</Link></li>
+              <li><Link to="/approach" className="text-sm text-gray-300 hover:text-white" aria-label="Learn about our methodology">Our Approach</Link></li>
             </ul>
           </nav>
           
           <nav aria-labelledby="resources-navigation">
-            <h2 id="resources-navigation" className="text-lg font-semibold mb-6">Resources</h2>
+            <h2 id="resources-navigation" className="text-base font-semibold mb-6">Resources</h2>
             <ul className="space-y-3">
-              <li><Link to="/case-studies" className="text-gray-300 hover:text-white" aria-label="View our client success stories">Case Studies</Link></li>
-              <li><Link to="/faqs" className="text-gray-300 hover:text-white" aria-label="View frequently asked questions">FAQs</Link></li>
-              <li><Link to="/guides/hubspot-expert" className="text-gray-300 hover:text-white" aria-label="Learn how to hire a HubSpot expert">HubSpot Expert Guide</Link></li>
-              <li><Link to="/bad-data-cost-calculator" className="text-gray-300 hover:text-white" aria-label="Calculate the cost of poor data quality">Bad Data Cost Calculator</Link></li>
-              <li><Link to="/sitemap" className="text-gray-300 hover:text-white" aria-label="View our site's sitemap">Sitemap</Link></li>
+              <li><Link to="/case-studies" className="text-sm text-gray-300 hover:text-white" aria-label="View our client success stories">Case Studies</Link></li>
+              <li><Link to="/faqs" className="text-sm text-gray-300 hover:text-white" aria-label="View frequently asked questions">FAQs</Link></li>
+              <li><Link to="/guides/hubspot-expert" className="text-sm text-gray-300 hover:text-white" aria-label="Learn how to hire a HubSpot expert">HubSpot Expert Guide</Link></li>
+              <li><Link to="/bad-data-cost-calculator" className="text-sm text-gray-300 hover:text-white" aria-label="Calculate the cost of poor data quality">Bad Data Cost Calculator</Link></li>
+              <li><Link to="/sitemap" className="text-sm text-gray-300 hover:text-white" aria-label="View our site's sitemap">Sitemap</Link></li>
             </ul>
           </nav>
         </div>
         
         <div className="border-t border-gray-800 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-xs text-gray-400">
               &copy; <time dateTime={new Date().getFullYear().toString()}>{new Date().getFullYear()}</time> DataOps Group. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm" aria-label="Read our privacy policy">Privacy Policy</Link>
-              <Link to="/terms" className="text-gray-400 hover:text-white text-sm" aria-label="Read our terms of service">Terms of Service</Link>
-              <Link to="/sitemap" className="text-gray-400 hover:text-white text-sm" aria-label="View our sitemap">Sitemap</Link>
+              <Link to="/privacy" className="text-xs text-gray-400 hover:text-white" aria-label="Read our privacy policy">Privacy Policy</Link>
+              <Link to="/terms" className="text-xs text-gray-400 hover:text-white" aria-label="Read our terms of service">Terms of Service</Link>
+              <Link to="/sitemap" className="text-xs text-gray-400 hover:text-white" aria-label="View our sitemap">Sitemap</Link>
             </div>
           </div>
           
