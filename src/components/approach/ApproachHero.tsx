@@ -3,7 +3,7 @@ import React from 'react';
 
 const ApproachHero = () => {
   return (
-    <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
+    <section className="pt-32 pb-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="max-w-3xl">
           <div className="space-y-6">
