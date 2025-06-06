@@ -14,7 +14,7 @@ const RevOpsCallToAction = () => {
         </p>
         <a 
           href="/contact"
-          className="bg-dataops-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-dataops-700 transition-colors inline-block"
+          className="bg-brand-saffron text-white px-6 py-2 rounded-lg font-medium hover:bg-yellow-500 transition-colors inline-block"
         >
           Get a Free RevOps Strategy Session
         </a>
