@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -11,7 +12,6 @@ import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
-import { Calculator, BarChart3 } from 'lucide-react';
 
 const Index = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
@@ -114,7 +114,6 @@ const Index = () => {
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center justify-center mb-4">
-                  <BarChart3 className="w-8 h-8 text-dataops-600 mr-2" />
                   <h3 className="text-xl font-semibold text-gray-900">Operations Assessment</h3>
                 </div>
                 <p className="text-gray-600 mb-4">
@@ -127,7 +126,6 @@ const Index = () => {
               
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center justify-center mb-4">
-                  <Calculator className="w-8 h-8 text-green-600 mr-2" />
                   <h3 className="text-xl font-semibold text-gray-900">ROI Calculator</h3>
                 </div>
                 <p className="text-gray-600 mb-4">
