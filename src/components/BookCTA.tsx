@@ -26,7 +26,12 @@ const BookCTA = () => {
           
           <div className="flex justify-center">
             <Link to="/contact">
-              <Button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-semibold px-8 py-3 text-lg">
+              <Button 
+                className="font-semibold px-8 py-3 text-lg text-dataops-950" 
+                style={{ backgroundColor: '#FBB03B' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#E09A33'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FBB03B'}
+              >
                 Get Your Free Assessment
               </Button>
             </Link>
