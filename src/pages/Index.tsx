@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -112,26 +111,26 @@ const Index = () => {
             </p>
             
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col h-full">
                 <div className="flex items-center justify-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-900">Operations Assessment</h3>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-6 flex-grow">
                   5-minute evaluation to identify operational gaps and PE readiness issues
                 </p>
-                <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+                <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
                   Assess PE Readiness
                 </a>
               </div>
               
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col h-full">
                 <div className="flex items-center justify-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-900">ROI Calculator</h3>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-6 flex-grow">
                   Calculate potential revenue gains and efficiency improvements from RevOps
                 </p>
-                <a href="/revops-roi-calculator" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+                <a href="/revops-roi-calculator" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
                   Calculate ROI
                 </a>
               </div>
