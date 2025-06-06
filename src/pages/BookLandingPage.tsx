@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
@@ -6,7 +7,6 @@ import BookHeroSection from '@/components/book/BookHeroSection';
 import BookStatsSection from '@/components/book/BookStatsSection';
 import BookDiscoverySection from '@/components/book/BookDiscoverySection';
 import BookAuthorSection from '@/components/book/BookAuthorSection';
-import BookCTASection from '@/components/book/BookCTASection';
 import BookSampleChapterSection from '@/components/book/BookSampleChapterSection';
 import BookContactSection from '@/components/book/BookContactSection';
 
@@ -95,10 +95,6 @@ const BookLandingPage = () => {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
           }
           
-          .cta-gradient {
-            background: linear-gradient(135deg, #1e293b, #334155);
-          }
-          
           .form-gradient {
             background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
           }
@@ -112,7 +108,6 @@ const BookLandingPage = () => {
         <BookStatsSection />
         <BookDiscoverySection />
         <BookAuthorSection />
-        <BookCTASection onScrollToForm={scrollToForm} />
         <BookSampleChapterSection />
         <BookContactSection />
       </main>
