@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { BarChart3 } from 'lucide-react';
+import { BarChart3, Zap } from 'lucide-react';
 import { RevOpsCalculatorResults, RevOpsCalculatorInputs } from './revops-types';
 
 interface RevOpsResultsDisplayProps {
