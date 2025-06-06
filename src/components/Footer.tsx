@@ -7,15 +7,28 @@ import { navServices } from '@/data/navigationData';
 import OptimizedImage from './ui/optimized-image';
 
 const Footer = () => {
-  // Add console log to verify Footer is rendering
-  console.log('Footer component rendering with updated styles');
+  // Enhanced debug logging
+  console.log('Footer component rendering - VERSION 2.0 with text-xs headings');
+  console.log('Current timestamp:', new Date().toISOString());
 
-  return <footer className="bg-dataops-950 text-white pt-16 mt-auto">
+  return (
+    <footer className="bg-dataops-950 text-white pt-16 mt-auto">
+      {/* Temporary visual indicator */}
+      <div className="bg-red-500 text-white text-center py-2 text-sm">
+        DEBUG: Footer updated with text-xs headings - {new Date().toLocaleTimeString()}
+      </div>
+      
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <section>
             <div className="">
-              <OptimizedImage src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" alt="DataOps Group Logo" width={180} height={50} className="mb-6" />
+              <OptimizedImage 
+                src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" 
+                alt="DataOps Group Logo" 
+                width={180} 
+                height={50} 
+                className="mb-6" 
+              />
             </div>
             <p className="text-xs text-gray-300 mb-6 leading-snug">
               Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
@@ -30,13 +43,17 @@ const Footer = () => {
           </section>
           
           <nav aria-labelledby="services-navigation">
-            <h2 id="services-navigation" className="text-xs font-semibold mb-6">Services</h2>
+            <h2 id="services-navigation" className="text-xs font-semibold mb-6 !text-xs !leading-tight" style={{fontSize: '12px', lineHeight: '1.25'}}>
+              Services (DEBUG: text-xs applied)
+            </h2>
             <ul className="space-y-2">
-              {navServices.filter(service => service.name !== 'All Services').map(service => <li key={service.href}>
+              {navServices.filter(service => service.name !== 'All Services').map(service => (
+                <li key={service.href}>
                   <Link to={service.href} className="text-xs text-gray-300 hover:text-white leading-tight" aria-label={`Explore our ${service.name} services`}>
                     {service.name}
                   </Link>
-                </li>)}
+                </li>
+              ))}
               <li>
                 <Link to="/services" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="View all our services">
                   All Services
@@ -46,7 +63,9 @@ const Footer = () => {
           </nav>
           
           <nav aria-labelledby="company-navigation">
-            <h2 id="company-navigation" className="text-xs font-semibold mb-6">Company</h2>
+            <h2 id="company-navigation" className="text-xs font-semibold mb-6 !text-xs !leading-tight" style={{fontSize: '12px', lineHeight: '1.25'}}>
+              Company (DEBUG: text-xs applied)
+            </h2>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="Learn about DataOps Group">About Us</Link></li>
               <li><Link to="/insights" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="Read our latest insights and articles">Blog</Link></li>
@@ -55,7 +74,9 @@ const Footer = () => {
           </nav>
           
           <nav aria-labelledby="resources-navigation">
-            <h2 id="resources-navigation" className="text-xs font-semibold mb-6">Resources</h2>
+            <h2 id="resources-navigation" className="text-xs font-semibold mb-6 !text-xs !leading-tight" style={{fontSize: '12px', lineHeight: '1.25'}}>
+              Resources (DEBUG: text-xs applied)
+            </h2>
             <ul className="space-y-2">
               <li><Link to="/case-studies" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="View our client success stories">Case Studies</Link></li>
               <li><Link to="/faqs" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="View frequently asked questions">FAQs</Link></li>
@@ -85,7 +106,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
 
 export default Footer;
