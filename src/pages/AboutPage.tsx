@@ -1,159 +1,144 @@
+
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Linkedin } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
+import CTABanner from '@/components/CTABanner';
+import { Helmet } from 'react-helmet-async';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+
+const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
 const AboutPage = () => {
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
-
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>About Geoff Tucker | DataOps Group</title>
-        <meta name="description" content="Learn more about Geoff Tucker, a seasoned data professional with over 15 years of experience in data operations, strategy, and analytics." />
+        <title>About DataOps Group - HubSpot Experts & Data Operations Consultants</title>
+        <meta name="description" content="Learn about DataOps Group, led by Geoff Tucker, a HubSpot expert with 15+ years of experience helping companies optimize their data operations and CRM implementations." />
+        <meta name="keywords" content="about dataops group, geoff tucker, hubspot expert, data operations consultant, crm consultant, hubspot specialist" />
         <link rel="canonical" href={`${baseUrl}/about`} />
         {/* Open Graph / Facebook */}
-        <meta property="og:type" content="profile" />
-        <meta property="og:title" content="About Geoff Tucker | DataOps Group" />
-        <meta property="og:description" content="Learn more about Geoff Tucker, a seasoned data professional with over 15 years of experience in data operations, strategy, and analytics." />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="About DataOps Group - HubSpot Experts & Data Operations Consultants" />
+        <meta property="og:description" content="Learn about DataOps Group, led by Geoff Tucker, a HubSpot expert with 15+ years of experience helping companies optimize their data operations and CRM implementations." />
         <meta property="og:url" content={`${baseUrl}/about`} />
-        <meta property="og:image" content={`${baseUrl}/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta property="og:site_name" content="DataOps Group" />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About Geoff Tucker | DataOps Group" />
-        <meta name="twitter:description" content="Learn more about Geoff Tucker, a seasoned data professional with over 15 years of experience in data operations, strategy, and analytics." />
-        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png`} />
+        <meta name="twitter:title" content="About DataOps Group - HubSpot Experts & Data Operations Consultants" />
+        <meta name="twitter:description" content="Learn about DataOps Group, led by Geoff Tucker, a HubSpot expert with 15+ years of experience helping companies optimize their data operations and CRM implementations." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
+      <BreadcrumbSchema 
+        items={[
+          { name: "Home", url: "/" },
+          { name: "About", url: "/about" }
+        ]}
+      />
       <Navbar />
+      <main>
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
+          <div className="container mx-auto">
+            <div className="max-w-4xl">
+              <div className="space-y-6">
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-100 text-dataops-800 text-sm font-medium mb-2">
+                  About DataOps Group
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                  Meet the Team Behind Your <span className="text-dataops-600">Data Success</span>
+                </h1>
+                <p className="text-lg md:text-xl text-gray-700 max-w-3xl">
+                  We're a specialized team of HubSpot experts and data operations consultants who transform chaotic systems into profit-driving platforms.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <main className="flex-1">
-        <section className="py-16 md:py-24 bg-dataops-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-                <div className="md:w-1/3">
-                  <div className="bg-white p-6 rounded-lg shadow-md">
-                    <div className="flex justify-center mb-6">
-                      <Avatar className="h-48 w-48 border-4 border-dataops-100">
-                        <AvatarImage 
-                          src="/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png" 
-                          alt="Geoff Tucker"
-                          className="object-cover"
-                        />
-                        <AvatarFallback className="text-4xl bg-dataops-600 text-white">GT</AvatarFallback>
-                      </Avatar>
-                    </div>
-                    <h2 className="text-2xl font-bold text-center mb-2">Geoff Tucker</h2>
-                    <p className="text-dataops-700 text-center mb-4">Founder</p>
-                    <div className="flex justify-center">
-                      <a 
-                        href="https://www.linkedin.com/in/geoffreytucker/" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-dataops-600 hover:text-dataops-800"
-                      >
-                        <Linkedin size={18} />
-                        <span>LinkedIn Profile</span>
+        {/* Geoff Tucker Bio */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto">
+            <div className="grid lg:grid-cols-3 gap-16">
+              <div className="lg:col-span-2 space-y-8">
+                <div>
+                  <h2 className="text-3xl font-bold mb-6 text-dataops-900">Geoff Tucker</h2>
+                  <h3 className="text-xl text-dataops-600 font-semibold mb-6">Founder & Lead Data Operations Consultant</h3>
+                  
+                  <div className="space-y-6 text-gray-700">
+                    <p>
+                      With over 15 years of experience in data operations and CRM implementations, Geoff has helped hundreds of companies transform their data chaos into competitive advantages. His expertise spans across multiple industries, with a particular focus on scaling operations for private equity portfolio companies.
+                    </p>
+                    
+                    <p>
+                      Geoff's journey began in the early days of CRM systems, where he witnessed firsthand how poor data management could sink otherwise successful businesses. This experience shaped his philosophy: <em>data operations isn't just about technology—it's about creating systems that people actually want to use.</em>
+                    </p>
+                    
+                    <p>
+                      As a HubSpot Solutions Partner and certified consultant, Geoff has led implementations that have generated over $50M in additional revenue for clients. His approach combines technical expertise with a deep understanding of business operations, ensuring that every system he designs directly contributes to bottom-line results.
+                    </p>
+
+                    <div className="bg-dataops-50 border border-dataops-100 rounded-lg p-6 my-8">
+                      <h4 className="text-lg font-semibold text-dataops-800 mb-3">Ready to See How Your Operations Measure Up?</h4>
+                      <p className="text-gray-700 mb-4">
+                        Before we start working together, Geoff recommends taking our comprehensive assessment to identify your biggest operational gaps and opportunities.
+                      </p>
+                      <a href="/data-operations-assessment" className="inline-flex items-center bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                        Take the Free Assessment
                       </a>
+                    </div>
+                    
+                    <h4 className="text-xl font-semibold text-dataops-900 mt-8 mb-4">Key Expertise Areas:</h4>
+                    <ul className="list-disc pl-6 space-y-2">
+                      <li>HubSpot Implementation & Optimization</li>
+                      <li>Revenue Operations (RevOps) Strategy</li>
+                      <li>Marketing Operations & Automation</li>
+                      <li>Data Quality Management</li>
+                      <li>Sales Process Optimization</li>
+                      <li>Private Equity Portfolio Operations</li>
+                      <li>Analytics & Business Intelligence</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="space-y-8">
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-2xl font-bold text-dataops-600">15+</div>
+                      <div className="text-sm text-gray-600">Years of Experience</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-dataops-600">200+</div>
+                      <div className="text-sm text-gray-600">Successful Implementations</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-dataops-600">$50M+</div>
+                      <div className="text-sm text-gray-600">Revenue Generated for Clients</div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="md:w-2/3">
-                  <h1 className="text-3xl md:text-4xl font-bold mb-6">
-                    About <span className="gradient-text">Geoff Tucker</span>
-                  </h1>
-                  
-                  <p className="text-lg text-gray-700 mb-6">
-                    As the founder of DataOps Group, I bring over 15 years of experience in data operations, 
-                    strategy development, and analytics to help organizations transform their data into actionable insights 
-                    and revenue-generating assets.
-                  </p>
-                  
-                  <p className="text-lg text-gray-700 mb-6">
-                    My expertise lies in turning chaotic data environments into organized, efficient systems that deliver 
-                    real business value. I specialize in HubSpot data cleanup and optimization, helping companies leverage 
-                    their existing contact databases to drive revenue growth.
-                  </p>
-                  
-                  <p className="text-lg text-gray-700 mb-6">
-                    Throughout my career, I've developed proven methodologies and frameworks that have helped numerous 
-                    organizations overcome their data challenges and achieve measurable business results.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-dataops-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl font-bold mb-8 text-center">Expertise & Skills</h2>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold mb-4">Technical Expertise</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>HubSpot Data Management & Optimization</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>Data Quality & Governance Frameworks</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>ETL Processes & Data Integration</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>Business Intelligence & Analytics</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>CRM Systems & Marketing Automation</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold mb-4">Strategic Capabilities</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>Data-Driven Revenue Optimization</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>Marketing & Sales Analytics</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>Process Optimization & Automation</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>Cross-Functional Team Leadership</span>
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-dataops-600 rounded-full mr-3"></div>
-                      <span>Client Relationship Management</span>
-                    </li>
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Certifications</h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>• HubSpot Solutions Partner</li>
+                    <li>• HubSpot Marketing Software Certified</li>
+                    <li>• HubSpot Sales Software Certified</li>
+                    <li>• HubSpot Service Hub Certified</li>
+                    <li>• HubSpot CMS Hub Certified</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
         </section>
+        
+        <CTABanner />
       </main>
-
       <Footer />
     </div>
   );
