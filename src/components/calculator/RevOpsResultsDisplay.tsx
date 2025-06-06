@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { TrendingUp, BarChart3, Zap } from 'lucide-react';
+import { BarChart3 } from 'lucide-react';
 import { RevOpsCalculatorResults, RevOpsCalculatorInputs } from './revops-types';
 
 interface RevOpsResultsDisplayProps {
@@ -33,8 +32,7 @@ const RevOpsResultsDisplay: React.FC<RevOpsResultsDisplayProps> = ({
 
   return (
     <div className="bg-white border-2 border-gray-200 rounded-xl p-6">
-      <h2 className="text-xl font-semibold mb-6 flex items-center">
-        <TrendingUp className="w-5 h-5 mr-2 text-green-600" />
+      <h2 className="text-xl font-semibold mb-6">
         Your RevOps ROI Projection
       </h2>
 

@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Users, Target, Calculator } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 import { RevOpsCalculatorInputs } from './revops-types';
 
 interface RevOpsInputFormProps {
@@ -18,8 +17,7 @@ const RevOpsInputForm: React.FC<RevOpsInputFormProps> = ({
 }) => {
   return (
     <div className="bg-gray-50 rounded-xl p-6">
-      <h2 className="text-xl font-semibold mb-6 flex items-center">
-        <Users className="w-5 h-5 mr-2 text-dataops-600" />
+      <h2 className="text-xl font-semibold mb-6">
         Company & Team Information
       </h2>
       
@@ -107,8 +105,7 @@ const RevOpsInputForm: React.FC<RevOpsInputFormProps> = ({
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold mt-8 mb-4 flex items-center">
-        <Target className="w-5 h-5 mr-2 text-brand-saffron" />
+      <h3 className="text-lg font-semibold mt-8 mb-4">
         Current Performance Metrics
       </h3>
 
