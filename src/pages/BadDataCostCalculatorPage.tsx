@@ -21,16 +21,49 @@ const BadDataCostCalculatorPage = () => {
     resetCalculator
   } = useCalculatorState();
 
+  // Calculator schema markup
+  const calculatorSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Bad Data Cost Calculator",
+    "description": "Calculate the annual cost of poor data quality on your business including productivity losses, revenue impact, and compliance risks.",
+    "url": "https://dataopsgroup.com/bad-data-cost-calculator",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "DataOps Group",
+      "url": "https://dataopsgroup.com"
+    },
+    "featureList": [
+      "Calculate productivity losses from data quality issues",
+      "Estimate revenue impact from customer churn",
+      "Assess marketing waste from duplicate data",
+      "Evaluate compliance violation costs",
+      "Generate detailed cost breakdown reports"
+    ]
+  };
+
   return (
     <SemanticLayout>
       <Helmet>
-        <title>Bad Data Cost Calculator - DataOps Group</title>
+        <title>Bad Data Cost Calculator 2025 - Calculate Your Data Quality Losses</title>
         <meta 
           name="description" 
-          content="Calculate how much poor data quality is costing your business annually. Get a comprehensive breakdown of productivity losses, revenue impact, and compliance risks with our free calculator." 
+          content="Free calculator reveals how much poor data quality costs your business annually. Get detailed breakdown of productivity losses, revenue impact & compliance risks." 
         />
-        <meta name="keywords" content="data quality, cost calculator, bad data, data operations, ROI calculator" />
+        <meta name="keywords" content="data quality calculator, bad data cost, data operations, ROI calculator, data quality assessment, business data losses 2025" />
         <link rel="canonical" href="https://dataopsgroup.com/bad-data-cost-calculator" />
+        
+        {/* Calculator Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify(calculatorSchema)}
+        </script>
       </Helmet>
 
       <main className="pt-6 pb-16">
