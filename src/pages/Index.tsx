@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -12,6 +11,7 @@ import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
+import { Calculator, BarChart3 } from 'lucide-react';
 
 const Index = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
@@ -99,21 +99,46 @@ const Index = () => {
         <ChatbotSection />
       </section>
       
-      {/* Assessment CTA Section - Unique content for homepage */}
+      {/* Enhanced Assessment CTA Section */}
       <section className="py-16 bg-gradient-to-br from-dataops-50 to-white">
         <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">
               Wondering If Your Operations Are PE-Ready?
             </h2>
             <p className="text-lg text-gray-700 mb-8">
-              Most portfolio companies discover critical operational gaps only after investor reviews. Our 5-minute assessment identifies these blind spots before they impact your valuation or growth trajectory.
+              Most portfolio companies discover critical operational gaps only after investor reviews. 
+              Our assessment tools identify these blind spots and calculate your improvement potential before they impact your valuation.
             </p>
-            <div className="flex justify-center mb-6">
-              <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors">
-                Assess Your PE Readiness
-              </a>
+            
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                <div className="flex items-center justify-center mb-4">
+                  <BarChart3 className="w-8 h-8 text-dataops-600 mr-2" />
+                  <h3 className="text-xl font-semibold text-gray-900">Operations Assessment</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  5-minute evaluation to identify operational gaps and PE readiness issues
+                </p>
+                <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+                  Assess PE Readiness
+                </a>
+              </div>
+              
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                <div className="flex items-center justify-center mb-4">
+                  <Calculator className="w-8 h-8 text-green-600 mr-2" />
+                  <h3 className="text-xl font-semibold text-gray-900">ROI Calculator</h3>
+                </div>
+                <p className="text-gray-600 mb-4">
+                  Calculate potential revenue gains and efficiency improvements from RevOps
+                </p>
+                <a href="/revops-roi-calculator" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+                  Calculate ROI
+                </a>
+              </div>
             </div>
+            
             <p className="text-sm text-gray-600">
               Join 50+ portfolio companies that have already strengthened their operational foundation
             </p>

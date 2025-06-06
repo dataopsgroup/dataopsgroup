@@ -37,14 +37,8 @@ export const guidesItems: SubNavItem[] = [
   }
 ];
 
-// Insights dropdown items - updated with new RevOps calculator
-export const insightsItems: SubNavItem[] = [
-  { name: 'Blog', href: '/insights' },
-  { name: 'Case Studies', href: '/case-studies' },
-  { 
-    name: 'How to Hire a HubSpot Expert in 2025', 
-    href: '/guides/hubspot-expert' 
-  },
+// ROI Assessment Tools submenu
+export const roiAssessmentItems: SubNavItem[] = [
   { 
     name: 'HubSpot Assessment', 
     href: '/data-operations-assessment'
@@ -56,6 +50,21 @@ export const insightsItems: SubNavItem[] = [
   { 
     name: 'RevOps ROI Calculator', 
     href: '/revops-roi-calculator'
+  }
+];
+
+// Insights dropdown items - updated with ROI Assessment Tools grouping
+export const insightsItems: SubNavItem[] = [
+  { name: 'Blog', href: '/insights' },
+  { name: 'Case Studies', href: '/case-studies' },
+  { 
+    name: 'How to Hire a HubSpot Expert in 2025', 
+    href: '/guides/hubspot-expert' 
+  },
+  { 
+    name: 'ROI Assessment Tools',
+    isDropdown: true,
+    items: roiAssessmentItems
   }
 ];
 

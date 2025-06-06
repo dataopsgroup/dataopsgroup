@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -9,6 +8,7 @@ import MarketingOperationsRevOpsContent from '@/components/services/MarketingOpe
 import MarketingOperationsRevOpsBenefits from '@/components/services/MarketingOperationsRevOpsBenefits';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import ServiceSchema from '@/components/seo/ServiceSchema';
+import { Calculator, BarChart3 } from 'lucide-react';
 
 const MarketingOperationsRevOps = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
@@ -64,6 +64,63 @@ const MarketingOperationsRevOps = () => {
       
       <SemanticLayout>
         <MarketingOperationsRevOpsHero />
+
+        {/* ROI Assessment Tools Section */}
+        <section className="py-16 bg-gradient-to-br from-dataops-50 to-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">
+                ROI Assessment Tools
+              </h2>
+              <p className="text-lg text-gray-700 mb-8">
+                Before implementing RevOps, understand your current operational gaps and potential ROI. 
+                Use our assessment tools to identify opportunities and calculate your expected returns.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-4">
+                  <BarChart3 className="w-8 h-8 text-dataops-600 mr-3" />
+                  <h3 className="text-xl font-semibold text-gray-900">RevOps Maturity Assessment</h3>
+                </div>
+                <p className="text-gray-600 mb-6">
+                  Evaluate your current revenue operations maturity and identify specific areas for improvement 
+                  across sales, marketing, and customer success alignment.
+                </p>
+                <a 
+                  href="/data-operations-assessment" 
+                  className="inline-flex items-center bg-dataops-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-dataops-700 transition-colors"
+                >
+                  Take Assessment
+                </a>
+              </div>
+              
+              <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex items-center mb-4">
+                  <Calculator className="w-8 h-8 text-green-600 mr-3" />
+                  <h3 className="text-xl font-semibold text-gray-900">RevOps ROI Calculator</h3>
+                </div>
+                <p className="text-gray-600 mb-6">
+                  Calculate the potential return on investment from implementing revenue operations, 
+                  including revenue gains, efficiency improvements, and cost savings.
+                </p>
+                <a 
+                  href="/revops-roi-calculator" 
+                  className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+                >
+                  Calculate ROI
+                </a>
+              </div>
+            </div>
+            
+            <div className="text-center mt-8">
+              <p className="text-gray-600">
+                Complete both tools for a comprehensive understanding of your RevOps opportunity
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="py-16 px-4">
           <div className="container mx-auto">

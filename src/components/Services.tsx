@@ -31,7 +31,7 @@ export const services = [
     id: 'marketing-operations-revops',
     icon: <TrendingUp className="h-10 w-10" />,
     title: 'Marketing Operations & RevOps',
-    description: 'Optimize your revenue operations with strategic marketing automation and process improvement.',
+    description: 'Optimize your revenue operations with strategic marketing automation and process improvement. Calculate your potential ROI with our RevOps calculator.',
     href: '/services/marketing-operations-revops',
     gradient: 'from-orange-500 to-orange-700'
   },
