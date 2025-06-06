@@ -135,10 +135,6 @@ const Index = () => {
                 </a>
               </div>
             </div>
-            
-            <p className="text-sm text-gray-600">
-              Join 50+ portfolio companies that have already strengthened their operational foundation
-            </p>
           </div>
         </div>
       </section>
