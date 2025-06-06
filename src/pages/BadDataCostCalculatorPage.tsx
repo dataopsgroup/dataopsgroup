@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Calculator, AlertTriangle, TrendingUp, Users, Clock, DollarSign } from 'lucide-react';
+import { Calculator, AlertTriangle, TrendingUp, Clock, DollarSign } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 
@@ -130,8 +129,7 @@ const BadDataCostCalculatorPage = () => {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Input Section */}
             <div className="bg-gray-50 rounded-xl p-6">
-              <h2 className="text-xl font-semibold mb-6 flex items-center">
-                <Users className="h-5 w-5 mr-2 text-dataops-600" />
+              <h2 className="text-xl font-semibold mb-6">
                 Company Information
               </h2>
               
