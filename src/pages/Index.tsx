@@ -99,35 +99,34 @@ const Index = () => {
       <section className="py-16 bg-gradient-to-br from-dataops-50 to-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">Wondering If Your Operations<br />Are PE-Ready?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">Wondering If Your Operations
+Are PE-Ready?</h2>
             <p className="text-lg text-gray-700 mb-8">
               Most portfolio companies discover critical operational gaps only after investor reviews. 
               Our assessment tools identify these blind spots and calculate your improvement potential before they impact your valuation.
             </p>
             
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col h-full">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center justify-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-900">Operations Assessment</h3>
                 </div>
-                <p className="text-gray-600 mb-4 flex-grow">
+                <p className="text-gray-600 mb-4">
                   5-minute evaluation to identify operational gaps and PE readiness issues
                 </p>
-                <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
+                <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
                   Assess PE Readiness
                 </a>
               </div>
               
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col h-full">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center justify-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-900">ROI Calculator</h3>
                 </div>
-                <p className="text-gray-600 mb-4 flex-grow">
+                <p className="text-gray-600 mb-4">
                   Calculate potential revenue gains and efficiency improvements from RevOps
                 </p>
-                <a href="/revops-roi-calculator" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
-                  Calculate ROI
-                </a>
+                
               </div>
             </div>
             
