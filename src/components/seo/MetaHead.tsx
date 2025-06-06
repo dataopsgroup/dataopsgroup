@@ -49,8 +49,12 @@ const MetaHead = ({
   // Use production base URL consistently
   const baseUrl = 'https://dataopsgroup.com';
   
-  // Format title
-  const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+  // Format title - ensure it's under 60 characters and includes brand
+  const formattedTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;
+  const truncatedTitle = formattedTitle.length > 60 ? formattedTitle.substring(0, 57) + '...' : formattedTitle;
+  
+  // Ensure description is under 160 characters
+  const truncatedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
   
   // Create full canonical URL
   const fullCanonicalUrl = `${baseUrl}${canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '')}`;
@@ -59,8 +63,8 @@ const MetaHead = ({
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
   
   // Get Twitter metadata from blogPost if available
-  const twitterTitle = blogPost?.seo?.twitterTitle || ogTitle || fullTitle;
-  const twitterDescription = blogPost?.seo?.twitterDescription || ogDescription || description;
+  const twitterTitle = blogPost?.seo?.twitterTitle || ogTitle || truncatedTitle;
+  const twitterDescription = blogPost?.seo?.twitterDescription || ogDescription || truncatedDescription;
   
   // If this is a blog post, use blog post data for meta tags
   if (blogPost && isArticle) {
@@ -75,8 +79,8 @@ const MetaHead = ({
   return (
     <Helmet>
       {/* Basic Meta Tags */}
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
+      <title>{truncatedTitle}</title>
+      <meta name="description" content={truncatedDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={fullCanonicalUrl} />
       
@@ -106,8 +110,8 @@ const MetaHead = ({
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
-      <meta property="og:title" content={ogTitle || fullTitle} />
-      <meta property="og:description" content={ogDescription || description} />
+      <meta property="og:title" content={ogTitle || truncatedTitle} />
+      <meta property="og:description" content={ogDescription || truncatedDescription} />
       <meta property="og:image" content={fullOgImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

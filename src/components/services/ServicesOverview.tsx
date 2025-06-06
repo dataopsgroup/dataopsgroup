@@ -44,14 +44,14 @@ const ServicesOverview = () => {
             We offer comprehensive data operations solutions designed to transform your business processes and drive measurable results.
           </p>
           
-          {/* Assessment CTA */}
+          {/* Assessment CTA - unique to services overview */}
           <div className="bg-gradient-to-r from-dataops-50 to-blue-50 border border-dataops-200 rounded-lg p-6 mb-12 max-w-2xl mx-auto">
-            <h3 className="text-lg font-semibold text-dataops-800 mb-2">Not Sure Which Service You Need?</h3>
+            <h3 className="text-lg font-semibold text-dataops-800 mb-2">Which Service Will Drive the Biggest Impact?</h3>
             <p className="text-gray-700 mb-4">
-              Take our free assessment to get personalized service recommendations based on your current operations and goals.
+              Take our free operations assessment to get personalized service recommendations based on your current gaps and business goals.
             </p>
             <a href="/data-operations-assessment" className="inline-flex items-center bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-              Get Service Recommendations
+              Get Personalized Recommendations
             </a>
           </div>
         </div>

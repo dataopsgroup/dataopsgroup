@@ -57,18 +57,18 @@ const CaseStudiesOverview = () => {
           })}
         </div>
 
-        {/* Assessment CTA */}
+        {/* Assessment CTA - unique to case studies */}
         <div className="bg-gradient-to-br from-dataops-600 to-dataops-700 rounded-lg p-8 text-white text-center mb-12">
           <h3 className="text-2xl font-bold mb-4">Could Your Company Achieve Similar Results?</h3>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            These results didn't happen overnight. They started with understanding exactly where each company's operations stood and creating a targeted improvement plan.
+            These transformations started with identifying exactly where each company's operations fell short of their growth potential. See where your operations stack up against these success stories.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/data-operations-assessment" className="bg-white text-dataops-600 hover:bg-gray-50 px-8 py-3 rounded-lg font-semibold transition-colors">
-              Assess Your Operations
+              Compare Your Operations
             </a>
             <a href="/contact" className="border border-white text-white hover:bg-white hover:text-dataops-600 px-8 py-3 rounded-lg font-semibold transition-colors">
-              Discuss Your Goals
+              Discuss Your Transformation
             </a>
           </div>
         </div>

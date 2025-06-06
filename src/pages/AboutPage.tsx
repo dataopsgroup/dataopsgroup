@@ -13,21 +13,21 @@ const AboutPage = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>About DataOps Group - HubSpot Experts & Data Operations Consultants</title>
-        <meta name="description" content="Learn about DataOps Group, led by Geoff Tucker, a HubSpot expert with 15+ years of experience helping companies optimize their data operations and CRM implementations." />
+        <meta name="description" content="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies." />
         <meta name="keywords" content="about dataops group, geoff tucker, hubspot expert, data operations consultant, crm consultant, hubspot specialist" />
         <link rel="canonical" href={`${baseUrl}/about`} />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="About DataOps Group - HubSpot Experts & Data Operations Consultants" />
-        <meta property="og:description" content="Learn about DataOps Group, led by Geoff Tucker, a HubSpot expert with 15+ years of experience helping companies optimize their data operations and CRM implementations." />
+        <meta property="og:description" content="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies." />
         <meta property="og:url" content={`${baseUrl}/about`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta property="og:site_name" content="DataOps Group" />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About DataOps Group - HubSpot Experts & Data Operations Consultants" />
-        <meta name="twitter:description" content="Learn about DataOps Group, led by Geoff Tucker, a HubSpot expert with 15+ years of experience helping companies optimize their data operations and CRM implementations." />
-        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta name="twitter:description" content="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies." />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       <BreadcrumbSchema 
@@ -50,7 +50,7 @@ const AboutPage = () => {
                   Meet the Team Behind Your <span className="text-dataops-600">Data Success</span>
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 max-w-3xl">
-                  We're a specialized team of HubSpot experts and data operations consultants who transform chaotic systems into profit-driving platforms.
+                  We're specialized HubSpot implementation experts who rescue failed projects and transform chaotic systems into profit-driving platforms that meet private equity standards.
                 </p>
               </div>
             </div>
@@ -64,40 +64,40 @@ const AboutPage = () => {
               <div className="lg:col-span-2 space-y-8">
                 <div>
                   <h2 className="text-3xl font-bold mb-6 text-dataops-900">Geoff Tucker</h2>
-                  <h3 className="text-xl text-dataops-600 font-semibold mb-6">Founder & Lead Data Operations Consultant</h3>
+                  <h3 className="text-xl text-dataops-600 font-semibold mb-6">Founder & Lead HubSpot Implementation Specialist</h3>
                   
                   <div className="space-y-6 text-gray-700">
                     <p>
-                      With over 15 years of experience in data operations and CRM implementations, Geoff has helped hundreds of companies transform their data chaos into competitive advantages. His expertise spans across multiple industries, with a particular focus on scaling operations for private equity portfolio companies.
+                      With over 15 years of experience in HubSpot implementations and revenue operations, Geoff has rescued hundreds of failed projects and transformed them into competitive advantages. His expertise spans across multiple industries, with particular specialization in private equity portfolio company optimizations.
                     </p>
                     
                     <p>
-                      Geoff's journey began in the early days of CRM systems, where he witnessed firsthand how poor data management could sink otherwise successful businesses. This experience shaped his philosophy: <em>data operations isn't just about technology—it's about creating systems that people actually want to use.</em>
+                      Geoff's approach combines deep technical knowledge with strategic business insight. He understands that successful implementations aren't just about technology—they're about creating systems that people actually want to use and that drive measurable business outcomes.
                     </p>
                     
                     <p>
-                      As a HubSpot Solutions Partner and certified consultant, Geoff has led implementations that have generated over $50M in additional revenue for clients. His approach combines technical expertise with a deep understanding of business operations, ensuring that every system he designs directly contributes to bottom-line results.
+                      As a certified HubSpot Solutions Partner, Geoff has led implementations that have generated over $50M in additional revenue for clients. His systematic methodology ensures that every system he designs directly contributes to bottom-line results while meeting the operational standards that private equity firms expect.
                     </p>
 
                     <div className="bg-dataops-50 border border-dataops-100 rounded-lg p-6 my-8">
-                      <h4 className="text-lg font-semibold text-dataops-800 mb-3">Ready to See How Your Operations Measure Up?</h4>
+                      <h4 className="text-lg font-semibold text-dataops-800 mb-3">Curious About Your Implementation's Health?</h4>
                       <p className="text-gray-700 mb-4">
-                        Before we start working together, Geoff recommends taking our comprehensive assessment to identify your biggest operational gaps and opportunities.
+                        Before working together, Geoff recommends taking our assessment to identify your biggest operational gaps and growth opportunities.
                       </p>
                       <a href="/data-operations-assessment" className="inline-flex items-center bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                        Take the Free Assessment
+                        Take the Operations Assessment
                       </a>
                     </div>
                     
-                    <h4 className="text-xl font-semibold text-dataops-900 mt-8 mb-4">Key Expertise Areas:</h4>
+                    <h4 className="text-xl font-semibold text-dataops-900 mt-8 mb-4">Core Specializations:</h4>
                     <ul className="list-disc pl-6 space-y-2">
-                      <li>HubSpot Implementation & Optimization</li>
-                      <li>Revenue Operations (RevOps) Strategy</li>
-                      <li>Marketing Operations & Automation</li>
-                      <li>Data Quality Management</li>
-                      <li>Sales Process Optimization</li>
+                      <li>HubSpot Implementation Rescue & Optimization</li>
                       <li>Private Equity Portfolio Operations</li>
-                      <li>Analytics & Business Intelligence</li>
+                      <li>Revenue Operations (RevOps) Strategy</li>
+                      <li>Marketing Automation & Process Design</li>
+                      <li>Data Quality Management & Governance</li>
+                      <li>Sales Process Optimization</li>
+                      <li>Business Intelligence & Analytics</li>
                     </ul>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ const AboutPage = () => {
               
               <div className="space-y-8">
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Track Record</h3>
                   <div className="space-y-4">
                     <div>
                       <div className="text-2xl font-bold text-dataops-600">15+</div>

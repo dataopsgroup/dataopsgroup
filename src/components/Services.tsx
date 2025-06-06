@@ -62,7 +62,7 @@ const Services = () => {
             Our Services
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Comprehensive data operations solutions designed to transform your business. 
+            Comprehensive HubSpot implementation and data operations solutions designed to transform your business. 
             Learn more about our <a href="/approach" className="text-dataops-600 hover:text-dataops-700 underline font-medium">proven methodology</a> and view our <a href="/case-studies" className="text-dataops-600 hover:text-dataops-700 underline font-medium">success stories</a>.
           </p>
         </div>

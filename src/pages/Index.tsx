@@ -99,23 +99,23 @@ const Index = () => {
         <ChatbotSection />
       </section>
       
-      {/* Assessment CTA Section */}
+      {/* Assessment CTA Section - Unique content for homepage */}
       <section className="py-16 bg-gradient-to-br from-dataops-50 to-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">
-              Not Sure Where Your Operations Stand?
+              Wondering If Your Operations Are PE-Ready?
             </h2>
             <p className="text-lg text-gray-700 mb-8">
-              Take our free 5-minute assessment to identify gaps in your HubSpot implementation and get a personalized improvement roadmap.
+              Most portfolio companies discover critical operational gaps only after investor reviews. Our 5-minute assessment identifies these blind spots before they impact your valuation or growth trajectory.
             </p>
             <div className="flex justify-center mb-6">
               <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors">
-                Take the Assessment
+                Assess Your PE Readiness
               </a>
             </div>
             <p className="text-sm text-gray-600">
-              Join 50+ companies that have already identified their operational blind spots
+              Join 50+ portfolio companies that have already strengthened their operational foundation
             </p>
           </div>
         </div>
