@@ -4,6 +4,10 @@ import { NavItem, SubNavItem } from '@/types/navigation';
 // Services dropdown items
 export const navServices: SubNavItem[] = [
   { 
+    name: 'All Services', 
+    href: '/services'
+  },
+  { 
     name: 'Analytics & BI', 
     href: '/services/analytics-bi'
   },
