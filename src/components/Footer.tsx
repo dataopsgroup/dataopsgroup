@@ -41,7 +41,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/assessment" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="Take our HubSpot assessment">
+                <Link to="/data-operations-assessment" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="Take our HubSpot assessment">
                   HubSpot Assessment
                 </Link>
               </li>

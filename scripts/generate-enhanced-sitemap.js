@@ -21,8 +21,8 @@ const routes = [
   { url: '/contact', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
   { url: '/book', changefreq: 'weekly', priority: 0.9, lastmod: new Date() },
   { url: '/pe-value-creation-program', changefreq: 'monthly', priority: 0.9, lastmod: new Date() },
-  { url: '/assessment', changefreq: 'weekly', priority: 0.9, lastmod: new Date() },
-  { url: '/assessment/results', changefreq: 'monthly', priority: 0.7, lastmod: new Date() },
+  { url: '/data-operations-assessment', changefreq: 'weekly', priority: 0.9, lastmod: new Date() },
+  { url: '/data-operations-assessment/results', changefreq: 'monthly', priority: 0.7, lastmod: new Date() },
   { url: '/guides/hubspot-expert', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
   
   // Services - high priority

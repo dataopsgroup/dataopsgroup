@@ -30,7 +30,7 @@ const BookCTA = () => {
                 Get Your Free Assessment
               </Button>
             </Link>
-            <Link to="/assessment">
+            <Link to="/data-operations-assessment">
               <Button variant="outline" className="border-white text-white hover:bg-white hover:text-dataops-600 px-8 py-3 text-lg">
                 Take Our Quiz
               </Button>

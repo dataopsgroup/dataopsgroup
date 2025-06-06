@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { getCanonicalFromAmpUrl } from '../utils/redirect-utils';
@@ -13,14 +12,28 @@ const AmpRedirectHandler = () => {
 
 // 301 Redirects
 export const redirectRoutes = [
+  // Assessment URL redirects
+  {
+    path: "/assessment",
+    element: <Navigate to="/data-operations-assessment" replace />,
+  },
+  {
+    path: "/assessment/results",
+    element: <Navigate to="/data-operations-assessment/results" replace />,
+  },
+  {
+    path: "/hubspot-assessment",
+    element: <Navigate to="/data-operations-assessment" replace />,
+  },
+  {
+    path: "/hubspot-assessment-results",
+    element: <Navigate to="/data-operations-assessment/results" replace />,
+  },
+  
   // New redirects for cleaned URLs
   {
     path: "/book-page",
     element: <Navigate to="/book" replace />,
-  },
-  {
-    path: "/hubspot-assessment-results",
-    element: <Navigate to="/assessment/results" replace />,
   },
   // Fix the HubSpot expert guide redirect - redirect to the new structure
   {

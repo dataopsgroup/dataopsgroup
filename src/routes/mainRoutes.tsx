@@ -40,14 +40,14 @@ export const mainRoutes = [
     element: <BookLandingPage />,
     errorElement: <NotFound />,
   },
-  // Assessment with clean URLs
+  // Assessment with updated URL
   {
-    path: "/assessment",
+    path: "/data-operations-assessment",
     element: <HubSpotAssessment />,
     errorElement: <NotFound />,
   },
   {
-    path: "/assessment/results",
+    path: "/data-operations-assessment/results",
     element: <HubSpotAssessmentResultsPage />,
     errorElement: <NotFound />,
   },
