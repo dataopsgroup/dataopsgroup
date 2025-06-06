@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -18,13 +17,9 @@ const Footer = () => {
                 alt="DataOps Group Logo" 
                 width={180} 
                 height={50} 
-                className="mb-6" 
+                className="mb-4" 
               />
             </div>
-            <p className="text-xs text-gray-300 mb-6 leading-snug">
-              Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
-              efficiency and innovation through expert consulting and <Link to="/" className="hover:text-white underline" aria-label="Visit our homepage">tailored solutions</Link>.
-            </p>
             <div className="flex space-x-4">
               <a href="https://www.linkedin.com/company/dataopsgroup/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="Visit DataOps Group LinkedIn profile">
                 <Linkedin size={20} />
