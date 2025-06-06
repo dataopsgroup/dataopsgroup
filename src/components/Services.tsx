@@ -2,42 +2,54 @@
 import React from 'react';
 import { Database, BarChart3, Users, TrendingUp, Target, Zap } from 'lucide-react';
 
-const services = [
+export const services = [
   {
+    id: 'analytics-bi',
     icon: <BarChart3 className="h-10 w-10" />,
     title: 'Analytics & BI',
     description: 'Transform data into actionable insights with comprehensive analytics and business intelligence solutions.',
-    href: '/services/analytics-bi'
+    href: '/services/analytics-bi',
+    gradient: 'from-blue-500 to-blue-700'
   },
   {
+    id: 'dataops-implementation',
     icon: <Database className="h-10 w-10" />,
     title: 'DataOps Implementation',
     description: 'Streamline your data operations with automated processes and improved data quality.',
-    href: '/services/dataops-implementation'
+    href: '/services/dataops-implementation',
+    gradient: 'from-green-500 to-green-700'
   },
   {
+    id: 'team-training',
     icon: <Users className="h-10 w-10" />,
     title: 'HubSpot Training & Implementation',
     description: 'Comprehensive HubSpot setup and team training to maximize your investment.',
-    href: '/services/team-training'
+    href: '/services/team-training',
+    gradient: 'from-purple-500 to-purple-700'
   },
   {
+    id: 'marketing-operations-revops',
     icon: <TrendingUp className="h-10 w-10" />,
     title: 'Marketing Operations & RevOps',
     description: 'Optimize your revenue operations with strategic marketing automation and process improvement.',
-    href: '/services/marketing-operations-revops'
+    href: '/services/marketing-operations-revops',
+    gradient: 'from-orange-500 to-orange-700'
   },
   {
+    id: 'pe-value-creation-program',
     icon: <Target className="h-10 w-10" />,
     title: 'PE Value Creation Program',
     description: 'Specialized program for private equity firms to optimize portfolio company operations.',
-    href: '/pe-value-creation-program'
+    href: '/pe-value-creation-program',
+    gradient: 'from-red-500 to-red-700'
   },
   {
+    id: 'custom-solutions',
     icon: <Zap className="h-10 w-10" />,
     title: 'Custom Solutions',
     description: 'Tailored data operations solutions designed specifically for your unique business needs.',
-    href: '/contact'
+    href: '/contact',
+    gradient: 'from-indigo-500 to-indigo-700'
   }
 ];
 
