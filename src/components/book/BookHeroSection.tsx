@@ -37,7 +37,7 @@ const BookHeroSection: React.FC<BookHeroSectionProps> = ({
                 rel="noopener noreferrer" 
                 className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg inline-flex items-center justify-center"
               >
-                Pre-Order Now <ChevronRight className="h-5 w-5 ml-2" />
+                Order Now <ChevronRight className="h-5 w-5 ml-2" />
               </a>
               <button 
                 onClick={onScrollToForm} 
