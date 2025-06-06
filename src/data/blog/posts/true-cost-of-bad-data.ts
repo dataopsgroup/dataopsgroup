@@ -12,6 +12,16 @@ export const trueCostOfBadData: BlogPost = {
   content: `
     <h2></h2>
     
+    <div style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); border-radius: 12px; padding: 24px; margin: 32px 0; text-align: center; color: white;">
+      <h3 style="color: white; margin: 0 0 16px 0; font-size: 1.5rem; font-weight: 600;">Calculate Your Bad Data Costs</h3>
+      <p style="margin: 0 0 20px 0; font-size: 1.1rem; color: rgba(255, 255, 255, 0.9);">
+        Wondering how much poor data quality is actually costing your business? Use our free calculator to get a comprehensive breakdown of your annual losses.
+      </p>
+      <a href="/bad-data-cost-calculator" style="background: #fbbf24; color: #1f2937; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-block; transition: background-color 0.2s;">
+        Calculate Your Costs Now →
+      </a>
+    </div>
+    
     <h2>The Connection</h2>
     
     <p>The traditional 1-10-100 rule of data quality states that it costs $1 to verify data at entry, $10 to clean it later, and $100 if nothing is done. But in today's digital marketing landscape, this rule drastically understates the real impact of poor data quality.</p>
