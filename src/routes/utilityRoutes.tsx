@@ -12,6 +12,7 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
 const WebVitalsDashboard = lazy(() => import('../components/admin/WebVitalsDashboard'));
 const BadDataCostCalculatorPage = lazy(() => import('../pages/BadDataCostCalculatorPage'));
+const RevOpsROICalculatorPage = lazy(() => import('../pages/RevOpsROICalculatorPage'));
 
 export const utilityRoutes = [
   {
@@ -52,6 +53,11 @@ export const utilityRoutes = [
   {
     path: "/bad-data-cost-calculator",
     element: <BadDataCostCalculatorPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/revops-roi-calculator",
+    element: <RevOpsROICalculatorPage />,
     errorElement: <NotFound />,
   },
   {

@@ -1,4 +1,3 @@
-
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -38,7 +37,7 @@ export const guidesItems: SubNavItem[] = [
   }
 ];
 
-// Insights dropdown items - updated assessment URL
+// Insights dropdown items - updated with new RevOps calculator
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
   { name: 'Case Studies', href: '/case-studies' },
@@ -53,6 +52,10 @@ export const insightsItems: SubNavItem[] = [
   { 
     name: 'Bad Data Cost Calculator', 
     href: '/bad-data-cost-calculator'
+  },
+  { 
+    name: 'RevOps ROI Calculator', 
+    href: '/revops-roi-calculator'
   }
 ];
 
