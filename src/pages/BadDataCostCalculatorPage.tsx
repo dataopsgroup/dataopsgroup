@@ -9,11 +9,11 @@ const BadDataCostCalculatorPage = () => {
     annualRevenue: '',
     employeeCount: '',
     avgSalary: '',
-    dataQualityIssueTime: 25, // percentage
-    customerChurnRate: 5, // percentage
+    dataQualityIssueTime: '25', // percentage
+    customerChurnRate: '5', // percentage
     marketingBudget: '',
-    duplicateDataRate: 15, // percentage
-    complianceViolations: 0
+    duplicateDataRate: '15', // percentage
+    complianceViolations: '0'
   });
 
   const [results, setResults] = useState({
@@ -40,10 +40,10 @@ const BadDataCostCalculatorPage = () => {
     const revenue = parseFloat(inputs.annualRevenue) || 0;
     const employees = parseFloat(inputs.employeeCount) || 0;
     const salary = parseFloat(inputs.avgSalary) || 0;
-    const timeWasted = inputs.dataQualityIssueTime / 100;
-    const churnRate = inputs.customerChurnRate / 100;
+    const timeWasted = parseFloat(inputs.dataQualityIssueTime) / 100;
+    const churnRate = parseFloat(inputs.customerChurnRate) / 100;
     const marketing = parseFloat(inputs.marketingBudget) || 0;
-    const duplicateRate = inputs.duplicateDataRate / 100;
+    const duplicateRate = parseFloat(inputs.duplicateDataRate) / 100;
     const violations = parseFloat(inputs.complianceViolations) || 0;
 
     // Productivity loss calculation
@@ -80,7 +80,7 @@ const BadDataCostCalculatorPage = () => {
     setShowResults(true);
   };
 
-  const handleInputChange = (field: string, value: string | number) => {
+  const handleInputChange = (field: string, value: string) => {
     setInputs(prev => ({
       ...prev,
       [field]: value
@@ -92,11 +92,11 @@ const BadDataCostCalculatorPage = () => {
       annualRevenue: '',
       employeeCount: '',
       avgSalary: '',
-      dataQualityIssueTime: 25,
-      customerChurnRate: 5,
+      dataQualityIssueTime: '25',
+      customerChurnRate: '5',
       marketingBudget: '',
-      duplicateDataRate: 15,
-      complianceViolations: 0
+      duplicateDataRate: '15',
+      complianceViolations: '0'
     });
     setShowResults(false);
   };
