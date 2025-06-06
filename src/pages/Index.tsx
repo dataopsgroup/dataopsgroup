@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -99,8 +100,7 @@ const Index = () => {
       <section className="py-16 bg-gradient-to-br from-dataops-50 to-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">Wondering If Your Operations
-Are PE-Ready?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">Wondering If Your Operations{'\n'}are PE-Ready?</h2>
             <p className="text-lg text-gray-700 mb-8">
               Most portfolio companies discover critical operational gaps only after investor reviews. 
               Our assessment tools identify these blind spots and calculate your improvement potential before they impact your valuation.
