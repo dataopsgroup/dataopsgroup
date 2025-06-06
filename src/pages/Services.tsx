@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -5,7 +6,6 @@ import { Helmet } from 'react-helmet-async';
 import CTABanner from '@/components/CTABanner';
 import ServicesHero from '@/components/services/ServicesHero';
 import ServicesOverview from '@/components/services/ServicesOverview';
-import ServicesIndustries from '@/components/services/ServicesIndustries';
 import ServicesSidebar from '@/components/services/ServicesSidebar';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
@@ -59,7 +59,6 @@ const ServicesPage = () => {
             <div className="grid lg:grid-cols-3 gap-16">
               <div className="lg:col-span-2 space-y-12">
                 <ServicesOverview />
-                <ServicesIndustries />
               </div>
               
               <div>
