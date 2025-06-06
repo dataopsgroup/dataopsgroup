@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator, AlertTriangle, TrendingUp, Clock, DollarSign } from 'lucide-react';
+import { Calculator, AlertTriangle, Clock, DollarSign } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 
@@ -290,8 +290,7 @@ const BadDataCostCalculatorPage = () => {
                 </div>
               ) : (
                 <div>
-                  <h2 className="text-xl font-semibold mb-6 flex items-center">
-                    <TrendingUp className="h-5 w-5 mr-2 text-red-600" />
+                  <h2 className="text-xl font-semibold mb-6">
                     Annual Cost of Bad Data
                   </h2>
 
