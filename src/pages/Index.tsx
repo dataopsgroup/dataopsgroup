@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -12,21 +11,15 @@ import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
-
 const Index = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
-  
+
   // Comment: Force GitHub sync - Updated deployment timestamp again
   console.log('Homepage deployment refresh initiated:', new Date().toISOString());
-  
-  return (
-    <SemanticLayout>
+  return <SemanticLayout>
       <Helmet>
         <title>PE Portfolio Operations Platform | HubSpot Implementation for Private Equity</title>
-        <meta 
-          name="description" 
-          content="Transform PE portfolio operations into profit drivers with our specialized HubSpot platform. Achieve 19% higher valuations, 73% faster EBITDA growth, and $18-22 ROI. 100-day implementation for private equity firms." 
-        />
+        <meta name="description" content="Transform PE portfolio operations into profit drivers with our specialized HubSpot platform. Achieve 19% higher valuations, 73% faster EBITDA growth, and $18-22 ROI. 100-day implementation for private equity firms." />
         <meta name="keywords" content="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations, sales operations, revenue operations" />
         <link rel="canonical" href={`${baseUrl}/`} />
         
@@ -86,7 +79,10 @@ const Index = () => {
       {/* Schema markup for SEO */}
       <OrganizationSchema />
       <WebsiteSchema />
-      <BreadcrumbSchema items={[{ name: "Home", url: "/" }]} />
+      <BreadcrumbSchema items={[{
+      name: "Home",
+      url: "/"
+    }]} />
       <LocalBusinessSchema />
       <ProfessionalServiceSchema />
       
@@ -103,39 +99,42 @@ const Index = () => {
       <section className="py-16 bg-gradient-to-br from-dataops-50 to-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">
-              Wondering If Your Operations <br />are PE-Ready?
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">Wondering If Your Operations
+Are PE-Ready?</h2>
             <p className="text-lg text-gray-700 mb-8">
               Most portfolio companies discover critical operational gaps only after investor reviews. 
               Our assessment tools identify these blind spots and calculate your improvement potential before they impact your valuation.
             </p>
             
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col h-full">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center justify-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-900">Operations Assessment</h3>
                 </div>
-                <p className="text-gray-600 mb-6 flex-grow">
+                <p className="text-gray-600 mb-4">
                   5-minute evaluation to identify operational gaps and PE readiness issues
                 </p>
-                <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
+                <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
                   Assess PE Readiness
                 </a>
               </div>
               
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col h-full">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <div className="flex items-center justify-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-900">ROI Calculator</h3>
                 </div>
-                <p className="text-gray-600 mb-6 flex-grow">
+                <p className="text-gray-600 mb-4">
                   Calculate potential revenue gains and efficiency improvements from RevOps
                 </p>
-                <a href="/revops-roi-calculator" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
+                <a href="/revops-roi-calculator" className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
                   Calculate ROI
                 </a>
               </div>
             </div>
+            
+            <p className="text-sm text-gray-600">
+              Join 50+ portfolio companies that have already strengthened their operational foundation
+            </p>
           </div>
         </div>
       </section>
@@ -151,8 +150,6 @@ const Index = () => {
       <section aria-label="Book a Consultation">
         <BookCTA />
       </section>
-    </SemanticLayout>
-  );
+    </SemanticLayout>;
 };
-
 export default Index;
