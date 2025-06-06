@@ -70,6 +70,13 @@ export const getSessionId = (): string => {
   }
 };
 
+// Check if Google Analytics is available
+const isGoogleAnalyticsAvailable = (): boolean => {
+  return typeof window !== 'undefined' && 
+         typeof window.gtag === 'function' && 
+         Array.isArray(window.dataLayer);
+};
+
 // Report web vital to analytics and log
 export const reportWebVital = (metric: WebVitalMetric): void => {
   // Add user context data to the metric
@@ -85,22 +92,26 @@ export const reportWebVital = (metric: WebVitalMetric): void => {
     console.log(`[Web Vitals] ${metric.name}: ${metric.value.toFixed(2)} (${metric.rating})`);
   }
   
-  // Send to Google Analytics
-  if (window.gtag) {
-    window.gtag('event', 'web_vitals', {
-      metric_name: metric.name,
-      metric_value: Math.round(metric.value * 100) / 100,
-      metric_delta: Math.round(metric.delta * 100) / 100,
-      metric_rating: metric.rating,
-      metric_id: metric.id,
-      device_category: metric.deviceCategory,
-      connection_type: metric.connection,
-      session_id: metric.sessionId
-    });
+  // Send to Google Analytics with proper error handling
+  try {
+    if (isGoogleAnalyticsAvailable()) {
+      window.gtag('event', 'web_vitals', {
+        metric_name: metric.name,
+        metric_value: Math.round(metric.value * 100) / 100,
+        metric_delta: Math.round(metric.delta * 100) / 100,
+        metric_rating: metric.rating,
+        metric_id: metric.id,
+        device_category: metric.deviceCategory,
+        connection_type: metric.connection,
+        session_id: metric.sessionId
+      });
+    }
+  } catch (error) {
+    console.debug('Google Analytics reporting failed:', error);
   }
   
   // Send to custom endpoint if defined
-  if (window.PERFORMANCE_API_ENDPOINT) {
+  if (typeof window !== 'undefined' && window.PERFORMANCE_API_ENDPOINT) {
     try {
       const payload = {
         name: metric.name,
@@ -121,32 +132,34 @@ export const reportWebVital = (metric: WebVitalMetric): void => {
         body: JSON.stringify(payload),
         // Use keepalive to ensure the request completes even if page is unloaded
         keepalive: true
-      }).catch(err => console.error('Failed to report metric:', err));
+      }).catch(err => console.debug('Failed to report metric:', err));
     } catch (e) {
       // Ignore reporting errors
     }
   }
   
-  // Store metrics in localStorage for dashboard
+  // Store metrics in localStorage for dashboard with error handling
   try {
-    const metrics = JSON.parse(localStorage.getItem('webVitalsMetrics') || '[]');
-    metrics.push({
-      name: metric.name,
-      value: metric.value,
-      rating: metric.rating,
-      timestamp: Date.now(),
-      path: window.location.pathname,
-      deviceCategory: metric.deviceCategory,
-      connection: metric.connection,
-      sessionId: metric.sessionId
-    });
-    
-    // Keep only last 100 entries
-    while (metrics.length > 100) {
-      metrics.shift();
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const metrics = JSON.parse(localStorage.getItem('webVitalsMetrics') || '[]');
+      metrics.push({
+        name: metric.name,
+        value: metric.value,
+        rating: metric.rating,
+        timestamp: Date.now(),
+        path: window.location.pathname,
+        deviceCategory: metric.deviceCategory,
+        connection: metric.connection,
+        sessionId: metric.sessionId
+      });
+      
+      // Keep only last 100 entries
+      while (metrics.length > 100) {
+        metrics.shift();
+      }
+      
+      localStorage.setItem('webVitalsMetrics', JSON.stringify(metrics));
     }
-    
-    localStorage.setItem('webVitalsMetrics', JSON.stringify(metrics));
   } catch (e) {
     // Ignore storage errors
   }

@@ -7,6 +7,9 @@ import { navServices } from '@/data/navigationData';
 import OptimizedImage from './ui/optimized-image';
 
 const Footer = () => {
+  // Add console log to verify Footer is rendering
+  console.log('Footer component rendering with updated styles');
+
   return <footer className="bg-dataops-950 text-white pt-16 mt-auto">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
