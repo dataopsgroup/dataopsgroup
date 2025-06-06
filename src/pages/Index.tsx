@@ -109,12 +109,9 @@ const Index = () => {
             <p className="text-lg text-gray-700 mb-8">
               Take our free 5-minute assessment to identify gaps in your HubSpot implementation and get a personalized improvement roadmap.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+            <div className="flex justify-center mb-6">
               <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors">
                 Take the Assessment
-              </a>
-              <a href="/case-studies" className="border border-dataops-600 text-dataops-600 hover:bg-dataops-50 px-8 py-3 rounded-lg font-semibold text-lg transition-colors">
-                See Results
               </a>
             </div>
             <p className="text-sm text-gray-600">
