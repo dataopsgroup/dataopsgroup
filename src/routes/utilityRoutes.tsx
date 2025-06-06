@@ -11,6 +11,7 @@ const Terms = lazy(() => import('../pages/Terms'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
 const WebVitalsDashboard = lazy(() => import('../components/admin/WebVitalsDashboard'));
+const BadDataCostCalculatorPage = lazy(() => import('../pages/BadDataCostCalculatorPage'));
 
 export const utilityRoutes = [
   {
@@ -46,6 +47,11 @@ export const utilityRoutes = [
   {
     path: "/terms",
     element: <Terms />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/bad-data-cost-calculator",
+    element: <BadDataCostCalculatorPage />,
     errorElement: <NotFound />,
   },
   {
