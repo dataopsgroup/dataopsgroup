@@ -57,6 +57,7 @@ const Footer = () => {
               <li><Link to="/case-studies" className="text-gray-300 hover:text-white" aria-label="View our client success stories">Case Studies</Link></li>
               <li><Link to="/faqs" className="text-gray-300 hover:text-white" aria-label="View frequently asked questions">FAQs</Link></li>
               <li><Link to="/guides/hubspot-expert" className="text-gray-300 hover:text-white" aria-label="Learn how to hire a HubSpot expert">HubSpot Expert Guide</Link></li>
+              <li><Link to="/bad-data-cost-calculator" className="text-gray-300 hover:text-white" aria-label="Calculate the cost of poor data quality">Bad Data Cost Calculator</Link></li>
               <li><Link to="/sitemap" className="text-gray-300 hover:text-white" aria-label="View our site's sitemap">Sitemap</Link></li>
             </ul>
           </nav>

@@ -1,4 +1,3 @@
-
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -38,7 +37,7 @@ export const guidesItems: SubNavItem[] = [
   }
 ];
 
-// Insights dropdown items - fixed HubSpot Expert Guide URL
+// Insights dropdown items - added Bad Data Cost Calculator
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
   { name: 'Case Studies', href: '/case-studies' },
@@ -49,6 +48,10 @@ export const insightsItems: SubNavItem[] = [
   { 
     name: 'HubSpot Assessment', 
     href: '/assessment'
+  },
+  { 
+    name: 'Bad Data Cost Calculator', 
+    href: '/bad-data-cost-calculator'
   }
 ];
 
