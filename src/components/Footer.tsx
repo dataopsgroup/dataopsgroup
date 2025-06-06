@@ -14,7 +14,7 @@ const Footer = () => {
             <div className="">
               <OptimizedImage src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" alt="DataOps Group Logo" width={180} height={50} className="mb-6" />
             </div>
-            <p className="text-sm text-gray-300 mb-6 leading-snug">
+            <p className="text-xs text-gray-300 mb-6 leading-snug">
               Transforming <Link to="/services" className="hover:text-white underline" aria-label="Learn about our data operations services">data operations</Link> for businesses across industries, driving 
               efficiency and innovation through expert consulting and <Link to="/" className="hover:text-white underline" aria-label="Visit our homepage">tailored solutions</Link>.
             </p>
@@ -27,7 +27,7 @@ const Footer = () => {
           </section>
           
           <nav aria-labelledby="services-navigation">
-            <h2 id="services-navigation" className="text-sm font-semibold mb-6">Services</h2>
+            <h2 id="services-navigation" className="text-xs font-semibold mb-6">Services</h2>
             <ul className="space-y-2">
               {navServices.filter(service => service.name !== 'All Services').map(service => <li key={service.href}>
                   <Link to={service.href} className="text-xs text-gray-300 hover:text-white leading-tight" aria-label={`Explore our ${service.name} services`}>
@@ -43,7 +43,7 @@ const Footer = () => {
           </nav>
           
           <nav aria-labelledby="company-navigation">
-            <h2 id="company-navigation" className="text-sm font-semibold mb-6">Company</h2>
+            <h2 id="company-navigation" className="text-xs font-semibold mb-6">Company</h2>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="Learn about DataOps Group">About Us</Link></li>
               <li><Link to="/insights" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="Read our latest insights and articles">Blog</Link></li>
@@ -52,7 +52,7 @@ const Footer = () => {
           </nav>
           
           <nav aria-labelledby="resources-navigation">
-            <h2 id="resources-navigation" className="text-sm font-semibold mb-6">Resources</h2>
+            <h2 id="resources-navigation" className="text-xs font-semibold mb-6">Resources</h2>
             <ul className="space-y-2">
               <li><Link to="/case-studies" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="View our client success stories">Case Studies</Link></li>
               <li><Link to="/faqs" className="text-xs text-gray-300 hover:text-white leading-tight" aria-label="View frequently asked questions">FAQs</Link></li>
