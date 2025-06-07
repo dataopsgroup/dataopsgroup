@@ -76,7 +76,7 @@ const AboutPage = () => {
                     </p>
                     
                     <p>
-                      As a certified HubSpot Solutions Partner, Geoff has led implementations that have generated over $50M in additional revenue for clients. His systematic methodology ensures that every system he designs directly contributes to bottom-line results while meeting the operational standards that private equity firms expect.
+                      As a certified HubSpot Solutions Partner, Geoff has led implementations that have delivered measurable business value for clients. His systematic methodology ensures that every system he designs directly contributes to bottom-line results while meeting the operational standards that private equity firms expect.
                     </p>
 
                     <div className="bg-dataops-50 border border-dataops-100 rounded-lg p-6 my-8">
@@ -112,12 +112,8 @@ const AboutPage = () => {
                       <div className="text-sm text-gray-600">Years of Experience</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-dataops-600">200+</div>
+                      <div className="text-2xl font-bold text-dataops-600">30+</div>
                       <div className="text-sm text-gray-600">Successful Implementations</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-dataops-600">$50M+</div>
-                      <div className="text-sm text-gray-600">Revenue Generated for Clients</div>
                     </div>
                   </div>
                 </div>
