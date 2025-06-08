@@ -106,13 +106,6 @@ const PlatformComparisonTable = () => {
         <div className="grid md:grid-cols-4 gap-6 mb-12">
           {platforms.map((platform, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 text-center">
-              <div className="mb-2">
-                <img 
-                  src={platform.logo} 
-                  alt={`${platform.name} logo`}
-                  className="w-8 h-8 mx-auto"
-                />
-              </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{platform.name}</h3>
               <div className="text-sm text-gray-600 mb-3">{platform.pricing}</div>
               <div className="mb-3">
