@@ -9,7 +9,6 @@ const BookLandingPage = lazy(() => import('../pages/BookLandingPage'));
 const HubSpotAssessment = lazy(() => import('../pages/HubSpotAssessment'));
 const HubSpotAssessmentResultsPage = lazy(() => import('../pages/HubSpotAssessmentResultsPage'));
 const CaseStudies = lazy(() => import('../pages/CaseStudies'));
-const HubSpotExpertGuidePage = lazy(() => import('../pages/HubSpotExpertGuidePage'));
 const PEValueCreationPage = lazy(() => import('../pages/PEValueCreationPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
@@ -54,12 +53,6 @@ export const mainRoutes = [
   {
     path: "/case-studies",
     element: <CaseStudies />,
-    errorElement: <NotFound />,
-  },
-  // Shortened guide URL
-  {
-    path: "/guides/hubspot-expert",
-    element: <HubSpotExpertGuidePage />,
     errorElement: <NotFound />,
   },
   {

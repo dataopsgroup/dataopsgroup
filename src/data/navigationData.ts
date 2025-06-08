@@ -1,3 +1,4 @@
+
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -34,6 +35,10 @@ export const guidesItems: SubNavItem[] = [
   { 
     name: 'How to Hire a HubSpot Expert in 2025', 
     href: '/guides/hubspot-expert' 
+  },
+  { 
+    name: 'HubSpot for Private Equity', 
+    href: '/guides/hubspot-private-equity' 
   }
 ];
 
@@ -60,6 +65,10 @@ export const insightsItems: SubNavItem[] = [
   { 
     name: 'How to Hire a HubSpot Expert in 2025', 
     href: '/guides/hubspot-expert' 
+  },
+  { 
+    name: 'HubSpot for Private Equity', 
+    href: '/guides/hubspot-private-equity' 
   },
   { 
     name: 'ROI Assessment Tools',
