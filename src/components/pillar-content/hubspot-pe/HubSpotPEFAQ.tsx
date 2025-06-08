@@ -22,7 +22,7 @@ const HubSpotPEFAQ = () => {
     answer: "Yes, we include comprehensive training as part of our implementation. This covers executives, operations teams, and end users across all portfolio companies. We also provide ongoing support and additional training as your portfolio grows."
   }, {
     question: "How do you ensure consistent reporting across portfolio companies?",
-    answer: "We deploy standardized templates, KPI definitions, and reporting structures across all companies. This ensures investors receive consistent, comparable data regardless of which portfolio company generates the report."
+    answer: "We deploy standardized templates, KPI definitions, and reporting across all of your portfolio companies. These are then customized according to your needs and complemented by specific reports you require. This ensures investors receive consistent, comparable data regardless of which portfolio company generates the report."
   }, {
     question: "What if we acquire new companies after implementation?",
     answer: "Our template-based approach allows rapid onboarding of new acquisitions. New companies can be fully integrated into your standardized HubSpot environment within 30 days, maintaining consistency across your growing portfolio."
