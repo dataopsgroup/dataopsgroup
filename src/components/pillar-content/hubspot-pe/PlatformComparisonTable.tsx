@@ -6,28 +6,28 @@ const PlatformComparisonTable = () => {
   const platforms = [
     {
       name: "HubSpot",
-      logo: "🎯",
+      logo: "/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
       pricing: "$45-180/user/month",
       peScore: 95,
       color: "dataops"
     },
     {
       name: "Salesforce",
-      logo: "☁️",
+      logo: "/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
       pricing: "$150-300/user/month",
       peScore: 75,
       color: "blue"
     },
     {
       name: "Microsoft Dynamics",
-      logo: "🔷",
+      logo: "/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
       pricing: "$95-210/user/month", 
       peScore: 65,
       color: "purple"
     },
     {
       name: "Pipedrive",
-      logo: "📊",
+      logo: "/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
       pricing: "$15-99/user/month",
       peScore: 45,
       color: "green"
@@ -111,7 +111,13 @@ const PlatformComparisonTable = () => {
         <div className="grid md:grid-cols-4 gap-6 mb-12">
           {platforms.map((platform, index) => (
             <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 text-center">
-              <div className="text-3xl mb-2">{platform.logo}</div>
+              <div className="mb-2">
+                <img 
+                  src={platform.logo} 
+                  alt={`${platform.name} logo`}
+                  className="w-8 h-8 mx-auto"
+                />
+              </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{platform.name}</h3>
               <div className="text-sm text-gray-600 mb-3">{platform.pricing}</div>
               <div className="mb-3">
@@ -138,10 +144,30 @@ const PlatformComparisonTable = () => {
                 <tr className="bg-dataops-900 text-white">
                   <th className="text-left p-4 font-semibold">Requirement</th>
                   <th className="text-left p-4 font-semibold">Weight</th>
-                  <th className="text-left p-4 font-semibold">🎯 HubSpot</th>
-                  <th className="text-left p-4 font-semibold">☁️ Salesforce</th>
-                  <th className="text-left p-4 font-semibold">🔷 Dynamics</th>
-                  <th className="text-left p-4 font-semibold">📊 Pipedrive</th>
+                  <th className="text-left p-4 font-semibold">
+                    <div className="flex items-center space-x-2">
+                      <img src="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" alt="HubSpot" className="w-5 h-5" />
+                      <span>HubSpot</span>
+                    </div>
+                  </th>
+                  <th className="text-left p-4 font-semibold">
+                    <div className="flex items-center space-x-2">
+                      <img src="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" alt="Salesforce" className="w-5 h-5" />
+                      <span>Salesforce</span>
+                    </div>
+                  </th>
+                  <th className="text-left p-4 font-semibold">
+                    <div className="flex items-center space-x-2">
+                      <img src="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" alt="Dynamics" className="w-5 h-5" />
+                      <span>Dynamics</span>
+                    </div>
+                  </th>
+                  <th className="text-left p-4 font-semibold">
+                    <div className="flex items-center space-x-2">
+                      <img src="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" alt="Pipedrive" className="w-5 h-5" />
+                      <span>Pipedrive</span>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
