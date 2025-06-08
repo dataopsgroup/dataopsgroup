@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, TrendingUp, Shield, Users } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 const HubSpotPEHero = () => {
   return (
@@ -23,9 +23,6 @@ const HubSpotPEHero = () => {
             {/* Key Benefits */}
             <div className="grid md:grid-cols-3 gap-6 my-8">
               <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0 w-10 h-10 bg-dataops-100 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="h-5 w-5 text-dataops-600" />
-                </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">19% Higher Valuations</h3>
                   <p className="text-sm text-gray-600">Data-driven operations</p>
@@ -33,9 +30,6 @@ const HubSpotPEHero = () => {
               </div>
               
               <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0 w-10 h-10 bg-dataops-100 rounded-lg flex items-center justify-center">
-                  <Shield className="h-5 w-5 text-dataops-600" />
-                </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">100-Day Implementation</h3>
                   <p className="text-sm text-gray-600">Proven methodology</p>
@@ -43,9 +37,6 @@ const HubSpotPEHero = () => {
               </div>
               
               <div className="flex items-center space-x-3">
-                <div className="flex-shrink-0 w-10 h-10 bg-dataops-100 rounded-lg flex items-center justify-center">
-                  <Users className="h-5 w-5 text-dataops-600" />
-                </div>
                 <div>
                   <h3 className="font-semibold text-gray-900">$18-22 ROI</h3>
                   <p className="text-sm text-gray-600">Per dollar invested</p>
