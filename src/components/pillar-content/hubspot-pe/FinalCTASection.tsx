@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { ArrowRight, CheckCircle, Clock, TrendingUp } from 'lucide-react';
 const FinalCTASection = () => {
@@ -62,7 +60,7 @@ const FinalCTASection = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3 p-4 bg-green-50 rounded-lg">
                 <CheckCircle className="h-5 w-5 text-green-600" />
-                <span className="text-sm">5-minute assessment</span>
+                <span className="text-sm">Hands-on assessment</span>
               </div>
               
               <div className="flex items-center space-x-3 p-4 bg-blue-50 rounded-lg">
@@ -96,4 +94,3 @@ const FinalCTASection = () => {
     </section>;
 };
 export default FinalCTASection;
-
