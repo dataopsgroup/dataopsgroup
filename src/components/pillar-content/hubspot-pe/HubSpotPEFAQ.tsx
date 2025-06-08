@@ -25,7 +25,7 @@ const HubSpotPEFAQ = () => {
     answer: "We deploy standardized templates, KPI definitions, and reporting across all of your portfolio companies. These are then customized according to your needs and complemented by specific reports you require. This ensures investors receive consistent, comparable data regardless of which portfolio company generates the report."
   }, {
     question: "What if we acquire new companies after implementation?",
-    answer: "Our template-based approach allows rapid onboarding of new acquisitions. New companies can be fully integrated into your standardized HubSpot environment within 30 days, maintaining consistency across your growing portfolio."
+    answer: "Our template-based approach allows rapid onboarding of new acquisitions. New companies can be fully integrated into your standardized HubSpot environment within 45-60 days, depending on complexity, maintaining consistency across your growing portfolio."
   }];
   return <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto max-w-4xl">
