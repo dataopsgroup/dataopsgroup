@@ -5,10 +5,6 @@ const FinalCTASection = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Transform Your Portfolio<br />Operations in 100 Days</h2>
-          <p className="text-lg opacity-90 max-w-3xl mx-auto">
-            Join 50+ private equity firms who have standardized their portfolio operations 
-            on HubSpot and achieved measurable value creation results.
-          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
