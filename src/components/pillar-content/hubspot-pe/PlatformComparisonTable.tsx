@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check, X, AlertTriangle } from 'lucide-react';
 
@@ -6,28 +5,24 @@ const PlatformComparisonTable = () => {
   const platforms = [
     {
       name: "HubSpot",
-      logo: "/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
       pricing: "$45-180/user/month",
       peScore: 95,
       color: "dataops"
     },
     {
       name: "Salesforce",
-      logo: "/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
       pricing: "$150-300/user/month",
       peScore: 75,
       color: "blue"
     },
     {
       name: "Microsoft Dynamics",
-      logo: "/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
       pricing: "$95-210/user/month", 
       peScore: 65,
       color: "purple"
     },
     {
       name: "Pipedrive",
-      logo: "/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
       pricing: "$15-99/user/month",
       peScore: 45,
       color: "green"
@@ -144,30 +139,10 @@ const PlatformComparisonTable = () => {
                 <tr className="bg-dataops-900 text-white">
                   <th className="text-left p-4 font-semibold">Requirement</th>
                   <th className="text-left p-4 font-semibold">Weight</th>
-                  <th className="text-left p-4 font-semibold">
-                    <div className="flex items-center space-x-2">
-                      <img src="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" alt="HubSpot" className="w-5 h-5" />
-                      <span>HubSpot</span>
-                    </div>
-                  </th>
-                  <th className="text-left p-4 font-semibold">
-                    <div className="flex items-center space-x-2">
-                      <img src="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" alt="Salesforce" className="w-5 h-5" />
-                      <span>Salesforce</span>
-                    </div>
-                  </th>
-                  <th className="text-left p-4 font-semibold">
-                    <div className="flex items-center space-x-2">
-                      <img src="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" alt="Dynamics" className="w-5 h-5" />
-                      <span>Dynamics</span>
-                    </div>
-                  </th>
-                  <th className="text-left p-4 font-semibold">
-                    <div className="flex items-center space-x-2">
-                      <img src="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" alt="Pipedrive" className="w-5 h-5" />
-                      <span>Pipedrive</span>
-                    </div>
-                  </th>
+                  <th className="text-left p-4 font-semibold">HubSpot</th>
+                  <th className="text-left p-4 font-semibold">Salesforce</th>
+                  <th className="text-left p-4 font-semibold">Dynamics</th>
+                  <th className="text-left p-4 font-semibold">Pipedrive</th>
                 </tr>
               </thead>
               <tbody>
