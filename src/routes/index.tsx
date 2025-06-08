@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { mainRoutes } from './mainRoutes';
 import { serviceRoutes } from './serviceRoutes';
 import { insightRoutes } from './insightRoutes';
+import { contentRoutes } from './contentRoutes';
 import { utilityRoutes } from './utilityRoutes';
 import { redirectRoutes } from './redirectRoutes';
 import { blogRedirectRoutes } from './blogRedirectRoutes';
@@ -17,6 +18,7 @@ const routes = [
     ...route,
     errorElement: <RouteErrorBoundary />
   })),
+  ...contentRoutes,
   ...utilityRoutes,
   ...redirectRoutes,
   ...blogRedirectRoutes,

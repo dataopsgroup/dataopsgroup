@@ -51,7 +51,7 @@ const HubSpotPEPage = () => {
       <ArticleSchema
         title="HubSpot for Private Equity: Beyond Spreadsheets to Strategic Advantage"
         description="Complete guide to implementing HubSpot for private equity firms with ROI calculator, platform comparisons, and proven implementation strategies."
-        author="Geoff Tucker"
+        authorName="Geoff Tucker"
         publishDate="2025-01-08"
         url={`${baseUrl}/guides/hubspot-private-equity`}
         image={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`}
