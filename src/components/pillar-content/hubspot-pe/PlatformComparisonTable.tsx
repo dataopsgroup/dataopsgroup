@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Check, X, AlertTriangle } from 'lucide-react';
 
@@ -16,7 +17,7 @@ const PlatformComparisonTable = () => {
       color: "blue"
     },
     {
-      name: "Microsoft Dynamics",
+      name: "MSDynamics",
       pricing: "$95-210/user/month", 
       peScore: 65,
       color: "purple"
