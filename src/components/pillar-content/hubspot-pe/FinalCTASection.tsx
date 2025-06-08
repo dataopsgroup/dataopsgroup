@@ -1,15 +1,11 @@
-
 import React from 'react';
 import { ArrowRight, CheckCircle, Clock, TrendingUp } from 'lucide-react';
-
 const FinalCTASection = () => {
-  return (
-    <section className="py-16 px-4 bg-dataops-900 text-white">
+  return <section className="py-16 px-4 bg-dataops-900 text-white">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Transform Your Portfolio Operations in 100 Days
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Transform Your Portfolio
+Operations in 100 Days</h2>
           <p className="text-lg opacity-90 max-w-3xl mx-auto">
             Join 50+ private equity firms who have standardized their portfolio operations 
             on HubSpot and achieved measurable value creation results.
@@ -95,18 +91,12 @@ const FinalCTASection = () => {
             </div>
 
             <div className="mt-8 space-y-4">
-              <a 
-                href="/data-operations-assessment"
-                className="w-full bg-dataops-600 hover:bg-dataops-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center"
-              >
+              <a href="/data-operations-assessment" className="w-full bg-dataops-600 hover:bg-dataops-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center">
                 Take the PE Assessment
                 <ArrowRight className="h-5 w-5 ml-2" />
               </a>
               
-              <a 
-                href="/contact"
-                className="w-full border-2 border-dataops-600 text-dataops-600 hover:bg-dataops-600 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center"
-              >
+              <a href="/contact" className="w-full border-2 border-dataops-600 text-dataops-600 hover:bg-dataops-600 hover:text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center">
                 Schedule Strategy Call
               </a>
             </div>
@@ -140,8 +130,6 @@ const FinalCTASection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default FinalCTASection;
