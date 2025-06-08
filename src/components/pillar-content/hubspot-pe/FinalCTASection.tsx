@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight, CheckCircle, Clock, TrendingUp } from 'lucide-react';
 const FinalCTASection = () => {
@@ -44,17 +45,6 @@ const FinalCTASection = () => {
                   <p className="text-gray-300">Continued optimization and new company onboarding</p>
                 </div>
               </div>
-            </div>
-
-            {/* Testimonial */}
-            <div className="bg-dataops-800 rounded-lg p-6 mt-8">
-              <blockquote className="text-lg italic mb-4">
-                "The standardized HubSpot implementation delivered exactly what we needed: 
-                consistent reporting, faster deal flow, and operational transparency across our entire portfolio."
-              </blockquote>
-              <cite className="text-sm text-gray-400">
-                — Managing Partner, $2.5B Private Equity Fund
-              </cite>
             </div>
           </div>
 
