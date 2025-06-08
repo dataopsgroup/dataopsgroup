@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowRight, CheckCircle, Clock, TrendingUp } from 'lucide-react';
 const FinalCTASection = () => {
@@ -76,7 +77,7 @@ const FinalCTASection = () => {
 
             <div className="mt-8 space-y-4">
               <a href="/data-operations-assessment" className="w-full bg-dataops-600 hover:bg-dataops-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center">
-                Take the PE Assessment
+                Take the Readiness Assessment
                 <ArrowRight className="h-5 w-5 ml-2" />
               </a>
               
