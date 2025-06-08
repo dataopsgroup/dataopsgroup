@@ -50,10 +50,10 @@ const WhyHubSpotFeatures = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow flex flex-col h-full">
               <h3 className="text-xl font-semibold text-dataops-900 mb-4">{feature.title}</h3>
-              <p className="text-gray-700 mb-4">{feature.description}</p>
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-500 text-white text-sm font-medium">
+              <p className="text-gray-700 mb-6 flex-grow">{feature.description}</p>
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-500 text-white text-sm font-medium w-fit">
                 {feature.benefit}
               </div>
             </div>
