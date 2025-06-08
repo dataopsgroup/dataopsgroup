@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { ArrowRight, CheckCircle, Clock, TrendingUp } from 'lucide-react';
 const FinalCTASection = () => {
@@ -91,30 +92,8 @@ const FinalCTASection = () => {
             </p>
           </div>
         </div>
-
-        {/* Bottom Stats */}
-        <div className="grid md:grid-cols-4 gap-6 mt-16 pt-12 border-t border-dataops-800">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-green-400 mb-2">50+</div>
-            <div className="text-sm text-gray-400">PE Firms Using HubSpot</div>
-          </div>
-          
-          <div className="text-center">
-            <div className="text-3xl font-bold text-green-400 mb-2">$50M+</div>
-            <div className="text-sm text-gray-400">Additional Value Created</div>
-          </div>
-          
-          <div className="text-center">
-            <div className="text-3xl font-bold text-green-400 mb-2">100</div>
-            <div className="text-sm text-gray-400">Day Implementation</div>
-          </div>
-          
-          <div className="text-center">
-            <div className="text-3xl font-bold text-green-400 mb-2">22x</div>
-            <div className="text-sm text-gray-400">Average ROI Multiple</div>
-          </div>
-        </div>
       </div>
     </section>;
 };
 export default FinalCTASection;
+
