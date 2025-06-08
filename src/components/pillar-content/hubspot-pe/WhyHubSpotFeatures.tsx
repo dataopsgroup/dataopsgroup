@@ -6,32 +6,32 @@ const WhyHubSpotFeatures = () => {
     {
       title: "Unified Data Foundation",
       description: "Consolidate fragmented portfolio data into a single source of truth. Eliminate Excel chaos and manual reporting across all portfolio companies.",
-      benefit: "73% faster EBITDA reporting"
+      benefit: "✓ 73% faster EBITDA reporting"
     },
     {
       title: "PE-Grade Analytics", 
       description: "Built-in dashboards that automatically track KPIs investors care about. Real-time visibility into revenue, pipeline, and operational metrics.",
-      benefit: "Native investor reporting"
+      benefit: "✓ Native investor reporting"
     },
     {
       title: "Rapid Standardization",
       description: "Deploy identical processes across all portfolio companies in weeks, not months. Template-driven approach ensures consistency.",
-      benefit: "100-day implementation"
+      benefit: "✓ 100-day implementation"
     },
     {
       title: "Enterprise Security",
       description: "Bank-grade security with SOC 2 compliance. Role-based access controls protect sensitive portfolio data across teams.",
-      benefit: "Investment-grade security"
+      benefit: "✓ Investment-grade security"
     },
     {
       title: "Scalable Operations",
       description: "Platform grows with portfolio expansion. Add new companies without rebuilding systems or retraining teams.",
-      benefit: "Unlimited scalability"
+      benefit: "✓ Unlimited scalability"
     },
     {
       title: "Predictable ROI",
       description: "Transparent pricing model with measurable returns. Typical clients see $18-22 return for every dollar invested in the first year.",
-      benefit: "$18-22 ROI guarantee"
+      benefit: "✓ $18-22 ROI guarantee"
     }
   ];
 
@@ -53,7 +53,7 @@ const WhyHubSpotFeatures = () => {
             <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
               <h3 className="text-xl font-semibold text-dataops-900 mb-4">{feature.title}</h3>
               <p className="text-gray-700 mb-4">{feature.description}</p>
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-saffron-100 text-saffron-800 text-sm font-medium">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-500 text-white text-sm font-medium">
                 {feature.benefit}
               </div>
             </div>
