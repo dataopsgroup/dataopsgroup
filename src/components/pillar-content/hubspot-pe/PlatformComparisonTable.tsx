@@ -1,86 +1,70 @@
-
 import React from 'react';
 import { Check, X, AlertTriangle } from 'lucide-react';
-
 const PlatformComparisonTable = () => {
-  const platforms = [
-    {
-      name: "HubSpot",
-      pricing: "$45-180/user/month",
-      peScore: 95,
-      color: "dataops"
-    },
-    {
-      name: "Salesforce",
-      pricing: "$150-300/user/month",
-      peScore: 75,
-      color: "blue"
-    },
-    {
-      name: "MSDynamics",
-      pricing: "$95-210/user/month", 
-      peScore: 65,
-      color: "purple"
-    },
-    {
-      name: "Pipedrive",
-      pricing: "$15-99/user/month",
-      peScore: 45,
-      color: "green"
-    }
-  ];
-
-  const criteria = [
-    {
-      category: "Multi-Entity Support",
-      hubspot: "native",
-      salesforce: "partial",
-      dynamics: "partial", 
-      pipedrive: "none",
-      weight: "Critical"
-    },
-    {
-      category: "PE Reporting Templates",
-      hubspot: "native",
-      salesforce: "custom",
-      dynamics: "custom",
-      pipedrive: "none",
-      weight: "Critical"
-    },
-    {
-      category: "Implementation Speed",
-      hubspot: "100 days",
-      salesforce: "6-12 months",
-      dynamics: "9-18 months",
-      pipedrive: "30-60 days",
-      weight: "High"
-    },
-    {
-      category: "User Adoption Rate",
-      hubspot: "85%+",
-      salesforce: "60-70%",
-      dynamics: "55-65%",
-      pipedrive: "75-80%",
-      weight: "High"
-    },
-    {
-      category: "Integration Ecosystem",
-      hubspot: "1000+ native",
-      salesforce: "5000+ apps",
-      dynamics: "800+ apps",
-      pipedrive: "300+ apps",
-      weight: "Medium"
-    },
-    {
-      category: "Total Cost of Ownership",
-      hubspot: "$180K/year",
-      salesforce: "$450K/year",
-      dynamics: "$380K/year",
-      pipedrive: "$120K/year",
-      weight: "High"
-    }
-  ];
-
+  const platforms = [{
+    name: "HubSpot",
+    pricing: "$45-180/user/month",
+    peScore: 95,
+    color: "dataops"
+  }, {
+    name: "Salesforce",
+    pricing: "$150-300/user/month",
+    peScore: 75,
+    color: "blue"
+  }, {
+    name: "MSDynamics",
+    pricing: "$95-210/user/month",
+    peScore: 65,
+    color: "purple"
+  }, {
+    name: "Pipedrive",
+    pricing: "$15-99/user/month",
+    peScore: 45,
+    color: "green"
+  }];
+  const criteria = [{
+    category: "Multi-Entity Support",
+    hubspot: "native",
+    salesforce: "partial",
+    dynamics: "partial",
+    pipedrive: "none",
+    weight: "Critical"
+  }, {
+    category: "PE Reporting Templates",
+    hubspot: "native",
+    salesforce: "custom",
+    dynamics: "custom",
+    pipedrive: "none",
+    weight: "Critical"
+  }, {
+    category: "Implementation Speed",
+    hubspot: "100 days",
+    salesforce: "6-12 months",
+    dynamics: "9-18 months",
+    pipedrive: "30-60 days",
+    weight: "High"
+  }, {
+    category: "User Adoption Rate",
+    hubspot: "85%+",
+    salesforce: "60-70%",
+    dynamics: "55-65%",
+    pipedrive: "75-80%",
+    weight: "High"
+  }, {
+    category: "Integration Ecosystem",
+    hubspot: "1000+ native",
+    salesforce: "5000+ apps",
+    dynamics: "800+ apps",
+    pipedrive: "300+ apps",
+    weight: "Medium"
+  }, {
+    category: "Total Cost of Ownership",
+    hubspot: "$180K/year",
+    salesforce: "$450K/year",
+    dynamics: "$380K/year",
+    pipedrive: "$120K/year",
+    weight: "High"
+  }];
   const getStatusIcon = (value: string, category: string) => {
     if (category === "Multi-Entity Support" || category === "PE Reporting Templates") {
       if (value === "native") return <Check className="h-5 w-5 text-green-600" />;
@@ -89,9 +73,7 @@ const PlatformComparisonTable = () => {
     }
     return null;
   };
-
-  return (
-    <section className="py-16 px-4 bg-gray-50">
+  return <section className="py-16 px-4 bg-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">
@@ -105,8 +87,7 @@ const PlatformComparisonTable = () => {
 
         {/* PE Scores Overview */}
         <div className="grid md:grid-cols-4 gap-6 mb-12">
-          {platforms.map((platform, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+          {platforms.map((platform, index) => <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 text-center">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">{platform.name}</h3>
               <div className="text-sm text-gray-600 mb-3">{platform.pricing}</div>
               <div className="mb-3">
@@ -116,13 +97,11 @@ const PlatformComparisonTable = () => {
                 <div className="text-xs text-gray-500">PE Readiness Score</div>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className={`h-2 rounded-full ${platform.name === 'HubSpot' ? 'bg-dataops-600' : 'bg-gray-400'}`}
-                  style={{ width: `${platform.peScore}%` }}
-                ></div>
+                <div className={`h-2 rounded-full ${platform.name === 'HubSpot' ? 'bg-dataops-600' : 'bg-gray-400'}`} style={{
+              width: `${platform.peScore}%`
+            }}></div>
               </div>
-            </div>
-          ))}
+            </div>)}
         </div>
 
         {/* Detailed Comparison Table */}
@@ -140,15 +119,10 @@ const PlatformComparisonTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {criteria.map((row, index) => (
-                  <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                {criteria.map((row, index) => <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
                     <td className="p-4 font-medium text-gray-900">{row.category}</td>
                     <td className="p-4">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        row.weight === 'Critical' ? 'bg-red-100 text-red-800' :
-                        row.weight === 'High' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-gray-100 text-gray-800'
-                      }`}>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${row.weight === 'Critical' ? 'bg-red-100 text-red-800' : row.weight === 'High' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}`}>
                         {row.weight}
                       </span>
                     </td>
@@ -176,8 +150,7 @@ const PlatformComparisonTable = () => {
                         <span>{row.pipedrive}</span>
                       </div>
                     </td>
-                  </tr>
-                ))}
+                  </tr>)}
               </tbody>
             </table>
           </div>
@@ -185,9 +158,7 @@ const PlatformComparisonTable = () => {
 
         {/* Winner Callout */}
         <div className="mt-12 bg-dataops-50 border border-dataops-100 rounded-lg p-8 text-center">
-          <h3 className="text-2xl font-bold text-dataops-900 mb-4">
-            🏆 Why HubSpot Leads for PE Operations
-          </h3>
+          <h3 className="text-2xl font-bold text-dataops-900 mb-4">Why HubSpot Leads for PE Operations</h3>
           <div className="grid md:grid-cols-3 gap-6 text-left">
             <div>
               <h4 className="font-semibold text-dataops-800 mb-2">Native Multi-Entity</h4>
@@ -210,8 +181,6 @@ const PlatformComparisonTable = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PlatformComparisonTable;
