@@ -2,7 +2,7 @@
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { calculateOptimalSizes, reportLCPMetric } from '@/utils/image-utils';
-import { useAutoOptimizedImage } from '@/hooks/useAutoOptimizedImage';
+import { useEnhancedImageOptimization } from '@/hooks/useEnhancedImageOptimization';
 import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -53,19 +53,22 @@ const OptimizedImage = ({
   blur,
   componentType = 'full-width',
   autoOptimize = true,
-  maxSizeKB = 100,
+  maxSizeKB,
   ...props
 }: OptimizedImageProps) => {
-  // Use automatic optimization for large images
+  // Enhanced optimization with context-aware settings
   const {
     optimizedSrc,
     isOptimizing,
-    compressionRatio
-  } = useAutoOptimizedImage({
-    src,
-    maxSizeKB,
-    quality: quality / 100, // Convert percentage to decimal
-    maxWidth: componentType === 'hero' ? 1920 : componentType === 'thumbnail' ? 400 : 1280,
+    compressionRatio,
+    error,
+    needsOptimization
+  } = useEnhancedImageOptimization(src, {
+    maxSizeKB: maxSizeKB || (componentType === 'hero' ? 500 : componentType === 'thumbnail' ? 100 : 300),
+    quality: quality / 100,
+    context: componentType === 'hero' ? 'hero' : 
+             componentType === 'thumbnail' ? 'thumbnail' : 
+             componentType === 'card' ? 'blog-cover' : 'content',
     format: 'webp'
   });
 
@@ -129,9 +132,30 @@ const OptimizedImage = ({
         {...props}
       />
       
+      {/* Loading indicator */}
+      {isOptimizing && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100/50">
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+        </div>
+      )}
+      
+      {/* Error state */}
+      {error && (
+        <div className="absolute top-2 right-2 bg-red-100 text-red-700 text-xs px-2 py-1 rounded">
+          Optimization failed
+        </div>
+      )}
+      
+      {/* Size warning for development */}
+      {needsOptimization && compressionRatio < 10 && process.env.NODE_ENV === 'development' && (
+        <div className="absolute top-2 left-2 bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">
+          Large image: {src.split('/').pop()?.substring(0, 20)}...
+        </div>
+      )}
+      
       {/* Show optimization indicator for significant compression */}
       {compressionRatio > 30 && process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
+        <div className="absolute bottom-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
           -{compressionRatio.toFixed(0)}%
         </div>
       )}
