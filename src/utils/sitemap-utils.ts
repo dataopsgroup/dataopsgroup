@@ -1,4 +1,3 @@
-
 import { blogPosts } from '@/data/blog';
 
 // Current date for lastmod
@@ -32,7 +31,7 @@ export const serviceRoutes = [
   { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: TODAY }
 ];
 
-// Define FAQ category routes
+// Define FAQ category routes - updated to match canonical URLs
 export const faqRoutes = [
   { url: "/faqs/hubspot-services", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
   { url: "/faqs/hubspot-experts", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
