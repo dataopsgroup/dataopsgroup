@@ -56,8 +56,11 @@ const MetaHead = ({
   // Ensure description is under 160 characters
   const truncatedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
   
-  // Create full canonical URL
+  // Create full canonical URL - this is the source of truth
   const fullCanonicalUrl = `${baseUrl}${canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '')}`;
+  
+  // OpenGraph URL MUST match canonical URL exactly
+  const ogUrl = fullCanonicalUrl;
   
   // Ensure image URLs are absolute
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
@@ -115,7 +118,7 @@ const MetaHead = ({
       <meta property="og:image" content={fullOgImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:url" content={fullCanonicalUrl} />
+      <meta property="og:url" content={ogUrl} />
       <meta property="og:site_name" content={siteName} />
       
       {/* Additional Open Graph tags for articles */}
