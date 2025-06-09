@@ -16,6 +16,7 @@ interface CategoryPageLayoutProps {
   description: string;
   keywords: string;
   canonicalPath: string;
+  robots?: string;
 }
 
 const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
@@ -23,7 +24,8 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
   title,
   description,
   keywords,
-  canonicalPath
+  canonicalPath,
+  robots = "index, follow"
 }) => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
@@ -44,10 +46,8 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
-        {/* Point canonical to main FAQ page to prevent duplication */}
-        <link rel="canonical" href={`${baseUrl}/faqs`} />
-        {/* Add noindex to prevent duplicate content issues */}
-        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`${baseUrl}${canonicalPath}`} />
+        <meta name="robots" content={robots} />
         
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
