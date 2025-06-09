@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -42,8 +41,7 @@ const Hero = () => {
               autoOptimize={true}
               maxSizeKB={300}
               width={1920} 
-              height={1080} 
-              aspectRatio={16/9}
+              height={1080}
             />
           </div>
         )}

@@ -107,6 +107,9 @@ const OptimizedImage = ({
 
   const finalSrc = autoOptimize ? optimizedSrc : src;
 
+  // For hero images, don't apply size constraints that would shrink the image
+  const isHeroImage = componentType === 'hero';
+  
   const imageElement = (
     <div className="relative">
       <img
@@ -115,13 +118,16 @@ const OptimizedImage = ({
         width={width}
         height={height}
         className={cn(
-          className || '',
-          'max-w-full transition-opacity duration-300',
-          isOptimizing && 'opacity-80'
+          // Only apply max-w-full for non-hero images
+          !isHeroImage && 'max-w-full',
+          'transition-opacity duration-300',
+          isOptimizing && 'opacity-80',
+          className
         )}
         style={{ 
           objectFit,
-          aspectRatio: aspectRatio ? `${aspectRatio}` : undefined
+          // Don't apply aspectRatio for hero images to preserve original layout
+          aspectRatio: !isHeroImage && aspectRatio ? `${aspectRatio}` : undefined
         }}
         loading={imageLoading}
         decoding={imageDecoding}
@@ -162,7 +168,8 @@ const OptimizedImage = ({
     </div>
   );
 
-  if (aspectRatio) {
+  // Don't wrap hero images in AspectRatio to preserve original dimensions
+  if (aspectRatio && !isHeroImage) {
     return (
       <AspectRatio 
         ratio={aspectRatio} 
