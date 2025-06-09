@@ -15,13 +15,7 @@ interface LargeImageMapping {
 
 // Map of the large images that need optimization
 export const LARGE_IMAGE_REPLACEMENTS: Record<string, LargeImageMapping> = {
-  // Hero background image - use automatic optimization
-  '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png': {
-    original: '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png',
-    context: 'hero',
-    targetSizeKB: 300,
-    enableAutoOptimization: true
-  },
+  // Hero background image removed - handled by component optimization
   // Logo image - use automatic optimization with logo context
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png': {
     original: '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',

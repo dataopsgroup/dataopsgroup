@@ -26,9 +26,9 @@ interface ContextDimensions {
   quality: number;
 }
 
-// Context-specific size limits (in KB) - increased for hero
+// Context-specific size limits (in KB) - fallbacks only
 const CONTEXT_LIMITS: Record<ImageContext, number> = {
-  hero: 500, // Increased from 500 to allow for higher quality
+  hero: 500,
   'blog-cover': 200,
   thumbnail: 100,
   logo: 50,
@@ -36,9 +36,9 @@ const CONTEXT_LIMITS: Record<ImageContext, number> = {
   background: 400
 };
 
-// Context-specific dimensions - enhanced quality for hero
+// Context-specific dimensions - fallbacks only
 const CONTEXT_DIMENSIONS: Record<ImageContext, ContextDimensions> = {
-  hero: { maxWidth: 1920, quality: 0.90 }, // Increased quality from 0.85 to 0.90
+  hero: { maxWidth: 1920, quality: 0.90 },
   'blog-cover': { maxWidth: 800, quality: 0.85 },
   thumbnail: { maxWidth: 400, quality: 0.8 },
   logo: { maxWidth: 300, quality: 0.9 },
@@ -66,13 +66,13 @@ export const useEnhancedImageOptimization = (
         setIsOptimizing(true);
         setError(null);
 
-        // First check if this is a known large image with pre-defined optimizations
+        // Check if this is a known large image that should use pre-optimized versions
         if (isLargeImage(src)) {
           const preOptimizedSrc = getOptimizedImageSrc(src, options.context || 'content');
           if (preOptimizedSrc !== src) {
             setOptimizedSrc(preOptimizedSrc);
             setNeedsOptimization(true);
-            setCompressionRatio(30); // Assume good compression for pre-optimized images
+            setCompressionRatio(30);
             console.log(`Using pre-optimized version for known large image: ${src}`);
             return;
           }
@@ -80,18 +80,28 @@ export const useEnhancedImageOptimization = (
 
         const service = ImageOptimizationService.getInstance();
         
-        // Determine size limit based on context with proper fallback
-        const contextLimit = options.context ? CONTEXT_LIMITS[options.context] : options.maxSizeKB;
+        // PRIORITY: Component props take precedence over context defaults
         const contextDimensions = options.context ? CONTEXT_DIMENSIONS[options.context] : null;
+        const contextLimit = options.context ? CONTEXT_LIMITS[options.context] : 100;
+        
+        // Use component props first, then context fallbacks
+        const finalMaxSizeKB = options.maxSizeKB; // Always use component prop
+        const finalQuality = options.quality || contextDimensions?.quality || 0.85;
+        const finalMaxWidth = options.maxWidth || contextDimensions?.maxWidth || 1200;
+
+        console.log(`Hero optimization settings - Size: ${finalMaxSizeKB}KB, Quality: ${finalQuality}, Width: ${finalMaxWidth}px`);
 
         // Check if image needs optimization
-        const shouldOptimize = await service.shouldOptimize(src, contextLimit);
+        const shouldOptimize = await service.shouldOptimize(src, finalMaxSizeKB);
         setNeedsOptimization(shouldOptimize);
 
         if (shouldOptimize) {
+          // Add cache busting for development
+          const cacheKey = `${src}-${finalMaxSizeKB}-${finalQuality}-${finalMaxWidth}`;
+          
           const result = await service.optimizeImage(src, {
-            maxWidth: options.maxWidth || contextDimensions?.maxWidth || 1200,
-            quality: options.quality || contextDimensions?.quality || 0.85,
+            maxWidth: finalMaxWidth,
+            quality: finalQuality,
             format: options.format || 'webp'
           });
 
@@ -100,9 +110,13 @@ export const useEnhancedImageOptimization = (
           setOptimizedSize(result.optimizedSize);
           setCompressionRatio(result.compressionRatio);
 
-          // Log optimization results for monitoring
-          if (result.compressionRatio > 10) {
-            console.log(`Image optimized: ${src} reduced by ${result.compressionRatio.toFixed(1)}%`);
+          // Enhanced logging for hero images
+          if (options.context === 'hero') {
+            console.log(`HERO IMAGE OPTIMIZED: ${src}`);
+            console.log(`Original: ${(result.originalSize / 1024).toFixed(1)}KB`);
+            console.log(`Optimized: ${(result.optimizedSize / 1024).toFixed(1)}KB`);
+            console.log(`Compression: ${result.compressionRatio.toFixed(1)}%`);
+            console.log(`Quality used: ${finalQuality}`);
           }
         } else {
           // Image is already small enough
@@ -110,6 +124,7 @@ export const useEnhancedImageOptimization = (
           setOriginalSize(0);
           setOptimizedSize(0);
           setCompressionRatio(0);
+          console.log(`Image ${src} already optimized, size under ${finalMaxSizeKB}KB limit`);
         }
       } catch (err) {
         console.error('Image optimization failed:', err);
