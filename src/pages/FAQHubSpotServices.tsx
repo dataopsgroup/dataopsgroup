@@ -17,6 +17,7 @@ const FAQHubSpotServices = () => {
       description="Expert answers about HubSpot implementation services, portal optimization, data migration, and consulting. Learn about costs, timelines, and what to expect from professional HubSpot services."
       keywords="HubSpot services FAQ, HubSpot implementation cost, portal optimization questions, HubSpot consulting services, data migration FAQ, HubSpot setup questions, professional services pricing"
       canonicalPath="/faqs/hubspot-services"
+      robots="index, follow"
     />
   );
 };

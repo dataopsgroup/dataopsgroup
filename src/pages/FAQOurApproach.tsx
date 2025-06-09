@@ -17,6 +17,7 @@ const FAQOurApproach = () => {
       description="Learn about DataOps Group's proven methodology for HubSpot implementations. Statistical process control, data-driven decisions, and systematic optimization approaches explained."
       keywords="DataOps methodology FAQ, HubSpot implementation approach, statistical process control, data-driven methodology, systematic optimization, implementation process, consulting methodology"
       canonicalPath="/faqs/our-approach"
+      robots="index, follow"
     />
   );
 };

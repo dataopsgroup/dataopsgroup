@@ -17,6 +17,7 @@ const FAQHubSpotExperts = () => {
       description="Complete guide to hiring HubSpot experts and consultants. Learn about qualifications, costs, integration experience, and red flags to avoid when selecting HubSpot specialists."
       keywords="hire HubSpot expert FAQ, HubSpot consultant selection, expert qualifications, HubSpot specialist cost, consultant vs expert, integration experience, HubSpot certification requirements"
       canonicalPath="/faqs/hubspot-experts"
+      robots="index, follow"
     />
   );
 };
