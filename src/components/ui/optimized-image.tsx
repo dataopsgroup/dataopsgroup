@@ -2,6 +2,8 @@
 import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { calculateOptimalSizes, reportLCPMetric } from '@/utils/image-utils';
+import { useAutoOptimizedImage } from '@/hooks/useAutoOptimizedImage';
+import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -23,10 +25,12 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   threshold?: number;
   blur?: boolean;
   componentType?: 'hero' | 'card' | 'thumbnail' | 'full-width' | 'sidebar';
+  autoOptimize?: boolean;
+  maxSizeKB?: number;
 }
 
 /**
- * Optimized image component with comprehensive prop support and LCP optimization
+ * Enhanced optimized image component with automatic compression and format conversion
  */
 const OptimizedImage = ({
   src,
@@ -40,7 +44,7 @@ const OptimizedImage = ({
   loading,
   isLCP,
   placeholder,
-  quality,
+  quality = 85,
   enableModernFormats,
   sizes,
   responsiveBreakpoints,
@@ -48,8 +52,23 @@ const OptimizedImage = ({
   threshold,
   blur,
   componentType = 'full-width',
+  autoOptimize = true,
+  maxSizeKB = 100,
   ...props
 }: OptimizedImageProps) => {
+  // Use automatic optimization for large images
+  const {
+    optimizedSrc,
+    isOptimizing,
+    compressionRatio
+  } = useAutoOptimizedImage({
+    src,
+    maxSizeKB,
+    quality: quality / 100, // Convert percentage to decimal
+    maxWidth: componentType === 'hero' ? 1920 : componentType === 'thumbnail' ? 400 : 1280,
+    format: 'webp'
+  });
+
   // Determine loading strategy with enhanced LCP detection
   const isAboveFold = priority || isLCP || componentType === 'hero';
   const imageLoading = loading || (isAboveFold ? 'eager' : 'lazy');
@@ -83,25 +102,40 @@ const OptimizedImage = ({
     }
   };
 
+  const finalSrc = autoOptimize ? optimizedSrc : src;
+
   const imageElement = (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      className={`${className || ''} max-w-full`}
-      style={{ 
-        objectFit,
-        aspectRatio: aspectRatio ? `${aspectRatio}` : undefined
-      }}
-      loading={imageLoading}
-      decoding={imageDecoding}
-      fetchPriority={fetchPriority as any}
-      sizes={imageSizes}
-      onError={handleImageError}
-      onLoad={handleImageLoad}
-      {...props}
-    />
+    <div className="relative">
+      <img
+        src={finalSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        className={cn(
+          className || '',
+          'max-w-full transition-opacity duration-300',
+          isOptimizing && 'opacity-80'
+        )}
+        style={{ 
+          objectFit,
+          aspectRatio: aspectRatio ? `${aspectRatio}` : undefined
+        }}
+        loading={imageLoading}
+        decoding={imageDecoding}
+        fetchPriority={fetchPriority as any}
+        sizes={imageSizes}
+        onError={handleImageError}
+        onLoad={handleImageLoad}
+        {...props}
+      />
+      
+      {/* Show optimization indicator for significant compression */}
+      {compressionRatio > 30 && process.env.NODE_ENV === 'development' && (
+        <div className="absolute top-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
+          -{compressionRatio.toFixed(0)}%
+        </div>
+      )}
+    </div>
   );
 
   if (aspectRatio) {
