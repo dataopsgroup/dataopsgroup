@@ -4,7 +4,7 @@ import { BlogPost } from '@/types/blog';
 export const upscaleHomeImprovementGoodsManufacturer: BlogPost = {
   id: "upscale-home-improvement-goods-manufacturer",
   title: "Upscale Home Improvement Goods Manufacturer",
-  excerpt: "Creating Order that Boosted Business. HubSpot went from a problem to a positive addition.",
+  excerpt: "Learn how we transformed a clogged HubSpot system into a streamlined lead management powerhouse, creating order that boosted business across dealer networks.",
   date: "2023-10-25",
   author: "Geoff Tucker",
   category: "Case Study",

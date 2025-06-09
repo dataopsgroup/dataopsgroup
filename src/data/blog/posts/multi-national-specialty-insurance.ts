@@ -4,7 +4,7 @@ import { BlogPost } from '@/types/blog';
 export const multiNationalSpecialtyInsurance: BlogPost = {
   id: "multi-national-specialty-insurance",
   title: "Multi-National Line Specialty Insurance Provider",
-  excerpt: "Leaving the offline world behind to capture full value from their HubSpot portal.",
+  excerpt: "Discover how we modernized sales and marketing operations with HubSpot to amplify pipeline visibility across multiple product lines and geographical regions.",
   date: "2025-03-26",
   author: "Geoff Tucker",
   category: "Case Study",

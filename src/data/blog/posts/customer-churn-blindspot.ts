@@ -4,7 +4,7 @@ import { BlogPost } from '@/types/blog';
 export const customerChurnBlindspot: BlogPost = {
   id: "customer-churn-blindspot",
   title: "The Customer Churn Blindspot 83% of Companies Miss",
-  excerpt: "Churning is for better. You want the cream from on top. Quit missing how to collect it.",
+  excerpt: "Most companies only track logo churn, missing revenue impact of downgrades and scope reductions. Learn the five dimensions that reveal your true retention picture.",
   date: "2025-04-16",
   author: "Geoff Tucker",
   category: "Insights",

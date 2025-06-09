@@ -4,7 +4,7 @@ import { BlogPost } from '@/types/blog';
 export const marketingOperationsIsntIT: BlogPost = {
   id: "marketing-operations-isnt-it",
   title: "Marketing Operations Isn't IT: Defining Clear Boundaries",
-  excerpt: "Marketing Ops can get confused with roles in IT. Here's a quick explanation of who does what.",
+  excerpt: "Marketing Ops gets confused with IT roles. Learn the key differences in focus, metrics, tools, and skills to establish clear organizational boundaries and responsibilities.",
   date: "2025-02-04",
   author: "Geoff Tucker",
   category: "Insights",
