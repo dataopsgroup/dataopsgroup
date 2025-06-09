@@ -14,9 +14,9 @@ interface LargeImageMapping {
   targetSizeKB: number;
 }
 
-// Map of the 8 large images that need optimization
+// Map of the large images that need optimization
 export const LARGE_IMAGE_REPLACEMENTS: Record<string, LargeImageMapping> = {
-  // These are the specific large images from Ahrefs report
+  // Original large images from previous audit
   '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png': {
     original: '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png',
     optimizedVersions: {
@@ -36,8 +36,38 @@ export const LARGE_IMAGE_REPLACEMENTS: Record<string, LargeImageMapping> = {
     },
     context: 'hero',
     targetSizeKB: 150
+  },
+  // Newly identified large images that need optimization
+  '/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089.png': {
+    original: '/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089.png',
+    optimizedVersions: {
+      webp: '/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089.webp',
+      jpeg: '/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089.jpg',
+      thumbnail: '/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089-thumb.webp'
+    },
+    context: 'content',
+    targetSizeKB: 200
+  },
+  '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png': {
+    original: '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png',
+    optimizedVersions: {
+      webp: '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp',
+      jpeg: '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.jpg',
+      thumbnail: '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee-thumb.webp'
+    },
+    context: 'content',
+    targetSizeKB: 200
+  },
+  '/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png': {
+    original: '/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png',
+    optimizedVersions: {
+      webp: '/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.webp',
+      jpeg: '/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.jpg',
+      thumbnail: '/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba-thumb.webp'
+    },
+    context: 'content',
+    targetSizeKB: 200
   }
-  // Add more mappings as needed for the other 6 large images
 };
 
 /**

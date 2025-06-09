@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ImageOptimizationService } from '@/services/imageOptimizationService';
+import { getOptimizedImageSrc, isLargeImage } from '@/utils/large-image-replacements';
 
 interface EnhancedOptimizationOptions {
   maxSizeKB: number;
@@ -62,6 +63,16 @@ export const useEnhancedImageOptimization = (
       try {
         setIsOptimizing(true);
         setError(null);
+
+        // First check if this is a known large image with pre-defined optimizations
+        if (isLargeImage(src)) {
+          const preOptimizedSrc = getOptimizedImageSrc(src, options.context || 'content');
+          setOptimizedSrc(preOptimizedSrc);
+          setNeedsOptimization(true);
+          setCompressionRatio(30); // Assume good compression for pre-optimized images
+          console.log(`Using pre-optimized version for known large image: ${src}`);
+          return;
+        }
 
         const service = ImageOptimizationService.getInstance();
         
