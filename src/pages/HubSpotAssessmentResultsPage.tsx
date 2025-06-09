@@ -8,6 +8,35 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 const HubSpotAssessmentResultsPage = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
+  // Mock data for results page - in a real app this would come from state/URL params
+  const mockScores = {
+    'data-quality': 15,
+    'process-automation': 12,
+    'team-adoption': 18,
+    'performance-measurement': 10,
+    'integration-workflow': 14
+  };
+
+  const mockPriorities = [
+    {
+      index: 1,
+      section: 'performance-measurement',
+      name: 'Performance Measurement',
+      title: 'Implement Comprehensive Analytics',
+      text: 'Set up proper tracking and measurement systems to understand your data operations performance.'
+    }
+  ];
+
+  const mockRescuePlan = {
+    phase1: ['Set up basic data tracking', 'Audit current data quality'],
+    phase2: ['Implement automated processes', 'Train team on best practices'],
+    phase3: ['Optimize workflows', 'Monitor and improve continuously']
+  };
+
+  const handleEmailResults = () => {
+    console.log('Email results functionality would be implemented here');
+  };
+
   return (
     <SemanticLayout>
       <Helmet>
@@ -39,7 +68,14 @@ const HubSpotAssessmentResultsPage = () => {
         ]} 
       />
 
-      <QuizResults />
+      <QuizResults 
+        overallScore={69}
+        scores={mockScores}
+        sectionTitles={['Data Quality & Management', 'Process Automation', 'Team Adoption', 'Performance Measurement', 'Integration & Workflow']}
+        priorities={mockPriorities}
+        rescuePlan={mockRescuePlan}
+        onEmailResults={handleEmailResults}
+      />
     </SemanticLayout>
   );
 };

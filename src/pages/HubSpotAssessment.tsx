@@ -31,7 +31,7 @@ const HubSpotAssessment = () => {
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
       </Helmet>
 
-      <AssessmentSchema />
+      <AssessmentSchema url={`${baseUrl}/data-operations-assessment`} />
       <BreadcrumbSchema 
         items={[
           { name: "Home", url: "/" },
