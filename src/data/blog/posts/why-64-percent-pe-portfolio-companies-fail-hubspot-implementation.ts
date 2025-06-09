@@ -1,7 +1,7 @@
 
 import { BlogPost } from '@/types/blog';
 
-export const why64PercentPEPortfolioCompaniesFail: BlogPost = {
+export const why64PercentPEPortfolioCompaniesFailHubspotImplementation: BlogPost = {
   id: "why-64-percent-pe-portfolio-companies-fail-hubspot-implementation",
   title: "Why 64% of PE Portfolio Companies Fail at HubSpot Implementation",
   excerpt: "Private equity firms invest millions in portfolio companies, yet most HubSpot implementations fail to deliver ROI. Here's why and how to fix it.",
@@ -81,7 +81,7 @@ export const why64PercentPEPortfolioCompaniesFail: BlogPost = {
       <li>Development of integration roadmap</li>
     </ul>
     
-    <p>This phase often reveals critical issues that would derail later implementation phases if not addressed early. Our <a href="/data-operation-assessment">DataOps maturity assessment</a> helps identify these gaps quickly.</p>
+    <p>This phase often reveals critical issues that would derail later implementation phases if not addressed early. Our <a href="/data-operations-assessment">DataOps maturity assessment</a> helps identify these gaps quickly.</p>
     
     <h3>Phase 2: Foundation Building (Weeks 3-6)</h3>
     
