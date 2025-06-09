@@ -1,32 +1,28 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, BarChart3, Cog, Users, TrendingUp } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 const services = [
   {
-    icon: BarChart3,
     title: "Analytics & BI",
     description: "Transform raw data into actionable insights with custom dashboards and reporting systems.",
     href: "/services/analytics-bi",
     features: ["Custom Dashboards", "Performance Tracking", "ROI Analysis"]
   },
   {
-    icon: Cog,
     title: "DataOps Implementation",
     description: "End-to-end implementation of data operations processes and systems.",
     href: "/services/dataops-implementation", 
     features: ["System Integration", "Process Automation", "Quality Assurance"]
   },
   {
-    icon: Users,
     title: "Team Training",
     description: "Comprehensive training programs to ensure your team maximizes system adoption.",
     href: "/services/team-training",
     features: ["HubSpot Training", "Best Practices", "Ongoing Support"]
   },
   {
-    icon: TrendingUp,
     title: "Marketing Operations & RevOps",
     description: "Align your marketing, sales, and operations teams for maximum revenue growth.",
     href: "/services/marketing-operations-revops",
@@ -58,13 +54,9 @@ const ServicesOverview = () => {
         
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, index) => {
-            const IconComponent = service.icon;
             return (
               <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-dataops-100 p-3 rounded-lg">
-                    <IconComponent className="h-6 w-6 text-dataops-600" />
-                  </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
                     <p className="text-gray-700 mb-4">{service.description}</p>
