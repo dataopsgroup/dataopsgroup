@@ -30,9 +30,6 @@ const BlogPostLayout = ({ post, relatedPosts }: BlogPostLayoutProps) => {
             </div>
             
             <header>
-              <h1 className="blog-post-title text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                {post.title}
-              </h1>
               <BlogHeader 
                 title={post.title}
                 date={post.date}
