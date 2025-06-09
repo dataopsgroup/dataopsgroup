@@ -8,12 +8,14 @@ import { useRevOpsCalculatorState } from '@/hooks/useRevOpsCalculatorState';
 
 const RevOpsCalculator = () => {
   const {
-    inputData,
-    setInputData,
+    inputs,
     results,
     showResults,
     calculateROI,
-    resetCalculator
+    handleInputChange,
+    resetCalculator,
+    formatCurrency,
+    formatPercentage
   } = useRevOpsCalculatorState();
 
   return (
@@ -24,8 +26,10 @@ const RevOpsCalculator = () => {
         <div className="grid lg:grid-cols-2 gap-8">
           <div>
             <RevOpsInputForm 
-              inputData={inputData}
-              setInputData={setInputData}
+              inputs={inputs}
+              onInputChange={handleInputChange}
+              onCalculate={calculateROI}
+              onReset={resetCalculator}
             />
           </div>
           <div className="lg:pl-8">
@@ -39,7 +43,13 @@ const RevOpsCalculator = () => {
         </div>
       ) : (
         <>
-          <RevOpsResultsDisplay results={results} inputData={inputData} />
+          <RevOpsResultsDisplay 
+            results={results} 
+            inputs={inputs}
+            showResults={showResults}
+            formatCurrency={formatCurrency}
+            formatPercentage={formatPercentage}
+          />
           <div className="text-center mt-8">
             <button
               onClick={resetCalculator}

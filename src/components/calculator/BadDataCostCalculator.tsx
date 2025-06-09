@@ -9,13 +9,12 @@ import { useCalculatorState } from '@/hooks/useCalculatorState';
 
 const BadDataCostCalculator = () => {
   const {
-    companyData,
-    setCompanyData,
-    dataQuality,
-    setDataQuality,
+    inputs,
     results,
     showResults,
+    formatCurrency,
     calculateCosts,
+    handleInputChange,
     resetCalculator
   } = useCalculatorState();
 
@@ -27,12 +26,12 @@ const BadDataCostCalculator = () => {
         <div className="grid lg:grid-cols-2 gap-8">
           <div>
             <CompanyInputForm 
-              companyData={companyData}
-              setCompanyData={setCompanyData}
+              inputs={inputs}
+              onInputChange={handleInputChange}
             />
             <DataQualityInputs
-              dataQuality={dataQuality}
-              setDataQuality={setDataQuality}
+              inputs={inputs}
+              onInputChange={handleInputChange}
             />
           </div>
           <div className="lg:pl-8">
@@ -46,7 +45,12 @@ const BadDataCostCalculator = () => {
         </div>
       ) : (
         <>
-          <ResultsDisplay results={results} companyData={companyData} />
+          <ResultsDisplay 
+            showResults={showResults}
+            results={results}
+            inputs={inputs}
+            formatCurrency={formatCurrency}
+          />
           <div className="text-center mt-8">
             <button
               onClick={resetCalculator}
