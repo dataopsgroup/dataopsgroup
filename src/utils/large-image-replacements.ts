@@ -10,7 +10,7 @@ interface LargeImageMapping {
     jpeg: string;
     thumbnail: string;
   };
-  context: 'hero' | 'content' | 'background';
+  context: 'hero' | 'content' | 'background' | 'thumbnail';
   targetSizeKB: number;
 }
 
@@ -45,7 +45,7 @@ export const LARGE_IMAGE_REPLACEMENTS: Record<string, LargeImageMapping> = {
  */
 export const getOptimizedImageSrc = (
   originalSrc: string,
-  context: 'hero' | 'thumbnail' | 'content' = 'content'
+  context: 'hero' | 'thumbnail' | 'content' | 'background' = 'content'
 ): string => {
   const mapping = LARGE_IMAGE_REPLACEMENTS[originalSrc];
   
@@ -58,6 +58,8 @@ export const getOptimizedImageSrc = (
     case 'thumbnail':
       return mapping.optimizedVersions.thumbnail;
     case 'hero':
+      return mapping.optimizedVersions.webp;
+    case 'background':
       return mapping.optimizedVersions.webp;
     case 'content':
     default:
