@@ -11,12 +11,14 @@ interface BlogPostSEOProps {
 }
 
 const BlogPostSEO = ({ post, postId }: BlogPostSEOProps) => {
-  const canonicalPath = `/insights/${postId}`;
+  // Ensure we have a valid postId and construct proper canonical path
+  const cleanPostId = postId || post?.id || '';
+  const canonicalPath = `/insights/${cleanPostId}`;
   
   const breadcrumbs = [
     { name: 'Home', url: '/' },
     { name: 'Insights', url: '/insights' },
-    { name: post?.title || '', url: `/insights/${postId}` },
+    { name: post?.title || '', url: canonicalPath },
   ];
 
   // Use custom SEO metadata if available, otherwise fall back to defaults

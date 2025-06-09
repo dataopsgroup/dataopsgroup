@@ -10,12 +10,14 @@ interface CaseStudyDetailSEOProps {
 }
 
 const CaseStudyDetailSEO = ({ caseData, caseStudyId }: CaseStudyDetailSEOProps) => {
-  const canonicalPath = `/case-studies/${caseStudyId}`;
+  // Ensure we have a clean case study ID
+  const cleanCaseStudyId = caseStudyId || '';
+  const canonicalPath = `/case-studies/${cleanCaseStudyId}`;
   
   const breadcrumbs = [
     { name: 'Home', url: '/' },
     { name: 'Case Studies', url: '/case-studies' },
-    { name: caseData.title, url: `/case-studies/${caseStudyId}` },
+    { name: caseData.title, url: canonicalPath },
   ];
 
   const metaDescription = `See how DataOps Group transformed ${caseData.title} in ${caseData.industry}. ${caseData.metrics.primary.value} ${caseData.metrics.primary.label} achieved through strategic HubSpot implementation.`;
