@@ -1,29 +1,29 @@
 
 // Global type declarations for browser APIs and third-party integrations
 
-// Performance API extensions
-interface LayoutShiftAttribution {
-  node: Node;
-  previousRect: DOMRectReadOnly;
-  currentRect: DOMRectReadOnly;
-}
-
-interface LayoutShiftEntry extends PerformanceEntry {
-  value: number;
-  hadRecentInput: boolean;
-  sources?: LayoutShiftAttribution[];
-}
-
-interface FirstInputEntry extends PerformanceEntry {
-  processingStart: number;
-  processingEnd: number;
-  startTime: number;
-  duration: number;
-  cancelable: boolean;
-  target: Element;
-}
-
 declare global {
+  // Performance API extensions
+  interface LayoutShiftAttribution {
+    node: Node;
+    previousRect: DOMRectReadOnly;
+    currentRect: DOMRectReadOnly;
+  }
+
+  interface LayoutShiftEntry extends PerformanceEntry {
+    value: number;
+    hadRecentInput: boolean;
+    sources?: LayoutShiftAttribution[];
+  }
+
+  interface FirstInputEntry extends PerformanceEntry {
+    processingStart: number;
+    processingEnd: number;
+    startTime: number;
+    duration: number;
+    cancelable: boolean;
+    target: Element;
+  }
+
   interface Window {
     // Botpress chatbot integration
     botpress?: {
