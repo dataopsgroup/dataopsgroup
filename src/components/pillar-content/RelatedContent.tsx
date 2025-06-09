@@ -6,21 +6,60 @@ import { ArrowRight } from 'lucide-react';
 const RelatedContent: React.FC = () => {
   const relatedArticles = [
     {
-      title: "What Does a HubSpot Consultant Cost?",
-      description: "Detailed breakdown of HubSpot consultant pricing and ROI calculations",
-      link: "/insights/what-does-a-hubspot-consultant-cost",
-      category: "Pricing"
+      title: "Customer Churn Blindspot 83% of Companies Miss",
+      description: "Learn the five dimensions that reveal your true retention picture",
+      link: "/insights/customer-churn-blindspot",
+      category: "Analytics"
     },
     {
-      title: "Marketing Operations RevOps Service",
-      description: "Our comprehensive marketing operations and revenue operations service",
-      link: "/services/marketing-operations-revops",
-      category: "Service"
+      title: "Your CRM Is a Mess: Here's Your 90-Day Cleanup Plan",
+      description: "Boost accuracy, reduce costs, and enhance productivity with our proven plan",
+      link: "/insights/crm-cleanup-plan",
+      category: "Operations"
     },
     {
-      title: "HubSpot Implementation Case Studies",
-      description: "Real-world examples of successful HubSpot implementations",
-      link: "/case-studies",
+      title: "Customer Acquisition Cost Calculation That Could Save Your Company",
+      description: "Learn the comprehensive CAC formula that prevents unprofitable growth",
+      link: "/insights/customer-acquisition-cost",
+      category: "Finance"
+    },
+    {
+      title: "Marketing Operations Isn't IT: Defining Clear Boundaries", 
+      description: "Learn key differences to establish clear organizational boundaries",
+      link: "/insights/marketing-operations-isnt-it",
+      category: "Strategy"
+    },
+    {
+      title: "The Forgotten Art of Campaign Documentation",
+      description: "Structured documentation enhances efficiency and improves collaboration",
+      link: "/insights/forgotten-art-campaign-documentation", 
+      category: "Process"
+    },
+    {
+      title: "Data Enrichment Strategy That Actually Works",
+      description: "Fix validation, maintenance, & quality checks to boost lead quality",
+      link: "/insights/data-enrichment-strategy",
+      category: "Data Quality"
+    }
+  ];
+
+  const caseStudies = [
+    {
+      title: "Multi-National Specialty Insurance Provider",
+      description: "How we modernized sales and marketing operations across multiple regions",
+      link: "/insights/multi-national-specialty-insurance",
+      category: "Case Study"
+    },
+    {
+      title: "Audio Visual Equipment Wholesaler Transformation",
+      description: "Data-driven transformation achieving 10% pipeline growth in 6 months",
+      link: "/insights/audio-visual-equipment-wholesaler",
+      category: "Case Study"
+    },
+    {
+      title: "Upscale Home Improvement Manufacturer Success",
+      description: "From clogged HubSpot system to streamlined lead management powerhouse",
+      link: "/insights/upscale-home-improvement-goods-manufacturer",
       category: "Case Study"
     }
   ];
@@ -29,13 +68,13 @@ const RelatedContent: React.FC = () => {
     {
       title: "HubSpot Expert FAQs",
       description: "Common questions about hiring HubSpot experts",
-      link: "/faqs/hubspot-experts",
+      link: "/faqs/experts",
       count: "12 questions"
     },
     {
       title: "HubSpot Services FAQs", 
       description: "Questions about HubSpot implementation services",
-      link: "/faqs/hubspot-services",
+      link: "/faqs/services",
       count: "15 questions"
     },
     {
@@ -72,9 +111,9 @@ const RelatedContent: React.FC = () => {
         </div>
       </section>
 
-      {/* Related Articles */}
+      {/* Featured Insights */}
       <section>
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Reading</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Insights</h2>
         <div className="grid md:grid-cols-3 gap-6">
           {relatedArticles.map((article, index) => (
             <Link
@@ -92,6 +131,34 @@ const RelatedContent: React.FC = () => {
                 <p className="text-sm text-gray-600 mb-3">{article.description}</p>
                 <div className="flex items-center text-sm text-dataops-600 group-hover:text-dataops-700">
                   <span>Read more</span>
+                  <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Case Studies */}
+      <section>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Success Stories</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {caseStudies.map((study, index) => (
+            <Link
+              key={index}
+              to={study.link}
+              className="group block p-6 bg-white border border-gray-200 rounded-lg hover:border-dataops-300 hover:shadow-md transition-all duration-200"
+            >
+              <div className="space-y-4">
+                <span className="inline-block px-2 py-1 text-xs font-medium text-saffron-700 bg-saffron-100 rounded">
+                  {study.category}
+                </span>
+                <h3 className="text-base font-semibold text-gray-900 group-hover:text-dataops-600 mb-2 transition-colors">
+                  {study.title}
+                </h3>
+                <p className="text-sm text-gray-600 mb-3">{study.description}</p>
+                <div className="flex items-center text-sm text-dataops-600 group-hover:text-dataops-700">
+                  <span>Read case study</span>
                   <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
@@ -120,6 +187,30 @@ const RelatedContent: React.FC = () => {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Additional Navigation Links */}
+      <section className="border-t border-gray-200 pt-8">
+        <div className="text-center">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Explore More Resources</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/insights" className="text-dataops-600 hover:text-dataops-800 font-medium">
+              All Blog Posts
+            </Link>
+            <span className="text-gray-300">•</span>
+            <Link to="/services" className="text-dataops-600 hover:text-dataops-800 font-medium">
+              Our Services
+            </Link>
+            <span className="text-gray-300">•</span>
+            <Link to="/about" className="text-dataops-600 hover:text-dataops-800 font-medium">
+              About DataOps Group
+            </Link>
+            <span className="text-gray-300">•</span>
+            <Link to="/contact" className="text-dataops-600 hover:text-dataops-800 font-medium">
+              Contact Us
+            </Link>
+          </div>
         </div>
       </section>
     </div>

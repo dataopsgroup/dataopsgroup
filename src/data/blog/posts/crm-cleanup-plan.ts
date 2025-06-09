@@ -16,6 +16,8 @@ export const crmCleanupPlan: BlogPost = {
     
     <p>Salesforce's CRM Report reveals that 88% of CRMs contain critical data issues. Here's how to fix it—fast.</p>
     
+    <p>Poor CRM data quality impacts everything from <a href="/insights/customer-segmentation-mistake">customer segmentation accuracy</a> to <a href="/insights/customer-churn-blindspot">churn prediction capabilities</a>. Without clean data, you're making business decisions based on incomplete or incorrect information.</p>
+    
     <h3>Days 1–30: Assessment & Planning</h3>
     
     <p>Start by laying the foundation for success. Use this time to understand the current state of your CRM and set goals.</p>
@@ -42,6 +44,8 @@ export const crmCleanupPlan: BlogPost = {
       <li><strong>Train Team Members</strong> – Ensure everyone follows the new structure and policies.</li>
     </ul>
     
+    <p>This is also the perfect time to improve your <a href="/insights/data-enrichment-strategy">data enrichment strategy</a> and ensure new data entering your system meets quality standards.</p>
+    
     <p>Gartner's CRM Research finds that systematic cleanup reduces operational costs by 30%.</p>
     
     <h3>Days 61–90: Optimization</h3>
@@ -56,7 +60,11 @@ export const crmCleanupPlan: BlogPost = {
       <li><strong>Implement Automation</strong> – Use automation for deduplication, lead routing, and alerts.</li>
     </ul>
     
+    <p>Clean CRM data is essential for accurate <a href="/insights/customer-acquisition-cost">customer acquisition cost calculations</a> and effective customer lifecycle tracking.</p>
+    
     <p>Forrester's CRM Management Report shows that clean CRMs improve team productivity by 42%. Additionally, SiriusDecisions' Sales Operations Study indicates that proper CRM maintenance reduces data decay by 55%.</p>
+    
+    <p>For companies implementing comprehensive <a href="/insights/marketing-operations-isnt-it">marketing operations</a> strategies, clean CRM data serves as the foundation for all downstream processes and reporting.</p>
     
     <h3>Final Thoughts</h3>
     
