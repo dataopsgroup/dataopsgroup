@@ -1,3 +1,4 @@
+
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
@@ -21,7 +22,7 @@
       "headers": [
         {
           "key": "Content-Type",
-          "value": "application/xml"
+          "value": "application/xml; charset=utf-8"
         },
         {
           "key": "Cache-Control",
@@ -42,6 +43,11 @@
         }
       ]
     }
+  ],
+  "routes": [
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    }
   ]
 }
-
