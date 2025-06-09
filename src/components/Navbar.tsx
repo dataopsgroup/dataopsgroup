@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { mainNavItems } from '@/data/navigationData';
 import DesktopNavigation from './navigation/DesktopNavigation';
 import MobileNavigation from './navigation/MobileNavigation';
-import OptimizedLogo from '@/components/ui/optimized-logo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +24,21 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // SSR-safe logo error handler
+  const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (typeof console !== 'undefined') {
+      console.warn('Logo failed to load');
+    }
+    e.currentTarget.alt = 'DataOps Group';
+    e.currentTarget.style.background = '#1e4f9c';
+    e.currentTarget.style.color = 'white';
+    e.currentTarget.style.display = 'flex';
+    e.currentTarget.style.alignItems = 'center';
+    e.currentTarget.style.justifyContent = 'center';
+    e.currentTarget.style.width = '200px';
+    e.currentTarget.style.height = '60px';
+  };
+
   return (
     <nav 
       className={cn(
@@ -36,13 +50,12 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
-          <OptimizedLogo
+          <img
             src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
             alt="DataOps Group Logo"
             className="h-16 md:h-20 w-auto"
-            priority={true}
-            width={200}
-            height={80}
+            loading="eager"
+            onError={handleLogoError}
           />
         </Link>
         

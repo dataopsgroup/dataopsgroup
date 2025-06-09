@@ -4,7 +4,6 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
   const { isMobile } = useIsMobile();
@@ -26,22 +25,30 @@ const Hero = () => {
     }
   };
 
+  // SSR-safe image error handler with performance optimization
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (typeof console !== 'undefined') {
+      console.warn('Hero background image failed to load');
+    }
+    e.currentTarget.style.display = 'none';
+  };
+
   return (
     <>
       <div className={`hero-section ${isMobile ? 'bg-dataops-600' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
-        {/* Background Image - desktop only with optimization */}
+        {/* Background Image - desktop only with explicit dimensions */}
         {!isMobile && (
           <div className="hero-bg">
-            <OptimizedImage 
+            <img 
               src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" 
               alt="Hero background" 
               className="w-full h-full object-cover" 
-              priority={true}
-              isLCP={true}
-              componentType="hero"
-              width={1920} 
-              height={1080} 
-              aspectRatio={16/9}
+              loading="eager" 
+              fetchPriority="high" 
+              width="1920" 
+              height="1080" 
+              onError={handleImageError}
+              style={{ aspectRatio: '16/9' }}
             />
           </div>
         )}
