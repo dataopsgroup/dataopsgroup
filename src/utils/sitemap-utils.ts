@@ -1,3 +1,4 @@
+
 import { blogPosts } from '@/data/blog';
 
 // Current date for lastmod
@@ -31,13 +32,13 @@ export const serviceRoutes = [
   { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: TODAY }
 ];
 
-// Define FAQ category routes - updated to match canonical URLs
+// Define FAQ category routes - updated to match canonical URLs from insightRoutes.tsx
 export const faqRoutes = [
-  { url: "/faqs/hubspot-services", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
-  { url: "/faqs/hubspot-experts", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/faqs/services", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/faqs/experts", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
   { url: "/faqs/data-quality", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
-  { url: "/faqs/our-approach", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
-  { url: "/faqs/hubspot-modules", priority: "0.6", changefreq: "monthly", lastmod: TODAY }
+  { url: "/faqs/approach", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/faqs/modules", priority: "0.6", changefreq: "monthly", lastmod: TODAY }
 ];
 
 // Generate sitemap index XML
