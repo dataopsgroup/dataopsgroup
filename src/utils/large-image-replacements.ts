@@ -3,6 +3,9 @@
  * Mapping and optimization for large images identified by Ahrefs
  */
 
+// Shared context type for consistent usage across the application
+export type ImageContext = 'hero' | 'content' | 'background' | 'thumbnail' | 'blog-cover' | 'logo';
+
 interface LargeImageMapping {
   original: string;
   optimizedVersions: {
@@ -10,7 +13,7 @@ interface LargeImageMapping {
     jpeg: string;
     thumbnail: string;
   };
-  context: 'hero' | 'content' | 'background' | 'thumbnail';
+  context: ImageContext;
   targetSizeKB: number;
 }
 
@@ -45,7 +48,7 @@ export const LARGE_IMAGE_REPLACEMENTS: Record<string, LargeImageMapping> = {
       jpeg: '/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089.jpg',
       thumbnail: '/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089-thumb.webp'
     },
-    context: 'content',
+    context: 'blog-cover',
     targetSizeKB: 200
   },
   '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png': {
@@ -75,7 +78,7 @@ export const LARGE_IMAGE_REPLACEMENTS: Record<string, LargeImageMapping> = {
  */
 export const getOptimizedImageSrc = (
   originalSrc: string,
-  context: 'hero' | 'thumbnail' | 'content' | 'background' = 'content'
+  context: ImageContext = 'content'
 ): string => {
   const mapping = LARGE_IMAGE_REPLACEMENTS[originalSrc];
   
@@ -88,8 +91,11 @@ export const getOptimizedImageSrc = (
     case 'thumbnail':
       return mapping.optimizedVersions.thumbnail;
     case 'hero':
-      return mapping.optimizedVersions.webp;
     case 'background':
+      return mapping.optimizedVersions.webp;
+    case 'blog-cover':
+      return mapping.optimizedVersions.webp;
+    case 'logo':
       return mapping.optimizedVersions.webp;
     case 'content':
     default:

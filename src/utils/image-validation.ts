@@ -3,7 +3,7 @@
  * Image validation utilities to prevent large images from impacting performance
  */
 
-import { isLargeImage, getOptimizedImageSrc } from './large-image-replacements';
+import { isLargeImage, getOptimizedImageSrc, type ImageContext } from './large-image-replacements';
 
 interface ImageValidationResult {
   isValid: boolean;
@@ -15,7 +15,7 @@ interface ImageValidationResult {
 /**
  * Validate an image source for performance best practices
  */
-export const validateImageSrc = (src: string, context: 'hero' | 'thumbnail' | 'content' | 'background' = 'content'): ImageValidationResult => {
+export const validateImageSrc = (src: string, context: ImageContext = 'content'): ImageValidationResult => {
   const result: ImageValidationResult = {
     isValid: true,
     issues: [],
@@ -57,7 +57,7 @@ export const validateImageSrc = (src: string, context: 'hero' | 'thumbnail' | 'c
 /**
  * Get the best image source with automatic optimization
  */
-export const getBestImageSrc = (src: string, context: 'hero' | 'thumbnail' | 'content' | 'background' = 'content'): string => {
+export const getBestImageSrc = (src: string, context: ImageContext = 'content'): string => {
   if (!src) return '';
   
   // If it's a known large image, return the optimized version
@@ -74,7 +74,7 @@ export const getBestImageSrc = (src: string, context: 'hero' | 'thumbnail' | 'co
 export const logImageValidation = (src: string, context: string = 'unknown') => {
   if (process.env.NODE_ENV !== 'development') return;
   
-  const validation = validateImageSrc(src, context as any);
+  const validation = validateImageSrc(src, context as ImageContext);
   
   if (!validation.isValid || validation.recommendations.length > 0) {
     console.group(`Image Validation: ${src}`);

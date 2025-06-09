@@ -1,14 +1,14 @@
 
 import { useState, useEffect } from 'react';
 import { ImageOptimizationService } from '@/services/imageOptimizationService';
-import { getOptimizedImageSrc, isLargeImage } from '@/utils/large-image-replacements';
+import { getOptimizedImageSrc, isLargeImage, type ImageContext } from '@/utils/large-image-replacements';
 
 interface EnhancedOptimizationOptions {
   maxSizeKB: number;
   quality?: number;
   maxWidth?: number;
   format?: 'webp' | 'jpeg' | 'png' | 'avif';
-  context?: 'hero' | 'blog-cover' | 'thumbnail' | 'logo' | 'content';
+  context?: ImageContext;
 }
 
 interface EnhancedOptimizationResult {
@@ -27,21 +27,23 @@ interface ContextDimensions {
 }
 
 // Context-specific size limits (in KB)
-const CONTEXT_LIMITS: Record<string, number> = {
+const CONTEXT_LIMITS: Record<ImageContext, number> = {
   hero: 500,
   'blog-cover': 200,
   thumbnail: 100,
   logo: 50,
-  content: 300
+  content: 300,
+  background: 400
 };
 
 // Context-specific dimensions - properly typed
-const CONTEXT_DIMENSIONS: Record<string, ContextDimensions> = {
+const CONTEXT_DIMENSIONS: Record<ImageContext, ContextDimensions> = {
   hero: { maxWidth: 1920, quality: 0.85 },
   'blog-cover': { maxWidth: 800, quality: 0.85 },
   thumbnail: { maxWidth: 400, quality: 0.8 },
   logo: { maxWidth: 300, quality: 0.9 },
-  content: { maxWidth: 1200, quality: 0.85 }
+  content: { maxWidth: 1200, quality: 0.85 },
+  background: { maxWidth: 1920, quality: 0.8 }
 };
 
 export const useEnhancedImageOptimization = (
