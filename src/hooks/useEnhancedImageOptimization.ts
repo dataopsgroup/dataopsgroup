@@ -20,8 +20,13 @@ interface EnhancedOptimizationResult {
   needsOptimization: boolean;
 }
 
+interface ContextDimensions {
+  maxWidth: number;
+  quality: number;
+}
+
 // Context-specific size limits (in KB)
-const CONTEXT_LIMITS = {
+const CONTEXT_LIMITS: Record<string, number> = {
   hero: 500,
   'blog-cover': 200,
   thumbnail: 100,
@@ -29,8 +34,8 @@ const CONTEXT_LIMITS = {
   content: 300
 };
 
-// Context-specific dimensions
-const CONTEXT_DIMENSIONS = {
+// Context-specific dimensions - properly typed
+const CONTEXT_DIMENSIONS: Record<string, ContextDimensions> = {
   hero: { maxWidth: 1920, quality: 0.85 },
   'blog-cover': { maxWidth: 800, quality: 0.85 },
   thumbnail: { maxWidth: 400, quality: 0.8 },
@@ -60,9 +65,9 @@ export const useEnhancedImageOptimization = (
 
         const service = ImageOptimizationService.getInstance();
         
-        // Determine size limit based on context
+        // Determine size limit based on context with proper fallback
         const contextLimit = options.context ? CONTEXT_LIMITS[options.context] : options.maxSizeKB;
-        const contextDimensions = options.context ? CONTEXT_DIMENSIONS[options.context] : {};
+        const contextDimensions = options.context ? CONTEXT_DIMENSIONS[options.context] : null;
 
         // Check if image needs optimization
         const shouldOptimize = await service.shouldOptimize(src, contextLimit);
@@ -70,8 +75,8 @@ export const useEnhancedImageOptimization = (
 
         if (shouldOptimize) {
           const result = await service.optimizeImage(src, {
-            maxWidth: options.maxWidth || contextDimensions.maxWidth || 1200,
-            quality: options.quality || contextDimensions.quality || 0.85,
+            maxWidth: options.maxWidth || contextDimensions?.maxWidth || 1200,
+            quality: options.quality || contextDimensions?.quality || 0.85,
             format: options.format || 'webp'
           });
 
