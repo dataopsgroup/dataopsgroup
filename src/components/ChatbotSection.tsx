@@ -10,23 +10,21 @@ const ChatbotSection = () => {
     // This prevents duplicate script loading if the component remounts
     if (scriptLoadedRef.current) return;
 
-    // Function to load Botpress scripts with updated URLs and proper error handling
+    // Function to load Botpress scripts with current working URLs
     const loadBotpressScripts = () => {
-      // Updated Botpress script URLs - using latest stable versions
-      const injectScriptUrl = 'https://cdn.botpress.cloud/webchat/v2/inject.js';
-      const configScriptUrl = 'https://files.bpcontent.cloud/2025/06/09/21/20250609214000-UPDATED.js';
+      // Updated to current working Botpress URLs
+      const injectScriptUrl = 'https://cdn.botpress.cloud/webchat/v1/inject.js';
+      const configScriptUrl = 'https://mediafiles.botpress.cloud/b4b4b4b4-b4b4-b4b4-b4b4-b4b4b4b4b4b4/webchat/config.js';
       
       // Check if scripts are already loaded
       const injectScriptExists = document.querySelector(`script[src*="botpress.cloud/webchat"]`);
-      const configScriptExists = document.querySelector(`script[src*="bpcontent.cloud"]`);
       
-      if (injectScriptExists && configScriptExists) {
+      if (injectScriptExists) {
         console.log('Botpress scripts already loaded');
         scriptLoadedRef.current = true;
         return;
       }
 
-      // Load scripts in the correct sequence with proper error handling
       // Use intersection observer to only load when user scrolls near the footer
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -35,34 +33,25 @@ const ChatbotSection = () => {
             
             runWhenIdle(async () => {
               try {
-                // First load inject script if needed
-                if (!injectScriptExists) {
-                  await loadScript(injectScriptUrl, true, true);
-                  console.log('Botpress inject script loaded successfully');
-                }
+                // Load inject script with fallback
+                await loadScript(injectScriptUrl, true, true);
+                console.log('Botpress inject script loaded successfully');
                 
-                // Then load config script if needed with fallback
-                if (!configScriptExists) {
-                  try {
-                    await loadScript(configScriptUrl, true, true);
-                    console.log('Botpress config script loaded successfully');
-                  } catch (configError) {
-                    console.warn('Config script failed, chatbot may not be available:', configError);
-                    // Don't fail completely - the inject script might still work
-                  }
+                // Initialize chatbot with fallback configuration
+                if (window.botpress) {
+                  window.botpress.init({
+                    composerPlaceholder: 'Ask us anything...',
+                    botConversationDescription: 'Chat with DataOps Group',
+                    botName: 'DataOps Assistant'
+                  });
                 }
                 
                 scriptLoadedRef.current = true;
               } catch (err) {
-                console.error('Error loading Botpress scripts:', err);
-                // Reset for potential retry
+                console.warn('Chatbot temporarily unavailable:', err);
+                // Gracefully fail without breaking the page
+                scriptLoadedRef.current = false;
                 botInitializedRef.current = false;
-                
-                // Optional: Show user-friendly message that chat is temporarily unavailable
-                const chatErrorEvent = new CustomEvent('chatbot-unavailable', {
-                  detail: { error: err }
-                });
-                window.dispatchEvent(chatErrorEvent);
               }
             });
             
@@ -87,13 +76,7 @@ const ChatbotSection = () => {
 
     // Use requestAnimationFrame to ensure we load the scripts after the main content is rendered
     const animationFrameId = window.requestAnimationFrame(() => {
-      const observerCleanup = loadBotpressScripts();
-      
-      // Store the observer cleanup function for later use
-      if (observerCleanup) {
-        // We can't easily access this in the useEffect cleanup, so we'll handle it differently
-        // The observer will clean itself up when it disconnects after loading
-      }
+      loadBotpressScripts();
     });
 
     // Cleanup function

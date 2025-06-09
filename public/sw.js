@@ -33,6 +33,18 @@ self.addEventListener('fetch', (event) => {
   // Skip non-HTTP requests
   if (!url.protocol.startsWith('http')) return;
   
+  // Skip problematic third-party scripts that return errors
+  const problematicHosts = [
+    'cdn.gpteng.co',
+    'gptengineer.com'
+  ];
+  
+  if (problematicHosts.some(host => url.hostname.includes(host))) {
+    // Return empty response for deprecated scripts
+    event.respondWith(new Response('', { status: 204 }));
+    return;
+  }
+  
   // Enhanced caching strategy based on resource type
   if (url.pathname.endsWith('.woff2') || url.pathname.endsWith('.woff')) {
     // Cache fonts for 1 year
@@ -45,6 +57,9 @@ self.addEventListener('fetch', (event) => {
             cache.put(request, responseClone);
           });
           return fetchResponse;
+        }).catch(() => {
+          // Graceful fallback for font loading failures
+          return new Response('', { status: 204 });
         });
       })
     );
@@ -58,6 +73,9 @@ self.addEventListener('fetch', (event) => {
             cache.put(request, responseClone);
           });
           return fetchResponse;
+        }).catch(() => {
+          // Return placeholder for failed image loads
+          return new Response('', { status: 204 });
         });
         
         return response || fetchPromise;
