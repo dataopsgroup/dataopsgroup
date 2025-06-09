@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { getCanonicalFromAmpUrl } from '../utils/redirect-utils';
@@ -28,6 +29,18 @@ export const redirectRoutes = [
   {
     path: "/hubspot-assessment-results",
     element: <Navigate to="/data-operations-assessment/results" replace />,
+  },
+  
+  // Whitepapers redirect
+  {
+    path: "/whitepapers",
+    element: <Navigate to="/insights" replace />,
+  },
+  
+  // Services redirects for marketing operations variations
+  {
+    path: "/services/marketing-operations",
+    element: <Navigate to="/services/marketing-operations-revops" replace />,
   },
   
   // New redirects for cleaned URLs
