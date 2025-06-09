@@ -42,7 +42,12 @@ export const sanitizeHTML = (dirty: string, options: 'default' | 'strict' = 'def
   const config = options === 'strict' ? strictConfig : defaultConfig;
   
   try {
-    return purify.sanitize(dirty, config);
+    // Configure DOMPurify before sanitizing
+    if (typeof window !== 'undefined') {
+      DOMPurify.setConfig(config);
+      return DOMPurify.sanitize(dirty);
+    }
+    return dirty; // Fallback for SSR
   } catch (error) {
     console.error('HTML sanitization failed:', error);
     return ''; // Return empty string on error
