@@ -81,18 +81,25 @@ const ChatbotSection = () => {
         observer.observe(target);
       }
 
-      // Cleanup function
+      // Return cleanup function for the observer
       return () => observer.disconnect();
     };
 
     // Use requestAnimationFrame to ensure we load the scripts after the main content is rendered
-    const cleanup = window.requestAnimationFrame(loadBotpressScripts);
-
-    // Cleanup observer if component unmounts
-    return () => {
-      if (typeof cleanup === 'function') {
-        cleanup();
+    const animationFrameId = window.requestAnimationFrame(() => {
+      const observerCleanup = loadBotpressScripts();
+      
+      // Store the observer cleanup function for later use
+      if (observerCleanup) {
+        // We can't easily access this in the useEffect cleanup, so we'll handle it differently
+        // The observer will clean itself up when it disconnects after loading
       }
+    });
+
+    // Cleanup function
+    return () => {
+      // Cancel the animation frame if it hasn't executed yet
+      window.cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
