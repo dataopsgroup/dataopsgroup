@@ -10,9 +10,9 @@ const ServicesHero = () => {
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-100 text-dataops-800 text-sm font-medium mb-2">
               What We Offer
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
               Our <span className="text-dataops-600">Services</span>
-            </h1>
+            </h2>
             <p className="text-lg md:text-xl text-gray-700 max-w-2xl">
               At DataOps Group, we provide comprehensive data operation solutions designed 
               to transform how your organization manages, processes, and leverages data. Our expert team delivers 

@@ -30,7 +30,7 @@ const CaseStudyLayout = ({ post }: CaseStudyLayoutProps) => {
               <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full mb-4">
                 Case Study
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="case-study-title text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 {post.title}
               </h1>
               <div className="flex flex-wrap justify-center items-center gap-4 text-gray-600 mb-8">
