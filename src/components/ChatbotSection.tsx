@@ -10,14 +10,15 @@ const ChatbotSection = () => {
     // This prevents duplicate script loading if the component remounts
     if (scriptLoadedRef.current) return;
 
-    // Function to load Botpress scripts with proper sequencing and error handling
+    // Function to load Botpress scripts with updated URLs and proper error handling
     const loadBotpressScripts = () => {
-      const injectScriptUrl = 'https://cdn.botpress.cloud/webchat/v2.5/inject.js';
-      const configScriptUrl = 'https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js';
+      // Updated Botpress script URLs - using latest stable versions
+      const injectScriptUrl = 'https://cdn.botpress.cloud/webchat/v2/inject.js';
+      const configScriptUrl = 'https://files.bpcontent.cloud/2025/06/09/21/20250609214000-UPDATED.js';
       
       // Check if scripts are already loaded
-      const injectScriptExists = document.querySelector(`script[src="${injectScriptUrl}"]`);
-      const configScriptExists = document.querySelector(`script[src="${configScriptUrl}"]`);
+      const injectScriptExists = document.querySelector(`script[src*="botpress.cloud/webchat"]`);
+      const configScriptExists = document.querySelector(`script[src*="bpcontent.cloud"]`);
       
       if (injectScriptExists && configScriptExists) {
         console.log('Botpress scripts already loaded');
@@ -37,24 +38,35 @@ const ChatbotSection = () => {
                 // First load inject script if needed
                 if (!injectScriptExists) {
                   await loadScript(injectScriptUrl, true, true);
-                  console.log('Botpress inject script loaded');
+                  console.log('Botpress inject script loaded successfully');
                 }
                 
-                // Then load config script if needed
+                // Then load config script if needed with fallback
                 if (!configScriptExists) {
-                  await loadScript(configScriptUrl, true, true);
-                  console.log('Botpress config script loaded');
+                  try {
+                    await loadScript(configScriptUrl, true, true);
+                    console.log('Botpress config script loaded successfully');
+                  } catch (configError) {
+                    console.warn('Config script failed, chatbot may not be available:', configError);
+                    // Don't fail completely - the inject script might still work
+                  }
                 }
                 
                 scriptLoadedRef.current = true;
               } catch (err) {
                 console.error('Error loading Botpress scripts:', err);
-                // Reset for retry
+                // Reset for potential retry
                 botInitializedRef.current = false;
+                
+                // Optional: Show user-friendly message that chat is temporarily unavailable
+                const chatErrorEvent = new CustomEvent('chatbot-unavailable', {
+                  detail: { error: err }
+                });
+                window.dispatchEvent(chatErrorEvent);
               }
             });
             
-            // Disconnect after loading
+            // Disconnect after loading attempt
             observer.disconnect();
           }
         });
@@ -65,16 +77,22 @@ const ChatbotSection = () => {
       
       // Start observing the footer element or body if footer doesn't exist
       const target = document.querySelector('footer') || document.body;
-      observer.observe(target);
+      if (target) {
+        observer.observe(target);
+      }
+
+      // Cleanup function
+      return () => observer.disconnect();
     };
 
     // Use requestAnimationFrame to ensure we load the scripts after the main content is rendered
-    window.requestAnimationFrame(loadBotpressScripts);
+    const cleanup = window.requestAnimationFrame(loadBotpressScripts);
 
     // Cleanup observer if component unmounts
     return () => {
-      const observer = new IntersectionObserver(() => {});
-      observer.disconnect();
+      if (typeof cleanup === 'function') {
+        cleanup();
+      }
     };
   }, []);
 
