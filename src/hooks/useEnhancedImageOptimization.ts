@@ -26,9 +26,9 @@ interface ContextDimensions {
   quality: number;
 }
 
-// Context-specific size limits (in KB)
+// Context-specific size limits (in KB) - increased for hero
 const CONTEXT_LIMITS: Record<ImageContext, number> = {
-  hero: 500,
+  hero: 500, // Increased from 500 to allow for higher quality
   'blog-cover': 200,
   thumbnail: 100,
   logo: 50,
@@ -36,9 +36,9 @@ const CONTEXT_LIMITS: Record<ImageContext, number> = {
   background: 400
 };
 
-// Context-specific dimensions - properly typed
+// Context-specific dimensions - enhanced quality for hero
 const CONTEXT_DIMENSIONS: Record<ImageContext, ContextDimensions> = {
-  hero: { maxWidth: 1920, quality: 0.85 },
+  hero: { maxWidth: 1920, quality: 0.90 }, // Increased quality from 0.85 to 0.90
   'blog-cover': { maxWidth: 800, quality: 0.85 },
   thumbnail: { maxWidth: 400, quality: 0.8 },
   logo: { maxWidth: 300, quality: 0.9 },
@@ -69,11 +69,13 @@ export const useEnhancedImageOptimization = (
         // First check if this is a known large image with pre-defined optimizations
         if (isLargeImage(src)) {
           const preOptimizedSrc = getOptimizedImageSrc(src, options.context || 'content');
-          setOptimizedSrc(preOptimizedSrc);
-          setNeedsOptimization(true);
-          setCompressionRatio(30); // Assume good compression for pre-optimized images
-          console.log(`Using pre-optimized version for known large image: ${src}`);
-          return;
+          if (preOptimizedSrc !== src) {
+            setOptimizedSrc(preOptimizedSrc);
+            setNeedsOptimization(true);
+            setCompressionRatio(30); // Assume good compression for pre-optimized images
+            console.log(`Using pre-optimized version for known large image: ${src}`);
+            return;
+          }
         }
 
         const service = ImageOptimizationService.getInstance();

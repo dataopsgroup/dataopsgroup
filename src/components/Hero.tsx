@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -28,7 +29,7 @@ const Hero = () => {
   return (
     <>
       <div className={`hero-section ${isMobile ? 'bg-dataops-600' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
-        {/* Background Image - desktop only with smart optimization */}
+        {/* Background Image - desktop only with enhanced optimization */}
         {!isMobile && (
           <div className="hero-bg">
             <OptimizedImage 
@@ -39,7 +40,8 @@ const Hero = () => {
               isLCP={true}
               componentType="hero"
               autoOptimize={true}
-              maxSizeKB={300}
+              maxSizeKB={500}
+              quality={90}
               width={1920} 
               height={1080}
             />
