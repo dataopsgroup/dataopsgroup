@@ -26,6 +26,13 @@ const Hero = () => {
     }
   };
 
+  // Development logging to verify image scaling
+  React.useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Hero component mounted - image scaling should be applied via CSS');
+    }
+  }, []);
+
   return (
     <>
       <div className={`hero-section ${isMobile ? 'bg-dataops-600' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
@@ -94,7 +101,8 @@ const Hero = () => {
             </div>
             
             {/* Right side - Empty space for background image visibility (desktop only) */}
-            {!isMobile && <div className="hidden lg:block lg:col-span-6 xl:col-span-7"></div>}
+            {/* Removed problematic lg:col-span-6 xl:col-span-7 classes that referenced non-existent columns */}
+            {!isMobile && <div className="hidden lg:block"></div>}
           </div>
         </div>
       </div>
