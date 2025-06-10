@@ -49,11 +49,19 @@ const MetaHead = ({
   // Use production base URL consistently
   const baseUrl = 'https://dataopsgroup.com';
   
-  // Create proper canonical path with fallback
+  // Create proper canonical path with fallback - fix redirect chains
   const currentPath = canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
   
-  // Ensure path starts with /
-  const normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
+  // Ensure path starts with / and normalize known redirects
+  let normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
+  
+  // Fix specific redirect chain issues identified by Ahrefs
+  if (normalizedPath === '/guides/hubspot-expert-guide') {
+    normalizedPath = '/guides/hubspot-expert';
+  }
+  if (normalizedPath === '/pillar-content/hubspot-expert') {
+    normalizedPath = '/guides/hubspot-expert';
+  }
   
   // Create full canonical URL - this is the source of truth
   const fullCanonicalUrl = `${baseUrl}${normalizedPath}`;
