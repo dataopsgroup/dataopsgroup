@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import AssessmentIntro from './AssessmentIntro';
 import QuizResults from './QuizResults';
 import { useAssessmentResults } from '@/hooks/useAssessmentResults';
+import { Loader2, CheckCircle } from 'lucide-react';
 
 const AssessmentQuiz = () => {
   const [currentStep, setCurrentStep] = useState('intro');
@@ -51,19 +52,40 @@ const AssessmentQuiz = () => {
     React.useEffect(() => {
       const timer = setTimeout(() => {
         handleQuizComplete(sampleScores);
-      }, 1000);
+      }, 2000);
       return () => clearTimeout(timer);
     }, []);
 
     return (
-      <div className="p-6 md:p-8">
-        <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-4 text-dataops-800">
-            Completing Assessment...
-          </h2>
-          <p className="text-gray-600">
-            Processing your responses and generating personalized recommendations.
-          </p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+        <div className="max-w-lg mx-auto text-center p-8">
+          <div className="bg-white rounded-2xl shadow-xl p-12">
+            <div className="mb-8">
+              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-dataops-600 to-dataops-700 rounded-full flex items-center justify-center">
+                <Loader2 className="h-8 w-8 text-white animate-spin" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                Processing Your Assessment
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Analyzing your responses and generating personalized recommendations...
+              </p>
+            </div>
+            
+            <div className="space-y-3">
+              {[
+                'Evaluating data quality practices',
+                'Analyzing automation workflows',
+                'Calculating performance scores',
+                'Generating improvement plan'
+              ].map((step, index) => (
+                <div key={index} className="flex items-center justify-start text-sm text-gray-600">
+                  <CheckCircle className="h-4 w-4 text-green-500 mr-3 flex-shrink-0" />
+                  {step}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     );

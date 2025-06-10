@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 interface SectionScoreProps {
   title: string;
@@ -8,30 +9,77 @@ interface SectionScoreProps {
 }
 
 const SectionScore: React.FC<SectionScoreProps> = ({ title, score, maxScore = 25 }) => {
-  // Get section score color for section bars
-  const getSectionBarColor = (score: number) => {
-    const percentage = (score / maxScore) * 100;
-    if (percentage < 40) return 'bg-red-500';
-    if (percentage < 65) return 'bg-orange-400';
-    if (percentage < 85) return 'bg-yellow-400';
-    return 'bg-green-500';
+  const percentage = (score / maxScore) * 100;
+  
+  // Get section configuration
+  const getSectionConfig = () => {
+    if (percentage < 40) return {
+      bgColor: 'bg-red-500',
+      bgGradient: 'from-red-500 to-red-600',
+      textColor: 'text-red-600',
+      borderColor: 'border-red-200',
+      bgCard: 'bg-red-50',
+      icon: <TrendingDown className="h-5 w-5 text-red-500" />,
+      label: 'Needs Attention'
+    };
+    if (percentage < 65) return {
+      bgColor: 'bg-orange-400',
+      bgGradient: 'from-orange-400 to-orange-500',
+      textColor: 'text-orange-600',
+      borderColor: 'border-orange-200',
+      bgCard: 'bg-orange-50',
+      icon: <Minus className="h-5 w-5 text-orange-500" />,
+      label: 'Developing'
+    };
+    if (percentage < 85) return {
+      bgColor: 'bg-yellow-400',
+      bgGradient: 'from-yellow-400 to-yellow-500',
+      textColor: 'text-yellow-600',
+      borderColor: 'border-yellow-200',
+      bgCard: 'bg-yellow-50',
+      icon: <TrendingUp className="h-5 w-5 text-yellow-500" />,
+      label: 'Good'
+    };
+    return {
+      bgColor: 'bg-green-500',
+      bgGradient: 'from-green-500 to-green-600',
+      textColor: 'text-green-600',
+      borderColor: 'border-green-200',
+      bgCard: 'bg-green-50',
+      icon: <TrendingUp className="h-5 w-5 text-green-500" />,
+      label: 'Excellent'
+    };
   };
 
-  // Get section score width for bar visualization
-  const getSectionBarWidth = (score: number) => {
-    return `${(score / maxScore) * 100}%`;
-  };
+  const config = getSectionConfig();
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm">
-      <div className="font-medium mb-2">{title}</div>
-      <div className="h-2 bg-gray-200 rounded-full overflow-hidden mb-2">
-        <div 
-          className={`h-full ${getSectionBarColor(score)} rounded-full transition-all duration-500`}
-          style={{ width: getSectionBarWidth(score) }}
-        ></div>
+    <div className={`${config.bgCard} ${config.borderColor} border rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1`}>
+      <div className="flex items-start justify-between mb-4">
+        <h4 className="font-semibold text-gray-900 text-sm leading-tight flex-1">{title}</h4>
+        {config.icon}
       </div>
-      <div className="text-right text-sm font-medium">{score}/{maxScore}</div>
+      
+      {/* Progress Bar */}
+      <div className="mb-4">
+        <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+          <div 
+            className={`h-full bg-gradient-to-r ${config.bgGradient} rounded-full transition-all duration-1000 ease-out`}
+            style={{ width: `${percentage}%` }}
+          ></div>
+        </div>
+      </div>
+      
+      {/* Score Details */}
+      <div className="flex items-center justify-between">
+        <span className={`text-sm font-medium ${config.textColor}`}>
+          {config.label}
+        </span>
+        <div className="text-right">
+          <div className="font-bold text-gray-900">{score}/{maxScore}</div>
+          <div className="text-xs text-gray-500">{Math.round(percentage)}%</div>
+        </div>
+      </div>
     </div>
   );
 };

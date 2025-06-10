@@ -46,29 +46,29 @@ const QuizResults: React.FC<QuizResultsProps> = ({
   };
 
   return (
-    <div className="p-6 md:p-8">
-      <h2 className="text-2xl font-semibold mb-6 text-center text-dataops-800">Your HubSpot Implementation Assessment Results</h2>
-      
-      {/* Overall Score */}
-      <ResultsOverview 
-        overallScore={overallScore}
-        scoreLabel={getScoreLabel()}
-      />
-      
-      {/* Section Scores */}
-      <SectionScores 
-        scores={scores}
-        sectionTitles={sectionTitles}
-      />
-      
-      {/* Priority Improvement Areas */}
-      <PriorityImprovements priorities={priorities} />
-      
-      {/* 90-Day Implementation Rescue Plan */}
-      <ImplementationRescuePlan rescuePlan={rescuePlan} />
-      
-      {/* Next Steps */}
-      <ResultsNextSteps onEmailResults={onEmailResults} />
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <div className="max-w-6xl mx-auto p-6 md:p-8">
+        {/* Results Overview */}
+        <ResultsOverview 
+          overallScore={overallScore}
+          scoreLabel={getScoreLabel()}
+        />
+        
+        {/* Section Scores */}
+        <SectionScores 
+          scores={scores}
+          sectionTitles={sectionTitles}
+        />
+        
+        {/* Priority Improvement Areas */}
+        <PriorityImprovements priorities={priorities} />
+        
+        {/* 90-Day Implementation Rescue Plan */}
+        <ImplementationRescuePlan rescuePlan={rescuePlan} />
+        
+        {/* Next Steps */}
+        <ResultsNextSteps onEmailResults={onEmailResults} />
+      </div>
     </div>
   );
 };
