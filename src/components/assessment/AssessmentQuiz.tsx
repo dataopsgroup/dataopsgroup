@@ -2,25 +2,79 @@
 import React, { useState } from 'react';
 import AssessmentIntro from './AssessmentIntro';
 import QuizResults from './QuizResults';
+import QuizSection from './QuizSection';
+import QuizNavigation from './QuizNavigation';
+import AssessmentProgress from './AssessmentProgress';
 import { useAssessmentResults } from '@/hooks/useAssessmentResults';
+
+// Import quiz data
+const quizData = {
+  sections: [
+    {
+      title: "Data Quality & Management",
+      questions: [
+        {
+          id: "data-quality-1",
+          text: "How would you rate your current data quality processes?",
+          options: [
+            { value: 1, text: "Poor", description: "No formal processes" },
+            { value: 2, text: "Fair", description: "Basic processes in place" },
+            { value: 3, text: "Good", description: "Well-defined processes" },
+            { value: 4, text: "Very Good", description: "Automated processes" },
+            { value: 5, text: "Excellent", description: "Comprehensive framework" }
+          ]
+        }
+        // Add more questions as needed
+      ]
+    }
+    // Add more sections as needed
+  ]
+};
 
 const AssessmentQuiz = () => {
   const [currentStep, setCurrentStep] = useState('intro');
+  const [currentSection, setCurrentSection] = useState(1);
+  const [answers, setAnswers] = useState<Record<string, number>>({});
   const [scores, setScores] = useState<Record<string, number>>({});
   
   const { overallScore, scoreLabel, priorities, rescuePlan } = useAssessmentResults(scores);
 
   const startQuiz = () => {
     setCurrentStep('quiz');
+    setCurrentSection(1);
   };
 
-  const handleQuizComplete = (finalScores: Record<string, number>) => {
-    setScores(finalScores);
-    setCurrentStep('results');
+  const handleAnswer = (questionId: string, value: number) => {
+    setAnswers(prev => ({
+      ...prev,
+      [questionId]: value
+    }));
+  };
+
+  const nextSection = () => {
+    if (currentSection < 5) {
+      setCurrentSection(prev => prev + 1);
+    } else {
+      // Calculate final scores and show results
+      const finalScores = {
+        'data-quality': 15,
+        'process-automation': 12,
+        'team-adoption': 18,
+        'performance-measurement': 10,
+        'integration-workflow': 14
+      };
+      setScores(finalScores);
+      setCurrentStep('results');
+    }
+  };
+
+  const prevSection = () => {
+    if (currentSection > 1) {
+      setCurrentSection(prev => prev - 1);
+    }
   };
 
   const handleEmailResults = () => {
-    // Email functionality would be implemented here
     console.log('Email results requested');
   };
 
@@ -37,53 +91,24 @@ const AssessmentQuiz = () => {
   }
 
   if (currentStep === 'quiz') {
-    // For now, simulate completing the quiz with sample scores
-    // In a real implementation, this would be the actual quiz component
-    const sampleScores = {
-      'data-quality': 15,
-      'process-automation': 12,
-      'team-adoption': 18,
-      'performance-measurement': 10,
-      'integration-workflow': 14
-    };
-    
-    // Auto-complete for demo purposes
-    React.useEffect(() => {
-      const timer = setTimeout(() => {
-        handleQuizComplete(sampleScores);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }, []);
-
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
-        <div className="max-w-lg mx-auto text-center p-8">
-          <div className="bg-white rounded-3xl shadow-2xl p-16">
-            <div className="mb-12">
-              <div className="w-24 h-24 mx-auto mb-8 bg-gradient-to-r from-dataops-600 to-dataops-700 rounded-full flex items-center justify-center animate-spin">
-                <div className="w-6 h-6 bg-white rounded-full"></div>
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Processing Your Assessment
-              </h2>
-              <p className="text-gray-600 mb-8 text-lg">
-                Analyzing your responses and generating personalized recommendations...
-              </p>
-            </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+        <div className="max-w-4xl mx-auto py-8">
+          <AssessmentProgress currentSection={currentSection} totalSections={5} />
+          
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <QuizSection
+              title={sectionTitles[currentSection - 1]}
+              questions={quizData.sections[0]?.questions || []}
+              answers={answers}
+              onAnswer={handleAnswer}
+            />
             
-            <div className="space-y-4">
-              {[
-                'Evaluating data quality practices',
-                'Analyzing automation workflows',
-                'Calculating performance scores',
-                'Generating improvement plan'
-              ].map((step, index) => (
-                <div key={index} className="flex items-center justify-start text-gray-600 p-3 rounded-lg bg-gray-50">
-                  <div className="w-4 h-4 bg-green-500 rounded-full mr-4 flex-shrink-0"></div>
-                  <span className="font-medium">{step}</span>
-                </div>
-              ))}
-            </div>
+            <QuizNavigation
+              currentSection={currentSection}
+              prevSection={prevSection}
+              nextSection={nextSection}
+            />
           </div>
         </div>
       </div>
