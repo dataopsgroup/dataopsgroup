@@ -19,7 +19,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: right center; /* Keep woman positioned prominently on the right */
 }
 
 .hero-container {
@@ -36,7 +36,7 @@
   grid-template-columns: 1fr;
   gap: 3rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: none; /* Remove width constraint to allow full viewport usage */
   margin: 0 auto;
 }
 
@@ -87,19 +87,31 @@
   transform: translateY(-2px);
 }
 
-/* Desktop layout adjustments */
+/* Desktop layout adjustments for better image visibility */
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(500px, 1fr) 2fr; /* Give more space for background image */
     align-items: center;
   }
   
   .hero-content {
     grid-column: 1;
+    max-width: 500px; /* Reduce content width to show more of the background */
   }
   
   .hero-heading {
     font-size: 3.5rem;
+  }
+}
+
+/* Extra large screens - make content even more compact */
+@media (min-width: 1440px) {
+  .hero-content {
+    max-width: 450px;
+  }
+  
+  .hero-content-box {
+    padding: 2.5rem;
   }
 }
 
