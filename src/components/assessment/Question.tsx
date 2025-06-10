@@ -2,7 +2,7 @@
 import React from 'react';
 import QuestionOption from './QuestionOption';
 
-interface QuestionOption {
+interface QuestionOptionType {
   value: number;
   text: string;
   description: string;
@@ -11,14 +11,14 @@ interface QuestionOption {
 interface QuestionProps {
   id: string;
   text: string;
-  options: QuestionOption[];
+  options: QuestionOptionType[];
   selectedValue?: number;
   onAnswer: (questionId: string, value: number) => void;
 }
 
 const Question: React.FC<QuestionProps> = ({ id, text, options, selectedValue, onAnswer }) => {
   return (
-    <div key={id} className="pb-6 border-b border-gray-200 last:border-0 last:pb-0">
+    <div className="pb-6 border-b border-gray-200 last:border-0 last:pb-0">
       <h3 className="font-medium text-lg mb-4 text-gray-800">
         {text}
       </h3>
