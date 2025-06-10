@@ -45,8 +45,7 @@ const AssessmentIntro: React.FC<AssessmentIntroProps> = ({
               }, {
                 title: "Implementation Framework",
                 description: "90-day rescue plan to improve your HubSpot ROI"
-              }].map((item, index) => <div key={index} className="flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 via-blue-50 to-dataops-50 border border-gray-100 hover:shadow-md transition-all duration-300">
-                    <div className="w-3 h-3 rounded-full bg-dataops-600 mt-2 flex-shrink-0"></div>
+              }].map((item, index) => <div key={index} className="p-6 rounded-xl bg-gradient-to-br from-gray-50 via-blue-50 to-dataops-50 border border-gray-100 hover:shadow-md transition-all duration-300">
                     <div>
                       <h3 className="font-bold text-gray-900 mb-2 text-lg">{item.title}</h3>
                       <p className="text-gray-600 leading-relaxed">{item.description}</p>
