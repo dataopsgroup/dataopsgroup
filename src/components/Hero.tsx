@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -30,6 +29,24 @@ const Hero = () => {
   React.useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       console.log('Hero component mounted - image scaling should be applied via CSS');
+      
+      // Check if the image element has the correct transform after a short delay
+      setTimeout(() => {
+        const heroImg = document.querySelector('.hero-bg img');
+        if (heroImg) {
+          const computedStyle = window.getComputedStyle(heroImg);
+          console.log('Hero image transform:', computedStyle.transform);
+          console.log('Hero image object-position:', computedStyle.objectPosition);
+          console.log('Hero image dimensions:', {
+            width: heroImg.clientWidth,
+            height: heroImg.clientHeight,
+            naturalWidth: (heroImg as HTMLImageElement).naturalWidth,
+            naturalHeight: (heroImg as HTMLImageElement).naturalHeight
+          });
+        } else {
+          console.warn('Hero image not found in DOM');
+        }
+      }, 1000);
     }
   }, []);
 
@@ -42,7 +59,6 @@ const Hero = () => {
             <OptimizedImage 
               src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" 
               alt="Hero background" 
-              className="w-full h-full object-cover" 
               priority={true}
               isLCP={true}
               componentType="hero"
@@ -101,7 +117,6 @@ const Hero = () => {
             </div>
             
             {/* Right side - Empty space for background image visibility (desktop only) */}
-            {/* Removed problematic lg:col-span-6 xl:col-span-7 classes that referenced non-existent columns */}
             {!isMobile && <div className="hidden lg:block"></div>}
           </div>
         </div>

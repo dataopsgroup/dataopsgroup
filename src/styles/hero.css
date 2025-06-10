@@ -16,13 +16,16 @@
   overflow: hidden; /* Handle scaled image properly */
 }
 
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: right center; /* Keep woman positioned prominently on the right */
-  transform: scale(1.1); /* Scale up the image to make the woman appear larger */
-  transform-origin: right center; /* Scale from the right to maintain woman's position */
+/* High specificity selectors to override component styles */
+.hero-bg img,
+.hero-bg .optimized-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: right center !important; /* Keep woman positioned prominently on the right */
+  transform: scale(1.1) !important; /* Scale up the image to make the woman appear larger */
+  transform-origin: right center !important; /* Scale from the right to maintain woman's position */
+  max-width: none !important; /* Override any max-width constraints */
 }
 
 .hero-container {
@@ -117,8 +120,9 @@
     padding: 2.5rem;
   }
   
-  .hero-bg img {
-    transform: scale(1.15); /* Slightly larger scale on very large screens */
+  .hero-bg img,
+  .hero-bg .optimized-image img {
+    transform: scale(1.15) !important; /* Slightly larger scale on very large screens */
   }
 }
 
@@ -149,7 +153,8 @@
     color: rgba(255, 255, 255, 0.9);
   }
   
-  .hero-bg img {
-    transform: scale(1); /* No scaling on mobile to maintain layout */
+  .hero-bg img,
+  .hero-bg .optimized-image img {
+    transform: scale(1) !important; /* No scaling on mobile to maintain layout */
   }
 }
