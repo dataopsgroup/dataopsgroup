@@ -49,6 +49,10 @@ const AssessmentQuiz = () => {
   const nextSection = () => {
     if (currentSection < quizSections.length) {
       setCurrentSection(prev => prev + 1);
+      // Scroll to top with a small delay to ensure content is rendered
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     } else {
       // Calculate final scores for all sections
       const finalScores: Record<string, number> = {};
@@ -60,12 +64,20 @@ const AssessmentQuiz = () => {
       
       setScores(finalScores);
       setCurrentStep('results');
+      // Scroll to top for results page
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   };
 
   const prevSection = () => {
     if (currentSection > 1) {
       setCurrentSection(prev => prev - 1);
+      // Scroll to top with a small delay to ensure content is rendered
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     }
   };
 
