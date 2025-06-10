@@ -1,15 +1,13 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-
 interface AssessmentIntroProps {
   startQuiz: () => void;
 }
-
-const AssessmentIntro: React.FC<AssessmentIntroProps> = ({ startQuiz }) => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+const AssessmentIntro: React.FC<AssessmentIntroProps> = ({
+  startQuiz
+}) => {
+  return <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <div className="p-6 md:p-8 max-w-7xl mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-16">
@@ -34,32 +32,25 @@ const AssessmentIntro: React.FC<AssessmentIntroProps> = ({ startQuiz }) => {
                 What You'll Receive
               </h2>
               <div className="grid md:grid-cols-2 gap-8">
-                {[
-                  {
-                    title: "Overall Health Score",
-                    description: "Complete analysis of your HubSpot implementation health"
-                  },
-                  {
-                    title: "Priority Areas",
-                    description: "Identification of your highest-priority improvement areas"
-                  },
-                  {
-                    title: "Action Plan",
-                    description: "Specific recommended actions based on your results"
-                  },
-                  {
-                    title: "Implementation Framework",
-                    description: "90-day rescue plan to improve your HubSpot ROI"
-                  }
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 via-blue-50 to-dataops-50 border border-gray-100 hover:shadow-md transition-all duration-300">
-                    <span className="text-dataops-600 font-bold text-lg mt-1 flex-shrink-0">•</span>
+                {[{
+                title: "Overall Health Score",
+                description: "Complete analysis of your HubSpot implementation health"
+              }, {
+                title: "Priority Areas",
+                description: "Identification of your highest-priority improvement areas"
+              }, {
+                title: "Action Plan",
+                description: "Specific recommended actions based on your results"
+              }, {
+                title: "Implementation Framework",
+                description: "90-day rescue plan to improve your HubSpot ROI"
+              }].map((item, index) => <div key={index} className="flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-gray-50 via-blue-50 to-dataops-50 border border-gray-100 hover:shadow-md transition-all duration-300">
+                    
                     <div>
                       <h3 className="font-bold text-gray-900 mb-2 text-lg">{item.title}</h3>
                       <p className="text-gray-600 leading-relaxed">{item.description}</p>
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
 
@@ -88,7 +79,7 @@ const AssessmentIntro: React.FC<AssessmentIntroProps> = ({ startQuiz }) => {
           
           {/* Right Sidebar */}
           <div className="space-y-8">
-            <Alert className="bg-gradient-to-br from-blue-50 via-indigo-50 to-dataops-50 border-2 border-dataops-200 p-8 rounded-2xl shadow-lg">
+            <Alert className="border-2 border-dataops-200 p-8 rounded-2xl shadow-lg bg-brand-saffron">
               <AlertDescription className="text-dataops-800 font-medium text-lg leading-relaxed">
                 According to Forrester Research, companies with optimized CRM implementations achieve 
                 <span className="text-3xl font-bold text-dataops-600 block mt-4 mb-2">2.8x higher ROI</span>
@@ -98,10 +89,7 @@ const AssessmentIntro: React.FC<AssessmentIntroProps> = ({ startQuiz }) => {
 
             {/* CTA Button */}
             <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-              <Button 
-                onClick={startQuiz} 
-                className="w-full bg-gradient-to-r from-dataops-600 via-dataops-700 to-dataops-800 hover:from-dataops-700 hover:via-dataops-800 hover:to-dataops-900 text-white py-6 text-xl font-bold rounded-xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl"
-              >
+              <Button onClick={startQuiz} className="w-full bg-gradient-to-r from-dataops-600 via-dataops-700 to-dataops-800 hover:from-dataops-700 hover:via-dataops-800 hover:to-dataops-900 text-white py-6 text-xl font-bold rounded-xl shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-3xl">
                 Start Your Assessment
               </Button>
               <p className="text-sm text-gray-500 text-center mt-4 font-medium">
@@ -111,8 +99,6 @@ const AssessmentIntro: React.FC<AssessmentIntroProps> = ({ startQuiz }) => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default AssessmentIntro;
