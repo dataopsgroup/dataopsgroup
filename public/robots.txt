@@ -18,6 +18,10 @@ Disallow: /login/
 Disallow: /signin/
 Disallow: /signup/
 
+# Disallow broken Botpress CDN URLs that were causing 403 errors
+Disallow: https://cdn.botpress.cloud/
+Disallow: https://mediafiles.botpress.cloud/
+
 # Disallow HubSpot technical resources that are returning 404s
 Disallow: /_hcms/forms/embed/v4/render-definition/ssr
 Disallow: /0OV0VHL4M36Z.js.gz
