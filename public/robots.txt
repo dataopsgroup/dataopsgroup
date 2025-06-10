@@ -26,6 +26,10 @@ Disallow: /0OV0VHL4M36Z.js.gz
 Disallow: /guides/hubspot-expert-guide
 Disallow: /pillar-content/hubspot-expert
 
+# Disallow duplicate FAQ services variants to prevent canonical issues
+Disallow: /faqs/services-5
+Disallow: /faqs/hubspot-services
+
 # Explicitly allow all content pages with correct canonical URLs
 Allow: /insights/
 Allow: /services/
@@ -83,6 +87,10 @@ Crawl-delay: 2
 User-agent: Googlebot-Mobile
 Allow: /
 Crawl-delay: 1
+
+# Disallow access to duplicate FAQ services variants
+User-agent: *
+Disallow: /faqs/*-5
 
 # Allow Google and other search engine bots
 User-agent: Mediapartners-Google

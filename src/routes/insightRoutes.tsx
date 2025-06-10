@@ -5,7 +5,7 @@ const BlogList = lazy(() => import('../pages/BlogList'));
 const BlogPostPage = lazy(() => import('../pages/BlogPost'));
 const CaseStudyDetailPage = lazy(() => import('../pages/CaseStudyDetail'));
 const FAQs = lazy(() => import('../pages/FAQs'));
-const FAQHubSpotServices = lazy(() => import('../pages/FAQHubSpotServices'));
+const FAQServicesPage = lazy(() => import('../pages/FAQServicesPage'));
 const FAQHubSpotExperts = lazy(() => import('../pages/FAQHubSpotExperts'));
 const FAQDataQuality = lazy(() => import('../pages/FAQDataQuality'));
 const FAQOurApproach = lazy(() => import('../pages/FAQOurApproach'));
@@ -41,7 +41,7 @@ export const insightRoutes = [
   },
   {
     path: "/faqs/services",
-    element: <FAQHubSpotServices />,
+    element: <FAQServicesPage />,
     errorElement: <RouteErrorBoundary />,
   },
   {
