@@ -72,7 +72,7 @@ class SecurityMonitor {
   // Check for XSS attempts
   detectXSSAttempt(input: string): boolean {
     const xssPatterns = [
-      /<script[^>]*>.*?<\/script>/gi,
+      /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script\s*>/gi,
       /<iframe[^>]*>.*?<\/iframe>/gi,
       /javascript\s*:/gi,
       /on\w+\s*=\s*["'][^"']*["']/gi,
