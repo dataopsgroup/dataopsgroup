@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import AssessmentIntro from './AssessmentIntro';
 import QuizResults from './QuizResults';
 import { useAssessmentResults } from '@/hooks/useAssessmentResults';
-import { Loader2, CheckCircle } from 'lucide-react';
 
 const AssessmentQuiz = () => {
   const [currentStep, setCurrentStep] = useState('intro');
@@ -59,29 +58,29 @@ const AssessmentQuiz = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
         <div className="max-w-lg mx-auto text-center p-8">
-          <div className="bg-white rounded-2xl shadow-xl p-12">
-            <div className="mb-8">
-              <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-dataops-600 to-dataops-700 rounded-full flex items-center justify-center">
-                <Loader2 className="h-8 w-8 text-white animate-spin" />
+          <div className="bg-white rounded-3xl shadow-2xl p-16">
+            <div className="mb-12">
+              <div className="w-24 h-24 mx-auto mb-8 bg-gradient-to-r from-dataops-600 to-dataops-700 rounded-full flex items-center justify-center animate-spin">
+                <div className="w-6 h-6 bg-white rounded-full"></div>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
                 Processing Your Assessment
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-8 text-lg">
                 Analyzing your responses and generating personalized recommendations...
               </p>
             </div>
             
-            <div className="space-y-3">
+            <div className="space-y-4">
               {[
                 'Evaluating data quality practices',
                 'Analyzing automation workflows',
                 'Calculating performance scores',
                 'Generating improvement plan'
               ].map((step, index) => (
-                <div key={index} className="flex items-center justify-start text-sm text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-3 flex-shrink-0" />
-                  {step}
+                <div key={index} className="flex items-center justify-start text-gray-600 p-3 rounded-lg bg-gray-50">
+                  <div className="w-4 h-4 bg-green-500 rounded-full mr-4 flex-shrink-0"></div>
+                  <span className="font-medium">{step}</span>
                 </div>
               ))}
             </div>

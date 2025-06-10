@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 interface SectionScoreProps {
   title: string;
@@ -19,7 +18,6 @@ const SectionScore: React.FC<SectionScoreProps> = ({ title, score, maxScore = 25
       textColor: 'text-red-600',
       borderColor: 'border-red-200',
       bgCard: 'bg-red-50',
-      icon: <TrendingDown className="h-5 w-5 text-red-500" />,
       label: 'Needs Attention'
     };
     if (percentage < 65) return {
@@ -28,7 +26,6 @@ const SectionScore: React.FC<SectionScoreProps> = ({ title, score, maxScore = 25
       textColor: 'text-orange-600',
       borderColor: 'border-orange-200',
       bgCard: 'bg-orange-50',
-      icon: <Minus className="h-5 w-5 text-orange-500" />,
       label: 'Developing'
     };
     if (percentage < 85) return {
@@ -37,7 +34,6 @@ const SectionScore: React.FC<SectionScoreProps> = ({ title, score, maxScore = 25
       textColor: 'text-yellow-600',
       borderColor: 'border-yellow-200',
       bgCard: 'bg-yellow-50',
-      icon: <TrendingUp className="h-5 w-5 text-yellow-500" />,
       label: 'Good'
     };
     return {
@@ -46,7 +42,6 @@ const SectionScore: React.FC<SectionScoreProps> = ({ title, score, maxScore = 25
       textColor: 'text-green-600',
       borderColor: 'border-green-200',
       bgCard: 'bg-green-50',
-      icon: <TrendingUp className="h-5 w-5 text-green-500" />,
       label: 'Excellent'
     };
   };
@@ -54,17 +49,17 @@ const SectionScore: React.FC<SectionScoreProps> = ({ title, score, maxScore = 25
   const config = getSectionConfig();
 
   return (
-    <div className={`${config.bgCard} ${config.borderColor} border rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1`}>
-      <div className="flex items-start justify-between mb-4">
-        <h4 className="font-semibold text-gray-900 text-sm leading-tight flex-1">{title}</h4>
-        {config.icon}
+    <div className={`${config.bgCard} ${config.borderColor} border-2 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2`}>
+      <div className="flex items-start justify-between mb-6">
+        <h4 className="font-bold text-gray-900 text-lg leading-tight flex-1">{title}</h4>
+        <div className="w-4 h-4 rounded-full bg-gradient-to-r from-gray-300 to-gray-400 flex-shrink-0 mt-1"></div>
       </div>
       
       {/* Progress Bar */}
-      <div className="mb-4">
-        <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+      <div className="mb-6">
+        <div className="h-4 bg-gray-200 rounded-full overflow-hidden">
           <div 
-            className={`h-full bg-gradient-to-r ${config.bgGradient} rounded-full transition-all duration-1000 ease-out`}
+            className={`h-full bg-gradient-to-r ${config.bgGradient} rounded-full transition-all duration-1500 ease-out`}
             style={{ width: `${percentage}%` }}
           ></div>
         </div>
@@ -72,12 +67,12 @@ const SectionScore: React.FC<SectionScoreProps> = ({ title, score, maxScore = 25
       
       {/* Score Details */}
       <div className="flex items-center justify-between">
-        <span className={`text-sm font-medium ${config.textColor}`}>
+        <span className={`text-sm font-bold ${config.textColor}`}>
           {config.label}
         </span>
         <div className="text-right">
-          <div className="font-bold text-gray-900">{score}/{maxScore}</div>
-          <div className="text-xs text-gray-500">{Math.round(percentage)}%</div>
+          <div className="font-bold text-gray-900 text-xl">{score}/{maxScore}</div>
+          <div className="text-sm text-gray-500 font-medium">{Math.round(percentage)}%</div>
         </div>
       </div>
     </div>

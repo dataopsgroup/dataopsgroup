@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { TrendingUp, Award, AlertTriangle, CheckCircle } from 'lucide-react';
 
 interface ResultsOverviewProps {
   overallScore: number;
@@ -22,7 +21,6 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
       bgColor: 'bg-red-50',
       borderColor: 'border-red-200',
       textColor: 'text-red-600',
-      icon: <AlertTriangle className="h-8 w-8 text-red-500" />,
       message: "Your HubSpot implementation needs immediate attention"
     };
     if (overallScore < 85) return {
@@ -30,7 +28,6 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
       bgColor: 'bg-orange-50',
       borderColor: 'border-orange-200',
       textColor: 'text-orange-600',
-      icon: <TrendingUp className="h-8 w-8 text-orange-500" />,
       message: "Good foundation with room for improvement"
     };
     if (overallScore < 105) return {
@@ -38,7 +35,6 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
       bgColor: 'bg-yellow-50',
       borderColor: 'border-yellow-200',
       textColor: 'text-yellow-600',
-      icon: <TrendingUp className="h-8 w-8 text-yellow-500" />,
       message: "Strong performance with optimization opportunities"
     };
     return {
@@ -46,7 +42,6 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
       bgColor: 'bg-green-50',
       borderColor: 'border-green-200',
       textColor: 'text-green-600',
-      icon: <Award className="h-8 w-8 text-green-500" />,
       message: "Excellent HubSpot implementation!"
     };
   };
@@ -54,24 +49,24 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
   const config = getScoreConfig();
 
   return (
-    <div className="mb-12">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Your Assessment Results</h2>
-        <p className="text-gray-600">Here's how your HubSpot implementation measures up</p>
+    <div className="mb-16">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Your Assessment Results</h2>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">Here's how your HubSpot implementation measures up</p>
       </div>
 
-      <div className={`${config.bgColor} ${config.borderColor} border-2 rounded-2xl p-8 mb-8`}>
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div className={`${config.bgColor} ${config.borderColor} border-2 rounded-3xl p-12 mb-12 shadow-2xl`}>
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Score Circle */}
           <div className="flex-shrink-0">
             <div className="relative">
-              <svg className="w-40 h-40 transform -rotate-90" viewBox="0 0 100 100">
+              <svg className="w-52 h-52 transform -rotate-90" viewBox="0 0 100 100">
                 <circle
                   cx="50"
                   cy="50"
                   r="40"
                   stroke="currentColor"
-                  strokeWidth="4"
+                  strokeWidth="6"
                   fill="transparent"
                   className="text-gray-200"
                 />
@@ -80,11 +75,11 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
                   cy="50"
                   r="40"
                   stroke="url(#gradient)"
-                  strokeWidth="4"
+                  strokeWidth="6"
                   fill="transparent"
                   strokeDasharray={`${(percentage * 251.2) / 100} 251.2`}
                   strokeLinecap="round"
-                  className="transition-all duration-1000 ease-out"
+                  className="transition-all duration-2000 ease-out"
                 />
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -95,8 +90,8 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-gray-900">{overallScore}</div>
-                  <div className="text-sm text-gray-500">/{maxScore}</div>
+                  <div className="text-5xl font-bold text-gray-900 mb-2">{overallScore}</div>
+                  <div className="text-lg text-gray-500">/{maxScore}</div>
                 </div>
               </div>
             </div>
@@ -104,21 +99,20 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
 
           {/* Score Details */}
           <div className="flex-1 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start mb-4">
-              {config.icon}
-              <span className={`ml-3 text-2xl font-bold ${config.textColor}`}>
+            <div className="flex items-center justify-center lg:justify-start mb-6">
+              <span className={`text-3xl font-bold ${config.textColor}`}>
                 {scoreLabel}
               </span>
             </div>
-            <p className="text-lg text-gray-700 mb-4">{config.message}</p>
-            <div className="flex items-center justify-center lg:justify-start space-x-6">
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed">{config.message}</p>
+            <div className="flex items-center justify-center lg:justify-start space-x-8">
               <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">{percentage}%</div>
-                <div className="text-sm text-gray-500">Overall Score</div>
+                <div className="text-3xl font-bold text-gray-900">{percentage}%</div>
+                <div className="text-sm text-gray-500 font-medium">Overall Score</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-dataops-600">5</div>
-                <div className="text-sm text-gray-500">Areas Assessed</div>
+                <div className="text-3xl font-bold text-dataops-600">5</div>
+                <div className="text-sm text-gray-500 font-medium">Areas Assessed</div>
               </div>
             </div>
           </div>
@@ -126,12 +120,11 @@ const ResultsOverview: React.FC<ResultsOverviewProps> = ({
       </div>
 
       {/* Quick Action */}
-      <div className="bg-gradient-to-r from-dataops-600 to-dataops-700 rounded-xl p-6 text-white text-center">
-        <div className="flex items-center justify-center mb-3">
-          <CheckCircle className="h-6 w-6 mr-2" />
-          <span className="font-semibold">Ready for Action?</span>
+      <div className="bg-gradient-to-r from-dataops-600 via-dataops-700 to-dataops-800 rounded-2xl p-8 text-white text-center shadow-xl">
+        <div className="flex items-center justify-center mb-4">
+          <span className="font-bold text-xl">Ready for Action?</span>
         </div>
-        <p className="mb-4">Your personalized improvement plan is ready below. Let's get started!</p>
+        <p className="mb-6 text-lg opacity-90">Your personalized improvement plan is ready below. Let's get started!</p>
       </div>
     </div>
   );
