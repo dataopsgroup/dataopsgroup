@@ -1,35 +1,86 @@
 
 import React from 'react';
-import { services } from '@/components/Services';
-import { Link } from "react-router-dom";
-import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
+
+const services = [
+  {
+    title: "Analytics & BI",
+    description: "Transform raw data into actionable insights with custom dashboards and reporting systems.",
+    href: "/services/analytics-bi",
+    features: ["Custom Dashboards", "Performance Tracking", "ROI Analysis"]
+  },
+  {
+    title: "DataOps Implementation",
+    description: "End-to-end implementation of data operations processes and systems.",
+    href: "/services/dataops-implementation", 
+    features: ["System Integration", "Process Automation", "Quality Assurance"]
+  },
+  {
+    title: "Team Training",
+    description: "Comprehensive training programs to ensure your team maximizes system adoption.",
+    href: "/services/team-training",
+    features: ["HubSpot Training", "Best Practices", "Ongoing Support"]
+  },
+  {
+    title: "Marketing Operations & RevOps",
+    description: "Align your marketing, sales, and operations teams for maximum revenue growth.",
+    href: "/services/marketing-operations-revops",
+    features: ["Lead Management", "Pipeline Optimization", "Revenue Attribution"]
+  }
+];
 
 const ServicesOverview = () => {
   return (
-    <section className="space-y-6">
-      <h2 className="text-3xl font-bold">Our Data Operations Services</h2>
-      <p className="text-lg text-gray-700">
-        We offer a range of specialized services designed to help organizations effectively 
-        manage, integrate, analyze, and utilize their data. Each service is tailored to 
-        address specific business challenges and deliver measurable results.
-      </p>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-        {services.map((service, index) => (
-          <div key={index} className={`overflow-hidden rounded-lg shadow-md bg-gradient-to-br ${service.gradient} text-white p-6`}>
-            <div className="mb-4">
-              {service.icon}
-            </div>
-            <h2 className="text-xl font-semibold mb-4 text-white">{service.title}</h2>
-            <p className="text-white/90 mb-4">
-              {service.description}
+    <section className="py-16 px-4">
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dataops-900">Our Services</h2>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+            We offer comprehensive data operations solutions designed to transform your business processes and drive measurable results.
+          </p>
+          
+          {/* Assessment CTA - unique to services overview */}
+          <div className="bg-gradient-to-r from-dataops-50 to-blue-50 border border-dataops-200 rounded-lg p-6 mb-12 max-w-2xl mx-auto">
+            <h3 className="text-lg font-semibold text-dataops-800 mb-2">Which Service Will Drive the Biggest Impact?</h3>
+            <p className="text-gray-700 mb-4">
+              Take our free operations assessment to get personalized service recommendations based on your current gaps and business goals.
             </p>
-            <Link to={`/services/${service.id}`} className="flex items-center text-white hover:text-white/80 group">
-              Learn more
-              <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <a href="/data-operations-assessment" className="inline-flex items-center bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+              Get Personalized Recommendations
+            </a>
           </div>
-        ))}
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          {services.map((service, index) => {
+            return (
+              <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                    <p className="text-gray-700 mb-4">{service.description}</p>
+                    <ul className="space-y-1 mb-4">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="text-sm text-gray-600 flex items-center">
+                          <div className="w-1.5 h-1.5 bg-dataops-600 rounded-full mr-2"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link 
+                      to={service.href}
+                      className="inline-flex items-center text-dataops-600 hover:text-dataops-700 font-medium"
+                    >
+                      Learn More
+                      <ChevronRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

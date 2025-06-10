@@ -1,36 +1,74 @@
 
-import React from 'react';
-import BlogList from '../pages/BlogList';
-import BlogPost from '../pages/BlogPost';
-import CaseStudiesPage from '../pages/CaseStudies';
-import Whitepapers from '../pages/Whitepapers';
-import FAQs from '../pages/FAQs';
-import NotFound from '../pages/NotFound';
+import React, { lazy } from 'react';
+
+const BlogList = lazy(() => import('../pages/BlogList'));
+const BlogPostPage = lazy(() => import('../pages/BlogPost'));
+const CaseStudyDetailPage = lazy(() => import('../pages/CaseStudyDetail'));
+const FAQs = lazy(() => import('../pages/FAQs'));
+const FAQServicesPage = lazy(() => import('../pages/FAQServicesPage'));
+const FAQHubSpotExperts = lazy(() => import('../pages/FAQHubSpotExperts'));
+const FAQDataQuality = lazy(() => import('../pages/FAQDataQuality'));
+const FAQOurApproach = lazy(() => import('../pages/FAQOurApproach'));
+const FAQHubSpotModules = lazy(() => import('../pages/FAQHubSpotModules'));
+const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
+const RouteErrorBoundary = lazy(() => import('../components/RouteErrorBoundary'));
 
 export const insightRoutes = [
+  // Blog and insights
   {
     path: "/insights",
     element: <BlogList />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/insights/:postId",
-    element: <BlogPost />,
-    errorElement: <NotFound />,
+    element: <BlogPostPage />,
+    errorElement: <RouteErrorBoundary />,
   },
+  
+  // Case studies
   {
-    path: "/case-studies",
-    element: <CaseStudiesPage />,
-    errorElement: <NotFound />,
+    path: "/case-studies/:caseStudyId",
+    element: <CaseStudyDetailPage />,
+    errorElement: <RouteErrorBoundary />,
   },
-  {
-    path: "/whitepapers",
-    element: <Whitepapers />,
-    errorElement: <NotFound />,
-  },
+  
+  // FAQ sections - organized under /faqs
   {
     path: "/faqs",
     element: <FAQs />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/faqs/services",
+    element: <FAQServicesPage />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/faqs/experts",
+    element: <FAQHubSpotExperts />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/faqs/data-quality",
+    element: <FAQDataQuality />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/faqs/approach",
+    element: <FAQOurApproach />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/faqs/modules",
+    element: <FAQHubSpotModules />,
+    errorElement: <RouteErrorBoundary />,
+  },
+  
+  // Testing and admin
+  {
+    path: "/structured-data-test",
+    element: <StructuredDataTest />,
+    errorElement: <RouteErrorBoundary />,
   }
 ];

@@ -7,48 +7,42 @@ import { Link } from 'react-router-dom';
 import { mainNavItems } from '@/data/navigationData';
 import DesktopNavigation from './navigation/DesktopNavigation';
 import MobileNavigation from './navigation/MobileNavigation';
-import OptimizedImage from '@/components/ui/optimized-image';
+import OptimizedLogo from '@/components/ui/optimized-logo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    // SSR guard - only run in browser
+    if (typeof window === 'undefined') return;
+    
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <nav 
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 pb-[25px] border-b border-gray-200",
+        "fixed top-0 w-full z-50 border-b border-gray-200",
         scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       )}
       aria-label="Main navigation"
+      style={{ transition: 'background-color 0.2s ease, box-shadow 0.2s ease' }}
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
-          <OptimizedImage
+          <OptimizedLogo
             src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
             alt="DataOps Group Logo"
-            width={200}
-            height={80}
             className="h-16 md:h-20 w-auto"
             priority={true}
-            loading="eager"
-            quality={90}
-            enableModernFormats={false}
-            sizes="200px"
+            width={200}
+            height={80}
           />
         </Link>
         

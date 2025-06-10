@@ -3,50 +3,32 @@ import { createBrowserRouter } from 'react-router-dom';
 import { mainRoutes } from './mainRoutes';
 import { serviceRoutes } from './serviceRoutes';
 import { insightRoutes } from './insightRoutes';
+import { contentRoutes } from './contentRoutes';
 import { utilityRoutes } from './utilityRoutes';
 import { redirectRoutes } from './redirectRoutes';
 import { blogRedirectRoutes } from './blogRedirectRoutes';
 import { apiRoutes } from './apiRoutes';
-import React from 'react';
-import { Navigate, RouteObject } from 'react-router-dom';
-import HubSpotAssessment from '../pages/HubSpotAssessment';
+import RouteErrorBoundary from '@/components/RouteErrorBoundary';
 
-// Create AMP redirect routes for each blog redirect
-const createAmpRedirects = () => {
-  return blogRedirectRoutes.map(route => {
-    // Skip the ones that don't have specific blog post redirects
-    if (route.path === '/blog' || route.path === '/en/blog/all') {
-      return null;
-    }
-    
-    // For each route, create an object that matches any URL with that path plus query params
-    return {
-      // Same path but with wildcard matcher for query params
-      path: `${route.path}/*`,
-      element: route.element
-    };
-  }).filter(Boolean) as RouteObject[];
-};
-
-// Create assessment route
-const assessmentRoute = {
-  path: "/assessment",
-  element: <HubSpotAssessment />,
-  errorElement: <Navigate to="/not-found" replace />
-};
-
-// Combine all routes
+// Enhanced router configuration with error boundary wrapping
 const routes = [
   ...mainRoutes,
   ...serviceRoutes,
-  ...insightRoutes,
+  ...insightRoutes.map(route => ({
+    ...route,
+    errorElement: <RouteErrorBoundary />
+  })),
+  ...contentRoutes,
   ...utilityRoutes,
   ...redirectRoutes,
   ...blogRedirectRoutes,
-  ...apiRoutes,
-  ...createAmpRedirects(),
-  assessmentRoute
+  ...apiRoutes
 ];
+
+// Add route debugging in development
+if (process.env.NODE_ENV === 'development') {
+  console.log('Router configuration loaded with routes:', routes.map(r => r.path));
+}
 
 // Create and export the router
 const router = createBrowserRouter(routes);

@@ -46,17 +46,42 @@ const MetaHead = ({
   locale = 'en_US',
   alternateUrls = []
 }: MetaHeadProps) => {
-  // Determine if we're in the browser environment
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  // Use production base URL consistently
+  const baseUrl = 'https://dataopsgroup.com';
   
-  // Format title
-  const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+  // Create proper canonical path with fallback - fix redirect chains
+  const currentPath = canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
   
-  // Create full canonical URL
-  const fullCanonicalUrl = `${baseUrl}${canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '')}`;
+  // Ensure path starts with / and normalize known redirects
+  let normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
+  
+  // Fix specific redirect chain issues identified by Ahrefs
+  if (normalizedPath === '/guides/hubspot-expert-guide') {
+    normalizedPath = '/guides/hubspot-expert';
+  }
+  if (normalizedPath === '/pillar-content/hubspot-expert') {
+    normalizedPath = '/guides/hubspot-expert';
+  }
+  
+  // Create full canonical URL - this is the source of truth
+  const fullCanonicalUrl = `${baseUrl}${normalizedPath}`;
+  
+  // OpenGraph URL MUST match canonical URL exactly
+  const ogUrl = fullCanonicalUrl;
+  
+  // Format title - ensure it's under 60 characters and includes brand
+  const formattedTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;
+  const truncatedTitle = formattedTitle.length > 60 ? formattedTitle.substring(0, 57) + '...' : formattedTitle;
+  
+  // Ensure description is under 160 characters
+  const truncatedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
   
   // Ensure image URLs are absolute
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
+  
+  // Get Twitter metadata from blogPost if available
+  const twitterTitle = blogPost?.seo?.twitterTitle || ogTitle || truncatedTitle;
+  const twitterDescription = blogPost?.seo?.twitterDescription || ogDescription || truncatedDescription;
   
   // If this is a blog post, use blog post data for meta tags
   if (blogPost && isArticle) {
@@ -71,8 +96,8 @@ const MetaHead = ({
   return (
     <Helmet>
       {/* Basic Meta Tags */}
-      <title>{fullTitle}</title>
-      <meta name="description" content={description} />
+      <title>{truncatedTitle}</title>
+      <meta name="description" content={truncatedDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
       <link rel="canonical" href={fullCanonicalUrl} />
       
@@ -102,10 +127,12 @@ const MetaHead = ({
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
-      <meta property="og:title" content={ogTitle || fullTitle} />
-      <meta property="og:description" content={ogDescription || description} />
+      <meta property="og:title" content={ogTitle || truncatedTitle} />
+      <meta property="og:description" content={ogDescription || truncatedDescription} />
       <meta property="og:image" content={fullOgImage} />
-      <meta property="og:url" content={fullCanonicalUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:url" content={ogUrl} />
       <meta property="og:site_name" content={siteName} />
       
       {/* Additional Open Graph tags for articles */}
@@ -122,8 +149,8 @@ const MetaHead = ({
       
       {/* Twitter */}
       <meta name="twitter:card" content={twitterCard} />
-      <meta name="twitter:title" content={ogTitle || fullTitle} />
-      <meta name="twitter:description" content={ogDescription || description} />
+      <meta name="twitter:title" content={twitterTitle} />
+      <meta name="twitter:description" content={twitterDescription} />
       <meta name="twitter:image" content={fullOgImage} />
       <meta name="twitter:site" content="@dataops_group" />
       {author && <meta name="twitter:creator" content={`@${author.toLowerCase().replace(/\s+/g, '')}`} />}

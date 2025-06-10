@@ -1,28 +1,8 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import path from "path";
+import { resolve } from "path";
 import { componentTagger } from "lovable-tagger";
-
-// Define all routes for pre-rendering (keeping SSG capability but removing problematic plugin for now)
-const routesToPrerender = [
-  '/',
-  '/about',
-  '/approach',
-  '/contact',
-  '/book',
-  '/services',
-  '/services/marketing-operations-revops',
-  '/services/analytics-bi',
-  '/services/dataops-implementation',
-  '/services/team-training',
-  '/insights',
-  '/assessment',
-  '/get-started',
-  '/thank-you',
-  '/contact/thank-you',
-  '/sitemap',
-  '/how-to-hire-a-hubspot-expert-in-2025'
-];
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -32,67 +12,49 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
-    mode === 'development' &&
-    componentTagger(),
-    // Note: SSG pre-rendering plugin removed temporarily to fix build issues
-    // Will be re-added once proper types are available
+    mode === 'development' && componentTagger(),
   ].filter(Boolean),
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": resolve(__dirname, "./src"),
     },
   },
   build: {
-    // Enable more aggressive minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: mode === 'production',
-        drop_debugger: true,
-        pure_funcs: mode === 'production' ? ['console.log', 'console.debug'] : []
-      },
-      format: {
-        comments: false
-      }
-    },
-    // Enable chunking for better code-splitting
+    target: 'esnext',
+    minify: mode === 'production',
+    sourcemap: mode === 'development',
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split vendor dependencies into separate chunks
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'ui-components': [
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-alert-dialog',
-            '@radix-ui/react-aspect-ratio',
-            '@radix-ui/react-avatar',
-            '@radix-ui/react-checkbox',
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-dropdown-menu',
-            '@radix-ui/react-label',
-            '@radix-ui/react-popover',
-            '@radix-ui/react-select',
-            '@radix-ui/react-slot',
+          // Core React ecosystem
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          
+          // UI framework components
+          ui: [
+            '@radix-ui/react-accordion', 
+            '@radix-ui/react-dialog', 
+            '@radix-ui/react-tooltip',
             '@radix-ui/react-tabs',
-            '@radix-ui/react-toast',
-            'class-variance-authority',
-            'clsx',
-            'cmdk',
-            'tailwind-merge'
+            '@radix-ui/react-select',
+            '@radix-ui/react-scroll-area'
           ],
-          'charts': ['recharts']
+          
+          // Charts and data visualization
+          charts: ['recharts', 'embla-carousel-react'],
+          
+          // Forms and validation
+          forms: ['react-hook-form', '@hookform/resolvers', 'zod'],
+          
+          // Date utilities
+          dates: ['date-fns'],
+          
+          // Analytics and performance
+          analytics: ['@tanstack/react-query'],
+          
+          // Icons and assets
+          icons: ['lucide-react']
         },
-        // Add content hash to chunk names for better caching
-        chunkFileNames: 'assets/js/[name].[hash].js',
-        entryFileNames: 'assets/js/[name].[hash].js',
-        assetFileNames: (assetInfo) => {
-          // Don't rename CSS files - as requested
-          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
-            return 'assets/[name][extname]';
-          }
-          return 'assets/[name].[hash][extname]';
-        }
-      }
-    }
+      },
+    },
   }
 }));

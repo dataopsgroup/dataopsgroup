@@ -1,131 +1,186 @@
-import React from 'react';
-import { SectionId } from '@/types/pillar-content';
+
+import React, { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface TableOfContentsProps {
-  sectionIds: SectionId[];
   activeSection: string;
-  handleSectionClick: (sectionId: SectionId) => void;
 }
 
-const TableOfContents: React.FC<TableOfContentsProps> = ({ 
-  sectionIds, 
-  activeSection, 
-  handleSectionClick 
+const TableOfContents: React.FC<TableOfContentsProps> = ({
+  activeSection
 }) => {
+  const { isMobile } = useIsMobile();
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const sections = [
+    {
+      id: 'introduction',
+      title: 'Introduction: The HubSpot Expert Decision'
+    },
+    {
+      id: 'understanding-experts',
+      title: 'Understanding HubSpot Experts vs. Agencies'
+    },
+    {
+      id: 'types-expertise',
+      title: 'Types of HubSpot Expertise You Need'
+    },
+    {
+      id: 'beyond-agency-safety',
+      title: 'Beyond the Agency Safety Net'
+    },
+    {
+      id: 'when-need-expert',
+      title: 'When Your Business Needs a HubSpot Expert'
+    },
+    {
+      id: 'evaluating-qualifications',
+      title: 'Evaluating HubSpot Expert Qualifications'
+    },
+    {
+      id: 'pricing-guide',
+      title: 'Complete Pricing Guide'
+    },
+    {
+      id: 'step-by-step-process',
+      title: 'Step-by-Step Hiring Process'
+    },
+    {
+      id: 'essential-questions',
+      title: 'Essential Questions for Evaluation'
+    },
+    {
+      id: 'maximizing-partnership',
+      title: 'Maximizing Your Partnership'
+    },
+    {
+      id: 'success-stories',
+      title: 'Real-World Success Stories'
+    },
+    {
+      id: 'common-pitfalls',
+      title: 'Common Pitfalls to Avoid'
+    },
+    {
+      id: 'conclusion',
+      title: 'Making Your Final Decision'
+    }
+  ];
+
+  const handleSectionClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 100; // Account for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      // On mobile, collapse the ToC after clicking a section
+      if (isMobile) {
+        setIsExpanded(false);
+      }
+    }
+  };
+
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className="p-4 md:sticky md:top-24">
-      <div className="table-of-contents-container mr-7">
-        <h2 className="text-xl font-semibold px-3 py-2 my-2">Table of Contents</h2>
-        <nav className="table-of-contents">
-          <ul className="space-y-0">
-            <li>
-              <button 
-                onClick={() => handleSectionClick('introduction')} 
-                className={`${activeSection === 'introduction' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Introduction
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('understanding-experts')} 
-                className={`${activeSection === 'understanding-experts' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Understanding HubSpot Experts vs Consultants vs Agencies
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('types-expertise')} 
-                className={`${activeSection === 'types-expertise' ? 'active' : ''} w-full text-left block py-2 px-3 pr-8`}
-              >
-                Types of HubSpot Expertise and Specializations
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('beyond-agency-safety')} 
-                className={`${activeSection === 'beyond-agency-safety' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Beyond the Agency Safety Net: Choosing Results Over Size
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('when-need-expert')} 
-                className={`${activeSection === 'when-need-expert' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                When Your Business Needs a HubSpot Expert
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('evaluating-qualifications')} 
-                className={`${activeSection === 'evaluating-qualifications' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Evaluating HubSpot Expert Qualifications and Integration Experience
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('pricing-guide')} 
-                className={`${activeSection === 'pricing-guide' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Complete Pricing Guide for HubSpot Experts and Implementation
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('step-by-step-process')} 
-                className={`${activeSection === 'step-by-step-process' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Step-by-Step Process to Find and Hire the Perfect HubSpot Expert
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('essential-questions')} 
-                className={`${activeSection === 'essential-questions' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Essential Questions for Evaluating HubSpot Experts
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('maximizing-partnership')} 
-                className={`${activeSection === 'maximizing-partnership' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Maximizing Your HubSpot Expert Partnership
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('success-stories')} 
-                className={`${activeSection === 'success-stories' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Real-World Success Stories: Integration-Focused Implementations
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('common-pitfalls')} 
-                className={`${activeSection === 'common-pitfalls' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Common Pitfalls When Hiring HubSpot Experts
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => handleSectionClick('conclusion')} 
-                className={`${activeSection === 'conclusion' ? 'active' : ''} w-full text-left block py-2 px-3 pr-4`}
-              >
-                Conclusion: Making Your Final Decision
-              </button>
-            </li>
+    <nav className="bg-white border border-gray-200 rounded-lg shadow-sm table-of-contents">
+      {/* Mobile Header with Toggle */}
+      {isMobile ? (
+        <>
+          <button
+            onClick={toggleExpanded}
+            className="w-full p-4 flex items-center justify-between text-left hover:bg-gray-50 transition-colors rounded-t-lg"
+            style={{ minHeight: '44px' }}
+            aria-expanded={isExpanded}
+            aria-controls="toc-content"
+          >
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Table of Contents</h2>
+              <p className="text-sm text-gray-600 mt-1">{sections.length} sections</p>
+            </div>
+            {isExpanded ? (
+              <ChevronUp className="h-5 w-5 text-gray-500" />
+            ) : (
+              <ChevronDown className="h-5 w-5 text-gray-500" />
+            )}
+          </button>
+          
+          {/* Collapsible Content */}
+          <div
+            id="toc-content"
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+              isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="p-4 pt-0 max-h-80 overflow-y-auto">
+              <ul className="space-y-2">
+                {sections.map((section, index) => (
+                  <li key={section.id}>
+                    <button
+                      onClick={() => handleSectionClick(section.id)}
+                      className={`w-full text-left px-3 py-3 rounded-md text-sm transition-colors ${
+                        activeSection === section.id
+                          ? 'bg-dataops-100 text-dataops-700 font-medium'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      }`}
+                      style={{ minHeight: '44px' }}
+                    >
+                      <span className="text-gray-400 mr-2">{index + 1}.</span>
+                      {section.title}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                <h3 className="font-medium text-gray-900 mb-2">💡 Quick Navigation</h3>
+                <p className="text-sm text-gray-600">
+                  Click any section above to jump directly to that content. Your progress is automatically saved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        /* Desktop Layout - Keep existing design */
+        <div className="p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h2>
+          <ul className="space-y-2">
+            {sections.map((section, index) => (
+              <li key={section.id}>
+                <button
+                  onClick={() => handleSectionClick(section.id)}
+                  className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
+                    activeSection === section.id
+                      ? 'bg-dataops-100 text-dataops-700 font-medium'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <span className="text-gray-400 mr-2">{index + 1}.</span>
+                  {section.title}
+                </button>
+              </li>
+            ))}
           </ul>
-        </nav>
-      </div>
-    </div>
+          
+          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+            <h3 className="font-medium text-gray-900 mb-2">💡 Quick Navigation</h3>
+            <p className="text-sm text-gray-600">
+              Click any section above to jump directly to that content. Your progress is automatically saved.
+            </p>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 

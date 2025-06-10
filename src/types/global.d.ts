@@ -1,56 +1,8 @@
 
+// Global type declarations for browser APIs and third-party integrations
+
 declare global {
-  interface Window {
-    // Analytics integrations
-    gtag?: (command: string, action: string, params?: Record<string, any>) => void;
-    _hsq?: any[];
-    
-    // Performance monitoring APIs with vendor prefixes
-    webkitRequestIdleCallback?: typeof requestIdleCallback;
-    mozRequestIdleCallback?: typeof requestIdleCallback;
-    msRequestIdleCallback?: typeof requestIdleCallback;
-    
-    // Standard browser APIs may need polyfills
-    requestIdleCallback?: (
-      callback: (deadline: {
-        didTimeout: boolean;
-        timeRemaining: () => number;
-      }) => void,
-      options?: { timeout: number }
-    ) => number;
-    cancelIdleCallback?: (handle: number) => void;
-
-    // App version for cache busting
-    APP_VERSION?: string;
-    
-    // Performance API endpoint
-    PERFORMANCE_API_ENDPOINT?: string;
-  }
-
-  // PerformanceObserver interfaces
-  interface PerformanceObserverInit {
-    entryTypes?: string[];
-    type?: string;
-    buffered?: boolean;
-  }
-  
-  // Long tasks performance entry
-  interface PerformanceLongTaskTiming extends PerformanceEntry {
-    attribution: TaskAttributionTiming[];
-  }
-  
-  interface TaskAttributionTiming {
-    name: string;
-    entryType: string;
-    startTime: number;
-    duration: number;
-    containerType: string;
-    containerSrc: string;
-    containerId: string;
-    containerName: string;
-  }
-
-  // Layout shifts performance entry
+  // Performance API extensions
   interface LayoutShiftAttribution {
     node: Node;
     previousRect: DOMRectReadOnly;
@@ -60,11 +12,9 @@ declare global {
   interface LayoutShiftEntry extends PerformanceEntry {
     value: number;
     hadRecentInput: boolean;
-    lastInputTime: number;
     sources?: LayoutShiftAttribution[];
   }
 
-  // First input delay entry
   interface FirstInputEntry extends PerformanceEntry {
     processingStart: number;
     processingEnd: number;
@@ -73,7 +23,35 @@ declare global {
     cancelable: boolean;
     target: Element;
   }
+
+  interface Window {
+    // Botpress chatbot integration
+    botpress?: {
+      init: (config: {
+        composerPlaceholder?: string;
+        botConversationDescription?: string;
+        botName?: string;
+      }) => void;
+    };
+    
+    // Google Analytics
+    gtag?: (...args: any[]) => void;
+    dataLayer?: any[];
+    
+    // HubSpot tracking
+    _hsq?: any[];
+    hbspt?: {
+      forms: {
+        create: (config: any) => void;
+      };
+    };
+    
+    // Application versioning
+    APP_VERSION?: string;
+    
+    // Performance monitoring
+    PERFORMANCE_API_ENDPOINT?: string;
+  }
 }
 
-// Ensure this file is treated as a module
 export {};

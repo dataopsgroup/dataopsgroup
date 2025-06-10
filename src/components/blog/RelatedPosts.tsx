@@ -10,8 +10,10 @@ import {
   CarouselNext, 
   CarouselPrevious 
 } from '@/components/ui/carousel';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
 import OptimizedImage from '@/components/ui/optimized-image';
+import DynamicThumbnail from '@/components/blog/DynamicThumbnail';
+import { calculateReadingTime } from '@/utils/thumbnail-generator';
 
 interface RelatedPostsProps {
   relatedPosts: BlogPost[];
@@ -19,49 +21,84 @@ interface RelatedPostsProps {
 }
 
 const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
-  // Sample blog posts to use as fallback when not enough related posts
+  // Enhanced sample blog posts with better variety and topics
   const samplePosts = [
     {
-      id: "sample-1",
-      title: "Maximizing HubSpot ROI: A Complete Guide",
-      excerpt: "Learn how to get the most value from your HubSpot investment with these proven strategies.",
-      date: "2025-04-15",
+      id: "customer-segmentation-mistake-icp",
+      title: "The \"Ideal Customer Profile\" Myth That's Killing Your Growth",
+      excerpt: "Your ICP is likely not who you think it is. Luckily, there is a systematic way to find out who it really is.",
+      date: "2025-04-07",
       author: "Geoff Tucker",
       category: "Strategy",
-      coverImage: "/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png",
+      coverImage: "/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png",
       content: ""
     },
     {
-      id: "sample-2",
-      title: "Data Migration Best Practices for HubSpot",
-      excerpt: "Avoid common pitfalls when migrating your marketing data to HubSpot with these expert tips.",
-      date: "2025-03-22",
+      id: "customer-churn-blindspot",
+      title: "The Customer Churn Blindspot 83% of Companies Miss",
+      excerpt: "Most companies only track logo churn, missing revenue impact of downgrades and scope reductions. Learn the five dimensions that reveal your true retention picture.",
+      date: "2025-04-16",
       author: "Geoff Tucker",
-      category: "Migration",
-      coverImage: "/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png",
+      category: "Analytics",
+      coverImage: "/lovable-uploads/ff953630-432d-46db-998e-cc20409e46d1.png",
       content: ""
     },
     {
-      id: "sample-3",
-      title: "Aligning Sales and Marketing with HubSpot Workflows",
-      excerpt: "Create seamless handoffs between marketing and sales teams with automated HubSpot workflows.",
-      date: "2025-02-10",
+      id: "crm-cleanup-plan",
+      title: "Your CRM Is a Mess: Here's Your 90-Day Cleanup Plan",
+      excerpt: "90-day CRM cleanup plan to boost accuracy, reduce costs, and enhance productivity. Learn how to audit, implement, and optimize for a data-driven approach.",
+      date: "2025-04-05",
       author: "Geoff Tucker",
-      category: "Automation",
-      coverImage: "/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png",
+      category: "Operations",
+      coverImage: "/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1.png",
+      content: ""
+    },
+    {
+      id: "customer-acquisition-cost",
+      title: "The Customer Acquisition Cost Calculation That Could Save Your Company",
+      excerpt: "If you spend more to acquire customers than you earn from them, your doors will close. Learn CAC.",
+      date: "2025-03-24",
+      author: "Geoff Tucker",
+      category: "Finance",
+      coverImage: "/lovable-uploads/2ea19d63-b482-4702-ace9-64b05202fd26.png",
+      content: ""
+    },
+    {
+      id: "data-enrichment-strategy",
+      title: "Why Your Data Enrichment Strategy Isn't Working",
+      excerpt: "Improve your data enrichment strategy by fixing validation, maintenance, & quality checks. Avoid wasted budgets and boost lead quality with proven tactics.",
+      date: "2025-03-10",
+      author: "Geoff Tucker",
+      category: "Data Quality",
+      coverImage: "/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.png",
+      content: ""
+    },
+    {
+      id: "marketing-operations-isnt-it",
+      title: "Marketing Operations Isn't IT: Defining Clear Boundaries",
+      excerpt: "Marketing Ops gets confused with IT roles. Learn the key differences in focus, metrics, tools, and skills to establish clear organizational boundaries.",
+      date: "2025-02-04",
+      author: "Geoff Tucker",
+      category: "Strategy",
+      coverImage: "/lovable-uploads/51575736-affb-4097-ab47-c87b40af3b1b.png",
       content: ""
     }
   ];
 
-  // Posts to display (use actual related posts if available, otherwise use sample posts)
-  const postsToDisplay = relatedPosts.length > 0 ? relatedPosts : samplePosts;
+  // Combine actual related posts with sample posts, removing current post
+  const allPosts = [...relatedPosts, ...samplePosts]
+    .filter(post => post.id !== currentPostId)
+    .slice(0, 6); // Show 6 related posts instead of 3
+
+  // Posts to display
+  const postsToDisplay = allPosts.length > 0 ? allPosts : samplePosts.filter(post => post.id !== currentPostId).slice(0, 6);
 
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl font-bold mb-8 text-center">Continue Reading</h2>
         
-        <Carousel className="w-full max-w-5xl mx-auto">
+        <Carousel className="w-full max-w-6xl mx-auto">
           <CarouselContent>
             {postsToDisplay.map((post, index) => {
               // Special case for the post that has a specific image
@@ -69,27 +106,39 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                 ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png"
                 : post.coverImage;
                 
+              const hasCoverImage = !!coverImage;
+              const readingTime = calculateReadingTime(post.content);
+                
               return (
                 <CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
                   <Card className="h-full hover:shadow-lg transition-shadow">
                     <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
                       <CardHeader className="pb-4">
-                        <div className="w-full h-40 rounded-t-lg overflow-hidden">
-                          <OptimizedImage 
-                            src={coverImage} 
-                            alt={post.title} 
-                            width={320}
-                            height={160}
-                            className="w-full h-full"
-                            aspectRatio={2/1}
-                            objectFit="cover"
-                            loading={index === 0 ? "eager" : "lazy"}
-                            placeholder="/placeholder.svg"
+                        {hasCoverImage ? (
+                          <div className="w-full h-40 rounded-t-lg overflow-hidden">
+                            <OptimizedImage 
+                              src={coverImage} 
+                              alt={post.title} 
+                              width={320}
+                              height={160}
+                              className="w-full h-full"
+                              aspectRatio={2/1}
+                              objectFit="cover"
+                              loading={index === 0 ? "eager" : "lazy"}
+                              placeholder="/placeholder.svg"
+                            />
+                          </div>
+                        ) : (
+                          <DynamicThumbnail
+                            title={post.title}
+                            category={post.category}
+                            readingTime={readingTime}
+                            className="w-full h-40 rounded-t-lg"
                           />
-                        </div>
-                        <CardTitle className="text-lg font-semibold hover:text-dataops-600 transition-colors mt-4">
+                        )}
+                        <h3 className="!text-base font-semibold hover:text-dataops-600 transition-colors mt-4 leading-tight">
                           {post.title}
-                        </CardTitle>
+                        </h3>
                       </CardHeader>
                       <CardContent className="flex-grow">
                         <CardDescription className="text-gray-700 text-sm">
@@ -115,6 +164,14 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
           <CarouselPrevious className="-left-4 lg:-left-12 bg-white" />
           <CarouselNext className="-right-4 lg:-right-12 bg-white" />
         </Carousel>
+
+        {/* Additional internal links section */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-600 mb-4">
+            Explore more insights on <Link to="/insights" className="text-dataops-600 hover:text-dataops-800 font-medium">our blog</Link> or 
+            learn about our <Link to="/services" className="text-dataops-600 hover:text-dataops-800 font-medium">HubSpot consulting services</Link>.
+          </p>
+        </div>
       </div>
     </section>
   );

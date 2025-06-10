@@ -1,0 +1,7 @@
+
+/* Typography styles and heading consistency */
+
+/* Import modular typography files */
+@import './typography-base.css';
+@import './typography-components.css';
+@import './typography-responsive.css';

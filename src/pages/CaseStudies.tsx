@@ -1,46 +1,53 @@
 
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import { Helmet } from 'react-helmet-async';
+import SemanticLayout from '@/components/layout/SemanticLayout';
 import CTABanner from '@/components/CTABanner';
 import CaseStudiesGrid from '@/components/case-studies/CaseStudiesGrid';
 import CaseStudiesHero from '@/components/case-studies/CaseStudiesHero';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import MetaHead from '@/components/seo/MetaHead';
+
+const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
 const CaseStudiesPage = () => {
+  const breadcrumbs = [
+    { name: "Home", url: "/" },
+    { name: "Portfolio Success Stories", url: "/case-studies" }
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Portfolio Company Success Stories | DataOps Group</title>
-        <meta 
-          name="description" 
-          content="See how DataOps Group has transformed marketing operations for portfolio companies, driving measurable growth across diverse industries with proven ROI." 
-        />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Portfolio Company Success Stories | DataOps Group",
-            "description": "See how DataOps Group has transformed marketing operations for portfolio companies, driving measurable growth across diverse industries with proven ROI.",
-            "publisher": {
-              "@type": "Organization",
-              "name": "DataOps Group",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
-              }
-            }
-          })}
-        </script>
-      </Helmet>
-      <BreadcrumbSchema 
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Portfolio Success Stories", url: "/case-studies" }
-        ]} 
+    <SemanticLayout>
+      <MetaHead
+        title="Portfolio Company Success Stories | DataOps Group"
+        description="See how DataOps Group has transformed marketing operations for portfolio companies, driving measurable growth across diverse industries with proven ROI."
+        keywords="portfolio companies, case studies, hubspot implementation, marketing operations, revenue growth, dataops success stories"
+        canonicalPath="/case-studies"
+        ogType="website"
+        ogTitle="Portfolio Company Success Stories | DataOps Group"
+        ogDescription="See how DataOps Group has transformed marketing operations for portfolio companies, driving measurable growth across diverse industries with proven ROI."
+        ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+        siteName="DataOps Group"
       />
-      <Navbar />
+      
+      <BreadcrumbSchema items={breadcrumbs} />
+      
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Portfolio Company Success Stories | DataOps Group",
+          "description": "See how DataOps Group has transformed marketing operations for portfolio companies, driving measurable growth across diverse industries with proven ROI.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "DataOps Group",
+            "logo": {
+              "@type": "ImageObject",
+              "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+            }
+          }
+        })}
+      </script>
+      
       <main className="flex-1">
         <CaseStudiesHero />
         
@@ -52,8 +59,7 @@ const CaseStudiesPage = () => {
         
         <CTABanner />
       </main>
-      <Footer />
-    </div>
+    </SemanticLayout>
   );
 };
 

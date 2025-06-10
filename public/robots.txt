@@ -1,6 +1,6 @@
 
 # robots.txt for dataopsgroup.com
-# Cache refresh: 2025-05-30 17:45:00 UTC - Force complete cache invalidation
+# Cache refresh: 2025-06-10 - Fixed canonical redirect chains and broken links
 
 User-agent: *
 Allow: /
@@ -22,17 +22,31 @@ Disallow: /signup/
 Disallow: /_hcms/forms/embed/v4/render-definition/ssr
 Disallow: /0OV0VHL4M36Z.js.gz
 
-# Explicitly allow all content pages
+# Disallow old redirect paths to prevent canonical chain issues
+Disallow: /guides/hubspot-expert-guide
+Disallow: /pillar-content/hubspot-expert
+
+# Disallow duplicate FAQ services variants to prevent canonical issues
+Disallow: /faqs/services-5
+Disallow: /faqs/hubspot-services
+
+# Explicitly allow all content pages with correct canonical URLs
 Allow: /insights/
 Allow: /services/
 Allow: /case-studies/
 Allow: /assessment/
 Allow: /approach/
 Allow: /faqs/
+Allow: /faqs/services
+Allow: /faqs/experts  
+Allow: /faqs/data-quality
+Allow: /faqs/approach
+Allow: /faqs/modules
 Allow: /about/
 Allow: /book/
 Allow: /en/blog/
 Allow: /blog/
+Allow: /guides/hubspot-expert
 
 # Block search engines from scanning query parameters that create duplicate content
 Disallow: /*?utm_source=
@@ -73,6 +87,10 @@ Crawl-delay: 2
 User-agent: Googlebot-Mobile
 Allow: /
 Crawl-delay: 1
+
+# Disallow access to duplicate FAQ services variants
+User-agent: *
+Disallow: /faqs/*-5
 
 # Allow Google and other search engine bots
 User-agent: Mediapartners-Google

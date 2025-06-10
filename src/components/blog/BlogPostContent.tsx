@@ -3,12 +3,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Lightbulb, Target, TrendingUp } from 'lucide-react';
+import { sanitizeHTML } from '@/utils/sanitization';
 
 interface BlogPostContentProps {
   content: string;
 }
 
 const BlogPostContent = ({ content }: BlogPostContentProps) => {
+  // Sanitize the content before rendering
+  const sanitizedContent = sanitizeHTML(content, 'default');
+  
   // Process content to add visual enhancements while preserving SEO structure
   const processContent = (htmlContent: string) => {
     // Add key insight boxes for important paragraphs (visual enhancement only)
@@ -28,7 +32,7 @@ const BlogPostContent = ({ content }: BlogPostContentProps) => {
       <div className="blog-content-enhanced max-w-none">
         <div 
           className="prose prose-lg"
-          dangerouslySetInnerHTML={{ __html: processContent(content) }} 
+          dangerouslySetInnerHTML={{ __html: processContent(sanitizedContent) }} 
         />
       </div>
       

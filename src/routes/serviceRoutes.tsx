@@ -1,42 +1,37 @@
 
-import React from 'react';
-import Services from '../pages/Services';
-import AnalyticsBI from '../pages/AnalyticsBI';
-import DataOpsImplementation from '../pages/DataOpsImplementation';
-import TeamTraining from '../pages/TeamTraining';
-import MarketingOperationsRevOps from '../pages/MarketingOperationsRevOps';
-import SEOManagement from '../pages/SEOManagement';
-import NotFound from '../pages/NotFound';
+import React, { lazy } from 'react';
+import RouteErrorBoundary from '@/components/RouteErrorBoundary';
+
+const Services = lazy(() => import('../pages/Services'));
+const AnalyticsBI = lazy(() => import('../pages/AnalyticsBI'));
+const DataOpsImplementation = lazy(() => import('../pages/DataOpsImplementation'));
+const TeamTraining = lazy(() => import('../pages/TeamTraining'));
+const MarketingOperationsRevOps = lazy(() => import('../pages/MarketingOperationsRevOps'));
 
 export const serviceRoutes = [
   {
     path: "/services",
     element: <Services />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/services/analytics-bi",
     element: <AnalyticsBI />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/services/dataops-implementation",
     element: <DataOpsImplementation />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/services/team-training",
     element: <TeamTraining />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/services/marketing-operations-revops",
     element: <MarketingOperationsRevOps />,
-    errorElement: <NotFound />,
+    errorElement: <RouteErrorBoundary />,
   },
-  {
-    path: "/seo-management",
-    element: <SEOManagement />,
-    errorElement: <NotFound />,
-  }
 ];

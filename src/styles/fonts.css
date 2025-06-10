@@ -1,123 +1,110 @@
 
-/* Enhanced Universal Font Loading Strategy - Consistent Performance Across All Devices */
+/* Mobile-first Performance Font Strategy with Enhanced Loading */
 
-/* Inter Font Loading (Primary Font for All Devices) */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: local(''),
-       url('/fonts/inter-subset/inter-latin-300-normal.woff2') format('woff2'),
-       url('/fonts/inter-subset/inter-latin-300-normal.woff') format('woff');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, 
-                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, 
-                 U+2212, U+2215, U+FEFF, U+FFFD;
-}
+/* Enhanced font loading with font-display: swap for better performance */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Rubik:wght@400;500;600;700&display=swap');
 
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local(''),
-       url('/fonts/inter-subset/inter-latin-400-normal.woff2') format('woff2'),
-       url('/fonts/inter-subset/inter-latin-400-normal.woff') format('woff');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, 
-                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, 
-                 U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: local(''),
-       url('/fonts/inter-subset/inter-latin-500-normal.woff2') format('woff2'),
-       url('/fonts/inter-subset/inter-latin-500-normal.woff') format('woff');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, 
-                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, 
-                 U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local(''),
-       url('/fonts/inter-subset/inter-latin-600-normal.woff2') format('woff2'),
-       url('/fonts/inter-subset/inter-latin-600-normal.woff') format('woff');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, 
-                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, 
-                 U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local(''),
-       url('/fonts/inter-subset/inter-latin-700-normal.woff2') format('woff2'),
-       url('/fonts/inter-subset/inter-latin-700-normal.woff') format('woff');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, 
-                 U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, 
-                 U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-/* Enhanced Universal Font Strategy - Consistent Across All Devices */
+/* Mobile First Font Strategy - Inter only for performance */
 body, html {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-display: swap;
 }
 
-/* Universal Font Loading States */
-.fonts-pending {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* Desktop Font Strategy - Preserve Roboto + Rubik for branding */
+@media (min-width: 768px) {
+  body, html {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6,
+  .font-rubik {
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
 }
 
-.font-active {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* Enhanced font loading states with better fallbacks */
+.fonts-loading {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Enhanced Universal Typography Scale - Consistent Across All Devices */
-.text-xs { font-size: 0.75rem; line-height: 1rem; }
-.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-.text-base { font-size: 1rem; line-height: 1.5rem; }
-.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-.text-2xl { font-size: 1.5rem; line-height: 2rem; }
-.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-.text-5xl { font-size: 3rem; line-height: 1; }
-
-/* Universal Font Weight Classes */
-.font-light { font-weight: 300; }
-.font-normal { font-weight: 400; }
-.font-medium { font-weight: 500; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-
-/* Enhanced Performance Optimizations for All Devices */
-* {
-  font-kerning: auto;
-  font-variant-ligatures: common-ligatures;
-  font-feature-settings: "kern" 1, "liga" 1;
+.fonts-loaded {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* Universal Typography Performance */
-h1, h2, h3, h4, h5, h6 {
-  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-  text-rendering: optimizeLegibility;
+@media (min-width: 768px) {
+  .fonts-loaded {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  .fonts-loaded h1,
+  .fonts-loaded h2,
+  .fonts-loaded h3,
+  .fonts-loaded h4,
+  .fonts-loaded h5,
+  .fonts-loaded h6,
+  .fonts-loaded .font-rubik {
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
 }
 
-/* Universal Font Loading Optimization */
-@supports (font-display: swap) {
-  * {
-    font-display: swap;
+/* Desktop brand fonts class for enhanced loading */
+.desktop-brand-fonts {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.desktop-brand-fonts h1,
+.desktop-brand-fonts h2,
+.desktop-brand-fonts h3,
+.desktop-brand-fonts h4,
+.desktop-brand-fonts h5,
+.desktop-brand-fonts h6,
+.desktop-brand-fonts .font-rubik {
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Enhanced font metrics matching to prevent layout shift */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 106.5%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Roboto Fallback';
+  src: local('Arial');
+  size-adjust: 100%;
+  ascent-override: 92.7734375%;
+  descent-override: 24.4140625%;
+  line-gap-override: 0%;
+}
+
+/* Apply fallback fonts with metrics matching */
+.font-fallback {
+  font-family: 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+@media (min-width: 768px) {
+  .font-fallback {
+    font-family: 'Roboto Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* Mobile font loading optimization - system fonts fallback */
+@media (max-width: 767px) {
+  .fonts-pending {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+/* Desktop font loading states */
+@media (min-width: 768px) {
+  .fonts-pending {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 }

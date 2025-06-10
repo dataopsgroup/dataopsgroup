@@ -13,13 +13,13 @@ export const mainRoutes = [
   { url: "/insights", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
   { url: "/case-studies", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/contact", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
-  { url: "/book", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { url: "/book", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
+  { url: "/pe-value-creation-program", priority: "0.9", changefreq: "monthly", lastmod: TODAY },
+  { url: "/data-operations-assessment", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
+  { url: "/data-operations-assessment/results", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { url: "/guides/hubspot-expert", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
-  { url: "/whitepapers", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
-  { url: "/assessment", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
-  { url: "/hubspot-assessment-results", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
-  { url: "/how-to-hire-a-hubspot-expert-in-2025", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
-  { url: "/leadership", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/sitemap", priority: "0.5", changefreq: "monthly", lastmod: TODAY },
   { url: "/privacy", priority: "0.3", changefreq: "yearly", lastmod: TODAY },
   { url: "/terms", priority: "0.3", changefreq: "yearly", lastmod: TODAY }
 ];
@@ -29,8 +29,16 @@ export const serviceRoutes = [
   { url: "/services/analytics-bi", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/services/dataops-implementation", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/services/marketing-operations-revops", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
-  { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
-  { url: "/seo-management", priority: "0.6", changefreq: "monthly", lastmod: TODAY }
+  { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: TODAY }
+];
+
+// Define FAQ category routes - updated to match canonical URLs from insightRoutes.tsx
+export const faqRoutes = [
+  { url: "/faqs/services", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/faqs/experts", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/faqs/data-quality", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/faqs/approach", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: "/faqs/modules", priority: "0.6", changefreq: "monthly", lastmod: TODAY }
 ];
 
 // Generate sitemap index XML
@@ -68,7 +76,9 @@ export const generateMainSitemap = (baseUrl: string) => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  mainRoutes.forEach(route => {
+  const allMainRoutes = [...mainRoutes, ...serviceRoutes, ...faqRoutes];
+  
+  allMainRoutes.forEach(route => {
     xml += '  <url>\n';
     xml += `    <loc>${baseUrl}${route.url}</loc>\n`;
     xml += `    <lastmod>${route.lastmod}</lastmod>\n`;
@@ -112,10 +122,6 @@ export const generateBlogSitemap = (baseUrl: string) => {
     (post.category !== "Case Study")
   );
   
-  xml += '  <!-- Blog Posts -->\n';
-  xml += `  <!-- Generated: ${new Date().toISOString()} -->\n`;
-  xml += `  <!-- Total Posts: ${regularBlogPosts.length} -->\n`;
-  
   regularBlogPosts.forEach(post => {
     const postDate = new Date(post.date);
     const lastmod = post.modifiedDate 
@@ -156,10 +162,6 @@ export const generateCaseStudiesSitemap = (baseUrl: string) => {
     (post.tags && post.tags.includes('case study')) || 
     post.category === "Case Study"
   );
-  
-  xml += '  <!-- Case Study Posts -->\n';
-  xml += `  <!-- Generated: ${new Date().toISOString()} -->\n`;
-  xml += `  <!-- Total Case Studies: ${caseStudies.length} -->\n`;
   
   caseStudies.forEach(post => {
     const postDate = new Date(post.date);
@@ -207,9 +209,10 @@ export const getSitemapSummary = () => {
     included: {
       mainPages: mainRoutes.length,
       servicePages: serviceRoutes.length,
+      faqPages: faqRoutes.length,
       blogPosts: regularBlogPosts.length,
       caseStudies: caseStudies.length,
-      total: mainRoutes.length + serviceRoutes.length + regularBlogPosts.length + caseStudies.length + 1 // +1 for case studies main page
+      total: mainRoutes.length + serviceRoutes.length + faqRoutes.length + regularBlogPosts.length + caseStudies.length + 1
     },
     excluded: [
       'Redirect pages (handled by redirectRoutes.tsx)',

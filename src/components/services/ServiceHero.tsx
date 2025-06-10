@@ -1,9 +1,7 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import OptimizedImage from '@/components/ui/optimized-image';
-
+import { useIsMobile } from '@/hooks/use-mobile';
 interface ServiceHeroProps {
   title: string;
   description: string;
@@ -11,16 +9,37 @@ interface ServiceHeroProps {
   ctaText: string;
   isHubSpotTraining: boolean;
   serviceIcon: React.ReactNode;
-  imageSrc?: string;
-  imageAlt?: string;
+  backgroundImage?: string;
 }
+const ServiceHero = ({
+  title,
+  description,
+  tagline,
+  ctaText,
+  isHubSpotTraining,
+  serviceIcon,
+  backgroundImage
+}: ServiceHeroProps) => {
+  const {
+    isMobile
+  } = useIsMobile();
 
-const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, serviceIcon, imageSrc, imageAlt }: ServiceHeroProps) => {
-  return (
-    <section className="pt-32 pb-16 px-4 bg-gradient-to-br from-white to-gray-50">
-      <div className="container mx-auto">
+  // Simplified background logic - use image on desktop, solid color on mobile
+  const shouldShowBackgroundImage = !isMobile && backgroundImage;
+  return <section className={`pt-32 pb-16 px-4 relative min-h-[600px] ${isMobile ? 'bg-gray-700' : 'bg-gradient-to-br from-white to-gray-50'}`} style={shouldShowBackgroundImage ? {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    transform: 'scaleX(-1)'
+  } : {}}>
+      {/* Remove the hardcoded grid overlay that was being applied to all service pages */}
+      
+      <div className="container mx-auto relative z-10" style={shouldShowBackgroundImage ? {
+      transform: 'scaleX(-1)'
+    } : {}}>
         <div className="grid lg:grid-cols-5 gap-12 items-center">
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6 relative p-8 rounded-xl border border-gray-100 bg-white/80 backdrop-blur-sm">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-saffron/10 text-brand-navy text-sm font-medium mb-2">
               <span className="w-2 h-2 bg-brand-saffron rounded-full mr-2"></span>
               Our Services
@@ -28,7 +47,7 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
             <h1 className="text-4xl md:text-5xl font-bold leading-tight text-brand-navy font-rubik">
               {title}
             </h1>
-            <p className="text-lg font-medium text-brand-saffron font-roboto tracking-wide">
+            <p className="text-lg font-medium font-roboto tracking-wide text-slate-600">
               {tagline}
             </p>
             <p className="text-lg md:text-xl text-gray-700 max-w-2xl font-roboto">
@@ -42,36 +61,10 @@ const ServiceHero = ({ title, description, tagline, ctaText, isHubSpotTraining, 
           </div>
           
           <div className="lg:col-span-3 flex justify-end">
-            {imageSrc ? (
-              <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-xl h-96 border border-gray-100">
-                <OptimizedImage
-                  src={imageSrc}
-                  alt={imageAlt || "Service visualization"}
-                  width={600}
-                  height={375}
-                  className="w-full h-full object-cover"
-                  priority={false}
-                  loading="lazy"
-                  quality={80}
-                  enableModernFormats={true}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 600px"
-                  responsiveBreakpoints={[400, 600, 800, 1200]}
-                />
-              </div>
-            ) : (
-              <div className="relative bg-white rounded-2xl shadow-2xl p-12 z-10 w-full max-w-xl border border-gray-100">
-                <div className="flex justify-center items-center h-72 w-full rounded-lg bg-gray-50">
-                  <div className="text-brand-saffron" aria-hidden="true">
-                    {serviceIcon}
-                  </div>
-                </div>
-              </div>
-            )}
+            {/* Icon container removed */}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ServiceHero;

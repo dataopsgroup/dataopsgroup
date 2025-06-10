@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -14,24 +13,30 @@ const Terms = () => {
     { name: 'Terms of Service', url: '/terms' },
   ];
 
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Terms of Service - DataOps Group</title>
         <meta name="description" content="Terms and conditions for using DataOps Group services and website. Review our terms of service agreement." />
         <meta name="keywords" content="terms of service, terms and conditions, legal, agreement, DataOps Group" />
-        <link rel="canonical" href="/terms" />
+        <link rel="canonical" href={`${baseUrl}/terms`} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Terms of Service - DataOps Group" />
         <meta property="og:description" content="Terms and conditions for using DataOps Group services and website." />
-        <meta property="og:url" content={`${window.location.origin}/terms`} />
+        <meta property="og:url" content={`${baseUrl}/terms`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
         
         {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Terms of Service - DataOps Group" />
         <meta name="twitter:description" content="Terms and conditions for using DataOps Group services and website." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
       {/* Schema Markup */}
@@ -47,7 +52,7 @@ const Terms = () => {
             "name": "DataOps Group",
             "logo": {
               "@type": "ImageObject",
-              "url": `${window.location.origin}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+              "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
             }
           }
         })}

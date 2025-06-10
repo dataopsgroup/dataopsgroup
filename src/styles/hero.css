@@ -1,0 +1,160 @@
+
+/* Hero section styles to maintain proper dimensions and layout */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden; /* Handle scaled image properly */
+}
+
+/* High specificity selectors to override component styles */
+.hero-bg img,
+.hero-bg .optimized-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: right center !important; /* Keep woman positioned prominently on the right */
+  transform: scale(1.1) !important; /* Scale up the image to make the woman appear larger */
+  transform-origin: right center !important; /* Scale from the right to maintain woman's position */
+  max-width: none !important; /* Override any max-width constraints */
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  width: 100%;
+  max-width: none; /* Remove width constraint to allow full viewport usage */
+  margin: 0 auto;
+}
+
+.hero-content {
+  grid-column: 1;
+  max-width: 600px;
+}
+
+.hero-content-box {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+.hero-text {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: #475569;
+  margin-bottom: 1rem;
+}
+
+.hero-button {
+  background: #fbbf24;
+  color: #1e293b;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-button:hover {
+  background: #f59e0b;
+  transform: translateY(-2px);
+}
+
+/* Desktop layout adjustments for better image visibility */
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: minmax(400px, 1fr) 3fr; /* Give even more space for background image */
+    align-items: center;
+  }
+  
+  .hero-content {
+    grid-column: 1;
+    max-width: 400px; /* Reduce content width further to show more of the background */
+  }
+  
+  .hero-heading {
+    font-size: 3.5rem;
+  }
+}
+
+/* Extra large screens - make content even more compact */
+@media (min-width: 1440px) {
+  .hero-content {
+    max-width: 350px; /* Even smaller on very large screens */
+  }
+  
+  .hero-content-box {
+    padding: 2.5rem;
+  }
+  
+  .hero-bg img,
+  .hero-bg .optimized-image img {
+    transform: scale(1.15) !important; /* Slightly larger scale on very large screens */
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .hero-section {
+    min-height: 100vh;
+    background: #475569;
+  }
+  
+  .hero-container {
+    padding: 2rem 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-content-box {
+    background: rgba(71, 85, 105, 0.95);
+    color: white;
+  }
+  
+  .hero-heading {
+    color: white;
+    font-size: 2rem;
+  }
+  
+  .hero-text {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .hero-bg img,
+  .hero-bg .optimized-image img {
+    transform: scale(1) !important; /* No scaling on mobile to maintain layout */
+  }
+}

@@ -35,5 +35,13 @@ export const salesFollowUpMyth: BlogPost = {
     <h2>Ready to stop losing deals to faster competitors? Let's analyze your current response architecture and build a system that captures every opportunity.</h2>
     
     <h2>Fix Your Lead Response Process →</h2>
-  `
+  `,
+  seo: {
+    metaDescription: "72-hour follow-up guidelines kill 98% of potential deals. Learn why 5-minute response times win 35-50% of sales and how to automate faster lead response.",
+    keywords: "sales follow up time, lead response speed, sales conversion rates, lead response management, sales automation, first responder advantage",
+    ogTitle: "72-Hour Sales Follow-Up Myth Killing Your Conversions",
+    ogDescription: "35-50% of sales go to the first responder, not the best product. Learn why 5-minute response times beat 72-hour follow-up guidelines.",
+    twitterTitle: "Sales Follow-Up Myth: 5 Minutes Beats 72 Hours",
+    twitterDescription: "Companies lose 98% of potential deals with 72-hour follow-up. First responders win 35-50% of sales. Learn automated response strategies."
+  }
 };

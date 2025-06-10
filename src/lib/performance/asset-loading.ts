@@ -4,7 +4,12 @@
  * Consistent performance optimizations across all devices
  */
 
-// Universal asset loading with consistent priority hints
+/**
+ * Optimizes asset loading for images, scripts, and stylesheets.
+ * - Sets fetchPriority and loading attributes for images based on viewport position.
+ * - Prioritizes analytics and first-party scripts.
+ * - Adds cache-busting query params to dynamic resources.
+ */
 export const optimizeAssetLoading = () => {
   if (typeof document === 'undefined') return;
 
@@ -74,7 +79,10 @@ export const optimizeAssetLoading = () => {
   });
 };
 
-// Universal resource order optimization
+/**
+ * Optimizes the order and priority of resource loading for scripts.
+ * Ensures analytics and tracking scripts are deprioritized.
+ */
 export const optimizeResourceOrder = () => {
   if (typeof document === 'undefined') return;
   

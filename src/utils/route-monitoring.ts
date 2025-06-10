@@ -6,6 +6,7 @@
 import { RouteObject } from 'react-router-dom';
 import { applyCriticalCSS, loadFonts } from '@/lib/critical-css';
 import { reportBudgetViolations } from '@/utils/performance-budget';
+import { runLinkValidation } from '@/utils/link-validator';
 
 /**
  * Validates that critical routes exist in the router configuration
@@ -19,7 +20,8 @@ export const validateCriticalRoutes = (routes: RouteObject[]): string[] => {
     '/contact',
     '/case-studies',
     '/about',
-    '/services'
+    '/services',
+    '/book' // Added missing book route
   ];
 
   // Flatten nested routes to check all paths
@@ -128,10 +130,13 @@ export function getRouteFromUrl(url: string): string {
 }
 
 /**
- * Enhanced route change monitoring with performance tracking
+ * Enhanced route change monitoring with performance tracking and link validation
  */
 export const monitorRouteChanges = () => {
   if (typeof window === 'undefined') return;
+  
+  // Run link validation on initialization
+  runLinkValidation();
   
   // Store current route for comparison
   let currentRoute = window.location.pathname;

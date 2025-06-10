@@ -16,24 +16,24 @@ const ApproachBenefits = () => {
       <div className="grid md:grid-cols-3 gap-6 mt-8">
         <Card>
           <CardContent className="pt-6">
-            <h3 className="font-medium text-xl mb-2">Data-Driven Decision Making</h3>
-            <p className="text-gray-600">
+            <h3 className="approach-benefit-heading">Data-Driven Decision Making</h3>
+            <p className="text-sm text-gray-600">
               Our approach emphasizes using data analytics to drive all strategic decisions.
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <h3 className="font-medium text-xl mb-2">Collaborative Implementation</h3>
-            <p className="text-gray-600">
+            <h3 className="approach-benefit-heading">Collaborative Implementation</h3>
+            <p className="text-sm text-gray-600">
               We work closely with your team to ensure seamless integration of new data systems.
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <h3 className="font-medium text-xl mb-2">Continuous Optimization</h3>
-            <p className="text-gray-600">
+            <h3 className="approach-benefit-heading">Continuous Optimization</h3>
+            <p className="text-sm text-gray-600">
               Our data governance framework ensures ongoing improvement of your data operations.
             </p>
           </CardContent>

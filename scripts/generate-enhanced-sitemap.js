@@ -7,31 +7,42 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const baseUrl = 'https://dataops.group';
+const baseUrl = 'https://dataopsgroup.com';
 
-// Define all routes with priorities and change frequencies
+// Define all routes with priorities and change frequencies - updated with clean URLs
 const routes = [
   // Main pages - highest priority
   { url: '/', changefreq: 'weekly', priority: 1.0, lastmod: new Date() },
-  { url: '/about', changefreq: 'monthly', priority: 0.9, lastmod: new Date() },
-  { url: '/book', changefreq: 'weekly', priority: 0.95, lastmod: new Date() },
+  { url: '/services', changefreq: 'weekly', priority: 0.9, lastmod: new Date() },
+  { url: '/about', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
+  { url: '/approach', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
+  { url: '/insights', changefreq: 'weekly', priority: 0.9, lastmod: new Date() },
+  { url: '/case-studies', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
   { url: '/contact', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
+  { url: '/book', changefreq: 'weekly', priority: 0.9, lastmod: new Date() },
+  { url: '/pe-value-creation-program', changefreq: 'monthly', priority: 0.9, lastmod: new Date() },
+  { url: '/data-operations-assessment', changefreq: 'weekly', priority: 0.9, lastmod: new Date() },
+  { url: '/data-operations-assessment/results', changefreq: 'monthly', priority: 0.7, lastmod: new Date() },
+  { url: '/guides/hubspot-expert', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
   
   // Services - high priority
-  { url: '/services', changefreq: 'monthly', priority: 0.9, lastmod: new Date() },
-  { url: '/services/marketing-operations-revops', changefreq: 'monthly', priority: 0.85, lastmod: new Date() },
-  { url: '/services/analytics-bi', changefreq: 'monthly', priority: 0.85, lastmod: new Date() },
-  { url: '/services/dataops-implementation', changefreq: 'monthly', priority: 0.85, lastmod: new Date() },
+  { url: '/services/marketing-operations-revops', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
+  { url: '/services/analytics-bi', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
+  { url: '/services/dataops-implementation', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
   { url: '/services/team-training', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
   
-  // Content pages
-  { url: '/approach', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
-  { url: '/insights', changefreq: 'weekly', priority: 0.7, lastmod: new Date() },
-  { url: '/how-to-hire-a-hubspot-expert-in-2025', changefreq: 'monthly', priority: 0.75, lastmod: new Date() },
+  // FAQ pages
+  { url: '/faqs', changefreq: 'monthly', priority: 0.7, lastmod: new Date() },
+  { url: '/faqs/hubspot-services', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
+  { url: '/faqs/hubspot-experts', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
+  { url: '/faqs/data-quality', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
+  { url: '/faqs/our-approach', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
+  { url: '/faqs/hubspot-modules', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
   
   // Utility pages
-  { url: '/assessment', changefreq: 'monthly', priority: 0.6, lastmod: new Date() },
   { url: '/sitemap', changefreq: 'monthly', priority: 0.5, lastmod: new Date() },
+  { url: '/privacy', changefreq: 'yearly', priority: 0.3, lastmod: new Date() },
+  { url: '/terms', changefreq: 'yearly', priority: 0.3, lastmod: new Date() },
 ];
 
 async function generateEnhancedSitemap() {

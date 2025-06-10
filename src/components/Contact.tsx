@@ -32,15 +32,32 @@ const Contact = () => {
     script.onload = () => {
       if (window.hbspt && !formLoadedRef.current) {
         formLoadedRef.current = true;
+        
+        // Check current cookie consent status
+        const cookieConsent = localStorage.getItem('cookie-consent');
+        const hasConsent = cookieConsent === 'accepted';
+        
         window.hbspt.forms.create({
           portalId: "21794360",
           formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
           region: "na1",
           target: "#hubspot-form-container",
           redirectUrl: `${window.location.origin}/contact-thank-you`,
+          
+          // Disable HubSpot's cookie banner and tracking
+          cookieTracking: false,
+          disableCookieSubmission: !hasConsent,
+          
+          // Additional privacy settings
+          privacyConsent: {
+            checkboxes: [],
+            communicationConsentRequired: false,
+            processingConsentRequired: false
+          },
+          
           onFormSubmit: () => {
-            // Track form submission in Google Analytics
-            if (window.gtag) {
+            // Track form submission in Google Analytics only if consent given
+            if (hasConsent && window.gtag) {
               window.gtag('event', 'form_submission', {
                 'event_category': 'Contact',
                 'event_label': 'Contact Form',
@@ -79,31 +96,32 @@ const Contact = () => {
                 }
               });
               
-              // Add form interaction tracking
-              const trackFieldInteraction = (fieldName: string, action: string) => {
-                if (window.gtag) {
-                  window.gtag('event', 'form_field_interaction', {
-                    'event_category': 'Form',
-                    'event_label': fieldName,
-                    'action': action
-                  });
-                }
-              };
-              
-              inputs.forEach((input: Element) => {
-                if (input instanceof HTMLElement) {
-                  // Fix: Use getAttribute to safely get name or id
-                  const fieldName = input.getAttribute('name') || input.id || 'unknown';
-                  
-                  input.addEventListener('focus', () => {
-                    trackFieldInteraction(fieldName, 'focus');
-                  });
-                  
-                  input.addEventListener('blur', () => {
-                    trackFieldInteraction(fieldName, 'complete');
-                  });
-                }
-              });
+              // Add form interaction tracking only if consent given
+              if (hasConsent) {
+                const trackFieldInteraction = (fieldName: string, action: string) => {
+                  if (window.gtag) {
+                    window.gtag('event', 'form_field_interaction', {
+                      'event_category': 'Form',
+                      'event_label': fieldName,
+                      'action': action
+                    });
+                  }
+                };
+                
+                inputs.forEach((input: Element) => {
+                  if (input instanceof HTMLElement) {
+                    const fieldName = input.getAttribute('name') || input.id || 'unknown';
+                    
+                    input.addEventListener('focus', () => {
+                      trackFieldInteraction(fieldName, 'focus');
+                    });
+                    
+                    input.addEventListener('blur', () => {
+                      trackFieldInteraction(fieldName, 'complete');
+                    });
+                  }
+                });
+              }
             }
           }
         });

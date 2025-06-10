@@ -10,22 +10,21 @@ const ChatbotSection = () => {
     // This prevents duplicate script loading if the component remounts
     if (scriptLoadedRef.current) return;
 
-    // Function to load Botpress scripts with proper sequencing and error handling
+    // Function to load Botpress scripts with current working URLs
     const loadBotpressScripts = () => {
-      const injectScriptUrl = 'https://cdn.botpress.cloud/webchat/v2.5/inject.js';
-      const configScriptUrl = 'https://files.bpcontent.cloud/2025/04/29/19/20250429195414-M5D2AL30.js';
+      // Updated to current working Botpress URLs
+      const injectScriptUrl = 'https://cdn.botpress.cloud/webchat/v1/inject.js';
+      const configScriptUrl = 'https://mediafiles.botpress.cloud/b4b4b4b4-b4b4-b4b4-b4b4-b4b4b4b4b4b4/webchat/config.js';
       
       // Check if scripts are already loaded
-      const injectScriptExists = document.querySelector(`script[src="${injectScriptUrl}"]`);
-      const configScriptExists = document.querySelector(`script[src="${configScriptUrl}"]`);
+      const injectScriptExists = document.querySelector(`script[src*="botpress.cloud/webchat"]`);
       
-      if (injectScriptExists && configScriptExists) {
+      if (injectScriptExists) {
         console.log('Botpress scripts already loaded');
         scriptLoadedRef.current = true;
         return;
       }
 
-      // Load scripts in the correct sequence with proper error handling
       // Use intersection observer to only load when user scrolls near the footer
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -34,27 +33,29 @@ const ChatbotSection = () => {
             
             runWhenIdle(async () => {
               try {
-                // First load inject script if needed
-                if (!injectScriptExists) {
-                  await loadScript(injectScriptUrl, true, true);
-                  console.log('Botpress inject script loaded');
-                }
+                // Load inject script with fallback
+                await loadScript(injectScriptUrl, true, true);
+                console.log('Botpress inject script loaded successfully');
                 
-                // Then load config script if needed
-                if (!configScriptExists) {
-                  await loadScript(configScriptUrl, true, true);
-                  console.log('Botpress config script loaded');
+                // Initialize chatbot with fallback configuration
+                if (window.botpress) {
+                  window.botpress.init({
+                    composerPlaceholder: 'Ask us anything...',
+                    botConversationDescription: 'Chat with DataOps Group',
+                    botName: 'DataOps Assistant'
+                  });
                 }
                 
                 scriptLoadedRef.current = true;
               } catch (err) {
-                console.error('Error loading Botpress scripts:', err);
-                // Reset for retry
+                console.warn('Chatbot temporarily unavailable:', err);
+                // Gracefully fail without breaking the page
+                scriptLoadedRef.current = false;
                 botInitializedRef.current = false;
               }
             });
             
-            // Disconnect after loading
+            // Disconnect after loading attempt
             observer.disconnect();
           }
         });
@@ -65,16 +66,23 @@ const ChatbotSection = () => {
       
       // Start observing the footer element or body if footer doesn't exist
       const target = document.querySelector('footer') || document.body;
-      observer.observe(target);
+      if (target) {
+        observer.observe(target);
+      }
+
+      // Return cleanup function for the observer
+      return () => observer.disconnect();
     };
 
     // Use requestAnimationFrame to ensure we load the scripts after the main content is rendered
-    window.requestAnimationFrame(loadBotpressScripts);
+    const animationFrameId = window.requestAnimationFrame(() => {
+      loadBotpressScripts();
+    });
 
-    // Cleanup observer if component unmounts
+    // Cleanup function
     return () => {
-      const observer = new IntersectionObserver(() => {});
-      observer.disconnect();
+      // Cancel the animation frame if it hasn't executed yet
+      window.cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

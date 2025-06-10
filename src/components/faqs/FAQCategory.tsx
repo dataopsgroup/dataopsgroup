@@ -26,7 +26,7 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
   // Add a defensive check to ensure we have items before rendering
   if (!category || !category.items || category.items.length === 0) {
     return (
-      <section aria-labelledby={`category-${category?.id || 'unknown'}`}>
+      <section aria-labelledby={`category-${category?.id || 'unknown'}`} id={category?.id || 'unknown'}>
         <h2 className="text-2xl font-bold mb-6 text-gray-900">
           {category?.title || 'Category'}
         </h2>
@@ -36,7 +36,7 @@ const FAQCategory: React.FC<FAQCategoryProps> = ({ category }) => {
   }
   
   return (
-    <section aria-labelledby={`category-${category.id}`}>
+    <section aria-labelledby={`category-${category.id}`} id={category.id}>
       <h2 
         id={`category-${category.id}`}
         className="text-2xl font-bold mb-6 text-gray-900"

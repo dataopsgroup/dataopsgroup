@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -62,11 +61,14 @@ const SitemapPage = () => {
         <meta property="og:description" content="Navigate the DataOps Group website with ease using our comprehensive sitemap. Find all pages, resources, and services for HubSpot consulting and implementation." />
         <meta property="og:url" content={`${baseUrl}/sitemap`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
         
         {/* Twitter */}
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Sitemap - DataOps Group | Website Navigation Guide" />
         <meta name="twitter:description" content="Navigate the DataOps Group website with ease using our comprehensive sitemap. Find all pages, resources, and services for HubSpot consulting and implementation." />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
         
         {/* Mobile touch action for better tap targets */}
         <style type="text/css">{`

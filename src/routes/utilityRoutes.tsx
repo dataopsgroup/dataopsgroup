@@ -1,25 +1,20 @@
 
-import React from 'react';
-import HubSpotAssessment from '@/pages/HubSpotAssessment';
-import HubSpotAssessmentResultsPage from '@/pages/HubSpotAssessmentResultsPage';
-import GetStartedPage from '@/pages/GetStartedPage';
-import ThankYouPage from '@/pages/ThankYouPage';
-import ContactThankYouPage from '@/pages/ContactThankYouPage';
-import SEODashboard from '@/pages/SEODashboard';
-import Sitemap from '@/pages/Sitemap';
-import NotFound from '@/pages/NotFound';
+import React, { lazy } from 'react';
+
+const GetStartedPage = lazy(() => import('../pages/GetStartedPage'));
+const ThankYouPage = lazy(() => import('../pages/ThankYouPage'));
+const ContactThankYouPage = lazy(() => import('../pages/ContactThankYouPage'));
+const Sitemap = lazy(() => import('../pages/Sitemap'));
+const HubSpotAssessmentResultsPage = lazy(() => import('../pages/HubSpotAssessmentResultsPage'));
+const Privacy = lazy(() => import('../pages/Privacy'));
+const Terms = lazy(() => import('../pages/Terms'));
+const NotFound = lazy(() => import('../pages/NotFound'));
+const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
+const WebVitalsDashboard = lazy(() => import('../components/admin/WebVitalsDashboard'));
+const BadDataCostCalculatorPage = lazy(() => import('../pages/BadDataCostCalculatorPage'));
+const RevOpsROICalculatorPage = lazy(() => import('../pages/RevOpsROICalculatorPage'));
 
 export const utilityRoutes = [
-  {
-    path: "/assessment",
-    element: <HubSpotAssessment />,
-    errorElement: <NotFound />,
-  },
-  {
-    path: "/assessment/results",
-    element: <HubSpotAssessmentResultsPage />,
-    errorElement: <NotFound />,
-  },
   {
     path: "/get-started",
     element: <GetStartedPage />,
@@ -36,13 +31,51 @@ export const utilityRoutes = [
     errorElement: <NotFound />,
   },
   {
-    path: "/admin/seo",
-    element: <SEODashboard />,
-    errorElement: <NotFound />,
-  },
-  {
     path: "/sitemap",
     element: <Sitemap />,
     errorElement: <NotFound />,
+  },
+  {
+    path: "/hubspot-assessment-results",
+    element: <HubSpotAssessmentResultsPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/privacy",
+    element: <Privacy />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/terms",
+    element: <Terms />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/bad-data-cost-calculator",
+    element: <BadDataCostCalculatorPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/revops-roi-calculator",
+    element: <RevOpsROICalculatorPage />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/admin/structured-data",
+    element: <StructuredDataTest />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/admin/vitals",
+    element: <WebVitalsDashboard />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/404",
+    element: <NotFound />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ];

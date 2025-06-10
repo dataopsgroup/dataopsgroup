@@ -4,7 +4,10 @@
  * Consistent caching strategies across all devices
  */
 
-// Universal client-side cache setup
+/**
+ * Sets up client-side caching using service workers and versioning.
+ * Registers service worker, handles updates, and sets global app version.
+ */
 export const setupClientCaching = () => {
   // Universal app version for cache busting
   const appVersion = '1.0.7';
@@ -61,6 +64,10 @@ export const setupClientCaching = () => {
   window.APP_VERSION = appVersion;
 };
 
+/**
+ * Notifies the user of a new service worker update and prompts for reload.
+ * @param registration The service worker registration object.
+ */
 // Universal user notification for updates
 const notifyUserOfUpdate = (registration: ServiceWorkerRegistration) => {
   console.log('New version available! Ready to update.');
@@ -70,7 +77,9 @@ const notifyUserOfUpdate = (registration: ServiceWorkerRegistration) => {
   }
 };
 
-// Universal cache clearing
+/**
+ * Clears all caches via the service worker.
+ */
 export const clearCaches = () => {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then((registration) => {
@@ -79,7 +88,11 @@ export const clearCaches = () => {
   }
 };
 
-// Universal fetch function with consistent caching strategy
+/**
+ * Fetches a resource with a consistent caching strategy based on URL pattern.
+ * @param url The resource URL.
+ * @param options Fetch options.
+ */
 export const fetchWithCaching = (url: string, options: RequestInit = {}) => {
   // Universal caching strategy based on URL pattern
   const isStatic = /\.(png|jpg|jpeg|gif|svg|webp|woff|woff2|ttf|eot)$/.test(url);
@@ -111,7 +124,10 @@ export const fetchWithCaching = (url: string, options: RequestInit = {}) => {
   return fetch(url, fetchOptions);
 };
 
-// Universal critical asset preloading
+/**
+ * Preloads critical assets of a given type (font, image, script, style).
+ * @param assetType The type of asset to preload.
+ */
 export const preloadCriticalAssetsByType = (assetType: 'font' | 'image' | 'script' | 'style') => {
   if (typeof document === 'undefined') return;
   
@@ -120,10 +136,7 @@ export const preloadCriticalAssetsByType = (assetType: 'font' | 'image' | 'scrip
   // Universal asset URLs
   switch (assetType) {
     case 'font':
-      preloadUrls.push(
-        '/fonts/inter-subset/inter-latin-400-normal.woff2',
-        '/fonts/inter-subset/inter-latin-600-normal.woff2'
-      );
+      // Google Fonts are preloaded in index.html, no additional preloading needed
       break;
     case 'image':
       preloadUrls.push(

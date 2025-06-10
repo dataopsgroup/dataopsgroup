@@ -1,7 +1,12 @@
+
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
 export const navServices: SubNavItem[] = [
+  { 
+    name: 'All Services', 
+    href: '/services'
+  },
   { 
     name: 'Analytics & BI', 
     href: '/services/analytics-bi'
@@ -18,6 +23,10 @@ export const navServices: SubNavItem[] = [
     name: 'Marketing Operations & RevOps', 
     href: '/services/marketing-operations-revops'
   },
+  { 
+    name: 'PE Value Creation Program', 
+    href: '/pe-value-creation-program'
+  },
   // Removed other services that don't have route definitions in App.tsx
 ];
 
@@ -25,21 +34,46 @@ export const navServices: SubNavItem[] = [
 export const guidesItems: SubNavItem[] = [
   { 
     name: 'How to Hire a HubSpot Expert in 2025', 
-    href: '/how-to-hire-a-hubspot-expert-in-2025' 
+    href: '/guides/hubspot-expert' 
+  },
+  { 
+    name: 'HubSpot for Private Equity', 
+    href: '/guides/hubspot-private-equity' 
   }
 ];
 
-// Insights dropdown items - removed Guides dropdown, added HubSpot Expert Guide directly
+// ROI Assessment Tools submenu
+export const roiAssessmentItems: SubNavItem[] = [
+  { 
+    name: 'HubSpot Assessment', 
+    href: '/data-operations-assessment'
+  },
+  { 
+    name: 'Bad Data Cost Calculator', 
+    href: '/bad-data-cost-calculator'
+  },
+  { 
+    name: 'RevOps ROI Calculator', 
+    href: '/revops-roi-calculator'
+  }
+];
+
+// Insights dropdown items - updated with ROI Assessment Tools grouping
 export const insightsItems: SubNavItem[] = [
   { name: 'Blog', href: '/insights' },
   { name: 'Case Studies', href: '/case-studies' },
   { 
     name: 'How to Hire a HubSpot Expert in 2025', 
-    href: '/how-to-hire-a-hubspot-expert-in-2025' 
+    href: '/guides/hubspot-expert' 
   },
   { 
-    name: 'HubSpot Assessment', 
-    href: '/assessment'
+    name: 'HubSpot for Private Equity', 
+    href: '/guides/hubspot-private-equity' 
+  },
+  { 
+    name: 'ROI Assessment Tools',
+    isDropdown: true,
+    items: roiAssessmentItems
   }
 ];
 

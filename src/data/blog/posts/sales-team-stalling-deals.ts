@@ -34,5 +34,13 @@ export const salesTeamStallingDeals: BlogPost = {
     <h2>Ready to stop blaming your sales team and start addressing the real issue? Let's analyze your buyer's journey and build a sales enablement strategy that addresses today's complex purchasing reality.</h2>
     
     <h2>Transform Your Sales Approach →</h2>
-  `
+  `,
+  seo: {
+    metaDescription: "B2B buyers spend only 17% of their journey with sales reps. Learn how to fix stalled deals by supporting the modern buying process with consensus-building strategies.",
+    keywords: "sales deals stalling, b2b buying process, sales enablement, consensus selling, buying committee, sales cycle optimization",
+    ogTitle: "Sales Team Stalling Deals? Fix the Buying Process",
+    ogDescription: "The problem isn't your sales team—it's that buying has changed. 94% of buying committees struggle with consensus. Learn modern sales enablement strategies.",
+    twitterTitle: "Why Sales Deals Stall (And How to Fix It)",
+    twitterDescription: "B2B buyers spend 83% of their journey without sales involvement. Learn how to support modern buying committees and reduce stalled deals."
+  }
 };

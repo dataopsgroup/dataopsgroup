@@ -8,6 +8,9 @@ export function useIsMobile() {
   const [touchDevice, setTouchDevice] = React.useState<boolean>(false)
 
   React.useEffect(() => {
+    // SSR guard - only run in browser
+    if (typeof window === 'undefined') return;
+    
     // Check if it's a mobile device by screen size
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
     const onChange = () => {
@@ -50,7 +53,8 @@ export function useTouchInteractions(minSize: number = 44) {
   const { isTouch } = useIsMobile()
   
   React.useEffect(() => {
-    if (!isTouch || !ref.current) return
+    // SSR guard - only run in browser
+    if (typeof window === 'undefined' || !isTouch || !ref.current) return
     
     const element = ref.current
     

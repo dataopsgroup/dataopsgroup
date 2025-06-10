@@ -1,79 +1,61 @@
 
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { Helmet } from 'react-helmet-async';
-import { Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Home, ArrowLeft } from 'lucide-react';
+import SemanticLayout from '@/components/layout/SemanticLayout';
+import MetaHead from '@/components/seo/MetaHead';
 
 const NotFound = () => {
-  // Safe location handling - check if we're in router context
-  const locationFromRouter = (() => {
-    try {
-      // This will throw if we're outside router context
-      return useLocation();
-    } catch (err) {
-      // Return a default location object when outside router context
-      return { pathname: window.location.pathname };
-    }
-  })();
-
-  useEffect(() => {
-    // Log the 404 error with the attempted path
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      locationFromRouter.pathname
-    );
-
-    // Track 404 error with Google Analytics if available
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'error', {
-        'event_category': '404',
-        'event_label': locationFromRouter.pathname,
-        'non_interaction': true
-      });
-    }
-  }, [locationFromRouter.pathname]);
-
-  // Safe way to get canonical URL
-  const getCanonicalUrl = () => {
-    if (typeof window !== 'undefined') {
-      return `${window.location.origin}/404`;
-    }
-    return '/404';
-  };
-
   return (
-    <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>Page Not Found - DataOps Group</title>
-        <meta name="description" content="The page you are looking for does not exist. Return to our homepage to explore DataOps Group's HubSpot consultancy services and resources." />
-        <meta name="robots" content="noindex, follow" />
-        <link rel="canonical" href={getCanonicalUrl()} />
-      </Helmet>
+    <SemanticLayout>
+      <MetaHead
+        title="Page Not Found (404) - DataOps Group"
+        description="The page you're looking for doesn't exist. Return to our homepage or browse our services, insights, and resources."
+        canonicalPath="/404"
+        noindex={true}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Page Not Found",
+          "description": "Error 404 - Page not found",
+          "url": "https://dataopsgroup.com/404",
+          "mainEntity": {
+            "@type": "WebPageElement",
+            "cssSelector": "main",
+            "name": "404 Error Content"
+          }
+        }}
+      />
       
-      <Navbar />
-      
-      <main className="flex-grow flex items-center justify-center bg-gray-50 px-4">
-        <div className="text-center max-w-md">
-          <h1 className="text-6xl font-bold text-dataops-600 mb-4">404</h1>
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Page Not Found</h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Sorry, the page you are looking for doesn't exist or has been moved.
-          </p>
-          <Link 
-            to="/" 
-            className="px-6 py-3 bg-dataops-600 text-white rounded-md hover:bg-dataops-700 transition-colors inline-block"
-            aria-label="Return to DataOps Group homepage"
-          >
-            Return to Homepage
-          </Link>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="max-w-md mx-auto text-center px-4">
+          <div className="mb-8">
+            <h1 className="text-6xl font-bold text-gray-300 mb-4">404</h1>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Page Not Found</h2>
+            <p className="text-gray-600 mb-8">
+              Sorry, we couldn't find the page you're looking for.
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild variant="default">
+              <Link to="/" className="flex items-center">
+                <Home className="w-4 h-4 mr-2" />
+                Go Home
+              </Link>
+            </Button>
+            
+            <Button asChild variant="outline">
+              <Link to="/insights" className="flex items-center">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Insights
+              </Link>
+            </Button>
+          </div>
         </div>
-      </main>
-      
-      <Footer />
-    </div>
+      </div>
+    </SemanticLayout>
   );
 };
 
