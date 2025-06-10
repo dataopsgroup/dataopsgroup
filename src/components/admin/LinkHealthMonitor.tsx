@@ -184,7 +184,7 @@ const LinkHealthMonitor = () => {
                   )}
                   <span className="font-medium">{link.url}</span>
                   {link.isExternal && (
-                    <Badge variant="outline" size="sm">External</Badge>
+                    <Badge variant="outline">External</Badge>
                   )}
                 </div>
                 <Badge variant={link.isValid ? "default" : "destructive"}>
