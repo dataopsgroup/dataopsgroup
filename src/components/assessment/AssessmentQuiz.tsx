@@ -2,68 +2,121 @@
 import React, { useState } from 'react';
 import AssessmentIntro from './AssessmentIntro';
 import QuizResults from './QuizResults';
+import QuizSection from './QuizSection';
+import QuizNavigation from './QuizNavigation';
+import AssessmentProgress from './AssessmentProgress';
 import { useAssessmentResults } from '@/hooks/useAssessmentResults';
+import { quizSections } from '@/data/assessment/quizData';
 
 const AssessmentQuiz = () => {
   const [currentStep, setCurrentStep] = useState('intro');
+  const [currentSection, setCurrentSection] = useState(1);
+  const [answers, setAnswers] = useState<Record<string, number>>({});
   const [scores, setScores] = useState<Record<string, number>>({});
   
   const { overallScore, scoreLabel, priorities, rescuePlan } = useAssessmentResults(scores);
 
   const startQuiz = () => {
     setCurrentStep('quiz');
+    setCurrentSection(1);
   };
 
-  const handleQuizComplete = (finalScores: Record<string, number>) => {
-    setScores(finalScores);
-    setCurrentStep('results');
+  const handleAnswer = (questionId: string, value: number) => {
+    setAnswers(prev => ({
+      ...prev,
+      [questionId]: value
+    }));
+  };
+
+  const calculateSectionScore = (sectionId: number) => {
+    const section = quizSections.find(s => s.id === sectionId);
+    if (!section) return 0;
+    
+    let totalScore = 0;
+    let questionCount = 0;
+    
+    section.questions.forEach(question => {
+      const answer = answers[question.id];
+      if (answer !== undefined) {
+        totalScore += answer;
+        questionCount++;
+      }
+    });
+    
+    return questionCount > 0 ? totalScore : 0;
+  };
+
+  const nextSection = () => {
+    if (currentSection < quizSections.length) {
+      setCurrentSection(prev => prev + 1);
+      // Scroll to top with a small delay to ensure content is rendered
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    } else {
+      // Calculate final scores for all sections
+      const finalScores: Record<string, number> = {};
+      
+      quizSections.forEach(section => {
+        const sectionKey = `section${section.id}`;
+        finalScores[sectionKey] = calculateSectionScore(section.id);
+      });
+      
+      setScores(finalScores);
+      setCurrentStep('results');
+      // Scroll to top for results page
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
+  const prevSection = () => {
+    if (currentSection > 1) {
+      setCurrentSection(prev => prev - 1);
+      // Scroll to top with a small delay to ensure content is rendered
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    }
   };
 
   const handleEmailResults = () => {
-    // Email functionality would be implemented here
     console.log('Email results requested');
   };
 
-  const sectionTitles = [
-    'Data Quality & Management',
-    'Process Automation',
-    'Team Adoption',
-    'Performance Measurement',
-    'Integration & Workflow'
-  ];
+  const sectionTitles = quizSections.map(section => section.title);
 
   if (currentStep === 'intro') {
     return <AssessmentIntro startQuiz={startQuiz} />;
   }
 
   if (currentStep === 'quiz') {
-    // For now, simulate completing the quiz with sample scores
-    // In a real implementation, this would be the actual quiz component
-    const sampleScores = {
-      'data-quality': 15,
-      'process-automation': 12,
-      'team-adoption': 18,
-      'performance-measurement': 10,
-      'integration-workflow': 14
-    };
+    const currentQuizSection = quizSections.find(s => s.id === currentSection);
     
-    // Auto-complete for demo purposes
-    React.useEffect(() => {
-      const timer = setTimeout(() => {
-        handleQuizComplete(sampleScores);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }, []);
+    if (!currentQuizSection) {
+      return <div>Section not found</div>;
+    }
 
     return (
-      <div className="p-6 md:p-8">
-        <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-4 text-dataops-800">
-            Completing Assessment...
-          </h2>
-          <p className="text-gray-600">
-            Processing your responses and generating personalized recommendations.
-          </p>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+        <div className="max-w-4xl mx-auto py-8">
+          <AssessmentProgress currentSection={currentSection} totalSections={quizSections.length} />
+          
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <QuizSection
+              title={currentQuizSection.title}
+              questions={currentQuizSection.questions}
+              answers={answers}
+              onAnswer={handleAnswer}
+            />
+            
+            <QuizNavigation
+              currentSection={currentSection}
+              prevSection={prevSection}
+              nextSection={nextSection}
+            />
+          </div>
         </div>
       </div>
     );

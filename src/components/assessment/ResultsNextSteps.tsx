@@ -14,19 +14,12 @@ const ResultsNextSteps: React.FC<ResultsNextStepsProps> = ({ onEmailResults }) =
         This assessment provides valuable insights, but a comprehensive HubSpot audit can uncover deeper inefficiencies and missed opportunities. Our specialists have rescued dozens of underperforming implementations, turning them into competitive advantages that drive measurable growth.
       </p>
       
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <div className="flex justify-center">
         <Button 
           asChild
           className="bg-dataops-600 hover:bg-dataops-700 text-white"
         >
           <a href="/contact">Book Your Recovery Consultation</a>
-        </Button>
-        <Button 
-          variant="outline"
-          onClick={onEmailResults}
-          className="border-dataops-600 text-dataops-600 hover:bg-dataops-50"
-        >
-          Email My Assessment Report
         </Button>
       </div>
       

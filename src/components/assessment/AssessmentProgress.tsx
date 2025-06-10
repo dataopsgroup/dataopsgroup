@@ -2,11 +2,13 @@
 import React from 'react';
 
 interface AssessmentProgressProps {
-  progress: number;
   currentSection: number;
+  totalSections: number;
 }
 
-const AssessmentProgress: React.FC<AssessmentProgressProps> = ({ progress, currentSection }) => {
+const AssessmentProgress: React.FC<AssessmentProgressProps> = ({ currentSection, totalSections }) => {
+  const progress = ((currentSection - 1) / totalSections) * 100;
+  
   return (
     <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
       <div className="mb-2">
@@ -18,7 +20,7 @@ const AssessmentProgress: React.FC<AssessmentProgressProps> = ({ progress, curre
         </div>
       </div>
       <div className="text-right text-sm text-gray-600">
-        Section {currentSection} of 5
+        Section {currentSection} of {totalSections}
       </div>
     </div>
   );
