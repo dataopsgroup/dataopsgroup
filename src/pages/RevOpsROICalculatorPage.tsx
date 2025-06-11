@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import RevOpsCalculator from '@/components/calculator/RevOpsCalculator';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import WebApplicationSchema from '@/components/seo/WebApplicationSchema';
 
 const RevOpsROICalculatorPage = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
@@ -27,24 +29,14 @@ const RevOpsROICalculatorPage = () => {
         <meta name="twitter:title" content="RevOps ROI Calculator 2025 - Calculate Revenue Operations Returns" />
         <meta name="twitter:description" content="Free RevOps ROI calculator shows revenue gains, cost savings, and payback periods. Get your personalized projection instantly." />
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
-        
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "RevOps ROI Calculator",
-            "description": "Calculate return on investment for Revenue Operations implementation with detailed projections.",
-            "url": `${baseUrl}/revops-roi-calculator`,
-            "applicationCategory": "BusinessApplication",
-            "operatingSystem": "Web",
-            "provider": {
-              "@type": "Organization",
-              "name": "DataOps Group",
-              "url": "https://dataopsgroup.com"
-            }
-          })}
-        </script>
       </Helmet>
+
+      <WebApplicationSchema 
+        name="RevOps ROI Calculator"
+        description="Calculate return on investment for Revenue Operations implementation with detailed projections."
+        url="/revops-roi-calculator"
+        applicationCategory="BusinessApplication"
+      />
 
       <BreadcrumbSchema 
         items={[

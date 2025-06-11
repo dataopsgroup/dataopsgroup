@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import AssessmentQuiz from '@/components/assessment/AssessmentQuiz';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import AssessmentSchema from '@/components/seo/AssessmentSchema';
+import QuizSchema from '@/components/seo/QuizSchema';
 
 const HubSpotAssessment = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
@@ -31,7 +31,16 @@ const HubSpotAssessment = () => {
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
       </Helmet>
 
-      <AssessmentSchema url={`${baseUrl}/data-operations-assessment`} />
+      <QuizSchema 
+        name="DataOps Maturity Assessment"
+        description="Comprehensive assessment to evaluate your data operations maturity and HubSpot implementation readiness"
+        url="/data-operations-assessment"
+        about="Data Operations, HubSpot Implementation, and Marketing Operations"
+        educationalLevel="Intermediate to Advanced"
+        timeRequired="PT10M"
+        numberOfQuestions={20}
+      />
+
       <BreadcrumbSchema 
         items={[
           { name: "Home", url: "/" },

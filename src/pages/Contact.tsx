@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import Contact from '@/components/Contact';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 
 const ContactPage = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
@@ -84,6 +85,8 @@ const ContactPage = () => {
           `}
         </script>
       </Helmet>
+      
+      <LocalBusinessSchema />
       
       <BreadcrumbSchema 
         items={[
