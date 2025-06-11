@@ -13,6 +13,7 @@ export interface BlogPost {
   modifiedDate?: string;
   wordCount?: number;
   readingTime?: number;
+  readTime?: string; // Added this property to match usage
   seo?: {
     metaDescription?: string;
     keywords?: string;

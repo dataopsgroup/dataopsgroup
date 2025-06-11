@@ -109,7 +109,10 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) =
 
       {/* Related posts from same system */}
       {relatedPosts.length > 0 && (
-        <RelatedPosts posts={relatedPosts} />
+        <RelatedPosts 
+          relatedPosts={relatedPosts} 
+          currentPostId={post.id} 
+        />
       )}
     </div>
   );
