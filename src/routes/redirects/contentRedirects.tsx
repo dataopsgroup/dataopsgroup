@@ -15,7 +15,11 @@ export const contentRedirects = [
     element: <Navigate to="/book" replace />,
   },
   
-  // FAQ URL cleanups
+  // FAQ URL cleanups - redirect duplicate variants to canonical URLs
+  {
+    path: "/faqs/services-5",
+    element: <Navigate to="/faqs/services" replace />,
+  },
   {
     path: "/faqs/hubspot-services",
     element: <Navigate to="/faqs/services" replace />,

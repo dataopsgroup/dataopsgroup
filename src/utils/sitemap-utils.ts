@@ -1,4 +1,3 @@
-
 import { blogPosts } from '@/data/blog';
 
 // Current date for lastmod
@@ -18,6 +17,8 @@ export const mainRoutes = [
   { url: "/data-operations-assessment", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
   { url: "/data-operations-assessment/results", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
   { url: "/guides/hubspot-expert", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/bad-data-cost-calculator", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/revops-roi-calculator", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
   { url: "/sitemap", priority: "0.5", changefreq: "monthly", lastmod: TODAY },
   { url: "/privacy", priority: "0.3", changefreq: "yearly", lastmod: TODAY },
@@ -32,7 +33,7 @@ export const serviceRoutes = [
   { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: TODAY }
 ];
 
-// Define FAQ category routes - updated to match canonical URLs from insightRoutes.tsx
+// Define ONLY canonical FAQ URLs - no duplicates
 export const faqRoutes = [
   { url: "/faqs/services", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
   { url: "/faqs/experts", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
@@ -220,7 +221,8 @@ export const getSitemapSummary = () => {
       'API endpoints',
       'Blog redirect routes (/blog, /en/blog/*)',
       'AMP URLs',
-      'Legacy URLs that redirect'
+      'Legacy URLs that redirect',
+      'Duplicate FAQ variants (services-5, hubspot-services, etc.)'
     ],
     priorities: {
       homepage: '1.0',

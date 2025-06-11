@@ -3,7 +3,11 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 export const guidesRedirects = [
-  // Fix the HubSpot expert guide redirect - redirect to the new structure
+  // Fix the canonical chain - redirect intermediate URL to final destination
+  {
+    path: "/guides/hubspot-expert-guide",
+    element: <Navigate to="/guides/hubspot-expert" replace />,
+  },
   {
     path: "/how-to-hire-a-hubspot-expert-in-2025",
     element: <Navigate to="/guides/hubspot-expert" replace />,
