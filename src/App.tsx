@@ -1,9 +1,9 @@
 
 import React, { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import AppRoutes from './AppRoutes';
+import router from './routes';
 import { Toaster } from '@/components/ui/toaster';
 import { initializeAllOptimizations } from '@/lib/performance-optimizations';
 
@@ -25,10 +25,8 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <BrowserRouter>
-          <AppRoutes />
-          <Toaster />
-        </BrowserRouter>
+        <RouterProvider router={router} />
+        <Toaster />
       </HelmetProvider>
     </QueryClientProvider>
   );
