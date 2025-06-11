@@ -1,11 +1,7 @@
 
 import React from 'react';
-import SemanticLayout from '@/components/layout/SemanticLayout';
 import CategoryPageLayout from '@/components/faqs/CategoryPageLayout';
 import OutboundLinksSection from '@/components/faqs/OutboundLinksSection';
-import MetaHead from '@/components/seo/MetaHead';
-import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import FAQPageSchema from '@/components/seo/FAQPageSchema';
 import { faqServicesLinks } from '@/utils/strategic-links';
 import faqCategories from '@/data/faqs';
 
@@ -16,31 +12,9 @@ const FAQServicesPage = () => {
     return <div>Category not found</div>;
   }
 
-  const breadcrumbItems = [
-    { name: 'Home', url: '/' },
-    { name: 'FAQs', url: '/faqs' },
-    { name: category.title, url: `/faqs/services` }
-  ];
-
   return (
-    <SemanticLayout>
-      <MetaHead
-        title={`${category.title} - Frequently Asked Questions | DataOps Group`}
-        description="Expert answers about HubSpot implementation services, portal optimization, data migration, and consulting. Learn about costs, timelines, and what to expect from professional HubSpot services."
-        canonicalPath="/faqs/services"
-        keywords="HubSpot services FAQ, HubSpot implementation cost, portal optimization questions, HubSpot consulting services, data migration FAQ, HubSpot setup questions, professional services pricing"
-      />
-      
-      <BreadcrumbSchema items={breadcrumbItems} />
-      
-      <FAQPageSchema 
-        items={category.items.map(q => ({ question: q.question, answer: q.answer }))}
-        url="/faqs/services"
-        title={`${category.title} - FAQ`}
-        description="Expert answers about HubSpot implementation services, portal optimization, data migration, and consulting."
-      />
-      
-      <CategoryPageLayout 
+    <>
+      <CategoryPageLayout
         category={category}
         title={`${category.title} FAQ | DataOps Group`}
         description="Expert answers about HubSpot implementation services, portal optimization, data migration, and consulting. Learn about costs, timelines, and what to expect from professional HubSpot services."
@@ -57,7 +31,7 @@ const FAQServicesPage = () => {
           />
         </div>
       </section>
-    </SemanticLayout>
+    </>
   );
 };
 

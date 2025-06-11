@@ -63,7 +63,13 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
-      {/* Remove FAQPageSchema from category pages to avoid duplicate structured data */}
+      <FAQPageSchema 
+        items={formattedFAQs}
+        url={canonicalPath}
+        title={`${category.title} - FAQ`}
+        description={description}
+      />
+      
       <BreadcrumbSchema items={breadcrumbs} />
       
       <section className="bg-gradient-to-br from-white to-dataops-50 py-16 md:py-24">
