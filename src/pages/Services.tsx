@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -17,20 +16,20 @@ const ServicesPage = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Our Services - DataOps Group</title>
-        <meta name="description" content="Explore our comprehensive data operations services including data architecture, analytics, governance, and technology consulting." />
+        <meta name="description" content="HubSpot implementation, analytics, training, and marketing operations services that drive measurable business results and portfolio growth." />
         <meta name="keywords" content="data services, data architecture, analytics, BI, data governance, dataops implementation, enterprise data solutions" />
         <link rel="canonical" href={`${baseUrl}/services`} />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Our Services - DataOps Group" />
-        <meta property="og:description" content="Explore our comprehensive data operations services including data architecture, analytics, governance, and technology consulting." />
+        <meta property="og:description" content="HubSpot implementation, analytics, training, and marketing operations services that drive measurable business results and portfolio growth." />
         <meta property="og:url" content={`${baseUrl}/services`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta property="og:site_name" content="DataOps Group" />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Our Services - DataOps Group" />
-        <meta name="twitter:description" content="Explore our comprehensive data operations services including data architecture, analytics, governance, and technology consulting." />
+        <meta name="twitter:description" content="HubSpot implementation, analytics, training, and marketing operations services that drive measurable business results and portfolio growth." />
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>

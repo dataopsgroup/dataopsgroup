@@ -18,12 +18,12 @@ const PEValueCreationPage = () => {
     <SemanticLayout>
       <MetaHead
         title="100-Day PE Portfolio Company Transformation | DataOps Group"
-        description="Turn operational chaos into value creation engines with our systematic 100-day transformation program designed specifically for PE portfolio companies."
+        description="Systematic 100-day program transforms PE portfolio companies into unified value creation engines. Drive EBITDA growth through operational excellence."
         keywords="private equity, portfolio company transformation, hubspot implementation, operational efficiency, value creation, PE consulting"
         canonicalPath="/pe-value-creation-program"
         ogType="website"
         ogTitle="100-Day PE Portfolio Company Transformation | DataOps Group"
-        ogDescription="Turn operational chaos into value creation engines with our systematic 100-day transformation program designed specifically for PE portfolio companies."
+        ogDescription="Systematic 100-day program transforms PE portfolio companies into unified value creation engines. Drive EBITDA growth through operational excellence."
         ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
         siteName="DataOps Group"
       />

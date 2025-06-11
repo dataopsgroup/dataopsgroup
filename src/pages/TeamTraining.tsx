@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -24,7 +23,7 @@ const TeamTraining = () => {
     <>
       <Helmet>
         <title>HubSpot Training & Implementation | Expert Team Training | Portfolio Company Growth | DataOps Group</title>
-        <meta name="description" content="Accelerate portfolio company growth with comprehensive HubSpot training and implementation. Expert-led training programs that maximize platform adoption and drive measurable results." />
+        <meta name="description" content="Expert HubSpot training and implementation that accelerates portfolio company growth. Maximize platform adoption and drive measurable results." />
         <meta name="keywords" content="HubSpot training, HubSpot implementation, team training, portfolio company training, HubSpot certification, marketing training, sales training, CRM training, platform adoption" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="author" content="DataOps Group" />

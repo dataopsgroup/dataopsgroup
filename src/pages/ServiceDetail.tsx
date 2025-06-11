@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -53,6 +54,11 @@ const ServiceDetail = () => {
   const description = isHubSpotTraining ? hubspotDescription : service.description;
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
+  // Create optimized meta description (under 160 characters)
+  const metaDescription = isHubSpotTraining 
+    ? "Expert HubSpot training that maximizes platform ROI and accelerates team adoption. Customized for portfolio companies and growing businesses."
+    : `${service.title} services that drive operational excellence and business growth. Get expert implementation and support for measurable results.`;
+
   // Define breadcrumbs for schema
   const breadcrumbs = [
     { name: 'Home', url: '/' },
@@ -64,19 +70,19 @@ const ServiceDetail = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{title} | DataOps Group</title>
-        <meta name="description" content={description} />
+        <meta name="description" content={metaDescription} />
         <link rel="canonical" href={`${baseUrl}/services/${serviceId}`} />
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${title} | DataOps Group`} />
-        <meta property="og:description" content={description} />
+        <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={`${baseUrl}/services/${serviceId}`} />
         <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta property="og:site_name" content="DataOps Group" />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${title} | DataOps Group`} />
-        <meta name="twitter:description" content={description} />
+        <meta name="twitter:description" content={metaDescription} />
         <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
         <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
