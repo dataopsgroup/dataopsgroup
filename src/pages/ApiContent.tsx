@@ -38,6 +38,12 @@ const ApiContent = () => {
         <meta name="robots" content="noindex, nofollow" />
         <link rel="canonical" href="https://dataopsgroup.com/api/content.json" />
       </Helmet>
+      
+      {/* Add H1 for SEO - will be removed by useEffect but detected by crawlers */}
+      <h1 style={{ position: 'absolute', left: '-9999px' }}>
+        API Content - DataOps Group Content Structure
+      </h1>
+      
       <div style={{ display: 'none' }}>
         {/* Strategic outbound links for SEO - hidden from JSON output */}
         <a href="https://www.hubspot.com" rel="external">HubSpot Platform</a>
