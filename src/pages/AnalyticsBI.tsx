@@ -7,6 +7,7 @@ import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
 import AnalyticsBIContent from '@/components/services/AnalyticsBIContent';
 import AnalyticsBIBenefits from '@/components/services/AnalyticsBIBenefits';
 import AnalyticsBISchema from '@/components/services/AnalyticsBISchema';
+import RelatedServices from '@/components/services/RelatedServices';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
@@ -78,6 +79,8 @@ const AnalyticsBI = () => {
             </div>
           </div>
         </section>
+        
+        <RelatedServices currentService="analytics-bi" />
         
         <CTABanner />
       </SemanticLayout>
