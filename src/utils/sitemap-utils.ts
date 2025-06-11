@@ -1,23 +1,33 @@
-
 import { blogPosts } from '@/data/blog';
+import { CANONICAL_URLS } from './seo-config';
+
+/**
+ * CRITICAL SEO FILE - DO NOT MODIFY WITHOUT SEO REVIEW
+ * 
+ * Sitemap generation utilities that ensure only canonical URLs are indexed
+ * All URL references come from central seo-config.ts
+ */
 
 // Current date for lastmod
 const TODAY = new Date().toISOString().split('T')[0];
 
 // Define verified main routes that actually exist and should be indexed
+// ONLY CANONICAL URLS - NO DUPLICATES ALLOWED
 export const mainRoutes = [
   { url: "/", priority: "1.0", changefreq: "weekly", lastmod: TODAY },
   { url: "/services", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
   { url: "/about", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/approach", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
-  { url: "/insights", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
-  { url: "/case-studies", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
-  { url: "/contact", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
-  { url: "/book", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
+  { url: CANONICAL_URLS.insights, priority: "0.9", changefreq: "weekly", lastmod: TODAY },
+  { url: CANONICAL_URLS.caseStudies, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.contact, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.book, priority: "0.9", changefreq: "weekly", lastmod: TODAY },
   { url: "/pe-value-creation-program", priority: "0.9", changefreq: "monthly", lastmod: TODAY },
-  { url: "/data-operations-assessment", priority: "0.9", changefreq: "weekly", lastmod: TODAY },
-  { url: "/data-operations-assessment/results", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
-  { url: "/guides/hubspot-expert", priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.assessment, priority: "0.9", changefreq: "weekly", lastmod: TODAY },
+  { url: CANONICAL_URLS.assessmentResults, priority: "0.7", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.hubspotExpert, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.badDataCalculator, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.revopsCalculator, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: TODAY },
   { url: "/sitemap", priority: "0.5", changefreq: "monthly", lastmod: TODAY },
   { url: "/privacy", priority: "0.3", changefreq: "yearly", lastmod: TODAY },
@@ -32,13 +42,13 @@ export const serviceRoutes = [
   { url: "/services/team-training", priority: "0.8", changefreq: "monthly", lastmod: TODAY }
 ];
 
-// Define FAQ category routes - updated to match canonical URLs from insightRoutes.tsx
+// CANONICAL FAQ URLs ONLY - imported from seo-config to prevent duplicates
 export const faqRoutes = [
-  { url: "/faqs/services", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
-  { url: "/faqs/experts", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
-  { url: "/faqs/data-quality", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
-  { url: "/faqs/approach", priority: "0.6", changefreq: "monthly", lastmod: TODAY },
-  { url: "/faqs/modules", priority: "0.6", changefreq: "monthly", lastmod: TODAY }
+  { url: CANONICAL_URLS.faqServices, priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.faqExperts, priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.faqDataQuality, priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.faqApproach, priority: "0.6", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.faqModules, priority: "0.6", changefreq: "monthly", lastmod: TODAY }
 ];
 
 // Generate sitemap index XML
@@ -215,12 +225,19 @@ export const getSitemapSummary = () => {
       total: mainRoutes.length + serviceRoutes.length + faqRoutes.length + regularBlogPosts.length + caseStudies.length + 1
     },
     excluded: [
+      'DUPLICATE CONTENT: /guides/hubspot-expert-guide → canonical: /guides/hubspot-expert',
+      'DUPLICATE CONTENT: /faqs/services-5 → canonical: /faqs/services',
+      'DUPLICATE CONTENT: /faqs/hubspot-services → canonical: /faqs/services',
+      'DUPLICATE CONTENT: /faqs/hubspot-experts → canonical: /faqs/experts',
+      'DUPLICATE CONTENT: /faqs/our-approach → canonical: /faqs/approach',
+      'DUPLICATE CONTENT: /faqs/hubspot-modules → canonical: /faqs/modules',
       'Redirect pages (handled by redirectRoutes.tsx)',
       'Utility pages (/not-found, /404, etc.)',
       'API endpoints',
       'Blog redirect routes (/blog, /en/blog/*)',
       'AMP URLs',
-      'Legacy URLs that redirect'
+      'Legacy URLs that redirect',
+      'Query parameter variants'
     ],
     priorities: {
       homepage: '1.0',

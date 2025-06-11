@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { generateContentJson } from '@/utils/api-utils';
 
 const ApiContent = () => {
@@ -29,7 +30,22 @@ const ApiContent = () => {
     document.body.style.color = 'black';
   }, []);
 
-  return null;
+  return (
+    <>
+      <Helmet>
+        <title>API Content - DataOps Group Content Structure | DataOps Group</title>
+        <meta name="description" content="JSON API endpoint providing structured content data for DataOps Group website including services, case studies, and blog content." />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://dataopsgroup.com/api/content.json" />
+      </Helmet>
+      <div style={{ display: 'none' }}>
+        {/* Strategic outbound links for SEO - hidden from JSON output */}
+        <a href="https://www.hubspot.com" rel="external">HubSpot Platform</a>
+        <a href="https://developers.hubspot.com" rel="external">HubSpot Developers</a>
+        <a href="https://www.salesforce.com" rel="external">Salesforce CRM</a>
+      </div>
+    </>
+  );
 };
 
 export default ApiContent;

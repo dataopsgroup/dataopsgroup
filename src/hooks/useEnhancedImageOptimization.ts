@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ImageOptimizationService } from '@/services/imageOptimizationService';
-import { getOptimizedImageSrc, isLargeImage, type ImageContext } from '@/utils/large-image-replacements';
+import { getOptimizedImageSrc, isLargeImage, shouldPreserveLayout, type ImageContext } from '@/utils/large-image-replacements';
 
 interface EnhancedOptimizationOptions {
   maxSizeKB: number;
@@ -28,7 +28,7 @@ interface ContextDimensions {
 
 // Context-specific size limits (in KB) - fallbacks only
 const CONTEXT_LIMITS: Record<ImageContext, number> = {
-  hero: 500,
+  hero: 450, // More aggressive for hero image
   'blog-cover': 200,
   thumbnail: 100,
   logo: 50,
@@ -38,7 +38,7 @@ const CONTEXT_LIMITS: Record<ImageContext, number> = {
 
 // Context-specific dimensions - fallbacks only
 const CONTEXT_DIMENSIONS: Record<ImageContext, ContextDimensions> = {
-  hero: { maxWidth: 1920, quality: 0.90 },
+  hero: { maxWidth: 1920, quality: 0.75 }, // Preserve full resolution but compress more
   'blog-cover': { maxWidth: 800, quality: 0.85 },
   thumbnail: { maxWidth: 400, quality: 0.8 },
   logo: { maxWidth: 300, quality: 0.9 },
@@ -89,16 +89,19 @@ export const useEnhancedImageOptimization = (
         const finalQuality = options.quality || contextDimensions?.quality || 0.85;
         const finalMaxWidth = options.maxWidth || contextDimensions?.maxWidth || 1200;
 
-        console.log(`Hero optimization settings - Size: ${finalMaxSizeKB}KB, Quality: ${finalQuality}, Width: ${finalMaxWidth}px`);
+        // Special handling for layout-preserving images (like hero)
+        const preserveLayout = shouldPreserveLayout(src);
+        
+        if (preserveLayout) {
+          console.log(`LAYOUT PRESERVATION MODE for ${src}`);
+          console.log(`Target: <${finalMaxSizeKB}KB, Quality: ${finalQuality}, Preserve Resolution: ${finalMaxWidth}px`);
+        }
 
         // Check if image needs optimization
         const shouldOptimize = await service.shouldOptimize(src, finalMaxSizeKB);
         setNeedsOptimization(shouldOptimize);
 
         if (shouldOptimize) {
-          // Add cache busting for development
-          const cacheKey = `${src}-${finalMaxSizeKB}-${finalQuality}-${finalMaxWidth}`;
-          
           const result = await service.optimizeImage(src, {
             maxWidth: finalMaxWidth,
             quality: finalQuality,
@@ -110,13 +113,14 @@ export const useEnhancedImageOptimization = (
           setOptimizedSize(result.optimizedSize);
           setCompressionRatio(result.compressionRatio);
 
-          // Enhanced logging for hero images
-          if (options.context === 'hero') {
-            console.log(`HERO IMAGE OPTIMIZED: ${src}`);
+          // Enhanced logging for layout-preserving images
+          if (preserveLayout) {
+            console.log(`LAYOUT-PRESERVING IMAGE OPTIMIZED: ${src}`);
             console.log(`Original: ${(result.originalSize / 1024).toFixed(1)}KB`);
             console.log(`Optimized: ${(result.optimizedSize / 1024).toFixed(1)}KB`);
             console.log(`Compression: ${result.compressionRatio.toFixed(1)}%`);
             console.log(`Quality used: ${finalQuality}`);
+            console.log(`Resolution preserved: ${finalMaxWidth}px`);
           }
         } else {
           // Image is already small enough

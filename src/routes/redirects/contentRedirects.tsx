@@ -1,36 +1,49 @@
 
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { CANONICAL_URLS } from '@/utils/seo-config';
+
+/**
+ * CRITICAL SEO FILE - DO NOT MODIFY WITHOUT SEO REVIEW
+ * 
+ * All redirect mappings are imported from seo-config.ts
+ * This prevents accidental overwrites of SEO-critical redirects
+ */
 
 export const contentRedirects = [
   // Whitepapers redirect
   {
     path: "/whitepapers",
-    element: <Navigate to="/insights" replace />,
+    element: <Navigate to={CANONICAL_URLS.insights} replace />,
   },
   
-  // New redirects for cleaned URLs
+  // Book page redirects
   {
     path: "/book-page",
-    element: <Navigate to="/book" replace />,
+    element: <Navigate to={CANONICAL_URLS.book} replace />,
   },
   
-  // FAQ URL cleanups
+  // CRITICAL FAQ URL CANONICAL PROTECTION
+  // These redirects prevent duplicate content issues
+  {
+    path: "/faqs/services-5",
+    element: <Navigate to={CANONICAL_URLS.faqServices} replace />,
+  },
   {
     path: "/faqs/hubspot-services",
-    element: <Navigate to="/faqs/services" replace />,
+    element: <Navigate to={CANONICAL_URLS.faqServices} replace />,
   },
   {
     path: "/faqs/hubspot-experts",
-    element: <Navigate to="/faqs/experts" replace />,
+    element: <Navigate to={CANONICAL_URLS.faqExperts} replace />,
   },
   {
     path: "/faqs/our-approach",
-    element: <Navigate to="/faqs/approach" replace />,
+    element: <Navigate to={CANONICAL_URLS.faqApproach} replace />,
   },
   {
     path: "/faqs/hubspot-modules",
-    element: <Navigate to="/faqs/modules" replace />,
+    element: <Navigate to={CANONICAL_URLS.faqModules} replace />,
   },
   
   // Documentation redirect
@@ -50,7 +63,7 @@ export const contentRedirects = [
   },
   {
     path: "/resources/data-impact",
-    element: <Navigate to="/insights" replace />,
+    element: <Navigate to={CANONICAL_URLS.insights} replace />,
   },
   
   // Old approach redirects
@@ -70,6 +83,6 @@ export const contentRedirects = [
   // Search page redirect
   {
     path: "/search",
-    element: <Navigate to="/insights" replace />,
+    element: <Navigate to={CANONICAL_URLS.insights} replace />,
   }
 ];

@@ -10,12 +10,20 @@ interface LargeImageMapping {
   original: string;
   context: ImageContext;
   targetSizeKB: number;
-  enableAutoOptimization: boolean; // Use automatic optimization instead of pre-defined files
+  enableAutoOptimization: boolean;
+  preserveLayout?: boolean; // New flag for layout preservation
 }
 
 // Map of the large images that need optimization
 export const LARGE_IMAGE_REPLACEMENTS: Record<string, LargeImageMapping> = {
-  // Hero background image removed - handled by component optimization
+  // Hero background image - PRESERVE LAYOUT, only optimize file size
+  '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png': {
+    original: '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png',
+    context: 'hero',
+    targetSizeKB: 450, // Aggressive target for hero image
+    enableAutoOptimization: true,
+    preserveLayout: true // Critical: preserve all visual aspects
+  },
   // Logo image - use automatic optimization with logo context
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png': {
     original: '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
@@ -81,6 +89,14 @@ export const shouldAutoOptimize = (src: string): boolean => {
 };
 
 /**
+ * Check if an image should preserve its layout during optimization
+ */
+export const shouldPreserveLayout = (src: string): boolean => {
+  const mapping = LARGE_IMAGE_REPLACEMENTS[src];
+  return mapping?.preserveLayout || false;
+};
+
+/**
  * Get recommended optimization settings for large images
  */
 export const getOptimizationSettings = (src: string) => {
@@ -96,7 +112,7 @@ export const getOptimizationSettings = (src: string) => {
   
   return {
     maxSizeKB: mapping.targetSizeKB,
-    quality: mapping.context === 'hero' ? 0.9 : mapping.context === 'logo' ? 0.95 : 0.85,
+    quality: mapping.context === 'hero' ? 0.75 : mapping.context === 'logo' ? 0.95 : 0.85, // More aggressive compression for hero
     maxWidth: mapping.context === 'hero' ? 1920 : mapping.context === 'logo' ? 400 : mapping.context === 'thumbnail' ? 400 : 1280
   };
 };
