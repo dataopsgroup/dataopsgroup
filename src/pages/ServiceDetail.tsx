@@ -9,6 +9,7 @@ import ServiceHero from '@/components/services/ServiceHero';
 import ServiceBenefits from '@/components/services/ServiceBenefits';
 import HubSpotTrainingContent from '@/components/services/HubSpotTrainingContent';
 import GenericServiceContent from '@/components/services/GenericServiceContent';
+import RelatedServices from '@/components/services/RelatedServices';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { Button } from '@/components/ui/button';
@@ -118,6 +119,27 @@ const ServiceDetail = () => {
                 ) : (
                   <GenericServiceContent serviceTitle={service.title} />
                 )}
+
+                {/* Internal linking section */}
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    Learn More About Our Approach
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <Link to="/approach" className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
+                      → Our proven methodology
+                    </Link>
+                    <Link to="/case-studies" className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
+                      → Client success stories
+                    </Link>
+                    <Link to="/faqs/services" className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
+                      → Frequently asked questions
+                    </Link>
+                    <Link to="/about" className="text-dataops-600 hover:text-dataops-800 font-medium text-sm">
+                      → Meet our expert team
+                    </Link>
+                  </div>
+                </div>
               </div>
               
               <ServiceBenefits 
@@ -129,6 +151,7 @@ const ServiceDetail = () => {
           </div>
         </section>
         
+        <RelatedServices currentService={serviceId || ''} />
         <CTABanner />
       </main>
       <Footer />

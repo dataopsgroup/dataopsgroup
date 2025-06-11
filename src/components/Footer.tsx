@@ -1,108 +1,144 @@
 
 import React from 'react';
-import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import AdminLink from './AdminLink';
-import OptimizedImage from './ui/optimized-image';
+import AdminLink from '@/components/AdminLink';
+import OptimizedLogo from '@/components/ui/optimized-logo';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const serviceLinks = [
+    { name: 'HubSpot Implementation', href: '/services/team-training' },
+    { name: 'Marketing Operations', href: '/services/marketing-operations-revops' },
+    { name: 'DataOps Implementation', href: '/services/dataops-implementation' },
+    { name: 'Analytics & BI', href: '/services/analytics-bi' },
+    { name: 'All Services', href: '/services' }
+  ];
+
+  const resourceLinks = [
+    { name: 'Blog & Insights', href: '/insights' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'HubSpot Expert Guide', href: '/guides/hubspot-expert' },
+    { name: 'PE Value Creation', href: '/pe-value-creation-program' },
+    { name: 'ROI Calculator', href: '/revops-roi-calculator' }
+  ];
+
+  const supportLinks = [
+    { name: 'Data Operations Assessment', href: '/data-operations-assessment' },
+    { name: 'Book Consultation', href: '/book' },
+    { name: 'Contact Us', href: '/contact' },
+    { name: 'About Our Team', href: '/about' },
+    { name: 'Our Approach', href: '/approach' }
+  ];
+
+  const faqLinks = [
+    { name: 'HubSpot Services FAQ', href: '/faqs/services' },
+    { name: 'Expert Hiring FAQ', href: '/faqs/experts' },
+    { name: 'Data Quality FAQ', href: '/faqs/data-quality' },
+    { name: 'All FAQs', href: '/faqs' }
+  ];
+
   return (
-    <footer className="bg-dataops-950 text-white pt-12 mt-auto">
+    <footer className="bg-brand-navy text-white py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {/* Section 1: Company Identity */}
-          <section>
-            <div>
-              <OptimizedImage 
-                src="/lovable-uploads/8337a646-bb1d-44d4-bb07-ecaf283898d7.png" 
-                alt="DataOps Group Logo" 
-                width={180} 
-                height={50} 
-                className="mb-3" 
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Company Info */}
+          <div className="lg:col-span-1">
+            <Link to="/" className="flex items-center mb-4">
+              <OptimizedLogo
+                src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+                alt="DataOps Group Logo"
+                className="h-12 w-auto"
+                width={120}
+                height={48}
               />
-            </div>
-            <div className="flex space-x-4">
-              <a href="https://www.linkedin.com/company/dataopsgroup/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="Visit DataOps Group LinkedIn profile">
-                <Linkedin size={20} />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-            </div>
-          </section>
-          
-          {/* Section 2: Primary Actions */}
-          <nav aria-labelledby="primary-actions">
-            <h2 id="primary-actions" className="text-sm font-semibold mb-3 text-white leading-[1.15]">
-              Get Started
-            </h2>
-            <ul className="space-y-1">
-              <li>
-                <Link to="/contact" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="Contact us to get started">
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/data-operations-assessment" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="Take our HubSpot assessment">
-                  HubSpot Assessment
-                </Link>
-              </li>
-              <li>
-                <Link to="/case-studies" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="View our client success stories">
-                  Case Studies
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="Explore our services">
-                  Our Services
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          
-          {/* Section 3: Essential Links */}
-          <nav aria-labelledby="essential-links">
-            <h2 id="essential-links" className="text-sm font-semibold mb-3 text-white leading-[1.15]">
-              Company
-            </h2>
-            <ul className="space-y-1">
-              <li>
-                <Link to="/about" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="Learn about DataOps Group">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/insights" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="Read our latest insights">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link to="/approach" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="Learn about our methodology">
-                  Our Approach
-                </Link>
-              </li>
-              <li>
-                <Link to="/sitemap" className="text-sm text-gray-300 hover:text-white transition-colors leading-[1.15]" aria-label="View our sitemap">
-                  Sitemap
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-        
-        <div className="border-t border-gray-800 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-xs text-gray-400 leading-[1.15]">
-              &copy; <time dateTime={new Date().getFullYear().toString()}>{new Date().getFullYear()}</time> DataOps Group. All rights reserved.
+            </Link>
+            <p className="text-gray-300 text-sm mb-4">
+              Transforming portfolio operations into profit drivers through expert HubSpot implementation and data operations consulting.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-xs text-gray-400 hover:text-white leading-[1.15]" aria-label="Read our privacy policy">Privacy Policy</Link>
-              <Link to="/terms" className="text-xs text-gray-400 hover:text-white leading-[1.15]" aria-label="Read our terms of service">Terms of Service</Link>
-            </div>
+            <AdminLink className="text-gray-400" />
           </div>
-          
-          {/* AI Tool Note with Admin Link */}
-          <div className="mt-4 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4">
-            <p className="leading-[1.15]">AI tools: Structured content available at <Link to="/api/content.json" className="text-gray-400 hover:text-gray-300">/api/content.json</Link></p>
-            <AdminLink />
+
+          {/* Services */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-brand-saffron">Services</h3>
+            <ul className="space-y-2">
+              {serviceLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-gray-300 hover:text-white transition-colors text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-brand-saffron">Resources</h3>
+            <ul className="space-y-2">
+              {resourceLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-gray-300 hover:text-white transition-colors text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-brand-saffron">Support</h3>
+            <ul className="space-y-2">
+              {supportLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-gray-300 hover:text-white transition-colors text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* FAQs */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-brand-saffron">FAQs</h3>
+            <ul className="space-y-2">
+              {faqLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-gray-300 hover:text-white transition-colors text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">
+            © {currentYear} DataOps Group. All rights reserved.
+          </p>
+          <div className="flex space-x-4 mt-4 md:mt-0">
+            <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>
