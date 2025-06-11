@@ -69,7 +69,7 @@ const PillarContentPage = () => {
       <MetaHead
         title={pillarContentData.title}
         description={pillarContentData.description}
-        canonicalPath="/guides/hubspot-expert-guide"
+        canonicalPath="/guides/hubspot-expert"
         author="Geoff Tucker"
         publishDate="2024-12-01T00:00:00Z"
         ogType="article"
@@ -92,7 +92,7 @@ const PillarContentPage = () => {
           "dateModified": "2024-12-01T00:00:00Z",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://dataopsgroup.com/guides/hubspot-expert-guide"
+            "@id": "https://dataopsgroup.com/guides/hubspot-expert"
           },
           "articleSection": "HubSpot Implementation",
           "wordCount": 8500,
@@ -103,7 +103,7 @@ const PillarContentPage = () => {
       <BreadcrumbSchema items={[
         { name: 'Home', url: '/' },
         { name: 'Guides', url: '/guides' },
-        { name: 'HubSpot Expert Guide', url: '/guides/hubspot-expert-guide' }
+        { name: 'HubSpot Expert Guide', url: '/guides/hubspot-expert' }
       ]} />
       
       <PillarContent 
