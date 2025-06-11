@@ -1,152 +1,85 @@
 
 import { useState, useEffect } from 'react';
-import { ImageOptimizationService } from '@/services/imageOptimizationService';
-import { getOptimizedImageSrc, isLargeImage, shouldPreserveLayout, type ImageContext } from '@/utils/large-image-replacements';
 
-interface EnhancedOptimizationOptions {
-  maxSizeKB: number;
+interface OptimizationOptions {
+  maxSizeKB?: number;
   quality?: number;
   maxWidth?: number;
-  format?: 'webp' | 'jpeg' | 'png' | 'avif';
-  context?: ImageContext;
+  context?: 'hero' | 'blog-cover' | 'thumbnail' | 'content';
+  format?: 'webp' | 'avif' | 'auto';
 }
 
-interface EnhancedOptimizationResult {
+interface OptimizationResult {
   optimizedSrc: string;
   isOptimizing: boolean;
-  originalSize: number;
-  optimizedSize: number;
   compressionRatio: number;
   error: string | null;
   needsOptimization: boolean;
 }
 
-interface ContextDimensions {
-  maxWidth: number;
-  quality: number;
-}
-
-// Context-specific size limits (in KB) - fallbacks only
-const CONTEXT_LIMITS: Record<ImageContext, number> = {
-  hero: 450, // More aggressive for hero image
-  'blog-cover': 200,
-  thumbnail: 100,
-  logo: 50,
-  content: 300,
-  background: 400
-};
-
-// Context-specific dimensions - fallbacks only
-const CONTEXT_DIMENSIONS: Record<ImageContext, ContextDimensions> = {
-  hero: { maxWidth: 1920, quality: 0.75 }, // Preserve full resolution but compress more
-  'blog-cover': { maxWidth: 800, quality: 0.85 },
-  thumbnail: { maxWidth: 400, quality: 0.8 },
-  logo: { maxWidth: 300, quality: 0.9 },
-  content: { maxWidth: 1200, quality: 0.85 },
-  background: { maxWidth: 1920, quality: 0.8 }
-};
-
 export const useEnhancedImageOptimization = (
   src: string,
-  options: EnhancedOptimizationOptions
-): EnhancedOptimizationResult => {
+  options: OptimizationOptions = {}
+): OptimizationResult => {
   const [optimizedSrc, setOptimizedSrc] = useState(src);
   const [isOptimizing, setIsOptimizing] = useState(false);
-  const [originalSize, setOriginalSize] = useState(0);
-  const [optimizedSize, setOptimizedSize] = useState(0);
   const [compressionRatio, setCompressionRatio] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [needsOptimization, setNeedsOptimization] = useState(false);
 
+  const {
+    maxSizeKB = 300,
+    quality = 0.85,
+    maxWidth = 1920,
+    context = 'content',
+    format = 'auto'
+  } = options;
+
   useEffect(() => {
-    if (!src) return;
+    if (!src || src.startsWith('data:') || src.startsWith('blob:')) {
+      return;
+    }
 
     const optimizeImage = async () => {
+      setIsOptimizing(true);
+      setError(null);
+
       try {
-        setIsOptimizing(true);
-        setError(null);
-
-        // Check if this is a known large image that should use pre-optimized versions
-        if (isLargeImage(src)) {
-          const preOptimizedSrc = getOptimizedImageSrc(src, options.context || 'content');
-          if (preOptimizedSrc !== src) {
-            setOptimizedSrc(preOptimizedSrc);
-            setNeedsOptimization(true);
-            setCompressionRatio(30);
-            console.log(`Using pre-optimized version for known large image: ${src}`);
-            return;
+        // For external images or already optimized URLs, return as-is
+        if (src.includes('unsplash.com') || src.includes('lovable-uploads')) {
+          let optimizedUrl = src;
+          
+          // Add optimization parameters for Unsplash
+          if (src.includes('unsplash.com')) {
+            const url = new URL(src);
+            url.searchParams.set('w', maxWidth.toString());
+            url.searchParams.set('q', Math.round(quality * 100).toString());
+            url.searchParams.set('fm', format === 'auto' ? 'webp' : format);
+            url.searchParams.set('fit', 'crop');
+            optimizedUrl = url.toString();
           }
-        }
-
-        const service = ImageOptimizationService.getInstance();
-        
-        // PRIORITY: Component props take precedence over context defaults
-        const contextDimensions = options.context ? CONTEXT_DIMENSIONS[options.context] : null;
-        const contextLimit = options.context ? CONTEXT_LIMITS[options.context] : 100;
-        
-        // Use component props first, then context fallbacks
-        const finalMaxSizeKB = options.maxSizeKB; // Always use component prop
-        const finalQuality = options.quality || contextDimensions?.quality || 0.85;
-        const finalMaxWidth = options.maxWidth || contextDimensions?.maxWidth || 1200;
-
-        // Special handling for layout-preserving images (like hero)
-        const preserveLayout = shouldPreserveLayout(src);
-        
-        if (preserveLayout) {
-          console.log(`LAYOUT PRESERVATION MODE for ${src}`);
-          console.log(`Target: <${finalMaxSizeKB}KB, Quality: ${finalQuality}, Preserve Resolution: ${finalMaxWidth}px`);
-        }
-
-        // Check if image needs optimization
-        const shouldOptimize = await service.shouldOptimize(src, finalMaxSizeKB);
-        setNeedsOptimization(shouldOptimize);
-
-        if (shouldOptimize) {
-          const result = await service.optimizeImage(src, {
-            maxWidth: finalMaxWidth,
-            quality: finalQuality,
-            format: options.format || 'webp'
-          });
-
-          setOptimizedSrc(result.optimizedUrl);
-          setOriginalSize(result.originalSize);
-          setOptimizedSize(result.optimizedSize);
-          setCompressionRatio(result.compressionRatio);
-
-          // Enhanced logging for layout-preserving images
-          if (preserveLayout) {
-            console.log(`LAYOUT-PRESERVING IMAGE OPTIMIZED: ${src}`);
-            console.log(`Original: ${(result.originalSize / 1024).toFixed(1)}KB`);
-            console.log(`Optimized: ${(result.optimizedSize / 1024).toFixed(1)}KB`);
-            console.log(`Compression: ${result.compressionRatio.toFixed(1)}%`);
-            console.log(`Quality used: ${finalQuality}`);
-            console.log(`Resolution preserved: ${finalMaxWidth}px`);
-          }
+          
+          setOptimizedSrc(optimizedUrl);
+          setCompressionRatio(15); // Estimated compression for external services
         } else {
-          // Image is already small enough
+          // For local images, use as-is but mark for potential optimization
           setOptimizedSrc(src);
-          setOriginalSize(0);
-          setOptimizedSize(0);
-          setCompressionRatio(0);
-          console.log(`Image ${src} already optimized, size under ${finalMaxSizeKB}KB limit`);
+          setNeedsOptimization(true);
         }
       } catch (err) {
-        console.error('Image optimization failed:', err);
         setError('Optimization failed');
-        setOptimizedSrc(src); // Fallback to original
+        setOptimizedSrc(src);
       } finally {
         setIsOptimizing(false);
       }
     };
 
     optimizeImage();
-  }, [src, options.maxSizeKB, options.quality, options.maxWidth, options.format, options.context]);
+  }, [src, maxSizeKB, quality, maxWidth, context, format]);
 
   return {
     optimizedSrc,
     isOptimizing,
-    originalSize,
-    optimizedSize,
     compressionRatio,
     error,
     needsOptimization

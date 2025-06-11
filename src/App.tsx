@@ -1,38 +1,35 @@
-
+import React, { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { Toaster } from '@/components/ui/sonner';
-import router from './routes';
-import { RouterProvider } from 'react-router-dom';
-import ErrorBoundary from './components/ErrorBoundary';
-import { Suspense } from 'react';
+import AppRoutes from './AppRoutes';
+import { Toaster } from '@/components/ui/toaster';
+import { initializeAllOptimizations } from '@/lib/performance-optimizations';
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      retry: 1,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      cacheTime: 1000 * 60 * 30, // 30 minutes
     },
   },
 });
 
 function App() {
+  useEffect(() => {
+    // Initialize performance optimizations
+    initializeAllOptimizations();
+  }, []);
+
   return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <ErrorBoundary>
-          <Suspense fallback={
-            <div className="w-full h-screen flex items-center justify-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mb-4"></div>
-              <p className="text-blue-600 text-lg">Loading page...</p>
-            </div>
-          }>
-            <RouterProvider router={router} />
-          </Suspense>
-          <Toaster position="top-right" />
-        </ErrorBoundary>
-      </QueryClientProvider>
-    </HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <BrowserRouter>
+          <AppRoutes />
+          <Toaster />
+        </BrowserRouter>
+      </HelmetProvider>
+    </QueryClientProvider>
   );
 }
 

@@ -1,16 +1,14 @@
 
-import { useState, useEffect, useRef } from 'react';
-import { ImageOptimizationService } from '@/services/imageOptimizationService';
+import { useState, useEffect } from 'react';
 
-interface UseAutoOptimizedImageProps {
-  src: string;
-  maxSizeKB?: number;
-  quality?: number;
-  maxWidth?: number;
-  format?: 'webp' | 'jpeg' | 'png' | 'avif';
+interface OptimizationOptions {
+  maxSizeKB: number;
+  quality: number;
+  maxWidth: number;
+  format: 'webp' | 'jpeg' | 'png' | 'avif';
 }
 
-interface UseAutoOptimizedImageReturn {
+interface OptimizationResult {
   optimizedSrc: string;
   isOptimizing: boolean;
   originalSize: number;
@@ -19,77 +17,47 @@ interface UseAutoOptimizedImageReturn {
   error: string | null;
 }
 
-export const useAutoOptimizedImage = ({
-  src,
-  maxSizeKB = 100,
-  quality = 0.85,
-  maxWidth = 1280,
-  format = 'webp'
-}: UseAutoOptimizedImageProps): UseAutoOptimizedImageReturn => {
-  const [optimizedSrc, setOptimizedSrc] = useState(src);
+export const useAutoOptimizedImage = (
+  options: { src: string } & OptimizationOptions
+): OptimizationResult => {
+  const [optimizedSrc, setOptimizedSrc] = useState(options.src);
   const [isOptimizing, setIsOptimizing] = useState(false);
   const [originalSize, setOriginalSize] = useState(0);
   const [optimizedSize, setOptimizedSize] = useState(0);
   const [compressionRatio, setCompressionRatio] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  
-  const optimizationService = useRef(ImageOptimizationService.getInstance());
-  const previousOptimizedUrl = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!src) return;
+    if (!options.src || options.src.startsWith('data:') || options.src.startsWith('blob:')) {
+      return;
+    }
 
-    const optimizeIfNeeded = async () => {
+    const optimizeImage = async () => {
+      setIsOptimizing(true);
+      setError(null);
+
       try {
-        setIsOptimizing(true);
-        setError(null);
-
-        // Check if optimization is needed
-        const shouldOptimize = await optimizationService.current.shouldOptimize(src, maxSizeKB);
-        
-        if (!shouldOptimize) {
-          setOptimizedSrc(src);
-          setIsOptimizing(false);
-          return;
+        // For external services, apply URL parameters
+        if (options.src.includes('unsplash.com')) {
+          const url = new URL(options.src);
+          url.searchParams.set('w', options.maxWidth.toString());
+          url.searchParams.set('q', Math.round(options.quality * 100).toString());
+          url.searchParams.set('fm', options.format);
+          setOptimizedSrc(url.toString());
+          setCompressionRatio(20); // Estimated
+        } else {
+          setOptimizedSrc(options.src);
         }
-
-        // Perform optimization
-        const result = await optimizationService.current.optimizeImage(src, {
-          quality,
-          maxWidth,
-          format
-        });
-
-        // Clean up previous optimized URL
-        if (previousOptimizedUrl.current && previousOptimizedUrl.current !== src) {
-          optimizationService.current.cleanup(previousOptimizedUrl.current);
-        }
-
-        setOptimizedSrc(result.optimizedUrl);
-        setOriginalSize(result.originalSize);
-        setOptimizedSize(result.optimizedSize);
-        setCompressionRatio(result.compressionRatio);
-        previousOptimizedUrl.current = result.optimizedUrl;
-
-        console.log(`Image optimized: ${result.compressionRatio.toFixed(1)}% reduction`);
       } catch (err) {
-        console.error('Image optimization failed:', err);
-        setError(err instanceof Error ? err.message : 'Optimization failed');
-        setOptimizedSrc(src); // Fallback to original
+        setError('Optimization failed');
+        setOptimizedSrc(options.src);
       } finally {
         setIsOptimizing(false);
       }
     };
 
-    optimizeIfNeeded();
-
-    // Cleanup on unmount
-    return () => {
-      if (previousOptimizedUrl.current && previousOptimizedUrl.current !== src) {
-        optimizationService.current.cleanup(previousOptimizedUrl.current);
-      }
-    };
-  }, [src, maxSizeKB, quality, maxWidth, format]);
+    optimizeImage();
+  }, [options.src, options.maxSizeKB, options.quality, options.maxWidth, options.format]);
 
   return {
     optimizedSrc,
