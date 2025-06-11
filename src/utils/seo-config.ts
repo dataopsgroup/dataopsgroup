@@ -1,14 +1,19 @@
 
 /**
- * CRITICAL SEO CONFIGURATION - DO NOT MODIFY WITHOUT SEO REVIEW
+ * CRITICAL SEO CONFIGURATION - KNOWLEDGE ARTICLE REMINDERS:
  * 
- * This file contains all canonical URL mappings and redirect rules.
- * Any changes here affect search engine indexing and rankings.
+ * 🚫 DO NOT MODIFY WITHOUT SEO REVIEW
+ * 🎯 ALL CANONICAL URLs = FINAL INDEXABLE DESTINATIONS
+ * 🎯 DUPLICATE URLS = NEVER INDEXED, ALWAYS REDIRECT
+ * 🔍 ROBOTS DISALLOW = DUPLICATE CONTENT PATHS
+ * ✅ VALIDATE: No circular redirects, canonical URLs don't redirect
  * 
  * PROTECTION STRATEGY:
  * - All redirect files import from this central configuration
  * - Changes must be made here first, then imported elsewhere
- * - This prevents accidental overwrites of SEO-critical redirects
+ * - Prevents accidental overwrites of SEO-critical redirects
+ * 
+ * See Knowledge Article: "Canonical URL Mappings & Redirect Chain Prevention"
  */
 
 // CANONICAL URL MAPPINGS - These are the final, indexable URLs

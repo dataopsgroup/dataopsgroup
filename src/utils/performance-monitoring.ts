@@ -1,6 +1,13 @@
 
 /**
- * Performance monitoring utilities for tracking web vitals
+ * PERFORMANCE MONITORING - KNOWLEDGE ARTICLE REMINDERS:
+ * 
+ * ⚡ CRITICAL: Initialize analytics before using dataLayer
+ * ⚡ ALWAYS: Wrap performance monitoring in try-catch blocks
+ * ⚡ CHECK: Verify gtag/dataLayer exists before calling
+ * ⚡ PATTERN: Use proper error boundaries for web vitals tracking
+ * 
+ * See Knowledge Article: "Performance Error Prevention"
  */
 
 // Enhanced performance monitoring function - throttled for efficiency

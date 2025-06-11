@@ -1,4 +1,15 @@
 
+/**
+ * MAIN APP COMPONENT - KNOWLEDGE ARTICLE REMINDERS:
+ * 
+ * 🚫 NEVER MODIFY CORE ROUTING WITHOUT EXPLICIT INSTRUCTION
+ * ⚡ PERFORMANCE: Initialize analytics before using dataLayer
+ * ⚡ ERROR HANDLING: Wrap performance monitoring in try-catch
+ * 📱 ANALYTICS: Check if gtag/dataLayer exists before calling
+ * 
+ * See Knowledge Article: "Performance Error Prevention"
+ */
+
 import React, { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';

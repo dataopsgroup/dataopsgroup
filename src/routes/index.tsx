@@ -1,4 +1,16 @@
 
+/**
+ * CRITICAL ROUTING FILE - KNOWLEDGE ARTICLE REMINDERS:
+ * 
+ * 🚫 NEVER MODIFY ROUTE STRUCTURE WITHOUT EXPLICIT USER REQUEST
+ * 🚫 NEVER DELETE EXISTING ROUTE DEFINITIONS
+ * 📝 ALWAYS DOCUMENT ALL ROUTES BEFORE MAKING CHANGES
+ * ✅ ONLY ADD NEW ROUTES - PRESERVE ALL EXISTING ONES
+ * ✅ MAINTAIN CURRENT ROUTING STRUCTURE AND IMPORTS
+ * 
+ * See Knowledge Article: "Route Structure Protection"
+ */
+
 import { createBrowserRouter } from 'react-router-dom';
 import { mainRoutes } from './mainRoutes';
 import { serviceRoutes } from './serviceRoutes';

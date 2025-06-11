@@ -1,6 +1,14 @@
+
 /**
- * Route monitoring utility
- * Helps ensure critical routes and page components remain intact
+ * ROUTE MONITORING UTILITY - KNOWLEDGE ARTICLE REMINDERS:
+ * 
+ * 📏 FILE SIZE: This file is 272 lines - NEEDS REFACTORING
+ * 🔧 REFACTOR TRIGGER: Files >200 lines should be split into smaller components
+ * 🎯 CRITICAL ROUTES: Must validate these exist for SEO and functionality
+ * 📝 DOCUMENTATION: Always document route changes before implementing
+ * 
+ * TODO: Refactor this file into smaller, focused utilities
+ * See Knowledge Article: "Component Architecture Guidelines"
  */
 
 import { RouteObject } from 'react-router-dom';

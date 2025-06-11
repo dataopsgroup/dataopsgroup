@@ -1,4 +1,15 @@
 
+/**
+ * NAVIGATION COMPONENT - KNOWLEDGE ARTICLE REMINDERS:
+ * 
+ * 🚫 NEVER MODIFY NAVIGATION WITHOUT EXPLICIT INSTRUCTION
+ * 🚫 MAINTAIN CURRENT DROPDOWN STRUCTURE
+ * 🚫 KEEP MOBILE MENU FUNCTIONALITY
+ * 🔗 USE Link COMPONENTS FOR INTERNAL, <a> FOR EXTERNAL
+ * 
+ * See Knowledge Article: "Navigation Requirements"
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';

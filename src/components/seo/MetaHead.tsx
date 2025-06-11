@@ -1,4 +1,17 @@
 
+/**
+ * SEO META HEAD COMPONENT - KNOWLEDGE ARTICLE REMINDERS:
+ * 
+ * 🎯 CANONICAL URLs MUST POINT TO FINAL DESTINATION (not redirect sources)
+ * 🎯 PREVENT REDIRECT CHAINS - canonical = actual route destination
+ * 🎯 OpenGraph URL MUST MATCH CANONICAL URL EXACTLY
+ * 📏 TITLES: 50-60 characters max, include target keyword at beginning
+ * 📏 DESCRIPTIONS: 150-160 characters max, include value proposition + CTA
+ * 🔗 INTERNAL LINKING: Every page needs 3-5 outgoing internal links
+ * 
+ * See Knowledge Article: "SEO Requirements (MANDATORY FOR ALL PAGES)"
+ */
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BlogPost } from '@/types/blog';
