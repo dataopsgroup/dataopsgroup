@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { TrendingUp } from 'lucide-react';
-import { PerformanceImpactMetrics } from '@/services/schemaAutoFixService';
+import { PerformanceImpactMetrics } from '@/services/performanceMetricsService';
 
 interface PerformanceTabProps {
   onPerformanceTracking: () => void;
