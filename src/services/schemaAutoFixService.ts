@@ -1,4 +1,3 @@
-
 import { generateWebApplicationSchema } from './schema-generators/webApplicationSchemaGenerator';
 import { generateQuizSchema } from './schema-generators/quizSchemaGenerator';
 import { generateLocalBusinessSchema } from './schema-generators/localBusinessSchemaGenerator';
@@ -7,7 +6,7 @@ import { testWithGoogleRichResults, GoogleRichResultsTestResult } from './google
 
 // Define missing interfaces
 export interface SchemaIssue {
-  type: 'missing' | 'invalid' | 'warning';
+  type: 'missing' | 'incomplete' | 'invalid' | 'warning';
   schema: string;
   description: string;
   fix: string;
