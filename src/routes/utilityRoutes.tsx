@@ -13,6 +13,7 @@ const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
 const WebVitalsDashboard = lazy(() => import('../components/admin/WebVitalsDashboard'));
 const BadDataCostCalculatorPage = lazy(() => import('../pages/BadDataCostCalculatorPage'));
 const RevOpsROICalculatorPage = lazy(() => import('../pages/RevOpsROICalculatorPage'));
+const SchemaValidationPage = lazy(() => import('../pages/admin/schema-validation'));
 
 export const utilityRoutes = [
   {
@@ -68,6 +69,11 @@ export const utilityRoutes = [
   {
     path: "/admin/vitals",
     element: <WebVitalsDashboard />,
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/admin/schema-validation",
+    element: <SchemaValidationPage />,
     errorElement: <NotFound />,
   },
   {
