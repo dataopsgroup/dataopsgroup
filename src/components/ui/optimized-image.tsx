@@ -3,6 +3,7 @@ import React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { calculateOptimalSizes, reportLCPMetric } from '@/utils/image-utils';
 import { useEnhancedImageOptimization } from '@/hooks/useEnhancedImageOptimization';
+import { shouldPreserveLayout } from '@/utils/large-image-replacements';
 import { cn } from '@/lib/utils';
 
 interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -56,6 +57,9 @@ const OptimizedImage = ({
   maxSizeKB,
   ...props
 }: OptimizedImageProps) => {
+  // Check if this image should preserve layout (like hero images)
+  const preserveLayout = shouldPreserveLayout(src);
+  
   // Enhanced optimization with context-aware settings
   const {
     optimizedSrc,
@@ -64,8 +68,8 @@ const OptimizedImage = ({
     error,
     needsOptimization
   } = useEnhancedImageOptimization(src, {
-    maxSizeKB: maxSizeKB || (componentType === 'hero' ? 500 : componentType === 'thumbnail' ? 100 : 300),
-    quality: quality / 100,
+    maxSizeKB: maxSizeKB || (componentType === 'hero' ? 450 : componentType === 'thumbnail' ? 100 : 300),
+    quality: (quality / 100) * (componentType === 'hero' ? 0.85 : 1), // Slightly more aggressive for hero
     context: componentType === 'hero' ? 'hero' : 
              componentType === 'thumbnail' ? 'thumbnail' : 
              componentType === 'card' ? 'blog-cover' : 'content',
@@ -107,7 +111,7 @@ const OptimizedImage = ({
 
   const finalSrc = autoOptimize ? optimizedSrc : src;
 
-  // For hero images, completely bypass size constraints and let CSS handle everything
+  // For hero images with layout preservation, completely bypass size constraints
   const isHeroImage = componentType === 'hero';
   
   const imageElement = (
@@ -118,15 +122,15 @@ const OptimizedImage = ({
         width={width}
         height={height}
         className={cn(
-          // Hero images get minimal classes to avoid conflicts
-          isHeroImage ? undefined : 'max-w-full',
+          // Hero images get minimal classes to avoid conflicts when preserving layout
+          isHeroImage && preserveLayout ? undefined : 'max-w-full',
           'transition-opacity duration-300',
           isOptimizing && 'opacity-80',
           className
         )}
         style={{ 
-          // Don't apply any styles for hero images - let CSS handle it
-          ...(isHeroImage ? {} : {
+          // Don't apply any styles for layout-preserving hero images
+          ...(isHeroImage && preserveLayout ? {} : {
             objectFit,
             aspectRatio: aspectRatio ? `${aspectRatio}` : undefined
           })
@@ -154,24 +158,24 @@ const OptimizedImage = ({
         </div>
       )}
       
-      {/* Size warning for development */}
-      {needsOptimization && compressionRatio < 10 && process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-2 left-2 bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">
-          Large image: {src.split('/').pop()?.substring(0, 20)}...
+      {/* Layout preservation indicator for development */}
+      {preserveLayout && process.env.NODE_ENV === 'development' && (
+        <div className="absolute top-2 left-2 bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">
+          Layout preserved
         </div>
       )}
       
       {/* Show optimization indicator for significant compression */}
       {compressionRatio > 30 && process.env.NODE_ENV === 'development' && (
         <div className="absolute bottom-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
-          -{compressionRatio.toFixed(0)}%
+          -{compressionRatio.toFixed(0)}% (File size only)
         </div>
       )}
     </div>
   );
 
-  // Don't wrap hero images in AspectRatio to preserve original dimensions
-  if (aspectRatio && !isHeroImage) {
+  // Don't wrap layout-preserving hero images in AspectRatio
+  if (aspectRatio && !(isHeroImage && preserveLayout)) {
     return (
       <AspectRatio 
         ratio={aspectRatio} 
