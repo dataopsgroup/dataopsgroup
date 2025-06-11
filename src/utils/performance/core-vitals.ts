@@ -125,11 +125,12 @@ export const initWebVitals = (): void => {
       // Use setTimeout to ensure this runs after other load handlers
       const pageLoadTime = performance.now();
       
+      // Report page load time as FCP for now
       reportWebVital({
-        name: 'LoadTime',
+        name: 'FCP',
         value: pageLoadTime,
         delta: pageLoadTime,
-        rating: getRating('FCP', pageLoadTime), // Use FCP thresholds for page load
+        rating: getRating('FCP', pageLoadTime),
         id: generateUniqueID(),
         entries: []
       });

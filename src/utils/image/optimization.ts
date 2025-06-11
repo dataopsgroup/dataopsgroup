@@ -3,7 +3,7 @@
  * Enhanced image optimization and quality utilities
  */
 
-import { getOptimizedImageSrc, getOptimizationSettings } from '../large-image-replacements';
+import { getOptimizedImageSrc, getOptimizationSettings, type ImageContext } from '../large-image-replacements';
 
 /**
  * Enhanced image quality optimization based on context
@@ -26,7 +26,7 @@ export const getOptimalQuality = (
 /**
  * Get optimized image source with automatic large image handling
  */
-export const getImageSrc = (src: string, context: 'hero' | 'thumbnail' | 'content' = 'content'): string => {
+export const getImageSrc = (src: string, context: ImageContext = 'content'): string => {
   if (!src) return '';
   
   try {
@@ -76,15 +76,17 @@ export const isLocalAsset = (src: string): boolean => {
 /**
  * Get recommended compression settings for any image
  */
-export const getCompressionSettings = (src: string, context: 'hero' | 'thumbnail' | 'content' = 'content') => {
+export const getCompressionSettings = (src: string, context: ImageContext = 'content') => {
   // Use specific settings for known large images
-  const settings = getOptimizationSettings(src);
+  const settings = getOptimizationSettings(src, context);
   
   // Apply context-specific adjustments
   const contextMultipliers = {
     hero: { quality: 1.0, maxWidth: 1.5 },
+    'blog-cover': { quality: 1.0, maxWidth: 1.0 },
     content: { quality: 1.0, maxWidth: 1.0 },
-    thumbnail: { quality: 0.9, maxWidth: 0.3 }
+    thumbnail: { quality: 0.9, maxWidth: 0.3 },
+    logo: { quality: 1.0, maxWidth: 0.2 }
   };
   
   const multiplier = contextMultipliers[context];

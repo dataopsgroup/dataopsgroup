@@ -5,7 +5,7 @@ interface OptimizationOptions {
   maxSizeKB?: number;
   quality?: number;
   maxWidth?: number;
-  context?: 'hero' | 'blog-cover' | 'thumbnail' | 'content';
+  context?: 'hero' | 'blog-cover' | 'thumbnail' | 'content' | 'logo';
   format?: 'webp' | 'avif' | 'auto';
 }
 

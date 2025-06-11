@@ -2,7 +2,33 @@
 /**
  * Business-specific metrics and timing functions
  */
-import { generateUniqueID, reportWebVital } from './helpers';
+import { generateUniqueID } from './helpers';
+
+// Extended interface for custom business metrics
+interface BusinessMetric {
+  name: string;
+  value: number;
+  delta: number;
+  rating: 'good' | 'needs-improvement' | 'poor';
+  id: string;
+  entries: PerformanceEntry[];
+  timestamp?: number;
+  path?: string;
+  deviceCategory?: string;
+  connection?: string;
+}
+
+// Report business metrics separately from web vitals
+const reportBusinessMetric = (metric: BusinessMetric): void => {
+  if (window.gtag) {
+    window.gtag('event', 'business_metrics', {
+      metric_name: metric.name,
+      metric_value: Math.round(metric.value),
+      metric_rating: metric.rating,
+      metric_id: metric.id
+    });
+  }
+};
 
 // Custom timing marks for business events
 export const markBusinessEvent = (eventName: string): void => {
@@ -13,7 +39,7 @@ export const markBusinessEvent = (eventName: string): void => {
     performance.mark(markName);
     
     // Report the business event timing
-    reportWebVital({
+    reportBusinessMetric({
       name: `Business_${eventName}`,
       value: performance.now(),
       delta: 0,
@@ -36,7 +62,7 @@ export const measureBusinessTiming = (startMark: string, endMark: string, name: 
     
     const measures = performance.getEntriesByName(measureName);
     if (measures.length > 0) {
-      reportWebVital({
+      reportBusinessMetric({
         name: `BusinessTiming_${name}`,
         value: measures[0].duration,
         delta: measures[0].duration,
@@ -59,7 +85,7 @@ export const trackUserInteraction = (interactionType: string, elementId?: string
     const markName = `interaction-${interactionType}-${timestamp}`;
     performance.mark(markName);
     
-    reportWebVital({
+    reportBusinessMetric({
       name: `Interaction_${interactionType}`,
       value: timestamp,
       delta: 0,
