@@ -13,7 +13,7 @@ interface ImageValidationResult {
 }
 
 /**
- * Validate an image source for performance best practices
+ * Validate an image source for performance best practices - FIXED SIGNATURE
  */
 export const validateImageSrc = (src: string, context: ImageContext = 'content'): ImageValidationResult => {
   const result: ImageValidationResult = {
@@ -28,9 +28,9 @@ export const validateImageSrc = (src: string, context: ImageContext = 'content')
     return result;
   }
 
-  // Check if this is a known large image
+  // Check if this is a known large image - FIXED CALL
   if (isLargeImage(src)) {
-    const optimizedSrc = getOptimizedImageSrc(src, context);
+    const optimizedSrc = getOptimizedImageSrc(src);
     
     if (optimizedSrc !== src) {
       result.isValid = false;
@@ -55,14 +55,14 @@ export const validateImageSrc = (src: string, context: ImageContext = 'content')
 };
 
 /**
- * Get the best image source with automatic optimization
+ * Get the best image source with automatic optimization - FIXED SIGNATURE
  */
 export const getBestImageSrc = (src: string, context: ImageContext = 'content'): string => {
   if (!src) return '';
   
-  // If it's a known large image, return the optimized version
+  // If it's a known large image, return the optimized version - FIXED CALL
   if (isLargeImage(src)) {
-    return getOptimizedImageSrc(src, context);
+    return getOptimizedImageSrc(src);
   }
   
   return src;
