@@ -18,11 +18,18 @@ import { miscRedirects } from './redirects/miscRedirects';
 import { ampRedirects } from './redirects/ampRedirects';
 
 // 301 Redirects - organized by category
+// CRITICAL: Ensure guidesRedirects is included to fix Ahrefs canonical issues
 export const redirectRoutes = [
+  ...guidesRedirects, // MOVED TO TOP for priority - fixes /guides/hubspot-expert-guide redirects
   ...assessmentRedirects,
   ...servicesRedirects,
   ...contentRedirects,
-  ...guidesRedirects,
   ...miscRedirects,
   ...ampRedirects
 ];
+
+// Log redirect routes in development to verify they're loaded
+if (process.env.NODE_ENV === 'development') {
+  console.log('🔀 Redirect routes loaded:', redirectRoutes.length, 'redirects');
+  console.log('📍 Guide redirects:', guidesRedirects.length, 'redirects');
+}

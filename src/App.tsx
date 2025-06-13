@@ -17,6 +17,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import router from './routes';
 import { Toaster } from '@/components/ui/toaster';
 import { initializeAllOptimizations } from '@/lib/performance-optimizations';
+import { logBuildValidation } from '@/utils/build-time-validation';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +32,11 @@ function App() {
   useEffect(() => {
     // Initialize performance optimizations
     initializeAllOptimizations();
+    
+    // Run build validation to check for potential Ahrefs issues
+    if (process.env.NODE_ENV === 'development') {
+      logBuildValidation();
+    }
   }, []);
 
   return (

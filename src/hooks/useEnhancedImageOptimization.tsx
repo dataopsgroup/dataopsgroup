@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { getOptimizationSettings, shouldOptimizeImage, optimizeLargeImage } from '@/utils/large-image-optimizer';
 import { getImageSrc } from '@/utils/image/optimization';
+import { isKnownLargeImage, getLargeImageSettings } from '@/utils/large-image-replacements';
 
 interface OptimizationOptions {
   maxSizeKB?: number;
@@ -36,37 +37,53 @@ export const useEnhancedImageOptimization = (
         setCompressionRatio(0);
         
         // Get processed image source
-        const processedSrc = getImageSrc(src, options.context || 'content');
+        const processedSrc = getImageSrc ? getImageSrc(src, options.context || 'content') : src;
         
-        // Check if this is a known large image that needs aggressive optimization
-        const isLargeImage = shouldOptimizeImage(processedSrc);
+        // Check if this is a known large image causing Ahrefs issues
+        const isLargeImage = shouldOptimizeImage(processedSrc) || isKnownLargeImage(processedSrc);
         setNeedsOptimization(isLargeImage);
         
         if (isLargeImage) {
           setIsOptimizing(true);
           
-          // Get context-specific settings or use provided options
-          const contextSettings = options.context ? 
-            getOptimizationSettings(options.context) : 
-            {
-              maxSizeKB: options.maxSizeKB || 300,
-              quality: options.quality || 0.85,
-              maxWidth: 1280,
-              format: options.format || 'webp',
+          // Get settings for known large images first, then fall back to context settings
+          const largeImageSettings = getLargeImageSettings(processedSrc);
+          
+          let finalSettings;
+          if (largeImageSettings) {
+            // Use specific settings for known problematic images
+            finalSettings = {
+              maxSizeKB: largeImageSettings.maxSizeKB,
+              quality: 0.65, // More aggressive for Ahrefs fixes
+              maxWidth: largeImageSettings.context === 'hero' ? 1600 : 800, // Smaller for better compression
+              format: 'webp' as const,
               preserveAspectRatio: true
             };
-          
-          // Apply custom overrides
-          const finalSettings = {
-            ...contextSettings,
-            ...(options.maxSizeKB && { maxSizeKB: options.maxSizeKB }),
-            ...(options.quality && { quality: options.quality }),
-            ...(options.format && { format: options.format })
-          };
+          } else {
+            // Get context-specific settings or use provided options
+            const contextSettings = options.context ? 
+              getOptimizationSettings(options.context) : 
+              {
+                maxSizeKB: options.maxSizeKB || 200, // More aggressive default
+                quality: options.quality || 0.75, // Lower quality default
+                maxWidth: 1000, // Smaller default
+                format: options.format || 'webp',
+                preserveAspectRatio: true
+              };
+            
+            // Apply custom overrides with more aggressive defaults
+            finalSettings = {
+              ...contextSettings,
+              maxSizeKB: Math.min(contextSettings.maxSizeKB, options.maxSizeKB || contextSettings.maxSizeKB),
+              quality: Math.min(contextSettings.quality, options.quality || contextSettings.quality),
+              ...(options.format && { format: options.format })
+            };
+          }
           
           const result = await optimizeLargeImage(processedSrc, finalSettings);
           
-          if (result.success && result.compressionRatio > 10) {
+          // Accept optimization if we get any meaningful compression
+          if (result.success && result.compressionRatio > 5) {
             setOptimizedSrc(result.optimizedUrl);
             setCompressionRatio(result.compressionRatio);
           } else {

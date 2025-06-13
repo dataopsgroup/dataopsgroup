@@ -1,7 +1,6 @@
-
 /**
  * Enhanced image optimization for fixing Ahrefs large image issues
- * Targets images over 1MB with aggressive optimization while preserving quality
+ * Targets specific images over 1MB with aggressive optimization while preserving quality
  */
 
 interface LargeImageOptimizationOptions {
@@ -22,48 +21,49 @@ interface OptimizationResult {
 
 // Known large images that need optimization (from Ahrefs report)
 const LARGE_IMAGES_TO_OPTIMIZE = [
-  '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
-  '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png',
-  // Add other large images as identified
+  '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', // Hero background - main culprit
+  '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png', // Logo/favicon
 ];
 
 /**
  * Check if an image should be optimized based on known large files
  */
 export const shouldOptimizeImage = (src: string): boolean => {
-  return LARGE_IMAGES_TO_OPTIMIZE.some(largeImage => src.includes(largeImage));
+  return LARGE_IMAGES_TO_OPTIMIZE.some(largeImage => 
+    src.includes(largeImage.replace('/lovable-uploads/', ''))
+  );
 };
 
 /**
- * Get optimized settings for different image contexts
+ * Get optimized settings for different image contexts - MORE AGGRESSIVE
  */
 export const getOptimizationSettings = (context: 'hero' | 'logo' | 'content' | 'thumbnail'): LargeImageOptimizationOptions => {
   const settings: Record<string, LargeImageOptimizationOptions> = {
     hero: {
-      maxSizeKB: 400, // Aggressive for hero images
-      quality: 0.75,  // Lower quality for large display
-      maxWidth: 1920,
+      maxSizeKB: 350, // More aggressive for hero images (was 400)
+      quality: 0.70,  // Lower quality for large display (was 0.75)
+      maxWidth: 1800, // Slightly smaller (was 1920)
       format: 'webp',
       preserveAspectRatio: true
     },
     logo: {
-      maxSizeKB: 50,   // Very strict for logos
-      quality: 0.9,    // High quality for small logos
-      maxWidth: 400,
+      maxSizeKB: 30,   // Very strict for logos (was 50)
+      quality: 0.85,   // Keep quality for small logos
+      maxWidth: 300,   // Smaller (was 400)
       format: 'webp',
       preserveAspectRatio: true
     },
     content: {
-      maxSizeKB: 200,  // Moderate for content images
-      quality: 0.85,
-      maxWidth: 1200,
+      maxSizeKB: 150,  // More aggressive (was 200)
+      quality: 0.80,   // Lower quality (was 0.85)
+      maxWidth: 1000,  // Smaller (was 1200)
       format: 'webp',
       preserveAspectRatio: true
     },
     thumbnail: {
-      maxSizeKB: 50,   // Very small for thumbnails
-      quality: 0.8,
-      maxWidth: 300,
+      maxSizeKB: 40,   // More strict (was 50)
+      quality: 0.75,   // Lower quality (was 0.8)
+      maxWidth: 250,   // Smaller (was 300)
       format: 'webp',
       preserveAspectRatio: true
     }
@@ -73,7 +73,7 @@ export const getOptimizationSettings = (context: 'hero' | 'logo' | 'content' | '
 };
 
 /**
- * Optimize a large image using canvas-based compression
+ * Optimize a large image using canvas-based compression - ENHANCED
  */
 export const optimizeLargeImage = async (
   imageUrl: string,
@@ -92,7 +92,7 @@ export const optimizeLargeImage = async (
       throw new Error('Cannot get canvas context');
     }
     
-    // Calculate optimal dimensions
+    // Calculate optimal dimensions - more aggressive scaling
     const { width, height } = calculateOptimalDimensions(
       img.naturalWidth,
       img.naturalHeight,
@@ -103,10 +103,24 @@ export const optimizeLargeImage = async (
     // Set canvas size and draw image
     canvas.width = width;
     canvas.height = height;
+    
+    // Apply image smoothing for better quality at smaller sizes
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(img, 0, 0, width, height);
     
-    // Convert to optimized format
-    const optimizedBlob = await canvasToOptimizedBlob(canvas, options);
+    // Convert to optimized format with multiple attempts for best compression
+    let optimizedBlob = await canvasToOptimizedBlob(canvas, options);
+    
+    // If still too large, try more aggressive compression
+    if (optimizedBlob.size > options.maxSizeKB * 1024) {
+      const moreAggressiveOptions = {
+        ...options,
+        quality: Math.max(0.5, options.quality - 0.2) // Reduce quality further
+      };
+      optimizedBlob = await canvasToOptimizedBlob(canvas, moreAggressiveOptions);
+    }
+    
     const optimizedUrl = URL.createObjectURL(optimizedBlob);
     const optimizedSize = optimizedBlob.size;
     
@@ -156,7 +170,7 @@ const estimateImageSize = async (url: string): Promise<number> => {
 };
 
 /**
- * Calculate optimal dimensions for image
+ * Calculate optimal dimensions for image - more aggressive scaling
  */
 const calculateOptimalDimensions = (
   originalWidth: number,
@@ -172,9 +186,20 @@ const calculateOptimalDimensions = (
   let width = originalWidth;
   let height = originalHeight;
   
+  // More aggressive scaling for large images
   if (width > maxWidth) {
     width = maxWidth;
     height = width / aspectRatio;
+  }
+  
+  // Additional scaling if image is still very large
+  const targetPixels = maxWidth * (maxWidth / aspectRatio);
+  const currentPixels = width * height;
+  
+  if (currentPixels > targetPixels * 1.5) {
+    const scaleFactor = Math.sqrt(targetPixels / currentPixels);
+    width = Math.round(width * scaleFactor);
+    height = Math.round(height * scaleFactor);
   }
   
   return {
