@@ -46,7 +46,7 @@ export const CANONICAL_URLS = {
 
 // DUPLICATE URLS TO REDIRECT - These should NEVER be indexed
 export const DUPLICATE_URLS_TO_REDIRECT = {
-  // HubSpot Expert Guide duplicates
+  // HubSpot Expert Guide duplicates - FIXED: Remove circular reference
   '/guides/hubspot-expert-guide': CANONICAL_URLS.hubspotExpert,
   '/how-to-hire-a-hubspot-expert-in-2025': CANONICAL_URLS.hubspotExpert,
   '/pillar-content/hubspot-expert': CANONICAL_URLS.hubspotExpert,
@@ -74,6 +74,11 @@ export const DUPLICATE_URLS_TO_REDIRECT = {
   // Case study redirects
   '/testimonials': CANONICAL_URLS.caseStudies,
   '/hubspot-case-studies': CANONICAL_URLS.caseStudies
+} as const;
+
+// BROKEN EXTERNAL LINKS TO REPLACE
+export const BROKEN_EXTERNAL_LINKS = {
+  'https://blog.hubspot.com/marketing/stop-pretending-all-leads-are-equal': 'https://blog.hubspot.com/marketing/lead-scoring-best-practices'
 } as const;
 
 // ROBOTS.TXT DISALLOW PATTERNS - URLs that should never be indexed
@@ -116,7 +121,7 @@ export const ROBOTS_EXPLICIT_ALLOWS = [
 ] as const;
 
 /**
- * Validation function to ensure URL mappings are correct
+ * Enhanced validation function to ensure URL mappings are correct
  */
 export const validateSEOConfig = () => {
   const errors: string[] = [];
@@ -135,6 +140,13 @@ export const validateSEOConfig = () => {
     }
   });
   
+  // Validate that all canonical URLs start with /
+  Object.entries(CANONICAL_URLS).forEach(([key, url]) => {
+    if (!url.startsWith('/')) {
+      errors.push(`Canonical URL ${key} should start with /: ${url}`);
+    }
+  });
+  
   return {
     isValid: errors.length === 0,
     errors
@@ -144,6 +156,7 @@ export const validateSEOConfig = () => {
 export default {
   CANONICAL_URLS,
   DUPLICATE_URLS_TO_REDIRECT,
+  BROKEN_EXTERNAL_LINKS,
   ROBOTS_DISALLOW_PATTERNS,
   ROBOTS_EXPLICIT_ALLOWS,
   validateSEOConfig

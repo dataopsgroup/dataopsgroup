@@ -1,4 +1,3 @@
-
 /**
  * ROUTE MONITORING UTILITY - KNOWLEDGE ARTICLE REMINDERS:
  * 
@@ -15,6 +14,7 @@ import { RouteObject } from 'react-router-dom';
 import { applyCriticalCSS, loadFonts } from '@/lib/critical-css';
 import { reportBudgetViolations } from '@/utils/performance-budget';
 import { runLinkValidation } from '@/utils/link-validator';
+import { logAhrefsValidation } from '@/utils/ahrefs-prevention';
 
 /**
  * Validates that critical routes exist in the router configuration
@@ -29,7 +29,8 @@ export const validateCriticalRoutes = (routes: RouteObject[]): string[] => {
     '/case-studies',
     '/about',
     '/services',
-    '/book' // Added missing book route
+    '/book',
+    '/guides/hubspot-expert' // Added critical guide route
   ];
 
   // Flatten nested routes to check all paths
@@ -138,13 +139,14 @@ export function getRouteFromUrl(url: string): string {
 }
 
 /**
- * Enhanced route change monitoring with performance tracking and link validation
+ * Enhanced route change monitoring with performance tracking, link validation, and Ahrefs prevention
  */
 export const monitorRouteChanges = () => {
   if (typeof window === 'undefined') return;
   
-  // Run link validation on initialization
+  // Run comprehensive validations on initialization
   runLinkValidation();
+  logAhrefsValidation();
   
   // Store current route for comparison
   let currentRoute = window.location.pathname;

@@ -4,6 +4,8 @@
  * Helps identify and prevent broken internal links
  */
 
+import { BROKEN_EXTERNAL_LINKS } from './seo-config';
+
 export interface LinkValidationResult {
   url: string;
   isValid: boolean;
@@ -11,6 +13,7 @@ export interface LinkValidationResult {
   issue?: string;
   isExternal?: boolean;
   status?: number;
+  replacement?: string;
 }
 
 /**
@@ -64,21 +67,6 @@ const VALID_ROUTES = [
 ];
 
 /**
- * Known broken external links that need to be replaced
- */
-const BROKEN_EXTERNAL_LINKS = [
-  'https://blog.hubspot.com/marketing/stop-pretending-all-leads-are-equal',
-  // Add more broken links as they're discovered
-];
-
-/**
- * Replacement links for broken external URLs
- */
-const LINK_REPLACEMENTS: Record<string, string> = {
-  'https://blog.hubspot.com/marketing/stop-pretending-all-leads-are-equal': 'https://blog.hubspot.com/marketing/lead-scoring-best-practices',
-};
-
-/**
  * Extract links from navigation data and components
  */
 export const extractNavigationLinks = (): string[] => {
@@ -117,31 +105,34 @@ const matchesDynamicRoute = (url: string): boolean => {
 };
 
 /**
+ * Check if external link is known to be broken and get replacement
+ */
+export const getBrokenLinkReplacement = (url: string): string | null => {
+  return BROKEN_EXTERNAL_LINKS[url as keyof typeof BROKEN_EXTERNAL_LINKS] || null;
+};
+
+/**
  * Check if external link is known to be broken
  */
 export const isBrokenExternalLink = (url: string): boolean => {
-  return BROKEN_EXTERNAL_LINKS.includes(url);
+  return Object.keys(BROKEN_EXTERNAL_LINKS).includes(url);
 };
 
 /**
- * Get replacement for broken external link
+ * Validate external link (check against known broken links)
  */
-export const getReplacementLink = (url: string): string | null => {
-  return LINK_REPLACEMENTS[url] || null;
-};
-
-/**
- * Validate external link (simplified check for known broken links)
- */
-const validateExternalLink = async (url: string): Promise<boolean> => {
+const validateExternalLink = (url: string): { isValid: boolean; replacement?: string } => {
   // Check against known broken links first
   if (isBrokenExternalLink(url)) {
-    return false;
+    const replacement = getBrokenLinkReplacement(url);
+    return {
+      isValid: false,
+      replacement: replacement || undefined
+    };
   }
   
   // For now, assume other external links are valid
-  // In production, you might want to implement actual HTTP checks
-  return true;
+  return { isValid: true };
 };
 
 /**
@@ -171,13 +162,14 @@ export const validateInternalLink = (url: string, component: string): LinkValida
   
   // Check if it's an external link
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('mailto:') || url.startsWith('tel:')) {
-    const isValid = !isBrokenExternalLink(url);
+    const validation = validateExternalLink(url);
     return {
       url,
-      isValid,
+      isValid: validation.isValid,
       component,
       isExternal: true,
-      issue: isValid ? undefined : 'Known broken external link'
+      issue: validation.isValid ? undefined : 'Known broken external link',
+      replacement: validation.replacement
     };
   }
   
@@ -235,6 +227,9 @@ export const logValidationResults = (results: LinkValidationResult[]): void => {
     console.warn('❌ Broken links detected:');
     brokenLinks.forEach(link => {
       console.warn(`  - ${link.url} (in ${link.component}): ${link.issue}`);
+      if (link.replacement) {
+        console.warn(`    → Suggested replacement: ${link.replacement}`);
+      }
     });
   }
   
@@ -265,6 +260,6 @@ export default {
   logValidationResults,
   runLinkValidation,
   isBrokenExternalLink,
-  getReplacementLink,
+  getBrokenLinkReplacement,
   getPagesWithNoOutboundLinks
 };

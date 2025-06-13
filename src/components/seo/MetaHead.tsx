@@ -15,6 +15,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BlogPost } from '@/types/blog';
+import { CANONICAL_URLS, DUPLICATE_URLS_TO_REDIRECT } from '@/utils/seo-config';
 
 interface MetaHeadProps {
   title: string;
@@ -65,15 +66,24 @@ const MetaHead = ({
   // Create proper canonical path with fallback - fix redirect chains
   const currentPath = canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
   
-  // Ensure path starts with / and normalize known redirects
+  // Ensure path starts with / and normalize
   let normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
   
-  // Fix specific redirect chain issues identified by Ahrefs
-  if (normalizedPath === '/guides/hubspot-expert-guide') {
-    normalizedPath = '/guides/hubspot-expert';
+  // CRITICAL FIX: Check if this path should redirect and use the canonical destination instead
+  const redirectTarget = DUPLICATE_URLS_TO_REDIRECT[normalizedPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT];
+  if (redirectTarget) {
+    normalizedPath = redirectTarget;
   }
-  if (normalizedPath === '/pillar-content/hubspot-expert') {
-    normalizedPath = '/guides/hubspot-expert';
+  
+  // Additional specific redirect chain fixes identified by Ahrefs
+  const redirectMappings: Record<string, string> = {
+    '/guides/hubspot-expert-guide': '/guides/hubspot-expert',
+    '/pillar-content/hubspot-expert': '/guides/hubspot-expert',
+    '/how-to-hire-a-hubspot-expert-in-2025': '/guides/hubspot-expert'
+  };
+  
+  if (redirectMappings[normalizedPath]) {
+    normalizedPath = redirectMappings[normalizedPath];
   }
   
   // Create full canonical URL - this is the source of truth
