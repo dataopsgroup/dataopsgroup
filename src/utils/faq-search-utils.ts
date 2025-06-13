@@ -27,8 +27,12 @@ export const searchFAQs = (
     category.items.forEach(item => {
       const questionMatch = item.question.toLowerCase().includes(lowerSearchTerm);
       const answerMatch = item.answer.toLowerCase().includes(lowerSearchTerm);
+      // Add keyword searching support
+      const keywordMatch = item.keywords?.some(keyword => 
+        keyword.toLowerCase().includes(lowerSearchTerm)
+      ) || false;
 
-      if (questionMatch || answerMatch) {
+      if (questionMatch || answerMatch || keywordMatch) {
         results.push({
           ...item,
           categoryId: category.id,

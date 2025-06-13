@@ -55,6 +55,22 @@ const FAQItem: React.FC<FAQItemProps> = ({ item, id }) => {
                 </p>
               ))}
             </CollapsibleContent>
+
+            {/* Display keywords if they exist */}
+            {item.keywords && item.keywords.length > 0 && (
+              <div className="mt-3 pt-2 border-t border-gray-100">
+                <div className="flex flex-wrap gap-1">
+                  {item.keywords.map((keyword, keyIndex) => (
+                    <span
+                      key={keyIndex}
+                      className="px-2 py-1 bg-dataops-50 text-dataops-700 text-xs rounded-full"
+                    >
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </Collapsible>
         
