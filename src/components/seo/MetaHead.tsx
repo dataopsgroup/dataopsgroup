@@ -63,38 +63,46 @@ const MetaHead = ({
   // Use production base URL consistently
   const baseUrl = 'https://dataopsgroup.com';
   
-  // Create proper canonical path with fallback - fix redirect chains
-  const currentPath = canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
+  // SIMPLIFIED CANONICAL URL LOGIC - NO MORE CIRCULAR REDIRECTS
+  let finalCanonicalPath: string;
   
-  // Ensure path starts with / and normalize
-  let normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
-  
-  // CRITICAL FIX: Resolve canonical URL to final destination to prevent redirect chains
-  // First check if this path is in our redirect mappings
-  const redirectTarget = DUPLICATE_URLS_TO_REDIRECT[normalizedPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT];
-  if (redirectTarget) {
-    normalizedPath = redirectTarget;
+  if (canonicalPath) {
+    // If canonicalPath is explicitly provided, use it as-is (component should provide correct path)
+    finalCanonicalPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
+  } else {
+    // Only resolve redirects when no explicit canonicalPath is provided
+    const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+    const normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
+    
+    // Check if current path should redirect to a canonical URL
+    const redirectTarget = DUPLICATE_URLS_TO_REDIRECT[normalizedPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT];
+    finalCanonicalPath = redirectTarget || normalizedPath;
   }
   
-  // SPECIFIC FIX for HubSpot Expert Guide - ensure canonical points to final destination
-  // The Ahrefs issue shows /guides/hubspot-expert is redirecting, so we need to point to the actual final URL
-  if (normalizedPath === '/guides/hubspot-expert') {
-    // Point directly to the final destination that doesn't redirect
-    normalizedPath = CANONICAL_URLS.hubspotExpert;
-  }
+  // Create full canonical URL - this is the absolute source of truth
+  const fullCanonicalUrl = `${baseUrl}${finalCanonicalPath}`;
   
-  // Additional redirect chain prevention - ensure we're pointing to canonical URLs
-  const canonicalUrlEntries = Object.entries(CANONICAL_URLS);
-  const matchingCanonical = canonicalUrlEntries.find(([key, url]) => url === normalizedPath);
-  if (matchingCanonical) {
-    normalizedPath = matchingCanonical[1]; // Use the canonical URL value
-  }
-  
-  // Create full canonical URL - this is the source of truth
-  const fullCanonicalUrl = `${baseUrl}${normalizedPath}`;
-  
-  // OpenGraph URL MUST match canonical URL exactly
+  // CRITICAL FIX: OpenGraph URL MUST exactly match canonical URL
   const ogUrl = fullCanonicalUrl;
+  
+  // Development validation to catch mismatches
+  if (process.env.NODE_ENV === 'development') {
+    if (ogUrl !== fullCanonicalUrl) {
+      console.error('🚨 CANONICAL/OG URL MISMATCH:', {
+        canonical: fullCanonicalUrl,
+        ogUrl: ogUrl,
+        providedCanonicalPath: canonicalPath
+      });
+    }
+    
+    // Validate that canonical path doesn't redirect
+    if (canonicalPath && DUPLICATE_URLS_TO_REDIRECT[canonicalPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT]) {
+      console.warn('⚠️ CANONICAL PATH REDIRECTS:', {
+        canonicalPath,
+        redirectsTo: DUPLICATE_URLS_TO_REDIRECT[canonicalPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT]
+      });
+    }
+  }
   
   // Format title - ensure it's under 60 characters and includes brand
   const formattedTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;

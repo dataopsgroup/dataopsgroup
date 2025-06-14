@@ -2,8 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
-import CookieBanner from '@/components/CookieBanner';
+import CanonicalOGValidator from '@/components/seo/CanonicalOGValidator';
 
 interface SemanticLayoutProps {
   children: React.ReactNode;
@@ -12,13 +11,14 @@ interface SemanticLayoutProps {
 const SemanticLayout = ({ children }: SemanticLayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <ScrollToTop />
+      {/* Development-only SEO validation */}
+      {process.env.NODE_ENV === 'development' && <CanonicalOGValidator />}
+      
       <Navbar />
       <main className="flex-grow">
         {children}
       </main>
       <Footer />
-      <CookieBanner />
     </div>
   );
 };

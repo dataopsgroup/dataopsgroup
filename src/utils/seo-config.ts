@@ -1,4 +1,3 @@
-
 /**
  * CRITICAL SEO CONFIGURATION - KNOWLEDGE ARTICLE REMINDERS:
  * 
@@ -21,7 +20,7 @@ export const CANONICAL_URLS = {
   // Main guide URLs - FIXED: Ensure this points to actual final destination
   hubspotExpert: '/guides/hubspot-expert',
   
-  // Canonical FAQ URLs - NEVER change these paths
+  // Canonical FAQ URLs - UPDATED: Use shorter, cleaner URLs
   faqServices: '/faqs/services',
   faqExperts: '/faqs/experts',
   faqDataQuality: '/faqs/data-quality',
@@ -51,7 +50,7 @@ export const DUPLICATE_URLS_TO_REDIRECT = {
   '/how-to-hire-a-hubspot-expert-in-2025': CANONICAL_URLS.hubspotExpert,
   '/pillar-content/hubspot-expert': CANONICAL_URLS.hubspotExpert,
   
-  // FAQ duplicates - ALL variants redirect to canonical
+  // FAQ duplicates - ALL variants redirect to canonical (UPDATED with new canonical URLs)
   '/faqs/services-5': CANONICAL_URLS.faqServices,
   '/faqs/hubspot-services': CANONICAL_URLS.faqServices,
   '/faqs/hubspot-experts': CANONICAL_URLS.faqExperts,
@@ -114,7 +113,7 @@ export const ROBOTS_DISALLOW_PATTERNS = [
 
 // ROBOTS.TXT EXPLICIT ALLOWS - Canonical URLs that should be indexed
 export const ROBOTS_EXPLICIT_ALLOWS = [
-  CANONICAL_URLS.hubspotExpert, // ADDED: Ensure canonical HubSpot expert URL is explicitly allowed
+  CANONICAL_URLS.hubspotExpert,
   CANONICAL_URLS.faqServices,
   CANONICAL_URLS.faqExperts,
   CANONICAL_URLS.faqDataQuality,
@@ -149,7 +148,7 @@ export const validateSEOConfig = () => {
     }
   });
   
-  // NEW: Check for redirect chains in canonical URLs
+  // Check for redirect chains in canonical URLs
   Object.entries(CANONICAL_URLS).forEach(([key, url]) => {
     if (Object.keys(DUPLICATE_URLS_TO_REDIRECT).includes(url)) {
       errors.push(`Canonical URL ${key} (${url}) is also in redirect list - this creates a redirect chain`);
@@ -165,7 +164,6 @@ export const validateSEOConfig = () => {
 export default {
   CANONICAL_URLS,
   DUPLICATE_URLS_TO_REDIRECT,
-  BROKEN_EXTERNAL_LINKS,
   ROBOTS_DISALLOW_PATTERNS,
   ROBOTS_EXPLICIT_ALLOWS,
   validateSEOConfig
