@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const DataOpsImplementationOverview = () => {
-  return (
-    <section className="mb-16">
-      <div className="bg-white rounded-lg shadow-lg p-8">
+  return <section className="mb-16">
+      <div className="bg-white rounded-lg shadow-lg p-8 px-[20px]">
         <h2 className="text-3xl font-bold text-gray-900 mb-6 font-rubik">Scale Your Portfolio with Proven DataOps Implementation</h2>
         
         <div className="prose prose-lg max-w-none font-roboto">
@@ -73,8 +70,6 @@ const DataOpsImplementationOverview = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default DataOpsImplementationOverview;
