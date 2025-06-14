@@ -15,16 +15,8 @@ export const initWebVitals = (): void => {
       const entries = entryList.getEntries();
       const lastEntry = entries[entries.length - 1];
       
-      const metric: WebVitalMetric = {
-        name: 'LCP',
-        value: lastEntry.startTime,
-        delta: lastEntry.startTime,
-        rating: getRating('LCP', lastEntry.startTime),
-        id: generateUniqueID(),
-        entries: [lastEntry]
-      };
-      
-      reportWebVital(metric);
+      const rating = getRating('LCP', lastEntry.startTime);
+      reportWebVital('LCP', lastEntry.startTime, rating);
     });
     lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
     
@@ -41,16 +33,8 @@ export const initWebVitals = (): void => {
           clsValue += entry.value;
           clsEntries.push(entry);
           
-          const metric: WebVitalMetric = {
-            name: 'CLS',
-            value: clsValue,
-            delta: entry.value,
-            rating: getRating('CLS', clsValue),
-            id: generateUniqueID(),
-            entries: [...clsEntries]
-          };
-          
-          reportWebVital(metric);
+          const rating = getRating('CLS', clsValue);
+          reportWebVital('CLS', clsValue, rating);
         }
       });
     });
@@ -64,16 +48,9 @@ export const initWebVitals = (): void => {
         const firstInput = entry as unknown as FirstInputEntry;
         const value = firstInput.processingStart - firstInput.startTime;
         
-        const metric: WebVitalMetric = {
-          name: entry.name === 'first-input' ? 'FID' : 'INP',
-          value: value,
-          delta: value,
-          rating: getRating(entry.name === 'first-input' ? 'FID' : 'INP', value),
-          id: generateUniqueID(),
-          entries: [entry]
-        };
-        
-        reportWebVital(metric);
+        const metricName = entry.name === 'first-input' ? 'FID' : 'INP';
+        const rating = getRating(metricName, value);
+        reportWebVital(metricName, value, rating);
       });
     });
     fidObserver.observe({ type: 'first-input', buffered: true });
@@ -83,16 +60,8 @@ export const initWebVitals = (): void => {
     const fcpObserver = new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
       entries.forEach(entry => {
-        const metric: WebVitalMetric = {
-          name: 'FCP',
-          value: entry.startTime,
-          delta: entry.startTime,
-          rating: getRating('FCP', entry.startTime),
-          id: generateUniqueID(),
-          entries: [entry]
-        };
-        
-        reportWebVital(metric);
+        const rating = getRating('FCP', entry.startTime);
+        reportWebVital('FCP', entry.startTime, rating);
       });
     });
     fcpObserver.observe({ type: 'paint', buffered: true });
@@ -103,16 +72,8 @@ export const initWebVitals = (): void => {
       const navigationEntry = navigationEntries[0] as PerformanceNavigationTiming;
       const ttfb = navigationEntry.responseStart - navigationEntry.requestStart;
       
-      const metric: WebVitalMetric = {
-        name: 'TTFB',
-        value: ttfb,
-        delta: ttfb,
-        rating: getRating('TTFB', ttfb),
-        id: generateUniqueID(),
-        entries: [navigationEntry]
-      };
-      
-      reportWebVital(metric);
+      const rating = getRating('TTFB', ttfb);
+      reportWebVital('TTFB', ttfb, rating);
     }
     
   } catch (error) {
@@ -126,14 +87,8 @@ export const initWebVitals = (): void => {
       const pageLoadTime = performance.now();
       
       // Report page load time as FCP for now
-      reportWebVital({
-        name: 'FCP',
-        value: pageLoadTime,
-        delta: pageLoadTime,
-        rating: getRating('FCP', pageLoadTime),
-        id: generateUniqueID(),
-        entries: []
-      });
+      const rating = getRating('FCP', pageLoadTime);
+      reportWebVital('FCP', pageLoadTime, rating);
     }, 0);
   });
 };
