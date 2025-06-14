@@ -30,8 +30,8 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "Performance Monitoring",
       description: "Real-time visibility into operations performance with automated alerts and reporting.",
-      image: "/placeholder.svg",
-      alt: "Performance monitoring dashboard"
+      image: "/lovable-uploads/b77d6b08-9ed1-41ce-b4db-e6288df03f24.png",
+      alt: "Performance monitoring dashboard with analytics charts"
     },
     {
       title: "Team Training & Adoption",
