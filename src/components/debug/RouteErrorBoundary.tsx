@@ -6,7 +6,7 @@ import { navigationTracker, logNavigationState } from '@/lib/debug/navigation-tr
 import { clearAllCaches, forceRefreshPage } from '@/lib/debug/cache-manager';
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode; // Make children optional
   fallback?: ReactNode;
 }
 
@@ -122,7 +122,7 @@ class RouteErrorBoundary extends Component<Props, State> {
       );
     }
 
-    return this.props.children;
+    return this.props.children || null;
   }
 }
 
