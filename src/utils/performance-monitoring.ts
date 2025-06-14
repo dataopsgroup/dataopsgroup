@@ -89,19 +89,31 @@ const getRating = (value: number, good: number, needsImprovement: number): 'good
   return 'poor';
 };
 
-// Report web vitals metrics to analytics with error handling
+// Report web vitals metrics to analytics with enhanced error handling
 const reportWebVital = (metricName: string, value: number, rating: 'good' | 'needs-improvement' | 'poor') => {
   try {
-    if (typeof window !== 'undefined' && 
-        typeof window.gtag === 'function' && 
-        Array.isArray(window.dataLayer)) {
-      window.gtag('event', 'web_vitals', {
-        metric_name: metricName,
-        metric_value: value,
-        metric_delta: 0,
-        metric_rating: rating
-      });
+    // Enhanced checks to prevent dataLayer errors
+    if (typeof window === 'undefined') return;
+    
+    // Check if gtag function exists and dataLayer is initialized
+    if (typeof window.gtag !== 'function') {
+      console.debug('gtag not available, skipping web vital reporting');
+      return;
     }
+    
+    // Check if dataLayer exists and is an array
+    if (!window.dataLayer || !Array.isArray(window.dataLayer)) {
+      console.debug('dataLayer not available, skipping web vital reporting');
+      return;
+    }
+    
+    // Only report if everything is properly initialized
+    window.gtag('event', 'web_vitals', {
+      metric_name: metricName,
+      metric_value: value,
+      metric_delta: 0,
+      metric_rating: rating
+    });
   } catch (error) {
     console.debug('Web vital reporting error:', error);
   }
