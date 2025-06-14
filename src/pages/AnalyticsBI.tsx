@@ -25,8 +25,13 @@ const AnalyticsBI = () => {
       <AnalyticsBISchema />
       
       <AnalyticsBIHero />
-      <AnalyticsBIContent />
-      <AnalyticsBIBenefits />
+
+      <div className="container mx-auto px-4">
+        <div className="py-16">
+          <AnalyticsBIContent />
+        </div>
+        <AnalyticsBIBenefits />
+      </div>
       
       <RelatedServices 
         currentService="analytics-bi"
