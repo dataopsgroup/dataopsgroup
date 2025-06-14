@@ -9,11 +9,11 @@ const HubSpotPEHero = () => {
       <div className="container mx-auto">
         <div className="max-w-4xl">
           <div className="space-y-6">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-saffron-100 text-saffron-800 text-sm font-medium mb-2">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-950 text-brand-saffron text-sm font-medium mb-2">
               Private Equity Guide
             </div>
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              HubSpot for Private Equity: <span className="text-dataops-600">Beyond Spreadsheets to Strategic Advantage</span>
+              HubSpot for Private Equity: Beyond Spreadsheets to Strategic Advantage
             </h1>
             <p className="text-lg md:text-xl text-gray-700 max-w-3xl">
               Transform portfolio operations into competitive advantages with standardized HubSpot implementations. 

@@ -7,11 +7,11 @@ const CaseStudiesHero = () => {
       <div className="container mx-auto">
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-6">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-dataops-100 to-saffron-100 text-dataops-800 text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-dataops-950 text-brand-saffron text-sm font-medium mb-4">
               Success Stories
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Portfolio Company <span className="text-saffron-500">Success Stories</span>
+              Portfolio Company Success Stories
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               Measurable growth transformations across diverse industries. See how we've delivered 

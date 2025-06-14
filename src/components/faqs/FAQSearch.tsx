@@ -70,11 +70,11 @@ const FAQSearch: React.FC<FAQSearchProps> = ({
           </button>
 
           {selectedCategory && (
-            <div className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-dataops-100 text-dataops-700">
+            <div className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-dataops-950 text-brand-saffron">
               {categories.find(cat => cat.id === selectedCategory)?.title}
               <button
                 onClick={() => onCategoryFilter(selectedCategory)}
-                className="ml-2 hover:text-dataops-900"
+                className="ml-2 hover:text-white"
               >
                 <X className="h-3 w-3" />
               </button>
@@ -90,7 +90,7 @@ const FAQSearch: React.FC<FAQSearchProps> = ({
                 onClick={() => onCategoryFilter(category.id)}
                 className={`text-left px-3 py-2 rounded-md text-sm transition-colors ${
                   selectedCategory === category.id
-                    ? 'bg-dataops-100 text-dataops-700 border border-dataops-200'
+                    ? 'bg-dataops-950 text-brand-saffron'
                     : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
                 }`}
               >

@@ -34,9 +34,9 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({ currentCategory
             {faqCategories.map((category) => (
               <li key={category.id}>
                 {category.id === currentCategoryId ? (
-                  <div className="p-3 rounded-md bg-dataops-100 border border-dataops-200">
-                    <span className="font-medium text-dataops-700">{category.title}</span>
-                    <span className="block text-sm text-dataops-600 mt-1">
+                  <div className="p-3 rounded-md bg-dataops-950">
+                    <span className="font-medium text-brand-saffron">{category.title}</span>
+                    <span className="block text-sm text-brand-saffron/80 mt-1">
                       Current section
                     </span>
                   </div>
