@@ -24,8 +24,8 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "Portfolio Standardization",
       description: "Implement consistent processes and metrics across all portfolio companies for better oversight.",
-      image: "/lovable-uploads/c8a1e18e-967a-4dab-b4a7-284f2b97c460.png",
-      alt: "Portfolio standardization framework with fiber optic connections"
+      image: "/lovable-uploads/c6803bfb-9e91-4904-8fb3-edf7ccd4b54d.png",
+      alt: "Portfolio standardization with fiber optic cables"
     },
     {
       title: "Performance Monitoring",
