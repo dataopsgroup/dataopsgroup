@@ -19,10 +19,19 @@ export default defineConfig(({ mode }) => ({
       "@": resolve(__dirname, "./src"),
     },
   },
+  css: {
+    devSourcemap: mode === 'development',
+    preprocessorOptions: {
+      css: {
+        charset: false,
+      },
+    },
+  },
   build: {
     target: 'esnext',
     minify: mode === 'production',
     sourcemap: mode === 'development',
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -53,6 +62,17 @@ export default defineConfig(({ mode }) => ({
           
           // Icons and assets
           icons: ['lucide-react']
+        },
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name?.split('.') || [];
+          const extType = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType || '')) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          if (/css/i.test(extType || '')) {
+            return `assets/styles/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
         },
       },
     },
