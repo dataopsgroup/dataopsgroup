@@ -5,28 +5,30 @@ import { Button } from '@/components/ui/button';
 
 const AnalyticsBICTA = () => {
   return (
-    <div className="text-center">
-      <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to Transform Your Data into Insights?</h2>
-      <p className="text-gray-600 mb-8">
-        Let's discuss how our analytics and BI services can help you make better data-driven decisions. 
-        Start with our 
-        <Link to="/data-operation-assessment" className="text-dataops-600 hover:text-dataops-800 font-medium">
-          free assessment
-        </Link>
-        or explore our other 
-        <Link to="/services" className="text-dataops-600 hover:text-dataops-800 font-medium">
-          consulting services
-        </Link>.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button asChild className="bg-dataops-600 hover:bg-dataops-700">
-          <Link to="/book">Schedule a Consultation</Link>
-        </Button>
-        <Button variant="outline" asChild className="border-dataops-600 text-dataops-600 hover:bg-dataops-50">
-          <Link to="/case-studies">View Success Stories</Link>
-        </Button>
+    <section className="text-center mb-12">
+      <div className="bg-gradient-to-r from-dataops-950 to-dataops-800 text-white rounded-lg p-8">
+        <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Data into Insights?</h2>
+        <p className="text-lg mb-6 opacity-90">
+          Let's discuss how our analytics and BI services can help you make better data-driven decisions. 
+          Start with our{' '}
+          <Link to="/data-operations-assessment" className="text-brand-saffron hover:text-brand-saffron/80 font-medium underline">
+            free assessment
+          </Link>
+          {' '}or explore our other{' '}
+          <Link to="/services" className="text-brand-saffron hover:text-brand-saffron/80 font-medium underline">
+            consulting services
+          </Link>.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button asChild className="bg-brand-saffron hover:bg-brand-saffron/90 text-white">
+            <Link to="/book">Schedule a Consultation</Link>
+          </Button>
+          <Button variant="outline" asChild className="border-white text-white hover:bg-white hover:text-dataops-950">
+            <Link to="/case-studies">View Success Stories</Link>
+          </Button>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

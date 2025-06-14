@@ -2,6 +2,7 @@
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
+import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
 import AnalyticsBIPageHeader from '@/components/services/analytics-bi/AnalyticsBIPageHeader';
 import AnalyticsBIOverview from '@/components/services/analytics-bi/AnalyticsBIOverview';
 import AnalyticsBIBenefitsGrid from '@/components/services/analytics-bi/AnalyticsBIBenefitsGrid';
@@ -9,37 +10,56 @@ import AnalyticsBIApproach from '@/components/services/analytics-bi/AnalyticsBIA
 import AnalyticsBIChallenges from '@/components/services/analytics-bi/AnalyticsBIChallenges';
 import AnalyticsBICTA from '@/components/services/analytics-bi/AnalyticsBICTA';
 import ServiceSchemaMarkup from '@/components/services/ServiceSchemaMarkup';
+import AnalyticsBIFAQSchema from '@/components/services/analytics-bi/AnalyticsBIFAQSchema';
+import RelatedServices from '@/components/services/RelatedServices';
 
 const AnalyticsBI = () => {
-  const serviceTitle = "Analytics & BI Services | DataOps Group";
-  const serviceDescription = "Transform your data into actionable insights with our analytics and business intelligence services.";
+  const serviceTitle = "Analytics & BI Services - Transform Data into Business Insights | DataOps Group";
+  const serviceDescription = "Expert analytics and business intelligence services to transform your data into actionable insights. Custom dashboards, reporting automation, and data-driven decision making.";
+
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services' },
+    { name: 'Analytics & BI', url: '/services/analytics-bi', current: true }
+  ];
 
   return (
     <SemanticLayout>
       <MetaHead
         title={serviceTitle}
         description={serviceDescription}
-        keywords="analytics services, business intelligence, data visualization, custom dashboards, reporting solutions, data analytics consulting"
+        keywords="analytics services, business intelligence, data visualization, custom dashboards, reporting solutions, data analytics consulting, HubSpot analytics, data-driven decisions"
         canonicalPath="/services/analytics-bi"
         ogTitle={serviceTitle}
-        ogDescription="Expert analytics and BI services to transform your data into actionable insights. Custom dashboards, reporting, and data visualization."
+        ogDescription={serviceDescription}
       />
+      
       <ServiceSchemaMarkup
-        serviceTitle="Analytics & BI Services"
+        serviceTitle="Analytics & Business Intelligence Services"
         serviceDescription={serviceDescription}
         serviceId="analytics-bi"
         isHubSpotTraining={false}
       />
+      
+      <AnalyticsBIFAQSchema />
 
       <div className="pt-24 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
+            <BreadcrumbNavigation items={breadcrumbItems} className="mb-6" />
+            
             <AnalyticsBIPageHeader />
             <AnalyticsBIOverview />
             <AnalyticsBIBenefitsGrid />
             <AnalyticsBIApproach />
             <AnalyticsBIChallenges />
             <AnalyticsBICTA />
+            
+            <RelatedServices 
+              currentService="analytics-bi"
+              title="Explore Our Other Services"
+              description="Discover how our comprehensive service offerings can support your business transformation"
+            />
           </div>
         </div>
       </div>
