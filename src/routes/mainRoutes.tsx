@@ -1,10 +1,9 @@
-
 import React, { lazy, Suspense } from 'react';
 
 const Index = lazy(() => import('../pages/Index'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const ApproachPage = lazy(() => import('../pages/ApproachPage'));
-const Contact = lazy(() => import('../pages/Contact'));
+const ContactPage = lazy(() => import('../pages/Contact')); // Fixed: importing ContactPage from Contact.tsx
 const BookLandingPage = lazy(() => import('../pages/BookLandingPage'));
 const HubSpotAssessment = lazy(() => import('../pages/HubSpotAssessment'));
 const HubSpotAssessmentResultsPage = lazy(() => import('../pages/HubSpotAssessmentResultsPage'));
@@ -44,7 +43,7 @@ export const mainRoutes = [
   },
   {
     path: "/contact",
-    element: <SuspenseWrapper><Contact /></SuspenseWrapper>,
+    element: <SuspenseWrapper><ContactPage /></SuspenseWrapper>, // Fixed: using ContactPage component
     errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   // Consolidated to single book page
