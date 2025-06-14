@@ -133,8 +133,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Trusted Companies Section - CRITICAL: mt-12 maintains proper spacing below hero image */}
-      <div className="mt-12 pb-16 bg-gray-50">
+      {/* Trusted Companies Section - SEAMLESS: No gap, same bg-gray-50 background */}
+      <div className="pb-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 leading-normal md:leading-relaxed">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
           

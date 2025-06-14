@@ -18,7 +18,7 @@
 /* Desktop: Show background image with proper z-index and positioning */
 @media (min-width: 768px) {
   .hero-section {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    /* REMOVED: White gradient to allow bg-gray-50 to take effect */
     padding-top: 120px; /* Account for larger navbar on desktop */
     padding-bottom: 80px; /* More padding on desktop */
   }
@@ -84,10 +84,10 @@
   margin: 0 auto;
 }
 
-/* CRITICAL LAYOUT LOCK: Gray box positioning - moved significantly left */
+/* CRITICAL LAYOUT LOCK: Gray box positioning - wider but still left-positioned */
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-columns: minmax(280px, 0.8fr) 3.2fr; /* Reduced first column width */
+    grid-template-columns: minmax(350px, 1fr) 2.5fr; /* WIDER: Increased from 280px to 350px */
     align-items: center;
   }
 }
@@ -99,18 +99,21 @@
   z-index: 15; /* Highest z-index for content */
 }
 
-/* ANTI-OVERLAP PROTECTION: Gray box stays in left third of screen */
+/* ANTI-OVERLAP PROTECTION: Gray box wider but still safe from woman's face */
 @media (min-width: 1024px) {
   .hero-content {
-    max-width: 280px; /* REDUCED: Moved from 400px to create more space */
+    max-width: 350px; /* WIDENED: Increased from 280px for better button fit */
+    min-width: 300px; /* PROTECTION: Never narrower than Get In Touch button needs */
+    margin-left: 20px; /* POSITIONED: Close to left edge for more width */
     margin-right: auto; /* ADDED: Push content to far left */
   }
 }
 
 @media (min-width: 1440px) {
   .hero-content {
-    max-width: 300px; /* Slightly larger on very wide screens but still left-positioned */
-    margin-left: 40px; /* ADDED: Extra left margin to keep away from woman's face */
+    max-width: 400px; /* WIDENED: More space on very wide screens */
+    min-width: 350px; /* PROTECTION: Generous minimum for button */
+    margin-left: 40px; /* POSITIONED: Maintain distance from woman's face */
   }
 }
 
@@ -135,6 +138,8 @@
     /* POSITIONING LOCK: These rules prevent overlap with woman's face */
     margin-left: 0 !important; /* Keep at far left edge of grid column */
     margin-right: auto !important; /* Push away from center/right */
+    /* WIDTH PROTECTION: Ensure box is never narrower than the Get In Touch button */
+    min-width: 300px !important; /* CRITICAL: Never narrower than button needs */
   }
 }
 
@@ -157,6 +162,7 @@
   white-space: nowrap;
   position: relative;
   z-index: 25; /* Ensure button stays above everything */
+  /* REFERENCE WIDTH: This button defines minimum width requirements for hero box */
 }
 
 .hero-button:hover {
@@ -179,10 +185,12 @@
 
 /* 
 LAYOUT PROTECTION COMMENTS:
-- Gray hero box is positioned in the left third of the screen (max-width: 280px-300px)
+- Gray hero box is positioned in the left third of the screen (max-width: 350px-400px)
+- Hero box has min-width: 300px-350px to never be narrower than Get In Touch button
 - Woman's background image is locked at 75% from left (object-position: 75% center)
 - Z-index hierarchy: background (5) < content box (20) < button (25)
 - mt-12 class on Trusted Companies section provides proper spacing below hero
-- bg-gray-50 maintains seamless background color transition
-- DO NOT modify object-position, max-width, or z-index values without careful consideration
+- bg-gray-50 from React component creates seamless background (no CSS gradient override)
+- DO NOT modify object-position, min-width, max-width, or z-index values without careful consideration
+- WIDTH RULE: Hero box must never be narrower than the Get In Touch button requires
 */
