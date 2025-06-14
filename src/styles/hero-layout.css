@@ -4,7 +4,8 @@
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #4338ca; /* Mobile: dataops-600 blue background */
+  /* REMOVED: background-color override - bg-gray-50 class from React component now controls background */
+  /* DO NOT ADD BACKGROUND COLOR HERE - React component handles bg-gray-50 for seamless design */
   padding-top: 100px; /* Fix navigation overlap */
   padding-bottom: 60px; /* Add bottom padding to prevent overlap */
   margin-bottom: 0; /* Ensure hero doesn't bleed into next sections */
@@ -183,6 +184,11 @@
   to { transform: rotate(360deg); }
 }
 
+/* TRUSTED COMPANIES SPACING PROTECTION */
+.trusted-companies-section {
+  margin-top: 3rem !important; /* LOCKED: mt-12 equivalent - DO NOT REMOVE */
+}
+
 /* 
 LAYOUT PROTECTION COMMENTS:
 - Gray hero box is positioned in the left third of the screen (max-width: 350px-400px)
@@ -193,4 +199,6 @@ LAYOUT PROTECTION COMMENTS:
 - bg-gray-50 from React component creates seamless background (no CSS gradient override)
 - DO NOT modify object-position, min-width, max-width, or z-index values without careful consideration
 - WIDTH RULE: Hero box must never be narrower than the Get In Touch button requires
+- BACKGROUND RULE: Never override bg-gray-50 with CSS - let React component control background
+- SPACING RULE: Trusted Companies mt-12 is critical for proper visual separation
 */
