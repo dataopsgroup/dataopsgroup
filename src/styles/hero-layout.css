@@ -21,7 +21,6 @@
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     padding-top: 120px; /* Account for larger navbar on desktop */
     padding-bottom: 80px; /* More padding on desktop */
-    /* Remove height constraints that were causing clipping */
   }
 
   .hero-bg {
@@ -38,7 +37,7 @@
     /* Add fallback background image */
     background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
     background-size: cover;
-    background-position: 75% center;
+    background-position: 75% center; /* LOCKED: Keep woman positioned on the right */
     background-repeat: no-repeat;
   }
 
@@ -46,16 +45,16 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: 75% center !important; /* Position consultant to the RIGHT of the gray box */
+    object-position: 75% center !important; /* CRITICAL: Position woman to the RIGHT - DO NOT CHANGE */
     transform: scale(1.1) !important; /* Scale appropriately to keep face visible */
-    transform-origin: 75% center !important;
+    transform-origin: 75% center !important; /* LOCKED: Maintain face positioning */
     max-width: none !important;
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    /* Remove height constraints that were causing issues */
+    /* ANTI-REVERSION LOCK: These rules keep the woman's face visible and positioned correctly */
   }
 }
 
@@ -85,9 +84,10 @@
   margin: 0 auto;
 }
 
+/* CRITICAL LAYOUT LOCK: Gray box positioning - moved significantly left */
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-columns: minmax(400px, 1fr) 3fr;
+    grid-template-columns: minmax(280px, 0.8fr) 3.2fr; /* Reduced first column width */
     align-items: center;
   }
 }
@@ -99,15 +99,18 @@
   z-index: 15; /* Highest z-index for content */
 }
 
+/* ANTI-OVERLAP PROTECTION: Gray box stays in left third of screen */
 @media (min-width: 1024px) {
   .hero-content {
-    max-width: 400px;
+    max-width: 280px; /* REDUCED: Moved from 400px to create more space */
+    margin-right: auto; /* ADDED: Push content to far left */
   }
 }
 
 @media (min-width: 1440px) {
   .hero-content {
-    max-width: 350px;
+    max-width: 300px; /* Slightly larger on very wide screens but still left-positioned */
+    margin-left: 40px; /* ADDED: Extra left margin to keep away from woman's face */
   }
 }
 
@@ -121,14 +124,17 @@
   z-index: 20; /* ALWAYS on top - highest z-index */
 }
 
-/* Desktop: Gray overlay content box - ALWAYS on top */
+/* Desktop: Gray overlay content box - ALWAYS on top AND positioned safely left */
 @media (min-width: 768px) {
   .hero-content-box {
-    background: rgba(107, 114, 128, 0.9);
+    background: rgba(107, 114, 128, 0.9) !important; /* LOCKED: Gray overlay */
     backdrop-filter: blur(10px);
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 20; /* ALWAYS on top of background image */
+    z-index: 20 !important; /* LOCKED: ALWAYS on top of background image */
+    /* POSITIONING LOCK: These rules prevent overlap with woman's face */
+    margin-left: 0 !important; /* Keep at far left edge of grid column */
+    margin-right: auto !important; /* Push away from center/right */
   }
 }
 
@@ -170,3 +176,13 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* 
+LAYOUT PROTECTION COMMENTS:
+- Gray hero box is positioned in the left third of the screen (max-width: 280px-300px)
+- Woman's background image is locked at 75% from left (object-position: 75% center)
+- Z-index hierarchy: background (5) < content box (20) < button (25)
+- mt-12 class on Trusted Companies section provides proper spacing below hero
+- bg-gray-50 maintains seamless background color transition
+- DO NOT modify object-position, max-width, or z-index values without careful consideration
+*/
