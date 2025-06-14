@@ -133,8 +133,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Trusted Companies Section - Remove white gap with mt-0 */}
-      <div className="mt-0 pb-16 bg-gray-50">
+      {/* Trusted Companies Section - Remove all gaps */}
+      <div className="-mt-1 pb-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 leading-normal md:leading-relaxed">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
           
