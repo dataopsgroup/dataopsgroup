@@ -5,7 +5,7 @@ import MetaHead from '@/components/seo/MetaHead';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
 import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
 import AnalyticsBIOverview from '@/components/services/analytics-bi/AnalyticsBIOverview';
-import AnalyticsBIBenefitsGrid from '@/components/services/analytics-bi/AnalyticsBIBenefitsGrid';
+import AnalyticsBIDashboardGrid from '@/components/services/analytics-bi/AnalyticsBIDashboardGrid';
 import AnalyticsBIApproach from '@/components/services/analytics-bi/AnalyticsBIApproach';
 import AnalyticsBIChallenges from '@/components/services/analytics-bi/AnalyticsBIChallenges';
 import AnalyticsBICTA from '@/components/services/analytics-bi/AnalyticsBICTA';
@@ -54,7 +54,7 @@ const AnalyticsBI = () => {
             <BreadcrumbNavigation items={breadcrumbItems} className="mb-6" />
             
             <AnalyticsBIOverview />
-            <AnalyticsBIBenefitsGrid />
+            <AnalyticsBIDashboardGrid />
             <AnalyticsBIApproach />
             <AnalyticsBIChallenges />
             <AnalyticsBICTA />
