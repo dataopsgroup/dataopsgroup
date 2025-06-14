@@ -4,7 +4,7 @@ import RouteErrorBoundary from '@/components/RouteErrorBoundary';
 
 const Services = lazy(() => import('../pages/Services'));
 const AnalyticsBI = lazy(() => import('../pages/AnalyticsBI'));
-const DataOpsImplementation = lazy(() => import('../pages/DataOpsImplementation'));
+const DataOpsImplementation = lazy(() => import('./services/DataOpsImplementation'));
 const TeamTraining = lazy(() => import('../pages/TeamTraining'));
 const MarketingOperationsRevOps = lazy(() => import('../pages/MarketingOperationsRevOps'));
 
