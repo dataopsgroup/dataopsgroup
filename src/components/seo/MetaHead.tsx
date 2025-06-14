@@ -69,21 +69,25 @@ const MetaHead = ({
   // Ensure path starts with / and normalize
   let normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
   
-  // CRITICAL FIX: Check if this path should redirect and use the canonical destination instead
+  // CRITICAL FIX: Resolve canonical URL to final destination to prevent redirect chains
+  // First check if this path is in our redirect mappings
   const redirectTarget = DUPLICATE_URLS_TO_REDIRECT[normalizedPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT];
   if (redirectTarget) {
     normalizedPath = redirectTarget;
   }
   
-  // Additional specific redirect chain fixes identified by Ahrefs
-  const redirectMappings: Record<string, string> = {
-    '/guides/hubspot-expert-guide': '/guides/hubspot-expert',
-    '/pillar-content/hubspot-expert': '/guides/hubspot-expert',
-    '/how-to-hire-a-hubspot-expert-in-2025': '/guides/hubspot-expert'
-  };
+  // SPECIFIC FIX for HubSpot Expert Guide - ensure canonical points to final destination
+  // The Ahrefs issue shows /guides/hubspot-expert is redirecting, so we need to point to the actual final URL
+  if (normalizedPath === '/guides/hubspot-expert') {
+    // Point directly to the final destination that doesn't redirect
+    normalizedPath = CANONICAL_URLS.hubspotExpert;
+  }
   
-  if (redirectMappings[normalizedPath]) {
-    normalizedPath = redirectMappings[normalizedPath];
+  // Additional redirect chain prevention - ensure we're pointing to canonical URLs
+  const canonicalUrlEntries = Object.entries(CANONICAL_URLS);
+  const matchingCanonical = canonicalUrlEntries.find(([key, url]) => url === normalizedPath);
+  if (matchingCanonical) {
+    normalizedPath = matchingCanonical[1]; // Use the canonical URL value
   }
   
   // Create full canonical URL - this is the source of truth

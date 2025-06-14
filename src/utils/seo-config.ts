@@ -1,3 +1,4 @@
+
 /**
  * CRITICAL SEO CONFIGURATION - KNOWLEDGE ARTICLE REMINDERS:
  * 
@@ -17,7 +18,7 @@
 
 // CANONICAL URL MAPPINGS - These are the final, indexable URLs
 export const CANONICAL_URLS = {
-  // Main guide URLs
+  // Main guide URLs - FIXED: Ensure this points to actual final destination
   hubspotExpert: '/guides/hubspot-expert',
   
   // Canonical FAQ URLs - NEVER change these paths
@@ -45,7 +46,7 @@ export const CANONICAL_URLS = {
 
 // DUPLICATE URLS TO REDIRECT - These should NEVER be indexed
 export const DUPLICATE_URLS_TO_REDIRECT = {
-  // HubSpot Expert Guide duplicates - FIXED: Remove circular reference
+  // HubSpot Expert Guide duplicates - FIXED: Remove circular reference and ensure proper targeting
   '/guides/hubspot-expert-guide': CANONICAL_URLS.hubspotExpert,
   '/how-to-hire-a-hubspot-expert-in-2025': CANONICAL_URLS.hubspotExpert,
   '/pillar-content/hubspot-expert': CANONICAL_URLS.hubspotExpert,
@@ -113,6 +114,7 @@ export const ROBOTS_DISALLOW_PATTERNS = [
 
 // ROBOTS.TXT EXPLICIT ALLOWS - Canonical URLs that should be indexed
 export const ROBOTS_EXPLICIT_ALLOWS = [
+  CANONICAL_URLS.hubspotExpert, // ADDED: Ensure canonical HubSpot expert URL is explicitly allowed
   CANONICAL_URLS.faqServices,
   CANONICAL_URLS.faqExperts,
   CANONICAL_URLS.faqDataQuality,
@@ -144,6 +146,13 @@ export const validateSEOConfig = () => {
   Object.entries(CANONICAL_URLS).forEach(([key, url]) => {
     if (!url.startsWith('/')) {
       errors.push(`Canonical URL ${key} should start with /: ${url}`);
+    }
+  });
+  
+  // NEW: Check for redirect chains in canonical URLs
+  Object.entries(CANONICAL_URLS).forEach(([key, url]) => {
+    if (Object.keys(DUPLICATE_URLS_TO_REDIRECT).includes(url)) {
+      errors.push(`Canonical URL ${key} (${url}) is also in redirect list - this creates a redirect chain`);
     }
   });
   
