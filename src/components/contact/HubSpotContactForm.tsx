@@ -1,177 +1,139 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
+import { Loader2 } from 'lucide-react';
 import ContactCard from './ContactCard';
+import { hubspotService } from '@/services/hubspotService';
 
 const HubSpotContactForm = () => {
   const formContainerRef = useRef<HTMLDivElement>(null);
-  const formLoadedRef = useRef<boolean>(false);
-  const initAttemptedRef = useRef<boolean>(false);
+  const [formState, setFormState] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [retryCount, setRetryCount] = useState(0);
+  const maxRetries = 3;
 
   useEffect(() => {
-    // Prevent multiple initialization attempts
-    if (initAttemptedRef.current) return;
-    initAttemptedRef.current = true;
+    let mounted = true;
 
-    // Initialize HubSpot queue if it doesn't exist
-    if (typeof window !== 'undefined' && !window._hsq) {
-      window._hsq = [];
-    }
+    const initializeForm = async () => {
+      if (!mounted) return;
 
-    const createForm = () => {
-      if (formLoadedRef.current || !window.hbspt?.forms) {
-        return;
-      }
-
-      console.log('Creating HubSpot form...');
-      formLoadedRef.current = true;
-      
-      // Check current cookie consent status
-      const cookieConsent = localStorage.getItem('cookie-consent');
-      const hasConsent = cookieConsent === 'accepted';
-      
       try {
-        window.hbspt.forms.create({
+        console.log(`Initializing HubSpot form (attempt ${retryCount + 1})`);
+        
+        const success = await hubspotService.createForm({
           portalId: "21794360",
           formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
           region: "na1",
           target: "#hubspot-form-container",
           redirectUrl: `${window.location.origin}/contact-thank-you`,
-          
-          // Disable HubSpot's cookie banner and tracking
-          disableCookieSubmission: !hasConsent,
-          
           onFormSubmit: () => {
-            console.log('HubSpot form submitted successfully');
-            
-            // Track form submission in Google Analytics only if consent given
-            if (hasConsent && typeof window !== 'undefined' && window.gtag) {
-              try {
-                window.gtag('event', 'form_submission', {
-                  'event_category': 'Contact',
-                  'event_label': 'Contact Form',
-                  'value': 1,
-                  'conversion': true
-                });
-                
-                // Conversion tracking
-                window.gtag('event', 'conversion', {
-                  'send_to': 'AW-16996265146/contact_form_submission',
-                  'value': 1.0,
-                  'currency': 'USD'
-                });
-              } catch (error) {
-                console.warn('Analytics tracking failed:', error);
-              }
+            if (mounted) {
+              toast.success("Form submitted successfully! We'll be in touch shortly.", {
+                duration: 5000,
+              });
             }
-            
-            // Show success toast
-            toast.success("Form submitted successfully! We'll be in touch shortly.", {
-              duration: 5000,
-            });
           },
-          
           onFormReady: () => {
-            console.log('HubSpot form ready and displayed');
-            // Form is ready
-            const formElement = formContainerRef.current?.querySelector('form');
-            if (formElement) {
-              formElement.setAttribute('data-testid', 'contact-form');
-              formElement.setAttribute('aria-label', 'Contact DataOps Group');
+            if (mounted) {
+              console.log('Form ready, updating state');
+              setFormState('ready');
             }
           },
-          
           onFormFailedValidation: () => {
-            console.log('HubSpot form validation failed');
+            console.log('Form validation failed');
           }
         });
+
+        if (!success && mounted) {
+          throw new Error('Form creation failed');
+        }
       } catch (error) {
-        console.error('Error creating HubSpot form:', error);
-        showFallbackMessage();
-      }
-    };
-
-    const loadHubSpotScript = () => {
-      console.log('Loading HubSpot script...');
-      const script = document.createElement('script');
-      script.src = '//js.hsforms.net/forms/embed/v2.js';
-      script.charset = 'utf-8';
-      script.type = 'text/javascript';
-      script.async = true;
-      
-      script.onload = () => {
-        console.log('HubSpot script loaded successfully');
-        // Wait for hbspt to be fully available
-        let attempts = 0;
-        const checkHubSpot = () => {
-          attempts++;
-          if (window.hbspt?.forms) {
-            createForm();
-          } else if (attempts < 10) {
-            setTimeout(checkHubSpot, 200);
+        console.error('Form initialization error:', error);
+        
+        if (mounted) {
+          if (retryCount < maxRetries) {
+            console.log(`Retrying form initialization in ${(retryCount + 1) * 2000}ms`);
+            setTimeout(() => {
+              if (mounted) {
+                setRetryCount(prev => prev + 1);
+              }
+            }, (retryCount + 1) * 2000);
           } else {
-            console.error('HubSpot forms not available after script load');
-            showFallbackMessage();
+            console.error('Max retries reached, showing error state');
+            setFormState('error');
           }
-        };
-        checkHubSpot();
-      };
-
-      script.onerror = () => {
-        console.error('Failed to load HubSpot forms script');
-        showFallbackMessage();
-      };
-
-      document.head.appendChild(script);
-    };
-
-    const showFallbackMessage = () => {
-      const container = document.getElementById('hubspot-form-container');
-      if (container) {
-        container.innerHTML = '<p class="text-gray-500">Form temporarily unavailable. Please call us at +1 479 844 2052.</p>';
+        }
       }
     };
 
-    // Check if HubSpot is already available
-    if (window.hbspt?.forms) {
-      console.log('HubSpot already available, creating form...');
-      createForm();
-    } else {
-      // Check if script is already loading
-      const existingScript = document.querySelector('script[src*="js.hsforms.net"]');
-      if (existingScript) {
-        console.log('HubSpot script already exists, waiting for load...');
-        // Wait for existing script to load
-        let attempts = 0;
-        const checkExistingScript = () => {
-          attempts++;
-          if (window.hbspt?.forms) {
-            createForm();
-          } else if (attempts < 15) {
-            setTimeout(checkExistingScript, 300);
-          } else {
-            console.log('Existing script timeout, loading new script');
-            loadHubSpotScript();
-          }
-        };
-        checkExistingScript();
-      } else {
-        loadHubSpotScript();
-      }
-    }
+    // Add a small delay to ensure DOM is ready
+    const timer = setTimeout(initializeForm, 100);
 
     return () => {
-      formLoadedRef.current = false;
+      mounted = false;
+      clearTimeout(timer);
     };
-  }, []);
+  }, [retryCount]);
+
+  const handleRetry = () => {
+    setFormState('loading');
+    setRetryCount(0);
+  };
+
+  const renderContent = () => {
+    switch (formState) {
+      case 'loading':
+        return (
+          <div className="flex flex-col items-center justify-center h-64 space-y-4">
+            <Loader2 className="h-8 w-8 animate-spin text-dataops-600" />
+            <p className="text-gray-600">Loading contact form...</p>
+            {retryCount > 0 && (
+              <p className="text-sm text-gray-500">Attempt {retryCount + 1} of {maxRetries + 1}</p>
+            )}
+          </div>
+        );
+
+      case 'error':
+        return (
+          <div className="flex flex-col items-center justify-center h-64 space-y-4 text-center">
+            <p className="text-gray-600 mb-4">
+              We're having trouble loading the contact form. 
+            </p>
+            <div className="space-y-3">
+              <button
+                onClick={handleRetry}
+                className="px-4 py-2 bg-dataops-600 text-white rounded hover:bg-dataops-700 transition-colors"
+              >
+                Try Again
+              </button>
+              <p className="text-sm text-gray-500">
+                Or call us directly at{' '}
+                <a href="tel:+14798442052" className="text-dataops-600 hover:underline">
+                  +1 479 844 2052
+                </a>
+              </p>
+            </div>
+          </div>
+        );
+
+      case 'ready':
+        return (
+          <div 
+            id="hubspot-form-container" 
+            ref={formContainerRef} 
+            className="min-h-[400px]" 
+            aria-live="polite"
+          />
+        );
+
+      default:
+        return null;
+    }
+  };
 
   return (
     <ContactCard>
-      <div id="hubspot-form-container" ref={formContainerRef} className="min-h-[400px]" aria-live="polite">
-        <div className="flex justify-center items-center h-20">
-          <p className="text-gray-500">Loading form...</p>
-        </div>
-      </div>
+      {renderContent()}
     </ContactCard>
   );
 };

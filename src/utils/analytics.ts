@@ -18,6 +18,11 @@ if (typeof window !== 'undefined' && !window.gtag) {
   };
 }
 
+// Initialize HubSpot queue if it doesn't exist (but don't interfere with forms)
+if (typeof window !== 'undefined' && !window._hsq) {
+  window._hsq = [];
+}
+
 // Check if user has consented to tracking
 const hasTrackingConsent = (): boolean => {
   try {
@@ -72,6 +77,7 @@ export const trackPageView = (params: {
     }
     
     // Track in HubSpot if loaded and consented with safety checks
+    // Only use _hsq for page tracking, not form functionality
     if (isHubSpotAvailable()) {
       window._hsq.push(['setPath', params.page_path + (window.location.search || '')]);
       window._hsq.push(['trackPageView']);

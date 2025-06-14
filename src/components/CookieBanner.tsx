@@ -13,13 +13,14 @@ const CookieBanner = () => {
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
     } else if (cookieConsent === 'accepted') {
-      // Load HubSpot if consent was previously given
+      // Load HubSpot tracking script (separate from forms)
       loadHubSpotTracking();
     }
   }, []);
 
   const loadHubSpotTracking = () => {
-    // Only load HubSpot if not already loaded
+    // Only load HubSpot tracking script if not already loaded
+    // This is separate from the forms script managed by hubspotService
     if (!document.getElementById('hs-script-loader')) {
       const hubspotScript = document.createElement('script');
       hubspotScript.async = true;
@@ -42,10 +43,10 @@ const CookieBanner = () => {
       });
     }
     
-    // Load and enable HubSpot tracking
+    // Load HubSpot tracking (not forms)
     loadHubSpotTracking();
     
-    // Set HubSpot consent when it loads
+    // Set HubSpot consent when it loads (for tracking, not forms)
     const checkHubSpot = setInterval(() => {
       if (window._hsq) {
         window._hsq.push(['doNotTrack', false]);

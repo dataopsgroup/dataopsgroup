@@ -20,36 +20,6 @@ const ContactPage = () => {
         <meta name="keywords" content="contact dataops, hubspot consultancy, get in touch, marketing operations, sales operations" />
         <link rel="canonical" href={`${baseUrl}/contact`} />
         
-        {/* HubSpot Cookie Banner Suppression */}
-        <script>
-          {`
-            // Initialize HubSpot queue if it doesn't exist
-            window._hsq = window._hsq || [];
-            
-            // Disable HubSpot's automatic cookie banner
-            window._hsq.push(['doNotTrack', false]);
-            window._hsq.push(['setContentType', 'standard-page']);
-            
-            // Set cookie consent handling to external (our custom banner)
-            window._hsq.push(['addPrivacyConsentListener', function(consent) {
-              // Let HubSpot know we're handling consent externally
-              return true;
-            }]);
-            
-            // Disable HubSpot cookie banner specifically
-            window.hsConversationsSettings = window.hsConversationsSettings || {};
-            window.hsConversationsSettings.loadImmediately = false;
-            
-            // Check if user has already consented via our custom banner
-            const cookieConsent = localStorage.getItem('cookie-consent');
-            if (cookieConsent === 'accepted') {
-              window._hsq.push(['doNotTrack', false]);
-            } else if (cookieConsent === 'declined') {
-              window._hsq.push(['doNotTrack', true]);
-            }
-          `}
-        </script>
-        
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Contact Us - DataOps Group" />
