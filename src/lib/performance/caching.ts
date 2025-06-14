@@ -10,25 +10,28 @@ export const setupClientCaching = () => {
   // Universal app version for cache busting
   const appVersion = '1.0.10'; // Incremented for navigation fixes
   
-  // Add navigation debugging
-  if (typeof window !== 'undefined') {
-    const originalPushState = window.history.pushState;
-    const originalReplaceState = window.history.replaceState;
-    
-    window.history.pushState = function(...args) {
-      console.log('Navigation: pushState to', args[2]);
-      return originalPushState.apply(this, args);
-    };
-    
-    window.history.replaceState = function(...args) {
-      console.log('Navigation: replaceState to', args[2]);
-      return originalReplaceState.apply(this, args);
-    };
-    
-    window.addEventListener('popstate', (event) => {
-      console.log('Navigation: popstate to', window.location.pathname);
-    });
+  // Check if we're in a browser environment
+  if (typeof window === 'undefined') {
+    return;
   }
+  
+  // Add navigation debugging
+  const originalPushState = window.history.pushState;
+  const originalReplaceState = window.history.replaceState;
+  
+  window.history.pushState = function(...args) {
+    console.log('Navigation: pushState to', args[2]);
+    return originalPushState.apply(this, args);
+  };
+  
+  window.history.replaceState = function(...args) {
+    console.log('Navigation: replaceState to', args[2]);
+    return originalReplaceState.apply(this, args);
+  };
+  
+  window.addEventListener('popstate', (event) => {
+    console.log('Navigation: popstate to', window.location.pathname);
+  });
   
   // Universal service worker registration with enhanced update handling
   if ('serviceWorker' in navigator) {
@@ -81,14 +84,10 @@ export const setupClientCaching = () => {
             }
           });
         }).finally(() => {
-          if (typeof window !== 'undefined') {
-            window.location.reload();
-          }
+          window.location.reload();
         });
       } else {
-        if (typeof window !== 'undefined') {
-          window.location.reload();
-        }
+        window.location.reload();
       }
     });
     
@@ -110,18 +109,14 @@ export const setupClientCaching = () => {
         
         // Force a page reload to get the fresh content
         setTimeout(() => {
-          if (typeof window !== 'undefined') {
-            window.location.reload();
-          }
+          window.location.reload();
         }, 1000);
       }
     });
   }
 
   // Universal versioning
-  if (typeof window !== 'undefined') {
-    (window as any).APP_VERSION = appVersion;
-  }
+  (window as any).APP_VERSION = appVersion;
 };
 
 /**
