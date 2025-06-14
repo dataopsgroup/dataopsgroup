@@ -90,23 +90,23 @@ const Hero = () => {
                   <h1 className="hero-heading" id="hero-heading">
                     Turn PE Portfolio Operations Into Profit Drivers in <span className="text-yellow-300">100 Days</span>
                   </h1>
-                  <div className="space-y-4">
-                    <p className="hero-text">
+                  <div className="space-y-3">
+                    <p className="hero-text leading-tight">
                       We are PE-specialized <Link to="/services" className="text-blue-200 hover:text-white underline">HubSpot experts</Link> who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
                     </p>
-                    <p className="font-medium mb-4"></p>
-                    <ul className="list-disc pl-6 space-y-1 mb-4 hero-text">
+                    <p className="font-medium mb-3"></p>
+                    <ul className="list-disc pl-6 space-y-0.5 mb-3 hero-text leading-tight">
                       <li>19% higher valuation multiples</li>
                       <li>73% faster EBITDA growth</li>
                       <li>$18-22 ROI per $1 invested</li>
                     </ul>
-                    <p className="hero-text">
+                    <p className="hero-text leading-tight">
                       Learn more about our <Link to="/approach" className="text-blue-200 hover:text-white underline">proven methodology</Link> and explore our <Link to="/case-studies" className="text-blue-200 hover:text-white underline">client success stories</Link>.
                     </p>
                   </div>
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <div className="flex flex-col">
                     <button 
                       onClick={() => {
@@ -118,9 +118,9 @@ const Hero = () => {
                       Get In Touch
                       <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                     </button>
-                    <div className="mt-3 text-sm max-w-sm text-white/90 leading-relaxed">
-                      <p className="font-medium mb-1 text-white">Confidential | No Risk</p>
-                      <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
+                    <div className="mt-2 text-sm max-w-sm text-white/90 leading-tight">
+                      <p className="font-medium mb-0.5 text-white">Confidential | No Risk</p>
+                      <p className="leading-snug">We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
                     </div>
                   </div>
                 </div>
