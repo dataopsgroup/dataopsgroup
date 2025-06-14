@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -25,35 +26,36 @@ const Hero = () => {
     }
   };
 
-  // Development logging to verify image scaling
+  // Development logging for font and image debugging
   React.useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('Hero component mounted - image scaling should be applied via CSS');
+      console.log('Hero component mounted - Mobile:', isMobile);
       
-      // Check if the image element has the correct transform after a short delay
+      // Check font loading after a delay
       setTimeout(() => {
-        const heroImg = document.querySelector('.hero-bg img');
-        if (heroImg) {
-          const computedStyle = window.getComputedStyle(heroImg);
-          console.log('Hero image transform:', computedStyle.transform);
-          console.log('Hero image object-position:', computedStyle.objectPosition);
-          console.log('Hero image dimensions:', {
-            width: heroImg.clientWidth,
-            height: heroImg.clientHeight,
-            naturalWidth: (heroImg as HTMLImageElement).naturalWidth,
-            naturalHeight: (heroImg as HTMLImageElement).naturalHeight
-          });
-        } else {
-          console.warn('Hero image not found in DOM');
+        const heroHeading = document.querySelector('.hero-heading');
+        if (heroHeading) {
+          const computedStyle = window.getComputedStyle(heroHeading);
+          console.log('Hero heading font family:', computedStyle.fontFamily);
+        }
+        
+        // Check image scaling on desktop only
+        if (!isMobile) {
+          const heroImg = document.querySelector('.hero-bg img');
+          if (heroImg) {
+            const computedStyle = window.getComputedStyle(heroImg);
+            console.log('Hero image transform:', computedStyle.transform);
+            console.log('Hero image object-position:', computedStyle.objectPosition);
+          }
         }
       }, 1000);
     }
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
-      <div className={`hero-section ${isMobile ? 'bg-dataops-600' : 'bg-gradient-to-br from-white to-dataops-50'}`}>
-        {/* Background Image - desktop only with enhanced optimization */}
+      <div className="hero-section">
+        {/* Background Image - desktop only */}
         {!isMobile && (
           <div className="hero-bg">
             <OptimizedImage 
@@ -76,10 +78,8 @@ const Hero = () => {
           <div className="hero-grid">
             {/* Hero Content */}
             <div className="hero-content">
-              {/* Content wrapper with explicit dimensions */}
               <div className="hero-content-box">
                 <div>
-                  {/* Main headline with improved responsive sizing */}
                   <h1 className="hero-heading" id="hero-heading">
                     Turn PE Portfolio Operations Into Profit Drivers in <span className="text-yellow-300">100 Days</span>
                   </h1>
@@ -107,8 +107,8 @@ const Hero = () => {
                         <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                       </Button>
                     </Link>
-                    <div className={`mt-3 text-sm max-w-sm text-white/90 leading-relaxed`}>
-                      <p className={`font-medium mb-1 text-white`}>Confidential | No Risk</p>
+                    <div className="mt-3 text-sm max-w-sm text-white/90 leading-relaxed">
+                      <p className="font-medium mb-1 text-white">Confidential | No Risk</p>
                       <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
                     </div>
                   </div>
