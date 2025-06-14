@@ -10,16 +10,23 @@ const HubSpotContactForm = () => {
   const [formState, setFormState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [retryCount, setRetryCount] = useState(0);
   const maxRetries = 3;
+  const mountedRef = useRef(true);
 
   useEffect(() => {
-    let mounted = true;
-
+    mountedRef.current = true;
+    
     const initializeForm = async () => {
-      if (!mounted) return;
+      if (!mountedRef.current) return;
 
       try {
         console.log(`Initializing HubSpot form (attempt ${retryCount + 1})`);
         
+        // Wait for the DOM element to be available
+        if (!formContainerRef.current) {
+          console.log('Form container ref not available, waiting...');
+          throw new Error('Form container not ready');
+        }
+
         const success = await hubspotService.createForm({
           portalId: "21794360",
           formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
@@ -27,14 +34,14 @@ const HubSpotContactForm = () => {
           target: "#hubspot-form-container",
           redirectUrl: `${window.location.origin}/contact-thank-you`,
           onFormSubmit: () => {
-            if (mounted) {
+            if (mountedRef.current) {
               toast.success("Form submitted successfully! We'll be in touch shortly.", {
                 duration: 5000,
               });
             }
           },
           onFormReady: () => {
-            if (mounted) {
+            if (mountedRef.current) {
               console.log('Form ready, updating state');
               setFormState('ready');
             }
@@ -44,17 +51,17 @@ const HubSpotContactForm = () => {
           }
         });
 
-        if (!success && mounted) {
+        if (!success && mountedRef.current) {
           throw new Error('Form creation failed');
         }
       } catch (error) {
         console.error('Form initialization error:', error);
         
-        if (mounted) {
+        if (mountedRef.current) {
           if (retryCount < maxRetries) {
             console.log(`Retrying form initialization in ${(retryCount + 1) * 2000}ms`);
             setTimeout(() => {
-              if (mounted) {
+              if (mountedRef.current) {
                 setRetryCount(prev => prev + 1);
               }
             }, (retryCount + 1) * 2000);
@@ -66,11 +73,15 @@ const HubSpotContactForm = () => {
       }
     };
 
-    // Add a small delay to ensure DOM is ready
-    const timer = setTimeout(initializeForm, 100);
+    // Ensure DOM is ready and element exists before initializing
+    const timer = setTimeout(() => {
+      if (formContainerRef.current && mountedRef.current) {
+        initializeForm();
+      }
+    }, 200);
 
     return () => {
-      mounted = false;
+      mountedRef.current = false;
       clearTimeout(timer);
     };
   }, [retryCount]);
@@ -127,7 +138,14 @@ const HubSpotContactForm = () => {
         );
 
       default:
-        return null;
+        return (
+          <div 
+            id="hubspot-form-container" 
+            ref={formContainerRef} 
+            className="min-h-[400px]" 
+            aria-live="polite"
+          />
+        );
     }
   };
 
