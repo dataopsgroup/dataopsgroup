@@ -1,12 +1,13 @@
 
-import React from 'react';
+import React, { startTransition } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Hero = () => {
   const { isMobile } = useIsMobile();
+  const navigate = useNavigate();
 
   // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
@@ -23,6 +24,13 @@ const Hero = () => {
         id: 'hero_contact_cta_click'
       }]);
     }
+  };
+
+  // Enhanced navigation handler with startTransition
+  const handleNavigation = (path: string) => {
+    startTransition(() => {
+      navigate(path);
+    });
   };
 
   // Development logging for font and image debugging
@@ -100,12 +108,16 @@ const Hero = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
                   <div className="flex flex-col">
-                    <Link to="/contact" onClick={trackContactCTAClick}>
-                      <Button className="hero-button text-3xl">
-                        Get In Touch
-                        <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
-                      </Button>
-                    </Link>
+                    <button 
+                      onClick={() => {
+                        trackContactCTAClick();
+                        handleNavigation('/contact');
+                      }}
+                      className="hero-button text-3xl"
+                    >
+                      Get In Touch
+                      <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
+                    </button>
                     <div className="mt-3 text-sm max-w-sm text-white/90 leading-relaxed">
                       <p className="font-medium mb-1 text-white">Confidential | No Risk</p>
                       <p>We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
