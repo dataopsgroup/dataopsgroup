@@ -1,7 +1,7 @@
 
 # robots.txt for dataopsgroup.com
 # CRITICAL SEO FILE - DO NOT MODIFY WITHOUT SEO REVIEW
-# Cache refresh: 2025-06-11 - Fixed syntax errors and duplicate content issues
+# Cache refresh: 2025-06-14 - Added API endpoint blocks
 
 User-agent: *
 Allow: /
@@ -19,7 +19,9 @@ Disallow: /login/
 Disallow: /signin/
 Disallow: /signup/
 
-# Disallow technical resources that return 404s
+# Disallow API endpoints that return 404s
+Disallow: /api/
+Disallow: /api/*
 Disallow: /_hcms/forms/embed/v4/render-definition/ssr
 Disallow: /0OV0VHL4M36Z.js.gz
 
@@ -58,7 +60,7 @@ Disallow: /*&fbclid=
 Disallow: /*&gclid=
 
 # Sitemap
-Sitemap: https://dataopsgroup.com/sitemap.xml
+Sitemap: https://dataopsgroup.com/sitemaps/sitemap-index.xml
 
 # Crawl delay settings
 Crawl-delay: 2

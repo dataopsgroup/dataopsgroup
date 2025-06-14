@@ -2,68 +2,49 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
+// Service page redirects to prevent 404s and consolidate similar URLs
 export const servicesRedirects = [
-  // Services redirects for marketing operations variations
+  // HubSpot implementation service redirects
   {
-    path: "/services/marketing-operations",
+    path: "/services/hubspot-implementation",
+    element: <Navigate to="/services/marketing-operations-revops" replace />,
+  },
+  {
+    path: "/hubspot-implementation",
+    element: <Navigate to="/services/marketing-operations-revops" replace />,
+  },
+  {
+    path: "/services/hubspot-consulting", 
     element: <Navigate to="/services/marketing-operations-revops" replace />,
   },
   
-  // Old services redirects
+  // Legacy service URLs
   {
-    path: "/services/alignment",
-    element: <Navigate to="/services" replace />,
-  },
-  {
-    path: "/services/lineage-mapping",
-    element: <Navigate to="/services" replace />,
-  },
-  {
-    path: "/services/maintenance",
-    element: <Navigate to="/services" replace />,
-  },
-  {
-    path: "/services/roi-tracking",
-    element: <Navigate to="/services" replace />,
-  },
-  {
-    path: "/services/customer-value",
-    element: <Navigate to="/services" replace />,
-  },
-  {
-    path: "/services/dashboards",
-    element: <Navigate to="/services/analytics-bi" replace />,
-  },
-  {
-    path: "/services/reporting",
-    element: <Navigate to="/services/analytics-bi" replace />,
-  },
-  {
-    path: "/data-governance",
+    path: "/services/data-operations",
     element: <Navigate to="/services/dataops-implementation" replace />,
   },
   {
-    path: "/implementation",
+    path: "/data-operations",
     element: <Navigate to="/services/dataops-implementation" replace />,
   },
-  {
-    path: "/maintenance",
-    element: <Navigate to="/services" replace />,
-  },
+  
+  // Training service redirects
   {
     path: "/training",
-    element: <Navigate to="/services" replace />,
-  },
-  {
-    path: "/hubspot-training-and-implementation",
     element: <Navigate to="/services/team-training" replace />,
   },
   {
-    path: "/hubspot-integration-customization-services",
-    element: <Navigate to="/services/dataops-implementation" replace />,
+    path: "/hubspot-training",
+    element: <Navigate to="/services/team-training" replace />,
+  },
+  
+  // Analytics service redirects
+  {
+    path: "/analytics",
+    element: <Navigate to="/services/analytics-bi" replace />,
   },
   {
-    path: "/marketing-data-management-and-analytics-services-dataops-group",
-    element: <Navigate to="/services" replace />,
-  }
+    path: "/business-intelligence",
+    element: <Navigate to="/services/analytics-bi" replace />,
+  },
 ];
