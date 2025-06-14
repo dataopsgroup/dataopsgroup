@@ -1,3 +1,4 @@
+
 /**
  * MAIN APP COMPONENT - KNOWLEDGE ARTICLE REMINDERS:
  * 
@@ -13,6 +14,7 @@ import React, { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import router from './routes';
 import { Toaster } from '@/components/ui/toaster';
 import { initializeAllOptimizations } from '@/lib/performance-optimizations';
@@ -49,6 +51,7 @@ function App() {
       <HelmetProvider>
         <RouterProvider router={router} />
         <Toaster />
+        <SpeedInsights />
       </HelmetProvider>
     </QueryClientProvider>
   );
