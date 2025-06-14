@@ -5,64 +5,74 @@
 const handleNavigationRequest = async (request) => {
   const url = new URL(request.url);
   
-  // Never cache navigation requests that might fail
   console.log('SW: Handling navigation request for:', url.pathname);
   
   try {
-    // Always try network first for navigation
-    const response = await fetch(request);
+    // Always try network first for navigation to get fresh content
+    const response = await fetch(request, {
+      cache: 'no-cache' // Force fresh request
+    });
     
     // Only cache successful navigation responses
     if (response.ok && response.status === 200) {
-      console.log('SW: Successful navigation response, caching:', url.pathname);
-      const cache = await caches.open(APP_SHELL.name);
-      cache.put(request, response.clone());
+      console.log('SW: Successful navigation response for:', url.pathname);
+      
+      // Don't cache the response to prevent stale content issues
+      // The main app will handle caching appropriately
+      return response;
     } else {
-      console.log('SW: Failed navigation response, not caching:', response.status, url.pathname);
+      console.warn('SW: Failed navigation response:', response.status, url.pathname);
+      
+      // For failed responses, don't cache and let the error bubble up
+      return response;
     }
-    
-    return response;
   } catch (error) {
-    console.log('SW: Network failed for navigation, trying cache:', url.pathname);
+    console.error('SW: Network failed for navigation:', url.pathname, error);
     
-    // Try to return cached version
-    const cachedResponse = await caches.match(request);
-    if (cachedResponse) {
-      console.log('SW: Found cached response for:', url.pathname);
-      return cachedResponse;
-    }
-    
-    // Last resort: return index.html to let React Router handle it
-    console.log('SW: No cache found, returning index.html for:', url.pathname);
-    const indexResponse = await caches.match('/') || await caches.match('/index.html');
-    if (indexResponse) {
-      return indexResponse;
-    }
-    
-    // If all else fails, return a basic 404 response
-    return new Response('Page not found', { 
-      status: 404, 
-      statusText: 'Not Found',
-      headers: { 'Content-Type': 'text/html' }
-    });
+    // Don't try to serve cached content for failed navigations
+    // This prevents serving stale 404 pages
+    throw error;
   }
 };
 
 // Enhanced cache clearing for route updates
 const clearNavigationCache = async () => {
-  const cache = await caches.open(APP_SHELL.name);
-  const requests = await cache.keys();
+  try {
+    const cacheNames = await caches.keys();
+    
+    // Clear all caches that might contain navigation responses
+    const navigationCaches = cacheNames.filter(name => 
+      name.includes('app-shell') || 
+      name.includes('navigation') ||
+      name.includes('performance')
+    );
+    
+    console.log('SW: Clearing navigation caches:', navigationCaches);
+    
+    await Promise.all(
+      navigationCaches.map(cacheName => caches.delete(cacheName))
+    );
+    
+    console.log('SW: Navigation cache cleared successfully');
+  } catch (error) {
+    console.error('SW: Failed to clear navigation cache:', error);
+  }
+};
+
+// Force clear all navigation caches on service worker activation
+const forceCleanNavigationCache = async () => {
+  console.log('SW: Force cleaning navigation cache');
   
-  // Clear only navigation requests (HTML pages)
-  const navigationRequests = requests.filter(request => 
-    request.mode === 'navigate' || 
-    request.url.endsWith('.html') ||
-    !request.url.includes('.')
-  );
-  
-  console.log('SW: Clearing navigation cache for', navigationRequests.length, 'requests');
-  
-  await Promise.all(
-    navigationRequests.map(request => cache.delete(request))
-  );
+  try {
+    await clearNavigationCache();
+    
+    // Also clear any potential stale responses
+    const cache = await caches.open('temp-clear-cache');
+    await cache.delete('/');
+    await caches.delete('temp-clear-cache');
+    
+    console.log('SW: Force clean completed');
+  } catch (error) {
+    console.error('SW: Force clean failed:', error);
+  }
 };

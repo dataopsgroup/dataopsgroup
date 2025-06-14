@@ -1,4 +1,3 @@
-
 /**
  * MAIN APP COMPONENT - KNOWLEDGE ARTICLE REMINDERS:
  * 
@@ -18,6 +17,7 @@ import router from './routes';
 import { Toaster } from '@/components/ui/toaster';
 import { initializeAllOptimizations } from '@/lib/performance-optimizations';
 import { logBuildValidation } from '@/utils/build-time-validation';
+import { initializeDebugTools } from '@/lib/debug';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +36,11 @@ function App() {
     // Run build validation to check for potential Ahrefs issues
     if (process.env.NODE_ENV === 'development') {
       logBuildValidation();
+    }
+    
+    // Initialize debug tools in development
+    if (process.env.NODE_ENV === 'development') {
+      initializeDebugTools();
     }
   }, []);
 
