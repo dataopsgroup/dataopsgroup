@@ -1,15 +1,35 @@
+
 /**
  * Universal client-side caching optimization module
- * Enhanced with better Service Worker update handling
+ * Enhanced with better Service Worker update handling and navigation debugging
  */
 
 /**
- * Sets up client-side caching using service workers and versioning.
- * Now includes better handling for Service Worker updates to prevent navigation issues.
+ * Sets up client-side caching using service workers with enhanced navigation handling.
  */
 export const setupClientCaching = () => {
   // Universal app version for cache busting
-  const appVersion = '1.0.9';
+  const appVersion = '1.0.10'; // Incremented for navigation fixes
+  
+  // Add navigation debugging
+  if (typeof window !== 'undefined') {
+    const originalPushState = window.history.pushState;
+    const originalReplaceState = window.history.replaceState;
+    
+    window.history.pushState = function(...args) {
+      console.log('Navigation: pushState to', args[2]);
+      return originalPushState.apply(this, args);
+    };
+    
+    window.history.replaceState = function(...args) {
+      console.log('Navigation: replaceState to', args[2]);
+      return originalReplaceState.apply(this, args);
+    };
+    
+    window.addEventListener('popstate', (event) => {
+      console.log('Navigation: popstate to', window.location.pathname);
+    });
+  }
   
   // Universal service worker registration with enhanced update handling
   if ('serviceWorker' in navigator) {
@@ -18,10 +38,11 @@ export const setupClientCaching = () => {
         .then(registration => {
           console.log('ServiceWorker registered successfully');
           
-          // Universal update check interval
+          // Enhanced update check interval (more frequent during development)
+          const updateInterval = process.env.NODE_ENV === 'development' ? 30000 : 3600000; // 30s dev, 1h prod
           setInterval(() => {
             registration.update();
-          }, 60 * 60 * 1000);
+          }, updateInterval);
           
           // Enhanced waiting service worker handling
           if (registration.waiting) {
@@ -51,7 +72,21 @@ export const setupClientCaching = () => {
       if (refreshing) return;
       refreshing = true;
       console.log('ServiceWorker controller changed, reloading page');
-      window.location.reload();
+      
+      // Clear any cached navigation state before reload
+      if ('caches' in window) {
+        caches.keys().then(cacheNames => {
+          cacheNames.forEach(cacheName => {
+            if (cacheName.includes('app-shell') || cacheName.includes('performance')) {
+              caches.delete(cacheName);
+            }
+          });
+        }).finally(() => {
+          window.location.reload();
+        });
+      } else {
+        window.location.reload();
+      }
     });
     
     // Enhanced message listening with better update handling
@@ -62,6 +97,14 @@ export const setupClientCaching = () => {
       
       if (event.data && event.data.type === 'SW_UPDATED') {
         console.log('ServiceWorker updated to version:', event.data.version);
+        
+        // Clear navigation cache and force reload
+        if (navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage({ 
+            type: 'CLEAR_CACHE' 
+          });
+        }
+        
         // Force a page reload to get the fresh content
         setTimeout(() => {
           window.location.reload();
@@ -75,10 +118,15 @@ export const setupClientCaching = () => {
 };
 
 /**
- * Enhanced handler for service worker updates
+ * Enhanced handler for service worker updates with navigation cache clearing
  */
 const handleServiceWorkerUpdate = (registration: ServiceWorkerRegistration) => {
   console.log('New ServiceWorker version available');
+  
+  // Clear navigation cache before updating
+  if (registration.active) {
+    registration.active.postMessage({ type: 'CLEAR_CACHE' });
+  }
   
   // Skip waiting immediately for faster updates
   if (registration.waiting) {
@@ -92,12 +140,21 @@ const handleServiceWorkerUpdate = (registration: ServiceWorkerRegistration) => {
 };
 
 /**
- * Clears all caches via the service worker.
+ * Clears all caches via the service worker with enhanced navigation clearing.
  */
 export const clearCaches = () => {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then((registration) => {
       registration.active?.postMessage({ type: 'CLEAR_CACHE' });
+    });
+  }
+  
+  // Also clear browser caches directly
+  if ('caches' in window) {
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => caches.delete(cacheName))
+      );
     });
   }
 };

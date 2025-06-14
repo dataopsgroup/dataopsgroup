@@ -1,19 +1,19 @@
 
-// Enhanced Service Worker with Dynamic Cache Versioning
+// Enhanced Service Worker with Better Navigation Handling
 // This fixes the "Page Not Found" issue after deployments
 
 importScripts('./sw/config.js');
 importScripts('./sw/bot-detection.js');
 importScripts('./sw/cache-strategies.js');
 importScripts('./sw/cache-utils.js');
+importScripts('./sw/navigation-handler.js');
 importScripts('./sw/event-handlers.js');
 
 // Enhanced performance optimizations with dynamic versioning
 const PERFORMANCE_CACHE = `dataops-performance-${CACHE_VERSION}`;
 const CRITICAL_RESOURCES = [
   '/',
-  '/manifest.json',
-  '/offline.html'
+  '/manifest.json'
 ];
 
 // Install event - cache critical resources and clean up old caches
@@ -42,6 +42,8 @@ self.addEventListener('activate', (event) => {
     Promise.all([
       // Clean up any remaining old caches
       cleanupOldCaches(),
+      // Clear navigation cache to prevent stale routes
+      clearNavigationCache(),
       // Take control of all clients immediately
       self.clients.claim()
     ]).then(() => {
@@ -59,7 +61,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Enhanced fetch strategy with better cache management
+// Enhanced fetch strategy with better navigation handling
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -78,38 +80,13 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Handle navigation requests (HTML pages) with network-first strategy
+  // Handle navigation requests with enhanced handler
   if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request)
-        .then(response => {
-          // Cache successful navigation responses
-          if (response.status === 200) {
-            const responseClone = response.clone();
-            caches.open(PERFORMANCE_CACHE).then(cache => {
-              cache.put(request, responseClone);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          // Fallback to cached version or offline page
-          return caches.match(request)
-            .then(cachedResponse => {
-              if (cachedResponse) {
-                return cachedResponse;
-              }
-              // Return offline page for failed navigation
-              return caches.match('/offline.html') || 
-                     caches.match('/index.html') ||
-                     new Response('Page not found', { status: 404 });
-            });
-        })
-    );
+    event.respondWith(handleNavigationRequest(request));
     return;
   }
   
-  // Enhanced caching strategy based on resource type
+  // Handle other requests with existing strategies
   if (url.pathname.endsWith('.woff2') || url.pathname.endsWith('.woff')) {
     // Cache fonts for 1 year
     event.respondWith(
@@ -154,13 +131,16 @@ self.addEventListener('message', (event) => {
   
   if (event.data && event.data.type === 'CLEAR_CACHE') {
     event.waitUntil(
-      caches.keys().then((cacheNames) => {
-        return Promise.all(
-          cacheNames.map((cacheName) => {
-            return caches.delete(cacheName);
-          })
-        );
-      })
+      Promise.all([
+        caches.keys().then((cacheNames) => {
+          return Promise.all(
+            cacheNames.map((cacheName) => {
+              return caches.delete(cacheName);
+            })
+          );
+        }),
+        clearNavigationCache()
+      ])
     );
   }
   
