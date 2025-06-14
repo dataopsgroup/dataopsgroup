@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AlternatingFeature from './analytics-bi/AlternatingFeature';
@@ -6,7 +5,7 @@ import AutoOptimizedImage from '@/components/ui/auto-optimized-image';
 
 const services = [
     {
-        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&q=80" alt="Dashboard with charts on a laptop screen" className="w-full h-auto" width={500} height={350} priority />,
+        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Dashboard with various charts and graphs for portfolio performance" className="w-full h-auto" width={500} height={350} priority />,
         title: "Portfolio Performance Dashboards",
         description: "Create executive-level dashboards that provide real-time visibility into portfolio company performance and key investment metrics.",
         listItems: [
