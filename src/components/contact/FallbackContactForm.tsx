@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { toast } from 'sonner';
 
 interface FallbackContactFormProps {
   onSubmit: () => void;
@@ -24,32 +25,60 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
     e.preventDefault();
     
     if (!formData.firstName || !formData.email || !formData.message) {
-      alert('Please fill in all required fields');
+      toast.error('Please fill in all required fields');
       return;
     }
 
     setIsSubmitting(true);
     
     try {
-      // In a real implementation, you'd send this to your backend
-      console.log('Fallback form submitted:', formData);
+      // Create email body
+      const emailBody = `
+New contact form submission from DataOps Group website:
+
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Company: ${formData.company || 'Not provided'}
+Message: ${formData.message}
+
+Submitted from: ${window.location.href}
+Timestamp: ${new Date().toISOString()}
+      `.trim();
+
+      // Create mailto link
+      const subject = encodeURIComponent('New Contact Form Submission - DataOps Group');
+      const body = encodeURIComponent(emailBody);
+      const mailtoLink = `mailto:geoff@dataopsgroup.com?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
       
       // Track the submission
       if (window.gtag) {
         window.gtag('event', 'form_submission', {
           'event_category': 'Contact',
-          'event_label': 'Contact Form - Fallback',
+          'event_label': 'Contact Form - Email',
           'value': 1
         });
       }
       
-      // Simulate form submission delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      toast.success("Thank you! Your message has been prepared in your email client. Please send it to complete your submission.", {
+        duration: 8000,
+      });
+      
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        company: '',
+        message: ''
+      });
       
       onSubmit();
     } catch (error) {
-      console.error('Error submitting fallback form:', error);
-      alert('There was an error submitting the form. Please try calling us directly.');
+      console.error('Error processing form submission:', error);
+      toast.error('There was an error processing your request. Please try calling us directly at +1 479 844 2052.');
     } finally {
       setIsSubmitting(false);
     }
@@ -154,7 +183,7 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
         {isSubmitting ? (
           <>
             <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-            Submitting...
+            Preparing Email...
           </>
         ) : (
           'Send Message'
