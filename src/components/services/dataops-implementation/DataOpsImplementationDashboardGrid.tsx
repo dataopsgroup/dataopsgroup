@@ -36,8 +36,8 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "Team Training & Adoption",
       description: "Comprehensive training programs that ensure successful adoption and long-term success.",
-      image: "/placeholder.svg",
-      alt: "Team training session"
+      image: "/lovable-uploads/e15938f2-ff9b-4355-860d-c5f4cb8fe3d4.png",
+      alt: "Team training session with people around a whiteboard"
     },
     {
       title: "ROI Measurement",
