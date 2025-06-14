@@ -64,7 +64,7 @@ const services = [
         )
     },
     {
-        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" alt="HubSpot logo on a laptop screen with analytics background" className="w-full h-auto" width={500} height={350} />,
+        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80" alt="Computer screen with code, representing HubSpot analytics integration" className="w-full h-auto" width={500} height={350} />,
         title: "HubSpot Analytics Integration",
         description: "Maximize the value of your portfolio companies' HubSpot data with specialized analytics that connect marketing activities to business outcomes.",
         listItems: [
