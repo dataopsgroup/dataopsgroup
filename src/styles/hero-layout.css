@@ -1,0 +1,170 @@
+
+/* Hero Section Layout - Positioning, Z-Index, and Structure */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #4338ca; /* Mobile: dataops-600 blue background */
+  padding-top: 100px; /* Fix navigation overlap */
+  padding-bottom: 60px; /* Add bottom padding to prevent overlap */
+  margin-bottom: 0; /* Ensure hero doesn't bleed into next sections */
+}
+
+/* Hero background image container - hidden on mobile */
+.hero-bg {
+  display: none;
+}
+
+/* Desktop: Show background image with proper z-index and positioning */
+@media (min-width: 768px) {
+  .hero-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding-top: 120px; /* Account for larger navbar on desktop */
+    padding-bottom: 80px; /* More padding on desktop */
+    max-height: 100vh; /* Explicit height constraint to prevent overflow */
+  }
+
+  .hero-bg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 60px; /* Constrain bottom to prevent bleeding */
+    z-index: 0; /* TRUE BACKGROUND - below everything */
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    clip-path: inset(0 0 0 0); /* Clip the image to the hero bounds */
+  }
+
+  .hero-bg img,
+  .hero-bg .optimized-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: 75% center !important; /* Position consultant to the RIGHT of the gray box */
+    transform: scale(1.1) !important; /* Scale appropriately to keep face visible */
+    transform-origin: 75% center !important;
+    max-width: none !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    max-height: calc(100vh - 140px) !important; /* Ensure image doesn't overflow hero container */
+  }
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1; /* Above background image but below gray box */
+  height: calc(100vh - 160px); /* Account for top and bottom padding */
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  max-width: 100%;
+  overflow: visible;
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    height: calc(100vh - 200px); /* Account for desktop padding */
+    max-height: calc(100vh - 200px);
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: minmax(400px, 1fr) 3fr;
+    align-items: center;
+  }
+}
+
+.hero-content {
+  grid-column: 1;
+  max-width: 600px;
+  position: relative;
+  z-index: 2; /* Above background image and container */
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero-content {
+    max-width: 350px;
+  }
+}
+
+/* Mobile: Transparent content box with white text */
+.hero-content-box {
+  background: transparent;
+  padding: 2rem;
+  border-radius: 0;
+  color: white;
+  position: relative;
+  z-index: 3; /* ALWAYS on top of image */
+}
+
+/* Desktop: Gray overlay content box - ALWAYS on top */
+@media (min-width: 768px) {
+  .hero-content-box {
+    background: rgba(107, 114, 128, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 3; /* ALWAYS on top of background image */
+  }
+}
+
+/* Hero button */
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e293b;
+  color: white;
+  padding: 24px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-height: 56px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 5; /* Ensure button stays above background */
+}
+
+.hero-button:hover {
+  background: #334155;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 0.25rem solid rgba(79, 70, 229, 0.3);
+  border-radius: 50%;
+  border-top-color: rgba(79, 70, 229, 1);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -1,0 +1,26 @@
+
+/* Hero Section Typography - Text Styling, Fonts, and Sizes */
+
+/* Typography with device-specific sizing - FIX "100 Days" size issue */
+.hero-heading {
+  font-weight: 700;
+  color: white;
+  margin: 0 0 24px 0;
+  line-height: 1.25;
+  font-size: 2.25rem;
+}
+
+/* Ensure highlighted text maintains same size as heading */
+.hero-heading span {
+  font-size: inherit !important; /* Force same size as parent H1 */
+  font-weight: inherit !important;
+  line-height: inherit !important;
+}
+
+.hero-text {
+  color: white;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin: 0 0 16px 0;
+  max-width: 512px;
+}

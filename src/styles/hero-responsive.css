@@ -1,0 +1,42 @@
+
+/* Hero Section Responsive Design - Breakpoints and Mobile Optimizations */
+
+/* Typography responsive sizing */
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: 1.875rem;
+    line-height: 1.33;
+  }
+
+  .hero-text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-heading {
+    font-size: 3rem;
+    line-height: 1.16;
+  }
+}
+
+/* Safari-specific fixes for image rendering and containment */
+@media (min-width: 768px) {
+  @supports (-webkit-appearance: none) {
+    .hero-bg {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-mask-image: -webkit-radial-gradient(white, black); /* Additional Safari containment */
+      z-index: 0; /* Ensure Safari respects z-index */
+    }
+    
+    .hero-bg img,
+    .hero-bg .optimized-image img {
+      -webkit-transform: scale(1.1) translate3d(0, 0, 0) !important;
+      transform: scale(1.1) translate3d(0, 0, 0) !important;
+      -webkit-clip-path: inset(0 0 0 0); /* Prevent Safari overflow */
+      clip-path: inset(0 0 0 0);
+      object-position: 75% center !important; /* Force Safari to respect positioning */
+    }
+  }
+}
