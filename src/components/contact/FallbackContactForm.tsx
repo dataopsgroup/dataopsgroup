@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Loader2, Mail, User, MessageSquare, Building } from 'lucide-react';
+import { Loader2, Mail, User, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,7 +16,6 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
     firstName: '',
     lastName: '',
     email: '',
-    company: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,7 +37,6 @@ New contact form submission from DataOps Group website:
 
 Name: ${formData.firstName} ${formData.lastName}
 Email: ${formData.email}
-Company: ${formData.company || 'Not provided'}
 Message: ${formData.message}
 
 Submitted from: ${window.location.href}
@@ -71,7 +69,6 @@ Timestamp: ${new Date().toISOString()}
         firstName: '',
         lastName: '',
         email: '',
-        company: '',
         message: ''
       });
       
@@ -86,46 +83,44 @@ Timestamp: ${new Date().toISOString()}
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
-            First Name *
-          </Label>
-          <div className="relative mt-1">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              id="firstName"
-              type="text"
-              required
-              value={formData.firstName}
-              onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
-              className="pl-10"
-              placeholder="First name"
-            />
-          </div>
+      <div>
+        <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
+          First Name *
+        </Label>
+        <div className="relative mt-1">
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Input
+            id="firstName"
+            type="text"
+            required
+            value={formData.firstName}
+            onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
+            className="pl-10"
+            placeholder="First name"
+          />
         </div>
-        
-        <div>
-          <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
-            Last Name
-          </Label>
-          <div className="relative mt-1">
-            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              id="lastName"
-              type="text"
-              value={formData.lastName}
-              onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
-              className="pl-10"
-              placeholder="Last name"
-            />
-          </div>
+      </div>
+      
+      <div>
+        <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
+          Last Name
+        </Label>
+        <div className="relative mt-1">
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Input
+            id="lastName"
+            type="text"
+            value={formData.lastName}
+            onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
+            className="pl-10"
+            placeholder="Last name"
+          />
         </div>
       </div>
       
       <div>
         <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-          Email Address *
+          Work Email *
         </Label>
         <div className="relative mt-1">
           <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -142,25 +137,8 @@ Timestamp: ${new Date().toISOString()}
       </div>
       
       <div>
-        <Label htmlFor="company" className="text-sm font-medium text-gray-700">
-          Company
-        </Label>
-        <div className="relative mt-1">
-          <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <Input
-            id="company"
-            type="text"
-            value={formData.company}
-            onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
-            className="pl-10"
-            placeholder="Your company name"
-          />
-        </div>
-      </div>
-      
-      <div>
         <Label htmlFor="message" className="text-sm font-medium text-gray-700">
-          Message *
+          How Can We Help? *
         </Label>
         <div className="relative mt-1">
           <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
