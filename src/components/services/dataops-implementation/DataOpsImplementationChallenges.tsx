@@ -1,10 +1,9 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DataOpsImplementationChallenges = () => {
   return (
-    <section className="mb-16">
+    <section className="mb-16 mt-16 px-6">
       <div className="bg-white rounded-lg shadow-lg p-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-8 font-rubik">Common DataOps Implementation Challenges We Solve</h2>
         
