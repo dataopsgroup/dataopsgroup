@@ -45,7 +45,7 @@ const services = [
         )
     },
     {
-        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80" alt="Computer screen with lines of code for risk analytics" className="w-full h-auto" width={500} height={350} />,
+        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&q=80" alt="Team analyzing data on multiple screens for due diligence and risk assessment" className="w-full h-auto" width={500} height={350} />,
         title: "Due Diligence & Risk Analytics",
         description: "Enhance your investment process with comprehensive data analysis that supports better investment decisions and risk management.",
         listItems: [
