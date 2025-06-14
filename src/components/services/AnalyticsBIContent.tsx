@@ -25,7 +25,7 @@ const services = [
         )
     },
     {
-        visual: <AutoOptimizedImage src="/lovable-uploads/57d2c96a-acf1-466d-90c3-ca76df1da603.png" alt="Overhead view of a team working collaboratively with laptops on a wooden table" className="w-full h-auto" width={500} height={350} />,
+        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Business analytics dashboard showing investment modeling and data visualization" className="w-full h-auto" width={500} height={350} />,
         title: "Investment Intelligence & Modeling",
         description: "Leverage sophisticated analytical techniques to uncover investment opportunities, predict portfolio outcomes, and optimize value creation strategies.",
         listItems: [
