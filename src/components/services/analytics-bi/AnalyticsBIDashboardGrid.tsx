@@ -3,7 +3,7 @@ import React from 'react';
 import AutoOptimizedImage from '@/components/ui/auto-optimized-image';
 
 const benefits = [
-  { imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80', imageAlt: "Close-up of a circuit board representing interconnected and standardized data systems", title: "Standardize Reporting", description: "Achieve consistent, reliable reporting across all portfolio companies." },
+  { imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80', imageAlt: "Multiple charts and graphs on a desk, illustrating data analysis and reporting.", title: "Standardize Reporting", description: "Achieve consistent, reliable reporting across all portfolio companies." },
   { imageUrl: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=800&q=80', imageAlt: "Confident professional man smiling, representing confident decision-making", title: "Confident Decision-Making", description: "Make faster, data-backed investment decisions with actionable insights." },
   { imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80', imageAlt: "Business growth chart representing new opportunities", title: "Identify Opportunities", description: "Uncover and capitalize on new business opportunities across your holdings." },
   { imageUrl: 'https://images.unsplash.com/photo-1599658880436-c61792e70672?w=800&q=80', imageAlt: "A marketing dashboard with various charts and numbers indicating ROI", title: "Measure Marketing ROI", description: "Gain investor-grade accuracy in measuring marketing performance and ROI." },
