@@ -1,3 +1,4 @@
+
 import React, { startTransition } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,7 +9,6 @@ const Hero = () => {
   const {
     isMobile
   } = useIsMobile();
-  const navigate = useNavigate();
 
   // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
@@ -26,16 +26,6 @@ const Hero = () => {
         id: 'hero_contact_cta_click'
       }]);
     }
-  };
-
-  // Enhanced navigation handler with startTransition
-  const handleContactClick = () => {
-    console.log('🚀 Navigating to contact page...');
-    trackContactCTAClick();
-    startTransition(() => {
-      console.log('📍 About to navigate to /contact');
-      navigate('/contact');
-    });
   };
 
   // Development logging for font and image debugging
@@ -101,14 +91,14 @@ const Hero = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4 pt-3">
                   <div className="flex flex-col">
-                    <button 
-                      onClick={handleContactClick} 
+                    <Link 
+                      to="/contact"
+                      onClick={trackContactCTAClick}
                       className="hero-button text-3xl"
-                      type="button"
                     >
                       Get In Touch
                       <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
-                    </button>
+                    </Link>
                     <div className="mt-2 text-sm max-w-sm text-white/90 leading-snug">
                       <p className="font-medium mb-0.5 text-white">Confidential | No Risk</p>
                       <p className="leading-tight">We'll evaluate your operations against PE portfolio standards and show you exactly what's holding back your growth metrics. Completely free. No obligation, just honest feedback about your investor readiness.</p>
