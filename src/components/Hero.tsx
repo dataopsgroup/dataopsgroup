@@ -3,6 +3,7 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const Hero = () => {
   const {
     isMobile
@@ -27,9 +28,10 @@ const Hero = () => {
   };
 
   // Enhanced navigation handler with startTransition
-  const handleNavigation = (path: string) => {
+  const handleContactClick = () => {
+    trackContactCTAClick();
     startTransition(() => {
-      navigate(path);
+      navigate('/contact');
     });
   };
 
@@ -96,10 +98,7 @@ const Hero = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4 pt-3">
                   <div className="flex flex-col">
-                    <button onClick={() => {
-                    trackContactCTAClick();
-                    handleNavigation('/contact');
-                  }} className="hero-button text-3xl">
+                    <button onClick={handleContactClick} className="hero-button text-3xl">
                       Get In Touch
                       <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                     </button>
@@ -155,4 +154,5 @@ const Hero = () => {
       </div>
     </>;
 };
+
 export default Hero;
