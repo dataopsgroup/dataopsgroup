@@ -13,13 +13,13 @@ const DataOpsImplementation = () => {
   return (
     <SemanticLayout>
       <MetaHead
-        title="DataOps Implementation for HubSpot | DataOps Group"
-        description="Custom HubSpot integration and implementation services to connect systems, optimize data flows, and create seamless operations."
+        title="DataOps Implementation | DataOps Group"
+        description="Custom HubSpot integration and implementation services to connect systems and optimize data flows."
         keywords="HubSpot integration, DataOps implementation, custom integrations, data workflows, system connections, business efficiency, HubSpot consulting"
         canonicalPath="/services/dataops-implementation"
         ogType="website"
-        ogTitle="DataOps Implementation for HubSpot | DataOps Group"
-        ogDescription="Custom HubSpot integration and implementation services to connect systems, optimize data flows, and create seamless operations."
+        ogTitle="DataOps Implementation | DataOps Group"
+        ogDescription="Custom HubSpot integration and implementation services to connect systems and optimize data flows."
       />
       
       <DataOpsImplementationSchema />

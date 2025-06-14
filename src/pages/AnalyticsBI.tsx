@@ -13,13 +13,13 @@ const AnalyticsBI = () => {
   return (
     <SemanticLayout>
       <MetaHead
-        title="HubSpot Analytics & Business Intelligence | DataOps Group"
-        description="Transform HubSpot data into actionable insights with advanced analytics and customized dashboards for data-driven decisions."
+        title="Analytics & BI Services | DataOps Group"
+        description="Transform data into actionable insights with advanced analytics and business intelligence solutions."
         keywords="HubSpot analytics, business intelligence, data visualization, portfolio tracking, predictive modeling, advanced analytics, performance tracking"
         canonicalPath="/services/analytics-bi"
         ogType="website"
-        ogTitle="HubSpot Analytics & Business Intelligence | DataOps Group"
-        ogDescription="Transform HubSpot data into actionable insights with advanced analytics and customized dashboards for data-driven decisions."
+        ogTitle="Analytics & BI Services | DataOps Group"
+        ogDescription="Transform data into actionable insights with advanced analytics and business intelligence solutions."
       />
       
       <AnalyticsBISchema />

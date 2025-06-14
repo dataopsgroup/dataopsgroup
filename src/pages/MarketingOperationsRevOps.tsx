@@ -14,12 +14,12 @@ const MarketingOperationsRevOps = () => {
     <SemanticLayout>
       <MetaHead
         title="Marketing Operations & RevOps | DataOps Group"
-        description="Optimize portfolio revenue operations with systematic marketing processes, advanced analytics, and automation."
+        description="Optimize portfolio revenue operations with systematic marketing processes and advanced analytics."
         keywords="marketing operations, revenue operations, portfolio growth, systematic marketing processes, advanced analytics, portfolio consulting"
         canonicalPath="/services/marketing-operations-revops"
         ogType="website"
         ogTitle="Marketing Operations & RevOps | DataOps Group"
-        ogDescription="Optimize portfolio revenue operations with systematic marketing processes, advanced analytics, and automation."
+        ogDescription="Optimize portfolio revenue operations with systematic marketing processes and advanced analytics."
       />
       
       <MarketingOperationsRevOpsSchema />

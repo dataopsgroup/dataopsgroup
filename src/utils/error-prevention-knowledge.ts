@@ -158,6 +158,66 @@ export const buildErrorLearnings = {
     ],
     criticalNote: "This issue was persistent because it required fixing BOTH the pages setting wrong canonical paths AND the MetaHead component logic. Fixing only one side would not resolve the Ahrefs warnings completely."
   },
+
+  titleLengthOptimization: {
+    title: "Page Title Length Optimization - Ahrefs SEO Warning",
+    date: "2025-06-14",
+    issue: "Ahrefs reports page titles that are too long (exceeding 50-60 character recommendation)",
+    impact: "Long titles get truncated in search results, reducing click-through rates and SEO effectiveness",
+    rootCause: "Page titles exceeding Google's recommended 50-60 character limit for optimal display in search results",
+    symptoms: [
+      "Ahrefs warnings about 'Title too long' for multiple pages",
+      "Titles getting truncated with '...' in Google search results",
+      "Reduced visibility of important keywords in search snippets"
+    ],
+    solution: [
+      "1. Audit all page titles for length using character count tools",
+      "2. Prioritize most important keywords at the beginning of titles",
+      "3. Remove redundant words while maintaining meaning and SEO value",
+      "4. Keep brand name but consider shortening format (e.g., '| Brand' vs 'Brand Name')",
+      "5. Test titles to ensure they convey the same value proposition in fewer characters"
+    ],
+    optimizationExamples: [
+      "BEFORE: 'HubSpot Analytics & Business Intelligence | DataOps Group' (65 chars)",
+      "AFTER: 'Analytics & BI Services | DataOps Group' (42 chars)",
+      "BEFORE: 'DataOps Implementation for HubSpot | DataOps Group' (55 chars)", 
+      "AFTER: 'DataOps Implementation | DataOps Group' (38 chars)"
+    ],
+    preventionRules: [
+      "ALWAYS check title length before finalizing page titles",
+      "TARGET 50-60 characters maximum for all page titles",
+      "PRIORITIZE primary keywords at the beginning of titles",
+      "USE character counting tools during title creation",
+      "MAINTAIN brand consistency while optimizing length",
+      "TEST titles in search result simulators when possible"
+    ],
+    codePattern: `
+      // GOOD: Concise, keyword-focused title under 60 characters
+      <MetaHead
+        title="Analytics & BI Services | DataOps Group"  // 42 characters
+        description="Transform data into actionable insights..."
+      />
+      
+      // BAD: Long, verbose title that will be truncated
+      <MetaHead
+        title="HubSpot Analytics & Business Intelligence Solutions for Portfolio Companies | DataOps Group"  // 95 characters
+        description="..."
+      />
+    `,
+    relatedFiles: [
+      "src/pages/AnalyticsBI.tsx - Analytics & BI service page",
+      "src/pages/DataOpsImplementation.tsx - DataOps implementation page",
+      "src/pages/MarketingOperationsRevOps.tsx - Marketing operations page",
+      "src/pages/TeamTraining.tsx - Team training page",
+      "src/routes/services/AnalyticsBI.tsx - Alternative analytics route"
+    ],
+    seoImpact: [
+      "Improved click-through rates from search results",
+      "Better keyword visibility in search snippets", 
+      "Enhanced user experience with clear, concise titles",
+      "Compliance with Google's title display guidelines"
+    ]
+  },
   
   generalPatterns: {
     title: "General Build Error Prevention Patterns",
@@ -171,7 +231,9 @@ export const buildErrorLearnings = {
       "Add development-time validation for SEO-critical functionality",
       "Update component interfaces to match intended usage patterns",
       "Use union types and type guards for flexible component APIs",
-      "Provide backward compatibility when updating component interfaces"
+      "Provide backward compatibility when updating component interfaces",
+      "Optimize page titles to 50-60 characters for better search result display",
+      "Validate meta descriptions stay within 150-160 character limits"
     ]
   }
 };

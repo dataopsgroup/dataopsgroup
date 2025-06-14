@@ -13,11 +13,11 @@ const AnalyticsBI = () => {
   return (
     <SemanticLayout>
       <MetaHead
-        title="Analytics & BI Services - Data-Driven Business Intelligence Solutions | DataOps Group"
-        description="Transform your data into actionable insights with our analytics and business intelligence services. Custom dashboards, reporting, and data visualization solutions."
+        title="Analytics & BI Services | DataOps Group"
+        description="Transform your data into actionable insights with our analytics and business intelligence services."
         keywords="analytics services, business intelligence, data visualization, custom dashboards, reporting solutions, data analytics consulting"
         canonicalPath="/services/analytics-bi"
-        ogTitle="Analytics & BI Services - Business Intelligence Solutions"
+        ogTitle="Analytics & BI Services | DataOps Group"
         ogDescription="Expert analytics and BI services to transform your data into actionable insights. Custom dashboards, reporting, and data visualization."
       />
 

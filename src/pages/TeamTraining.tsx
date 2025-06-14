@@ -29,12 +29,12 @@ const TeamTraining = () => {
     <SemanticLayout>
       <MetaHead
         title="HubSpot Training & Implementation | DataOps Group"
-        description="Expert HubSpot training to maximize platform capabilities and drive measurable business results for your team."
+        description="Expert HubSpot training to maximize platform capabilities and drive measurable business results."
         keywords="HubSpot training, team training, HubSpot implementation, platform adoption, user training, HubSpot certification, sales training, marketing training"
         canonicalPath="/services/team-training"
         ogType="website"
         ogTitle="HubSpot Training & Implementation | DataOps Group"
-        ogDescription="Expert HubSpot training to maximize platform capabilities and drive measurable business results for your team."
+        ogDescription="Expert HubSpot training to maximize platform capabilities and drive measurable business results."
       />
       
       <ServiceSchemaMarkup 
