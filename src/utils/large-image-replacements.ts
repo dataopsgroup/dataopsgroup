@@ -36,6 +36,13 @@ const LARGE_IMAGE_MAPPINGS: LargeImageMapping[] = [
     context: 'content',
     maxSizeKB: 150,
     description: 'Content image requiring SEO optimization'
+  },
+  {
+    original: '/lovable-uploads/72e7f6ab-b186-48c5-990f-fa0d94659fc6.png',
+    optimized: '/lovable-uploads/72e7f6ab-b186-48c5-990f-fa0d94659fc6-optimized.webp',
+    context: 'content',
+    maxSizeKB: 150,
+    description: 'Content image requiring SEO optimization'
   }
 ];
 
