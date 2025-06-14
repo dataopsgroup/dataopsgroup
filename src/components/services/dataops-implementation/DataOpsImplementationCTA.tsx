@@ -17,7 +17,7 @@ const DataOpsImplementationCTA = () => {
           <Button asChild size="lg" className="bg-white text-dataops-600 hover:bg-gray-100 font-semibold px-8 py-3">
             <Link to="/book">Schedule a Consultation</Link>
           </Button>
-          <Button variant="outline" asChild size="lg" className="border-white text-white hover:bg-white hover:text-dataops-600 font-semibold px-8 py-3">
+          <Button variant="outline" asChild size="lg" className="bg-brand-saffron text-white hover:bg-brand-saffron/90 border-brand-saffron font-semibold px-8 py-3">
             <Link to="/data-operation-assessment">Free DataOps Assessment</Link>
           </Button>
         </div>
