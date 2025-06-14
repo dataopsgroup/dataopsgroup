@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -48,6 +49,12 @@ const DataOpsImplementation = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <DataOpsImplementationPageHeader />
+          </div>
+        </div>
+        
+        {/* Standardized container for overview section */}
+        <div className="mx-auto px-0">
+          <div className="max-w-6xl mx-auto">
             <DataOpsImplementationOverview />
           </div>
         </div>
