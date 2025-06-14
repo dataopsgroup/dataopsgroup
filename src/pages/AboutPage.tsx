@@ -43,11 +43,11 @@ const AboutPage = () => {
           <div className="container mx-auto">
             <div className="max-w-4xl">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-100 text-dataops-800 text-sm font-medium mb-2">
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-950 text-brand-saffron text-sm font-medium mb-2">
                   About DataOps Group
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-                  Meet the Team Behind Your <span className="text-dataops-600">Data Success</span>
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight text-dataops-900">
+                  Meet the Team Behind Your Data Success
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 max-w-3xl">
                   We're specialized HubSpot implementation experts who rescue failed projects and transform chaotic systems into profit-driving platforms that meet private equity standards.
