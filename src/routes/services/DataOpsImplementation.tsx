@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -57,7 +56,7 @@ const DataOpsImplementation = () => {
         <DataOpsImplementationDashboardGrid />
         
         <div className="mx-auto px-0">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <DataOpsImplementationApproach />
             <DataOpsImplementationChallenges />
             <DataOpsImplementationCTA />

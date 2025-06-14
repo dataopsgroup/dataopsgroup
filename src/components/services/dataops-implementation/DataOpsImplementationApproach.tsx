@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DataOpsImplementationApproach = () => {
   return (
-    <section className="mt-16">
+    <section className="mt-16 px-6">
       <div className="bg-gradient-to-br from-white via-gray-50 to-blue-50 border border-gray-200 rounded-2xl p-10 max-w-full mx-auto shadow-xl backdrop-blur-sm">
         <h2 className="text-3xl font-bold text-gray-900 mb-8 font-rubik">Our Proven DataOps Implementation Methodology</h2>
         
