@@ -33,24 +33,14 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <ContactFormField
-        id="firstName"
-        label="First Name"
-        type="text"
-        value={formData.firstName}
-        onChange={(value) => updateField('firstName', value)}
-        placeholder="First name"
+        id="message"
+        label="How Can We Help?"
+        type="textarea"
+        value={formData.message}
+        onChange={(value) => updateField('message', value)}
+        placeholder="Tell us about your project and how we can help..."
         required
-        icon={User}
-      />
-      
-      <ContactFormField
-        id="lastName"
-        label="Last Name"
-        type="text"
-        value={formData.lastName}
-        onChange={(value) => updateField('lastName', value)}
-        placeholder="Last name"
-        icon={User}
+        icon={MessageSquare}
       />
       
       <ContactFormField
@@ -64,16 +54,28 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
         icon={Mail}
       />
       
-      <ContactFormField
-        id="message"
-        label="How Can We Help?"
-        type="textarea"
-        value={formData.message}
-        onChange={(value) => updateField('message', value)}
-        placeholder="Tell us about your project and how we can help..."
-        required
-        icon={MessageSquare}
-      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ContactFormField
+          id="firstName"
+          label="First Name"
+          type="text"
+          value={formData.firstName}
+          onChange={(value) => updateField('firstName', value)}
+          placeholder="First name"
+          required
+          icon={User}
+        />
+        
+        <ContactFormField
+          id="lastName"
+          label="Last Name"
+          type="text"
+          value={formData.lastName}
+          onChange={(value) => updateField('lastName', value)}
+          placeholder="Last name"
+          icon={User}
+        />
+      </div>
       
       <Button 
         type="submit" 
