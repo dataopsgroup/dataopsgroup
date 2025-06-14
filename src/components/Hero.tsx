@@ -30,6 +30,7 @@ const Hero = () => {
   React.useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       console.log('Hero component mounted - Mobile:', isMobile);
+      console.log('Should show background image:', !isMobile);
       
       // Check font loading after a delay
       setTimeout(() => {
@@ -42,10 +43,19 @@ const Hero = () => {
         // Check image scaling on desktop only
         if (!isMobile) {
           const heroImg = document.querySelector('.hero-bg img');
+          const heroBg = document.querySelector('.hero-bg');
+          console.log('Hero background element:', heroBg);
+          console.log('Hero image element:', heroImg);
           if (heroImg) {
             const computedStyle = window.getComputedStyle(heroImg);
             console.log('Hero image transform:', computedStyle.transform);
             console.log('Hero image object-position:', computedStyle.objectPosition);
+            console.log('Hero image z-index:', computedStyle.zIndex);
+          }
+          if (heroBg) {
+            const bgStyle = window.getComputedStyle(heroBg);
+            console.log('Hero bg z-index:', bgStyle.zIndex);
+            console.log('Hero bg display:', bgStyle.display);
           }
         }
       }, 1000);

@@ -31,7 +31,7 @@
     left: 0;
     right: 0;
     bottom: 60px; /* Constrain bottom to prevent bleeding */
-    z-index: 0; /* TRUE BACKGROUND - below everything */
+    z-index: 1; /* ABOVE background but BELOW content */
     overflow: hidden;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -58,7 +58,7 @@
 
 .hero-container {
   position: relative;
-  z-index: 1; /* Above background image but below gray box */
+  z-index: 2; /* Above background image */
   height: calc(100vh - 160px); /* Account for top and bottom padding */
   display: flex;
   align-items: center;
@@ -94,7 +94,7 @@
   grid-column: 1;
   max-width: 600px;
   position: relative;
-  z-index: 2; /* Above background image and container */
+  z-index: 3; /* Above background image and container */
 }
 
 @media (min-width: 1024px) {
@@ -116,7 +116,7 @@
   border-radius: 0;
   color: white;
   position: relative;
-  z-index: 3; /* ALWAYS on top of image */
+  z-index: 10; /* ALWAYS on top - highest z-index */
 }
 
 /* Desktop: Gray overlay content box - ALWAYS on top */
@@ -126,7 +126,7 @@
     backdrop-filter: blur(10px);
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 3; /* ALWAYS on top of background image */
+    z-index: 10; /* ALWAYS on top of background image */
   }
 }
 
@@ -148,7 +148,7 @@
   min-height: 56px;
   white-space: nowrap;
   position: relative;
-  z-index: 5; /* Ensure button stays above background */
+  z-index: 15; /* Ensure button stays above everything */
 }
 
 .hero-button:hover {
