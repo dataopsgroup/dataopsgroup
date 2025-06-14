@@ -28,7 +28,7 @@ const AnalyticsBI = () => {
 
       <div className="bg-white">
         <div className="container mx-auto px-4">
-          <div className="py-16 lg:py-24">
+          <div className="py-16 lg:py-24 no-image-hover-effect">
             <AnalyticsBIContent />
           </div>
         </div>

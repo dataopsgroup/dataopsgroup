@@ -61,4 +61,12 @@
   .hero-button {
     visibility: visible;
   }
+
+  /* Custom override to remove image hover effect on specific sections */
+  .no-image-hover-effect .hover\:scale-105:hover {
+    transform: none;
+  }
+  .no-image-hover-effect .transition-transform {
+    transition: none;
+  }
 }
