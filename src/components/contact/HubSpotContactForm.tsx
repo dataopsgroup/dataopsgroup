@@ -12,15 +12,22 @@ const HubSpotContactForm = () => {
   const maxRetries = 3;
   const mountedRef = useRef(true);
   const formInitializedRef = useRef(false);
+  const initializingRef = useRef(false);
 
   useEffect(() => {
     mountedRef.current = true;
     
     const initializeForm = async () => {
-      if (!mountedRef.current || formInitializedRef.current) return;
+      if (!mountedRef.current || formInitializedRef.current || initializingRef.current) return;
 
       try {
+        initializingRef.current = true;
         console.log(`Initializing HubSpot form (attempt ${retryCount + 1})`);
+        
+        // Clear any existing form content before initialization
+        if (formContainerRef.current) {
+          formContainerRef.current.innerHTML = '';
+        }
         
         const success = await hubspotService.createForm({
           portalId: "21794360",
@@ -39,6 +46,7 @@ const HubSpotContactForm = () => {
             if (mountedRef.current) {
               console.log('Form ready, updating state');
               formInitializedRef.current = true;
+              initializingRef.current = false;
               setFormState('ready');
             }
           },
@@ -52,6 +60,7 @@ const HubSpotContactForm = () => {
         }
       } catch (error) {
         console.error('Form initialization error:', error);
+        initializingRef.current = false;
         
         if (mountedRef.current) {
           if (retryCount < maxRetries) {
@@ -75,12 +84,18 @@ const HubSpotContactForm = () => {
     return () => {
       mountedRef.current = false;
       formInitializedRef.current = false;
+      initializingRef.current = false;
       clearTimeout(timer);
     };
   }, [retryCount]);
 
   const handleRetry = () => {
+    // Reset all flags and clear container
     formInitializedRef.current = false;
+    initializingRef.current = false;
+    if (formContainerRef.current) {
+      formContainerRef.current.innerHTML = '';
+    }
     setFormState('loading');
     setRetryCount(0);
   };
