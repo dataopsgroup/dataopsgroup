@@ -48,8 +48,8 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "Scalable Architecture",
       description: "Future-proof technical architecture that grows with your portfolio expansion plans.",
-      image: "/placeholder.svg",
-      alt: "Scalable system architecture"
+      image: "/lovable-uploads/5520976b-6cd4-4119-995e-1c2a6babcda7.png",
+      alt: "Modern server room with scalable infrastructure and red monitoring lights"
     },
     {
       title: "Compliance & Governance",
