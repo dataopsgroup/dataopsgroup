@@ -18,65 +18,24 @@ ContactCard.displayName = 'ContactCard';
 const Contact = () => {
   const formContainerRef = useRef<HTMLDivElement>(null);
   const formLoadedRef = useRef<boolean>(false);
+  const initAttemptedRef = useRef<boolean>(false);
 
   useEffect(() => {
+    // Prevent multiple initialization attempts
+    if (initAttemptedRef.current) return;
+    initAttemptedRef.current = true;
+
     // Initialize HubSpot queue if it doesn't exist
     if (typeof window !== 'undefined' && !window._hsq) {
       window._hsq = [];
     }
 
-    const loadHubSpotForm = () => {
-      // Check if form is already loaded
-      if (formLoadedRef.current) return;
-
-      console.log('Loading HubSpot form...');
-      
-      // Check if HubSpot is already available
-      if (window.hbspt && window.hbspt.forms) {
-        console.log('HubSpot already available, creating form...');
-        createForm();
-        return;
-      }
-      
-      // Load HubSpot script if not available
-      const existingScript = document.querySelector('script[src*="js.hsforms.net"]');
-      if (existingScript) {
-        console.log('HubSpot script already exists, waiting for load...');
-        // Script exists, wait a bit and try again
-        setTimeout(() => {
-          if (window.hbspt && window.hbspt.forms) {
-            createForm();
-          }
-        }, 1000);
-        return;
-      }
-
-      // Create HubSpot script
-      const script = document.createElement('script');
-      script.src = '//js.hsforms.net/forms/embed/v2.js';
-      script.charset = 'utf-8';
-      script.type = 'text/javascript';
-      script.async = true;
-      
-      script.onload = () => {
-        console.log('HubSpot script loaded successfully');
-        // Wait a moment for hbspt to be available
-        setTimeout(createForm, 100);
-      };
-
-      script.onerror = () => {
-        console.error('Failed to load HubSpot forms script');
-        showFallbackMessage();
-      };
-
-      document.head.appendChild(script);
-    };
-
     const createForm = () => {
-      if (formLoadedRef.current || !window.hbspt || !window.hbspt.forms) {
+      if (formLoadedRef.current || !window.hbspt?.forms) {
         return;
       }
 
+      console.log('Creating HubSpot form...');
       formLoadedRef.current = true;
       
       // Check current cookie consent status
@@ -92,15 +51,7 @@ const Contact = () => {
           redirectUrl: `${window.location.origin}/contact-thank-you`,
           
           // Disable HubSpot's cookie banner and tracking
-          cookieTracking: false,
           disableCookieSubmission: !hasConsent,
-          
-          // Additional privacy settings
-          privacyConsent: {
-            checkboxes: [],
-            communicationConsentRequired: false,
-            processingConsentRequired: false
-          },
           
           onFormSubmit: () => {
             console.log('HubSpot form submitted successfully');
@@ -133,23 +84,12 @@ const Contact = () => {
           },
           
           onFormReady: () => {
-            console.log('HubSpot form ready');
+            console.log('HubSpot form ready and displayed');
             // Form is ready
             const formElement = formContainerRef.current?.querySelector('form');
             if (formElement) {
-              // Add custom styles or event listeners if needed
               formElement.setAttribute('data-testid', 'contact-form');
               formElement.setAttribute('aria-label', 'Contact DataOps Group');
-              
-              // Make the form accessible
-              const inputs = formElement.querySelectorAll('input, select, textarea');
-              inputs.forEach((input: Element) => {
-                // Add missing aria attributes if needed
-                if (input instanceof HTMLElement && !input.getAttribute('aria-label')) {
-                  const label = input.getAttribute('placeholder') || '';
-                  input.setAttribute('aria-label', label);
-                }
-              });
             }
           },
           
@@ -163,6 +103,40 @@ const Contact = () => {
       }
     };
 
+    const loadHubSpotScript = () => {
+      console.log('Loading HubSpot script...');
+      const script = document.createElement('script');
+      script.src = '//js.hsforms.net/forms/embed/v2.js';
+      script.charset = 'utf-8';
+      script.type = 'text/javascript';
+      script.async = true;
+      
+      script.onload = () => {
+        console.log('HubSpot script loaded successfully');
+        // Wait for hbspt to be fully available
+        let attempts = 0;
+        const checkHubSpot = () => {
+          attempts++;
+          if (window.hbspt?.forms) {
+            createForm();
+          } else if (attempts < 10) {
+            setTimeout(checkHubSpot, 200);
+          } else {
+            console.error('HubSpot forms not available after script load');
+            showFallbackMessage();
+          }
+        };
+        checkHubSpot();
+      };
+
+      script.onerror = () => {
+        console.error('Failed to load HubSpot forms script');
+        showFallbackMessage();
+      };
+
+      document.head.appendChild(script);
+    };
+
     const showFallbackMessage = () => {
       const container = document.getElementById('hubspot-form-container');
       if (container) {
@@ -170,11 +144,35 @@ const Contact = () => {
       }
     };
 
-    // Load form with a small delay to ensure DOM is ready
-    const timer = setTimeout(loadHubSpotForm, 100);
+    // Check if HubSpot is already available
+    if (window.hbspt?.forms) {
+      console.log('HubSpot already available, creating form...');
+      createForm();
+    } else {
+      // Check if script is already loading
+      const existingScript = document.querySelector('script[src*="js.hsforms.net"]');
+      if (existingScript) {
+        console.log('HubSpot script already exists, waiting for load...');
+        // Wait for existing script to load
+        let attempts = 0;
+        const checkExistingScript = () => {
+          attempts++;
+          if (window.hbspt?.forms) {
+            createForm();
+          } else if (attempts < 15) {
+            setTimeout(checkExistingScript, 300);
+          } else {
+            console.log('Existing script timeout, loading new script');
+            loadHubSpotScript();
+          }
+        };
+        checkExistingScript();
+      } else {
+        loadHubSpotScript();
+      }
+    }
 
     return () => {
-      clearTimeout(timer);
       formLoadedRef.current = false;
     };
   }, []);
