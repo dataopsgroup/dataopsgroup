@@ -6,21 +6,17 @@ const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Check if user has already made a choice
     const cookieConsent = localStorage.getItem('cookie-consent');
     if (!cookieConsent) {
-      // Show banner after a slight delay to not block initial render
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
     } else if (cookieConsent === 'accepted') {
-      // Load HubSpot tracking script (separate from forms)
       loadHubSpotTracking();
     }
   }, []);
 
   const loadHubSpotTracking = () => {
-    // Only load HubSpot tracking script if not already loaded
-    // This is separate from the forms script managed by hubspotService
+    // Only load tracking script, not forms script (forms handled separately)
     if (!document.getElementById('hs-script-loader')) {
       const hubspotScript = document.createElement('script');
       hubspotScript.async = true;
@@ -35,7 +31,6 @@ const CookieBanner = () => {
     localStorage.setItem('cookie-consent', 'accepted');
     setIsVisible(false);
     
-    // Enable Google Analytics tracking
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'granted',
@@ -43,10 +38,8 @@ const CookieBanner = () => {
       });
     }
     
-    // Load HubSpot tracking (not forms)
     loadHubSpotTracking();
     
-    // Set HubSpot consent when it loads (for tracking, not forms)
     const checkHubSpot = setInterval(() => {
       if (window._hsq) {
         window._hsq.push(['doNotTrack', false]);
@@ -59,7 +52,6 @@ const CookieBanner = () => {
     localStorage.setItem('cookie-consent', 'declined');
     setIsVisible(false);
     
-    // Disable Google Analytics tracking
     if (window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'denied',
@@ -67,7 +59,6 @@ const CookieBanner = () => {
       });
     }
     
-    // Disable HubSpot tracking if it's already loaded
     if (window._hsq) {
       window._hsq.push(['doNotTrack', true]);
     }
