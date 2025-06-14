@@ -41,7 +41,7 @@ const Hero = () => {
         
         // Check image loading on desktop only
         if (!isMobile) {
-          const heroImg = document.querySelector('.hero-bg img');
+          const heroImg = document.querySelector('.hero-bg img') as HTMLImageElement;
           const heroBg = document.querySelector('.hero-bg');
           console.log('Hero background element:', heroBg);
           console.log('Hero image element:', heroImg);
@@ -84,7 +84,7 @@ const Hero = () => {
                   </h1>
                   <div className="space-y-4">
                     <p className="hero-text">
-                      We are PE-specialized <a href="/services" className="text-blue-200 hover:text-white underline">HubSpot experts</a> who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
+                      We are PE-specialized <Link to="/services" className="text-blue-200 hover:text-white underline">HubSpot experts</Link> who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
                     </p>
                     <p className="font-medium mb-4"></p>
                     <ul className="list-disc pl-6 space-y-1 mb-4 hero-text">
@@ -93,7 +93,7 @@ const Hero = () => {
                       <li>$18-22 ROI per $1 invested</li>
                     </ul>
                     <p className="hero-text">
-                      Learn more about our <a href="/approach" className="text-blue-200 hover:text-white underline">proven methodology</a> and explore our <a href="/case-studies" className="text-blue-200 hover:text-white underline">client success stories</a>.
+                      Learn more about our <Link to="/approach" className="text-blue-200 hover:text-white underline">proven methodology</Link> and explore our <Link to="/case-studies" className="text-blue-200 hover:text-white underline">client success stories</Link>.
                     </p>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ const Hero = () => {
           
           <div className="mt-12 text-center">
             <p className="text-lg text-gray-700 mb-6">
-              Ready to transform your operations? Explore our comprehensive <a href="/services" className="text-dataops-600 hover:text-dataops-700 underline font-medium">service offerings</a> or read more <a href="/about" className="text-dataops-600 hover:text-dataops-700 underline font-medium">about our team</a>.
+              Ready to transform your operations? Explore our comprehensive <Link to="/services" className="text-dataops-600 hover:text-dataops-700 underline font-medium">service offerings</Link> or read more <Link to="/about" className="text-dataops-600 hover:text-dataops-700 underline font-medium">about our team</Link>.
             </p>
           </div>
         </div>
