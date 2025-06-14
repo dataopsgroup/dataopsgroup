@@ -11,12 +11,13 @@ const HubSpotContactForm = () => {
   const [retryCount, setRetryCount] = useState(0);
   const maxRetries = 3;
   const mountedRef = useRef(true);
+  const formInitializedRef = useRef(false);
 
   useEffect(() => {
     mountedRef.current = true;
     
     const initializeForm = async () => {
-      if (!mountedRef.current) return;
+      if (!mountedRef.current || formInitializedRef.current) return;
 
       try {
         console.log(`Initializing HubSpot form (attempt ${retryCount + 1})`);
@@ -37,6 +38,7 @@ const HubSpotContactForm = () => {
           onFormReady: () => {
             if (mountedRef.current) {
               console.log('Form ready, updating state');
+              formInitializedRef.current = true;
               setFormState('ready');
             }
           },
@@ -72,26 +74,23 @@ const HubSpotContactForm = () => {
 
     return () => {
       mountedRef.current = false;
+      formInitializedRef.current = false;
       clearTimeout(timer);
     };
   }, [retryCount]);
 
   const handleRetry = () => {
+    formInitializedRef.current = false;
     setFormState('loading');
     setRetryCount(0);
   };
 
   return (
     <ContactCard>
-      {/* Always render the form container so HubSpot can find it */}
-      <div 
-        id="hubspot-form-container" 
-        ref={formContainerRef} 
-        className="min-h-[400px]" 
-        aria-live="polite"
-      >
+      <div className="relative min-h-[400px]">
+        {/* Loading overlay */}
         {formState === 'loading' && (
-          <div className="flex flex-col items-center justify-center h-64 space-y-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 bg-white z-10">
             <Loader2 className="h-8 w-8 animate-spin text-dataops-600" />
             <p className="text-gray-600">Loading contact form...</p>
             {retryCount > 0 && (
@@ -100,8 +99,9 @@ const HubSpotContactForm = () => {
           </div>
         )}
         
+        {/* Error overlay */}
         {formState === 'error' && (
-          <div className="flex flex-col items-center justify-center h-64 space-y-4 text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 text-center bg-white z-10">
             <p className="text-gray-600 mb-4">
               We're having trouble loading the contact form. 
             </p>
@@ -121,6 +121,18 @@ const HubSpotContactForm = () => {
             </div>
           </div>
         )}
+
+        {/* HubSpot form container - always present but hidden behind overlays when needed */}
+        <div 
+          id="hubspot-form-container" 
+          ref={formContainerRef} 
+          className="min-h-[400px]"
+          aria-live="polite"
+          style={{ 
+            visibility: formState === 'ready' ? 'visible' : 'hidden',
+            position: formState === 'ready' ? 'relative' : 'absolute'
+          }}
+        />
       </div>
     </ContactCard>
   );
