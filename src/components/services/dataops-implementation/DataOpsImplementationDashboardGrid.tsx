@@ -12,8 +12,8 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "Process Automation",
       description: "Eliminate manual tasks with intelligent workflows that scale across your portfolio.",
-      image: "/placeholder.svg",
-      alt: "Automated process workflow visualization"
+      image: "/lovable-uploads/bcd1fefa-bbc0-42b2-9496-4a63790e0a42.png",
+      alt: "Developer working on process automation code"
     },
     {
       title: "Data Pipeline Management",
