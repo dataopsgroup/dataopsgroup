@@ -1,6 +1,6 @@
 
-// Enhanced Service Worker with Performance-Optimized Caching Strategies
-// This is a facade that imports functionality from modular files
+// Enhanced Service Worker with Dynamic Cache Versioning
+// This fixes the "Page Not Found" issue after deployments
 
 importScripts('./sw/config.js');
 importScripts('./sw/bot-detection.js');
@@ -8,24 +8,58 @@ importScripts('./sw/cache-strategies.js');
 importScripts('./sw/cache-utils.js');
 importScripts('./sw/event-handlers.js');
 
-// Enhanced performance optimizations
-const PERFORMANCE_CACHE = 'dataops-performance-v1';
+// Enhanced performance optimizations with dynamic versioning
+const PERFORMANCE_CACHE = `dataops-performance-${CACHE_VERSION}`;
 const CRITICAL_RESOURCES = [
   '/',
   '/manifest.json',
   '/offline.html'
 ];
 
-// Preload critical resources during install
+// Install event - cache critical resources and clean up old caches
 self.addEventListener('install', (event) => {
+  console.log('Service Worker installing with cache version:', CACHE_VERSION);
+  
   event.waitUntil(
-    caches.open(PERFORMANCE_CACHE)
-      .then(cache => cache.addAll(CRITICAL_RESOURCES))
-      .then(() => self.skipWaiting())
+    Promise.all([
+      // Cache critical resources
+      caches.open(PERFORMANCE_CACHE)
+        .then(cache => cache.addAll(CRITICAL_RESOURCES)),
+      // Clean up old caches during install
+      cleanupOldCaches()
+    ]).then(() => {
+      console.log('Service Worker installation complete, skipping waiting');
+      return self.skipWaiting();
+    })
   );
 });
 
-// Enhanced fetch strategy with performance optimizations
+// Activate event - take control immediately and clean up old caches
+self.addEventListener('activate', (event) => {
+  console.log('Service Worker activating with cache version:', CACHE_VERSION);
+  
+  event.waitUntil(
+    Promise.all([
+      // Clean up any remaining old caches
+      cleanupOldCaches(),
+      // Take control of all clients immediately
+      self.clients.claim()
+    ]).then(() => {
+      console.log('Service Worker activation complete');
+      // Notify all clients to reload for the new version
+      return self.clients.matchAll().then(clients => {
+        clients.forEach(client => {
+          client.postMessage({
+            type: 'SW_UPDATED',
+            version: CACHE_VERSION
+          });
+        });
+      });
+    })
+  );
+});
+
+// Enhanced fetch strategy with better cache management
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -33,15 +67,45 @@ self.addEventListener('fetch', (event) => {
   // Skip non-HTTP requests
   if (!url.protocol.startsWith('http')) return;
   
-  // Skip problematic third-party scripts that return errors
+  // Skip problematic third-party scripts
   const problematicHosts = [
     'cdn.gpteng.co',
     'gptengineer.com'
   ];
   
   if (problematicHosts.some(host => url.hostname.includes(host))) {
-    // Return empty response for deprecated scripts
     event.respondWith(new Response('', { status: 204 }));
+    return;
+  }
+
+  // Handle navigation requests (HTML pages) with network-first strategy
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          // Cache successful navigation responses
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(PERFORMANCE_CACHE).then(cache => {
+              cache.put(request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cached version or offline page
+          return caches.match(request)
+            .then(cachedResponse => {
+              if (cachedResponse) {
+                return cachedResponse;
+              }
+              // Return offline page for failed navigation
+              return caches.match('/offline.html') || 
+                     caches.match('/index.html') ||
+                     new Response('Page not found', { status: 404 });
+            });
+        })
+    );
     return;
   }
   
@@ -58,7 +122,6 @@ self.addEventListener('fetch', (event) => {
           });
           return fetchResponse;
         }).catch(() => {
-          // Graceful fallback for font loading failures
           return new Response('', { status: 204 });
         });
       })
@@ -74,7 +137,6 @@ self.addEventListener('fetch', (event) => {
           });
           return fetchResponse;
         }).catch(() => {
-          // Return placeholder for failed image loads
           return new Response('', { status: 204 });
         });
         
@@ -84,10 +146,31 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
-// Performance monitoring
+// Enhanced message handling
 self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+  
+  if (event.data && event.data.type === 'CLEAR_CACHE') {
+    event.waitUntil(
+      caches.keys().then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            return caches.delete(cacheName);
+          })
+        );
+      })
+    );
+  }
+  
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({
+      version: CACHE_VERSION
+    });
+  }
+  
   if (event.data && event.data.type === 'PERFORMANCE_METRICS') {
-    // Store performance metrics for analysis
     console.log('Performance metrics received:', event.data.metrics);
   }
 });

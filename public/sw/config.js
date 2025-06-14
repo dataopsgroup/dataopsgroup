@@ -1,9 +1,12 @@
-// Service Worker Configuration
+
+// Service Worker Configuration with Dynamic Versioning
+const BUILD_TIMESTAMP = new Date().toISOString().slice(0, 10); // YYYY-MM-DD format
 const APP_VERSION = '1.0.9'; // Increment this when making significant changes
+const CACHE_VERSION = `${APP_VERSION}-${BUILD_TIMESTAMP}`;
 
 // Cache categories for different caching strategies
 const STATIC_CONTENT = {
-  name: 'static-content-v3',
+  name: `static-content-${CACHE_VERSION}`,
   maxAge: 31536000, // 1 year in seconds
   resources: [
     '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', // Logo
@@ -24,8 +27,8 @@ const STATIC_CONTENT = {
 
 // HTML and core JS/CSS that define app structure
 const APP_SHELL = {
-  name: 'app-shell-v3',
-  maxAge: 86400, // 24 hours in seconds (reduced from 30 days)
+  name: `app-shell-${CACHE_VERSION}`,
+  maxAge: 3600, // 1 hour in seconds (shorter for faster updates)
   resources: [
     '/',
     '/index.html',
@@ -36,14 +39,14 @@ const APP_SHELL = {
 
 // JS and CSS files have their own category now
 const JS_CSS_ASSETS = {
-  name: 'js-css-assets-v3',
-  maxAge: 604800, // 7 days in seconds
+  name: `js-css-assets-${CACHE_VERSION}`,
+  maxAge: 86400, // 1 day in seconds (shorter for faster updates)
   resources: []  // Will be populated at runtime based on requests
 };
 
 // API responses can have different cache times based on data volatility
 const API_RESPONSES = {
-  name: 'api-responses-v3',
+  name: `api-responses-${CACHE_VERSION}`,
   maxAge: 3600, // 1 hour in seconds as default
   resources: [
     '/api/content.json'
@@ -58,7 +61,7 @@ const API_RESPONSES = {
 
 // Images now have their own category with specific settings
 const IMAGE_ASSETS = {
-  name: 'image-assets-v3',
+  name: `image-assets-${CACHE_VERSION}`,
   maxAge: 1209600, // 14 days in seconds
   resources: [
     // Blog images
@@ -83,7 +86,7 @@ const IMAGE_ASSETS = {
 };
 
 const OFFLINE_FALLBACKS = {
-  name: 'offline-fallbacks-v3',
+  name: `offline-fallbacks-${CACHE_VERSION}`,
   maxAge: 7776000, // 90 days in seconds
   resources: [
     '/offline.html',
@@ -97,3 +100,22 @@ const NO_CACHE_PATTERNS = [
   /\/user-data\//,  // User-specific data
   /\/dynamic-content\//  // Dynamic content that should always be fresh
 ];
+
+// Helper function to clean up old caches
+const cleanupOldCaches = async () => {
+  const cacheNames = await caches.keys();
+  const currentCaches = [
+    STATIC_CONTENT.name,
+    APP_SHELL.name,
+    JS_CSS_ASSETS.name,
+    API_RESPONSES.name,
+    IMAGE_ASSETS.name,
+    OFFLINE_FALLBACKS.name
+  ];
+  
+  return Promise.all(
+    cacheNames
+      .filter(cacheName => !currentCaches.includes(cacheName))
+      .map(cacheName => caches.delete(cacheName))
+  );
+};

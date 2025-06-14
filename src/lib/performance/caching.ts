@@ -1,39 +1,40 @@
-
 /**
  * Universal client-side caching optimization module
- * Consistent caching strategies across all devices
+ * Enhanced with better Service Worker update handling
  */
 
 /**
  * Sets up client-side caching using service workers and versioning.
- * Registers service worker, handles updates, and sets global app version.
+ * Now includes better handling for Service Worker updates to prevent navigation issues.
  */
 export const setupClientCaching = () => {
   // Universal app version for cache busting
-  const appVersion = '1.0.7';
+  const appVersion = '1.0.9';
   
-  // Universal service worker registration
+  // Universal service worker registration with enhanced update handling
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw.js')
         .then(registration => {
+          console.log('ServiceWorker registered successfully');
+          
           // Universal update check interval
           setInterval(() => {
             registration.update();
           }, 60 * 60 * 1000);
           
-          // Universal waiting service worker handling
+          // Enhanced waiting service worker handling
           if (registration.waiting) {
-            notifyUserOfUpdate(registration);
+            handleServiceWorkerUpdate(registration);
           }
           
-          // Universal new service worker listening
+          // Enhanced new service worker listening
           registration.addEventListener('updatefound', () => {
             const newWorker = registration.installing;
             if (newWorker) {
               newWorker.addEventListener('statechange', () => {
                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  notifyUserOfUpdate(registration);
+                  handleServiceWorkerUpdate(registration);
                 }
               });
             }
@@ -44,18 +45,27 @@ export const setupClientCaching = () => {
         });
     });
     
-    // Universal service worker update handling
+    // Enhanced service worker update handling
     let refreshing = false;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
       if (refreshing) return;
       refreshing = true;
+      console.log('ServiceWorker controller changed, reloading page');
       window.location.reload();
     });
     
-    // Universal message listening
+    // Enhanced message listening with better update handling
     navigator.serviceWorker.addEventListener('message', (event) => {
       if (event.data && event.data.type === 'CACHE_UPDATED') {
         console.log('New content is available. Please refresh the page.');
+      }
+      
+      if (event.data && event.data.type === 'SW_UPDATED') {
+        console.log('ServiceWorker updated to version:', event.data.version);
+        // Force a page reload to get the fresh content
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     });
   }
@@ -65,15 +75,19 @@ export const setupClientCaching = () => {
 };
 
 /**
- * Notifies the user of a new service worker update and prompts for reload.
- * @param registration The service worker registration object.
+ * Enhanced handler for service worker updates
  */
-// Universal user notification for updates
-const notifyUserOfUpdate = (registration: ServiceWorkerRegistration) => {
-  console.log('New version available! Ready to update.');
+const handleServiceWorkerUpdate = (registration: ServiceWorkerRegistration) => {
+  console.log('New ServiceWorker version available');
   
-  if (typeof window !== 'undefined' && window.confirm('New version available! Would you like to update now?')) {
-    registration.waiting?.postMessage({ type: 'SKIP_WAITING' });
+  // Skip waiting immediately for faster updates
+  if (registration.waiting) {
+    registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+  }
+  
+  // Show user notification (optional)
+  if (typeof window !== 'undefined') {
+    console.log('ServiceWorker update will be applied automatically');
   }
 };
 
