@@ -4,7 +4,6 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
   const { isMobile } = useIsMobile();
@@ -40,22 +39,15 @@ const Hero = () => {
           console.log('Hero heading font family:', computedStyle.fontFamily);
         }
         
-        // Check image scaling on desktop only
+        // Check image loading on desktop only
         if (!isMobile) {
           const heroImg = document.querySelector('.hero-bg img');
           const heroBg = document.querySelector('.hero-bg');
           console.log('Hero background element:', heroBg);
           console.log('Hero image element:', heroImg);
           if (heroImg) {
-            const computedStyle = window.getComputedStyle(heroImg);
-            console.log('Hero image transform:', computedStyle.transform);
-            console.log('Hero image object-position:', computedStyle.objectPosition);
-            console.log('Hero image z-index:', computedStyle.zIndex);
-          }
-          if (heroBg) {
-            const bgStyle = window.getComputedStyle(heroBg);
-            console.log('Hero bg z-index:', bgStyle.zIndex);
-            console.log('Hero bg display:', bgStyle.display);
+            console.log('Hero image loaded:', heroImg.complete);
+            console.log('Hero image src:', heroImg.src);
           }
         }
       }, 1000);
@@ -65,20 +57,17 @@ const Hero = () => {
   return (
     <>
       <div className="hero-section">
-        {/* Background Image - desktop only */}
+        {/* Background Image - desktop only with simplified approach */}
         {!isMobile && (
           <div className="hero-bg">
-            <OptimizedImage 
+            <img 
               src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" 
-              alt="Hero background" 
-              priority={true}
-              isLCP={true}
-              componentType="hero"
-              autoOptimize={true}
-              maxSizeKB={500}
-              quality={90}
-              width={1920} 
-              height={1080}
+              alt="Hero background consultant" 
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+              onLoad={() => console.log('Hero image loaded successfully')}
+              onError={(e) => console.error('Hero image failed to load:', e)}
             />
           </div>
         )}
@@ -132,8 +121,8 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Trusted Companies Section - Added mt-32 to clear hero background image */}
-      <div className="mt-32 pb-16 bg-gray-50">
+      {/* Trusted Companies Section - Remove white gap with mt-0 */}
+      <div className="mt-0 pb-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 leading-normal md:leading-relaxed">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
           
