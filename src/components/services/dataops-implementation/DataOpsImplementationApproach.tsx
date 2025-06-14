@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const DataOpsImplementationApproach = () => {
   return (
     <section>
-      <div className="bg-gradient-to-br from-white via-gray-50 to-blue-50 border border-gray-200 rounded-2xl p-10 w-[600px] mx-auto shadow-xl backdrop-blur-sm">
+      <div className="bg-gradient-to-br from-white via-gray-50 to-blue-50 border border-gray-200 rounded-2xl p-10 max-w-7xl mx-auto shadow-xl backdrop-blur-sm">
         <h2 className="text-3xl font-bold text-gray-900 mb-8 font-rubik">Our Proven DataOps Implementation Methodology</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
