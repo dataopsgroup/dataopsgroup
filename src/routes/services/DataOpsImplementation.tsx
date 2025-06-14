@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -55,7 +56,7 @@ const DataOpsImplementation = () => {
         {/* Benefits grid section - full width for proper 3-column layout */}
         <DataOpsImplementationDashboardGrid />
         
-        <div className="container mx-auto px-0">
+        <div className="mx-auto px-0">
           <div className="max-w-4xl mx-auto">
             <DataOpsImplementationApproach />
             <DataOpsImplementationChallenges />
