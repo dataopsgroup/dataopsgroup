@@ -1,17 +1,20 @@
 
-/* Enhanced Hero Section - Mobile-Optimized with Stable Image Scaling */
+/* Enhanced Hero Section - Mobile-Optimized with Fixed Layout Issues */
 .hero-section {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
   /* Mobile: Use dataops-600 blue background */
   background-color: #4338ca;
+  /* Fix navigation overlap - add proper top spacing */
+  padding-top: 100px;
 }
 
 /* Desktop: Enable background image */
 @media (min-width: 768px) {
   .hero-section {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding-top: 120px; /* Account for larger navbar on desktop */
   }
 }
 
@@ -20,7 +23,7 @@
   display: none;
 }
 
-/* Desktop: Show background image with stable scaling */
+/* Desktop: Show background image with stable scaling and proper z-index */
 @media (min-width: 768px) {
   .hero-bg {
     display: block;
@@ -29,36 +32,53 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1;
+    z-index: 1; /* Below navigation but above background */
     overflow: hidden;
+    /* Safari-specific fixes */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 }
 
-/* Desktop image scaling - immune to font loading changes */
+/* Desktop image scaling - positioned relative to gray box */
 @media (min-width: 768px) {
   .hero-bg img,
   .hero-bg .optimized-image img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: right center !important;
-    transform: scale(1.1) !important;
-    transform-origin: right center !important;
+    /* Position consultant relative to content area */
+    object-position: 65% center !important;
+    /* Scale up so image extends below gray box */
+    transform: scale(1.15) !important;
+    transform-origin: 65% center !important;
     max-width: none !important;
     /* Add stability to prevent layout shifts */
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
+    /* Safari-specific rendering optimizations */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 }
 
 .hero-container {
   position: relative;
-  z-index: 2;
-  height: 100vh;
+  z-index: 2; /* Above background image but below navigation */
+  height: calc(100vh - 100px); /* Account for top padding */
   display: flex;
   align-items: center;
   padding: 0 5%;
+  /* Ensure container doesn't overflow */
+  max-width: 100%;
+  overflow: visible;
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    height: calc(100vh - 120px); /* Account for desktop padding */
+  }
 }
 
 .hero-grid {
@@ -81,6 +101,9 @@
 .hero-content {
   grid-column: 1;
   max-width: 600px;
+  /* Ensure content stays within bounds */
+  position: relative;
+  z-index: 3;
 }
 
 /* Desktop content positioning */
@@ -102,6 +125,9 @@
   padding: 2rem;
   border-radius: 0;
   color: white;
+  /* Ensure content box stays properly positioned */
+  position: relative;
+  z-index: 4;
 }
 
 /* Desktop: Gray overlay content box */
@@ -114,13 +140,20 @@
   }
 }
 
-/* Typography with device-specific sizing */
+/* Typography with device-specific sizing - FIX "100 Days" size issue */
 .hero-heading {
   font-weight: 700;
   color: white;
   margin: 0 0 24px 0;
   line-height: 1.25;
   font-size: 2.25rem;
+}
+
+/* Ensure highlighted text maintains same size as heading */
+.hero-heading span {
+  font-size: inherit !important; /* Force same size as parent H1 */
+  font-weight: inherit !important;
+  line-height: inherit !important;
 }
 
 @media (min-width: 768px) {
@@ -168,6 +201,9 @@
   transition: background-color 0.2s ease;
   min-height: 56px;
   white-space: nowrap;
+  /* Ensure button stays above background */
+  position: relative;
+  z-index: 5;
 }
 
 .hero-button:hover {
@@ -186,4 +222,20 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+/* Safari-specific fixes for image rendering */
+@media (min-width: 768px) {
+  @supports (-webkit-appearance: none) {
+    .hero-bg {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    
+    .hero-bg img,
+    .hero-bg .optimized-image img {
+      -webkit-transform: scale(1.15) translate3d(0, 0, 0) !important;
+      transform: scale(1.15) translate3d(0, 0, 0) !important;
+    }
+  }
 }

@@ -39,11 +39,14 @@ const Navbar = () => {
   return (
     <nav 
       className={cn(
-        "fixed top-0 w-full z-50 border-b border-gray-200",
+        "fixed top-0 w-full border-b border-gray-200",
         scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
       )}
+      style={{ 
+        transition: 'background-color 0.2s ease, box-shadow 0.2s ease',
+        zIndex: 50 /* Ensure navigation is always on top */
+      }}
       aria-label="Main navigation"
-      style={{ transition: 'background-color 0.2s ease, box-shadow 0.2s ease' }}
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
