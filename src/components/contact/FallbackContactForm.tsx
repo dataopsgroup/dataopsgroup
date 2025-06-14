@@ -73,6 +73,7 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
           value={formData.lastName}
           onChange={(value) => updateField('lastName', value)}
           placeholder="Last name"
+          required
           icon={User}
         />
       </div>
