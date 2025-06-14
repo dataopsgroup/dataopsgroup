@@ -6,7 +6,7 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "System Integration",
       description: "Seamlessly connect all your marketing, sales, and operations tools for unified data flow.",
-      image: "/lovable-uploads/28837d83-d40b-49cb-908f-939a6dfb390a.png",
+      image: "/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png",
       alt: "System integration workflow diagram"
     },
     {
