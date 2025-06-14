@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -28,33 +27,22 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 const DataOpsImplementation = () => {
   const serviceTitle = "DataOps Implementation Services - Portfolio Operations Scaling | DataOps Group";
   const serviceDescription = "Scale marketing operations across your portfolio with streamlined DataOps implementation. Standardize processes, automate workflows, and drive consistent performance across all portfolio companies.";
-
-  const breadcrumbItems = [
-    { name: "Home", url: "/" },
-    { name: "Services", url: "/services" },
-    { name: "DataOps Implementation", url: "/services/dataops-implementation" }
-  ];
-
-  return (
-    <SemanticLayout>
-      <MetaHead
-        title={serviceTitle}
-        description={serviceDescription}
-        keywords="DataOps implementation, portfolio operations, marketing operations scaling, process standardization, workflow automation, portfolio company optimization, system integration, HubSpot implementation"
-        canonicalPath="/services/dataops-implementation"
-        ogTitle={serviceTitle}
-        ogDescription={serviceDescription}
-        ogType="website"
-      />
+  const breadcrumbItems = [{
+    name: "Home",
+    url: "/"
+  }, {
+    name: "Services",
+    url: "/services"
+  }, {
+    name: "DataOps Implementation",
+    url: "/services/dataops-implementation"
+  }];
+  return <SemanticLayout>
+      <MetaHead title={serviceTitle} description={serviceDescription} keywords="DataOps implementation, portfolio operations, marketing operations scaling, process standardization, workflow automation, portfolio company optimization, system integration, HubSpot implementation" canonicalPath="/services/dataops-implementation" ogTitle={serviceTitle} ogDescription={serviceDescription} ogType="website" />
       
       <BreadcrumbSchema items={breadcrumbItems} />
       
-      <ServiceSchemaMarkup
-        serviceTitle="DataOps Implementation Services"
-        serviceDescription={serviceDescription}
-        serviceId="dataops-implementation"
-        isHubSpotTraining={false}
-      />
+      <ServiceSchemaMarkup serviceTitle="DataOps Implementation Services" serviceDescription={serviceDescription} serviceId="dataops-implementation" isHubSpotTraining={false} />
 
       <div className="pt-24 pb-16">
         <div className="container mx-auto px-4">
@@ -67,7 +55,7 @@ const DataOpsImplementation = () => {
         {/* Benefits grid section - full width for proper 3-column layout */}
         <DataOpsImplementationDashboardGrid />
         
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-[10px]">
           <div className="max-w-4xl mx-auto">
             <DataOpsImplementationApproach />
             <DataOpsImplementationChallenges />
@@ -75,8 +63,6 @@ const DataOpsImplementation = () => {
           </div>
         </div>
       </div>
-    </SemanticLayout>
-  );
+    </SemanticLayout>;
 };
-
 export default DataOpsImplementation;
