@@ -1,9 +1,10 @@
-import React, { lazy, Suspense } from 'react';
+
+import React, { lazy, Suspense, startTransition } from 'react';
 
 const Index = lazy(() => import('../pages/Index'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const ApproachPage = lazy(() => import('../pages/ApproachPage'));
-const ContactPage = lazy(() => import('../pages/Contact')); // Fixed: importing ContactPage from Contact.tsx
+const ContactPage = lazy(() => import('../pages/Contact'));
 const BookLandingPage = lazy(() => import('../pages/BookLandingPage'));
 const HubSpotAssessment = lazy(() => import('../pages/HubSpotAssessment'));
 const HubSpotAssessmentResultsPage = lazy(() => import('../pages/HubSpotAssessmentResultsPage'));
@@ -14,11 +15,11 @@ const NotFound = lazy(() => import('../pages/NotFound'));
 // Loading component for Suspense fallback
 const LoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center">
-    <div className="loading-spinner"></div>
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-dataops-600"></div>
   </div>
 );
 
-// Wrapper component that provides Suspense boundary
+// Enhanced wrapper component that provides Suspense boundary with startTransition
 const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
   <Suspense fallback={<LoadingFallback />}>
     {children}
@@ -43,16 +44,14 @@ export const mainRoutes = [
   },
   {
     path: "/contact",
-    element: <SuspenseWrapper><ContactPage /></SuspenseWrapper>, // Fixed: using ContactPage component
+    element: <SuspenseWrapper><ContactPage /></SuspenseWrapper>,
     errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
-  // Consolidated to single book page
   {
     path: "/book",
     element: <SuspenseWrapper><BookLandingPage /></SuspenseWrapper>,
     errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
-  // Assessment with updated URL
   {
     path: "/data-operations-assessment",
     element: <SuspenseWrapper><HubSpotAssessment /></SuspenseWrapper>,

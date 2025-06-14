@@ -1,5 +1,5 @@
 
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 
 const GetStartedPage = lazy(() => import('../pages/GetStartedPage'));
 const ThankYouPage = lazy(() => import('../pages/ThankYouPage'));
@@ -15,73 +15,87 @@ const BadDataCostCalculatorPage = lazy(() => import('../pages/BadDataCostCalcula
 const RevOpsROICalculatorPage = lazy(() => import('../pages/RevOpsROICalculatorPage'));
 const SchemaValidationPage = lazy(() => import('../pages/admin/schema-validation'));
 
+// Loading component for Suspense fallback
+const LoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-dataops-600"></div>
+  </div>
+);
+
+// Enhanced wrapper component that provides Suspense boundary
+const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
+  <Suspense fallback={<LoadingFallback />}>
+    {children}
+  </Suspense>
+);
+
 export const utilityRoutes = [
   {
     path: "/get-started",
-    element: <GetStartedPage />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><GetStartedPage /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/thank-you",
-    element: <ThankYouPage />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><ThankYouPage /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/contact/thank-you",
-    element: <ContactThankYouPage />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><ContactThankYouPage /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/sitemap",
-    element: <Sitemap />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><Sitemap /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/hubspot-assessment-results",
-    element: <HubSpotAssessmentResultsPage />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><HubSpotAssessmentResultsPage /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/privacy",
-    element: <Privacy />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><Privacy /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/terms",
-    element: <Terms />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><Terms /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/bad-data-cost-calculator",
-    element: <BadDataCostCalculatorPage />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><BadDataCostCalculatorPage /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/revops-roi-calculator",
-    element: <RevOpsROICalculatorPage />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><RevOpsROICalculatorPage /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/admin/structured-data",
-    element: <StructuredDataTest />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><StructuredDataTest /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/admin/vitals",
-    element: <WebVitalsDashboard />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><WebVitalsDashboard /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/admin/schema-validation",
-    element: <SchemaValidationPage />,
-    errorElement: <NotFound />,
+    element: <SuspenseWrapper><SchemaValidationPage /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "/404",
-    element: <NotFound />,
+    element: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
 ];
