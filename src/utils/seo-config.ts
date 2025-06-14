@@ -1,4 +1,3 @@
-
 /**
  * CRITICAL SEO CONFIGURATION - KNOWLEDGE ARTICLE REMINDERS:
  * 
@@ -78,7 +77,8 @@ export const DUPLICATE_URLS_TO_REDIRECT = {
 
 // BROKEN EXTERNAL LINKS TO REPLACE
 export const BROKEN_EXTERNAL_LINKS = {
-  'https://blog.hubspot.com/marketing/stop-pretending-all-leads-are-equal': 'https://blog.hubspot.com/marketing/lead-scoring-best-practices'
+  'https://blog.hubspot.com/marketing/stop-pretending-all-leads-are-equal': 'https://blog.hubspot.com/marketing/lead-scoring-best-practices',
+  'https://blog.hubspot.com/marketing/lead-scoring-statistics': 'https://blog.hubspot.com/marketing/lead-scoring-best-practices'
 } as const;
 
 // ROBOTS.TXT DISALLOW PATTERNS - URLs that should never be indexed
