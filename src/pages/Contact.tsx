@@ -98,7 +98,7 @@ const ContactPage = () => {
       <section className="flex-grow pt-32 px-[5%]" aria-labelledby="contact-heading">
         <header className="max-w-3xl mx-auto text-center mb-16">
           <h1 id="contact-heading" className="text-3xl md:text-4xl font-bold mb-4">
-            Get in <span className="gradient-text">Touch</span>
+            Get in Touch
           </h1>
           <p className="text-lg text-gray-600">
             Ready to transform your HubSpot operations? Contact us today to discuss how we can help your marketing, sales, and operations teams.
