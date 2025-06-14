@@ -17,7 +17,7 @@ const FAQServicesPage = () => {
       <CategoryPageLayout
         category={category}
         title={`${category.title} FAQ | DataOps Group`}
-        description="Expert answers about HubSpot implementation services, portal optimization, data migration, and consulting. Learn about costs, timelines, and what to expect from professional HubSpot services."
+        description="Expert answers about HubSpot implementation costs, portal optimization, data migration, and consulting timelines."
         keywords="HubSpot services FAQ, HubSpot implementation cost, portal optimization questions, HubSpot consulting services, data migration FAQ, HubSpot setup questions, professional services pricing"
         canonicalPath="/faqs/services"
       />

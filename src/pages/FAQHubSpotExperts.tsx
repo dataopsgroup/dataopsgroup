@@ -14,7 +14,7 @@ const FAQHubSpotExperts = () => {
     <CategoryPageLayout
       category={category}
       title="HubSpot Expert Hiring FAQ | DataOps Group"
-      description="Complete guide to hiring HubSpot experts and consultants. Learn about qualifications, costs, integration experience, and red flags to avoid when selecting HubSpot specialists."
+      description="Guide to hiring HubSpot experts: qualifications, costs, integration experience, and red flags to avoid."
       keywords="hire HubSpot expert FAQ, HubSpot consultant selection, expert qualifications, HubSpot specialist cost, consultant vs expert, integration experience, HubSpot certification requirements"
       canonicalPath="/faqs/experts"
       robots="index, follow"
