@@ -55,7 +55,7 @@ const DataOpsImplementation = () => {
         {/* Benefits grid section - full width for proper 3-column layout */}
         <DataOpsImplementationDashboardGrid />
         
-        <div className="container mx-auto px-[8px]">
+        <div className="container mx-auto px-0">
           <div className="max-w-4xl mx-auto">
             <DataOpsImplementationApproach />
             <DataOpsImplementationChallenges />
