@@ -20,14 +20,6 @@ if (typeof window !== 'undefined') {
     }).catch(error => {
       console.warn('Failed to initialize performance optimizations:', error);
     });
-    
-    // Initialize Vercel Speed Insights for React
-    import('@vercel/speed-insights/react').then(({ SpeedInsights }) => {
-      // Speed Insights will automatically track page views and web vitals
-      console.log('Vercel Speed Insights initialized');
-    }).catch(error => {
-      console.warn('Failed to initialize Vercel Speed Insights:', error);
-    });
   } catch (error) {
     console.warn('Failed to initialize performance features:', error);
   }
