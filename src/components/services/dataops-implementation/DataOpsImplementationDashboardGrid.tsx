@@ -18,8 +18,8 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "Data Pipeline Management",
       description: "Establish robust data pipelines that ensure accurate, timely information across all systems.",
-      image: "/placeholder.svg",
-      alt: "Data pipeline architecture diagram"
+      image: "/lovable-uploads/afda040d-e439-4d85-9145-c141d60e1c32.png",
+      alt: "Data pipeline architecture with code visualization"
     },
     {
       title: "Portfolio Standardization",
