@@ -42,8 +42,8 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "ROI Measurement",
       description: "Clear metrics and KPIs that demonstrate the value and impact of your DataOps investment.",
-      image: "/placeholder.svg",
-      alt: "ROI measurement analytics"
+      image: "/lovable-uploads/c4177d71-62e9-4c3c-b270-21923c660b96.png",
+      alt: "ROI measurement analytics dashboard with performance charts"
     },
     {
       title: "Scalable Architecture",
