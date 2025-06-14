@@ -1,3 +1,4 @@
+
 /**
  * Knowledge Base: Common Build Error Prevention
  * 
@@ -5,6 +6,50 @@
  */
 
 export const buildErrorLearnings = {
+  componentInterfaceMismatch: {
+    title: "Component Interface Mismatch - TypeScript Props Errors",
+    date: "2025-06-14",
+    errors: [
+      "Property 'title' does not exist on type 'IntrinsicAttributes & ComponentProps'",
+      "Type 'object[]' is not assignable to type 'string[]'",
+      "Type signature mismatches between component interface and usage"
+    ],
+    rootCause: "Components receiving props that don't match their TypeScript interface definitions",
+    impact: "Build failures preventing deployment and development progress",
+    solution: [
+      "1. Update component interfaces to accept the intended prop types",
+      "2. Add backward compatibility for existing usage patterns",
+      "3. Use union types or type guards to handle multiple data structures",
+      "4. Provide sensible defaults for optional props",
+      "5. Test both old and new usage patterns after interface updates"
+    ],
+    prevention: [
+      "Define component interfaces before implementing usage",
+      "Use TypeScript strict mode to catch interface mismatches early",
+      "Document expected prop types and provide examples",
+      "Create type definitions for complex data structures",
+      "Use generic types for flexible component interfaces"
+    ],
+    codePattern: `
+      // GOOD: Flexible interface with union types
+      interface ComponentProps {
+        data: string[] | DataObject[];
+        title?: string;
+        description?: string;
+      }
+      
+      // GOOD: Type guards for handling multiple data types
+      const isObjectData = (data: string[] | DataObject[]): data is DataObject[] => {
+        return data.length > 0 && typeof data[0] === 'object';
+      };
+      
+      // BAD: Rigid interface that doesn't match usage
+      interface ComponentProps {
+        data: string[]; // Only accepts strings, but objects are passed
+      }
+    `
+  },
+
   imageOptimization: {
     title: "Image Optimization Utility Build Errors",
     date: "2025-01-27",
@@ -123,7 +168,10 @@ export const buildErrorLearnings = {
       "Test imports/exports in isolation before integration",
       "Use optional parameters with defaults rather than function overloads",
       "Document SEO-critical fixes in this knowledge base to prevent regression",
-      "Add development-time validation for SEO-critical functionality"
+      "Add development-time validation for SEO-critical functionality",
+      "Update component interfaces to match intended usage patterns",
+      "Use union types and type guards for flexible component APIs",
+      "Provide backward compatibility when updating component interfaces"
     ]
   }
 };

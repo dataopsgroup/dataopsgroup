@@ -14,11 +14,15 @@ interface RelatedService {
 interface RelatedServicesProps {
   currentService?: string;
   className?: string;
+  title?: string;
+  description?: string;
 }
 
 const RelatedServices: React.FC<RelatedServicesProps> = ({ 
   currentService = '',
-  className = ''
+  className = '',
+  title = "Related Services",
+  description = "Explore our comprehensive suite of HubSpot and data operations services designed to accelerate your business growth."
 }) => {
   const allServices: RelatedService[] = [
     {
@@ -65,11 +69,10 @@ const RelatedServices: React.FC<RelatedServicesProps> = ({
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Related Services
+            {title}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore our comprehensive suite of HubSpot and data operations services 
-            designed to accelerate your business growth.
+            {description}
           </p>
         </div>
 

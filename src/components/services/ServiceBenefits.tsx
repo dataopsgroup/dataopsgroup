@@ -4,15 +4,23 @@ import { CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
+interface BenefitObject {
+  title: string;
+  description: string;
+}
+
 interface ServiceBenefitsProps {
-  benefits: string[];
-  serviceTitle: string;
-  isHubSpotTraining: boolean;
+  benefits: string[] | BenefitObject[];
+  serviceTitle?: string;
+  isHubSpotTraining?: boolean;
   ctaText?: string;
 }
 
-const ServiceBenefits = ({ benefits, serviceTitle, isHubSpotTraining, ctaText }: ServiceBenefitsProps) => {
+const ServiceBenefits = ({ benefits, serviceTitle = '', isHubSpotTraining = false, ctaText }: ServiceBenefitsProps) => {
   const defaultCtaText = isHubSpotTraining ? "Get Your HubSpot Strategy" : `Get Your Custom ${serviceTitle} Strategy`;
+  
+  // Check if benefits are objects or strings
+  const isObjectBenefits = benefits.length > 0 && typeof benefits[0] === 'object';
   
   return (
     <div className="space-y-8">
@@ -22,7 +30,16 @@ const ServiceBenefits = ({ benefits, serviceTitle, isHubSpotTraining, ctaText }:
           {benefits.map((benefit, index) => (
             <li key={index} className="flex items-start group">
               <CheckCircle className="h-5 w-5 text-brand-saffron mr-3 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-200" aria-hidden="true" />
-              <span className="font-roboto text-gray-700 leading-relaxed">{benefit}</span>
+              <div className="font-roboto text-gray-700 leading-relaxed">
+                {isObjectBenefits ? (
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">{(benefit as BenefitObject).title}</h4>
+                    <p>{(benefit as BenefitObject).description}</p>
+                  </div>
+                ) : (
+                  <span>{benefit as string}</span>
+                )}
+              </div>
             </li>
           ))}
         </ul>
