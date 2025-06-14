@@ -21,12 +21,6 @@ const HubSpotContactForm = () => {
       try {
         console.log(`Initializing HubSpot form (attempt ${retryCount + 1})`);
         
-        // Wait for the DOM element to be available
-        if (!formContainerRef.current) {
-          console.log('Form container ref not available, waiting...');
-          throw new Error('Form container not ready');
-        }
-
         const success = await hubspotService.createForm({
           portalId: "21794360",
           formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
@@ -73,12 +67,8 @@ const HubSpotContactForm = () => {
       }
     };
 
-    // Ensure DOM is ready and element exists before initializing
-    const timer = setTimeout(() => {
-      if (formContainerRef.current && mountedRef.current) {
-        initializeForm();
-      }
-    }, 200);
+    // Start initialization after a short delay to ensure DOM is ready
+    const timer = setTimeout(initializeForm, 300);
 
     return () => {
       mountedRef.current = false;
@@ -91,10 +81,16 @@ const HubSpotContactForm = () => {
     setRetryCount(0);
   };
 
-  const renderContent = () => {
-    switch (formState) {
-      case 'loading':
-        return (
+  return (
+    <ContactCard>
+      {/* Always render the form container so HubSpot can find it */}
+      <div 
+        id="hubspot-form-container" 
+        ref={formContainerRef} 
+        className="min-h-[400px]" 
+        aria-live="polite"
+      >
+        {formState === 'loading' && (
           <div className="flex flex-col items-center justify-center h-64 space-y-4">
             <Loader2 className="h-8 w-8 animate-spin text-dataops-600" />
             <p className="text-gray-600">Loading contact form...</p>
@@ -102,10 +98,9 @@ const HubSpotContactForm = () => {
               <p className="text-sm text-gray-500">Attempt {retryCount + 1} of {maxRetries + 1}</p>
             )}
           </div>
-        );
-
-      case 'error':
-        return (
+        )}
+        
+        {formState === 'error' && (
           <div className="flex flex-col items-center justify-center h-64 space-y-4 text-center">
             <p className="text-gray-600 mb-4">
               We're having trouble loading the contact form. 
@@ -125,33 +120,8 @@ const HubSpotContactForm = () => {
               </p>
             </div>
           </div>
-        );
-
-      case 'ready':
-        return (
-          <div 
-            id="hubspot-form-container" 
-            ref={formContainerRef} 
-            className="min-h-[400px]" 
-            aria-live="polite"
-          />
-        );
-
-      default:
-        return (
-          <div 
-            id="hubspot-form-container" 
-            ref={formContainerRef} 
-            className="min-h-[400px]" 
-            aria-live="polite"
-          />
-        );
-    }
-  };
-
-  return (
-    <ContactCard>
-      {renderContent()}
+        )}
+      </div>
     </ContactCard>
   );
 };
