@@ -3,7 +3,7 @@ import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
 import BreadcrumbNavigation from '@/components/seo/BreadcrumbNavigation';
-import AnalyticsBIPageHeader from '@/components/services/analytics-bi/AnalyticsBIPageHeader';
+import AnalyticsBIHero from '@/components/services/AnalyticsBIHero';
 import AnalyticsBIOverview from '@/components/services/analytics-bi/AnalyticsBIOverview';
 import AnalyticsBIBenefitsGrid from '@/components/services/analytics-bi/AnalyticsBIBenefitsGrid';
 import AnalyticsBIApproach from '@/components/services/analytics-bi/AnalyticsBIApproach';
@@ -12,6 +12,7 @@ import AnalyticsBICTA from '@/components/services/analytics-bi/AnalyticsBICTA';
 import ServiceSchemaMarkup from '@/components/services/ServiceSchemaMarkup';
 import AnalyticsBIFAQSchema from '@/components/services/analytics-bi/AnalyticsBIFAQSchema';
 import RelatedServices from '@/components/services/RelatedServices';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 const AnalyticsBI = () => {
   const serviceTitle = "Analytics & BI Services - Transform Data into Business Insights | DataOps Group";
@@ -34,6 +35,8 @@ const AnalyticsBI = () => {
         ogDescription={serviceDescription}
       />
       
+      <BreadcrumbSchema items={breadcrumbItems} />
+      
       <ServiceSchemaMarkup
         serviceTitle="Analytics & Business Intelligence Services"
         serviceDescription={serviceDescription}
@@ -43,12 +46,13 @@ const AnalyticsBI = () => {
       
       <AnalyticsBIFAQSchema />
 
-      <div className="pt-24 pb-16">
+      <AnalyticsBIHero />
+
+      <div className="pt-8 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <BreadcrumbNavigation items={breadcrumbItems} className="mb-6" />
             
-            <AnalyticsBIPageHeader />
             <AnalyticsBIOverview />
             <AnalyticsBIBenefitsGrid />
             <AnalyticsBIApproach />
