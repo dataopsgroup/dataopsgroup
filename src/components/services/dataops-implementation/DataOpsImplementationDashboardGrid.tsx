@@ -54,8 +54,8 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "Compliance & Governance",
       description: "Built-in data governance and compliance frameworks for secure, regulated operations.",
-      image: "/placeholder.svg",
-      alt: "Compliance and governance framework"
+      image: "/lovable-uploads/c2b3159f-687f-4fc3-a61c-a06a5b3e64dd.png",
+      alt: "Business meeting with compliance dashboard and data governance charts"
     }
   ];
 
