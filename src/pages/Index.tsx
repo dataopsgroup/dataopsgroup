@@ -11,15 +11,12 @@ import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
-
 const Index = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
   // Comment: Force GitHub sync - Updated deployment timestamp for hero fixes
   console.log('Homepage deployment refresh with hero fixes:', new Date().toISOString());
-  
-  return (
-    <SemanticLayout>
+  return <SemanticLayout>
       <Helmet>
         <title>PE Portfolio Operations Platform | HubSpot Implementation for Private Equity</title>
         <meta name="description" content="Transform PE portfolio operations into profit drivers with our specialized HubSpot platform. Achieve 19% higher valuations, 73% faster EBITDA growth, and $18-22 ROI. 100-day implementation for private equity firms." />
@@ -83,14 +80,14 @@ const Index = () => {
       <OrganizationSchema />
       <WebsiteSchema />
       <BreadcrumbSchema items={[{
-        name: "Home",
-        url: "/"
-      }]} />
+      name: "Home",
+      url: "/"
+    }]} />
       <LocalBusinessSchema />
       <ProfessionalServiceSchema />
       
       {/* Main content sections */}
-      <section aria-labelledby="hero-heading">
+      <section aria-labelledby="hero-heading" className="bg-green-200">
         <Hero />
       </section>
       
@@ -152,8 +149,6 @@ const Index = () => {
       <section aria-label="Book a Consultation">
         <BookCTA />
       </section>
-    </SemanticLayout>
-  );
+    </SemanticLayout>;
 };
-
 export default Index;

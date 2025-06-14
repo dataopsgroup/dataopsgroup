@@ -1,12 +1,12 @@
-
 import React, { startTransition } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
-
 const Hero = () => {
-  const { isMobile } = useIsMobile();
+  const {
+    isMobile
+  } = useIsMobile();
   const navigate = useNavigate();
 
   // Universal CTA tracking - consistent across all devices
@@ -38,7 +38,7 @@ const Hero = () => {
     if (process.env.NODE_ENV === 'development') {
       console.log('Hero component mounted - Mobile:', isMobile);
       console.log('Should show background image:', !isMobile);
-      
+
       // Check font loading after a delay
       setTimeout(() => {
         const heroHeading = document.querySelector('.hero-heading');
@@ -46,7 +46,7 @@ const Hero = () => {
           const computedStyle = window.getComputedStyle(heroHeading);
           console.log('Hero heading font family:', computedStyle.fontFamily);
         }
-        
+
         // Check image loading on desktop only
         if (!isMobile) {
           const heroImg = document.querySelector('.hero-bg img') as HTMLImageElement;
@@ -61,24 +61,12 @@ const Hero = () => {
       }, 1000);
     }
   }, [isMobile]);
-
-  return (
-    <>
+  return <>
       <div className="hero-section bg-gray-50 pb-0">
         {/* Background Image - desktop only with simplified approach */}
-        {!isMobile && (
-          <div className="hero-bg">
-            <img 
-              src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" 
-              alt="Hero background consultant" 
-              loading="eager"
-              decoding="sync"
-              fetchPriority="high"
-              onLoad={() => console.log('Hero image loaded successfully')}
-              onError={(e) => console.error('Hero image failed to load:', e)}
-            />
-          </div>
-        )}
+        {!isMobile && <div className="hero-bg">
+            <img src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" alt="Hero background consultant" loading="eager" decoding="sync" fetchPriority="high" onLoad={() => console.log('Hero image loaded successfully')} onError={e => console.error('Hero image failed to load:', e)} />
+          </div>}
         
         {/* Layout Container */}
         <div className="hero-container">
@@ -108,13 +96,10 @@ const Hero = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4 pt-3">
                   <div className="flex flex-col">
-                    <button 
-                      onClick={() => {
-                        trackContactCTAClick();
-                        handleNavigation('/contact');
-                      }}
-                      className="hero-button text-3xl"
-                    >
+                    <button onClick={() => {
+                    trackContactCTAClick();
+                    handleNavigation('/contact');
+                  }} className="hero-button text-3xl">
                       Get In Touch
                       <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                     </button>
@@ -134,7 +119,7 @@ const Hero = () => {
       </div>
 
       {/* Trusted Companies Section - SPACING LOCKED: mt-12 class and CSS protection prevent removal */}
-      <div className="pb-16 bg-gray-50 mt-12 trusted-companies-section">
+      <div className="pb-16 mt-12 trusted-companies-section bg-green-200">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 leading-normal md:leading-relaxed">Trusted by 50+ Companies to Rescue Their HubSpot Investments</h2>
           
@@ -168,8 +153,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Hero;
