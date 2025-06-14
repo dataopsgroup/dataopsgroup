@@ -1,12 +1,12 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LayoutDashboard, BrainCircuit, ShieldCheck, DatabaseZap } from 'lucide-react';
 import AlternatingFeature from './analytics-bi/AlternatingFeature';
+import AutoOptimizedImage from '@/components/ui/auto-optimized-image';
 
 const services = [
     {
-        icon: <LayoutDashboard size={80} className="text-white" />,
+        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&q=80" alt="Dashboard with charts on a laptop screen" className="w-full h-auto" width={500} height={350} priority />,
         title: "Portfolio Performance Dashboards",
         description: "Create executive-level dashboards that provide real-time visibility into portfolio company performance and key investment metrics.",
         listItems: [
@@ -26,7 +26,7 @@ const services = [
         )
     },
     {
-        icon: <BrainCircuit size={80} className="text-white" />,
+        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80" alt="Team analyzing data around a table" className="w-full h-auto" width={500} height={350} />,
         title: "Investment Intelligence & Modeling",
         description: "Leverage sophisticated analytical techniques to uncover investment opportunities, predict portfolio outcomes, and optimize value creation strategies.",
         listItems: [
@@ -46,7 +46,7 @@ const services = [
         )
     },
     {
-        icon: <ShieldCheck size={80} className="text-white" />,
+        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80" alt="Computer screen with lines of code for risk analytics" className="w-full h-auto" width={500} height={350} />,
         title: "Due Diligence & Risk Analytics",
         description: "Enhance your investment process with comprehensive data analysis that supports better investment decisions and risk management.",
         listItems: [
@@ -65,7 +65,7 @@ const services = [
         )
     },
     {
-        icon: <DatabaseZap size={80} className="text-white" />,
+        visual: <AutoOptimizedImage src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" alt="HubSpot logo on a laptop screen with analytics background" className="w-full h-auto" width={500} height={350} />,
         title: "HubSpot Analytics Integration",
         description: "Maximize the value of your portfolio companies' HubSpot data with specialized analytics that connect marketing activities to business outcomes.",
         listItems: [

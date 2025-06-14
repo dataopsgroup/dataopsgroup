@@ -2,7 +2,7 @@
 import React from 'react';
 
 interface AlternatingFeatureProps {
-  icon: React.ReactNode;
+  visual: React.ReactNode;
   title: string;
   description: string;
   listItems: string[];
@@ -11,7 +11,7 @@ interface AlternatingFeatureProps {
 }
 
 const AlternatingFeature: React.FC<AlternatingFeatureProps> = ({
-  icon,
+  visual,
   title,
   description,
   listItems,
@@ -39,10 +39,10 @@ const AlternatingFeature: React.FC<AlternatingFeatureProps> = ({
   );
 
   const image = (
-    <div className="lg:w-1/2 flex items-center justify-center p-8">
-        <div className="bg-gradient-to-br from-dataops-500 to-brand-light-blue p-8 rounded-full shadow-lg text-white">
-            {icon}
-        </div>
+    <div className="lg:w-1/2 flex items-center justify-center p-4">
+      <div className="rounded-lg shadow-2xl overflow-hidden border-4 border-gray-100 bg-white transform transition-transform duration-300 hover:scale-105">
+        {visual}
+      </div>
     </div>
   );
 

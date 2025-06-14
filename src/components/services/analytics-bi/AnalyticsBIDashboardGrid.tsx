@@ -1,19 +1,17 @@
 
 import React from 'react';
-import {
-  BarChart, Target, Search, DollarSign, Repeat, ChevronsRight, PieChart, ShieldCheck, Briefcase
-} from 'lucide-react';
+import AutoOptimizedImage from '@/components/ui/auto-optimized-image';
 
 const benefits = [
-  { icon: <PieChart className="w-8 h-8 text-dataops-500" />, title: "Standardize Reporting", description: "Achieve consistent, reliable reporting across all portfolio companies." },
-  { icon: <Target className="w-8 h-8 text-dataops-500" />, title: "Confident Decision-Making", description: "Make faster, data-backed investment decisions with actionable insights." },
-  { icon: <Search className="w-8 h-8 text-dataops-500" />, title: "Identify Opportunities", description: "Uncover and capitalize on new business opportunities across your holdings." },
-  { icon: <DollarSign className="w-8 h-8 text-dataops-500" />, title: "Measure Marketing ROI", description: "Gain investor-grade accuracy in measuring marketing performance and ROI." },
-  { icon: <Repeat className="w-8 h-8 text-dataops-500" />, title: "Scale Analytics Systems", description: "Deploy proven, scalable analytics systems across multiple investments." },
-  { icon: <ChevronsRight className="w-8 h-8 text-dataops-500" />, title: "Optimize Efficiency", description: "Enhance operational efficiency and performance across the portfolio." },
-  { icon: <BarChart className="w-8 h-8 text-dataops-500" />, title: "Predict Market Trends", description: "Utilize predictive analytics for strategic planning and forecasting." },
-  { icon: <ShieldCheck className="w-8 h-8 text-dataops-500" />, title: "Enhance Due Diligence", description: "Strengthen due diligence with comprehensive, data-driven analysis." },
-  { icon: <Briefcase className="w-8 h-8 text-dataops-500" />, title: "Executive Dashboards", description: "Create compelling, board-level reports and executive dashboards." },
+  { imageUrl: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80', imageAlt: "Standardized code on a screen representing reporting", title: "Standardize Reporting", description: "Achieve consistent, reliable reporting across all portfolio companies." },
+  { imageUrl: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80', imageAlt: "Team collaborating around a table with laptops", title: "Confident Decision-Making", description: "Make faster, data-backed investment decisions with actionable insights." },
+  { imageUrl: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&q=80', imageAlt: "People looking at a wall of screens with data", title: "Identify Opportunities", description: "Uncover and capitalize on new business opportunities across your holdings." },
+  { imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&q=80', imageAlt: "Laptop showing charts and graphs for marketing ROI", title: "Measure Marketing ROI", description: "Gain investor-grade accuracy in measuring marketing performance and ROI." },
+  { imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80', imageAlt: "Laptop with code, representing scalable analytics systems", title: "Scale Analytics Systems", description: "Deploy proven, scalable analytics systems across multiple investments." },
+  { imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80', imageAlt: "Dashboard with various charts, symbolizing efficiency", title: "Optimize Efficiency", description: "Enhance operational efficiency and performance across the portfolio." },
+  { imageUrl: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?w=800&q=80', imageAlt: "Business chart showing an upward trend for market prediction", title: "Predict Market Trends", description: "Utilize predictive analytics for strategic planning and forecasting." },
+  { imageUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80', imageAlt: "People in a meeting, representing due diligence", title: "Enhance Due Diligence", description: "Strengthen due diligence with comprehensive, data-driven analysis." },
+  { imageUrl: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80', imageAlt: "Professional presenting a chart in a meeting", title: "Executive Dashboards", description: "Create compelling, board-level reports and executive dashboards." },
 ];
 
 const AnalyticsBIDashboardGrid = () => {
@@ -28,12 +26,17 @@ const AnalyticsBIDashboardGrid = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-start text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-t-4 border-brand-saffron">
-              <div className="mb-4">
-                {benefit.icon}
+            <div key={index} className="bg-white rounded-lg shadow-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 overflow-hidden">
+               <AutoOptimizedImage
+                  src={benefit.imageUrl}
+                  alt={benefit.imageAlt}
+                  className="w-full h-48 object-cover"
+                  loading="lazy"
+               />
+              <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-semibold text-brand-navy mb-2">{benefit.title}</h3>
+                <p className="text-gray-600 flex-grow">{benefit.description}</p>
               </div>
-              <h3 className="text-xl font-semibold text-brand-navy mb-2">{benefit.title}</h3>
-              <p className="text-gray-600 flex-grow">{benefit.description}</p>
             </div>
           ))}
         </div>
