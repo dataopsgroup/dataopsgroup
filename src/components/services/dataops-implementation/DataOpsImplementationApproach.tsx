@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const DataOpsImplementationApproach = () => {
   return (
-    <section className="mb-16">
+    <section>
       <div className="bg-white rounded-lg shadow-lg p-8 w-[600px] mx-auto">
         <h2 className="text-3xl font-bold text-gray-900 mb-8 font-rubik">Our Proven DataOps Implementation Methodology</h2>
         
