@@ -10,13 +10,12 @@ const ServicesHero = () => {
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-dataops-100 text-dataops-800 text-sm font-medium mb-2">
               What We Offer
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-              Our <span className="text-dataops-600">Services</span>
-            </h2>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+              HubSpot & DataOps <span className="text-dataops-600">Services</span>
+            </h1>
             <p className="text-lg md:text-xl text-gray-700 max-w-2xl">
-              At DataOps Group, we provide comprehensive data operation solutions designed 
-              to transform how your organization manages, processes, and leverages data. Our expert team delivers 
-              tailored services to meet your specific business needs.
+              Expert HubSpot implementation, marketing operations, and data services that drive 
+              measurable portfolio growth. Specialized for PE firms and growing companies.
             </p>
           </div>
         </div>

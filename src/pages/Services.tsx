@@ -51,11 +51,6 @@ const ServicesPage = () => {
       
       <Navbar />
       <main>
-        {/* Add proper H1 tag */}
-        <div className="sr-only">
-          <h1>HubSpot & DataOps Services - Expert Implementation for Portfolio Companies</h1>
-        </div>
-        
         <ServicesHero />
 
         {/* Content Section */}
