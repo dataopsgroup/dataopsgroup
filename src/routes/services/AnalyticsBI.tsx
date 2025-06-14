@@ -8,17 +8,27 @@ import AnalyticsBIBenefitsGrid from '@/components/services/analytics-bi/Analytic
 import AnalyticsBIApproach from '@/components/services/analytics-bi/AnalyticsBIApproach';
 import AnalyticsBIChallenges from '@/components/services/analytics-bi/AnalyticsBIChallenges';
 import AnalyticsBICTA from '@/components/services/analytics-bi/AnalyticsBICTA';
+import ServiceSchemaMarkup from '@/components/services/ServiceSchemaMarkup';
 
 const AnalyticsBI = () => {
+  const serviceTitle = "Analytics & BI Services | DataOps Group";
+  const serviceDescription = "Transform your data into actionable insights with our analytics and business intelligence services.";
+
   return (
     <SemanticLayout>
       <MetaHead
-        title="Analytics & BI Services | DataOps Group"
-        description="Transform your data into actionable insights with our analytics and business intelligence services."
+        title={serviceTitle}
+        description={serviceDescription}
         keywords="analytics services, business intelligence, data visualization, custom dashboards, reporting solutions, data analytics consulting"
         canonicalPath="/services/analytics-bi"
-        ogTitle="Analytics & BI Services | DataOps Group"
+        ogTitle={serviceTitle}
         ogDescription="Expert analytics and BI services to transform your data into actionable insights. Custom dashboards, reporting, and data visualization."
+      />
+      <ServiceSchemaMarkup
+        serviceTitle="Analytics & BI Services"
+        serviceDescription={serviceDescription}
+        serviceId="analytics-bi"
+        isHubSpotTraining={false}
       />
 
       <div className="pt-24 pb-16">
