@@ -26,7 +26,7 @@ const AnalyticsBIDashboardGrid = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1 overflow-hidden">
+            <div key={index} className="bg-white rounded-lg shadow-lg flex flex-col overflow-hidden">
                <AutoOptimizedImage
                   src={benefit.imageUrl}
                   alt={benefit.imageAlt}
