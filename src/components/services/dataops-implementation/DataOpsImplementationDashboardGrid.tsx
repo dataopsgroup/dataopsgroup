@@ -1,4 +1,3 @@
-
 import React from 'react';
 import OptimizedImage from '@/components/ui/optimized-image';
 
@@ -7,7 +6,7 @@ const DataOpsImplementationDashboardGrid = () => {
     {
       title: "System Integration",
       description: "Seamlessly connect all your marketing, sales, and operations tools for unified data flow.",
-      image: "/placeholder.svg",
+      image: "/lovable-uploads/28837d83-d40b-49cb-908f-939a6dfb390a.png",
       alt: "System integration workflow diagram"
     },
     {
