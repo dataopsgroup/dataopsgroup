@@ -26,18 +26,23 @@ const AnalyticsBI = () => {
       
       <AnalyticsBIHero />
 
-      <div className="container mx-auto px-4">
-        <div className="py-16">
-          <AnalyticsBIContent />
+      <div className="bg-white">
+        <div className="container mx-auto px-4">
+          <div className="py-16 lg:py-24">
+            <AnalyticsBIContent />
+          </div>
         </div>
-        <AnalyticsBIBenefits />
       </div>
       
-      <RelatedServices 
-        currentService="analytics-bi"
-        title="Explore Our Other Services"
-        description="Discover how our comprehensive service offerings can support your business transformation"
-      />
+      <AnalyticsBIBenefits />
+      
+      <div className="bg-white">
+        <RelatedServices 
+          currentService="analytics-bi"
+          title="Explore Our Other Services"
+          description="Discover how our comprehensive service offerings can support your business transformation"
+        />
+      </div>
       
       <CTABanner />
     </SemanticLayout>
