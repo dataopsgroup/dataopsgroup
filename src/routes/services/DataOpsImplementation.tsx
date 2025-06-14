@@ -9,7 +9,10 @@ import DataOpsImplementationApproach from '@/components/services/dataops-impleme
 import DataOpsImplementationChallenges from '@/components/services/dataops-implementation/DataOpsImplementationChallenges';
 import DataOpsImplementationCTA from '@/components/services/dataops-implementation/DataOpsImplementationCTA';
 import ServiceSchemaMarkup from '@/components/services/ServiceSchemaMarkup';
-import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import DataOpsImplementationFAQSchema from '@/components/services/dataops-implementation/DataOpsImplementationFAQSchema';
+import DataOpsImplementationBreadcrumbs from '@/components/services/dataops-implementation/DataOpsImplementationBreadcrumbs';
+import ScrollProgressIndicator from '@/components/services/dataops-implementation/ScrollProgressIndicator';
+import DataOpsImplementationSocialShare from '@/components/services/dataops-implementation/DataOpsImplementationSocialShare';
 
 /*
  * DESIGN PRESERVATION NOTICE:
@@ -28,24 +31,35 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 const DataOpsImplementation = () => {
   const serviceTitle = "DataOps Implementation Services - Portfolio Operations Scaling | DataOps Group";
   const serviceDescription = "Scale marketing operations across your portfolio with streamlined DataOps implementation. Standardize processes, automate workflows, and drive consistent performance across all portfolio companies.";
-  const breadcrumbItems = [{
-    name: "Home",
-    url: "/"
-  }, {
-    name: "Services",
-    url: "/services"
-  }, {
-    name: "DataOps Implementation",
-    url: "/services/dataops-implementation"
-  }];
-  return <SemanticLayout>
-      <MetaHead title={serviceTitle} description={serviceDescription} keywords="DataOps implementation, portfolio operations, marketing operations scaling, process standardization, workflow automation, portfolio company optimization, system integration, HubSpot implementation" canonicalPath="/services/dataops-implementation" ogTitle={serviceTitle} ogDescription={serviceDescription} ogType="website" />
+  const enhancedKeywords = "DataOps implementation, portfolio operations, marketing operations scaling, process standardization, workflow automation, portfolio company optimization, system integration, HubSpot implementation, data pipeline automation, operational efficiency";
+  
+  return (
+    <SemanticLayout>
+      <MetaHead 
+        title={serviceTitle} 
+        description={serviceDescription} 
+        keywords={enhancedKeywords}
+        canonicalPath="/services/dataops-implementation" 
+        ogTitle={serviceTitle} 
+        ogDescription={serviceDescription} 
+        ogType="website"
+      />
       
-      <BreadcrumbSchema items={breadcrumbItems} />
+      <ServiceSchemaMarkup 
+        serviceTitle="DataOps Implementation Services" 
+        serviceDescription={serviceDescription} 
+        serviceId="dataops-implementation" 
+        isHubSpotTraining={false} 
+      />
       
-      <ServiceSchemaMarkup serviceTitle="DataOps Implementation Services" serviceDescription={serviceDescription} serviceId="dataops-implementation" isHubSpotTraining={false} />
-
+      <DataOpsImplementationFAQSchema />
+      
+      <ScrollProgressIndicator />
+      <DataOpsImplementationSocialShare />
+      
       <div className="pt-24 pb-16">
+        <DataOpsImplementationBreadcrumbs />
+        
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <DataOpsImplementationPageHeader />
@@ -70,6 +84,8 @@ const DataOpsImplementation = () => {
           </div>
         </div>
       </div>
-    </SemanticLayout>;
+    </SemanticLayout>
+  );
 };
+
 export default DataOpsImplementation;
