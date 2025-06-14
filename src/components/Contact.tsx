@@ -20,115 +20,136 @@ const Contact = () => {
   const formLoadedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    // Create HubSpot script
-    const script = document.createElement('script');
-    script.src = '//js.hsforms.net/forms/embed/v2.js';
-    script.charset = 'utf-8';
-    script.type = 'text/javascript';
-    script.async = true;
-    document.body.appendChild(script);
+    // Initialize HubSpot queue if it doesn't exist
+    if (typeof window !== 'undefined' && !window._hsq) {
+      window._hsq = [];
+    }
 
-    // Add onload handler to initialize form
-    script.onload = () => {
-      if (window.hbspt && !formLoadedRef.current) {
-        formLoadedRef.current = true;
+    const loadHubSpotForm = () => {
+      // Check if form is already loaded
+      if (formLoadedRef.current) return;
+
+      console.log('Loading HubSpot form...');
+      
+      // Create HubSpot script
+      const script = document.createElement('script');
+      script.src = '//js.hsforms.net/forms/embed/v2.js';
+      script.charset = 'utf-8';
+      script.type = 'text/javascript';
+      script.async = true;
+      
+      script.onload = () => {
+        console.log('HubSpot script loaded successfully');
         
-        // Check current cookie consent status
-        const cookieConsent = localStorage.getItem('cookie-consent');
-        const hasConsent = cookieConsent === 'accepted';
-        
-        window.hbspt.forms.create({
-          portalId: "21794360",
-          formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
-          region: "na1",
-          target: "#hubspot-form-container",
-          redirectUrl: `${window.location.origin}/contact-thank-you`,
+        if (window.hbspt && !formLoadedRef.current) {
+          formLoadedRef.current = true;
           
-          // Disable HubSpot's cookie banner and tracking
-          cookieTracking: false,
-          disableCookieSubmission: !hasConsent,
+          // Check current cookie consent status
+          const cookieConsent = localStorage.getItem('cookie-consent');
+          const hasConsent = cookieConsent === 'accepted';
           
-          // Additional privacy settings
-          privacyConsent: {
-            checkboxes: [],
-            communicationConsentRequired: false,
-            processingConsentRequired: false
-          },
-          
-          onFormSubmit: () => {
-            // Track form submission in Google Analytics only if consent given
-            if (hasConsent && window.gtag) {
-              window.gtag('event', 'form_submission', {
-                'event_category': 'Contact',
-                'event_label': 'Contact Form',
-                'value': 1,
-                'conversion': true
-              });
+          try {
+            window.hbspt.forms.create({
+              portalId: "21794360",
+              formId: "017ded40-83ce-44ac-a1f5-770ef2e04805",
+              region: "na1",
+              target: "#hubspot-form-container",
+              redirectUrl: `${window.location.origin}/contact-thank-you`,
               
-              // Conversion tracking
-              window.gtag('event', 'conversion', {
-                'send_to': 'AW-16996265146/contact_form_submission',
-                'value': 1.0,
-                'currency': 'USD'
-              });
-            }
-            
-            // Show success toast
-            toast.success("Form submitted successfully! We'll be in touch shortly.", {
-              duration: 5000,
-            });
-          },
-          onFormReady: () => {
-            // Form is ready
-            const formElement = formContainerRef.current?.querySelector('form');
-            if (formElement) {
-              // Add custom styles or event listeners if needed
-              formElement.setAttribute('data-testid', 'contact-form');
-              formElement.setAttribute('aria-label', 'Contact DataOps Group');
+              // Disable HubSpot's cookie banner and tracking
+              cookieTracking: false,
+              disableCookieSubmission: !hasConsent,
               
-              // Make the form accessible
-              const inputs = formElement.querySelectorAll('input, select, textarea');
-              inputs.forEach((input: Element) => {
-                // Add missing aria attributes if needed
-                if (input instanceof HTMLElement && !input.getAttribute('aria-label')) {
-                  const label = input.getAttribute('placeholder') || '';
-                  input.setAttribute('aria-label', label);
-                }
-              });
+              // Additional privacy settings
+              privacyConsent: {
+                checkboxes: [],
+                communicationConsentRequired: false,
+                processingConsentRequired: false
+              },
               
-              // Add form interaction tracking only if consent given
-              if (hasConsent) {
-                const trackFieldInteraction = (fieldName: string, action: string) => {
-                  if (window.gtag) {
-                    window.gtag('event', 'form_field_interaction', {
-                      'event_category': 'Form',
-                      'event_label': fieldName,
-                      'action': action
-                    });
-                  }
-                };
+              onFormSubmit: () => {
+                console.log('HubSpot form submitted successfully');
                 
-                inputs.forEach((input: Element) => {
-                  if (input instanceof HTMLElement) {
-                    const fieldName = input.getAttribute('name') || input.id || 'unknown';
-                    
-                    input.addEventListener('focus', () => {
-                      trackFieldInteraction(fieldName, 'focus');
+                // Track form submission in Google Analytics only if consent given
+                if (hasConsent && typeof window !== 'undefined' && window.gtag) {
+                  try {
+                    window.gtag('event', 'form_submission', {
+                      'event_category': 'Contact',
+                      'event_label': 'Contact Form',
+                      'value': 1,
+                      'conversion': true
                     });
                     
-                    input.addEventListener('blur', () => {
-                      trackFieldInteraction(fieldName, 'complete');
+                    // Conversion tracking
+                    window.gtag('event', 'conversion', {
+                      'send_to': 'AW-16996265146/contact_form_submission',
+                      'value': 1.0,
+                      'currency': 'USD'
                     });
+                  } catch (error) {
+                    console.warn('Analytics tracking failed:', error);
                   }
+                }
+                
+                // Show success toast
+                toast.success("Form submitted successfully! We'll be in touch shortly.", {
+                  duration: 5000,
                 });
+              },
+              
+              onFormReady: () => {
+                console.log('HubSpot form ready');
+                // Form is ready
+                const formElement = formContainerRef.current?.querySelector('form');
+                if (formElement) {
+                  // Add custom styles or event listeners if needed
+                  formElement.setAttribute('data-testid', 'contact-form');
+                  formElement.setAttribute('aria-label', 'Contact DataOps Group');
+                  
+                  // Make the form accessible
+                  const inputs = formElement.querySelectorAll('input, select, textarea');
+                  inputs.forEach((input: Element) => {
+                    // Add missing aria attributes if needed
+                    if (input instanceof HTMLElement && !input.getAttribute('aria-label')) {
+                      const label = input.getAttribute('placeholder') || '';
+                      input.setAttribute('aria-label', label);
+                    }
+                  });
+                }
+              },
+              
+              onFormFailedValidation: () => {
+                console.log('HubSpot form validation failed');
               }
+            });
+          } catch (error) {
+            console.error('Error creating HubSpot form:', error);
+            // Show fallback message
+            const container = document.getElementById('hubspot-form-container');
+            if (container) {
+              container.innerHTML = '<p class="text-gray-500">Form temporarily unavailable. Please call us at +1 479 844 2052.</p>';
             }
           }
-        });
-      }
+        }
+      };
+
+      script.onerror = () => {
+        console.error('Failed to load HubSpot forms script');
+        // Show fallback message
+        const container = document.getElementById('hubspot-form-container');
+        if (container) {
+          container.innerHTML = '<p class="text-gray-500">Form temporarily unavailable. Please call us at +1 479 844 2052.</p>';
+        }
+      };
+
+      document.body.appendChild(script);
     };
 
+    // Load form with a small delay to ensure DOM is ready
+    const timer = setTimeout(loadHubSpotForm, 100);
+
     return () => {
+      clearTimeout(timer);
       // Clean up
       const scriptToRemove = document.querySelector('script[src="//js.hsforms.net/forms/embed/v2.js"]');
       if (scriptToRemove && scriptToRemove.parentNode) {

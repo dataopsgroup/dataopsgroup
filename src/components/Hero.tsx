@@ -1,9 +1,9 @@
-
 import React, { startTransition } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { trackEvent } from '@/utils/analytics';
 
 const Hero = () => {
   const {
@@ -13,18 +13,22 @@ const Hero = () => {
   // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
     console.log('🎯 Contact CTA clicked');
-    // SSR guard for analytics
-    if (typeof window === 'undefined') return;
-    if (window.gtag) {
-      window.gtag('event', 'cta_click', {
-        'event_category': 'Engagement',
-        'event_label': 'Hero Contact CTA'
+    
+    try {
+      // Use the centralized analytics utility
+      trackEvent('cta_click', {
+        event_category: 'Engagement',
+        event_label: 'Hero Contact CTA'
       });
-    }
-    if (window._hsq) {
-      window._hsq.push(['trackEvent', {
-        id: 'hero_contact_cta_click'
-      }]);
+      
+      // HubSpot tracking with safety check
+      if (typeof window !== 'undefined' && window._hsq) {
+        window._hsq.push(['trackEvent', {
+          id: 'hero_contact_cta_click'
+        }]);
+      }
+    } catch (error) {
+      console.warn('Analytics tracking failed:', error);
     }
   };
 

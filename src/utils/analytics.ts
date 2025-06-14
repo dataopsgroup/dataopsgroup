@@ -4,6 +4,20 @@
  * Centralized implementation to avoid duplicate tracking code
  */
 
+// Initialize dataLayer if it doesn't exist
+if (typeof window !== 'undefined' && !window.dataLayer) {
+  window.dataLayer = [];
+}
+
+// Initialize gtag function if it doesn't exist
+if (typeof window !== 'undefined' && !window.gtag) {
+  window.gtag = function() {
+    if (window.dataLayer) {
+      window.dataLayer.push(arguments);
+    }
+  };
+}
+
 // Check if user has consented to tracking
 const hasTrackingConsent = (): boolean => {
   try {
