@@ -12,6 +12,7 @@ const Hero = () => {
 
   // Universal CTA tracking - consistent across all devices
   const trackContactCTAClick = () => {
+    console.log('🎯 Contact CTA clicked');
     // SSR guard for analytics
     if (typeof window === 'undefined') return;
     if (window.gtag) {
@@ -29,8 +30,10 @@ const Hero = () => {
 
   // Enhanced navigation handler with startTransition
   const handleContactClick = () => {
+    console.log('🚀 Navigating to contact page...');
     trackContactCTAClick();
     startTransition(() => {
+      console.log('📍 About to navigate to /contact');
       navigate('/contact');
     });
   };
@@ -98,7 +101,11 @@ const Hero = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4 pt-3">
                   <div className="flex flex-col">
-                    <button onClick={handleContactClick} className="hero-button text-3xl">
+                    <button 
+                      onClick={handleContactClick} 
+                      className="hero-button text-3xl"
+                      type="button"
+                    >
                       Get In Touch
                       <ChevronRight className="ml-2 h-4 w-4 flex-shrink-0" />
                     </button>
