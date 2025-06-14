@@ -6,7 +6,7 @@ const DataOpsImplementationOverview = () => {
   return (
     <section className="mb-16 px-4 md:px-8 lg:px-12">
       <div className="w-full">
-        <div className="bg-transparent p-8 px-[20px]">
+        <div className="bg-gradient-to-br from-white via-gray-50 to-blue-50 border border-gray-200 rounded-2xl p-10 max-w-full mx-auto shadow-xl backdrop-blur-sm">
           <h2 className="text-3xl font-bold text-gray-900 mb-6 font-rubik">Scale Your Portfolio with Proven DataOps Implementation</h2>
           
           <div className="prose prose-lg max-w-none font-roboto">
