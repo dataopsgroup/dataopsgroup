@@ -1,3 +1,4 @@
+
 /**
  * Universal client-side caching optimization module
  * Enhanced with better Service Worker update handling and navigation debugging
@@ -84,10 +85,10 @@ export const setupClientCaching = () => {
             }
           });
         }).finally(() => {
-          window.location.reload();
+          window && window.location.reload();
         });
       } else {
-        window.location.reload();
+        window && window.location.reload();
       }
     });
     
@@ -109,7 +110,7 @@ export const setupClientCaching = () => {
         
         // Force a page reload to get the fresh content
         setTimeout(() => {
-          window.location.reload();
+          window && window.location.reload();
         }, 1000);
       }
     });
