@@ -29,5 +29,13 @@ export const salesPipelineMetrics: BlogPost = {
     <h2>Ready to build a sales pipeline that actually predicts revenue? Let's talk about how your current metrics stack up against best practices.</h2>
     
     <h2>Get Your Pipeline Assessment →</h2>
-  `
+  `,
+  seo: {
+    metaDescription: "87% of companies use pipeline metrics that don't predict revenue. Learn the 5 critical mistakes CROs make and quality-focused metrics that actually drive results.",
+    keywords: "sales pipeline metrics, sales forecasting, pipeline management, revenue prediction, sales analytics, crm reporting, deal velocity, win rates",
+    ogTitle: "5 Sales Pipeline Metrics Most CROs Get Wrong",
+    ogDescription: "Most pipeline metrics don't predict revenue. Discover the 5 mistakes 87% of companies make and quality metrics that actually work.",
+    twitterTitle: "Pipeline Metrics That Actually Predict Revenue",
+    twitterDescription: "87% of companies track pipeline metrics that don't correlate with revenue. Learn the 5 critical mistakes and better alternatives."
+  }
 };

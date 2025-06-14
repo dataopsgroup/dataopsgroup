@@ -72,5 +72,13 @@ export const howToHireAHubSpotConsultant: BlogPost = {
     <h2>How can I help?</h2>
     
     <p>Request your free, no-obligation 30-minute consultant call.</p>
-  `
+  `,
+  seo: {
+    metaDescription: "Complete guide to hiring HubSpot consultants: costs ($75-125/hr), qualifications to check, questions to ask, and how to find certified experts for your business.",
+    keywords: "hire hubspot consultant, hubspot consulting services, hubspot expert, freelance hubspot consultant, hubspot implementation, hubspot certification",
+    ogTitle: "How to Hire a HubSpot Consultant - Complete Guide",
+    ogDescription: "Everything you need to know about hiring HubSpot consultants: costs, qualifications, and how to find the right expert for your business.",
+    twitterTitle: "Guide to Hiring HubSpot Consultants",
+    twitterDescription: "Complete guide: HubSpot consultant costs, qualifications to check, and how to find certified experts for your business needs."
+  }
 };
