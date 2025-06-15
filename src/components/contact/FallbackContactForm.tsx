@@ -17,7 +17,7 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
-  const validateField = (fieldName: string, value: string) => {
+  const validateField = (fieldName: keyof typeof formData, value: string) => {
     let validation;
     
     try {
@@ -59,7 +59,7 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
     }
   };
 
-  const handleFieldChange = (fieldName: string, value: string) => {
+  const handleFieldChange = (fieldName: keyof typeof formData, value: string) => {
     updateField(fieldName, value);
     validateField(fieldName, value);
   };
@@ -73,12 +73,12 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
       return;
     }
     
-    // Validate all fields
-    const fieldsToValidate = ['email', 'firstName', 'lastName', 'message'];
+    // Validate all fields with proper typing
+    const fieldsToValidate: (keyof typeof formData)[] = ['email', 'firstName', 'lastName', 'message'];
     let isFormValid = true;
     
     for (const field of fieldsToValidate) {
-      const fieldValue = formData[field as keyof typeof formData] || '';
+      const fieldValue = formData[field] || '';
       if (!validateField(field, fieldValue)) {
         isFormValid = false;
       }
