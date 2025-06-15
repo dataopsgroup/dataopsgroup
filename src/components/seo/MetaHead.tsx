@@ -15,7 +15,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BlogPost } from '@/types/blog';
-import { CANONICAL_URLS, DUPLICATE_URLS_TO_REDIRECT } from '@/utils/seo-config';
+import { useCanonicalUrl } from '@/hooks/useCanonicalUrl';
 
 interface MetaHeadProps {
   title: string;
@@ -43,7 +43,7 @@ const MetaHead = ({
   title,
   description,
   keywords,
-  canonicalPath,
+  canonicalPath: explicitCanonicalPath,
   ogType = 'website',
   ogImage = '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
   ogTitle,
@@ -60,27 +60,15 @@ const MetaHead = ({
   locale = 'en_US',
   alternateUrls = []
 }: MetaHeadProps) => {
-  // Use production base URL consistently
+  // Use the canonical URL hook for automatic canonical detection
+  const { canonicalPath: autoCanonicalPath, fullCanonicalUrl: autoFullCanonicalUrl } = useCanonicalUrl();
+  
+  // Use explicit canonical if provided, otherwise use auto-detected
+  const finalCanonicalPath = explicitCanonicalPath || autoCanonicalPath;
   const baseUrl = 'https://dataopsgroup.com';
-  
-  // SIMPLIFIED CANONICAL URL LOGIC - NO MORE CIRCULAR REDIRECTS
-  let finalCanonicalPath: string;
-  
-  if (canonicalPath) {
-    // If canonicalPath is explicitly provided, use it as-is (component should provide correct path)
-    finalCanonicalPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
-  } else {
-    // Only resolve redirects when no explicit canonicalPath is provided
-    const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
-    const normalizedPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
-    
-    // Check if current path should redirect to a canonical URL
-    const redirectTarget = DUPLICATE_URLS_TO_REDIRECT[normalizedPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT];
-    finalCanonicalPath = redirectTarget || normalizedPath;
-  }
-  
-  // Create full canonical URL - this is the absolute source of truth
-  const fullCanonicalUrl = `${baseUrl}${finalCanonicalPath}`;
+  const fullCanonicalUrl = explicitCanonicalPath 
+    ? `${baseUrl}${explicitCanonicalPath}` 
+    : autoFullCanonicalUrl;
   
   // CRITICAL FIX: OpenGraph URL MUST exactly match canonical URL
   const ogUrl = fullCanonicalUrl;
@@ -91,15 +79,7 @@ const MetaHead = ({
       console.error('🚨 CANONICAL/OG URL MISMATCH:', {
         canonical: fullCanonicalUrl,
         ogUrl: ogUrl,
-        providedCanonicalPath: canonicalPath
-      });
-    }
-    
-    // Validate that canonical path doesn't redirect
-    if (canonicalPath && DUPLICATE_URLS_TO_REDIRECT[canonicalPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT]) {
-      console.warn('⚠️ CANONICAL PATH REDIRECTS:', {
-        canonicalPath,
-        redirectsTo: DUPLICATE_URLS_TO_REDIRECT[canonicalPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT]
+        providedCanonicalPath: explicitCanonicalPath
       });
     }
   }

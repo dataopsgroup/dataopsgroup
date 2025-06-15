@@ -1,3 +1,4 @@
+
 /**
  * CRITICAL SEO CONFIGURATION - KNOWLEDGE ARTICLE REMINDERS:
  * 
@@ -17,6 +18,15 @@
 
 // CANONICAL URL MAPPINGS - These are the final, indexable URLs
 export const CANONICAL_URLS = {
+  // Home and main pages
+  home: '/',
+  services: '/services',
+  about: '/about',
+  approach: '/approach',
+  contact: '/contact',
+  insights: '/insights',
+  caseStudies: '/case-studies',
+  
   // Main guide URLs - FIXED: Ensure this points to actual final destination
   hubspotExpert: '/guides/hubspot-expert',
   
@@ -35,16 +45,18 @@ export const CANONICAL_URLS = {
   badDataCalculator: '/bad-data-cost-calculator',
   revopsCalculator: '/revops-roi-calculator',
   
-  // Main content URLs
-  insights: '/insights',
-  caseStudies: '/case-studies',
-  services: '/services',
-  contact: '/contact',
-  book: '/book'
+  // Book and PE program
+  book: '/book',
+  peProgram: '/pe-value-creation-program'
 } as const;
 
 // DUPLICATE URLS TO REDIRECT - These should NEVER be indexed
 export const DUPLICATE_URLS_TO_REDIRECT = {
+  // Home page variations
+  '/index': CANONICAL_URLS.home,
+  '/index.html': CANONICAL_URLS.home,
+  '/home': CANONICAL_URLS.home,
+  
   // HubSpot Expert Guide duplicates - FIXED: Remove circular reference and ensure proper targeting
   '/guides/hubspot-expert-guide': CANONICAL_URLS.hubspotExpert,
   '/how-to-hire-a-hubspot-expert-in-2025': CANONICAL_URLS.hubspotExpert,
@@ -56,6 +68,7 @@ export const DUPLICATE_URLS_TO_REDIRECT = {
   '/faqs/hubspot-experts': CANONICAL_URLS.faqExperts,
   '/faqs/our-approach': CANONICAL_URLS.faqApproach,
   '/faqs/hubspot-modules': CANONICAL_URLS.faqModules,
+  '/faq': CANONICAL_URLS.faqServices, // Default FAQ redirect
   
   // Assessment redirects
   '/assessment': CANONICAL_URLS.assessment,
@@ -63,16 +76,32 @@ export const DUPLICATE_URLS_TO_REDIRECT = {
   '/hubspot-assessment': CANONICAL_URLS.assessment,
   '/hubspot-assessment-results': CANONICAL_URLS.assessmentResults,
   
-  // Blog redirects
+  // Blog/Insights redirects
   '/blog': CANONICAL_URLS.insights,
   '/whitepapers': CANONICAL_URLS.insights,
+  '/articles': CANONICAL_URLS.insights,
+  '/posts': CANONICAL_URLS.insights,
   
   // Book redirects
   '/book-page': CANONICAL_URLS.book,
+  '/landing-page': CANONICAL_URLS.book,
   
   // Case study redirects
   '/testimonials': CANONICAL_URLS.caseStudies,
-  '/hubspot-case-studies': CANONICAL_URLS.caseStudies
+  '/hubspot-case-studies': CANONICAL_URLS.caseStudies,
+  '/success-stories': CANONICAL_URLS.caseStudies,
+  
+  // Service redirects
+  '/service': CANONICAL_URLS.services,
+  '/our-services': CANONICAL_URLS.services,
+  
+  // Contact redirects
+  '/contact-us': CANONICAL_URLS.contact,
+  '/get-in-touch': CANONICAL_URLS.contact,
+  
+  // About redirects
+  '/about-us': CANONICAL_URLS.about,
+  '/team': CANONICAL_URLS.about
 } as const;
 
 // BROKEN EXTERNAL LINKS TO REPLACE
@@ -83,6 +112,11 @@ export const BROKEN_EXTERNAL_LINKS = {
 
 // ROBOTS.TXT DISALLOW PATTERNS - URLs that should never be indexed
 export const ROBOTS_DISALLOW_PATTERNS = [
+  // Home page variations
+  '/index',
+  '/index.html',
+  '/home',
+  
   // Duplicate content paths
   '/guides/hubspot-expert-guide',
   '/pillar-content/hubspot-expert',
@@ -93,6 +127,18 @@ export const ROBOTS_DISALLOW_PATTERNS = [
   '/faqs/hubspot-experts',
   '/faqs/our-approach',
   '/faqs/hubspot-modules',
+  '/faq',
+  
+  // Assessment duplicates
+  '/assessment',
+  '/hubspot-assessment',
+  '/hubspot-assessment-results',
+  
+  // Blog duplicates
+  '/blog',
+  '/whitepapers',
+  '/articles',
+  '/posts',
   
   // Pattern-based blocks
   '/faqs/*-5',
@@ -113,12 +159,25 @@ export const ROBOTS_DISALLOW_PATTERNS = [
 
 // ROBOTS.TXT EXPLICIT ALLOWS - Canonical URLs that should be indexed
 export const ROBOTS_EXPLICIT_ALLOWS = [
+  CANONICAL_URLS.home,
+  CANONICAL_URLS.services,
+  CANONICAL_URLS.about,
+  CANONICAL_URLS.approach,
+  CANONICAL_URLS.contact,
+  CANONICAL_URLS.insights,
+  CANONICAL_URLS.caseStudies,
   CANONICAL_URLS.hubspotExpert,
   CANONICAL_URLS.faqServices,
   CANONICAL_URLS.faqExperts,
   CANONICAL_URLS.faqDataQuality,
   CANONICAL_URLS.faqApproach,
-  CANONICAL_URLS.faqModules
+  CANONICAL_URLS.faqModules,
+  CANONICAL_URLS.assessment,
+  CANONICAL_URLS.assessmentResults,
+  CANONICAL_URLS.badDataCalculator,
+  CANONICAL_URLS.revopsCalculator,
+  CANONICAL_URLS.book,
+  CANONICAL_URLS.peProgram
 ] as const;
 
 /**
