@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -50,8 +49,6 @@ const AnalyticsBI = () => {
       <BreadcrumbSchema items={breadcrumbItems} />
       
       <ServiceSchemaMarkup
-        serviceTitle="HubSpot Analytics & Business Intelligence Services"
-        serviceDescription={serviceDescription}
         serviceId="analytics-bi"
         isHubSpotTraining={false}
       />

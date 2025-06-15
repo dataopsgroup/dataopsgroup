@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -46,8 +45,6 @@ const DataOpsImplementation = () => {
       />
       
       <ServiceSchemaMarkup 
-        serviceTitle="DataOps Implementation Services" 
-        serviceDescription={serviceDescription} 
         serviceId="dataops-implementation" 
         isHubSpotTraining={false} 
       />
