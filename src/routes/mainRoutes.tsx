@@ -1,7 +1,7 @@
-
 import React, { lazy, Suspense, startTransition } from 'react';
+import Index from '../pages/Index';
 
-const Index = lazy(() => import('../pages/Index'));
+// const Index = lazy(() => import('../pages/Index'));
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const ApproachPage = lazy(() => import('../pages/ApproachPage'));
 const ContactPage = lazy(() => import('../pages/Contact'));
@@ -29,7 +29,7 @@ const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
 export const mainRoutes = [
   {
     path: "/",
-    element: <SuspenseWrapper><Index /></SuspenseWrapper>,
+    element: <Index />,
     errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
