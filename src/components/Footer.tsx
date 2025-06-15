@@ -27,6 +27,9 @@ const Footer = () => {
     name: 'Case Studies',
     href: '/case-studies'
   }, {
+    name: 'HubSpot Expert Guide',
+    href: '/guides/hubspot-expert'
+  }, {
     name: 'PE Value Creation',
     href: '/pe-value-creation-program'
   }, {
