@@ -1,4 +1,3 @@
-
 /**
  * Large image replacement mappings for performance optimization
  * Maps large images to optimized versions to improve Core Web Vitals
@@ -43,6 +42,99 @@ const LARGE_IMAGE_MAPPINGS: LargeImageMapping[] = [
     context: 'content',
     maxSizeKB: 150,
     description: 'Content image requiring SEO optimization'
+  },
+  // New logos from CaseStudiesLogos.tsx
+  {
+    original: '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.png',
+    optimized: '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4-optimized.webp',
+    context: 'logo',
+    maxSizeKB: 30,
+    description: 'Wistia client logo'
+  },
+  {
+    original: '/lovable-uploads/916cc6b6-d252-4e1b-9f0b-f0ec0adc4b65.png',
+    optimized: '/lovable-uploads/916cc6b6-d252-4e1b-9f0b-f0ec0adc4b65-optimized.webp',
+    context: 'logo',
+    maxSizeKB: 30,
+    description: 'Sunburst client logo'
+  },
+  {
+    original: '/lovable-uploads/fc79525b-e982-48ab-b01c-74d9e772a7c3.png',
+    optimized: '/lovable-uploads/fc79525b-e982-48ab-b01c-74d9e772a7c3-optimized.webp',
+    context: 'logo',
+    maxSizeKB: 30,
+    description: 'Dedupely client logo'
+  },
+  {
+    original: '/lovable-uploads/460f4957-eaf6-4f01-b6b1-650d5d14b791.png',
+    optimized: '/lovable-uploads/460f4957-eaf6-4f01-b6b1-650d5d14b791-optimized.webp',
+    context: 'logo',
+    maxSizeKB: 30,
+    description: 'HubSpot Solutions Partner logo'
+  },
+  {
+    original: '/lovable-uploads/46ab3133-f50e-42d9-9943-bbb72ac99ac9.png',
+    optimized: '/lovable-uploads/46ab3133-f50e-42d9-9943-bbb72ac99ac9-optimized.webp',
+    context: 'logo',
+    maxSizeKB: 30,
+    description: 'HubSpot Sales Software Certified logo'
+  },
+  {
+    original: '/lovable-uploads/7271e9bf-ca3a-442a-8557-fcb724fdbe9f.png',
+    optimized: '/lovable-uploads/7271e9bf-ca3a-442a-8557-fcb724fdbe9f-optimized.webp',
+    context: 'logo',
+    maxSizeKB: 30,
+    description: 'HubSpot Academy logo'
+  },
+  // New blog covers from RelatedPosts.tsx
+  {
+    original: '/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png',
+    optimized: '/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027-optimized.webp',
+    context: 'blog-cover',
+    maxSizeKB: 150,
+    description: 'Blog cover for ICP myth post'
+  },
+  {
+    original: '/lovable-uploads/ff953630-432d-46db-998e-cc20409e46d1.png',
+    optimized: '/lovable-uploads/ff953630-432d-46db-998e-cc20409e46d1-optimized.webp',
+    context: 'blog-cover',
+    maxSizeKB: 150,
+    description: 'Blog cover for customer churn post'
+  },
+  {
+    original: '/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1.png',
+    optimized: '/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1-optimized.webp',
+    context: 'blog-cover',
+    maxSizeKB: 150,
+    description: 'Blog cover for CRM cleanup post'
+  },
+  {
+    original: '/lovable-uploads/2ea19d63-b482-4702-ace9-64b05202fd26.png',
+    optimized: '/lovable-uploads/2ea19d63-b482-4702-ace9-64b05202fd26-optimized.webp',
+    context: 'blog-cover',
+    maxSizeKB: 150,
+    description: 'Blog cover for CAC post'
+  },
+  {
+    original: '/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.png',
+    optimized: '/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b-optimized.webp',
+    context: 'blog-cover',
+    maxSizeKB: 150,
+    description: 'Blog cover for data enrichment post'
+  },
+  {
+    original: '/lovable-uploads/51575736-affb-4097-ab47-c87b40af3b1b.png',
+    optimized: '/lovable-uploads/51575736-affb-4097-ab47-c87b40af3b1b-optimized.webp',
+    context: 'blog-cover',
+    maxSizeKB: 150,
+    description: 'Blog cover for marketing operations post'
+  },
+    {
+    original: '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png',
+    optimized: '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c-optimized.webp',
+    context: 'blog-cover',
+    maxSizeKB: 150,
+    description: 'Blog cover for hidden cost of failed hubspot implementations'
   }
 ];
 

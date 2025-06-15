@@ -1,5 +1,6 @@
 
 import React from 'react';
+import OptimizedLogo from '@/components/ui/optimized-logo';
 
 const CaseStudiesLogos = () => {
   const clientLogos = [
@@ -42,10 +43,12 @@ const CaseStudiesLogos = () => {
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {clientLogos.map((logo, index) => (
               <div key={index} className="w-32 md:w-40 h-16 flex items-center justify-center">
-                <img 
+                <OptimizedLogo 
                   src={logo.image} 
                   alt={`${logo.name} logo`} 
-                  className="max-w-full max-h-full object-contain" 
+                  className="max-w-full max-h-full object-contain"
+                  width={160}
+                  height={64}
                 />
               </div>
             ))}
@@ -57,10 +60,12 @@ const CaseStudiesLogos = () => {
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {certifications.map((cert, index) => (
               <div key={index} className="w-40 md:w-48 h-20 flex items-center justify-center">
-                <img 
+                <OptimizedLogo
                   src={cert.image} 
                   alt={`${cert.name}`} 
-                  className="max-w-full max-h-full object-contain" 
+                  className="max-w-full max-h-full object-contain"
+                  width={192}
+                  height={80}
                 />
               </div>
             ))}

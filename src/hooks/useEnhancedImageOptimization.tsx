@@ -1,7 +1,5 @@
-
 import { useState, useEffect } from 'react';
 import { getOptimizationSettings, shouldOptimizeImage, optimizeLargeImage } from '@/utils/large-image-optimizer';
-import { getImageSrc } from '@/utils/image/optimization';
 import { isKnownLargeImage, getLargeImageSettings } from '@/utils/large-image-replacements';
 
 interface OptimizationOptions {
@@ -37,10 +35,11 @@ export const useEnhancedImageOptimization = (
         setCompressionRatio(0);
         
         // Get processed image source
-        const processedSrc = getImageSrc ? getImageSrc(src, options.context || 'content') : src;
+        const processedSrc = src;
         
         // Check if this is a known large image causing Ahrefs issues
         const isLargeImage = shouldOptimizeImage(processedSrc) || isKnownLargeImage(processedSrc);
+
         setNeedsOptimization(isLargeImage);
         
         if (isLargeImage) {
