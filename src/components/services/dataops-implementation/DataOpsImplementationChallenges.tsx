@@ -38,31 +38,33 @@ const DataOpsImplementationChallenges = () => {
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {challenges.map((challenge, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="grid md:grid-cols-3 gap-6 items-center">
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2 font-rubik">
+              <div key={index} className="bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                <div className="space-y-6">
+                  <div className="border-l-4 border-red-400 pl-4">
+                    <h3 className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-2">
                       Challenge
                     </h3>
-                    <p className="text-gray-600 font-roboto">
+                    <p className="text-xl font-bold text-gray-900 font-rubik">
                       {challenge.problem}
                     </p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2 font-rubik">
+                  
+                  <div className="border-l-4 border-blue-400 pl-4">
+                    <h3 className="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
                       Our Solution
                     </h3>
-                    <p className="text-gray-600 font-roboto">
+                    <p className="text-lg text-gray-700 font-roboto">
                       {challenge.solution}
                     </p>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2 font-rubik">
-                      Impact
+                  
+                  <div className="border-l-4 border-green-400 pl-4">
+                    <h3 className="text-sm font-semibold text-green-600 uppercase tracking-wide mb-2">
+                      Proven Impact
                     </h3>
-                    <p className="text-dataops-600 font-medium font-roboto">
+                    <p className="text-2xl font-bold text-green-700 font-rubik">
                       {challenge.impact}
                     </p>
                   </div>
