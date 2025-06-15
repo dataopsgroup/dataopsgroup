@@ -4,8 +4,7 @@ import { Loader2, Mail, User, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { sanitizeAndValidateInput } from '@/utils/securityMonitoring';
-import { validateEmail, validateName, rateLimiter } from '@/utils/formValidation';
+import { validateFormField, checkRateLimit } from '@/utils/shared-form-validation';
 
 interface FallbackFormProps {
   onSubmit: () => void;
@@ -17,37 +16,26 @@ const FallbackForm = ({ onSubmit }: FallbackFormProps) => {
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
   const validateField = (fieldName: string, value: string) => {
-    try {
-      // Security validation first
-      sanitizeAndValidateInput(value, `book-form-${fieldName}`);
-      
-      // Field-specific validation
-      let validation;
-      switch (fieldName) {
-        case 'email':
-          validation = validateEmail(value);
-          break;
-        case 'firstName':
-          validation = validateName(value, 'First Name');
-          break;
-        default:
-          validation = { isValid: true, sanitizedValue: value };
-      }
-      
-      if (!validation.isValid) {
-        setValidationErrors(prev => ({ ...prev, [fieldName]: validation.error || 'Invalid input' }));
-        return false;
-      } else {
-        setValidationErrors(prev => {
-          const newErrors = { ...prev };
-          delete newErrors[fieldName];
-          return newErrors;
-        });
-        return true;
-      }
-    } catch (error) {
-      setValidationErrors(prev => ({ ...prev, [fieldName]: 'Invalid input detected' }));
+    const fieldConfigs = {
+      email: { type: 'email' as const, required: true },
+      firstName: { type: 'name' as const, required: true }
+    };
+
+    const config = fieldConfigs[fieldName as keyof typeof fieldConfigs];
+    if (!config) return true;
+
+    const validation = validateFormField(fieldName, value, config);
+    
+    if (!validation.isValid) {
+      setValidationErrors(prev => ({ ...prev, [fieldName]: validation.error || 'Invalid input' }));
       return false;
+    } else {
+      setValidationErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[fieldName];
+        return newErrors;
+      });
+      return true;
     }
   };
 
@@ -60,7 +48,7 @@ const FallbackForm = ({ onSubmit }: FallbackFormProps) => {
     e.preventDefault();
     
     // Rate limiting check
-    if (!rateLimiter.isAllowed('book-form', 2, 60000)) {
+    if (!checkRateLimit('book-form', 2, 60000)) {
       setValidationErrors({ form: 'Too many submission attempts. Please wait a minute.' });
       return;
     }

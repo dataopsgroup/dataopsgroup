@@ -4,8 +4,7 @@ import { Loader2, Mail, User, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useContactFormData } from '@/hooks/useContactFormData';
 import { submitContactForm } from '@/utils/contactFormSubmission';
-import { sanitizeAndValidateInput } from '@/utils/securityMonitoring';
-import { validateEmail, validateName, validateTextArea, rateLimiter } from '@/utils/formValidation';
+import { validateFormField, checkRateLimit } from '@/utils/shared-form-validation';
 import ContactFormField from './form/ContactFormField';
 
 interface FallbackContactFormProps {
@@ -18,44 +17,28 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
   const validateField = (fieldName: keyof typeof formData, value: string) => {
-    let validation;
+    const fieldConfigs = {
+      email: { type: 'email' as const, required: true },
+      firstName: { type: 'name' as const, required: true },
+      lastName: { type: 'name' as const, required: true },
+      message: { type: 'textarea' as const, required: true, maxLength: 1000 }
+    };
+
+    const config = fieldConfigs[fieldName];
+    if (!config) return true;
+
+    const validation = validateFormField(fieldName, value, config);
     
-    try {
-      // Security validation first
-      sanitizeAndValidateInput(value, `contact-form-${fieldName}`);
-      
-      // Field-specific validation
-      switch (fieldName) {
-        case 'email':
-          validation = validateEmail(value);
-          break;
-        case 'firstName':
-          validation = validateName(value, 'First Name');
-          break;
-        case 'lastName':
-          validation = validateName(value, 'Last Name');
-          break;
-        case 'message':
-          validation = validateTextArea(value, 1000);
-          break;
-        default:
-          validation = { isValid: true, sanitizedValue: value };
-      }
-      
-      if (!validation.isValid) {
-        setValidationErrors(prev => ({ ...prev, [fieldName]: validation.error || 'Invalid input' }));
-        return false;
-      } else {
-        setValidationErrors(prev => {
-          const newErrors = { ...prev };
-          delete newErrors[fieldName];
-          return newErrors;
-        });
-        return true;
-      }
-    } catch (error) {
-      setValidationErrors(prev => ({ ...prev, [fieldName]: 'Invalid input detected' }));
+    if (!validation.isValid) {
+      setValidationErrors(prev => ({ ...prev, [fieldName]: validation.error || 'Invalid input' }));
       return false;
+    } else {
+      setValidationErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[fieldName];
+        return newErrors;
+      });
+      return true;
     }
   };
 
@@ -68,7 +51,7 @@ const FallbackContactForm = ({ onSubmit }: FallbackContactFormProps) => {
     e.preventDefault();
     
     // Rate limiting check
-    if (!rateLimiter.isAllowed('contact-form', 3, 60000)) {
+    if (!checkRateLimit('contact-form', 3, 60000)) {
       setValidationErrors({ form: 'Too many submission attempts. Please wait a minute.' });
       return;
     }

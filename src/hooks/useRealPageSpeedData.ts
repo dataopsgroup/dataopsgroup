@@ -2,9 +2,7 @@
 import { useState } from 'react';
 import { PageSpeedData, PageSpeedMetric } from './usePageSpeedData';
 import { useToast } from '@/hooks/use-toast';
-
-// SECURITY WARNING: This component requires proper API key management
-// The PageSpeed API key should be handled server-side for production use
+import { logger } from '@/utils/production-logger';
 
 export const useRealPageSpeedData = () => {
   const [data, setData] = useState<PageSpeedData | null>(null);
@@ -22,9 +20,8 @@ export const useRealPageSpeedData = () => {
         url = 'https://' + url;
       }
       
-      // SECURITY FIX: Removed hardcoded API key
-      // In production, this should be handled by a backend service
-      // For demo purposes, we'll simulate the API call and return mock data
+      // For demo purposes, we simulate the API call and return mock data
+      // In production, this would integrate with a secure backend service
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Use our mock data for demonstration
@@ -37,7 +34,7 @@ export const useRealPageSpeedData = () => {
         description: `PageSpeed analysis for ${url} completed successfully.`,
       });
     } catch (err) {
-      console.error('Error fetching PageSpeed data:', err);
+      logger.error('Error fetching PageSpeed data:', err);
       setError(err as Error);
       
       toast({
