@@ -20,6 +20,16 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
   return useMemo(() => {
     const baseUrl = 'https://dataopsgroup.com';
     
+    // Safety check for location
+    if (!location || !location.pathname) {
+      console.warn('useCanonicalUrl: location not available, using fallback');
+      return {
+        canonicalPath: '/',
+        fullCanonicalUrl: `${baseUrl}/`,
+        shouldRedirect: false
+      };
+    }
+    
     // Get the current pathname and normalize it
     let currentPath = location.pathname;
     
@@ -28,27 +38,38 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
       currentPath = currentPath.slice(0, -1);
     }
     
-    // Check if this path should redirect to a canonical URL
-    const redirectTarget = DUPLICATE_URLS_TO_REDIRECT[currentPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT];
-    
-    if (redirectTarget) {
-      // This is a duplicate URL that should redirect
+    try {
+      // Check if this path should redirect to a canonical URL
+      const redirectTarget = DUPLICATE_URLS_TO_REDIRECT[currentPath as keyof typeof DUPLICATE_URLS_TO_REDIRECT];
+      
+      if (redirectTarget) {
+        // This is a duplicate URL that should redirect
+        return {
+          canonicalPath: redirectTarget,
+          fullCanonicalUrl: `${baseUrl}${redirectTarget}`,
+          shouldRedirect: true,
+          redirectTarget
+        };
+      }
+      
+      // This is already a canonical URL
+      const canonicalPath = currentPath || '/';
+      
       return {
-        canonicalPath: redirectTarget,
-        fullCanonicalUrl: `${baseUrl}${redirectTarget}`,
-        shouldRedirect: true,
-        redirectTarget
+        canonicalPath,
+        fullCanonicalUrl: `${baseUrl}${canonicalPath}`,
+        shouldRedirect: false
+      };
+    } catch (error) {
+      console.warn('useCanonicalUrl: Error processing canonical URL:', error);
+      // Fallback to current path
+      const canonicalPath = currentPath || '/';
+      return {
+        canonicalPath,
+        fullCanonicalUrl: `${baseUrl}${canonicalPath}`,
+        shouldRedirect: false
       };
     }
-    
-    // This is already a canonical URL
-    const canonicalPath = currentPath || '/';
-    
-    return {
-      canonicalPath,
-      fullCanonicalUrl: `${baseUrl}${canonicalPath}`,
-      shouldRedirect: false
-    };
   }, [location.pathname]);
 };
 

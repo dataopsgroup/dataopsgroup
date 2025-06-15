@@ -1,6 +1,6 @@
 
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useCanonicalUrl } from '@/hooks/useCanonicalUrl';
 
 /**
@@ -9,14 +9,38 @@ import { useCanonicalUrl } from '@/hooks/useCanonicalUrl';
  */
 const CanonicalRedirect: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isReady, setIsReady] = useState(false);
   const { shouldRedirect, redirectTarget } = useCanonicalUrl();
   
+  // Wait for router to be fully initialized
   useEffect(() => {
-    if (shouldRedirect && redirectTarget) {
+    const timer = setTimeout(() => {
+      setIsReady(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
+  useEffect(() => {
+    // Only perform redirects after router is ready and we have a valid redirect target
+    if (!isReady || !shouldRedirect || !redirectTarget) {
+      return;
+    }
+    
+    // Prevent redirect loops
+    if (location.pathname === redirectTarget) {
+      console.log('🔄 Preventing redirect loop:', location.pathname, '->', redirectTarget);
+      return;
+    }
+    
+    try {
       console.log(`🔀 Redirecting to canonical URL: ${redirectTarget}`);
       navigate(redirectTarget, { replace: true });
+    } catch (error) {
+      console.warn('Failed to redirect to canonical URL:', error);
     }
-  }, [shouldRedirect, redirectTarget, navigate]);
+  }, [isReady, shouldRedirect, redirectTarget, navigate, location.pathname]);
   
   return null; // This component doesn't render anything
 };
