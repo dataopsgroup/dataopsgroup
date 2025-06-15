@@ -1,7 +1,8 @@
-import React, { lazy, Suspense, startTransition } from 'react';
+import React, { lazy, Suspense } from 'react';
 import Index from '../pages/Index';
+import Loading from '../components/Loading';
 
-// const Index = lazy(() => import('../pages/Index'));
+// Keep Index as direct import, lazy load others
 const AboutPage = lazy(() => import('../pages/AboutPage'));
 const ApproachPage = lazy(() => import('../pages/ApproachPage'));
 const ContactPage = lazy(() => import('../pages/Contact'));
@@ -12,14 +13,10 @@ const CaseStudies = lazy(() => import('../pages/CaseStudies'));
 const PEValueCreationPage = lazy(() => import('../pages/PEValueCreationPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
-// Loading component for Suspense fallback
-const LoadingFallback = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-dataops-600"></div>
-  </div>
-);
+// Simple loading component for Suspense fallback
+const LoadingFallback = () => <Loading />;
 
-// Enhanced wrapper component that provides Suspense boundary with startTransition
+// Simple wrapper component that provides Suspense boundary
 const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
   <Suspense fallback={<LoadingFallback />}>
     {children}
