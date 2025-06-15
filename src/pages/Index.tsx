@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -13,14 +12,12 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 import ImageErrorBoundary from '@/components/ui/image-error-boundary';
-
 const Index = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
   // Enhanced debugging for Index page initialization
   console.log('🏠 Index page rendered at:', new Date().toISOString());
   console.log('🌐 Base URL:', baseUrl);
-  
   return <SemanticLayout>
       <Helmet>
         <title>PE Portfolio Operations Platform | HubSpot Implementation for Private Equity</title>
@@ -91,14 +88,12 @@ const Index = () => {
       
       {/* Main content sections with enhanced error boundary around Hero */}
       <section aria-labelledby="hero-heading" className="bg-green-200">
-        <ImageErrorBoundary fallback={
-          <div className="min-h-[500px] bg-dataops-600 flex items-center justify-center">
+        <ImageErrorBoundary fallback={<div className="min-h-[500px] bg-dataops-600 flex items-center justify-center">
             <div className="text-white text-center">
               <h1 className="text-4xl font-bold mb-4">Turn PE Portfolio Operations Into Profit Drivers</h1>
               <p className="text-xl">Loading hero section...</p>
             </div>
-          </div>
-        }>
+          </div>}>
           <Hero />
         </ImageErrorBoundary>
       </section>
@@ -143,7 +138,7 @@ const Index = () => {
               </div>
             </div>
             
-            <p className="text-sm text-gray-600">
+            <p className="text-gray-600 text-xl">
               Join 50+ portfolio companies that have already strengthened their operational foundation
             </p>
           </div>
@@ -163,5 +158,4 @@ const Index = () => {
       </section>
     </SemanticLayout>;
 };
-
 export default Index;
