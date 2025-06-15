@@ -49,9 +49,7 @@ const Index = () => {
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         
         {/* Preload critical resources */}
-        <link rel="preload" as="image" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" />
         <link rel="preload" as="image" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
-        <link rel="preload" as="image" href="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         

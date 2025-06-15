@@ -129,18 +129,26 @@ const LARGE_IMAGE_MAPPINGS: LargeImageMapping[] = [
     maxSizeKB: 150,
     description: 'Blog cover for marketing operations post'
   },
-    {
+  {
     original: '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png',
     optimized: '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c-optimized.webp',
     context: 'blog-cover',
     maxSizeKB: 150,
     description: 'Blog cover for hidden cost of failed hubspot implementations'
+  },
+  {
+    original: '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png',
+    optimized: '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7-optimized.webp',
+    context: 'hero',
+    maxSizeKB: 400,
+    description: 'Main hero background image on homepage'
   }
 ];
 
 // Images that should preserve their exact layout and styling
 const LAYOUT_PRESERVING_IMAGES = [
-  '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png' // Hero background
+  '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', // Hero background
+  '/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png'  // Homepage Hero background
 ];
 
 /**

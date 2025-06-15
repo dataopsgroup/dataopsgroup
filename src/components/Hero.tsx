@@ -1,9 +1,11 @@
+
 import React, { startTransition } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { trackEvent } from '@/utils/analytics';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
   const {
@@ -62,9 +64,17 @@ const Hero = () => {
   }, [isMobile]);
   return <>
       <div className="hero-section bg-gray-50 pb-0">
-        {/* Background Image - desktop only with simplified approach */}
+        {/* Background Image - desktop only with enhanced optimization */}
         {!isMobile && <div className="hero-bg">
-            <img src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" alt="Hero background consultant" loading="eager" decoding="sync" fetchPriority="high" onLoad={() => console.log('Hero image loaded successfully')} onError={e => console.error('Hero image failed to load:', e)} />
+            <OptimizedImage 
+              src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" 
+              alt="Hero background consultant" 
+              priority
+              isLCP
+              componentType="hero"
+              onLoad={() => console.log('Optimized Hero image loaded successfully')} 
+              onError={e => console.error('Optimized Hero image failed to load:', e)} 
+            />
           </div>}
         
         {/* Layout Container */}
