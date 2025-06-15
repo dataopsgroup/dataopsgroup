@@ -25,7 +25,7 @@ const BookCTA = () => {
           </p>
           
           <div className="flex justify-center">
-            <Link to="/contact">
+            <Link to="/data-operations-assessment">
               <Button 
                 className="font-semibold px-8 py-3 text-lg text-dataops-950" 
                 style={{ backgroundColor: '#FBB03B' }}
