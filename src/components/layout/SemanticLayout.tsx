@@ -1,6 +1,6 @@
 
 import React, { ReactNode } from 'react';
-import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import MetaValidator from '@/components/seo/MetaValidator';
 import CanonicalOGValidator from '@/components/seo/CanonicalOGValidator';
@@ -14,7 +14,7 @@ const SemanticLayout = ({ children }: SemanticLayoutProps) => {
   return (
     <>
       <CanonicalRedirect />
-      <Header />
+      <Navbar />
       <main className="flex-grow">
         {children}
       </main>
