@@ -24,13 +24,13 @@ export const getOptimalQuality = (
 };
 
 /**
- * Get optimized image source with automatic large image handling - FIXED SIGNATURE
+ * Get optimized image source with automatic large image handling
  */
 export const getImageSrc = (src: string, context: ImageContext = 'content'): string => {
   if (!src) return '';
   
   try {
-    // First, check if this is one of the large images that needs optimization - FIXED CALL
+    // First, check if this is one of the large images that needs optimization
     const optimizedSrc = getOptimizedImageSrc(src);
     if (optimizedSrc !== src) {
       return optimizedSrc; // Use pre-optimized version
@@ -74,11 +74,11 @@ export const isLocalAsset = (src: string): boolean => {
 };
 
 /**
- * Get recommended compression settings for any image - FIXED SIGNATURE
+ * Get recommended compression settings for any image
  */
 export const getCompressionSettings = (src: string, context: ImageContext = 'content') => {
-  // Use specific settings for known large images - FIXED CALL
-  const settings = getOptimizationSettings(src);
+  // Use context-specific settings from the optimization settings
+  const settings = getOptimizationSettings(context);
   
   // Apply context-specific adjustments
   const contextMultipliers = {
