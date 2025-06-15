@@ -19,17 +19,21 @@ function App() {
   useEffect(() => {
     // Simple initialization with error handling
     try {
-      console.log('App initialized at:', new Date().toISOString());
+      console.log('🚀 App initialized at:', new Date().toISOString());
+      console.log('🛣️ Router configuration loaded successfully');
       
       // Initialize performance optimizations with error handling
       if (typeof window !== 'undefined') {
-        import('./lib/performance-optimizations').then(({ initializeAllOptimizations }) => {
-          initializeAllOptimizations().catch(error => {
-            console.warn('Performance optimizations failed:', error);
+        // Delay performance optimizations to not interfere with initial render
+        setTimeout(() => {
+          import('./lib/performance-optimizations').then(({ initializeAllOptimizations }) => {
+            initializeAllOptimizations().catch(error => {
+              console.warn('Performance optimizations failed:', error);
+            });
+          }).catch(error => {
+            console.warn('Failed to load performance optimizations:', error);
           });
-        }).catch(error => {
-          console.warn('Failed to load performance optimizations:', error);
-        });
+        }, 1000); // Increased delay to ensure router is fully ready
       }
     } catch (error) {
       console.error('App initialization error:', error);
