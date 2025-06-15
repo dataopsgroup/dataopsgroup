@@ -37,7 +37,7 @@ export const shouldOptimizeImage = (src: string): boolean => {
 /**
  * Get optimized settings for different image contexts - MORE AGGRESSIVE
  */
-export const getOptimizationSettings = (context: 'hero' | 'logo' | 'content' | 'thumbnail'): LargeImageOptimizationOptions => {
+export const getOptimizationSettings = (context: 'hero' | 'logo' | 'content' | 'thumbnail' | 'blog-cover'): LargeImageOptimizationOptions => {
   const settings: Record<string, LargeImageOptimizationOptions> = {
     hero: {
       maxSizeKB: 350, // More aggressive for hero images (was 400)
@@ -64,6 +64,13 @@ export const getOptimizationSettings = (context: 'hero' | 'logo' | 'content' | '
       maxSizeKB: 40,   // More strict (was 50)
       quality: 0.75,   // Lower quality (was 0.8)
       maxWidth: 250,   // Smaller (was 300)
+      format: 'webp',
+      preserveAspectRatio: true
+    },
+    'blog-cover': {
+      maxSizeKB: 150,
+      quality: 0.80,
+      maxWidth: 1000,
       format: 'webp',
       preserveAspectRatio: true
     }
@@ -235,7 +242,7 @@ const canvasToOptimizedBlob = (
  */
 export const batchOptimizeLargeImages = async (
   imageUrls: string[],
-  context: 'hero' | 'logo' | 'content' | 'thumbnail' = 'content'
+  context: 'hero' | 'logo' | 'content' | 'thumbnail' | 'blog-cover' = 'content'
 ): Promise<Record<string, OptimizationResult>> => {
   const results: Record<string, OptimizationResult> = {};
   const settings = getOptimizationSettings(context);
