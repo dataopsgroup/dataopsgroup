@@ -1,4 +1,3 @@
-
 /**
  * Knowledge Base: Common Build Error Prevention
  * 
@@ -158,7 +157,58 @@ export const buildErrorLearnings = {
     ],
     criticalNote: "This issue was persistent because it required fixing BOTH the pages setting wrong canonical paths AND the MetaHead component logic. Fixing only one side would not resolve the Ahrefs warnings completely."
   },
-
+  
+  multipleTitleTags: {
+    title: "Multiple Title Tags - Ahrefs SEO Error",
+    date: "2025-06-15",
+    issue: "Ahrefs reports 'Multiple title tags', indicating a single page has more than one <title> element in its <head>.",
+    impact: "Confuses search engine crawlers, dilutes SEO value, and can lead to unpredictable title display in search results.",
+    rootCauses: [
+      "A page component renders the main <MetaHead> component.",
+      "The same page component also renders a sub-component (e.g., a Schema component) that independently adds its own <title> tag.",
+      "Components not using react-helmet-async for title management, leading to multiple raw <title> tags being inserted into the DOM."
+    ],
+    symptoms: [
+      "Ahrefs 'Multiple title tags' error.",
+      "Inconsistent page titles appearing in browser tabs or search results.",
+      "Inspecting page source reveals more than one <title>...</title> element in the <head>."
+    ],
+    solution: {
+      step1: "Establish MetaHead as the single source of truth for page titles.",
+      step2: "Audit sub-components (especially Schema components) to find and remove any logic that adds a <title> tag.",
+      step3: "Refactor page components to not pass title-related data to sub-components that might misuse it."
+    },
+    preventionRules: [
+      "NEVER allow sub-components to generate their own <title> tags.",
+      "ALL page titles must be managed exclusively by the top-level MetaHead component on a page.",
+      "DO NOT pass title strings to components unless you are certain they will not be used to create a <title> tag."
+    ],
+    codePatterns: {
+      correct: `
+        // CORRECT: Page component controls title via MetaHead only.
+        <SemanticLayout>
+          <MetaHead title="Unique Page Title | DataOps Group" />
+          <SchemaComponent schemaData={...} /> // Schema component does not handle titles.
+          // ... page content
+        </SemanticLayout>
+      `,
+      incorrect: `
+        // WRONG: Page passes title data to a sub-component.
+        <SemanticLayout>
+          <MetaHead title="Some Page Title | DataOps Group" />
+          <SchemaComponent serviceTitle="Some Page Title" /> // This component incorrectly adds another <title> tag.
+          // ... page content
+        </SemanticLayout>
+      `
+    },
+    relatedFiles: [
+      "src/components/seo/MetaHead.tsx",
+      "src/pages/services/*.tsx",
+      "src/components/services/*Schema.tsx"
+    ],
+    criticalNote: "The issue is resolved by ensuring a strict hierarchy of responsibility for SEO tags. Only one component per page should ever be responsible for the <title> tag."
+  },
+  
   titleLengthOptimization: {
     title: "Page Title Length Optimization - Ahrefs SEO Warning",
     date: "2025-06-14",
