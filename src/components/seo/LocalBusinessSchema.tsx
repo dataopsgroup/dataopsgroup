@@ -1,41 +1,31 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { companyInfo } from '@/data/companyInfo';
 
 const LocalBusinessSchema = () => {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : companyInfo.url;
+
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://dataopsgroup.com",
-    "name": "DataOps Group",
-    "description": "DataOps Group helps businesses maximize the value of their HubSpot implementation through innovative data operations solutions and expert consulting services.",
-    "url": "https://dataopsgroup.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dataopsgroup.com/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png",
-      "width": 512,
-      "height": 512
-    },
-    "image": "https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png",
-    "telephone": "+14798442052",
-    "priceRange": "$$$",
+    "@id": `${baseUrl}/#organization`, // Use same ID to merge with OrganizationSchema
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Fayetteville",
-      "addressRegion": "AR",
-      "postalCode": "72701",
-      "addressCountry": "US"
+      "streetAddress": companyInfo.address.street,
+      "addressLocality": companyInfo.address.city,
+      "addressRegion": companyInfo.address.state,
+      "postalCode": companyInfo.address.zip,
+      "addressCountry": companyInfo.address.country
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 36.0822,
-      "longitude": -94.1719
+      "latitude": companyInfo.geo.latitude,
+      "longitude": companyInfo.geo.longitude
     },
+    "telephone": companyInfo.contact.phone,
+    "priceRange": "$$$",
     "openingHours": "Mo,Tu,We,Th 09:00-17:00",
-    "sameAs": [
-      "https://www.linkedin.com/company/dataops-group",
-      "https://twitter.com/dataops_group"
-    ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "HubSpot Consulting Services",
