@@ -9,6 +9,11 @@ export interface WebVitalMetric {
   rating: 'good' | 'needs-improvement' | 'poor';
   delta: number;
   id: string;
+  timestamp?: number;
+  path?: string;
+  deviceCategory?: string;
+  connection?: string;
+  entries?: PerformanceEntry[];
 }
 
 export interface LayoutShiftEntry extends PerformanceEntry {
