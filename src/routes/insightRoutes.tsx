@@ -13,62 +13,69 @@ const FAQHubSpotModules = lazy(() => import('../pages/FAQHubSpotModules'));
 const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
 const RouteErrorBoundary = lazy(() => import('../components/RouteErrorBoundary'));
 
+// Suspense wrapper for lazy loaded components
+const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
+  <React.Suspense fallback={<div className="flex justify-center items-center h-64"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-dataops-600"></div></div>}>
+    {children}
+  </React.Suspense>
+);
+
 export const insightRoutes = [
   // Blog and insights
   {
     path: "/insights",
-    element: <BlogList />,
+    element: <SuspenseWrapper><BlogList /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/insights/:postId",
-    element: <BlogPostPage />,
+    element: <SuspenseWrapper><BlogPostPage /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   
   // Case studies
   {
     path: "/case-studies/:caseStudyId",
-    element: <CaseStudyDetailPage />,
+    element: <SuspenseWrapper><CaseStudyDetailPage /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   
   // FAQ sections - organized under /faqs
   {
     path: "/faqs",
-    element: <FAQs />,
+    element: <SuspenseWrapper><FAQs /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/faqs/services",
-    element: <FAQServicesPage />,
+    element: <SuspenseWrapper><FAQServicesPage /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/faqs/experts",
-    element: <FAQHubSpotExperts />,
+    element: <SuspenseWrapper><FAQHubSpotExperts /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/faqs/data-quality",
-    element: <FAQDataQuality />,
+    element: <SuspenseWrapper><FAQDataQuality /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/faqs/approach",
-    element: <FAQOurApproach />,
+    element: <SuspenseWrapper><FAQOurApproach /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/faqs/modules",
-    element: <FAQHubSpotModules />,
+    element: <SuspenseWrapper><FAQHubSpotModules /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   },
   
   // Testing and admin
   {
     path: "/structured-data-test",
-    element: <StructuredDataTest />,
+    element: <SuspenseWrapper><StructuredDataTest /></SuspenseWrapper>,
     errorElement: <RouteErrorBoundary />,
   }
 ];
