@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AdminLink from '@/components/AdminLink';
 import OptimizedLogo from '@/components/ui/optimized-logo';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const serviceLinks = [{
