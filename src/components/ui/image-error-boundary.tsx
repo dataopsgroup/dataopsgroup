@@ -4,41 +4,52 @@ import React, { Component, ErrorInfo, ReactNode } from 'react';
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
+  onError?: (error: Error, errorInfo: ErrorInfo) => void;
 }
 
 interface State {
   hasError: boolean;
+  error?: Error;
 }
 
 /**
- * Error boundary specifically for image loading components
- * Provides graceful fallback when image optimization fails
+ * Error boundary specifically for image loading failures
+ * Prevents image optimization issues from breaking the entire page
  */
 class ImageErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false
-  };
-
-  public static getDerivedStateFromError(): State {
-    return { hasError: true };
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.warn('Image component error caught:', error.message, errorInfo);
+  static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error };
   }
 
-  public render() {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.warn('Image Error Boundary caught an error:', error, errorInfo);
+    
+    // Call custom error handler if provided
+    if (this.props.onError) {
+      this.props.onError(error, errorInfo);
+    }
+    
+    // Report to analytics if available
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'image_error_boundary', {
+        event_category: 'Error',
+        event_label: error.message,
+        value: 1
+      });
+    }
+  }
+
+  render() {
     if (this.state.hasError) {
+      // Custom fallback or default
       return this.props.fallback || (
-        <div className="w-full h-64 bg-gray-100 flex items-center justify-center rounded-lg">
-          <div className="text-center text-gray-500">
-            <div className="w-12 h-12 mx-auto mb-2 opacity-50">
-              <svg fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <p className="text-sm">Image temporarily unavailable</p>
-          </div>
+        <div className="flex items-center justify-center p-4 bg-gray-100 rounded">
+          <span className="text-gray-600 text-sm">Image unavailable</span>
         </div>
       );
     }

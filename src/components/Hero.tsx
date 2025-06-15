@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { trackEvent } from '@/utils/analytics';
-import OptimizedImage from '@/components/ui/optimized-image';
 
 const Hero = () => {
   const {
@@ -34,46 +33,37 @@ const Hero = () => {
     }
   };
 
-  // Development logging for font and image debugging
-  React.useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Hero component mounted - Mobile:', isMobile);
-      console.log('Should show background image:', !isMobile);
-
-      // Check font loading after a delay
-      setTimeout(() => {
-        const heroHeading = document.querySelector('.hero-heading');
-        if (heroHeading) {
-          const computedStyle = window.getComputedStyle(heroHeading);
-          console.log('Hero heading font family:', computedStyle.fontFamily);
-        }
-
-        // Check image loading on desktop only
-        if (!isMobile) {
-          const heroImg = document.querySelector('.hero-bg img') as HTMLImageElement;
-          const heroBg = document.querySelector('.hero-bg');
-          console.log('Hero background element:', heroBg);
-          console.log('Hero image element:', heroImg);
-          if (heroImg) {
-            console.log('Hero image loaded:', heroImg.complete);
-            console.log('Hero image src:', heroImg.src);
-          }
-        }
-      }, 1000);
+  // Simple image error handler
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    console.warn('Hero background image failed to load');
+    // Hide the image container on error
+    const imgElement = e.target as HTMLImageElement;
+    if (imgElement.parentElement) {
+      imgElement.parentElement.style.display = 'none';
     }
-  }, [isMobile]);
+  };
+
+  // Simple image load handler
+  const handleImageLoad = () => {
+    console.log('Hero background image loaded successfully');
+  };
+
   return <>
       <div className="hero-section bg-gray-50 pb-0">
-        {/* Background Image - desktop only with enhanced optimization */}
+        {/* Background Image - desktop only with simplified loading */}
         {!isMobile && <div className="hero-bg">
-            <OptimizedImage 
+            <img 
               src="/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png" 
               alt="Hero background consultant" 
-              priority
-              isLCP
-              componentType="hero"
-              onLoad={() => console.log('Optimized Hero image loaded successfully')} 
-              onError={e => console.error('Optimized Hero image failed to load:', e)} 
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'right center'
+              }}
+              loading="eager"
+              onLoad={handleImageLoad}
+              onError={handleImageError}
             />
           </div>}
         
