@@ -1,3 +1,4 @@
+
 import React, { lazy, Suspense } from 'react';
 import Index from '../pages/Index';
 import Loading from '../components/Loading';
@@ -13,60 +14,73 @@ const CaseStudies = lazy(() => import('../pages/CaseStudies'));
 const PEValueCreationPage = lazy(() => import('../pages/PEValueCreationPage'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 
-// Simple loading component for Suspense fallback
-const LoadingFallback = () => <Loading />;
+// Enhanced loading component for Suspense fallback with error recovery
+const LoadingFallback = () => {
+  console.log('⏳ Loading component via Suspense...');
+  return <Loading />;
+};
 
-// Simple wrapper component that provides Suspense boundary
-const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
-  <Suspense fallback={<LoadingFallback />}>
-    {children}
-  </Suspense>
-);
+// Enhanced wrapper component that provides Suspense boundary with error recovery
+const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Suspense 
+      fallback={<LoadingFallback />}
+    >
+      {children}
+    </Suspense>
+  );
+};
+
+// Enhanced error boundary component for route-level errors
+const RouteErrorBoundary = () => {
+  console.error('🚨 Route error boundary triggered');
+  return <SuspenseWrapper><NotFound /></SuspenseWrapper>;
+};
 
 export const mainRoutes = [
   {
     path: "/",
     element: <Index />,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/about",
     element: <SuspenseWrapper><AboutPage /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/approach", 
     element: <SuspenseWrapper><ApproachPage /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/contact",
     element: <SuspenseWrapper><ContactPage /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/book",
     element: <SuspenseWrapper><BookLandingPage /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/data-operations-assessment",
     element: <SuspenseWrapper><HubSpotAssessment /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/data-operations-assessment/results",
     element: <SuspenseWrapper><HubSpotAssessmentResultsPage /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/case-studies",
     element: <SuspenseWrapper><CaseStudies /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: "/pe-value-creation-program",
     element: <SuspenseWrapper><PEValueCreationPage /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+    errorElement: <RouteErrorBoundary />,
   },
 ];

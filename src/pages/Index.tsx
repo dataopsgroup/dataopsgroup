@@ -17,8 +17,9 @@ import ImageErrorBoundary from '@/components/ui/image-error-boundary';
 const Index = () => {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
-  // Comment: Force GitHub sync - Updated deployment timestamp for hero fixes
-  console.log('Homepage deployment refresh with hero fixes:', new Date().toISOString());
+  // Enhanced debugging for Index page initialization
+  console.log('🏠 Index page rendered at:', new Date().toISOString());
+  console.log('🌐 Base URL:', baseUrl);
   
   return <SemanticLayout>
       <Helmet>
@@ -88,13 +89,13 @@ const Index = () => {
       <LocalBusinessSchema />
       <ProfessionalServiceSchema />
       
-      {/* Main content sections with error boundary around Hero */}
+      {/* Main content sections with enhanced error boundary around Hero */}
       <section aria-labelledby="hero-heading" className="bg-green-200">
         <ImageErrorBoundary fallback={
           <div className="min-h-[500px] bg-dataops-600 flex items-center justify-center">
             <div className="text-white text-center">
               <h1 className="text-4xl font-bold mb-4">Turn PE Portfolio Operations Into Profit Drivers</h1>
-              <p className="text-xl">Loading...</p>
+              <p className="text-xl">Loading hero section...</p>
             </div>
           </div>
         }>
