@@ -1,75 +1,67 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const DataOpsImplementationOverview = () => {
   return (
-    <section className="mt-16 px-6" aria-labelledby="overview-heading">
-      <div className="bg-gradient-to-br from-white via-gray-50 to-blue-50 border border-gray-200 rounded-2xl p-10 max-w-full mx-auto shadow-xl backdrop-blur-sm">
-        <h2 id="overview-heading" className="text-3xl font-bold text-gray-900 mb-6 font-rubik">Scale Your Portfolio with Proven DataOps Implementation</h2>
-        
-        <div className="prose prose-lg max-w-none font-roboto">
-          <p className="text-gray-700 leading-relaxed mb-6">
-            Growing portfolio companies need standardized, scalable data operations to achieve consistent performance. Our 
-            <Link to="/services" className="text-dataops-600 hover:text-dataops-800 font-medium" aria-label="View all DataOps services"> DataOps implementation services</Link> establish 
-            the foundation for sustainable growth through automated workflows, integrated systems, and standardized processes across your entire portfolio.
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 font-rubik">What We Implement</h3>
-              <ul className="space-y-3" role="list">
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span>Automated data pipelines for seamless information flow</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span>Standardized workflows across all portfolio companies</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span>Integrated technology stacks for operational efficiency</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="w-5 h-5 text-green-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span>Performance monitoring and continuous optimization</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 font-rubik">Our Implementation Expertise</h3>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 font-rubik">
+                Streamlined Portfolio Operations
+              </h2>
+              <p className="text-gray-700 mb-6 font-roboto leading-relaxed">
+                Transform your portfolio companies with standardized DataOps implementation that eliminates operational silos, 
+                automates critical workflows, and creates consistent performance metrics across your entire investment portfolio.
+              </p>
               <div className="space-y-4">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">HubSpot Platform Mastery</h4>
-                  <p className="text-gray-600 text-sm">Deep expertise in <Link to="/services/team-training" className="text-dataops-600 hover:text-dataops-800 underline">HubSpot implementation</Link>, customization, and optimization for enterprise portfolios.</p>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-dataops-600 rounded-full mt-2"></div>
+                  <p className="text-gray-700">Standardize processes across all portfolio companies</p>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">Process Standardization</h4>
-                  <p className="text-gray-600 text-sm">Proven methodologies for creating consistent, scalable operations across diverse business models.</p>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-dataops-600 rounded-full mt-2"></div>
+                  <p className="text-gray-700">Automate data workflows and reduce manual tasks by 60%</p>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h4 className="font-semibold text-gray-900 mb-2">Portfolio Scaling</h4>
-                  <p className="text-gray-600 text-sm">Strategic approach to implementing DataOps that grows with your <Link to="/case-studies" className="text-dataops-600 hover:text-dataops-800 underline">portfolio expansion</Link> plans.</p>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-dataops-600 rounded-full mt-2"></div>
+                  <p className="text-gray-700">Create unified reporting and performance dashboards</p>
                 </div>
               </div>
             </div>
-          </div>
-          
-          <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
-            <p className="text-blue-800 font-medium">
-              Ready to standardize your portfolio operations? Our <Link to="/data-operation-assessment" className="text-dataops-600 hover:text-dataops-800 underline" aria-label="Start free DataOps assessment">free assessment</Link> identifies 
-              immediate opportunities to streamline your DataOps implementation across all portfolio companies. Explore our <Link to="/services/analytics-bi" className="text-dataops-600 hover:text-dataops-800 underline">analytics and BI services</Link> for comprehensive data solutions.
-            </p>
+            <div className="bg-gradient-to-br from-dataops-50 to-white p-8 rounded-xl">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Portfolio Impact</h3>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-sm text-gray-600">Operational Efficiency</span>
+                    <span className="text-sm font-medium text-dataops-600">+73%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-dataops-600 h-2 rounded-full" style={{ width: '73%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-sm text-gray-600">Data Quality</span>
+                    <span className="text-sm font-medium text-green-600">+85%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-green-600 h-2 rounded-full" style={{ width: '85%' }}></div>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-sm text-gray-600">Time to Insights</span>
+                    <span className="text-sm font-medium text-blue-600">-65%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: '65%' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 
 const DataOpsImplementationFAQSchema = () => {
   const faqData = {
@@ -9,10 +8,10 @@ const DataOpsImplementationFAQSchema = () => {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is DataOps implementation?",
+        "name": "What is DataOps implementation for portfolio companies?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "DataOps implementation involves establishing automated data pipelines, standardized workflows, and integrated technology stacks to scale marketing operations across portfolio companies with consistent performance and efficiency."
+          "text": "DataOps implementation involves streamlining and automating data operations across portfolio companies to create standardized processes, improve data quality, and enable consistent performance measurement across investments."
         }
       },
       {
@@ -20,26 +19,25 @@ const DataOpsImplementationFAQSchema = () => {
         "name": "How long does DataOps implementation take?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "DataOps implementation typically takes 6-12 weeks depending on portfolio size and complexity, with standardized processes deployed across all companies for immediate operational improvements."
+          "text": "Our proven methodology delivers full DataOps implementation in 100 days or less, with phased rollouts that minimize disruption to existing operations while maximizing value creation."
         }
       },
       {
         "@type": "Question",
-        "name": "What systems does DataOps integrate with?",
+        "name": "What ROI can we expect from DataOps implementation?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our DataOps implementation integrates with HubSpot, Salesforce, marketing automation platforms, BI tools, and custom data sources to create unified, automated workflows across your entire tech stack."
+          "text": "Portfolio companies typically see 18-22x ROI from DataOps implementation, with 73% efficiency gains, 85% improvement in data quality, and 65% reduction in time to insights."
         }
       }
     ]
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(faqData)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
+    />
   );
 };
 
