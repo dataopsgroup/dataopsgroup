@@ -1,6 +1,7 @@
+
 import React, { ReactNode } from 'react';
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../Header';
+import Footer from '../Footer';
 import MetaValidator from '@/components/seo/MetaValidator';
 import CanonicalOGValidator from '@/components/seo/CanonicalOGValidator';
 import CanonicalRedirect from '@/components/seo/CanonicalRedirect';
