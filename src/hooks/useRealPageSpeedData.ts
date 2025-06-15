@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { PageSpeedData, PageSpeedMetric } from './usePageSpeedData';
 import { useToast } from '@/hooks/use-toast';
 
-// The API key would be stored securely in production
-const PAGESPEED_API_KEY = 'YOUR_API_KEY';
+// SECURITY WARNING: This component requires proper API key management
+// The PageSpeed API key should be handled server-side for production use
 
 export const useRealPageSpeedData = () => {
   const [data, setData] = useState<PageSpeedData | null>(null);
@@ -22,11 +22,9 @@ export const useRealPageSpeedData = () => {
         url = 'https://' + url;
       }
       
-      // In a production environment, this API call would be made through a backend service
-      // to protect the API key. For demo purposes, we're making the call directly
-      const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&key=${PAGESPEED_API_KEY}&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo`;
-      
-      // For now, we'll simulate a response delay and return mock data
+      // SECURITY FIX: Removed hardcoded API key
+      // In production, this should be handled by a backend service
+      // For demo purposes, we'll simulate the API call and return mock data
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Use our mock data for demonstration

@@ -4,6 +4,8 @@ import { Loader2, Mail, User, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { sanitizeAndValidateInput } from '@/utils/securityMonitoring';
+import { validateEmail, validateName, rateLimiter } from '@/utils/formValidation';
 
 interface FallbackFormProps {
   onSubmit: () => void;
@@ -12,12 +14,62 @@ interface FallbackFormProps {
 const FallbackForm = ({ onSubmit }: FallbackFormProps) => {
   const [formData, setFormData] = useState({ firstName: '', email: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+  const validateField = (fieldName: string, value: string) => {
+    try {
+      // Security validation first
+      sanitizeAndValidateInput(value, `book-form-${fieldName}`);
+      
+      // Field-specific validation
+      let validation;
+      switch (fieldName) {
+        case 'email':
+          validation = validateEmail(value);
+          break;
+        case 'firstName':
+          validation = validateName(value, 'First Name');
+          break;
+        default:
+          validation = { isValid: true, sanitizedValue: value };
+      }
+      
+      if (!validation.isValid) {
+        setValidationErrors(prev => ({ ...prev, [fieldName]: validation.error || 'Invalid input' }));
+        return false;
+      } else {
+        setValidationErrors(prev => {
+          const newErrors = { ...prev };
+          delete newErrors[fieldName];
+          return newErrors;
+        });
+        return true;
+      }
+    } catch (error) {
+      setValidationErrors(prev => ({ ...prev, [fieldName]: 'Invalid input detected' }));
+      return false;
+    }
+  };
+
+  const handleFieldChange = (fieldName: string, value: string) => {
+    setFormData(prev => ({ ...prev, [fieldName]: value }));
+    validateField(fieldName, value);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.firstName || !formData.email) {
-      alert('Please fill in all fields');
+    // Rate limiting check
+    if (!rateLimiter.isAllowed('book-form', 2, 60000)) {
+      setValidationErrors({ form: 'Too many submission attempts. Please wait a minute.' });
+      return;
+    }
+    
+    // Validate all fields
+    const isFirstNameValid = validateField('firstName', formData.firstName);
+    const isEmailValid = validateField('email', formData.email);
+    
+    if (!isFirstNameValid || !isEmailValid) {
       return;
     }
 
@@ -36,11 +88,13 @@ const FallbackForm = ({ onSubmit }: FallbackFormProps) => {
         });
       }
       
-      // Trigger download and success
+      // Clear form and trigger success
+      setFormData({ firstName: '', email: '' });
+      setValidationErrors({});
       onSubmit();
     } catch (error) {
       console.error('Error submitting fallback form:', error);
-      alert('There was an error submitting the form. Please try again.');
+      setValidationErrors({ form: 'There was an error submitting the form. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -52,6 +106,12 @@ const FallbackForm = ({ onSubmit }: FallbackFormProps) => {
         <h3 className="text-lg font-semibold text-gray-800 mb-2">Get Your Free Sample Chapter</h3>
         <p className="text-sm text-gray-600">Fill out the form below to download instantly</p>
       </div>
+      
+      {validationErrors.form && (
+        <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm">
+          {validationErrors.form}
+        </div>
+      )}
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -65,11 +125,14 @@ const FallbackForm = ({ onSubmit }: FallbackFormProps) => {
               type="text"
               required
               value={formData.firstName}
-              onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
-              className="pl-10"
+              onChange={(e) => handleFieldChange('firstName', e.target.value)}
+              className={`pl-10 ${validationErrors.firstName ? 'border-red-500 focus:border-red-500' : ''}`}
               placeholder="Enter your first name"
             />
           </div>
+          {validationErrors.firstName && (
+            <p className="text-sm text-red-600 mt-1">{validationErrors.firstName}</p>
+          )}
         </div>
         
         <div>
@@ -83,17 +146,20 @@ const FallbackForm = ({ onSubmit }: FallbackFormProps) => {
               type="email"
               required
               value={formData.email}
-              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              className="pl-10"
+              onChange={(e) => handleFieldChange('email', e.target.value)}
+              className={`pl-10 ${validationErrors.email ? 'border-red-500 focus:border-red-500' : ''}`}
               placeholder="Enter your email address"
             />
           </div>
+          {validationErrors.email && (
+            <p className="text-sm text-red-600 mt-1">{validationErrors.email}</p>
+          )}
         </div>
         
         <Button 
           type="submit" 
           className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-          disabled={isSubmitting}
+          disabled={isSubmitting || Object.keys(validationErrors).length > 0}
         >
           {isSubmitting ? (
             <>

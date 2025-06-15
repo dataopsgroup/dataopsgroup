@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { LucideIcon } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { LucideIcon } from 'lucide-react';
 
 interface ContactFormFieldProps {
   id: string;
@@ -11,9 +11,10 @@ interface ContactFormFieldProps {
   type: 'text' | 'email' | 'textarea';
   value: string;
   onChange: (value: string) => void;
-  placeholder: string;
+  placeholder?: string;
   required?: boolean;
-  icon: LucideIcon;
+  icon?: LucideIcon;
+  error?: string;
 }
 
 const ContactFormField: React.FC<ContactFormFieldProps> = ({
@@ -24,29 +25,50 @@ const ContactFormField: React.FC<ContactFormFieldProps> = ({
   onChange,
   placeholder,
   required = false,
-  icon: Icon
+  icon: Icon,
+  error
 }) => {
-  const InputComponent = type === 'textarea' ? Textarea : Input;
-  const inputProps = type === 'textarea' 
-    ? { className: "pl-10 min-h-[100px]" }
-    : { type, className: "pl-10" };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    onChange(e.target.value);
+  };
 
   return (
-    <div>
+    <div className="space-y-2">
       <Label htmlFor={id} className="text-sm font-medium text-gray-700">
-        {label} {required && '*'}
+        {label} {required && <span className="text-red-500">*</span>}
       </Label>
-      <div className="relative mt-1">
-        <Icon className={`absolute left-3 ${type === 'textarea' ? 'top-3' : 'top-1/2 transform -translate-y-1/2'} h-4 w-4 text-gray-400`} />
-        <InputComponent
-          id={id}
-          required={required}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          {...inputProps}
-        />
+      
+      <div className="relative">
+        {Icon && (
+          <Icon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+        )}
+        
+        {type === 'textarea' ? (
+          <Textarea
+            id={id}
+            value={value}
+            onChange={handleChange}
+            placeholder={placeholder}
+            required={required}
+            className={`${Icon ? 'pl-10' : ''} ${error ? 'border-red-500 focus:border-red-500' : ''}`}
+            rows={4}
+          />
+        ) : (
+          <Input
+            id={id}
+            type={type}
+            value={value}
+            onChange={handleChange}
+            placeholder={placeholder}
+            required={required}
+            className={`${Icon ? 'pl-10' : ''} ${error ? 'border-red-500 focus:border-red-500' : ''}`}
+          />
+        )}
       </div>
+      
+      {error && (
+        <p className="text-sm text-red-600">{error}</p>
+      )}
     </div>
   );
 };
