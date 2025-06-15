@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const DataOpsImplementationApproach = () => {
@@ -32,7 +31,7 @@ const DataOpsImplementationApproach = () => {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 font-rubik">
               Our Implementation Approach
@@ -42,31 +41,41 @@ const DataOpsImplementationApproach = () => {
             </p>
           </div>
 
-          <div className="space-y-8">
-            {approaches.map((approach, index) => (
-              <div key={index} className="flex items-start space-x-6">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-dataops-600 text-white rounded-full flex items-center justify-center font-bold">
-                    {index + 1}
+          {/* Horizontal Timeline */}
+          <div className="mb-12">
+            {/* Timeline Headers */}
+            <div className="grid grid-cols-4 gap-4 mb-8">
+              {approaches.map((approach, index) => (
+                <div key={index} className="text-center">
+                  <div className="bg-dataops-600 text-white px-4 py-2 rounded-lg font-semibold text-sm mb-2">
+                    {approach.timeline}
+                  </div>
+                  <div className="h-1 bg-dataops-200 relative">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-dataops-600 rounded-full border-4 border-white shadow-lg"></div>
                   </div>
                 </div>
-                <div className="flex-grow">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                    <h3 className="text-xl font-semibold text-gray-900 font-rubik">
-                      {approach.title}
-                    </h3>
-                    <span className="text-sm text-dataops-600 font-medium bg-dataops-50 px-3 py-1 rounded-full">
-                      {approach.timeline}
-                    </span>
+              ))}
+            </div>
+
+            {/* Timeline Content */}
+            <div className="grid grid-cols-4 gap-4">
+              {approaches.map((approach, index) => (
+                <div key={index} className="bg-gradient-to-br from-dataops-50 to-white p-6 rounded-xl border border-dataops-200">
+                  <div className="flex items-center justify-center w-8 h-8 bg-dataops-600 text-white rounded-full font-bold text-sm mb-4 mx-auto">
+                    {index + 1}
                   </div>
-                  <p className="text-gray-600 font-roboto leading-relaxed">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3 font-rubik text-center">
+                    {approach.title}
+                  </h3>
+                  <p className="text-gray-600 font-roboto text-sm leading-relaxed text-center">
                     {approach.description}
                   </p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
+          {/* Keep the "Why Our Approach Works" section exactly as it was */}
           <div className="mt-12 bg-gradient-to-br from-dataops-50 to-white p-8 rounded-xl">
             <h3 className="text-xl font-semibold text-gray-900 mb-4 font-rubik">
               Why Our Approach Works
