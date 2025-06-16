@@ -51,7 +51,7 @@ const Index = () => {
       <ProfessionalServiceSchema />
       
       {/* Main content sections with enhanced error boundary around Hero */}
-      <section aria-labelledby="hero-heading" className="bg-green-200">
+      <section aria-labelledby="hero-heading">
         <ImageErrorBoundary fallback={<div className="min-h-[500px] bg-dataops-600 flex items-center justify-center">
             <div className="text-white text-center">
               <h1 className="text-4xl font-bold mb-4">Turn PE Portfolio Operations Into Profit Drivers</h1>
