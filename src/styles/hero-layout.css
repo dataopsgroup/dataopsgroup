@@ -38,7 +38,7 @@
     /* Add fallback background image */
     background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
     background-size: cover;
-    background-position: 75% center; /* LOCKED: Keep woman positioned on the right */
+    background-position: 85% center; /* REPOSITIONED: Woman moved further right for more gray box space */
     background-repeat: no-repeat;
   }
 
@@ -46,16 +46,16 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: 75% center !important; /* CRITICAL: Position woman to the RIGHT - DO NOT CHANGE */
+    object-position: 85% center !important; /* REPOSITIONED: Woman positioned further right */
     transform: scale(1.1) !important; /* Scale appropriately to keep face visible */
-    transform-origin: 75% center !important; /* LOCKED: Maintain face positioning */
+    transform-origin: 85% center !important; /* UPDATED: Maintain face positioning at new location */
     max-width: none !important;
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    /* ANTI-REVERSION LOCK: These rules keep the woman's face visible and positioned correctly */
+    /* REPOSITIONING LOCK: Woman moved from 75% to 85% to create more left-side space */
   }
 }
 
@@ -85,10 +85,10 @@
   margin: 0 auto;
 }
 
-/* CRITICAL LAYOUT LOCK: Gray box positioning - ENLARGED for better proportion */
+/* RESPONSIVE LAYOUT: Flexible grid that scales from laptop to desktop */
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-columns: minmax(600px, 1fr) 2fr; /* ENLARGED: Increased from 350px to 600px for better desktop proportion */
+    grid-template-columns: clamp(450px, 50vw, 700px) 1fr; /* FLEXIBLE: Scales from 450px on laptops to 700px on large desktops */
     align-items: center;
   }
 }
@@ -100,20 +100,20 @@
   z-index: 15; /* Highest z-index for content */
 }
 
-/* ANTI-OVERLAP PROTECTION: Gray box significantly enlarged but still safe from woman's face */
+/* FLEXIBLE SIZING: Gray box scales gracefully across screen sizes */
 @media (min-width: 1024px) {
   .hero-content {
-    max-width: 600px; /* ENLARGED: Increased from 350px to 600px for better visual proportion */
-    min-width: 500px; /* ENLARGED: Increased from 300px to ensure generous space */
+    max-width: clamp(450px, 45vw, 700px); /* RESPONSIVE: Scales from laptop (450px) to large desktop (700px) */
+    width: 100%; /* FLEXIBLE: Use full available grid space */
     margin-left: 20px; /* POSITIONED: Close to left edge for more width */
     margin-right: auto; /* ADDED: Push content to far left */
   }
 }
 
+/* Large desktop refinements */
 @media (min-width: 1440px) {
   .hero-content {
-    max-width: 700px; /* ENLARGED: Increased from 400px for very wide screens */
-    min-width: 600px; /* ENLARGED: Generous minimum for large displays */
+    max-width: 700px; /* MAXIMUM: Cap at 700px for very wide screens */
     margin-left: 40px; /* POSITIONED: Maintain distance from woman's face */
   }
 }
@@ -128,7 +128,7 @@
   z-index: 20; /* ALWAYS on top - highest z-index */
 }
 
-/* Desktop: Gray overlay content box - ENLARGED AND positioned safely left */
+/* Desktop: Flexible gray overlay content box */
 @media (min-width: 768px) {
   .hero-content-box {
     background: rgba(107, 114, 128, 0.9) !important; /* LOCKED: Gray overlay */
@@ -139,16 +139,23 @@
     /* POSITIONING LOCK: These rules prevent overlap with woman's face */
     margin-left: 0 !important; /* Keep at far left edge of grid column */
     margin-right: auto !important; /* Push away from center/right */
-    /* WIDTH PROTECTION: ENLARGED box for better desktop proportion */
-    min-width: 500px !important; /* ENLARGED: Increased from 300px for better visual balance */
-    padding: 2.5rem !important; /* ENLARGED: More generous padding for larger box */
+    /* FLEXIBLE WIDTH: Scales with screen size instead of fixed minimums */
+    width: 100%; /* RESPONSIVE: Use full available space within grid constraints */
+    padding: clamp(1.5rem, 3vw, 2.5rem) !important; /* RESPONSIVE: Scales padding with screen size */
   }
 }
 
+/* Enhanced laptop breakpoint for better scaling */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .hero-content-box {
+    padding: 2rem !important; /* LAPTOP: Moderate padding for laptop screens */
+  }
+}
+
+/* Large desktop refinements */
 @media (min-width: 1440px) {
   .hero-content-box {
-    min-width: 600px !important; /* ENLARGED: Even more generous on very wide screens */
-    padding: 3rem !important; /* ENLARGED: Maximum padding for largest screens */
+    padding: 2.5rem !important; /* DESKTOP: More generous padding for large screens */
   }
 }
 
@@ -171,7 +178,7 @@
   white-space: nowrap;
   position: relative;
   z-index: 25; /* Ensure button stays above everything */
-  /* REFERENCE WIDTH: This button fits comfortably in the enlarged hero box */
+  /* REFERENCE WIDTH: This button fits comfortably in the flexible hero box */
 }
 
 .hero-button:hover {
@@ -198,16 +205,15 @@
 }
 
 /* 
-ENLARGED LAYOUT PROTECTION COMMENTS:
-- Gray hero box is now positioned in the left half of the screen (max-width: 600px-700px)
-- Hero box has enlarged min-width: 500px-600px for better visual proportion on desktop
-- Woman's background image remains locked at 75% from left (object-position: 75% center)
+FLEXIBLE LAYOUT PROTECTION COMMENTS:
+- Gray hero box now uses clamp() for responsive scaling (450px-700px)
+- Grid system uses flexible columns that scale with viewport
+- Woman's background image repositioned to 85% to create more left space
 - Z-index hierarchy: background (5) < content box (20) < button (25)
 - mt-12 class on Trusted Companies section provides proper spacing below hero
 - bg-gray-50 from React component creates seamless background (no CSS gradient override)
-- DO NOT modify object-position, min-width, max-width, or z-index values without careful consideration
-- ENLARGED WIDTH RULE: Hero box now scales 600px-700px for better desktop proportion
-- BACKGROUND RULE: Never override bg-gray-50 with CSS - let React component control background
-- SPACING RULE: Trusted Companies mt-12 is critical for proper visual separation
-- ENLARGEMENT SAFETY: All enlargements maintain safe distance from woman consultant image
+- RESPONSIVE RULE: Gray box flexes appropriately on laptop vs desktop screens
+- POSITIONING RULE: Woman repositioned from 75% to 85% for better space utilization
+- SCALING RULE: Content scales gracefully from 450px (laptop) to 700px (large desktop)
+- OVERLAP PREVENTION: Flexible sizing maintains safe distance from woman consultant image
 */
