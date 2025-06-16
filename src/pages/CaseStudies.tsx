@@ -58,7 +58,7 @@ const CaseStudiesPage = () => {
         
         <CTABanner />
       </main>
-    </SeSemanticLayout>
+    </SemanticLayout>
   );
 };
 
