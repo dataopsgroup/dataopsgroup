@@ -1,5 +1,4 @@
 
-
 /* Hero Background Image - Enhanced Positioning and Cropping */
 
 /* Hero background image container - hidden on mobile */
@@ -22,8 +21,7 @@
     transform: translateZ(0);
     background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png') !important;
     background-size: cover !important;
-    background-position: calc(100% + 100px) 30% !important; /* Shifted woman 100px further right */
+    background-position: calc(100% + 200px) 30% !important; /* Shifted woman 200px further right */
     background-repeat: no-repeat !important;
   }
 }
-
