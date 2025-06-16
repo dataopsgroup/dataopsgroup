@@ -1,4 +1,5 @@
 
+
 /* Hero Content Box - Enhanced Positioning and Constraints */
 
 /* Mobile: Transparent content box with white text */
@@ -11,7 +12,7 @@
   z-index: 20;
 }
 
-/* Desktop: Gray box positioned aligned with content area left boundary */
+/* Desktop: Gray box positioned aligned with container left edge */
 @media (min-width: 768px) {
   .hero-content-box {
     background: rgba(107, 114, 128, 0.9) !important;
@@ -20,9 +21,9 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 20 !important;
     
-    /* Position aligned with orange content area left boundary */
+    /* Position aligned with blue container left edge */
     position: absolute;
-    left: 80px; /* Align with content area left boundary */
+    left: 0px; /* Align with container left edge */
     right: auto;
     width: 37.5vw !important; /* Reduced from 50vw to 37.5vw (25% reduction) */
     max-width: none !important;
@@ -41,7 +42,7 @@
   .hero-content-box {
     padding: 2rem !important;
     width: 37.5vw !important;
-    left: 80px;
+    left: 0px;
   }
 }
 
@@ -50,7 +51,7 @@
   .hero-content-box {
     padding: 2.5rem !important;
     width: 37.5vw !important;
-    left: 80px;
+    left: 0px;
   }
 }
 
@@ -58,7 +59,7 @@
 @media (min-width: 1920px) {
   .hero-content-box {
     width: 37.5vw !important;
-    left: 80px;
+    left: 0px;
   }
 }
 
@@ -73,7 +74,7 @@
 @media (min-width: 768px) {
   .hero-content {
     position: absolute;
-    left: 80px; /* Standard left alignment for main content */
+    left: 0px; /* Align with container left edge */
     top: 0;
     width: 37.5vw;
     max-width: 37.5vw;
@@ -118,3 +119,4 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+

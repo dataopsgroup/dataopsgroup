@@ -1,4 +1,5 @@
 
+
 /* TEMPORARY DEBUG OUTLINES - Remove after layout fixes */
 
 /* Debug outlines for layout elements */
@@ -46,7 +47,7 @@
 }
 
 .hero-content::before {
-  content: "CONTENT AREA (aligned with container left)";
+  content: "CONTENT AREA (aligned with container left edge)";
   position: absolute;
   top: 5px;
   left: 5px;
@@ -65,7 +66,7 @@
 }
 
 .hero-content-box::before {
-  content: "GRAY BOX (aligned with orange content area)";
+  content: "GRAY BOX (aligned with container left edge)";
   position: absolute;
   top: 5px;
   left: 5px;
@@ -131,7 +132,7 @@
 /* Add measurement indicators for current gray box positioning */
 @media (min-width: 768px) {
   .hero-content-box::after {
-    content: "Box aligned with 80px left boundary";
+    content: "Box aligned with container left edge";
     position: absolute;
     right: -2px;
     top: 50%;
@@ -147,3 +148,4 @@
     font-weight: bold;
   }
 }
+
