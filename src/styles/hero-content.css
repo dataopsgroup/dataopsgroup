@@ -31,11 +31,11 @@
   }
 }
 
-/* Desktop positioning */
+/* Desktop positioning - moved 100px to the left */
 @media (min-width: 768px) {
   .hero-content {
     position: absolute;
-    left: 50%;
+    left: calc(50% - 100px); /* Moved 100px left from center */
     top: 50%;
     transform: translate(-50%, -50%);
     width: auto;
