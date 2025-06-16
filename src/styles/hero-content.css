@@ -1,122 +1,44 @@
 
-/* Hero Content Box - Enhanced Positioning and Constraints */
+/* Hero Content - Headline Overlay Styling */
 
-/* Mobile: Transparent content box with white text */
-.hero-content-box {
-  background: transparent;
-  padding: 2rem;
-  border-radius: 0;
-  color: white;
-  position: relative;
-  z-index: 20;
-}
-
-/* Desktop: Gray box positioned aligned with container left edge */
-@media (min-width: 768px) {
-  .hero-content-box {
-    background: rgba(107, 114, 128, 0.9) !important;
-    backdrop-filter: blur(10px);
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 20 !important;
-    
-    /* Position aligned with blue container left edge */
-    position: absolute;
-    left: 0px !important; /* Align with container left edge */
-    right: auto;
-    width: 22.5vw !important; /* Reduced from 30vw to 22.5vw (25% reduction) */
-    max-width: none !important;
-    
-    padding: clamp(1.5rem, 3vw, 2.5rem) 2rem clamp(1.5rem, 3vw, 2.5rem) 25px !important; /* Add 25px left padding */
-    margin: 0 !important;
-    
-    /* Keep top position fixed, allow downward growth only */
-    top: 0;
-    min-height: fit-content;
-  }
-}
-
-/* Enhanced laptop breakpoint with fixed positioning */
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .hero-content-box {
-    padding: 2rem 2rem 2rem 25px !important; /* Add 25px left padding */
-    width: 22.5vw !important;
-    left: 0px !important;
-  }
-}
-
-/* Large desktop: Maintain same positioning logic */
-@media (min-width: 1440px) {
-  .hero-content-box {
-    padding: 2.5rem 2.5rem 2.5rem 25px !important; /* Add 25px left padding */
-    width: 22.5vw !important;
-    left: 0px !important;
-  }
-}
-
-/* Ultra-wide: Maintain same positioning logic */
-@media (min-width: 1920px) {
-  .hero-content-box {
-    width: 22.5vw !important;
-    left: 0px !important;
-  }
-}
-
-/* Hero Content - positioned directly within container */
 .hero-content {
   position: relative;
   z-index: 15;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
 }
 
-/* Desktop: Align content with container left edge - REMOVE LEFT POSITIONING */
-@media (min-width: 768px) {
-  .hero-content {
-    position: absolute;
-    left: 0px !important; /* Remove any left offset */
-    top: 0;
-    width: 22.5vw;
-    max-width: 22.5vw;
-    margin: 0 !important; /* Remove any margin */
-    padding: 0 !important; /* Remove any padding */
+/* Headline box with transparent white background */
+.hero-headline-box {
+  background: rgba(255, 255, 255, 0.25) !important; /* 25% transparent white */
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 3rem 4rem;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .hero-headline-box {
+    padding: 2rem;
+    margin: 0 1rem;
   }
 }
 
-/* Hero button */
-.hero-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #1e293b;
-  color: white;
-  padding: 24px 24px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  min-height: 56px;
-  white-space: nowrap;
-  position: relative;
-  z-index: 25;
-}
-
-.hero-button:hover {
-  background: #334155;
-}
-
-/* Loading spinner */
-.loading-spinner {
-  width: 3rem;
-  height: 3rem;
-  border: 0.25rem solid rgba(79, 70, 229, 0.3);
-  border-radius: 50%;
-  border-top-color: rgba(79, 70, 229, 1);
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* Desktop positioning */
+@media (min-width: 768px) {
+  .hero-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    max-width: 90%;
+  }
 }

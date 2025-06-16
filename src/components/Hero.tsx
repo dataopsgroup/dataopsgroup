@@ -3,6 +3,7 @@ import React from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import HeroBackground from '@/components/hero/HeroBackground';
 import HeroContent from '@/components/hero/HeroContent';
+import HeroContentSection from '@/components/hero/HeroContentSection';
 import TrustedCompanies from '@/components/hero/TrustedCompanies';
 
 const Hero = React.memo(() => {
@@ -28,10 +29,13 @@ const Hero = React.memo(() => {
         
         {/* Layout Container */}
         <div className="hero-container">
-          {/* Hero Content - directly positioned without grid wrapper */}
+          {/* Hero Content - headline overlay */}
           <HeroContent />
         </div>
       </div>
+
+      {/* New content section below hero */}
+      <HeroContentSection />
 
       <TrustedCompanies />
     </>

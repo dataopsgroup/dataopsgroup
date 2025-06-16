@@ -1,26 +1,38 @@
 
-/* Hero Section Typography - Text Styling, Fonts, and Sizes */
+/* Hero Section Typography - Enhanced for Headline Overlay */
 
-/* Typography with device-specific sizing - FIX "100 Days" size issue */
-.hero-heading {
+/* Main headline - doubled in size and black text */
+.hero-headline {
   font-weight: 700;
-  color: white;
-  margin: 0 0 24px 0;
-  line-height: 1.25;
-  font-size: 2.25rem;
+  color: #1f2937 !important; /* Black text */
+  margin: 0;
+  line-height: 1.2;
+  font-size: 4.5rem; /* Doubled from 2.25rem */
 }
 
-/* Ensure highlighted text maintains same size as heading */
-.hero-heading span {
-  font-size: inherit !important; /* Force same size as parent H1 */
+/* Ensure highlighted text maintains same size and keeps yellow color */
+.hero-headline span {
+  font-size: inherit !important;
   font-weight: inherit !important;
   line-height: inherit !important;
+  /* Keep yellow color for "100 Days" */
 }
 
-.hero-text {
-  color: white;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  margin: 0 0 16px 0;
-  max-width: 512px;
+/* Mobile responsive sizing */
+@media (max-width: 767px) {
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-headline {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-headline {
+    font-size: 4.5rem;
+  }
 }
