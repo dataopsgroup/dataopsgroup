@@ -8,6 +8,7 @@ import CTABanner from '@/components/CTABanner';
 import FAQCategory from '@/components/faqs/FAQCategory';
 import FAQHelp from '@/components/faqs/FAQHelp';
 import CategoryNavigation from '@/components/faqs/CategoryNavigation';
+import MetaHead from '@/components/seo/MetaHead';
 import { FAQCategory as FAQCategoryType } from '@/data/faqs/types';
 
 interface CategoryPageLayoutProps {
@@ -27,8 +28,6 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
   canonicalPath,
   robots = "index, follow"
 }) => {
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
-
   const formattedFAQs = category.items.map(faq => ({
     question: faq.question,
     answer: faq.answer
@@ -42,25 +41,20 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
 
   return (
     <SemanticLayout>
+      {/* Use MetaHead for all meta tags including title */}
+      <MetaHead
+        title={title}
+        description={description}
+        keywords={keywords}
+        canonicalPath={canonicalPath}
+        ogType="website"
+        ogTitle={title}
+        ogDescription={description}
+      />
+      
+      {/* Additional meta tags that MetaHead doesn't handle */}
       <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
-        <link rel="canonical" href={`${baseUrl}${canonicalPath}`} />
         <meta name="robots" content={robots} />
-        
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={`${baseUrl}${canonicalPath}`} />
-        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
-        <meta property="og:site_name" content="DataOps Group" />
-        
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
-        <meta name="twitter:site" content="@dataops_group" />
       </Helmet>
       
       <FAQPageSchema 

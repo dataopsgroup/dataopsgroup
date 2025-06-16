@@ -14,10 +14,8 @@ const FAQSchema: React.FC<FAQSchemaProps> = ({ items, pageTitle, pageDescription
   
   return (
     <Helmet>
-      <title>{pageTitle}</title>
-      <meta name="description" content={pageDescription} />
+      {/* Removed duplicate title tag - handled by MetaHead component */}
       <meta name="keywords" content="HubSpot FAQs, HubSpot consultant, data quality, marketing ROI, sales and marketing alignment, HubSpot optimization, statistical process control, data cleaning, reporting dashboards" />
-      <link rel="canonical" href={`${baseUrl}/faqs`} />
       
       {/* FAQ schema markup */}
       <script type="application/ld+json">
