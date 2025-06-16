@@ -25,12 +25,14 @@
     <link rel="dns-prefetch" href="https://cdn.botpress.cloud" />
     <link rel="dns-prefetch" href="https://files.bpcontent.cloud" />
     
-    <!-- Enhanced Mobile-Optimized Font Loading Strategy -->
+    <!-- Enhanced Font Loading Strategy - Fixed for Chrome Desktop -->
     <script>
       // Detect device type and screen size
       const isMobile = window.innerWidth < 768;
       const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      const isDesktop = window.innerWidth >= 768;
       
+      // Font loading strategy
       if (isMobile) {
         // Mobile: Load ONLY Inter for fast performance
         const mobileLink = document.createElement('link');
@@ -38,25 +40,37 @@
         mobileLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap';
         document.head.appendChild(mobileLink);
         
-        // Add mobile font loading class
         document.documentElement.classList.add('mobile-fonts');
       } else {
-        // Desktop/Tablet: Load Inter, Roboto, and Rubik
+        // Desktop/Tablet: Load brand fonts (Roboto + Rubik) with Inter fallback
         const desktopLink = document.createElement('link');
         desktopLink.rel = 'stylesheet';
-        desktopLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&family=Rubik:wght@300;400;500;700&display=swap';
+        desktopLink.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Rubik:wght@300;400;500;700&family=Inter:wght@300;400;500;700&display=swap';
         document.head.appendChild(desktopLink);
         
-        // Add desktop font loading class
         document.documentElement.classList.add('desktop-fonts');
       }
       
-      // Font loading detection
+      // Enhanced font loading detection with Chrome-specific handling
       const checkFontsLoaded = () => {
         if (document.fonts && document.fonts.ready) {
           document.fonts.ready.then(() => {
             document.documentElement.classList.add('fonts-loaded');
             document.documentElement.classList.remove('fonts-loading');
+            
+            // Chrome-specific font application force
+            if (isDesktop && navigator.userAgent.includes('Chrome')) {
+              setTimeout(() => {
+                // Force reflow to ensure fonts are applied
+                document.body.style.fontFamily = 'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+                
+                // Apply heading fonts
+                const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                headings.forEach(heading => {
+                  heading.style.fontFamily = 'Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+                });
+              }, 100);
+            }
           });
         } else {
           // Fallback for older browsers

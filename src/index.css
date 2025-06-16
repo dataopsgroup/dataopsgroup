@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap');
 
 /* CSS Import Order (DO NOT CHANGE) */
@@ -37,6 +36,20 @@
   
   /* Hero Specific */
   --green-accent: #22C55E;
+}
+
+/* Enhanced font application with proper specificity */
+@media (min-width: 768px) {
+  /* Force brand fonts on desktop */
+  body,
+  body *:not(.font-inter) {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6,
+  h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  }
 }
 
 /* DataOps color utilities */
