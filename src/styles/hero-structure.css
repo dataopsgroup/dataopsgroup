@@ -18,7 +18,7 @@
   }
 }
 
-/* Hero layout container with flex-start alignment */
+/* Hero layout container with flex-start alignment for head-level positioning */
 .hero-container {
   position: relative;
   z-index: 10;
@@ -28,13 +28,13 @@
   padding: 0 5%;
   max-width: 100%;
   overflow: visible;
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 @media (min-width: 768px) {
   .hero-container {
     height: calc(100vh - 200px);
-    padding-top: 3rem;
+    padding-top: 1.5rem;
   }
 }
 

@@ -22,9 +22,9 @@
     margin-left: 0 !important;
     margin-right: auto !important;
     width: 100%;
-    max-width: 50vw !important;
+    max-width: calc(50vw - 1.5rem) !important;
     padding: clamp(1.5rem, 3vw, 2.5rem) !important;
-    margin-top: 2rem !important;
+    margin-top: 0 !important;
   }
 }
 
@@ -32,8 +32,9 @@
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-content-box {
     padding: 2rem !important;
-    margin-top: 1.5rem !important;
+    margin-top: 0 !important;
     max-width: calc(50vw - 1.5rem) !important;
+    margin-left: clamp(2rem, 5vw, 4rem) !important;
   }
 }
 
@@ -41,8 +42,9 @@
 @media (min-width: 1440px) {
   .hero-content-box {
     padding: 2.5rem !important;
-    margin-top: 2rem !important;
+    margin-top: 0 !important;
     max-width: calc(50vw - 2rem) !important;
+    margin-left: clamp(3rem, 8vw, 6rem) !important;
   }
 }
 
@@ -50,7 +52,8 @@
 @media (min-width: 1920px) {
   .hero-content-box {
     max-width: calc(50vw - 3rem) !important;
-    margin-top: 2.5rem !important;
+    margin-top: 0 !important;
+    margin-left: clamp(4rem, 10vw, 8rem) !important;
   }
 }
 
