@@ -21,7 +21,7 @@ body, html {
 
 /* Desktop brand fonts strategy - Roboto + Rubik with IMMEDIATE application */
 @media (min-width: 768px) {
-  /* Apply fonts immediately when fonts-loaded class is present */
+  /* Apply Roboto for body text immediately when fonts-loaded class is present */
   .desktop-fonts.fonts-loaded,
   .desktop-fonts.fonts-loaded body,
   .desktop-fonts.fonts-loaded html,
@@ -44,7 +44,8 @@ body, html {
   .desktop-fonts.fonts-loaded h4,
   .desktop-fonts.fonts-loaded h5,
   .desktop-fonts.fonts-loaded h6,
-  .desktop-fonts.fonts-loaded .hero-heading {
+  .desktop-fonts.fonts-loaded .hero-heading,
+  .desktop-fonts.fonts-loaded .hero-headline {
     font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   }
   
@@ -62,7 +63,7 @@ body, html {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   }
   
-  /* All headings across the site */
+  /* All headings across the site use Rubik */
   .desktop-fonts.fonts-loaded .container h1,
   .desktop-fonts.fonts-loaded .container h2,
   .desktop-fonts.fonts-loaded .container h3,

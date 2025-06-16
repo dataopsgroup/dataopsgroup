@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -85,11 +86,11 @@ export default {
 				}
 			},
 			fontFamily: {
-				// Enhanced font families with proper desktop priority
+				// Brand fonts with proper desktop priority - following knowledge article
 				'roboto': ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
 				'rubik': ['Rubik', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
 				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-				// Default sans should use brand fonts on desktop
+				// Default sans should use Roboto on desktop per brand guidelines
 				'sans': ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
 			},
 			borderRadius: {
