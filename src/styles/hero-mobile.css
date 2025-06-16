@@ -1,0 +1,60 @@
+
+/* Hero Mobile Readability Fix - Ensures white text is readable on mobile */
+
+/* Mobile: Solid dark background for readability */
+@media (max-width: 767px) {
+  .hero-content-box {
+    background: rgba(30, 41, 59, 0.95) !important; /* Solid dark background */
+    backdrop-filter: none !important; /* Remove blur effect on mobile */
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 1rem !important;
+    padding: 2rem !important;
+    color: white !important;
+    
+    /* Ensure minimum contrast ratio for accessibility */
+    min-height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Ensure all text elements maintain white color on mobile */
+  .hero-content-box * {
+    color: white !important;
+  }
+  
+  /* Hero section mobile background - ensure it's dark enough */
+  .hero-section {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+    min-height: 100vh !important;
+  }
+  
+  /* Remove any transparent overlays on mobile */
+  .hero-bg {
+    display: none !important; /* Hide background image on mobile for better performance */
+  }
+  
+  /* Ensure hero text remains visible and accessible */
+  .hero-heading,
+  .hero-text {
+    color: white !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important; /* Add subtle shadow for better readability */
+  }
+  
+  /* Make sure buttons maintain proper contrast */
+  .hero-button {
+    background: #1e293b !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  .hero-button:hover {
+    background: #334155 !important;
+  }
+}
+
+/* Tablet portrait - transition zone */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-content-box {
+    background: rgba(107, 114, 128, 0.9) !important; /* Keep gray overlay for tablets */
+  }
+}
