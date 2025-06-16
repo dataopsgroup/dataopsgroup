@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import FAQPageSchema from '@/components/seo/FAQPageSchema';
@@ -76,7 +77,7 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
             <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-700">
                 💡 <strong>Tip:</strong> For the complete FAQ collection, visit our{' '}
-                <a href="/faqs" className="underline hover:text-blue-800">main FAQ page</a>.
+                <Link to="/faqs" className="underline hover:text-blue-800">main FAQ page</Link>.
               </p>
             </div>
           </div>
