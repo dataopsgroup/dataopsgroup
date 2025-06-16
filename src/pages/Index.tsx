@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import Services from '@/components/Services';
@@ -13,45 +12,33 @@ import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import ImageErrorBoundary from '@/components/ui/image-error-boundary';
-
 const Index = () => {
   // Enhanced debugging for Index page initialization
   console.log('🏠 Index page rendered at:', new Date().toISOString());
-
-  return (
-    <SemanticLayout>
-      <MetaHead
-        title="PE Portfolio Operations Platform - HubSpot for Private Equity"
-        description="Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI. 100-day implementation."
-        keywords="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations, sales operations, revenue operations"
-        canonicalPath="/"
-        ogType="website"
-        ogTitle="PE Portfolio Operations Platform - HubSpot for Private Equity"
-        ogDescription="Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI."
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "PE Portfolio Operations Platform - HubSpot for Private Equity",
-          "description": "Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI. 100-day implementation.",
-          "publisher": {
-            "@type": "Organization",
-            "name": "DataOps Group"
-          }
-        }}
-      />
+  return <SemanticLayout>
+      <MetaHead title="PE Portfolio Operations Platform - HubSpot for Private Equity" description="Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI. 100-day implementation." keywords="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations, sales operations, revenue operations" canonicalPath="/" ogType="website" ogTitle="PE Portfolio Operations Platform - HubSpot for Private Equity" ogDescription="Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI." structuredData={{
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "PE Portfolio Operations Platform - HubSpot for Private Equity",
+      "description": "Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI. 100-day implementation.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "DataOps Group"
+      }
+    }} />
       
       {/* Schema markup for SEO */}
       <OrganizationSchema />
       <WebsiteSchema />
       <BreadcrumbSchema items={[{
-        name: "Home",
-        url: "/"
-      }]} />
+      name: "Home",
+      url: "/"
+    }]} />
       <LocalBusinessSchema />
       <ProfessionalServiceSchema />
       
       {/* Main content sections with enhanced error boundary around Hero */}
-      <section aria-labelledby="hero-heading">
+      <section aria-labelledby="hero-heading" className="bg-green-200">
         <ImageErrorBoundary fallback={<div className="min-h-[500px] bg-dataops-600 flex items-center justify-center">
             <div className="text-white text-center">
               <h1 className="text-4xl font-bold mb-4">Turn PE Portfolio Operations Into Profit Drivers</h1>
@@ -120,8 +107,6 @@ const Index = () => {
       <section aria-label="Book a Consultation">
         <BookCTA />
       </section>
-    </SemanticLayout>
-  );
+    </SemanticLayout>;
 };
-
 export default Index;
