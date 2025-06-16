@@ -1,8 +1,8 @@
-
 /**
  * SEO Validation Utilities
  * 
  * Use these functions to validate SEO configurations before deployment
+ * ENHANCED: Added validation to prevent canonical redirect issues
  */
 
 import { CANONICAL_URLS, DUPLICATE_URLS_TO_REDIRECT, validateSEOConfig } from './seo-config';
@@ -15,6 +15,7 @@ interface ValidationResult {
 
 /**
  * Validates that all redirect rules are properly configured
+ * ENHANCED: Added canonical URL protection validation
  */
 export const validateRedirectRules = (): ValidationResult => {
   const errors: string[] = [];
@@ -25,6 +26,23 @@ export const validateRedirectRules = (): ValidationResult => {
   if (!configValidation.isValid) {
     errors.push(...configValidation.errors);
   }
+  
+  // CRITICAL: Validate that canonical URLs are never in redirect mappings
+  const canonicalUrlsArray = Object.values(CANONICAL_URLS);
+  const duplicateUrlsArray = Object.keys(DUPLICATE_URLS_TO_REDIRECT);
+  
+  canonicalUrlsArray.forEach(canonicalUrl => {
+    if (duplicateUrlsArray.includes(canonicalUrl)) {
+      errors.push(`CRITICAL: Canonical URL ${canonicalUrl} is also in DUPLICATE_URLS_TO_REDIRECT - this creates redirect chains!`);
+    }
+  });
+  
+  // Validate that redirect targets are canonical URLs
+  Object.entries(DUPLICATE_URLS_TO_REDIRECT).forEach(([source, target]) => {
+    if (!canonicalUrlsArray.includes(target)) {
+      warnings.push(`Redirect target ${target} (from ${source}) is not in CANONICAL_URLS`);
+    }
+  });
   
   // Check for missing redirects that might be needed
   const commonDuplicatePatterns = [
@@ -40,6 +58,37 @@ export const validateRedirectRules = (): ValidationResult => {
   Object.values(CANONICAL_URLS).forEach(url => {
     if (!url.startsWith('/')) {
       errors.push(`Canonical URL ${url} should start with /`);
+    }
+  });
+  
+  return {
+    isValid: errors.length === 0,
+    errors,
+    warnings
+  };
+};
+
+/**
+ * NEW: Validates that no canonical URLs are being redirected
+ */
+export const validateCanonicalUrlIntegrity = (): ValidationResult => {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+  
+  const canonicalUrls = Object.values(CANONICAL_URLS);
+  const redirectSources = Object.keys(DUPLICATE_URLS_TO_REDIRECT);
+  
+  // Check if any canonical URL appears as a redirect source
+  canonicalUrls.forEach(canonicalUrl => {
+    if (redirectSources.includes(canonicalUrl)) {
+      errors.push(`FATAL: Canonical URL ${canonicalUrl} appears in redirect list - this causes redirect chains!`);
+    }
+  });
+  
+  // Check for potential redirect loops
+  Object.entries(DUPLICATE_URLS_TO_REDIRECT).forEach(([source, target]) => {
+    if (DUPLICATE_URLS_TO_REDIRECT[target as keyof typeof DUPLICATE_URLS_TO_REDIRECT]) {
+      errors.push(`REDIRECT CHAIN: ${source} -> ${target} -> ${DUPLICATE_URLS_TO_REDIRECT[target as keyof typeof DUPLICATE_URLS_TO_REDIRECT]}`);
     }
   });
   
@@ -101,20 +150,24 @@ export const validateSitemapRules = (): ValidationResult => {
 
 /**
  * Master validation function - runs all SEO validations
+ * ENHANCED: Added canonical URL integrity validation
  */
 export const validateAllSEORules = (): ValidationResult => {
   const redirectValidation = validateRedirectRules();
+  const canonicalValidation = validateCanonicalUrlIntegrity();
   const robotsValidation = validateRobotsRules();
   const sitemapValidation = validateSitemapRules();
   
   const allErrors = [
     ...redirectValidation.errors,
+    ...canonicalValidation.errors,
     ...robotsValidation.errors,
     ...sitemapValidation.errors
   ];
   
   const allWarnings = [
     ...redirectValidation.warnings,
+    ...canonicalValidation.warnings,
     ...robotsValidation.warnings,
     ...sitemapValidation.warnings
   ];
@@ -128,6 +181,7 @@ export const validateAllSEORules = (): ValidationResult => {
 
 /**
  * Development helper - logs validation results to console
+ * ENHANCED: Added canonical URL validation logging
  */
 export const logSEOValidation = () => {
   if (process.env.NODE_ENV !== 'development') return;
@@ -145,10 +199,18 @@ export const logSEOValidation = () => {
     console.warn('⚠️ SEO Configuration Warnings:');
     validation.warnings.forEach(warning => console.warn(`  - ${warning}`));
   }
+  
+  // Log canonical URL integrity specifically
+  const canonicalValidation = validateCanonicalUrlIntegrity();
+  if (!canonicalValidation.isValid) {
+    console.error('🚨 CANONICAL URL INTEGRITY ISSUES:');
+    canonicalValidation.errors.forEach(error => console.error(`  - ${error}`));
+  }
 };
 
 export default {
   validateRedirectRules,
+  validateCanonicalUrlIntegrity,
   validateRobotsRules,
   validateSitemapRules,
   validateAllSEORules,
