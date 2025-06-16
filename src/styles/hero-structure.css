@@ -9,10 +9,10 @@
   padding-bottom: 0; /* Remove bottom padding to let background fill */
   margin-bottom: 0;
   
-  /* Add background image directly to hero section */
+  /* Add background image directly to hero section with top 15% cropped */
   background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
   background-size: cover;
-  background-position: center right;
+  background-position: center 15%; /* Start showing from 15% down the image */
   background-repeat: no-repeat;
 }
 
@@ -22,9 +22,9 @@
     padding-top: 0; /* Remove padding to let background image fill */
     padding-bottom: 0; /* Remove padding to let background image fill */
     
-    /* Enhanced background positioning for desktop */
+    /* Enhanced background positioning for desktop with top crop */
     background-size: cover;
-    background-position: 75% center;
+    background-position: 75% 15%; /* X position at 75%, Y starts at 15% to crop top */
   }
 }
 
