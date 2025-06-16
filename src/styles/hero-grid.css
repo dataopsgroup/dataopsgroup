@@ -1,0 +1,45 @@
+
+/* Hero Grid System - Responsive Layout and Breakpoints */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+}
+
+/* RESPONSIVE LAYOUT: Flexible grid that scales from laptop to desktop */
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: clamp(450px, 50vw, 700px) 1fr;
+    align-items: center;
+  }
+}
+
+/* Hero content positioning within grid */
+.hero-content {
+  grid-column: 1;
+  max-width: 600px;
+  position: relative;
+  z-index: 15;
+}
+
+/* FLEXIBLE SIZING: Content scales gracefully across screen sizes */
+@media (min-width: 1024px) {
+  .hero-content {
+    max-width: clamp(450px, 45vw, 700px);
+    width: 100%;
+    margin-left: 20px;
+    margin-right: auto;
+  }
+}
+
+/* Large desktop refinements */
+@media (min-width: 1440px) {
+  .hero-content {
+    max-width: 700px;
+    margin-left: 40px;
+  }
+}

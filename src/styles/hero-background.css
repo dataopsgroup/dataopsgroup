@@ -1,0 +1,42 @@
+
+/* Hero Background Image - Z-Index and Positioning Management */
+
+/* Hero background image container - hidden on mobile */
+.hero-bg {
+  display: none;
+}
+
+/* Desktop: Show background image with proper z-index and positioning */
+@media (min-width: 768px) {
+  .hero-bg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
+    background-size: cover;
+    background-position: 85% center;
+    background-repeat: no-repeat;
+  }
+
+  .hero-bg img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: 85% center !important;
+    transform: scale(1.1) !important;
+    transform-origin: 85% center !important;
+    max-width: none !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}

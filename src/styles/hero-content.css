@@ -1,0 +1,80 @@
+
+/* Hero Content Box - Styling and Responsive Behavior */
+
+/* Mobile: Transparent content box with white text */
+.hero-content-box {
+  background: transparent;
+  padding: 2rem;
+  border-radius: 0;
+  color: white;
+  position: relative;
+  z-index: 20;
+}
+
+/* Desktop: Flexible gray overlay content box */
+@media (min-width: 768px) {
+  .hero-content-box {
+    background: rgba(107, 114, 128, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 20 !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    width: 100%;
+    padding: clamp(1.5rem, 3vw, 2.5rem) !important;
+  }
+}
+
+/* Enhanced laptop breakpoint for better scaling */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .hero-content-box {
+    padding: 2rem !important;
+  }
+}
+
+/* Large desktop refinements */
+@media (min-width: 1440px) {
+  .hero-content-box {
+    padding: 2.5rem !important;
+  }
+}
+
+/* Hero button */
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e293b;
+  color: white;
+  padding: 24px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-height: 56px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 25;
+}
+
+.hero-button:hover {
+  background: #334155;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 0.25rem solid rgba(79, 70, 229, 0.3);
+  border-radius: 50%;
+  border-top-color: rgba(79, 70, 229, 1);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
