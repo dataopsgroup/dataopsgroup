@@ -1,4 +1,3 @@
-
 import React, { useCallback } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -34,14 +33,14 @@ const HeroContentSection = React.memo(() => {
           {/* Left Column - Company Description */}
           <div className="space-y-6">
             <div className="space-y-4">
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <h2 className="text-lg text-gray-700 leading-relaxed">
                 We are PE-specialized{' '}
                 <Link to="/services" className="text-dataops-600 hover:text-dataops-700 underline">
                   HubSpot experts
                 </Link>{' '}
                 who transform fragmented systems into unified platforms that drive EBITDA growth, 
                 improve operational efficiency, and create the data infrastructure your investors expect.
-              </p>
+              </h2>
               
               <ul className="list-disc pl-6 space-y-2 text-lg text-gray-700">
                 <li>19% higher valuation multiples</li>
