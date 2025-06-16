@@ -1,5 +1,5 @@
 
-/* Hero Grid System - Responsive Layout and Breakpoints */
+/* Hero Grid System - Enhanced Layout with Positioning Constraints */
 
 .hero-grid {
   display: grid;
@@ -8,17 +8,18 @@
   width: 100%;
   max-width: none;
   margin: 0 auto;
+  align-items: flex-start;
 }
 
-/* RESPONSIVE LAYOUT: Flexible grid that scales from laptop to desktop */
+/* RESPONSIVE LAYOUT: Constrained grid that respects viewport midpoint */
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-columns: clamp(450px, 50vw, 700px) 1fr;
-    align-items: center;
+    grid-template-columns: minmax(300px, 50vw) 1fr;
+    align-items: flex-start;
   }
 }
 
-/* Hero content positioning within grid */
+/* Hero content positioning within grid with dynamic constraints */
 .hero-content {
   grid-column: 1;
   max-width: 600px;
@@ -26,20 +27,28 @@
   z-index: 15;
 }
 
-/* FLEXIBLE SIZING: Content scales gracefully across screen sizes */
+/* ENHANCED POSITIONING: Dynamic left-shifting with 50% viewport constraint */
 @media (min-width: 1024px) {
   .hero-content {
-    max-width: clamp(450px, 45vw, 700px);
+    max-width: min(45vw, 500px);
     width: 100%;
-    margin-left: 20px;
+    margin-left: clamp(20px, 5vw, 60px);
     margin-right: auto;
   }
 }
 
-/* Large desktop refinements */
+/* Large desktop: Enhanced spacing with constraints */
 @media (min-width: 1440px) {
   .hero-content {
-    max-width: 700px;
-    margin-left: 40px;
+    max-width: min(40vw, 600px);
+    margin-left: clamp(40px, 8vw, 120px);
+  }
+}
+
+/* Ultra-wide: Maximum constraints to prevent midpoint crossing */
+@media (min-width: 1920px) {
+  .hero-content {
+    max-width: min(35vw, 650px);
+    margin-left: clamp(60px, 10vw, 150px);
   }
 }

@@ -1,12 +1,12 @@
 
-/* Hero Background Image - Z-Index and Positioning Management */
+/* Hero Background Image - Enhanced Positioning and Cropping */
 
 /* Hero background image container - hidden on mobile */
 .hero-bg {
   display: none;
 }
 
-/* Desktop: Show background image with proper z-index and positioning */
+/* Desktop: Show background image with enhanced positioning */
 @media (min-width: 768px) {
   .hero-bg {
     display: block;
@@ -21,7 +21,7 @@
     transform: translateZ(0);
     background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
     background-size: cover;
-    background-position: 85% center;
+    background-position: 95% 25%;
     background-repeat: no-repeat;
   }
 
@@ -29,9 +29,9 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: 85% center !important;
+    object-position: 95% 25% !important;
     transform: scale(1.1) !important;
-    transform-origin: 85% center !important;
+    transform-origin: 95% 25% !important;
     max-width: none !important;
     position: absolute !important;
     top: 0 !important;

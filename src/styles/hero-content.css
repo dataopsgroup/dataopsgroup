@@ -1,5 +1,5 @@
 
-/* Hero Content Box - Styling and Responsive Behavior */
+/* Hero Content Box - Enhanced Positioning and Constraints */
 
 /* Mobile: Transparent content box with white text */
 .hero-content-box {
@@ -11,7 +11,7 @@
   z-index: 20;
 }
 
-/* Desktop: Flexible gray overlay content box */
+/* Desktop: Constrained gray overlay with head alignment */
 @media (min-width: 768px) {
   .hero-content-box {
     background: rgba(107, 114, 128, 0.9) !important;
@@ -22,21 +22,35 @@
     margin-left: 0 !important;
     margin-right: auto !important;
     width: 100%;
+    max-width: 50vw !important;
     padding: clamp(1.5rem, 3vw, 2.5rem) !important;
+    margin-top: 2rem !important;
   }
 }
 
-/* Enhanced laptop breakpoint for better scaling */
+/* Enhanced laptop breakpoint with dynamic spacing */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-content-box {
     padding: 2rem !important;
+    margin-top: 1.5rem !important;
+    max-width: calc(50vw - 1.5rem) !important;
   }
 }
 
-/* Large desktop refinements */
+/* Large desktop: Enhanced constraints and spacing */
 @media (min-width: 1440px) {
   .hero-content-box {
     padding: 2.5rem !important;
+    margin-top: 2rem !important;
+    max-width: calc(50vw - 2rem) !important;
+  }
+}
+
+/* Ultra-wide: Maximum constraint enforcement */
+@media (min-width: 1920px) {
+  .hero-content-box {
+    max-width: calc(50vw - 3rem) !important;
+    margin-top: 2.5rem !important;
   }
 }
 
