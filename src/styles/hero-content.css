@@ -7,7 +7,7 @@
   left: 25px; /* 25px from left of hero container */
   top: 80px; /* 80px from top of hero container */
   width: auto;
-  max-width: 250px; /* Constrain headline box width */
+  max-width: 500px; /* Allow scaling up to 500px width */
 }
 
 /* Headline box with transparent white background */
@@ -19,7 +19,7 @@
   padding: 3rem 4rem;
   text-align: center;
   width: 100%;
-  max-width: 250px; /* Maximum width constraint */
+  max-width: 500px; /* Maximum width constraint increased to 500px */
 }
 
 /* Mobile adjustments */
