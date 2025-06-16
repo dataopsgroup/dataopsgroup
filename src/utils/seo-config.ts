@@ -1,4 +1,3 @@
-
 /**
  * CRITICAL SEO CONFIGURATION - KNOWLEDGE ARTICLE REMINDERS:
  * 
@@ -29,6 +28,9 @@ export const CANONICAL_URLS = {
   
   // Main guide URLs - FIXED: Ensure this points to actual final destination
   hubspotExpert: '/guides/hubspot-expert',
+  
+  // Main FAQ page - FIXED: Added missing canonical URL for main FAQ page
+  faqs: '/faqs',
   
   // Canonical FAQ URLs - UPDATED: Use shorter, cleaner URLs
   faqServices: '/faqs/services',
@@ -68,7 +70,7 @@ export const DUPLICATE_URLS_TO_REDIRECT = {
   '/faqs/hubspot-experts': CANONICAL_URLS.faqExperts,
   '/faqs/our-approach': CANONICAL_URLS.faqApproach,
   '/faqs/hubspot-modules': CANONICAL_URLS.faqModules,
-  '/faq': CANONICAL_URLS.faqServices, // Default FAQ redirect
+  '/faq': CANONICAL_URLS.faqs, // Default FAQ redirect to main FAQ page
   
   // Assessment redirects
   '/assessment': CANONICAL_URLS.assessment,
@@ -167,6 +169,7 @@ export const ROBOTS_EXPLICIT_ALLOWS = [
   CANONICAL_URLS.insights,
   CANONICAL_URLS.caseStudies,
   CANONICAL_URLS.hubspotExpert,
+  CANONICAL_URLS.faqs, // FIXED: Added main FAQ page to explicit allows
   CANONICAL_URLS.faqServices,
   CANONICAL_URLS.faqExperts,
   CANONICAL_URLS.faqDataQuality,
