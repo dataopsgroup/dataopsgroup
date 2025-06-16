@@ -5,16 +5,16 @@
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  padding-top: 100px;
-  padding-bottom: 60px;
+  padding-top: 0; /* Remove top padding to let background fill */
+  padding-bottom: 0; /* Remove bottom padding to let background fill */
   margin-bottom: 0;
 }
 
-/* Desktop: Enhanced padding for larger navbar */
+/* Desktop: Remove padding for full background coverage */
 @media (min-width: 768px) {
   .hero-section {
-    padding-top: 120px;
-    padding-bottom: 80px;
+    padding-top: 0; /* Remove padding to let background image fill */
+    padding-bottom: 0; /* Remove padding to let background image fill */
   }
 }
 
@@ -22,19 +22,19 @@
 .hero-container {
   position: relative;
   z-index: 10;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 100px); /* Account for navbar only */
   display: flex;
   align-items: flex-start;
   padding: 0; /* Removed 5% left/right padding */
   max-width: 100%;
   overflow: visible;
-  padding-top: 1rem;
+  padding-top: 120px; /* Add top padding here instead for content positioning */
 }
 
 @media (min-width: 768px) {
   .hero-container {
-    height: calc(100vh - 200px);
-    padding-top: 1.5rem;
+    height: calc(100vh - 100px); /* Account for navbar only */
+    padding-top: 140px; /* Adjust content positioning from top */
   }
 }
 
