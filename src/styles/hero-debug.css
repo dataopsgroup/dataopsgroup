@@ -65,7 +65,7 @@
 }
 
 .hero-content-box::before {
-  content: "GRAY BOX (left edge to 37.5% viewport)";
+  content: "GRAY BOX (aligned with orange content area)";
   position: absolute;
   top: 5px;
   left: 5px;
@@ -131,7 +131,7 @@
 /* Add measurement indicators for current gray box positioning */
 @media (min-width: 768px) {
   .hero-content-box::after {
-    content: "Box spans from left edge to 37.5% mark";
+    content: "Box aligned with 80px left boundary";
     position: absolute;
     right: -2px;
     top: 50%;
