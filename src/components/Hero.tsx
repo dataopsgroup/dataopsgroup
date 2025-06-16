@@ -28,13 +28,8 @@ const Hero = React.memo(() => {
         
         {/* Layout Container */}
         <div className="hero-container">
-          <div className="hero-grid">
-            {/* Hero Content */}
-            <HeroContent />
-            
-            {/* Right side - Empty space for background image visibility (desktop only) */}
-            {!isMobile && <div className="hidden lg:block"></div>}
-          </div>
+          {/* Hero Content - directly positioned without grid wrapper */}
+          <HeroContent />
         </div>
       </div>
 

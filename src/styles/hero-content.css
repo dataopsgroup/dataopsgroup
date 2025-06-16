@@ -1,5 +1,4 @@
 
-
 /* Hero Content Box - Enhanced Positioning and Constraints */
 
 /* Mobile: Transparent content box with white text */
@@ -60,6 +59,24 @@
   }
 }
 
+/* Hero Content - positioned directly within container */
+.hero-content {
+  position: relative;
+  z-index: 15;
+  width: 100%;
+}
+
+/* Desktop: Align content with container left edge */
+@media (min-width: 768px) {
+  .hero-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50vw;
+    max-width: 50vw;
+  }
+}
+
 /* Hero button */
 .hero-button {
   display: inline-flex;
@@ -98,4 +115,3 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-
