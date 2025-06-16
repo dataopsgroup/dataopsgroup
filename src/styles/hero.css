@@ -81,6 +81,20 @@
   background: #334155;
 }
 
+/* Loading spinner for mobile initialization */
+.loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 0.25rem solid rgba(79, 70, 229, 0.3);
+  border-radius: 50%;
+  border-top-color: rgba(79, 70, 229, 1);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* Trusted companies section spacing */
 .trusted-companies-section {
   margin-top: 3rem !important;

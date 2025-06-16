@@ -4,57 +4,79 @@ import * as React from "react"
 const MOBILE_BREAKPOINT = 768
 
 export function useIsMobile() {
+  // Initialize with undefined to prevent hydration mismatches
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
   const [touchDevice, setTouchDevice] = React.useState<boolean>(false)
+  
+  // Use refs to prevent infinite loops from dependency changes
+  const timeoutRef = React.useRef<NodeJS.Timeout>()
+  const isInitializedRef = React.useRef(false)
 
   React.useEffect(() => {
     // SSR guard - only run in browser
     if (typeof window === 'undefined') return;
     
-    // Check if it's a mobile device by screen size
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    }
+    // Debounced resize handler to prevent excessive re-renders
+    const handleResize = React.useCallback(() => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+      
+      timeoutRef.current = setTimeout(() => {
+        const newIsMobile = window.innerWidth < MOBILE_BREAKPOINT
+        setIsMobile(prevIsMobile => {
+          // Only update if value actually changed
+          if (prevIsMobile !== newIsMobile) {
+            console.log('📱 Mobile state changed:', newIsMobile)
+            return newIsMobile
+          }
+          return prevIsMobile
+        })
+      }, 100) // 100ms debounce
+    }, [])
     
-    // Check if it's a touch device
-    const checkTouch = () => {
-      setTouchDevice(
-        'ontouchstart' in window || 
-        navigator.maxTouchPoints > 0 || 
-        (navigator as any).msMaxTouchPoints > 0
-      )
-    }
+    // Touch detection with caching
+    const detectTouch = React.useCallback(() => {
+      if (!isInitializedRef.current) {
+        const hasTouch = 'ontouchstart' in window || 
+                        navigator.maxTouchPoints > 0 || 
+                        (navigator as any).msMaxTouchPoints > 0
+        setTouchDevice(hasTouch)
+        isInitializedRef.current = true
+      }
+    }, [])
     
-    // Update on resize
-    mql.addEventListener("change", onChange)
-    window.addEventListener("resize", checkTouch)
+    // Initial setup
+    handleResize()
+    detectTouch()
     
-    // Initial check
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
-    checkTouch()
+    // Event listeners
+    window.addEventListener("resize", handleResize, { passive: true })
     
     return () => {
-      mql.removeEventListener("change", onChange)
-      window.removeEventListener("resize", checkTouch)
+      window.removeEventListener("resize", handleResize)
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
     }
-  }, [])
+  }, []) // Empty dependency array to prevent re-initialization
 
-  return {
+  return React.useMemo(() => ({
     isMobile: !!isMobile,
     isTouch: touchDevice,
-    isDesktop: !isMobile && !touchDevice
-  }
+    isDesktop: !isMobile && !touchDevice,
+    isInitialized: isMobile !== undefined
+  }), [isMobile, touchDevice])
 }
 
 // Custom hook for handling touch interactions properly
 export function useTouchInteractions(minSize: number = 44) {
   const ref = React.useRef<HTMLElement>(null)
-  const { isTouch } = useIsMobile()
+  const { isTouch, isInitialized } = useIsMobile()
   
   React.useEffect(() => {
-    // SSR guard - only run in browser
-    if (typeof window === 'undefined' || !isTouch || !ref.current) return
+    // Wait for mobile detection to complete
+    if (!isInitialized || typeof window === 'undefined' || !isTouch || !ref.current) return
     
     const element = ref.current
     
@@ -73,7 +95,7 @@ export function useTouchInteractions(minSize: number = 44) {
     // Add appropriate touch action
     element.style.touchAction = 'manipulation'
     
-  }, [isTouch, minSize])
+  }, [isTouch, isInitialized, minSize])
   
   return ref
 }
