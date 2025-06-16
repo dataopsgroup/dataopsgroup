@@ -25,7 +25,7 @@
   height: calc(100vh - 160px);
   display: flex;
   align-items: flex-start;
-  padding: 0 5%;
+  padding: 0; /* Removed 5% left/right padding */
   max-width: 100%;
   overflow: visible;
   padding-top: 1rem;
