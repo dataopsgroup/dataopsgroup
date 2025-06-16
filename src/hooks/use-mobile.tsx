@@ -12,41 +12,40 @@ export function useIsMobile() {
   const timeoutRef = React.useRef<NodeJS.Timeout>()
   const isInitializedRef = React.useRef(false)
 
+  // Move useCallback declarations to top level - CRITICAL FIX
+  const handleResize = React.useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+    
+    timeoutRef.current = setTimeout(() => {
+      const newIsMobile = window.innerWidth < MOBILE_BREAKPOINT
+      setIsMobile(prevIsMobile => {
+        // Only update if value actually changed
+        if (prevIsMobile !== newIsMobile) {
+          console.log('📱 Mobile state changed:', newIsMobile)
+          return newIsMobile
+        }
+        return prevIsMobile
+      })
+    }, 100) // 100ms debounce
+  }, [])
+  
+  const detectTouch = React.useCallback(() => {
+    if (!isInitializedRef.current) {
+      const hasTouch = 'ontouchstart' in window || 
+                      navigator.maxTouchPoints > 0 || 
+                      (navigator as any).msMaxTouchPoints > 0
+      setTouchDevice(hasTouch)
+      isInitializedRef.current = true
+    }
+  }, [])
+
   React.useEffect(() => {
     // SSR guard - only run in browser
     if (typeof window === 'undefined') return;
     
-    // Debounced resize handler to prevent excessive re-renders
-    const handleResize = React.useCallback(() => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
-      
-      timeoutRef.current = setTimeout(() => {
-        const newIsMobile = window.innerWidth < MOBILE_BREAKPOINT
-        setIsMobile(prevIsMobile => {
-          // Only update if value actually changed
-          if (prevIsMobile !== newIsMobile) {
-            console.log('📱 Mobile state changed:', newIsMobile)
-            return newIsMobile
-          }
-          return prevIsMobile
-        })
-      }, 100) // 100ms debounce
-    }, [])
-    
-    // Touch detection with caching
-    const detectTouch = React.useCallback(() => {
-      if (!isInitializedRef.current) {
-        const hasTouch = 'ontouchstart' in window || 
-                        navigator.maxTouchPoints > 0 || 
-                        (navigator as any).msMaxTouchPoints > 0
-        setTouchDevice(hasTouch)
-        isInitializedRef.current = true
-      }
-    }, [])
-    
-    // Initial setup
+    // Initial setup - use the callbacks defined above
     handleResize()
     detectTouch()
     
@@ -59,7 +58,7 @@ export function useIsMobile() {
         clearTimeout(timeoutRef.current)
       }
     }
-  }, []) // Empty dependency array to prevent re-initialization
+  }, [handleResize, detectTouch]) // Include callbacks in dependency array
 
   return React.useMemo(() => ({
     isMobile: !!isMobile,

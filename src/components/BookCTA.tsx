@@ -19,9 +19,9 @@ const BookCTA = () => {
             Get your free assessment and discover exactly what's holding back your growth metrics.
           </p>
           <p className="text-base mb-8 text-blue-100">
-            Explore our <a href="/services" className="text-yellow-300 hover:text-white underline font-medium">complete service offerings</a>, 
-            read our <a href="/case-studies" className="text-yellow-300 hover:text-white underline font-medium">client success stories</a>, 
-            or learn more <a href="/about" className="text-yellow-300 hover:text-white underline font-medium">about our team</a>.
+            Explore our <Link to="/services" className="text-yellow-300 hover:text-white underline font-medium">complete service offerings</Link>, 
+            read our <Link to="/case-studies" className="text-yellow-300 hover:text-white underline font-medium">client success stories</Link>, 
+            or learn more <Link to="/about" className="text-yellow-300 hover:text-white underline font-medium">about our team</Link>.
           </p>
           
           <div className="flex justify-center">
