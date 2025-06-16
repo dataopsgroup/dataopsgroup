@@ -22,11 +22,17 @@ export { DUPLICATE_URLS_TO_REDIRECT, BROKEN_EXTERNAL_LINKS } from './seo/duplica
 export { ROBOTS_DISALLOW_PATTERNS, ROBOTS_EXPLICIT_ALLOWS } from './seo/robots-config';
 export { validateSEOConfig } from './seo/validation';
 
-// Re-export for backward compatibility
+// Import for default export
+import { CANONICAL_URLS } from './seo/canonical-urls';
+import { DUPLICATE_URLS_TO_REDIRECT } from './seo/duplicate-url-mappings';
+import { ROBOTS_DISALLOW_PATTERNS, ROBOTS_EXPLICIT_ALLOWS } from './seo/robots-config';
+import { validateSEOConfig } from './seo/validation';
+
+// Re-export for backward compatibility using ES6 imports
 export default {
-  CANONICAL_URLS: require('./seo/canonical-urls').CANONICAL_URLS,
-  DUPLICATE_URLS_TO_REDIRECT: require('./seo/duplicate-url-mappings').DUPLICATE_URLS_TO_REDIRECT,
-  ROBOTS_DISALLOW_PATTERNS: require('./seo/robots-config').ROBOTS_DISALLOW_PATTERNS,
-  ROBOTS_EXPLICIT_ALLOWS: require('./seo/robots-config').ROBOTS_EXPLICIT_ALLOWS,
-  validateSEOConfig: require('./seo/validation').validateSEOConfig
+  CANONICAL_URLS,
+  DUPLICATE_URLS_TO_REDIRECT,
+  ROBOTS_DISALLOW_PATTERNS,
+  ROBOTS_EXPLICIT_ALLOWS,
+  validateSEOConfig
 };
