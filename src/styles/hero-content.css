@@ -11,7 +11,7 @@
   z-index: 20;
 }
 
-/* Desktop: Constrained gray overlay with head alignment */
+/* Desktop: Gray box aligned to 50% midpoint with full left expansion */
 @media (min-width: 768px) {
   .hero-content-box {
     background: rgba(107, 114, 128, 0.9) !important;
@@ -19,41 +19,43 @@
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 20 !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
-    width: 100%;
-    max-width: calc(50vw - 1.5rem) !important;
+    
+    /* Position from left edge of container to exactly 50% viewport */
+    position: absolute;
+    left: 0;
+    right: auto;
+    width: calc(50vw - 5vw) !important; /* 50% viewport minus container's 5% padding */
+    max-width: none !important;
+    
     padding: clamp(1.5rem, 3vw, 2.5rem) !important;
-    margin-top: 0 !important;
+    margin: 0 !important;
+    
+    /* Keep top position fixed, allow downward growth only */
+    top: 0;
+    min-height: fit-content;
   }
 }
 
-/* Enhanced laptop breakpoint with dynamic spacing */
+/* Enhanced laptop breakpoint with fixed positioning */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-content-box {
     padding: 2rem !important;
-    margin-top: 0 !important;
-    max-width: calc(50vw - 1.5rem) !important;
-    margin-left: clamp(2rem, 5vw, 4rem) !important;
+    width: calc(50vw - 5vw) !important;
   }
 }
 
-/* Large desktop: Enhanced constraints and spacing */
+/* Large desktop: Maintain same positioning logic */
 @media (min-width: 1440px) {
   .hero-content-box {
     padding: 2.5rem !important;
-    margin-top: 0 !important;
-    max-width: calc(50vw - 2rem) !important;
-    margin-left: clamp(3rem, 8vw, 6rem) !important;
+    width: calc(50vw - 5vw) !important;
   }
 }
 
-/* Ultra-wide: Maximum constraint enforcement */
+/* Ultra-wide: Maintain same positioning logic */
 @media (min-width: 1920px) {
   .hero-content-box {
-    max-width: calc(50vw - 3rem) !important;
-    margin-top: 0 !important;
-    margin-left: clamp(4rem, 10vw, 8rem) !important;
+    width: calc(50vw - 5vw) !important;
   }
 }
 

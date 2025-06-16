@@ -84,7 +84,7 @@
 }
 
 .hero-content-box::before {
-  content: "GRAY BOX (calc(50vw - 1.5rem))";
+  content: "GRAY BOX (left edge to 50% midpoint)";
   position: absolute;
   top: 5px;
   left: 5px;
@@ -103,7 +103,7 @@
 }
 
 .hero-bg::before {
-  content: "WOMAN IMAGE (95% 30%, scale: 1.05)";
+  content: "WOMAN IMAGE (100% 30%, at right edge)";
   position: absolute;
   top: 5px;
   right: 5px;
@@ -129,11 +129,11 @@
   transform: translateX(-1px);
 }
 
-/* Add 25px safety zone indicator from midpoint */
+/* Add 50px safety zone indicator from midpoint */
 .hero-container::after {
-  content: "25px safety zone";
+  content: "50px safety zone";
   position: absolute;
-  left: calc(50% + 25px);
+  left: calc(50% + 50px);
   top: 50%;
   width: 2px;
   height: 100px;
@@ -150,7 +150,7 @@
 /* Add measurement indicators for current gray box positioning */
 @media (min-width: 768px) {
   .hero-content-box::after {
-    content: "Current box right edge";
+    content: "Box right edge at 50% midline";
     position: absolute;
     right: -2px;
     top: 50%;

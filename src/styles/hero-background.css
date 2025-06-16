@@ -6,7 +6,7 @@
   display: none;
 }
 
-/* Desktop: Show background image with enhanced positioning */
+/* Desktop: Show background image positioned at far right of container */
 @media (min-width: 768px) {
   .hero-bg {
     display: block;
@@ -21,7 +21,7 @@
     transform: translateZ(0);
     background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
     background-size: cover;
-    background-position: 95% 30%;
+    background-position: 100% 30%; /* Move woman to far right edge */
     background-repeat: no-repeat;
   }
 
@@ -29,9 +29,9 @@
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: 95% 30% !important;
+    object-position: 100% 30% !important; /* Align woman to right edge */
     transform: scale(1.05) !important;
-    transform-origin: 95% 30% !important;
+    transform-origin: 100% 30% !important; /* Scale from right edge */
     max-width: none !important;
     position: absolute !important;
     top: 0 !important;
