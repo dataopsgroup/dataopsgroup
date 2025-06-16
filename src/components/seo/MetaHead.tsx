@@ -71,7 +71,7 @@ const MetaHead = ({
   const fullCanonicalUrl = buildCanonicalUrl(finalCanonicalPath);
   const fullOGUrl = buildOGUrl(finalCanonicalPath); // Must match canonical exactly
   
-  // Development validation to catch mismatches and duplicate titles
+  // Development validation to catch mismatches and SEO length issues
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       // CRITICAL: Validate URLs match exactly
@@ -82,6 +82,20 @@ const MetaHead = ({
           providedCanonicalPath: explicitCanonicalPath,
           finalPath: finalCanonicalPath
         });
+      }
+      
+      // SEO LENGTH VALIDATION - New warnings for developers
+      const originalTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;
+      const originalDescription = description;
+      
+      if (originalTitle.length > 60) {
+        console.warn(`🚨 SEO TITLE TOO LONG (${originalTitle.length}/60 chars):`, originalTitle);
+        console.warn('📝 Please rewrite title to be under 60 characters instead of relying on truncation');
+      }
+      
+      if (originalDescription.length > 160) {
+        console.warn(`🚨 SEO DESCRIPTION TOO LONG (${originalDescription.length}/160 chars):`, originalDescription);
+        console.warn('📝 Please rewrite description to be under 160 characters instead of relying on truncation');
       }
       
       // Check for duplicate title tags
@@ -104,7 +118,7 @@ const MetaHead = ({
         console.error('🚨 INCORRECT OG DOMAIN:', fullOGUrl);
       }
     }
-  }, [title, fullOGUrl, fullCanonicalUrl, explicitCanonicalPath, finalCanonicalPath]);
+  }, [title, description, fullOGUrl, fullCanonicalUrl, explicitCanonicalPath, finalCanonicalPath]);
   
   // Format title - ensure it's under 60 characters and includes brand
   const formattedTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;
