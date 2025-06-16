@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import AssessmentIntro from './AssessmentIntro';
 import QuizResults from './QuizResults';
 import QuizSection from './QuizSection';
@@ -16,76 +16,78 @@ const AssessmentQuiz = () => {
   
   const { overallScore, scoreLabel, priorities, rescuePlan } = useAssessmentResults(scores);
 
-  const startQuiz = () => {
+  const startQuiz = useCallback(() => {
     setCurrentStep('quiz');
     setCurrentSection(1);
-  };
+  }, []);
 
-  const handleAnswer = (questionId: string, value: number) => {
+  const handleAnswer = useCallback((questionId: string, value: number) => {
     setAnswers(prev => ({
       ...prev,
       [questionId]: value
     }));
-  };
+  }, []);
 
-  const calculateSectionScore = (sectionId: number) => {
+  // Memoize section score calculation
+  const calculateSectionScore = useCallback((sectionId: number) => {
     const section = quizSections.find(s => s.id === sectionId);
     if (!section) return 0;
     
     let totalScore = 0;
     let questionCount = 0;
     
-    section.questions.forEach(question => {
+    for (const question of section.questions) {
       const answer = answers[question.id];
       if (answer !== undefined) {
         totalScore += answer;
         questionCount++;
       }
-    });
+    }
     
     return questionCount > 0 ? totalScore : 0;
-  };
+  }, [answers]);
 
-  const nextSection = () => {
+  const scrollToTop = useCallback(() => {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  }, []);
+
+  const nextSection = useCallback(() => {
     if (currentSection < quizSections.length) {
       setCurrentSection(prev => prev + 1);
-      // Scroll to top with a small delay to ensure content is rendered
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
+      scrollToTop();
     } else {
-      // Calculate final scores for all sections
+      // Calculate final scores for all sections efficiently
       const finalScores: Record<string, number> = {};
       
-      quizSections.forEach(section => {
+      for (const section of quizSections) {
         const sectionKey = `section${section.id}`;
         finalScores[sectionKey] = calculateSectionScore(section.id);
-      });
+      }
       
       setScores(finalScores);
       setCurrentStep('results');
-      // Scroll to top for results page
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
+      scrollToTop();
     }
-  };
+  }, [currentSection, calculateSectionScore, scrollToTop]);
 
-  const prevSection = () => {
+  const prevSection = useCallback(() => {
     if (currentSection > 1) {
       setCurrentSection(prev => prev - 1);
-      // Scroll to top with a small delay to ensure content is rendered
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
+      scrollToTop();
     }
-  };
+  }, [currentSection, scrollToTop]);
 
-  const handleEmailResults = () => {
+  const handleEmailResults = useCallback(() => {
     console.log('Email results requested');
-  };
+  }, []);
 
-  const sectionTitles = quizSections.map(section => section.title);
+  // Memoize section titles to prevent recreation
+  const sectionTitles = useMemo(() => 
+    quizSections.map(section => section.title), 
+    []
+  );
 
   if (currentStep === 'intro') {
     return <AssessmentIntro startQuiz={startQuiz} />;

@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { recommendationsData, rescuePlanActionsData } from '../data/assessment/quizData';
 
 interface PriorityRecommendation {
@@ -20,48 +20,64 @@ export const useAssessmentResults = (scores: Record<string, number>) => {
   const [priorities, setPriorities] = useState<PriorityRecommendation[]>([]);
   const [rescuePlan, setRescuePlan] = useState<RescuePlan>({ phase1: [], phase2: [], phase3: [] });
   
-  // Calculate the overall score
-  const overallScore = Object.values(scores).reduce((acc, curr) => acc + curr, 0);
+  // Memoize overall score calculation
+  const overallScore = useMemo(() => {
+    return Object.values(scores).reduce((acc, curr) => acc + curr, 0);
+  }, [scores]);
 
-  // Calculate score label based on overall score
-  const getScoreLabel = () => {
+  // Memoize score label calculation
+  const scoreLabel = useMemo(() => {
     if (overallScore < 50) return 'Underperforming';
     if (overallScore < 85) return 'Developing';
     if (overallScore < 105) return 'Effective';
     return 'Optimized';
-  };
+  }, [overallScore]);
 
-  useEffect(() => {
-    // Get priority recommendations based on lowest section scores
-    const getPriorityRecommendations = () => {
-      // Sort sections by score (lowest first)
-      const sortedSections = Object.entries(scores)
-        .map(([section, score]) => ({ section, score }))
-        .sort((a, b) => a.score - b.score)
-        .map(item => item.section)
-        .slice(0, 3); // Get top 3 priorities
-      
-      return recommendationsData
-        .filter(rec => sortedSections.includes(rec.section))
-        .map((rec, index) => ({...rec, index: index + 1}));
-    };
-
-    // Get rescue plan recommendations based on priority areas
-    const getRescuePlanActions = () => {
-      // Get the top priority areas
-      const priorities = getPriorityRecommendations().map(p => p.section);
-      
-      // For each phase, include actions from priority areas
-      return {
-        phase1: priorities.flatMap(priority => rescuePlanActionsData[priority as keyof typeof rescuePlanActionsData].phase1),
-        phase2: priorities.flatMap(priority => rescuePlanActionsData[priority as keyof typeof rescuePlanActionsData].phase2),
-        phase3: priorities.flatMap(priority => rescuePlanActionsData[priority as keyof typeof rescuePlanActionsData].phase3)
-      };
-    };
-
-    setPriorities(getPriorityRecommendations());
-    setRescuePlan(getRescuePlanActions());
+  // Memoize priority recommendations calculation
+  const priorityRecommendations = useMemo(() => {
+    if (Object.keys(scores).length === 0) return [];
+    
+    // Sort sections by score (lowest first) and get top 3 priorities
+    const sortedSections = Object.entries(scores)
+      .sort(([, a], [, b]) => a - b)
+      .slice(0, 3)
+      .map(([section]) => section);
+    
+    return recommendationsData
+      .filter(rec => sortedSections.includes(rec.section))
+      .map((rec, index) => ({...rec, index: index + 1}));
   }, [scores]);
 
-  return { overallScore, scoreLabel: getScoreLabel(), priorities, rescuePlan };
+  // Memoize rescue plan calculation
+  const rescuePlanActions = useMemo(() => {
+    if (priorityRecommendations.length === 0) {
+      return { phase1: [], phase2: [], phase3: [] };
+    }
+    
+    const prioritySections = priorityRecommendations.map(p => p.section);
+    
+    // Use a more efficient approach to combine actions
+    const combinedPlan = prioritySections.reduce((acc, section) => {
+      const sectionActions = rescuePlanActionsData[section as keyof typeof rescuePlanActionsData];
+      if (sectionActions) {
+        acc.phase1.push(...sectionActions.phase1);
+        acc.phase2.push(...sectionActions.phase2);
+        acc.phase3.push(...sectionActions.phase3);
+      }
+      return acc;
+    }, { phase1: [] as string[], phase2: [] as string[], phase3: [] as string[] });
+    
+    return combinedPlan;
+  }, [priorityRecommendations]);
+
+  // Only update state when memoized values actually change
+  useEffect(() => {
+    setPriorities(priorityRecommendations);
+  }, [priorityRecommendations]);
+
+  useEffect(() => {
+    setRescuePlan(rescuePlanActions);
+  }, [rescuePlanActions]);
+
+  return { overallScore, scoreLabel, priorities, rescuePlan };
 };

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { memo } from 'react';
 import ResultsOverview from './ResultsOverview';
 import SectionScores from './SectionScores';
 import PriorityImprovements from './PriorityImprovements';
@@ -29,7 +29,7 @@ interface QuizResultsProps {
   onEmailResults: () => void;
 }
 
-const QuizResults: React.FC<QuizResultsProps> = ({
+const QuizResults: React.FC<QuizResultsProps> = memo(({
   overallScore,
   scores,
   sectionTitles,
@@ -71,6 +71,8 @@ const QuizResults: React.FC<QuizResultsProps> = ({
       </div>
     </div>
   );
-};
+});
+
+QuizResults.displayName = 'QuizResults';
 
 export default QuizResults;
