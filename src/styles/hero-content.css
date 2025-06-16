@@ -1,3 +1,4 @@
+
 /* Hero Content Box - Enhanced Positioning and Constraints */
 
 /* Mobile: Transparent content box with white text */
@@ -68,14 +69,16 @@
   width: 100%;
 }
 
-/* Desktop: Align content with container left edge */
+/* Desktop: Align content with container left edge - REMOVE LEFT POSITIONING */
 @media (min-width: 768px) {
   .hero-content {
     position: absolute;
-    left: 0px; /* Align with container left edge */
+    left: 0px !important; /* Remove any left offset */
     top: 0;
     width: 37.5vw;
     max-width: 37.5vw;
+    margin: 0 !important; /* Remove any margin */
+    padding: 0 !important; /* Remove any padding */
   }
 }
 
