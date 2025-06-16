@@ -1,4 +1,5 @@
 
+
 /* Hero Background Image - Enhanced Positioning and Cropping */
 
 /* Hero background image container - hidden on mobile */
@@ -9,19 +10,20 @@
 /* Desktop: Show background image positioned at far right of container */
 @media (min-width: 768px) {
   .hero-bg {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 5;
-    overflow: hidden;
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 5 !important;
+    overflow: hidden !important;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
-    background-size: cover;
-    background-position: 100% 30%; /* Move woman to far right edge */
-    background-repeat: no-repeat;
+    background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png') !important;
+    background-size: cover !important;
+    background-position: 100% 30% !important; /* Move woman to far right edge */
+    background-repeat: no-repeat !important;
   }
 }
+

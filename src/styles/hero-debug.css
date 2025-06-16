@@ -81,7 +81,7 @@
 
 .hero-bg {
   border: 3px solid yellow !important;
-  position: relative;
+  /* REMOVED: position: relative - this was breaking absolute positioning */
 }
 
 .hero-bg::before {
