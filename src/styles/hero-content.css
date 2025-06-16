@@ -4,7 +4,7 @@
 /* Mobile: Transparent content box with white text */
 .hero-content-box {
   background: transparent;
-  padding: 2rem 2rem 2rem 0; /* Remove left padding, keep other padding */
+  padding: 2rem;
   border-radius: 0;
   color: white;
   position: relative;
@@ -27,7 +27,7 @@
     width: 50vw !important; /* Span from container left edge to viewport center */
     max-width: none !important;
     
-    padding: 0 clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem) 0 !important; /* Remove left padding */
+    padding: clamp(1.5rem, 3vw, 2.5rem) !important;
     margin: 0 !important;
     
     /* Keep top position fixed, allow downward growth only */
@@ -39,7 +39,7 @@
 /* Enhanced laptop breakpoint with fixed positioning */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-content-box {
-    padding: 0 2rem 2rem 0 !important; /* Remove left padding */
+    padding: 2rem !important;
     width: 50vw !important;
   }
 }
@@ -47,7 +47,7 @@
 /* Large desktop: Maintain same positioning logic */
 @media (min-width: 1440px) {
   .hero-content-box {
-    padding: 0 2.5rem 2.5rem 0 !important; /* Remove left padding */
+    padding: 2.5rem !important;
     width: 50vw !important;
   }
 }
