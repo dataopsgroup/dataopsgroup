@@ -12,7 +12,6 @@
 @import './styles/hero-responsive.css';
 @import './styles/hero-typography.css';
 @import './styles/hero-mobile.css';
-@import './styles/hero-debug.css'; /* DEBUG VISUALIZATION - Shows layout boundaries */
 @import './styles/components.css';
 @import './styles/navigation.css';
 @import './styles/pillar-content.css';
