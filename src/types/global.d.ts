@@ -51,6 +51,9 @@ declare global {
     
     // Performance monitoring
     PERFORMANCE_API_ENDPOINT?: string;
+    
+    // Redirect prevention system
+    __DISABLE_CANONICAL_REDIRECTS__?: boolean;
   }
 }
 
