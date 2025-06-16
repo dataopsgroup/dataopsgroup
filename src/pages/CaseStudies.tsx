@@ -6,8 +6,7 @@ import CaseStudiesGrid from '@/components/case-studies/CaseStudiesGrid';
 import CaseStudiesHero from '@/components/case-studies/CaseStudiesHero';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import MetaHead from '@/components/seo/MetaHead';
-
-const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+import { buildAbsoluteUrl } from '@/utils/url-builder';
 
 const CaseStudiesPage = () => {
   const breadcrumbs = [
@@ -42,7 +41,7 @@ const CaseStudiesPage = () => {
             "name": "DataOps Group",
             "logo": {
               "@type": "ImageObject",
-              "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+              "url": buildAbsoluteUrl("/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png")
             }
           }
         })}
@@ -59,7 +58,7 @@ const CaseStudiesPage = () => {
         
         <CTABanner />
       </main>
-    </SemanticLayout>
+    </SeSemanticLayout>
   );
 };
 

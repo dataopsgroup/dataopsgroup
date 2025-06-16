@@ -10,6 +10,7 @@ import BlogListHero from '@/components/blog/BlogListHero';
 import BlogListGrid from '@/components/blog/BlogListGrid';
 import { Helmet } from 'react-helmet-async';
 import { performanceMonitor } from '@/lib/performance-monitor';
+import { buildAbsoluteUrl } from '@/utils/url-builder';
 
 const BlogList = () => {
   const location = useLocation();
@@ -37,8 +38,6 @@ const BlogList = () => {
     return filtered;
   }, []);
 
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
-
   // Memoize schema data to avoid recalculation
   const schemaData = useMemo(() => ({
     "@context": "https://schema.org",
@@ -50,7 +49,7 @@ const BlogList = () => {
       "name": "DataOps Group",
       "logo": {
         "@type": "ImageObject",
-        "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+        "url": buildAbsoluteUrl("/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png")
       }
     },
     "mainEntity": {
@@ -58,11 +57,11 @@ const BlogList = () => {
       "itemListElement": filteredBlogPosts.map((post, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "url": `${baseUrl}/insights/${post.id}`,
+        "url": buildAbsoluteUrl(`/insights/${post.id}`),
         "name": post.title
       }))
     }
-  }), [filteredBlogPosts, baseUrl]);
+  }), [filteredBlogPosts]);
 
   useEffect(() => {
     // Defer analytics tracking to avoid blocking render

@@ -16,7 +16,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BlogPost } from '@/types/blog';
 import { useCanonicalUrl } from '@/hooks/useCanonicalUrl';
-import { buildAbsoluteUrl, buildCanonicalUrl, buildOGUrl, validateUrlConsistency } from '@/utils/url-builder';
+import { buildAbsoluteUrl, buildCanonicalUrl, buildOGUrl, validateUrlConsistency, validatePageUrls } from '@/utils/url-builder';
 
 interface MetaHeadProps {
   title: string;
@@ -84,6 +84,9 @@ const MetaHead = ({
         });
       }
       
+      // Run page-level URL validation
+      validatePageUrls(finalCanonicalPath);
+      
       // SEO LENGTH VALIDATION - New warnings for developers
       const originalTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;
       const originalDescription = description;
@@ -107,15 +110,6 @@ const MetaHead = ({
           currentTitle: title,
           page: finalCanonicalPath
         });
-      }
-      
-      // Validate domain consistency
-      if (!fullCanonicalUrl.includes('dataopsgroup.com')) {
-        console.error('🚨 INCORRECT CANONICAL DOMAIN:', fullCanonicalUrl);
-      }
-      
-      if (!fullOGUrl.includes('dataopsgroup.com')) {
-        console.error('🚨 INCORRECT OG DOMAIN:', fullOGUrl);
       }
     }
   }, [title, description, fullOGUrl, fullCanonicalUrl, explicitCanonicalPath, finalCanonicalPath]);

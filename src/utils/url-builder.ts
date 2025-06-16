@@ -13,6 +13,13 @@ const CANONICAL_DOMAIN = 'https://dataopsgroup.com';
  * Build absolute URL with consistent domain
  */
 export const buildAbsoluteUrl = (path: string): string => {
+  // Development warning for incorrect usage
+  if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+    if (path.includes('window.location.origin') || path.includes('.lovableproject.com')) {
+      console.warn('🚨 URL BUILDER WARNING: Detected non-standard domain usage. Use buildAbsoluteUrl() instead of window.location.origin');
+    }
+  }
+  
   // Ensure path starts with /
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   
@@ -65,6 +72,38 @@ export const isCanonicalDomain = (url: string): boolean => {
   return domain === CANONICAL_DOMAIN;
 };
 
+/**
+ * Development helper to warn about window.location.origin usage
+ * Should be called in component useEffect to catch incorrect patterns
+ */
+export const validatePageUrls = (currentPath: string) => {
+  if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+    // Check for canonical/OG mismatches
+    setTimeout(() => {
+      const canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+      const ogUrl = document.querySelector('meta[property="og:url"]') as HTMLMetaElement;
+      
+      if (canonical && ogUrl) {
+        if (!validateUrlConsistency(canonical.href, ogUrl.content)) {
+          console.error('🚨 CANONICAL/OG MISMATCH DETECTED:', {
+            canonical: canonical.href,
+            og: ogUrl.content,
+            page: currentPath
+          });
+        }
+        
+        if (!isCanonicalDomain(canonical.href)) {
+          console.error('🚨 INCORRECT CANONICAL DOMAIN:', canonical.href);
+        }
+        
+        if (!isCanonicalDomain(ogUrl.content)) {
+          console.error('🚨 INCORRECT OG DOMAIN:', ogUrl.content);
+        }
+      }
+    }, 100);
+  }
+};
+
 export default {
   buildAbsoluteUrl,
   buildCanonicalUrl,
@@ -72,5 +111,6 @@ export default {
   validateUrlConsistency,
   extractDomain,
   isCanonicalDomain,
+  validatePageUrls,
   CANONICAL_DOMAIN
 };

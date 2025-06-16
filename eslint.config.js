@@ -1,3 +1,4 @@
+
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -24,6 +25,21 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-unused-vars": "off",
+      // CRITICAL SEO RULE: Prevent window.location.origin usage in page components
+      "no-restricted-globals": [
+        "error",
+        {
+          "name": "location",
+          "message": "❌ SEO VIOLATION: Use buildCanonicalUrl() from '@/utils/url-builder' instead of window.location.origin to prevent canonical/OG URL mismatches. This prevents Ahrefs redirect chain errors."
+        }
+      ],
+      "no-restricted-syntax": [
+        "error",
+        {
+          "selector": "MemberExpression[object.name='window'][property.name='location']",
+          "message": "❌ SEO VIOLATION: Use buildCanonicalUrl() from '@/utils/url-builder' instead of window.location for consistent domain usage. Critical for preventing canonical URL mismatches."
+        }
+      ]
     },
   }
 );

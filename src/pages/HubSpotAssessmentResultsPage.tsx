@@ -4,9 +4,11 @@ import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import QuizResults from '@/components/assessment/QuizResults';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import { buildCanonicalUrl, buildOGUrl } from '@/utils/url-builder';
 
 const HubSpotAssessmentResultsPage = () => {
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+  const canonicalUrl = buildCanonicalUrl('/data-operations-assessment/results');
+  const ogUrl = buildOGUrl('/data-operations-assessment/results');
 
   // Mock data for results page - in a real app this would come from state/URL params
   const mockScores = {
@@ -43,21 +45,21 @@ const HubSpotAssessmentResultsPage = () => {
         <title>Your HubSpot Implementation Assessment Results | DataOps Group</title>
         <meta name="description" content="Your HubSpot assessment results with personalized recommendations and next steps to improve your data operations." />
         <meta name="keywords" content="hubspot assessment results, data operations results, personalized recommendations, implementation assessment" />
-        <link rel="canonical" href={`${baseUrl}/data-operations-assessment/results`} />
+        <link rel="canonical" href={canonicalUrl} />
         <meta name="robots" content="noindex, nofollow" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Your HubSpot Implementation Assessment Results" />
         <meta property="og:description" content="Your HubSpot assessment results with personalized recommendations and next steps to improve your data operations." />
-        <meta property="og:url" content={`${baseUrl}/data-operations-assessment/results`} />
-        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta property="og:url" content={ogUrl} />
+        <meta property="og:image" content="https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Your HubSpot Implementation Assessment Results" />
         <meta name="twitter:description" content="Your HubSpot assessment results with personalized recommendations and next steps to improve your data operations." />
-        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta name="twitter:image" content="https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" />
       </Helmet>
 
       <BreadcrumbSchema 
