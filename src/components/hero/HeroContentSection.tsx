@@ -1,4 +1,5 @@
 
+
 import React, { useCallback } from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -36,7 +37,7 @@ const HeroContentSection = React.memo(() => {
             <div className="space-y-4">
               <h2 className="text-lg text-gray-700 leading-relaxed font-normal">
                 We are PE-specialized{' '}
-                <Link to="/about" className="text-dataops-600 hover:text-dataops-700 underline">
+                <Link to="/about" className="text-dataops-600 hover:text-dataops-700 underline text-lg font-normal">
                   HubSpot experts
                 </Link>{' '}
                 who transform fragmented systems into unified platforms that drive EBITDA growth, 
@@ -93,3 +94,4 @@ const HeroContentSection = React.memo(() => {
 HeroContentSection.displayName = 'HeroContentSection';
 
 export default HeroContentSection;
+
