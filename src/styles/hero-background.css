@@ -1,12 +1,12 @@
 
-/* Hero Background Image - Enhanced Positioning and Cropping */
+/* Hero Background Image - Two-Phase Responsive Behavior */
 
 /* Hero background image container - hidden on mobile */
 .hero-bg {
   display: none;
 }
 
-/* Desktop: Show background image positioned at far right of container */
+/* Phase 1: Fixed Positioning (768px - 1600px) */
 @media (min-width: 768px) {
   .hero-bg {
     display: block !important;
@@ -20,8 +20,17 @@
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png') !important;
-    background-size: cover !important;
-    background-position: calc(100% + 200px) 30% !important; /* Shifted woman 200px further right */
+    background-size: auto !important; /* Fixed size - no scaling */
+    background-position: calc(100% + 200px) 30% !important; /* Woman positioned to right of purple line */
     background-repeat: no-repeat !important;
+    transition: background-size 0.3s ease-out, background-position 0.3s ease-out !important;
+  }
+}
+
+/* Phase 2: Responsive Scaling (1600px+) */
+@media (min-width: 1600px) {
+  .hero-bg {
+    background-size: cover !important; /* Scale to fill entire hero section */
+    background-position: 80% 30% !important; /* Keep woman positioned away from gray box */
   }
 }
