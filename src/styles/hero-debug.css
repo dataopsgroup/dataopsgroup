@@ -1,4 +1,5 @@
 
+
 /* TEMPORARY DEBUG OUTLINES - Remove after layout fixes */
 
 /* Debug outlines for layout elements */
@@ -84,7 +85,7 @@
 }
 
 .hero-content-box::before {
-  content: "GRAY BOX (left edge to 50% midpoint)";
+  content: "GRAY BOX (left edge to 50% viewport)";
   position: absolute;
   top: 5px;
   left: 5px;
@@ -150,7 +151,7 @@
 /* Add measurement indicators for current gray box positioning */
 @media (min-width: 768px) {
   .hero-content-box::after {
-    content: "Box right edge at 50% midline";
+    content: "Box spans from left edge to 50% midline";
     position: absolute;
     right: -2px;
     top: 50%;
@@ -166,3 +167,4 @@
     font-weight: bold;
   }
 }
+

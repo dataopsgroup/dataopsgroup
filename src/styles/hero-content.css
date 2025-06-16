@@ -1,4 +1,5 @@
 
+
 /* Hero Content Box - Enhanced Positioning and Constraints */
 
 /* Mobile: Transparent content box with white text */
@@ -11,7 +12,7 @@
   z-index: 20;
 }
 
-/* Desktop: Gray box aligned to 50% midpoint with full left expansion */
+/* Desktop: Gray box positioned at far left of container */
 @media (min-width: 768px) {
   .hero-content-box {
     background: rgba(107, 114, 128, 0.9) !important;
@@ -20,11 +21,11 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 20 !important;
     
-    /* Position from left edge of container to exactly 50% viewport */
+    /* Position at far left edge of container, ending at 50% viewport */
     position: absolute;
     left: 0;
     right: auto;
-    width: calc(50vw - 5vw) !important; /* 50% viewport minus container's 5% padding */
+    width: 50vw !important; /* Span from container left edge to viewport center */
     max-width: none !important;
     
     padding: clamp(1.5rem, 3vw, 2.5rem) !important;
@@ -40,7 +41,7 @@
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-content-box {
     padding: 2rem !important;
-    width: calc(50vw - 5vw) !important;
+    width: 50vw !important;
   }
 }
 
@@ -48,14 +49,14 @@
 @media (min-width: 1440px) {
   .hero-content-box {
     padding: 2.5rem !important;
-    width: calc(50vw - 5vw) !important;
+    width: 50vw !important;
   }
 }
 
 /* Ultra-wide: Maintain same positioning logic */
 @media (min-width: 1920px) {
   .hero-content-box {
-    width: calc(50vw - 5vw) !important;
+    width: 50vw !important;
   }
 }
 
@@ -97,3 +98,4 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
