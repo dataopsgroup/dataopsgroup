@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCanonicalUrl } from '@/hooks/useCanonicalUrl';
 import { CANONICAL_URLS } from '@/utils/seo-config';
+import { areRedirectsDisabled } from '@/utils/redirect-prevention-system';
 
 /**
  * Component that automatically redirects duplicate URLs to their canonical versions
- * FIXED: Added strict validation to prevent canonical URLs from redirecting
- * Should be placed in the main layout or route components
+ * ENHANCED: Added emergency disable functionality and comprehensive validation
  */
 const CanonicalRedirect: React.FC = () => {
   const navigate = useNavigate();
@@ -25,6 +25,12 @@ const CanonicalRedirect: React.FC = () => {
   }, []);
   
   useEffect(() => {
+    // EMERGENCY DISABLE: Check if redirects are disabled to prevent Ahrefs issues
+    if (areRedirectsDisabled()) {
+      console.log('🚨 CanonicalRedirect: Emergency disabled to prevent Ahrefs issues');
+      return;
+    }
+    
     // Only perform redirects after router is ready and we have a valid redirect target
     if (!isReady || !shouldRedirect || !redirectTarget) {
       return;
@@ -55,6 +61,13 @@ const CanonicalRedirect: React.FC = () => {
     
     if (currentPath === normalizedTarget) {
       console.log('🔄 CanonicalRedirect: Preventing unnecessary redirect (same normalized paths):', currentPath);
+      return;
+    }
+    
+    // ENHANCED VALIDATION: Additional checks before redirecting
+    const isTargetCanonical = Object.values(CANONICAL_URLS).includes(redirectTarget as any);
+    if (!isTargetCanonical) {
+      console.warn(`⚠️ CanonicalRedirect: Target ${redirectTarget} is not a canonical URL - skipping redirect`);
       return;
     }
     

@@ -1,17 +1,56 @@
 /**
  * SEO Validation Utilities
  * 
- * Use these functions to validate SEO configurations before deployment
- * ENHANCED: Added validation to prevent canonical redirect issues
+ * ENHANCED: Now includes comprehensive redirect auditing and prevention
  */
 
 import { CANONICAL_URLS, DUPLICATE_URLS_TO_REDIRECT, validateSEOConfig } from './seo-config';
+import { auditAllRedirects } from './comprehensive-redirect-audit';
+import { validateForDeployment, validateCommonPatterns } from './redirect-prevention-system';
 
 interface ValidationResult {
   isValid: boolean;
   errors: string[];
   warnings: string[];
 }
+
+/**
+ * Master validation function - runs all SEO validations including new redirect auditing
+ */
+export const validateAllSEORules = (): ValidationResult => {
+  // Run existing validations
+  const redirectValidation = validateRedirectRules();
+  const canonicalValidation = validateCanonicalUrlIntegrity();
+  const robotsValidation = validateRobotsRules();
+  const sitemapValidation = validateSitemapRules();
+  
+  // Run new comprehensive validations
+  const comprehensiveAudit = auditAllRedirects();
+  const commonPatterns = validateCommonPatterns();
+  
+  const allErrors = [
+    ...redirectValidation.errors,
+    ...canonicalValidation.errors,
+    ...robotsValidation.errors,
+    ...sitemapValidation.errors,
+    ...comprehensiveAudit.errors,
+    ...(commonPatterns ? [] : ['Common problem patterns detected'])
+  ];
+  
+  const allWarnings = [
+    ...redirectValidation.warnings,
+    ...canonicalValidation.warnings,
+    ...robotsValidation.warnings,
+    ...sitemapValidation.warnings,
+    ...comprehensiveAudit.warnings
+  ];
+  
+  return {
+    isValid: allErrors.length === 0,
+    errors: allErrors,
+    warnings: allWarnings
+  };
+};
 
 /**
  * Validates that all redirect rules are properly configured
@@ -149,63 +188,45 @@ export const validateSitemapRules = (): ValidationResult => {
 };
 
 /**
- * Master validation function - runs all SEO validations
- * ENHANCED: Added canonical URL integrity validation
- */
-export const validateAllSEORules = (): ValidationResult => {
-  const redirectValidation = validateRedirectRules();
-  const canonicalValidation = validateCanonicalUrlIntegrity();
-  const robotsValidation = validateRobotsRules();
-  const sitemapValidation = validateSitemapRules();
-  
-  const allErrors = [
-    ...redirectValidation.errors,
-    ...canonicalValidation.errors,
-    ...robotsValidation.errors,
-    ...sitemapValidation.errors
-  ];
-  
-  const allWarnings = [
-    ...redirectValidation.warnings,
-    ...canonicalValidation.warnings,
-    ...robotsValidation.warnings,
-    ...sitemapValidation.warnings
-  ];
-  
-  return {
-    isValid: allErrors.length === 0,
-    errors: allErrors,
-    warnings: allWarnings
-  };
-};
-
-/**
- * Development helper - logs validation results to console
- * ENHANCED: Added canonical URL validation logging
+ * Enhanced development helper - logs comprehensive validation results
  */
 export const logSEOValidation = () => {
   if (process.env.NODE_ENV !== 'development') return;
   
-  const validation = validateAllSEORules();
+  console.group('🎯 Enhanced SEO Validation Results');
   
-  if (validation.isValid) {
-    console.log('✅ SEO Configuration Valid');
+  // Run comprehensive audit
+  const audit = auditAllRedirects();
+  const deployment = validateForDeployment();
+  const patterns = validateCommonPatterns();
+  
+  if (audit.isValid && deployment.canDeploy && patterns) {
+    console.log('✅ ALL SEO VALIDATIONS PASSED - No Ahrefs issues detected');
   } else {
-    console.error('❌ SEO Configuration Errors:');
-    validation.errors.forEach(error => console.error(`  - ${error}`));
+    console.error('❌ SEO Validation Issues Detected:');
+    
+    if (!audit.isValid) {
+      console.error('🔗 Redirect Issues:');
+      audit.errors.forEach(error => console.error(`  - ${error}`));
+    }
+    
+    if (!deployment.canDeploy) {
+      console.error('🚫 Deployment Blockers:');
+      deployment.blockers.forEach(blocker => console.error(`  - ${blocker}`));
+    }
+    
+    if (!patterns) {
+      console.error('🎯 Common Problem Patterns Detected');
+    }
   }
   
-  if (validation.warnings.length > 0) {
-    console.warn('⚠️ SEO Configuration Warnings:');
-    validation.warnings.forEach(warning => console.warn(`  - ${warning}`));
-  }
+  console.groupEnd();
   
-  // Log canonical URL integrity specifically
-  const canonicalValidation = validateCanonicalUrlIntegrity();
-  if (!canonicalValidation.isValid) {
-    console.error('🚨 CANONICAL URL INTEGRITY ISSUES:');
-    canonicalValidation.errors.forEach(error => console.error(`  - ${error}`));
-  }
+  return {
+    audit,
+    deployment,
+    patterns
+  };
 };
 
 export default {
