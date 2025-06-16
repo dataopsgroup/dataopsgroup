@@ -8,6 +8,12 @@
   padding-top: 0; /* Remove top padding to let background fill */
   padding-bottom: 0; /* Remove bottom padding to let background fill */
   margin-bottom: 0;
+  
+  /* Add background image directly to hero section */
+  background-image: url('/lovable-uploads/df195f9f-0886-488a-bdb0-c0db162335a7.png');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
 }
 
 /* Desktop: Remove padding for full background coverage */
@@ -15,6 +21,10 @@
   .hero-section {
     padding-top: 0; /* Remove padding to let background image fill */
     padding-bottom: 0; /* Remove padding to let background image fill */
+    
+    /* Enhanced background positioning for desktop */
+    background-size: cover;
+    background-position: 75% center;
   }
 }
 

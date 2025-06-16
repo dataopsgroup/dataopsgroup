@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import HeroBackground from '@/components/hero/HeroBackground';
 import HeroContent from '@/components/hero/HeroContent';
 import HeroContentSection from '@/components/hero/HeroContentSection';
 import TrustedCompanies from '@/components/hero/TrustedCompanies';
@@ -24,9 +23,6 @@ const Hero = React.memo(() => {
   return (
     <>
       <div className="hero-section bg-gray-50 pb-0">
-        {/* Background Image - desktop only with simplified loading */}
-        {!isMobile && <HeroBackground />}
-        
         {/* Layout Container */}
         <div className="hero-container">
           {/* Hero Content - headline overlay */}
