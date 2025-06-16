@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import { blogPosts } from '@/data/blog';
@@ -9,9 +9,11 @@ import MetaHead from '@/components/seo/MetaHead';
 import BlogListHero from '@/components/blog/BlogListHero';
 import BlogListGrid from '@/components/blog/BlogListGrid';
 import { Helmet } from 'react-helmet-async';
+import { performanceMonitor } from '@/lib/performance-monitor';
 
 const BlogList = () => {
   const location = useLocation();
+  const endTimer = performanceMonitor.startTimer('BlogList', 'render');
 
   // Define breadcrumbs for the insights page
   const breadcrumbs = [{
@@ -22,40 +24,80 @@ const BlogList = () => {
     url: '/insights'
   }];
 
-  // Filter out posts tagged as "Case Study"
-  const filteredBlogPosts = blogPosts.filter(post => post.category?.toLowerCase() !== 'case study' && post.category?.toLowerCase() !== 'case studies');
+  // Memoize filtered posts to avoid recalculation on every render
+  const filteredBlogPosts = useMemo(() => {
+    const endFilterTimer = performanceMonitor.startTimer('BlogList', 'filterPosts');
+    
+    const filtered = blogPosts.filter(post => 
+      post.category?.toLowerCase() !== 'case study' && 
+      post.category?.toLowerCase() !== 'case studies'
+    );
+    
+    endFilterTimer();
+    return filtered;
+  }, []);
 
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
 
-  useEffect(() => {
-    // Track page view with blog post count - with safety checks
-    try {
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'view_item_list', {
-          item_list_name: 'Blog Posts',
-          items: filteredBlogPosts.map((post, index) => ({
-            item_id: post.id,
-            item_name: post.title,
-            item_category: post.category || 'Blog',
-            index: index + 1
-          }))
-        });
+  // Memoize schema data to avoid recalculation
+  const schemaData = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Insights | DataOps Group",
+    "description": "Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "DataOps Group",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
       }
-
-      // Track in HubSpot - use path without query params - with safety checks
-      if (typeof window !== 'undefined' && window._hsq) {
-        window._hsq.push(['setPath', location.pathname]);
-        window._hsq.push(['trackPageView']);
-      }
-    } catch (error) {
-      console.warn('Analytics tracking failed:', error);
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": filteredBlogPosts.map((post, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `${baseUrl}/insights/${post.id}`,
+        "name": post.title
+      }))
     }
+  }), [filteredBlogPosts, baseUrl]);
+
+  useEffect(() => {
+    // Defer analytics tracking to avoid blocking render
+    const trackingTimer = setTimeout(() => {
+      try {
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'view_item_list', {
+            item_list_name: 'Blog Posts',
+            items: filteredBlogPosts.slice(0, 10).map((post, index) => ({
+              item_id: post.id,
+              item_name: post.title,
+              item_category: post.category || 'Blog',
+              index: index + 1
+            }))
+          });
+        }
+
+        // Track in HubSpot - use path without query params - with safety checks
+        if (typeof window !== 'undefined' && window._hsq) {
+          window._hsq.push(['setPath', location.pathname]);
+          window._hsq.push(['trackPageView']);
+        }
+      } catch (error) {
+        console.warn('Analytics tracking failed:', error);
+      }
+    }, 200);
+
+    return () => clearTimeout(trackingTimer);
   }, [filteredBlogPosts, location.pathname]);
 
   // Add debugging for blog posts
   console.log('BlogList component rendering');
   console.log('Available blog posts:', filteredBlogPosts.length);
-  console.log('Blog post IDs:', filteredBlogPosts.map(p => p.id));
+  
+  endTimer();
 
   return (
     <SemanticLayout>
@@ -75,29 +117,7 @@ const BlogList = () => {
       <BreadcrumbSchema items={breadcrumbs} />
       <Helmet>
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Insights | DataOps Group",
-            "description": "Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group.",
-            "publisher": {
-              "@type": "Organization",
-              "name": "DataOps Group",
-              "logo": {
-                "@type": "ImageObject",
-                "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
-              }
-            },
-            "mainEntity": {
-              "@type": "ItemList",
-              "itemListElement": filteredBlogPosts.map((post, index) => ({
-                "@type": "ListItem",
-                "position": index + 1,
-                "url": `${baseUrl}/insights/${post.id}`,
-                "name": post.title
-              }))
-            }
-          })}
+          {JSON.stringify(schemaData)}
         </script>
       </Helmet>
       

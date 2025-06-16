@@ -1,23 +1,68 @@
+
+import { performanceMonitor } from '@/lib/performance-monitor';
+
 /**
- * PerformanceMonitor provides methods to initialize, track, and report web performance metrics.
+ * Blog-specific performance monitoring service
  */
-export const PerformanceMonitor = {
+export const BlogPerformanceMonitor = {
   /**
-   * Initializes performance monitoring for the application.
+   * Initialize blog route performance monitoring
    */
   init() {
-    // Initialize performance monitoring
+    try {
+      // Monitor blog route navigation timing
+      if (typeof window !== 'undefined' && window.performance) {
+        const observer = new PerformanceObserver((list) => {
+          list.getEntries().forEach((entry) => {
+            if (entry.name.includes('/insights/')) {
+              console.log(`Blog route ${entry.name} took ${entry.duration}ms`);
+              
+              if (entry.duration > 3000) {
+                console.warn(`🚨 SLOW BLOG ROUTE: ${entry.name} took ${entry.duration}ms`);
+              }
+            }
+          });
+        });
+        
+        observer.observe({ entryTypes: ['navigation', 'measure'] });
+      }
+    } catch (error) {
+      console.warn('Failed to initialize blog performance monitoring:', error);
+    }
   },
+
   /**
-   * Tracks core web vitals and other performance metrics.
+   * Track blog post load performance
    */
-  trackMetrics() {
-    // Track core web vitals
+  trackBlogPostLoad(postId: string, loadTime: number) {
+    try {
+      if (loadTime > 1000) {
+        console.warn(`Blog post ${postId} took ${loadTime}ms to load`);
+      }
+      
+      // Track in analytics if available
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'blog_performance', {
+          'event_category': 'Performance',
+          'event_label': postId,
+          'value': Math.round(loadTime)
+        });
+      }
+    } catch (error) {
+      console.warn('Failed to track blog post performance:', error);
+    }
   },
+
   /**
-   * Reports collected performance metrics to analytics or monitoring services.
+   * Get performance metrics for blog routes
    */
-  reportMetrics() {
-    // Report metrics to analytics
+  getBlogMetrics() {
+    return performanceMonitor.getMetrics().filter(metric => 
+      metric.componentName.includes('Blog') || 
+      metric.componentName.includes('useBlogPost')
+    );
   }
-}; 
+};
+
+// Initialize monitoring when the service is imported
+BlogPerformanceMonitor.init();

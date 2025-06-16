@@ -1,9 +1,13 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { blogPosts } from '@/data/blog';
 import { BlogPost } from '@/types/blog';
+import { performanceMonitor } from '@/lib/performance-monitor';
+
+// Create a Map for O(1) blog post lookups instead of O(n) array searches
+const blogPostsMap = new Map(blogPosts.map(post => [post.id, post]));
 
 export const useBlogPost = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -14,12 +18,24 @@ export const useBlogPost = () => {
   const { toast } = useToast();
   
   console.log('useBlogPost hook called with postId:', postId);
-  console.log('Available blog posts:', blogPosts?.length || 0);
-  console.log('All blog post IDs:', blogPosts.map(p => p.id));
+  
+  // Memoize related posts calculation to avoid recalculation
+  const memoizedRelatedPosts = useMemo(() => {
+    if (!post) return [];
+    
+    const endTimer = performanceMonitor.startTimer('useBlogPost', 'calculateRelatedPosts');
+    
+    // Get related posts more efficiently - limit to first 3 matches
+    const related = blogPosts
+      .filter(p => p.id !== post.id)
+      .slice(0, 3);
+    
+    endTimer();
+    return related;
+  }, [post]);
   
   useEffect(() => {
-    console.log('useBlogPost useEffect triggered');
-    console.log('Looking for postId:', postId);
+    const endTimer = performanceMonitor.startTimer('useBlogPost', 'loadBlogPost');
     
     try {
       setLoading(true);
@@ -29,68 +45,57 @@ export const useBlogPost = () => {
         console.error('No postId provided in URL params');
         setError('No blog post ID provided');
         setLoading(false);
+        endTimer();
         return;
       }
 
-      if (!blogPosts || !Array.isArray(blogPosts)) {
-        console.error('Blog posts data not available or invalid');
-        setError('Blog posts data not available');
-        setLoading(false);
-        return;
-      }
-      
-      const foundPost = blogPosts.find(p => p.id === postId);
+      // Use Map for O(1) lookup instead of array.find()
+      const foundPost = blogPostsMap.get(postId);
       console.log('Search result for postId', postId, ':', foundPost ? 'FOUND' : 'NOT FOUND');
       
       if (foundPost) {
         console.log('Successfully found post:', foundPost.title);
         setPost(foundPost);
-        
-        // Get related posts (excluding current post)
-        const otherPosts = blogPosts.filter(p => p.id !== postId);
-        setRelatedPosts(otherPosts.slice(0, 3));
         setError(null);
       } else {
         console.error('Post not found for ID:', postId);
-        console.error('Available IDs:', blogPosts.map(p => p.id));
-        console.error('ERROR BOUNDARY TEST: Invalid blog post ID requested');
         setError(`Blog post with ID "${postId}" not found`);
         
-        if (toast) {
-          toast({
-            title: "Post not found",
-            description: `We couldn't find the blog post "${postId}".`,
-            variant: "destructive"
-          });
-        }
+        // Defer toast notification to avoid blocking render
+        setTimeout(() => {
+          if (toast) {
+            toast({
+              title: "Post not found",
+              description: `We couldn't find the blog post "${postId}".`,
+              variant: "destructive"
+            });
+          }
+        }, 0);
       }
     } catch (err) {
       console.error('Error in useBlogPost useEffect:', err);
-      console.error('ERROR BOUNDARY TEST: Exception in blog post loading');
       setError('An error occurred while loading the blog post');
       
-      if (toast) {
-        toast({
-          title: "Error loading post",
-          description: "There was an error loading the blog post.",
-          variant: "destructive"
-        });
-      }
+      // Defer toast notification
+      setTimeout(() => {
+        if (toast) {
+          toast({
+            title: "Error loading post",
+            description: "There was an error loading the blog post.",
+            variant: "destructive"
+          });
+        }
+      }, 0);
     } finally {
       setLoading(false);
+      endTimer();
     }
   }, [postId, toast]);
 
-  // Additional debugging info
+  // Update related posts when memoized calculation changes
   useEffect(() => {
-    console.log('Current state:', { 
-      postId, 
-      post: post?.title || 'null', 
-      loading, 
-      error,
-      relatedPostsCount: relatedPosts.length 
-    });
-  }, [postId, post, loading, error, relatedPosts]);
+    setRelatedPosts(memoizedRelatedPosts);
+  }, [memoizedRelatedPosts]);
 
   return { post, relatedPosts, loading, error };
 };
