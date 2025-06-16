@@ -35,7 +35,7 @@ const BlogPostSEO = ({ post, postId }: BlogPostSEOProps) => {
   return (
     <>
       <MetaHead
-        title={post.title}
+        title={`${post.title} | DataOps Group`}
         description={metaDescription}
         keywords={keywords}
         canonicalPath={canonicalPath}

@@ -5,36 +5,25 @@ import SemanticLayout from '@/components/layout/SemanticLayout';
 import Contact from '@/components/Contact';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
+import MetaHead from '@/components/seo/MetaHead';
 
 const ContactPage = () => {
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
-
   return (
     <SemanticLayout>
+      <MetaHead
+        title="Contact Us - DataOps Group"
+        description="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations."
+        keywords="contact dataops, hubspot consultancy, get in touch, marketing operations, sales operations"
+        canonicalPath="/contact"
+        ogType="website"
+        ogTitle="Contact Us - DataOps Group"
+        ogDescription="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations."
+        ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+        siteName="DataOps Group"
+      />
+      
+      {/* Additional schema and meta tags not handled by MetaHead */}
       <Helmet>
-        <title>Contact Us - DataOps Group</title>
-        <meta 
-          name="description" 
-          content="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations." 
-        />
-        <meta name="keywords" content="contact dataops, hubspot consultancy, get in touch, marketing operations, sales operations" />
-        <link rel="canonical" href={`${baseUrl}/contact`} />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Contact Us - DataOps Group" />
-        <meta property="og:description" content="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations." />
-        <meta property="og:url" content={`${baseUrl}/contact`} />
-        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
-        <meta property="og:site_name" content="DataOps Group" />
-        
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact Us - DataOps Group" />
-        <meta name="twitter:description" content="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations." />
-        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
-        <meta name="twitter:site" content="@dataops_group" />
-        
         <script type="application/ld+json">
           {`
             {
@@ -42,13 +31,13 @@ const ContactPage = () => {
               "@type": "ContactPage",
               "name": "DataOps Group Contact",
               "description": "Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations.",
-              "url": "${baseUrl}/contact",
+              "url": "https://dataopsgroup.com/contact",
               "publisher": {
                 "@type": "Organization",
                 "name": "DataOps Group",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+                  "url": "https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
                 }
               }
             }

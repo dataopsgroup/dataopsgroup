@@ -12,7 +12,7 @@
  * See Knowledge Article: "SEO Requirements (MANDATORY FOR ALL PAGES)"
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BlogPost } from '@/types/blog';
 import { useCanonicalUrl } from '@/hooks/useCanonicalUrl';
@@ -73,16 +73,41 @@ const MetaHead = ({
   // CRITICAL FIX: OpenGraph URL MUST exactly match canonical URL
   const ogUrl = fullCanonicalUrl;
   
-  // Development validation to catch mismatches
-  if (process.env.NODE_ENV === 'development') {
-    if (ogUrl !== fullCanonicalUrl) {
-      console.error('🚨 CANONICAL/OG URL MISMATCH:', {
-        canonical: fullCanonicalUrl,
-        ogUrl: ogUrl,
-        providedCanonicalPath: explicitCanonicalPath
-      });
+  // Development validation to catch mismatches and duplicate titles
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      // Check for canonical/OG URL mismatch
+      if (ogUrl !== fullCanonicalUrl) {
+        console.error('🚨 CANONICAL/OG URL MISMATCH:', {
+          canonical: fullCanonicalUrl,
+          ogUrl: ogUrl,
+          providedCanonicalPath: explicitCanonicalPath
+        });
+      }
+      
+      // Check for duplicate title tags
+      const existingTitles = document.querySelectorAll('title');
+      if (existingTitles.length > 1) {
+        console.error('🚨 DUPLICATE TITLE TAGS DETECTED:', {
+          count: existingTitles.length,
+          titles: Array.from(existingTitles).map(t => t.textContent),
+          currentTitle: title,
+          page: finalCanonicalPath
+        });
+      }
+      
+      // Check for hardcoded title tags outside of Helmet
+      const allTitles = Array.from(document.querySelectorAll('title'));
+      const helmetTitles = Array.from(document.querySelectorAll('title[data-react-helmet]'));
+      if (allTitles.length !== helmetTitles.length) {
+        console.warn('⚠️ HARDCODED TITLE TAG DETECTED - Should use MetaHead component only:', {
+          totalTitles: allTitles.length,
+          helmetTitles: helmetTitles.length,
+          hardcodedTitles: allTitles.filter(t => !t.getAttribute('data-react-helmet')).map(t => t.textContent)
+        });
+      }
     }
-  }
+  }, [title, ogUrl, fullCanonicalUrl, explicitCanonicalPath, finalCanonicalPath]);
   
   // Format title - ensure it's under 60 characters and includes brand
   const formattedTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;

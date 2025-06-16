@@ -3,33 +3,24 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import CTABanner from '@/components/CTABanner';
-import { Helmet } from 'react-helmet-async';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-
-const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dataopsgroup.com';
+import MetaHead from '@/components/seo/MetaHead';
 
 const AboutPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>About DataOps Group - HubSpot Experts & Data Operations Consultants</title>
-        <meta name="description" content="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies." />
-        <meta name="keywords" content="about dataops group, geoff tucker, hubspot expert, data operations consultant, crm consultant, hubspot specialist" />
-        <link rel="canonical" href={`${baseUrl}/about`} />
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="About DataOps Group - HubSpot Experts & Data Operations Consultants" />
-        <meta property="og:description" content="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies." />
-        <meta property="og:url" content={`${baseUrl}/about`} />
-        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
-        <meta property="og:site_name" content="DataOps Group" />
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About DataOps Group - HubSpot Experts & Data Operations Consultants" />
-        <meta name="twitter:description" content="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies." />
-        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
-        <meta name="twitter:site" content="@dataops_group" />
-      </Helmet>
+      <MetaHead
+        title="About DataOps Group - HubSpot Experts & Data Operations Consultants"
+        description="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies."
+        keywords="about dataops group, geoff tucker, hubspot expert, data operations consultant, crm consultant, hubspot specialist"
+        canonicalPath="/about"
+        ogType="website"
+        ogTitle="About DataOps Group - HubSpot Experts & Data Operations Consultants"
+        ogDescription="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies."
+        ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+        siteName="DataOps Group"
+      />
+      
       <BreadcrumbSchema 
         items={[
           { name: "Home", url: "/" },

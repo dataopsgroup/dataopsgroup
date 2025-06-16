@@ -8,6 +8,7 @@ import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import BlogListHero from '@/components/blog/BlogListHero';
 import BlogListGrid from '@/components/blog/BlogListGrid';
+import { Helmet } from 'react-helmet-async';
 
 const BlogList = () => {
   const location = useLocation();
@@ -72,31 +73,33 @@ const BlogList = () => {
       
       {/* Schema Markup */}
       <BreadcrumbSchema items={breadcrumbs} />
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          "name": "Insights | DataOps Group",
-          "description": "Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group.",
-          "publisher": {
-            "@type": "Organization",
-            "name": "DataOps Group",
-            "logo": {
-              "@type": "ImageObject",
-              "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Insights | DataOps Group",
+            "description": "Expert insights on HubSpot data management, marketing analytics, and revenue generation from DataOps Group.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "DataOps Group",
+              "logo": {
+                "@type": "ImageObject",
+                "url": `${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`
+              }
+            },
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": filteredBlogPosts.map((post, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "url": `${baseUrl}/insights/${post.id}`,
+                "name": post.title
+              }))
             }
-          },
-          "mainEntity": {
-            "@type": "ItemList",
-            "itemListElement": filteredBlogPosts.map((post, index) => ({
-              "@type": "ListItem",
-              "position": index + 1,
-              "url": `${baseUrl}/insights/${post.id}`,
-              "name": post.title
-            }))
-          }
-        })}
-      </script>
+          })}
+        </script>
+      </Helmet>
       
       <div className="insights-page">
         <BlogListHero />
