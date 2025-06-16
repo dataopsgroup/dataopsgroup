@@ -27,7 +27,7 @@
 }
 
 .hero-container::before {
-  content: "HERO CONTAINER (flex-start, padding: 0 5%)";
+  content: "HERO CONTAINER (flex-start, no padding)";
   position: absolute;
   top: 5px;
   left: 5px;
@@ -65,7 +65,7 @@
 }
 
 .hero-content-box::before {
-  content: "GRAY BOX (left edge to 50% viewport)";
+  content: "GRAY BOX (left edge to 37.5% viewport)";
   position: absolute;
   top: 5px;
   left: 5px;
@@ -110,19 +110,19 @@
   transform: translateX(-1px);
 }
 
-/* Add 50px safety zone indicator from midpoint */
+/* Add 37.5% indicator line for new gray box boundary */
 .hero-container::after {
-  content: "50px safety zone";
+  content: "37.5% mark (new gray box boundary)";
   position: absolute;
-  left: calc(50% + 50px);
+  left: 37.5%;
   top: 50%;
   width: 2px;
   height: 100px;
-  background: rgba(255, 165, 0, 0.8);
+  background: rgba(128, 0, 128, 0.8);
   z-index: 999;
   transform: translateY(-50px);
   font-size: 10px;
-  color: orange;
+  color: purple;
   writing-mode: vertical-rl;
   font-family: monospace;
   font-weight: bold;
@@ -131,7 +131,7 @@
 /* Add measurement indicators for current gray box positioning */
 @media (min-width: 768px) {
   .hero-content-box::after {
-    content: "Box spans from left edge to 50% midline";
+    content: "Box spans from left edge to 37.5% mark";
     position: absolute;
     right: -2px;
     top: 50%;
