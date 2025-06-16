@@ -23,12 +23,12 @@
     
     /* Position aligned with blue container left edge */
     position: absolute;
-    left: 0px; /* Align with container left edge */
+    left: 0px !important; /* Align with container left edge */
     right: auto;
     width: 37.5vw !important; /* Reduced from 50vw to 37.5vw (25% reduction) */
     max-width: none !important;
     
-    padding: clamp(1.5rem, 3vw, 2.5rem) !important;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 2rem clamp(1.5rem, 3vw, 2.5rem) 0 !important; /* Remove left padding */
     margin: 0 !important;
     
     /* Keep top position fixed, allow downward growth only */
@@ -40,18 +40,18 @@
 /* Enhanced laptop breakpoint with fixed positioning */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .hero-content-box {
-    padding: 2rem !important;
+    padding: 2rem 2rem 2rem 0 !important; /* Remove left padding */
     width: 37.5vw !important;
-    left: 0px;
+    left: 0px !important;
   }
 }
 
 /* Large desktop: Maintain same positioning logic */
 @media (min-width: 1440px) {
   .hero-content-box {
-    padding: 2.5rem !important;
+    padding: 2.5rem 2.5rem 2.5rem 0 !important; /* Remove left padding */
     width: 37.5vw !important;
-    left: 0px;
+    left: 0px !important;
   }
 }
 
@@ -59,7 +59,7 @@
 @media (min-width: 1920px) {
   .hero-content-box {
     width: 37.5vw !important;
-    left: 0px;
+    left: 0px !important;
   }
 }
 
