@@ -16,6 +16,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BlogPost } from '@/types/blog';
 import { useCanonicalUrl } from '@/hooks/useCanonicalUrl';
+import { buildAbsoluteUrl, buildCanonicalUrl, buildOGUrl, validateUrlConsistency } from '@/utils/url-builder';
 
 interface MetaHeadProps {
   title: string;
@@ -61,27 +62,25 @@ const MetaHead = ({
   alternateUrls = []
 }: MetaHeadProps) => {
   // Use the canonical URL hook for automatic canonical detection
-  const { canonicalPath: autoCanonicalPath, fullCanonicalUrl: autoFullCanonicalUrl } = useCanonicalUrl();
+  const { canonicalPath: autoCanonicalPath } = useCanonicalUrl();
   
   // Use explicit canonical if provided, otherwise use auto-detected
   const finalCanonicalPath = explicitCanonicalPath || autoCanonicalPath;
-  const baseUrl = 'https://dataopsgroup.com';
-  const fullCanonicalUrl = explicitCanonicalPath 
-    ? `${baseUrl}${explicitCanonicalPath}` 
-    : autoFullCanonicalUrl;
   
-  // CRITICAL FIX: OpenGraph URL MUST exactly match canonical URL
-  const ogUrl = fullCanonicalUrl;
+  // CRITICAL FIX: Use centralized URL builder for ALL URLs
+  const fullCanonicalUrl = buildCanonicalUrl(finalCanonicalPath);
+  const fullOGUrl = buildOGUrl(finalCanonicalPath); // Must match canonical exactly
   
   // Development validation to catch mismatches and duplicate titles
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      // Check for canonical/OG URL mismatch
-      if (ogUrl !== fullCanonicalUrl) {
+      // CRITICAL: Validate URLs match exactly
+      if (!validateUrlConsistency(fullCanonicalUrl, fullOGUrl)) {
         console.error('🚨 CANONICAL/OG URL MISMATCH:', {
           canonical: fullCanonicalUrl,
-          ogUrl: ogUrl,
-          providedCanonicalPath: explicitCanonicalPath
+          og: fullOGUrl,
+          providedCanonicalPath: explicitCanonicalPath,
+          finalPath: finalCanonicalPath
         });
       }
       
@@ -96,18 +95,16 @@ const MetaHead = ({
         });
       }
       
-      // Check for hardcoded title tags outside of Helmet
-      const allTitles = Array.from(document.querySelectorAll('title'));
-      const helmetTitles = Array.from(document.querySelectorAll('title[data-react-helmet]'));
-      if (allTitles.length !== helmetTitles.length) {
-        console.warn('⚠️ HARDCODED TITLE TAG DETECTED - Should use MetaHead component only:', {
-          totalTitles: allTitles.length,
-          helmetTitles: helmetTitles.length,
-          hardcodedTitles: allTitles.filter(t => !t.getAttribute('data-react-helmet')).map(t => t.textContent)
-        });
+      // Validate domain consistency
+      if (!fullCanonicalUrl.includes('dataopsgroup.com')) {
+        console.error('🚨 INCORRECT CANONICAL DOMAIN:', fullCanonicalUrl);
+      }
+      
+      if (!fullOGUrl.includes('dataopsgroup.com')) {
+        console.error('🚨 INCORRECT OG DOMAIN:', fullOGUrl);
       }
     }
-  }, [title, ogUrl, fullCanonicalUrl, explicitCanonicalPath, finalCanonicalPath]);
+  }, [title, fullOGUrl, fullCanonicalUrl, explicitCanonicalPath, finalCanonicalPath]);
   
   // Format title - ensure it's under 60 characters and includes brand
   const formattedTitle = title.includes('DataOps Group') ? title : `${title} | DataOps Group`;
@@ -116,8 +113,8 @@ const MetaHead = ({
   // Ensure description is under 160 characters
   const truncatedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
   
-  // Ensure image URLs are absolute
-  const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
+  // Ensure image URLs are absolute using centralized builder
+  const fullOgImage = ogImage.startsWith('http') ? ogImage : buildAbsoluteUrl(ogImage);
   
   // Get Twitter metadata from blogPost if available
   const twitterTitle = blogPost?.seo?.twitterTitle || ogTitle || truncatedTitle;
@@ -150,7 +147,7 @@ const MetaHead = ({
       
       {/* Alternate language versions */}
       {alternateUrls.map(({ lang, url }) => (
-        <link key={lang} rel="alternate" hrefLang={lang} href={url.startsWith('http') ? url : `${baseUrl}${url}`} />
+        <link key={lang} rel="alternate" hrefLang={lang} href={url.startsWith('http') ? url : buildAbsoluteUrl(url)} />
       ))}
       
       {/* Robots directives */}
@@ -165,14 +162,14 @@ const MetaHead = ({
       <link rel="apple-touch-icon" sizes="180x180" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
       <link rel="shortcut icon" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
       
-      {/* Open Graph / Facebook */}
+      {/* Open Graph / Facebook - CRITICAL: Must match canonical URL exactly */}
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={ogTitle || truncatedTitle} />
       <meta property="og:description" content={ogDescription || truncatedDescription} />
       <meta property="og:image" content={fullOgImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:url" content={ogUrl} />
+      <meta property="og:url" content={fullOGUrl} />
       <meta property="og:site_name" content={siteName} />
       
       {/* Additional Open Graph tags for articles */}

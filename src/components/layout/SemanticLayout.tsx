@@ -1,56 +1,33 @@
 
-import React, { ReactNode, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import MetaValidator from '@/components/seo/MetaValidator';
-import CanonicalOGValidator from '@/components/seo/CanonicalOGValidator';
-import CanonicalRedirect from '@/components/seo/CanonicalRedirect';
+import ScrollToTop from '@/components/ScrollToTop';
+import CookieBanner from '@/components/CookieBanner';
+import RedirectHealthMonitor from '@/components/seo/RedirectHealthMonitor';
+import OGCanonicalMonitor from '@/components/seo/OGCanonicalMonitor';
 
 interface SemanticLayoutProps {
-  children: ReactNode;
+  children: React.ReactNode;
+  hideFooter?: boolean;
 }
 
-const SemanticLayout = ({ children }: SemanticLayoutProps) => {
-  const [isRouterReady, setIsRouterReady] = useState(false);
-  const location = useLocation();
-
-  // Ensure router is fully initialized before rendering critical components
-  useEffect(() => {
-    if (location && location.pathname) {
-      console.log('🛣️ Router initialized for path:', location.pathname);
-      setIsRouterReady(true);
-    }
-  }, [location]);
-
-  // Safety fallback if router takes too long
-  useEffect(() => {
-    const fallbackTimer = setTimeout(() => {
-      if (!isRouterReady) {
-        console.warn('⚠️ Router fallback timeout - forcing ready state');
-        setIsRouterReady(true);
-      }
-    }, 500);
-
-    return () => clearTimeout(fallbackTimer);
-  }, [isRouterReady]);
-
+const SemanticLayout = ({ children, hideFooter }: SemanticLayoutProps) => {
   return (
     <>
-      {/* Only render CanonicalRedirect after router is ready */}
-      {isRouterReady && <CanonicalRedirect />}
-      
       <Navbar />
-      <main className="flex-grow">
+      <main className="min-h-screen">
         {children}
       </main>
-      <Footer />
+      {!hideFooter && <Footer />}
+      <ScrollToTop />
+      <CookieBanner />
       
-      {/* Development-only SEO validators - only after router is ready */}
-      {process.env.NODE_ENV === 'development' && isRouterReady && (
+      {/* Development monitoring components */}
+      {process.env.NODE_ENV === 'development' && (
         <>
-          <MetaValidator />
-          <CanonicalOGValidator />
+          <RedirectHealthMonitor />
+          <OGCanonicalMonitor />
         </>
       )}
     </>

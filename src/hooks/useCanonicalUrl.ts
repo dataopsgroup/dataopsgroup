@@ -2,6 +2,7 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CANONICAL_URLS, DUPLICATE_URLS_TO_REDIRECT } from '@/utils/seo-config';
+import { buildAbsoluteUrl, buildCanonicalUrl } from '@/utils/url-builder';
 
 interface CanonicalUrlResult {
   canonicalPath: string;
@@ -13,20 +14,18 @@ interface CanonicalUrlResult {
 /**
  * Hook to automatically determine the correct canonical URL for the current page
  * Handles query parameter stripping, trailing slash normalization, and duplicate URL detection
- * FIXED: Prevents canonical URLs from redirecting to themselves
+ * FIXED: Prevents canonical URLs from redirecting to themselves and uses centralized URL builder
  */
 export const useCanonicalUrl = (): CanonicalUrlResult => {
   const location = useLocation();
   
   return useMemo(() => {
-    const baseUrl = 'https://dataopsgroup.com';
-    
     // Safety check for location
     if (!location || !location.pathname) {
       console.warn('useCanonicalUrl: location not available, using fallback');
       return {
         canonicalPath: '/',
-        fullCanonicalUrl: `${baseUrl}/`,
+        fullCanonicalUrl: buildCanonicalUrl('/'),
         shouldRedirect: false
       };
     }
@@ -48,7 +47,7 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
         console.log(`✅ useCanonicalUrl: ${currentPath} is canonical, no redirect needed`);
         return {
           canonicalPath: currentPath,
-          fullCanonicalUrl: `${baseUrl}${currentPath}`,
+          fullCanonicalUrl: buildCanonicalUrl(currentPath),
           shouldRedirect: false
         };
       }
@@ -61,7 +60,7 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
         console.log(`🔀 useCanonicalUrl: ${currentPath} should redirect to ${redirectTarget}`);
         return {
           canonicalPath: redirectTarget,
-          fullCanonicalUrl: `${baseUrl}${redirectTarget}`,
+          fullCanonicalUrl: buildCanonicalUrl(redirectTarget),
           shouldRedirect: true,
           redirectTarget
         };
@@ -73,7 +72,7 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
       
       return {
         canonicalPath,
-        fullCanonicalUrl: `${baseUrl}${canonicalPath}`,
+        fullCanonicalUrl: buildCanonicalUrl(canonicalPath),
         shouldRedirect: false
       };
     } catch (error) {
@@ -82,7 +81,7 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
       const canonicalPath = currentPath || '/';
       return {
         canonicalPath,
-        fullCanonicalUrl: `${baseUrl}${canonicalPath}`,
+        fullCanonicalUrl: buildCanonicalUrl(canonicalPath),
         shouldRedirect: false
       };
     }
