@@ -53,18 +53,18 @@ const Navbar = () => {
           <OptimizedLogo
             src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
             alt="DataOps Group Logo"
-            className="h-16 md:h-20 w-auto"
+            className="h-16 lg:h-20 w-auto object-contain"
             priority={true}
             width={200}
             height={80}
           />
         </Link>
         
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - Only show on large screens (1024px+) */}
         <DesktopNavigation navItems={mainNavItems} />
         
-        {/* Mobile menu button */}
-        <div className="md:hidden">
+        {/* Mobile/Tablet menu button - Show on screens < 1024px */}
+        <div className="lg:hidden">
           <Button
             variant="ghost"
             onClick={() => setIsOpen(!isOpen)}
@@ -80,7 +80,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile/Tablet Navigation */}
       <MobileNavigation 
         isOpen={isOpen} 
         navItems={mainNavItems} 

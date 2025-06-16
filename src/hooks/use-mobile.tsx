@@ -1,7 +1,7 @@
 
 import * as React from "react"
 
-const MOBILE_BREAKPOINT = 768
+const MOBILE_BREAKPOINT = 1024 // Changed from 768 to 1024 to include tablets
 
 export function useIsMobile() {
   // Initialize with undefined to prevent hydration mismatches
@@ -23,7 +23,7 @@ export function useIsMobile() {
       setIsMobile(prevIsMobile => {
         // Only update if value actually changed
         if (prevIsMobile !== newIsMobile) {
-          console.log('📱 Mobile state changed:', newIsMobile)
+          console.log('📱 Mobile/Tablet state changed:', newIsMobile, 'width:', window.innerWidth)
           return newIsMobile
         }
         return prevIsMobile
@@ -61,7 +61,7 @@ export function useIsMobile() {
   }, [handleResize, detectTouch]) // Include callbacks in dependency array
 
   return React.useMemo(() => ({
-    isMobile: !!isMobile,
+    isMobile: !!isMobile, // Now includes tablets (< 1024px)
     isTouch: touchDevice,
     isDesktop: !isMobile && !touchDevice,
     isInitialized: isMobile !== undefined

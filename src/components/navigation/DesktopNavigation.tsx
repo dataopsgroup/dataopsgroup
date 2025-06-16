@@ -57,7 +57,7 @@ const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ navItems }) => {
   };
 
   return (
-    <nav className="hidden md:flex items-center gap-8" aria-label="Desktop Navigation">
+    <nav className="hidden lg:flex items-center gap-8" aria-label="Desktop Navigation">
       <ul className="flex items-center gap-8">
         {navItems.map((item) => (
           <li key={item.name}>

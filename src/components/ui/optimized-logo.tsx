@@ -59,8 +59,14 @@ const OptimizedLogo = ({
         className={cn(
           className,
           'max-w-full transition-opacity duration-300',
+          'object-contain', // Prevent compression and maintain aspect ratio
           isOptimizing && 'opacity-70'
         )}
+        style={{
+          aspectRatio: width && height ? `${width}/${height}` : 'auto',
+          maxHeight: '80px', // Prevent excessive height on mobile/tablet
+          objectFit: 'contain' // Ensure logo maintains proportions
+        }}
         loading={priority ? 'eager' : 'lazy'}
         decoding={priority ? 'sync' : 'async'}
         fetchPriority={priority ? 'high' : 'low'}

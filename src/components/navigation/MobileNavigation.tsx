@@ -58,11 +58,11 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, navItems, s
   return (
     <nav 
       id="mobile-menu"
-      className="md:hidden absolute top-full left-0 w-full bg-white shadow-md animate-fade-in"
+      className="lg:hidden absolute top-full left-0 w-full bg-white shadow-md animate-fade-in"
       aria-label="Mobile Navigation"
     >
       <div className="container mx-auto py-4 flex flex-col space-y-4">
-        {/* Book promotion button for mobile */}
+        {/* Book promotion button for mobile/tablet */}
         <div className="px-4">
           <BookNavButton 
             onClick={() => setIsOpen(false)}
