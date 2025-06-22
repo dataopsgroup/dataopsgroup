@@ -15,6 +15,7 @@
     "build:ssg": "vite-ssg build --config vite.config.ssg.ts",
     "preview:ssg": "vite preview --config vite.config.ssg.ts",
     "tag-changes": "node scripts/tag-changes.cjs"
+    "packageManager": "pnpm@10.12.1",
   },
   "dependencies": {
     "@babel/runtime": "^7.27.6",
