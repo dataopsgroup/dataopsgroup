@@ -1,7 +1,7 @@
 
-/* SIMPLIFIED Brand Font Strategy - Reliable Loading */
+/* Consolidated Font Strategy - Optimized for Performance */
 
-/* Base fallback fonts for all browsers */
+/* Base system fonts for all browsers */
 body, html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -9,7 +9,12 @@ body, html {
   font-display: swap;
 }
 
-/* Mobile strategy - Inter for all text */
+/* Font loading states */
+.fonts-loading {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Mobile Strategy - Inter for all text */
 @media (max-width: 767px) {
   .mobile-fonts,
   .mobile-fonts *,
@@ -19,9 +24,9 @@ body, html {
   }
 }
 
-/* Desktop brand fonts strategy - Roboto + Rubik with IMMEDIATE application */
+/* Desktop Strategy - Roboto + Rubik */
 @media (min-width: 768px) {
-  /* Apply Roboto for body text immediately when fonts-loaded class is present */
+  /* Body text uses Roboto */
   .desktop-fonts.fonts-loaded,
   .desktop-fonts.fonts-loaded body,
   .desktop-fonts.fonts-loaded html,
@@ -33,23 +38,7 @@ body, html {
   .desktop-fonts.fonts-loaded textarea,
   .desktop-fonts.fonts-loaded .hero-text,
   .desktop-fonts.fonts-loaded .hero-content,
-  .desktop-fonts.fonts-loaded .hero-content * {
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-  }
-  
-  /* Headings use Rubik with IMMEDIATE application */
-  .desktop-fonts.fonts-loaded h1,
-  .desktop-fonts.fonts-loaded h2,
-  .desktop-fonts.fonts-loaded h3,
-  .desktop-fonts.fonts-loaded h4,
-  .desktop-fonts.fonts-loaded h5,
-  .desktop-fonts.fonts-loaded h6,
-  .desktop-fonts.fonts-loaded .hero-heading,
-  .desktop-fonts.fonts-loaded .hero-headline {
-    font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
-  }
-  
-  /* Force brand fonts on ALL components immediately */
+  .desktop-fonts.fonts-loaded .hero-content *,
   .desktop-fonts.fonts-loaded .container,
   .desktop-fonts.fonts-loaded .container *,
   .desktop-fonts.fonts-loaded main,
@@ -63,7 +52,15 @@ body, html {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   }
   
-  /* All headings across the site use Rubik */
+  /* Headings use Rubik */
+  .desktop-fonts.fonts-loaded h1,
+  .desktop-fonts.fonts-loaded h2,
+  .desktop-fonts.fonts-loaded h3,
+  .desktop-fonts.fonts-loaded h4,
+  .desktop-fonts.fonts-loaded h5,
+  .desktop-fonts.fonts-loaded h6,
+  .desktop-fonts.fonts-loaded .hero-heading,
+  .desktop-fonts.fonts-loaded .hero-headline,
   .desktop-fonts.fonts-loaded .container h1,
   .desktop-fonts.fonts-loaded .container h2,
   .desktop-fonts.fonts-loaded .container h3,
@@ -80,12 +77,7 @@ body, html {
   }
 }
 
-/* Font loading states */
-.fonts-loading {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
-/* Brand font utility classes - SIMPLIFIED and RELIABLE */
+/* Brand font utility classes */
 .font-roboto,
 .font-roboto * {
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
@@ -101,7 +93,7 @@ body, html {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
 }
 
-/* DEVELOPMENT WARNING: Add visual indicator when fonts fail to load */
+/* Development warning for font loading issues */
 @media (min-width: 768px) {
   .fonts-loading.desktop-fonts::before {
     content: "⚠️ Loading brand fonts...";

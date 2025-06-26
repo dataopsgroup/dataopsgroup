@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -8,6 +7,10 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+		// Add specific patterns for better purging
+		"./src/components/**/*.{js,ts,jsx,tsx}",
+		"./src/pages/**/*.{js,ts,jsx,tsx}",
+		"./src/routes/**/*.{js,ts,jsx,tsx}",
 	],
 	prefix: "",
 	theme: {
@@ -66,7 +69,6 @@ export default {
 					900: '#0F3C70',
 					950: '#0F172A',
 				},
-				// Enhanced Brand Guide Colors with proper CSS color values
 				brand: {
 					saffron: '#FBB03B',
 					navy: '#14213D', 
@@ -86,11 +88,9 @@ export default {
 				}
 			},
 			fontFamily: {
-				// Brand fonts with proper desktop priority - following knowledge article
 				'roboto': ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
 				'rubik': ['Rubik', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
 				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-				// Default sans should use Roboto on desktop per brand guidelines
 				'sans': ['Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
 			},
 			borderRadius: {
@@ -145,4 +145,30 @@ export default {
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
+	// Optimize for production builds
+	...(process.env.NODE_ENV === 'production' && {
+		purge: {
+			enabled: true,
+			content: [
+				"./src/**/*.{js,ts,jsx,tsx}",
+				"./index.html"
+			],
+			options: {
+				safelist: [
+					// Keep dynamic classes that might be missed
+					/^text-/,
+					/^bg-/,
+					/^border-/,
+					/hover:/,
+					/focus:/,
+					/active:/,
+					// Keep brand colors
+					'text-brand-saffron',
+					'bg-brand-saffron',
+					'text-dataops-950',
+					'bg-dataops-950',
+				],
+			}
+		}
+	})
 } satisfies Config;

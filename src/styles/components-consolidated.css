@@ -1,4 +1,77 @@
 
+/* Consolidated Component Styles - All component styling optimized */
+
+@layer components {
+  /* Hero components visibility */
+  .hero-heading,
+  .hero-text,
+  .hero-button {
+    visibility: visible;
+  }
+
+  /* Remove image hover effects on specific sections */
+  .no-image-hover-effect .hover\:scale-105:hover {
+    transform: none;
+  }
+  .no-image-hover-effect .transition-transform {
+    transition: none;
+  }
+
+  /* Blog enhancements */
+  .blog-card-enhanced {
+    @apply bg-white border border-gray-200 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .category-tag-enhanced {
+    @apply bg-brand-saffron text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider;
+  }
+
+  .blog-excerpt {
+    @apply text-gray-600 leading-relaxed;
+  }
+
+  /* Blog post content styling */
+  .blog-content-enhanced h2 {
+    @apply text-2xl md:text-3xl font-bold text-dataops-950 mt-12 mb-6 pb-3 border-b-2 border-brand-saffron;
+  }
+
+  .blog-content-enhanced h3 {
+    @apply text-xl md:text-2xl font-semibold text-dataops-800 mt-8 mb-4;
+  }
+
+  .blog-content-enhanced p {
+    @apply leading-relaxed text-gray-700 mb-6;
+  }
+
+  .blog-content-enhanced ul {
+    @apply space-y-2 mb-6 list-none;
+  }
+
+  .blog-content-enhanced ul li {
+    @apply relative pl-6;
+  }
+
+  .blog-content-enhanced ul li::before {
+    content: '→';
+    @apply absolute left-0 text-brand-saffron font-bold;
+  }
+
+  /* Key insight components */
+  .key-insight-box {
+    @apply bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 my-8 relative;
+  }
+
+  .key-insight-box::before {
+    content: '💡';
+    @apply absolute -top-3 -left-3 text-2xl bg-white rounded-full p-2 shadow-md;
+  }
+
+  /* CTA components */
+  .cta-button {
+    @apply inline-block mt-4 px-6 py-3 bg-brand-saffron text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200;
+  }
+}
+
 /* Table of Contents Styling for Pillar Content */
 .table-of-contents-container {
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -60,7 +133,6 @@
   transform: translateX(4px);
 }
 
-/* Active TOC link styling */
 .table-of-contents button.active {
   font-weight: 600;
   background: linear-gradient(90deg, rgba(251, 176, 59, 0.1) 0%, transparent 100%);
@@ -142,18 +214,14 @@
   word-break: normal;
 }
 
-/* Enhanced Section Styling - Single Column Layout with Hyphenation Disabled */
+/* Pillar Content Styling */
 .pillar-content {
   padding-left: 20px;
   padding-right: 25px;
   margin-top: 0;
   padding-top: 0;
   line-height: 1.7;
-  
-  /* Single column layout for all screen sizes */
   column-count: 1;
-  
-  /* Disable hyphenation for all content */
   hyphens: none;
   word-break: normal;
 }
@@ -177,7 +245,7 @@
 }
 
 .pillar-content h2:first-child {
-  margin-top: 0 !important; /* Remove top margin from first heading */
+  margin-top: 0 !important;
 }
 
 .pillar-content h3 {
@@ -219,12 +287,11 @@
   word-break: normal;
 }
 
-/* Section spacing */
 .pillar-content section {
   margin-bottom: 3rem;
 }
 
-/* Callout Box Styling */
+/* Callout Components */
 .key-insight-callout {
   background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
   border: 1px solid #f59e0b;
@@ -254,168 +321,6 @@
   font-weight: 600;
   hyphens: none;
   word-break: normal;
-}
-
-.pricing-highlight {
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border: 1px solid #22c55e;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.1);
-}
-
-.pricing-highlight * {
-  hyphens: none !important;
-  word-break: normal !important;
-}
-
-.pricing-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.price-icon {
-  font-size: 1.2rem;
-}
-
-.pricing-header h4 {
-  color: #15803d;
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  hyphens: none;
-  word-break: normal;
-}
-
-.action-checklist {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.action-checklist * {
-  hyphens: none !important;
-  word-break: normal !important;
-}
-
-.action-checklist h4 {
-  color: #14213D;
-  margin: 0 0 1rem 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  hyphens: none;
-  word-break: normal;
-}
-
-.checklist-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem 0;
-}
-
-.checklist-item:last-child {
-  margin-bottom: 0;
-}
-
-.checkmark {
-  background: #22c55e;
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: bold;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.item-text {
-  flex: 1;
-  line-height: 1.5;
-  hyphens: none;
-  word-break: normal;
-}
-
-.expert-tip {
-  background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
-  border: 1px solid #a855f7;
-  border-radius: 10px;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.1);
-}
-
-.expert-tip * {
-  hyphens: none !important;
-  word-break: normal !important;
-}
-
-.tip-icon {
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.tip-label {
-  font-weight: 600;
-  color: #7c3aed;
-  hyphens: none;
-  word-break: normal;
-}
-
-.tip-text {
-  color: #6b46c1;
-  line-height: 1.5;
-  hyphens: none;
-  word-break: normal;
-}
-
-.warning-box {
-  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-  border: 1px solid #ef4444;
-  border-radius: 10px;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
-}
-
-.warning-box * {
-  hyphens: none !important;
-  word-break: normal !important;
-}
-
-.warning-icon {
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.warning-text {
-  color: #dc2626;
-  line-height: 1.5;
-  font-weight: 500;
-  hyphens: none;
-  word-break: normal;
-}
-
-/* Animation for smooth scrolling */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Responsive adjustments */

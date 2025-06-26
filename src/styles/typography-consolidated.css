@@ -1,0 +1,153 @@
+
+/* Consolidated Typography - All text styling in one optimized file */
+
+/* CSS Custom Properties for consistent sizing */
+:root {
+  --heading-line-height: 1.2;
+  --body-line-height: 1.6;
+  --heading-tracking: -0.025em;
+}
+
+/* Base Typography Hierarchy */
+@layer base {
+  h1, h1 * {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: var(--heading-line-height);
+    letter-spacing: var(--heading-tracking);
+  }
+  
+  h2, h2 * {
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: var(--heading-line-height);
+    letter-spacing: var(--heading-tracking);
+  }
+  
+  h3, h3 * {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: calc(var(--heading-line-height) + 0.1);
+  }
+  
+  h4, h4 * {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: calc(var(--heading-line-height) + 0.2);
+  }
+  
+  h5, h5 * {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: calc(var(--heading-line-height) + 0.2);
+  }
+  
+  h6, h6 * {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: var(--body-line-height);
+  }
+
+  /* Body text */
+  p, div, span {
+    font-size: 1rem;
+    line-height: var(--body-line-height);
+  }
+
+  /* Component-specific overrides */
+  .blog-post-content h2, 
+  .container h2:not(.text-3xl),
+  article h2 {
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .related-content-cards h3,
+  .related-content-cards h3 * {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  .table-of-contents button,
+  .table-of-contents button *,
+  .table-of-contents span {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Blog post titles */
+  h1.blog-post-title,
+  .blog-post-title h1,
+  h1.case-study-title,
+  .case-study-title h1 {
+    @apply text-2xl md:text-3xl font-bold;
+    line-height: 1.3;
+  }
+  
+  /* Prose content */
+  .prose h2 {
+    @apply text-2xl md:text-3xl font-bold mt-8 mb-4;
+    line-height: 1.35;
+  }
+  
+  .prose h3 {
+    @apply text-xl md:text-2xl font-bold mt-6 mb-3;
+    line-height: 1.4;
+  }
+  
+  .prose h4 {
+    @apply text-lg md:text-xl font-bold mt-5 mb-2;
+    line-height: 1.45;
+  }
+  
+  .prose p {
+    @apply mb-4 text-gray-700;
+    line-height: 1.6;
+  }
+
+  /* Utility classes */
+  .gradient-text {
+    @apply text-dataops-600;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-16 px-4 md:px-8;
+  }
+}
+
+/* Responsive Typography */
+@media (min-width: 768px) {
+  h1, h1 * { font-size: 3rem; }
+  h2, h2 * { font-size: 2.25rem; }
+  h3, h3 * { font-size: 1.875rem; }
+  h4, h4 * { font-size: 1.5rem; }
+  h5, h5 * { font-size: 1.25rem; }
+  h6, h6 * { font-size: 1.125rem; }
+  
+  p, div, span {
+    font-size: 1.125rem;
+  }
+  
+  .related-content-cards h3 {
+    font-size: 1.125rem;
+    line-height: 1.45;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1, h1 * { font-size: 3.75rem; }
+  h2, h2 * { font-size: 2.75rem; }
+  h3, h3 * { font-size: 2.25rem; }
+  
+  p, div, span {
+    font-size: 1.25rem;
+    line-height: 1.65;
+  }
+  
+  .related-content-cards h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+}
