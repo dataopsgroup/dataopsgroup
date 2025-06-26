@@ -35,5 +35,10 @@ export const assessmentRedirects = [
   {
     path: "/roi-calculator",
     element: <Navigate to={CANONICAL_URLS.assessment} replace />,
+  },
+  // FIXED: Add missing redirect for singular form that was causing Ahrefs issues
+  {
+    path: "/data-operation-assessment",
+    element: <Navigate to={CANONICAL_URLS.assessment} replace />,
   }
 ];

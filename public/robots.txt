@@ -47,6 +47,12 @@ Allow: /faqs/data-quality
 Allow: /faqs/approach
 Allow: /faqs/modules
 
+# ASSESSMENT PROTECTION - Disallow duplicate assessment URLs
+Disallow: /assessment
+Disallow: /hubspot-assessment
+Disallow: /hubspot-assessment-results
+Disallow: /data-operation-assessment
+
 # Block query parameters that create duplicate content
 Disallow: /*?utm_source=
 Disallow: /*?utm_medium=

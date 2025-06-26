@@ -24,10 +24,11 @@ export const ROBOTS_DISALLOW_PATTERNS = [
   '/faqs/hubspot-modules',
   '/faq',
   
-  // Assessment duplicates
+  // Assessment duplicates - FIXED: Add singular form that was causing Ahrefs issues
   '/assessment',
   '/hubspot-assessment',
   '/hubspot-assessment-results',
+  '/data-operation-assessment', // ADDED: Block singular form
   
   // Blog duplicates
   '/blog',

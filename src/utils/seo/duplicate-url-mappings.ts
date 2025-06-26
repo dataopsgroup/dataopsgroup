@@ -25,11 +25,12 @@ export const DUPLICATE_URLS_TO_REDIRECT = {
   '/faqs/hubspot-modules': CANONICAL_URLS.faqModules,
   '/faq': CANONICAL_URLS.faqs, // Default FAQ redirect to main FAQ page
   
-  // Assessment redirects
+  // Assessment redirects - FIXED: Add singular form that was causing Ahrefs issues
   '/assessment': CANONICAL_URLS.assessment,
   '/assessment/results': CANONICAL_URLS.assessmentResults,
   '/hubspot-assessment': CANONICAL_URLS.assessment,
   '/hubspot-assessment-results': CANONICAL_URLS.assessmentResults,
+  '/data-operation-assessment': CANONICAL_URLS.assessment, // ADDED: Singular form redirect
   
   // Blog/Insights redirects
   '/blog': CANONICAL_URLS.insights,
