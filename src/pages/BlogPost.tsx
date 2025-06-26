@@ -34,18 +34,11 @@ const BlogPostPage = () => {
     relatedPostsCount: relatedPosts.length 
   });
   
-  // Use our custom hooks with safety checks
+  // Use our custom hooks with safety checks - call hooks at the top level
   try {
     useScrollToAnchor([post]);
-    // Defer analytics to avoid blocking initial render
-    React.useEffect(() => {
-      if (post) {
-        const timer = setTimeout(() => {
-          usePostAnalytics(post);
-        }, 100);
-        return () => clearTimeout(timer);
-      }
-    }, [post]);
+    // Call usePostAnalytics directly at the component level
+    usePostAnalytics(post);
   } catch (hookError) {
     console.error('Error in custom hooks:', hookError);
   }
