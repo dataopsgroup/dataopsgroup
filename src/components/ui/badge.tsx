@@ -65,19 +65,26 @@ type BadgeVariant =
   | "business-intelligence"
   | "lead-generation";
 
-// Helper function to convert category to variant
+// Helper function to convert category to variant - updated with actual blog post categories
 const getCategoryVariant = (category: string): BadgeVariant => {
   const categoryMap: Record<string, BadgeVariant> = {
+    // Map actual blog post categories to color variants
+    "Insights": "data-quality",
+    "Tips & Tricks": "marketing-operations", 
+    "Case Study": "business-intelligence",
+    "HubSpot Consultant": "hubspot-consulting",
+    "HubSpot": "hubspot-consulting",
+    "Lead Management": "lead-generation",
+    "Data Management": "data-strategy",
+    "Private Equity": "revenue-operations",
+    "Marketing Operations": "marketing-operations",
+    "Revenue Operations": "revenue-operations",
+    "Sales Operations": "sales-operations",
     "Data Strategy": "data-strategy",
-    "Revenue Operations": "revenue-operations", 
     "CRM Management": "crm-management",
     "Marketing Finance": "marketing-finance",
     "Data Quality": "data-quality",
-    "Marketing Operations": "marketing-operations",
-    "HubSpot Consulting": "hubspot-consulting",
-    "Sales Operations": "sales-operations",
     "Business Intelligence": "business-intelligence",
-    "Lead Generation": "lead-generation",
   };
   
   return categoryMap[category] || "default";
