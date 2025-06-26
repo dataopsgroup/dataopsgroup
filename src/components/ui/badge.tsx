@@ -47,9 +47,27 @@ const badgeVariants = cva(
   }
 )
 
+// Define the variant type explicitly
+type BadgeVariant = 
+  | "default" 
+  | "secondary" 
+  | "destructive" 
+  | "outline" 
+  | "success"
+  | "data-strategy"
+  | "revenue-operations"
+  | "crm-management"
+  | "marketing-finance"
+  | "data-quality"
+  | "marketing-operations"
+  | "hubspot-consulting"
+  | "sales-operations"
+  | "business-intelligence"
+  | "lead-generation";
+
 // Helper function to convert category to variant
-const getCategoryVariant = (category: string): keyof typeof badgeVariants.variants.variant => {
-  const categoryMap: Record<string, keyof typeof badgeVariants.variants.variant> = {
+const getCategoryVariant = (category: string): BadgeVariant => {
+  const categoryMap: Record<string, BadgeVariant> = {
     "Data Strategy": "data-strategy",
     "Revenue Operations": "revenue-operations", 
     "CRM Management": "crm-management",
