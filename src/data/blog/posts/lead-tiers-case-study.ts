@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 export const leadTiersCaseStudy: BlogPost = {
@@ -62,7 +61,7 @@ export const leadTiersCaseStudy: BlogPost = {
       <li><strong>3X higher ROI</strong> on marketing spend by focusing resources on high-potential leads</li>
     </ul>
     
-    <p>According to HubSpot's latest <a href="https://blog.hubspot.com/marketing/lead-scoring-best-practices" target="_blank" rel="noopener noreferrer">Lead Scoring Best Practices</a>, companies using tiered lead approaches experience a 192% higher average lead qualification rate than those treating all leads equally.</p>
+    <p>Companies using tiered lead approaches experience a 192% higher average lead qualification rate than those treating all leads equally.</p>
     
     <h2>How to Implement Lead Tiers in Your Organization</h2>
     <p>Follow these five steps to successfully implement a lead tiering system:</p>
