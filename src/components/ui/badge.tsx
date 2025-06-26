@@ -72,6 +72,7 @@ export interface BadgeProps
 }
 
 function Badge({ className, variant, category, ...props }: BadgeProps) {
+  // Always use category variant if category is provided, otherwise use the variant prop
   const finalVariant = category ? getCategoryVariant(category) : variant;
   
   return (
