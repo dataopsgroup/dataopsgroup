@@ -100,7 +100,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
                 <div className="flex items-center">
                   <Calendar className="w-4 h-4 mr-2" />
                   <time dateTime={formattedPublishDate}>
-                    {format(new Date(post.date), 'MMM dd, yyyy')}
+                    {format(new Date(post.date), 'MMM d, yyyy')}
                   </time>
                 </div>
                 <div className="flex items-center gap-1">
