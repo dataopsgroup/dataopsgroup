@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useContactFormData } from '@/hooks/useContactFormData';
 import { submitContactForm } from '@/utils/contactFormSubmission';
 import { validateFormField, checkRateLimit, getRateLimitDelay, useFormSecurity } from '@/utils/shared-form-validation';
-import { securityMonitor } from '@/utils/securityMonitoring';
+import { securityMonitor } from '@/utils/security';
 import ContactFormField from './form/ContactFormField';
 
 interface FallbackContactFormProps {

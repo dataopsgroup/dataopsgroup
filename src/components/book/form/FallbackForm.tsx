@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Loader2, Mail, User, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { validateFormField, checkRateLimit, getRateLimitDelay, useFormSecurity } from '@/utils/shared-form-validation';
-import { securityMonitor } from '@/utils/securityMonitoring';
+import { securityMonitor } from '@/utils/security';
 
 interface FallbackFormProps {
   onSubmit: () => void;

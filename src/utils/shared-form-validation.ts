@@ -1,5 +1,5 @@
 
-import { sanitizeAndValidateInput, securityMonitor } from '@/utils/securityMonitoring';
+import { sanitizeAndValidateInput, securityMonitor } from '@/utils/security';
 import { validateEmail, validateName, validateTextArea, rateLimiter } from '@/utils/formValidation';
 
 interface ValidationResult {
