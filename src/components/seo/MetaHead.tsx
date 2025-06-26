@@ -71,6 +71,17 @@ const MetaHead = ({
   const fullCanonicalUrl = buildCanonicalUrl(finalCanonicalPath);
   const fullOGUrl = buildOGUrl(finalCanonicalPath); // FIXED: Must match canonical exactly
   
+  // Add debugging to see what's happening
+  console.log('🔍 MetaHead Debug:', {
+    explicitCanonicalPath,
+    autoCanonicalPath,
+    finalCanonicalPath,
+    fullCanonicalUrl,
+    fullOGUrl,
+    ogTitle,
+    ogDescription
+  });
+  
   // Development validation to catch mismatches and SEO length issues
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {

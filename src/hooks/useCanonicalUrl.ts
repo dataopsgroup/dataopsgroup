@@ -38,6 +38,14 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
       currentPath = currentPath.slice(0, -1);
     }
     
+    // Add debugging for the current page
+    console.log('🔍 useCanonicalUrl Debug:', {
+      originalPath: location.pathname,
+      normalizedPath: currentPath,
+      search: location.search,
+      hash: location.hash
+    });
+    
     try {
       // CRITICAL FIX: Check if current path is already a canonical URL
       const isCanonicalUrl = Object.values(CANONICAL_URLS).includes(currentPath as any);
@@ -85,7 +93,7 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
         shouldRedirect: false
       };
     }
-  }, [location.pathname]);
+  }, [location.pathname, location.search, location.hash]);
 };
 
 export default useCanonicalUrl;
