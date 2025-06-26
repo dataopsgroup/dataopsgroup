@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -20,7 +21,7 @@ interface RelatedPostsProps {
 }
 
 const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
-  // Enhanced sample blog posts with better variety and topics
+  // Enhanced sample blog posts with proper category tags
   const samplePosts = [
     {
       id: "customer-segmentation-mistake-icp",
@@ -28,7 +29,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
       excerpt: "Your ICP is likely not who you think it is. Luckily, there is a systematic way to find out who it really is.",
       date: "2025-04-07",
       author: "Geoff Tucker",
-      category: "Strategy",
+      category: "Data Strategy",
       coverImage: "/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png",
       content: ""
     },
@@ -38,7 +39,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
       excerpt: "Most companies only track logo churn, missing revenue impact of downgrades and scope reductions. Learn the five dimensions that reveal your true retention picture.",
       date: "2025-04-16",
       author: "Geoff Tucker",
-      category: "Analytics",
+      category: "Revenue Operations",
       coverImage: "/lovable-uploads/ff953630-432d-46db-998e-cc20409e46d1.png",
       content: ""
     },
@@ -48,7 +49,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
       excerpt: "90-day CRM cleanup plan to boost accuracy, reduce costs, and enhance productivity. Learn how to audit, implement, and optimize for a data-driven approach.",
       date: "2025-04-05",
       author: "Geoff Tucker",
-      category: "Operations",
+      category: "CRM Management",
       coverImage: "/lovable-uploads/5128a660-4319-43f7-8be9-8dae9c2576e1.png",
       content: ""
     },
@@ -58,7 +59,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
       excerpt: "If you spend more to acquire customers than you earn from them, your doors will close. Learn CAC.",
       date: "2025-03-24",
       author: "Geoff Tucker",
-      category: "Finance",
+      category: "Marketing Finance",
       coverImage: "/lovable-uploads/2ea19d63-b482-4702-ace9-64b05202fd26.png",
       content: ""
     },
@@ -78,7 +79,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
       excerpt: "Marketing Ops gets confused with IT roles. Learn the key differences in focus, metrics, tools, and skills to establish clear organizational boundaries.",
       date: "2025-02-04",
       author: "Geoff Tucker",
-      category: "Strategy",
+      category: "Marketing Operations",
       coverImage: "/lovable-uploads/51575736-affb-4097-ab47-c87b40af3b1b.png",
       content: ""
     }
@@ -117,7 +118,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                     <Link to={`/insights/${post.id}`} className="flex flex-col h-full">
                       <CardHeader className="pb-4">
                         {hasCoverImage ? (
-                          <div className="w-full h-40 rounded-t-lg overflow-hidden">
+                          <div className="w-full h-40 rounded-t-lg overflow-hidden relative">
                             <OptimizedImage 
                               src={coverImage} 
                               alt={post.title} 
@@ -129,6 +130,10 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                               loading={index === 0 ? "eager" : "lazy"}
                               placeholder="/placeholder.svg"
                             />
+                            {/* Category tag overlay */}
+                            <div className="absolute top-3 left-3 bg-dataops-600 text-white px-2 py-1 text-xs font-medium rounded">
+                              {post.category}
+                            </div>
                           </div>
                         ) : (
                           <DynamicThumbnail
