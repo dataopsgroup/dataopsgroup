@@ -21,7 +21,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
   category,
   coverImage,
 }) => {
-  // Use 'd' instead of 'dd' in the format string to get single digits for days < 10
+  // Use 'MMMM d, yyyy' format: "January 5, 2025" (no leading zero for single-digit days)
   const formattedDate = format(new Date(date), 'MMMM d, yyyy');
   const isoDate = new Date(date).toISOString();
   

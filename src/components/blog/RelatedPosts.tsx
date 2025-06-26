@@ -108,6 +108,9 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                 
               const hasCoverImage = !!coverImage;
               const readingTime = calculateReadingTime(post.content);
+              
+              // Use consistent date format: "January 5, 2025" (no leading zero for single-digit days)
+              const formattedDate = format(new Date(post.date), 'MMMM d, yyyy');
                 
               return (
                 <CarouselItem key={post.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
@@ -149,7 +152,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                       </CardContent>
                       <CardFooter className="flex justify-between items-center pt-2 border-t border-gray-100">
                         <div className="text-xs text-gray-500">
-                          {format(new Date(post.date), 'MMMM d, yyyy')}
+                          {formattedDate}
                         </div>
                       </CardFooter>
                     </Link>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
+import { format } from 'date-fns';
 import BlogPostContent from './BlogPostContent';
 import RelatedPosts from './RelatedPosts';
 import { BlogPost } from '@/types/blog';
@@ -12,6 +13,9 @@ interface BlogPostLayoutProps {
 }
 
 const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) => {
+  // Use consistent date format: "January 5, 2025" (no leading zero for single-digit days)
+  const formattedDate = format(new Date(post.date), 'MMMM d, yyyy');
+  
   return (
     <div className="min-h-screen bg-white">
       {/* Back navigation */}
@@ -51,7 +55,7 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) =
               <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2" />
-                  <span>{post.date}</span>
+                  <span>{formattedDate}</span>
                 </div>
                 
                 {post.readTime && (

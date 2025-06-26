@@ -16,9 +16,11 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ post, index }: BlogCardProps) => {
-  // Format date for time element
+  // Format date for time element and display
   const publishDate = new Date(post.date);
   const formattedPublishDate = publishDate.toISOString();
+  // Use consistent format: "January 5, 2025" (no leading zero for single-digit days)
+  const displayDate = format(publishDate, 'MMMM d, yyyy');
   const readingTime = calculateReadingTime(post.content);
 
   // Check if post has a cover image
@@ -99,7 +101,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
               <div className="flex items-center">
                 <Calendar className="w-4 h-4 mr-2" />
                 <time dateTime={formattedPublishDate}>
-                  {format(new Date(post.date), 'MMM d, yyyy')}
+                  {displayDate}
                 </time>
               </div>
               <div className="flex items-center gap-1">
