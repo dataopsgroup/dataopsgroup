@@ -25,14 +25,6 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
 
   // Check if post has a cover image
   const hasCoverImage = !!post.coverImage;
-  
-  // Use the new analytics dashboard image for specific posts, otherwise use existing logic
-  let coverImage = post.coverImage;
-  if (post.id === "hidden-cost-of-failed-hubspot-implementations") {
-    coverImage = "/lovable-uploads/b5e17aa6-1dfa-4615-9f0a-0103e6baec74.png";
-  } else if (post.id === "marketing-dashboards-fail") {
-    coverImage = "/lovable-uploads/b5e17aa6-1dfa-4615-9f0a-0103e6baec74.png";
-  }
 
   const handleCardClick = () => {
     // Track blog post click with safety checks
@@ -64,7 +56,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
             {hasCoverImage ? (
               <figure className="relative overflow-hidden rounded-t-lg mb-4">
                 <OptimizedImage 
-                  src={coverImage} 
+                  src={post.coverImage} 
                   alt={post.title} 
                   className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
                   width={400} 
