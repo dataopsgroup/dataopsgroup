@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import BlogPostContent from './BlogPostContent';
 import RelatedPosts from './RelatedPosts';
-import RelatedArticles from './RelatedArticles';
 import { BlogPost } from '@/types/blog';
 
 interface BlogPostLayoutProps {
@@ -95,12 +94,6 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) =
           </div>
         </div>
       </article>
-
-      {/* Related articles */}
-      <RelatedArticles 
-        currentPostId={post.id} 
-        category={post.category} 
-      />
 
       {/* Related posts from same system */}
       {relatedPosts.length > 0 && (

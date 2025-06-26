@@ -105,30 +105,27 @@ const RelatedArticles: React.FC<RelatedArticlesProps> = ({
                 to={article.href}
                 className="group block bg-gray-50 rounded-lg p-6 hover:bg-white hover:shadow-md border border-gray-200 hover:border-dataops-300 transition-all duration-200"
               >
-                <div className="flex items-center gap-4 mb-3">
-                  <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-dataops-700 bg-dataops-100 rounded">
-                    <Tag className="h-3 w-3 mr-1" />
-                    {article.category}
-                  </span>
-                  {article.readTime && (
-                    <span className="flex items-center text-xs text-gray-500">
-                      <Clock className="h-3 w-3 mr-1" />
-                      {article.readTime}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-dataops-700 bg-dataops-100 rounded">
+                      <Tag className="h-3 w-3 mr-1" />
+                      {article.category}
                     </span>
-                  )}
-                </div>
-                
-                <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-dataops-600 transition-colors line-clamp-2">
-                  {article.title}
-                </h3>
-                
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                  {article.excerpt}
-                </p>
-                
-                <div className="flex items-center text-dataops-600 font-medium text-sm group-hover:text-dataops-700">
-                  <span>Read article</span>
-                  <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    {article.readTime && (
+                      <span className="flex items-center text-xs text-gray-500">
+                        <Clock className="h-3 w-3 mr-1" />
+                        {article.readTime}
+                      </span>
+                    )}
+                  </div>
+                  
+                  <h3 className="text-lg font-semibold text-gray-900 group-hover:text-dataops-600 transition-colors line-clamp-2">
+                    {article.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 text-sm line-clamp-3">
+                    {article.excerpt}
+                  </p>
                 </div>
               </Link>
             ))}
