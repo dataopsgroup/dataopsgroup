@@ -31,7 +31,7 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) =
       <article className="py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            {/* Article header */}
+            {/* Article header with proper H1 */}
             <header className="mb-8">
               {post.category && (
                 <span className="inline-block px-3 py-1 text-sm font-medium text-dataops-700 bg-dataops-100 rounded-full mb-4">
