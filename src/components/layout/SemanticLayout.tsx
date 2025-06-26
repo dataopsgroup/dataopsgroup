@@ -4,33 +4,26 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import CookieBanner from '@/components/CookieBanner';
-import RedirectHealthMonitor from '@/components/seo/RedirectHealthMonitor';
-import OGCanonicalMonitor from '@/components/seo/OGCanonicalMonitor';
+import GlobalURLValidator from '@/components/seo/GlobalURLValidator';
 
 interface SemanticLayoutProps {
   children: React.ReactNode;
-  hideFooter?: boolean;
 }
 
-const SemanticLayout = ({ children, hideFooter }: SemanticLayoutProps) => {
+const SemanticLayout = ({ children }: SemanticLayoutProps) => {
   return (
-    <>
-      <Navbar />
-      <main className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
+      <ScrollToTop />
+      <GlobalURLValidator />
+      <header>
+        <Navbar />
+      </header>
+      <main className="flex-1">
         {children}
       </main>
-      {!hideFooter && <Footer />}
-      <ScrollToTop />
+      <Footer />
       <CookieBanner />
-      
-      {/* Development monitoring components */}
-      {process.env.NODE_ENV === 'development' && (
-        <>
-          <RedirectHealthMonitor />
-          <OGCanonicalMonitor />
-        </>
-      )}
-    </>
+    </div>
   );
 };
 

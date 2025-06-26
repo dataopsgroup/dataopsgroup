@@ -71,27 +71,31 @@ const MetaHead = ({
   const fullCanonicalUrl = buildCanonicalUrl(finalCanonicalPath);
   const fullOGUrl = buildOGUrl(finalCanonicalPath); // FIXED: Must match canonical exactly
   
-  // Add debugging to see what's happening
-  console.log('🔍 MetaHead Debug:', {
-    explicitCanonicalPath,
-    autoCanonicalPath,
-    finalCanonicalPath,
-    fullCanonicalUrl,
-    fullOGUrl,
-    ogTitle,
-    ogDescription
-  });
+  // Enhanced debugging to track the URL building process
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔍 MetaHead URL Building Process:', {
+      step1_explicitCanonicalPath: explicitCanonicalPath,
+      step2_autoCanonicalPath: autoCanonicalPath,
+      step3_finalCanonicalPath: finalCanonicalPath,
+      step4_fullCanonicalUrl: fullCanonicalUrl,
+      step5_fullOGUrl: fullOGUrl,
+      step6_match: fullCanonicalUrl === fullOGUrl,
+      ogTitle,
+      ogDescription
+    });
+  }
   
   // Development validation to catch mismatches and SEO length issues
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
       // CRITICAL: Validate URLs match exactly
       if (!validateUrlConsistency(fullCanonicalUrl, fullOGUrl)) {
-        console.error('🚨 CANONICAL/OG URL MISMATCH:', {
+        console.error('🚨 CANONICAL/OG URL MISMATCH IN METAHEAD:', {
           canonical: fullCanonicalUrl,
           og: fullOGUrl,
           providedCanonicalPath: explicitCanonicalPath,
-          finalPath: finalCanonicalPath
+          finalPath: finalCanonicalPath,
+          component: 'MetaHead'
         });
       }
       

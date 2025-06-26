@@ -20,20 +20,48 @@ export const buildAbsoluteUrl = (path: string): string => {
     }
   }
   
+  // CRITICAL FIX: Handle empty, null, or undefined paths
+  if (!path || path === '' || path === null || path === undefined) {
+    console.warn('🚨 URL BUILDER: Empty path provided, defaulting to root');
+    return `${CANONICAL_DOMAIN}/`;
+  }
+  
   // Ensure path starts with /
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   
   // Remove any existing domain if accidentally included
   const cleanPath = normalizedPath.replace(/^https?:\/\/[^\/]+/, '');
   
-  return `${CANONICAL_DOMAIN}${cleanPath}`;
+  // Final validation to ensure we have a valid path
+  const finalPath = cleanPath || '/';
+  
+  const result = `${CANONICAL_DOMAIN}${finalPath}`;
+  
+  // Debug logging to track URL building
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔧 buildAbsoluteUrl:', {
+      input: path,
+      normalizedPath,
+      cleanPath,
+      finalPath,
+      result
+    });
+  }
+  
+  return result;
 };
 
 /**
  * Build canonical URL (same as absolute for consistency)
  */
 export const buildCanonicalUrl = (path: string): string => {
-  return buildAbsoluteUrl(path);
+  const result = buildAbsoluteUrl(path);
+  
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔧 buildCanonicalUrl:', { input: path, result });
+  }
+  
+  return result;
 };
 
 /**
@@ -41,7 +69,13 @@ export const buildCanonicalUrl = (path: string): string => {
  */
 export const buildOGUrl = (path: string): string => {
   // CRITICAL FIX: Use the same logic as buildCanonicalUrl to ensure matching URLs
-  return buildAbsoluteUrl(path);
+  const result = buildAbsoluteUrl(path);
+  
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔧 buildOGUrl:', { input: path, result });
+  }
+  
+  return result;
 };
 
 /**
@@ -59,7 +93,8 @@ export const validateUrlConsistency = (canonicalUrl: string, ogUrl: string): boo
       canonical: canonicalUrl,
       og: ogUrl,
       normalizedCanonical,
-      normalizedOG
+      normalizedOG,
+      issue: 'URLs do not match - this will cause SEO issues'
     });
   }
   
@@ -101,7 +136,7 @@ export const validatePageUrls = (currentPath: string) => {
         const ogContent = ogUrl.content;
         
         if (!validateUrlConsistency(canonicalHref, ogContent)) {
-          console.error('🚨 CANONICAL/OG MISMATCH DETECTED:', {
+          console.error('🚨 CANONICAL/OG MISMATCH DETECTED IN DOM:', {
             canonical: canonicalHref,
             og: ogContent,
             page: currentPath,
