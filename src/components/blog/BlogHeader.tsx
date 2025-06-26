@@ -1,10 +1,10 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { format } from 'date-fns';
-import { Linkedin, Twitter, Copy, Check, Calendar, Clock, User } from 'lucide-react';
+import { Calendar, User } from 'lucide-react';
 import OptimizedImage from '@/components/ui/optimized-image';
-import { useToast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
+import ShareButtons from '@/components/ui/ShareButtons';
 
 interface BlogHeaderProps {
   title: string;
@@ -21,48 +21,9 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
   category,
   coverImage,
 }) => {
-  const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
-  
   // Use 'd' instead of 'dd' in the format string to get single digits for days < 10
   const formattedDate = format(new Date(date), 'MMMM d, yyyy');
   const isoDate = new Date(date).toISOString();
-  
-  // Share functions
-  const handleShareLinkedIn = () => {
-    const url = window.location.href;
-    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-    window.open(shareUrl, '_blank', 'width=600,height=570');
-  };
-  
-  const handleShareTwitter = () => {
-    const url = window.location.href;
-    const text = title;
-    const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
-    window.open(shareUrl, '_blank', 'width=600,height=300');
-  };
-  
-  const handleCopyLink = () => {
-    const url = window.location.href;
-    navigator.clipboard.writeText(url).then(() => {
-      setCopied(true);
-      toast({
-        title: "Link copied",
-        description: "URL copied to clipboard",
-      });
-      
-      // Reset the copied state after 3 seconds
-      setTimeout(() => {
-        setCopied(false);
-      }, 3000);
-    }).catch(err => {
-      toast({
-        title: "Failed to copy",
-        description: "Could not copy to clipboard",
-        variant: "destructive"
-      });
-    });
-  };
   
   return (
     <div className="blog-post-header-enhanced">
@@ -84,6 +45,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
                 <User className="w-4 h-4" />
                 <span>By {author}</span>
               </div>
+              <ShareButtons title={title} className="flex-row space-x-2 space-y-0" variant="white" />
             </div>
           </div>
 
@@ -91,33 +53,6 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({
           <h1 className="blog-post-title-enhanced mb-8">
             {title}
           </h1>
-
-          {/* Social Share */}
-          <div className="flex items-center gap-3 mb-8">
-            <button 
-              onClick={handleShareLinkedIn}
-              aria-label="Share on LinkedIn"
-              className="social-share-btn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </button>
-            
-            <button 
-              onClick={handleShareTwitter}
-              aria-label="Share on Twitter"
-              className="social-share-btn"
-            >
-              <Twitter className="w-5 h-5" />
-            </button>
-            
-            <button 
-              onClick={handleCopyLink}
-              aria-label="Copy link to clipboard"
-              className="social-share-btn"
-            >
-              {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
-            </button>
-          </div>
         </div>
       </div>
 
