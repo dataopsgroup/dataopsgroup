@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -20,6 +19,7 @@ const MarketingOperationsRevOps = () => {
         ogType="website"
         ogTitle="Marketing Operations & RevOps | DataOps Group"
         ogDescription="Transform your revenue operations with expert marketing automation, data integration, and performance optimization. Maximize ROI through streamlined processes and analytics."
+        ogUrl="/services/marketing-operations-revops"
       />
       
       <MarketingOperationsRevOpsSchema />
