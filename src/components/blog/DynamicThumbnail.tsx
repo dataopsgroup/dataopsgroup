@@ -2,7 +2,6 @@
 import React from 'react';
 import { Clock } from 'lucide-react';
 import { generateThumbnailStyle } from '@/utils/thumbnail-generator';
-import { Badge } from '@/components/ui/badge';
 
 interface DynamicThumbnailProps {
   title: string;
@@ -26,16 +25,6 @@ const DynamicThumbnail: React.FC<DynamicThumbnailProps> = ({
     <div className={`relative overflow-hidden rounded-t-lg ${className}`}>
       {/* Gradient Background */}
       <div className={`w-full h-48 flex flex-col justify-between p-6 ${thumbnailStyle.gradientClass} transition-transform duration-300 group-hover:scale-105`}>
-        {/* Category Badge with color coding */}
-        {category && (
-          <Badge 
-            category={category}
-            className="absolute top-3 left-3"
-          >
-            {category.toUpperCase()}
-          </Badge>
-        )}
-        
         {/* Content Area */}
         <div className="flex-1 flex flex-col justify-center">
           <h3 className={`font-bold text-lg leading-tight ${thumbnailStyle.textColor} text-center`}>
