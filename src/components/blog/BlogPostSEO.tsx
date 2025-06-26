@@ -25,8 +25,28 @@ const BlogPostSEO = ({ post, postId }: BlogPostSEOProps) => {
       { name: post?.title || '', url: canonicalPath },
     ];
 
-    // Use custom SEO metadata if available, otherwise fall back to defaults
-    const metaDescription = post.seo?.metaDescription || post.excerpt;
+    // Enhanced meta description generation with better fallbacks
+    let metaDescription = '';
+    
+    if (post.seo?.metaDescription) {
+      metaDescription = post.seo.metaDescription;
+    } else if (post.excerpt) {
+      metaDescription = post.excerpt;
+    } else if (post.content) {
+      // Extract first 150 characters from content as fallback
+      const cleanContent = post.content
+        .replace(/<[^>]*>/g, '') // Remove HTML tags
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim();
+      metaDescription = cleanContent.length > 150 
+        ? cleanContent.substring(0, 147) + '...'
+        : cleanContent;
+    } else {
+      // Final fallback based on title and category
+      const category = post.category || 'Marketing Operations';
+      metaDescription = `Expert insights on ${category.toLowerCase()} from DataOps Group. Learn proven strategies to optimize your operations and drive business growth.`;
+    }
+
     const keywords = post.seo?.keywords || [
       post.category?.toLowerCase() || '',
       ...(post.tags || []).map(tag => tag.toLowerCase()),
@@ -34,7 +54,7 @@ const BlogPostSEO = ({ post, postId }: BlogPostSEOProps) => {
     ].filter(Boolean).join(', ');
 
     const ogTitle = post.seo?.ogTitle || post.title;
-    const ogDescription = post.seo?.ogDescription || post.excerpt;
+    const ogDescription = post.seo?.ogDescription || metaDescription;
     
     endTimer();
     
