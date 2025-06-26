@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -28,12 +29,12 @@ const TeamTraining = () => {
     <SemanticLayout>
       <MetaHead
         title="HubSpot Team Training & Implementation | DataOps Group"
-        description="Expert HubSpot training to maximize platform capabilities and drive measurable business results."
+        description="Accelerate HubSpot adoption with expert team training and implementation services. Maximize platform ROI through comprehensive user training and ongoing support programs."
         keywords="HubSpot training, team training, HubSpot implementation, platform adoption, user training, HubSpot certification, sales training, marketing training"
         canonicalPath="/services/team-training"
         ogType="website"
         ogTitle="HubSpot Team Training & Implementation | DataOps Group"
-        ogDescription="Expert HubSpot training to maximize platform capabilities and drive measurable business results."
+        ogDescription="Accelerate HubSpot adoption with expert team training and implementation services. Maximize platform ROI through comprehensive user training and ongoing support programs."
       />
       
       <ServiceSchemaMarkup 
