@@ -105,5 +105,13 @@ export const leadTiersCaseStudy: BlogPost = {
   tags: ["Lead Management", "Lead Scoring", "Sales Enablement", "Marketing Operations", "HubSpot"],
   wordCount: 780,
   readingTime: 4,
-  modifiedDate: "March 5, 2025"
+  modifiedDate: "March 5, 2025",
+  seo: {
+    metaDescription: "Learn why treating all leads the same is costing you money and how implementing a tiered approach can transform your sales efficiency and boost revenue.",
+    keywords: "lead tiers, lead management, lead scoring, sales efficiency, hubspot leads, marketing operations, lead prioritization",
+    ogTitle: "Stop Pretending All Leads Are Equal: The Case for Lead Tiers",
+    ogDescription: "Learn why treating all leads the same is costing you money and how implementing a tiered approach can transform your sales efficiency and boost revenue.",
+    twitterTitle: "Stop Pretending All Leads Are Equal: The Case for Lead Tiers",
+    twitterDescription: "Transform your sales efficiency with strategic lead tiering. Learn the 4-tier framework that increases productivity by 27%."
+  }
 };
