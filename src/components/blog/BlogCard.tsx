@@ -77,10 +77,11 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
                   placeholder="/placeholder.svg" 
                   componentType="card"
                 />
+                {/* Only show badge if category exists - remove any duplicate badge elements */}
                 {post.category && (
                   <Badge 
                     category={post.category}
-                    className="absolute top-3 left-3"
+                    className="absolute top-3 left-3 z-10"
                   >
                     {post.category.toUpperCase()}
                   </Badge>
