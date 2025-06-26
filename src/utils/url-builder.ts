@@ -37,9 +37,10 @@ export const buildCanonicalUrl = (path: string): string => {
 };
 
 /**
- * Build OpenGraph URL (must match canonical exactly)
+ * Build OpenGraph URL (FIXED: must match canonical exactly)
  */
 export const buildOGUrl = (path: string): string => {
+  // CRITICAL FIX: Use the same logic as buildCanonicalUrl to ensure matching URLs
   return buildAbsoluteUrl(path);
 };
 
@@ -50,7 +51,19 @@ export const validateUrlConsistency = (canonicalUrl: string, ogUrl: string): boo
   const normalizedCanonical = canonicalUrl.replace(/\/$/, '');
   const normalizedOG = ogUrl.replace(/\/$/, '');
   
-  return normalizedCanonical === normalizedOG;
+  const isConsistent = normalizedCanonical === normalizedOG;
+  
+  // Enhanced development logging
+  if (process.env.NODE_ENV === 'development' && !isConsistent) {
+    console.error('🚨 URL CONSISTENCY CHECK FAILED:', {
+      canonical: canonicalUrl,
+      og: ogUrl,
+      normalizedCanonical,
+      normalizedOG
+    });
+  }
+  
+  return isConsistent;
 };
 
 /**
@@ -84,20 +97,25 @@ export const validatePageUrls = (currentPath: string) => {
       const ogUrl = document.querySelector('meta[property="og:url"]') as HTMLMetaElement;
       
       if (canonical && ogUrl) {
-        if (!validateUrlConsistency(canonical.href, ogUrl.content)) {
+        const canonicalHref = canonical.href;
+        const ogContent = ogUrl.content;
+        
+        if (!validateUrlConsistency(canonicalHref, ogContent)) {
           console.error('🚨 CANONICAL/OG MISMATCH DETECTED:', {
-            canonical: canonical.href,
-            og: ogUrl.content,
-            page: currentPath
+            canonical: canonicalHref,
+            og: ogContent,
+            page: currentPath,
+            expectedCanonical: buildCanonicalUrl(currentPath),
+            expectedOG: buildOGUrl(currentPath)
           });
         }
         
-        if (!isCanonicalDomain(canonical.href)) {
-          console.error('🚨 INCORRECT CANONICAL DOMAIN:', canonical.href);
+        if (!isCanonicalDomain(canonicalHref)) {
+          console.error('🚨 INCORRECT CANONICAL DOMAIN:', canonicalHref);
         }
         
-        if (!isCanonicalDomain(ogUrl.content)) {
-          console.error('🚨 INCORRECT OG DOMAIN:', ogUrl.content);
+        if (!isCanonicalDomain(ogContent)) {
+          console.error('🚨 INCORRECT OG DOMAIN:', ogContent);
         }
       }
     }, 100);

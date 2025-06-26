@@ -3,6 +3,7 @@ import React from 'react';
 import { CaseStudyData } from '@/types/caseStudy';
 import MetaHead from '@/components/seo/MetaHead';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import { buildCanonicalUrl } from '@/utils/url-builder';
 
 interface CaseStudyDetailSEOProps {
   caseData: CaseStudyData;
@@ -13,6 +14,13 @@ const CaseStudyDetailSEO = ({ caseData, caseStudyId }: CaseStudyDetailSEOProps) 
   // Ensure we have a clean case study ID
   const cleanCaseStudyId = caseStudyId || '';
   const canonicalPath = `/case-studies/${cleanCaseStudyId}`;
+  
+  console.log('🔍 CaseStudyDetailSEO Debug:', {
+    caseStudyId,
+    cleanCaseStudyId,
+    canonicalPath,
+    expectedCanonicalUrl: buildCanonicalUrl(canonicalPath)
+  });
   
   const breadcrumbs = [
     { name: 'Home', url: '/' },
@@ -67,7 +75,7 @@ const CaseStudyDetailSEO = ({ caseData, caseStudyId }: CaseStudyDetailSEOProps) 
           },
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://dataopsgroup.com${canonicalPath}`
+            "@id": buildCanonicalUrl(canonicalPath)
           }
         })}
       </script>
