@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import { format } from 'date-fns';
 import BlogPostContent from './BlogPostContent';
 import RelatedPosts from './RelatedPosts';
+import ShareButtons from '@/components/ui/ShareButtons';
 import { BlogPost } from '@/types/blog';
 
 interface BlogPostLayoutProps {
@@ -64,6 +65,15 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) =
                     <span>{post.readTime}</span>
                   </div>
                 )}
+                
+                {/* Social sharing buttons adjacent to date/time */}
+                <div className="flex items-center">
+                  <ShareButtons 
+                    title={post.title} 
+                    className="flex items-center space-x-3" 
+                    variant="default"
+                  />
+                </div>
               </div>
             </header>
 
