@@ -48,8 +48,8 @@ const badgeVariants = cva(
 )
 
 // Helper function to convert category to variant
-const getCategoryVariant = (category: string): string => {
-  const categoryMap: Record<string, string> = {
+const getCategoryVariant = (category: string): keyof typeof badgeVariants.variants.variant => {
+  const categoryMap: Record<string, keyof typeof badgeVariants.variants.variant> = {
     "Data Strategy": "data-strategy",
     "Revenue Operations": "revenue-operations", 
     "CRM Management": "crm-management",
@@ -76,7 +76,7 @@ function Badge({ className, variant, category, ...props }: BadgeProps) {
   const finalVariant = category ? getCategoryVariant(category) : variant;
   
   return (
-    <div className={cn(badgeVariants({ variant: finalVariant as any }), className)} {...props} />
+    <div className={cn(badgeVariants({ variant: finalVariant }), className)} {...props} />
   )
 }
 
