@@ -32,20 +32,9 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ relatedPosts, currentPostId
               <Link
                 key={post.id}
                 to={`/insights/${post.id}`}
-                className="group block bg-white rounded-lg overflow-hidden hover:shadow-md border border-gray-200 hover:border-dataops-300 transition-all duration-200"
+                className="group block bg-white rounded-lg p-6 hover:shadow-md border border-gray-200 hover:border-dataops-300 transition-all duration-200"
               >
-                {/* Post Image */}
-                {post.coverImage && (
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      src={post.coverImage}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-                    />
-                  </div>
-                )}
-
-                <div className="p-6 space-y-4">
+                <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     {post.category && (
                       <span className="inline-block px-3 py-1 text-xs font-medium text-dataops-700 bg-dataops-100 rounded-full">
@@ -53,10 +42,10 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ relatedPosts, currentPostId
                       </span>
                     )}
                     {post.readTime && (
-                      <div className="flex items-center text-xs text-gray-500">
+                      <span className="flex items-center text-xs text-gray-500">
                         <Clock className="h-3 w-3 mr-1" />
-                        <span>{post.readTime}</span>
-                      </div>
+                        {post.readTime}
+                      </span>
                     )}
                   </div>
                   
