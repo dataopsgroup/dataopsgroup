@@ -11,6 +11,15 @@ interface SecurityEvent {
   fingerprint?: string; // For deduplication
 }
 
+// Extend Window interface for bot detection
+declare global {
+  interface Window {
+    phantom?: any;
+    _phantom?: any;
+    callPhantom?: any;
+  }
+}
+
 class SecurityMonitor {
   private events: SecurityEvent[] = [];
   private readonly MAX_EVENTS = 200; // Increased for better monitoring
