@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import BlogPostContent from './BlogPostContent';
 import RelatedPosts from './RelatedPosts';
 import ShareButtons from '@/components/ui/ShareButtons';
+import { calculateReadingTime } from '@/utils/thumbnail-generator';
 import { BlogPost } from '@/types/blog';
 
 interface BlogPostLayoutProps {
@@ -16,6 +17,9 @@ interface BlogPostLayoutProps {
 const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) => {
   // Use consistent date format: "January 5, 2025" (no leading zero for single-digit days)
   const formattedDate = format(new Date(post.date), 'MMMM d, yyyy');
+  
+  // Calculate reading time from post content
+  const readingTime = calculateReadingTime(post.content);
   
   return (
     <div className="min-h-screen bg-white">
@@ -53,20 +57,21 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) =
                 </p>
               )}
               
-              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2" />
                   <span>{formattedDate}</span>
                 </div>
                 
-                {post.readTime && (
-                  <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-2" />
-                    <span>{post.readTime}</span>
-                  </div>
-                )}
+                <span className="text-gray-300">|</span>
                 
-                {/* Social sharing buttons adjacent to date/time */}
+                <div className="flex items-center">
+                  <Clock className="h-4 w-4 mr-2" />
+                  <span>{readingTime} min read</span>
+                </div>
+                
+                <span className="text-gray-300">|</span>
+                
                 <div className="flex items-center">
                   <ShareButtons 
                     title={post.title} 
