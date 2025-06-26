@@ -110,8 +110,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-600">By {post.author}</span>
+              <div className="flex items-center justify-end">
                 <span className="text-dataops-600 group-hover:text-dataops-800 font-medium text-sm transition-colors">
                   Read More →
                 </span>

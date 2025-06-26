@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import BlogPostContent from './BlogPostContent';
 import RelatedPosts from './RelatedPosts';
 import RelatedArticles from './RelatedArticles';
@@ -50,11 +50,6 @@ const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({ post, relatedPosts }) =
               )}
               
               <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
-                <div className="flex items-center">
-                  <User className="h-4 w-4 mr-2" />
-                  <span>{post.author || 'Geoff Tucker'}</span>
-                </div>
-                
                 <div className="flex items-center">
                   <Calendar className="h-4 w-4 mr-2" />
                   <span>{post.date}</span>
