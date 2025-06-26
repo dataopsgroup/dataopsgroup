@@ -26,9 +26,9 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
   // Check if post has a cover image
   const hasCoverImage = !!post.coverImage;
   
-  // Special case for the post that has a specific image
+  // Use the new analytics dashboard image for the specific post, otherwise use existing logic
   const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" 
-    ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" 
+    ? "/lovable-uploads/b5e17aa6-1dfa-4615-9f0a-0103e6baec74.png"
     : post.coverImage;
 
   const handleCardClick = () => {
