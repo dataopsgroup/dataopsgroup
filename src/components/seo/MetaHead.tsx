@@ -67,9 +67,9 @@ const MetaHead = ({
   // Use explicit canonical if provided, otherwise use auto-detected
   const finalCanonicalPath = explicitCanonicalPath || autoCanonicalPath;
   
-  // CRITICAL FIX: Use centralized URL builder for ALL URLs
+  // CRITICAL FIX: Use centralized URL builder for ALL URLs to ensure consistency
   const fullCanonicalUrl = buildCanonicalUrl(finalCanonicalPath);
-  const fullOGUrl = buildOGUrl(finalCanonicalPath); // Must match canonical exactly
+  const fullOGUrl = buildOGUrl(finalCanonicalPath); // FIXED: Must match canonical exactly
   
   // Development validation to catch mismatches and SEO length issues
   useEffect(() => {
@@ -121,7 +121,7 @@ const MetaHead = ({
   // Ensure description is under 160 characters
   const truncatedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
   
-  // Ensure image URLs are absolute using centralized builder
+  // FIXED: Ensure image URLs are absolute using centralized builder
   const fullOgImage = ogImage.startsWith('http') ? ogImage : buildAbsoluteUrl(ogImage);
   
   // Get Twitter metadata from blogPost if available
