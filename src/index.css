@@ -1,15 +1,42 @@
 
-/* Critical CSS import order - Consolidated and Optimized */
 @import './styles/fonts-consolidated.css';
 @import './styles/base.css';
 @import './styles/typography-consolidated.css';
 @import './styles/hero-consolidated.css';
 @import './styles/components-consolidated.css';
 
-/* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Component-specific styles (load after Tailwind utilities) */
-@import './styles/cmo-playbook-section.css';
+/* Optimized font loading - use CSS custom properties for consistency */
+@layer base {
+  :root {
+    --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-rubik: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-inter);
+    font-display: swap;
+    /* Prevent font loading layout shifts */
+    font-optical-sizing: auto;
+  }
+  
+  /* Ensure headings use Rubik consistently */
+  h1, h2, h3, h4, h5, h6, .font-rubik {
+    font-family: var(--font-rubik);
+  }
+}
+
+/* Performance optimization - reduce paint complexity */
+@layer utilities {
+  .font-display-swap {
+    font-display: swap;
+  }
+  
+  /* Optimize critical rendering path */
+  .critical-font-load {
+    font-display: block;
+  }
+}

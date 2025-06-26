@@ -1,16 +1,15 @@
 
 /**
- * Resource hints and preloading optimization
+ * Optimized resource hints and preloading
  */
 
 export const setupResourceHints = (): void => {
   if (typeof document === 'undefined') return;
 
-  // DNS prefetch for external domains
+  // DNS prefetch for external domains - reduced list for better performance
   const domains = [
     'fonts.googleapis.com',
     'fonts.gstatic.com',
-    'images.unsplash.com',
     'www.googletagmanager.com'
   ];
 
@@ -25,7 +24,7 @@ export const setupResourceHints = (): void => {
 export const setupDNSPrefetch = (): void => {
   if (typeof document === 'undefined') return;
 
-  // Preconnect to critical external resources
+  // Preconnect to critical external resources only
   const criticalDomains = [
     'fonts.googleapis.com',
     'fonts.gstatic.com'
@@ -43,19 +42,21 @@ export const setupDNSPrefetch = (): void => {
 export const preloadCriticalAssets = (): void => {
   if (typeof document === 'undefined') return;
 
-  // Preload critical fonts
+  // Simplified critical font preloading - let CSS handle the rest
   const criticalFonts = [
-    '/fonts/rubik-regular.woff2',
-    '/fonts/roboto-regular.woff2'
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap'
   ];
 
   criticalFonts.forEach(font => {
     const link = document.createElement('link');
     link.rel = 'preload';
-    link.as = 'font';
-    link.type = 'font/woff2';
+    link.as = 'style';
     link.crossOrigin = 'anonymous';
     link.href = font;
+    // Prevent blocking render
+    link.onload = () => {
+      link.rel = 'stylesheet';
+    };
     document.head.appendChild(link);
   });
 };
