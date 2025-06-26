@@ -41,6 +41,7 @@ const BadDataCostCalculator = () => {
             >
               Calculate Bad Data Costs
             </button>
+            <CallToActionSection />
           </div>
         </div>
       ) : (
@@ -61,8 +62,6 @@ const BadDataCostCalculator = () => {
           </div>
         </>
       )}
-      
-      <CallToActionSection />
     </div>
   );
 };
