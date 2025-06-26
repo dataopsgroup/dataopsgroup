@@ -59,14 +59,26 @@ const RevOpsCallToAction = () => {
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-          <h4 className="font-semibold text-yellow-800 mb-2">Industry Benchmarks</h4>
-          <ul className="text-yellow-700 text-sm space-y-1">
-            <li>• Companies with mature RevOps see 19% faster revenue growth</li>
-            <li>• RevOps reduces sales cycle length by 10-15% on average</li>
-            <li>• Businesses typically see 200-400% ROI from RevOps investments</li>
-            <li>• 75% of highest-growth companies have dedicated RevOps functions</li>
-          </ul>
+        <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <h4 className="font-semibold text-yellow-800 mb-4">Industry Benchmarks</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-white p-4 rounded-lg border border-yellow-100">
+              <div className="text-2xl font-bold text-yellow-800 mb-1">19%</div>
+              <div className="text-sm text-yellow-700">Faster revenue growth with mature RevOps</div>
+            </div>
+            <div className="bg-white p-4 rounded-lg border border-yellow-100">
+              <div className="text-2xl font-bold text-yellow-800 mb-1">10-15%</div>
+              <div className="text-sm text-yellow-700">Reduction in sales cycle length</div>
+            </div>
+            <div className="bg-white p-4 rounded-lg border border-yellow-100">
+              <div className="text-2xl font-bold text-yellow-800 mb-1">200-400%</div>
+              <div className="text-sm text-yellow-700">ROI from RevOps investments</div>
+            </div>
+            <div className="bg-white p-4 rounded-lg border border-yellow-100">
+              <div className="text-2xl font-bold text-yellow-800 mb-1">75%</div>
+              <div className="text-sm text-yellow-700">Of highest-growth companies have RevOps</div>
+            </div>
+          </div>
         </div>
       </div>
     </>
