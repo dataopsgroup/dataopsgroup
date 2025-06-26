@@ -158,13 +158,6 @@ const OptimizedImage = ({
         </div>
       )}
       
-      {/* Layout preservation indicator for development */}
-      {preserveLayout && process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-2 left-2 bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">
-          Layout preserved
-        </div>
-      )}
-      
       {/* Show optimization indicator for significant compression */}
       {compressionRatio > 30 && process.env.NODE_ENV === 'development' && (
         <div className="absolute bottom-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
