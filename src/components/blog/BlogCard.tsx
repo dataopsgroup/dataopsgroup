@@ -97,17 +97,15 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
           <CardFooter className="px-6 pb-6">
             <div className="w-full">
               <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
-                <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <time dateTime={formattedPublishDate}>
-                      {format(new Date(post.date), 'MMM dd, yyyy')}
-                    </time>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    <span className="read-time">{readingTime} min read</span>
-                  </div>
+                <div className="flex items-center">
+                  <Calendar className="w-4 h-4 mr-2" />
+                  <time dateTime={formattedPublishDate}>
+                    {format(new Date(post.date), 'MMM dd, yyyy')}
+                  </time>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  <span className="read-time">{readingTime} min read</span>
                 </div>
               </div>
               <div className="flex items-center justify-end">
