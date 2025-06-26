@@ -55,45 +55,6 @@ const BlogPostContent = ({ content }: BlogPostContentProps) => {
           </div>
         </div>
       </div>
-
-      {/* CTA Section - Enhanced Styling */}
-      <div className="blog-cta-section">
-        <div className="bg-gradient-to-br from-dataops-950 to-dataops-800 rounded-2xl p-8 text-white">
-          <div className="flex items-start gap-4">
-            <div className="flex-shrink-0">
-              <div className="w-12 h-12 bg-brand-saffron rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-            </div>
-            <div className="flex-grow">
-              <h3 className="text-xl font-semibold mb-4">Ready to Fix Your HubSpot Ordeal?</h3>
-              <p className="mb-6 text-white/90">
-                Stop throwing money at new leads when your existing contacts could be paying customers. 
-                Schedule a consultation to see how we can convert your HubSpot portal into a revenue engine.
-              </p>
-              <Button 
-                asChild 
-                className="bg-brand-saffron hover:bg-brand-saffron/90 text-dataops-950 font-semibold"
-              >
-                <Link 
-                  to="/contact"
-                  onClick={() => {
-                    // Track CTA click
-                    if (window.gtag) {
-                      window.gtag('event', 'cta_click', {
-                        'event_category': 'Engagement',
-                        'event_label': 'Blog Post Bottom CTA',
-                      });
-                    }
-                  }}
-                >
-                  Schedule a Consultation
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
