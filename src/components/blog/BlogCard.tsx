@@ -26,10 +26,13 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
   // Check if post has a cover image
   const hasCoverImage = !!post.coverImage;
   
-  // Use the new analytics dashboard image for the specific post, otherwise use existing logic
-  const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" 
-    ? "/lovable-uploads/b5e17aa6-1dfa-4615-9f0a-0103e6baec74.png"
-    : post.coverImage;
+  // Use the new analytics dashboard image for specific posts, otherwise use existing logic
+  let coverImage = post.coverImage;
+  if (post.id === "hidden-cost-of-failed-hubspot-implementations") {
+    coverImage = "/lovable-uploads/b5e17aa6-1dfa-4615-9f0a-0103e6baec74.png";
+  } else if (post.id === "marketing-dashboards-fail") {
+    coverImage = "/lovable-uploads/b5e17aa6-1dfa-4615-9f0a-0103e6baec74.png";
+  }
 
   const handleCardClick = () => {
     // Track blog post click with safety checks
