@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -164,14 +163,6 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
           <CarouselPrevious className="-left-4 lg:-left-12 bg-white" />
           <CarouselNext className="-right-4 lg:-right-12 bg-white" />
         </Carousel>
-
-        {/* Additional internal links section */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-600 mb-4">
-            Explore more insights on <Link to="/insights" className="text-dataops-600 hover:text-dataops-800 font-medium">our blog</Link> or 
-            learn about our <Link to="/services" className="text-dataops-600 hover:text-dataops-800 font-medium">HubSpot consulting services</Link>.
-          </p>
-        </div>
       </div>
     </section>
   );
