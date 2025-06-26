@@ -43,14 +43,30 @@ const TeamTraining = () => {
       />
       
       <TeamTrainingHero />
-      <HubSpotTrainingContent />
-      <ServiceBenefits benefits={benefits} />
       
-      <RelatedServices 
-        currentService="team-training"
-        title="Explore Our Other Services"
-        description="Discover how our comprehensive service offerings can support your business transformation"
-      />
+      <div className="bg-white">
+        <div className="container mx-auto px-4">
+          <div className="pt-16 lg:pt-24 no-image-hover-effect">
+            <HubSpotTrainingContent />
+          </div>
+        </div>
+      </div>
+      
+      <div className="bg-white">
+        <div className="container mx-auto px-4">
+          <div className="py-16 lg:py-24">
+            <ServiceBenefits benefits={benefits} />
+          </div>
+        </div>
+      </div>
+      
+      <div className="bg-white">
+        <RelatedServices 
+          currentService="team-training"
+          title="Explore Our Other Services"
+          description="Discover how our comprehensive service offerings can support your business transformation"
+        />
+      </div>
       
       <CTABanner />
     </SemanticLayout>
