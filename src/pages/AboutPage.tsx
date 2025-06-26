@@ -48,8 +48,8 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* Geoff Tucker Bio */}
-        <section className="py-16 px-4">
+        {/* Geoff Tucker Bio - Extended gray background */}
+        <section className="py-16 px-4 bg-gray-50">
           <div className="container mx-auto">
             <div className="grid lg:grid-cols-3 gap-16">
               <div className="lg:col-span-2 space-y-8">
