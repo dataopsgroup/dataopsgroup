@@ -16,6 +16,16 @@ interface BlogCardProps {
 }
 
 const BlogCard = ({ post, index }: BlogCardProps) => {
+  // Add debugging for the specific post we're tracking
+  if (post.id === "marketing-dashboards-fail") {
+    console.log('🔍 BlogCard rendering marketing-dashboards-fail:', {
+      id: post.id,
+      title: post.title,
+      coverImage: post.coverImage,
+      hasCoverImage: !!post.coverImage
+    });
+  }
+
   // Format date for time element and display
   const publishDate = new Date(post.date);
   const formattedPublishDate = publishDate.toISOString();
@@ -65,6 +75,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
                   objectFit="cover" 
                   aspectRatio={2 / 1} 
                   placeholder="/placeholder.svg" 
+                  componentType="card"
                 />
                 {post.category && (
                   <Badge 

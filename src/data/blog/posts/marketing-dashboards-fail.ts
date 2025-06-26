@@ -8,7 +8,7 @@ export const marketingDashboardsFail: BlogPost = {
   date: "2025-05-02",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/b5e17aa6-1dfa-4615-9f0a-0103e6baec74.png",
+  coverImage: "/lovable-uploads/b5e17aa6-1dfa-4615-9f0a-0103e6baec74.png?v=2025-01-26",
   content: `
     <h2>The Problem with Most Dashboards</h2>
     

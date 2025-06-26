@@ -57,6 +57,9 @@ const OptimizedImage = ({
   maxSizeKB,
   ...props
 }: OptimizedImageProps) => {
+  // Add debugging for image source
+  console.log('🖼️ OptimizedImage rendering:', { src, alt, componentType });
+  
   // Check if this image should preserve layout (like hero images)
   const preserveLayout = shouldPreserveLayout(src);
   
@@ -76,6 +79,9 @@ const OptimizedImage = ({
     format: 'webp'
   });
 
+  // Log the final source being used
+  console.log('🖼️ Final image source:', optimizedSrc);
+
   // Determine loading strategy with enhanced LCP detection
   const isAboveFold = priority || isLCP || componentType === 'hero';
   const imageLoading = loading || (isAboveFold ? 'eager' : 'lazy');
@@ -87,7 +93,7 @@ const OptimizedImage = ({
 
   // Enhanced error handler
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.warn(`Failed to load image: ${src}`);
+    console.error(`🖼️ Failed to load image: ${src}`, e);
     // Report to analytics if available
     if (window.gtag) {
       window.gtag('event', 'image_load_error', {
@@ -100,6 +106,7 @@ const OptimizedImage = ({
 
   // Enhanced load handler with LCP reporting
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    console.log('🖼️ Image loaded successfully:', src);
     if (isAboveFold || isLCP) {
       reportLCPMetric(src);
     }
@@ -162,6 +169,13 @@ const OptimizedImage = ({
       {compressionRatio > 30 && process.env.NODE_ENV === 'development' && (
         <div className="absolute bottom-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
           -{compressionRatio.toFixed(0)}% (File size only)
+        </div>
+      )}
+      
+      {/* Cache debugging info */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="absolute top-2 left-2 bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">
+          {finalSrc.includes('?v=') ? 'Cache-busted' : 'Cached'}
         </div>
       )}
     </div>

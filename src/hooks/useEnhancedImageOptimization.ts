@@ -1,11 +1,12 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { ImageOptimizationService } from '@/services/imageOptimizationService';
 
 interface OptimizationOptions {
   maxSizeKB?: number;
   quality?: number;
-  context?: 'hero' | 'thumbnail' | 'blog-cover' | 'content' | 'logo';
-  format?: 'webp' | 'jpeg' | 'png';
+  context?: 'hero' | 'blog-cover' | 'thumbnail' | 'content';
+  format?: 'webp' | 'jpeg' | 'png' | 'avif';
 }
 
 interface OptimizationResult {
@@ -25,115 +26,70 @@ export const useEnhancedImageOptimization = (
   const [compressionRatio, setCompressionRatio] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [needsOptimization, setNeedsOptimization] = useState(false);
-  const optimizationAttempted = useRef(false);
 
-  const {
-    maxSizeKB = 300,
-    quality = 0.85,
-    context = 'content',
-    format = 'webp'
-  } = options;
+  const optimizeImage = useCallback(async () => {
+    if (!src || src === optimizedSrc) return;
 
-  useEffect(() => {
-    // Skip optimization for external URLs or SVGs
-    if (!src || src.startsWith('http') || src.endsWith('.svg') || optimizationAttempted.current) {
-      return;
-    }
+    console.log('🖼️ Starting image optimization:', src);
+    setIsOptimizing(true);
+    setError(null);
 
-    optimizationAttempted.current = true;
-    optimizeImage();
-  }, [src, maxSizeKB, quality, context, format]);
-
-  const optimizeImage = async () => {
     try {
-      setIsOptimizing(true);
-      setError(null);
-
-      // Create image element to check current size
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
+      const service = ImageOptimizationService.getInstance();
       
-      img.onload = async () => {
-        try {
-          // Create canvas for optimization
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-          
-          if (!ctx) {
-            throw new Error('Could not get canvas context');
-          }
-
-          // Calculate optimal dimensions based on context
-          let targetWidth = img.naturalWidth;
-          let targetHeight = img.naturalHeight;
-
-          const contextLimits = {
-            hero: { maxWidth: 1200, maxHeight: 800 },
-            thumbnail: { maxWidth: 300, maxHeight: 200 },
-            'blog-cover': { maxWidth: 600, maxHeight: 400 },
-            content: { maxWidth: 800, maxHeight: 600 },
-            logo: { maxWidth: 200, maxHeight: 100 }
-          };
-
-          const limits = contextLimits[context];
-          
-          if (targetWidth > limits.maxWidth || targetHeight > limits.maxHeight) {
-            const aspectRatio = targetWidth / targetHeight;
-            if (targetWidth > limits.maxWidth) {
-              targetWidth = limits.maxWidth;
-              targetHeight = targetWidth / aspectRatio;
-            }
-            if (targetHeight > limits.maxHeight) {
-              targetHeight = limits.maxHeight;
-              targetWidth = targetHeight * aspectRatio;
-            }
-          }
-
-          canvas.width = targetWidth;
-          canvas.height = targetHeight;
-
-          // Draw and compress
-          ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-          
-          // Convert to optimized format
-          const mimeType = format === 'webp' ? 'image/webp' : 
-                          format === 'jpeg' ? 'image/jpeg' : 'image/png';
-          
-          const optimizedDataUrl = canvas.toDataURL(mimeType, quality);
-          
-          // Calculate compression ratio (rough estimate)
-          const originalSize = src.length * 0.75; // Base64 estimation
-          const optimizedSize = optimizedDataUrl.length * 0.75;
-          const ratio = ((originalSize - optimizedSize) / originalSize) * 100;
-          
-          setOptimizedSrc(optimizedDataUrl);
-          setCompressionRatio(Math.max(0, ratio));
-          setNeedsOptimization(ratio > 10);
-          
-        } catch (err) {
-          console.warn('Image optimization failed:', err);
-          setError('Optimization failed');
-          setOptimizedSrc(src);
-        } finally {
-          setIsOptimizing(false);
-        }
-      };
-
-      img.onerror = () => {
-        setError('Failed to load image');
+      // Check if image needs optimization
+      const shouldOptimize = await service.shouldOptimize(src, options.maxSizeKB || 200);
+      setNeedsOptimization(shouldOptimize);
+      
+      if (!shouldOptimize) {
+        console.log('🖼️ Image does not need optimization:', src);
         setOptimizedSrc(src);
         setIsOptimizing(false);
-      };
+        return;
+      }
 
-      img.src = src;
+      // Handle cache-busting for images with version parameters
+      const hasVersionParam = src.includes('?v=');
+      const cacheBustingSrc = hasVersionParam ? src : `${src}?t=${Date.now()}`;
       
+      console.log('🖼️ Optimizing with cache-busting:', cacheBustingSrc);
+
+      const result = await service.optimizeImage(cacheBustingSrc, {
+        maxWidth: options.context === 'hero' ? 1200 : 800,
+        maxHeight: options.context === 'hero' ? 800 : 600,
+        quality: options.quality || 0.85,
+        format: options.format || 'webp'
+      });
+
+      console.log('🖼️ Optimization result:', {
+        originalSize: result.originalSize,
+        optimizedSize: result.optimizedSize,
+        compressionRatio: result.compressionRatio
+      });
+
+      setOptimizedSrc(result.optimizedUrl);
+      setCompressionRatio(result.compressionRatio);
     } catch (err) {
-      console.warn('Image optimization error:', err);
-      setError('Optimization error');
-      setOptimizedSrc(src);
+      console.error('🖼️ Image optimization failed:', err);
+      setError(err instanceof Error ? err.message : 'Optimization failed');
+      setOptimizedSrc(src); // Fallback to original
+    } finally {
       setIsOptimizing(false);
     }
-  };
+  }, [src, options.maxSizeKB, options.quality, options.context, options.format]);
+
+  useEffect(() => {
+    optimizeImage();
+  }, [optimizeImage]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (optimizedSrc && optimizedSrc.startsWith('blob:')) {
+        URL.revokeObjectURL(optimizedSrc);
+      }
+    };
+  }, [optimizedSrc]);
 
   return {
     optimizedSrc,
