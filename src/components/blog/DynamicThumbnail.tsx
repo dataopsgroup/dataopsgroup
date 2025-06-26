@@ -30,7 +30,7 @@ const DynamicThumbnail: React.FC<DynamicThumbnailProps> = ({
         {category && (
           <Badge 
             category={category}
-            className="absolute top-3 left-3 bg-white/20 backdrop-blur-sm text-white border-white/30"
+            className="absolute top-3 left-3"
           >
             {category.toUpperCase()}
           </Badge>
