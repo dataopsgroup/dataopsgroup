@@ -165,17 +165,10 @@ const OptimizedImage = ({
         </div>
       )}
       
-      {/* Show optimization indicator for significant compression */}
+      {/* Show optimization indicator for significant compression - only in development */}
       {compressionRatio > 30 && process.env.NODE_ENV === 'development' && (
         <div className="absolute bottom-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
           -{compressionRatio.toFixed(0)}% (File size only)
-        </div>
-      )}
-      
-      {/* Cache debugging info */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-2 left-2 bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">
-          {finalSrc.includes('?v=') ? 'Cache-busted' : 'Cached'}
         </div>
       )}
     </div>
