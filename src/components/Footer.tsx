@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import OptimizedLogo from '@/components/ui/optimized-logo';
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const serviceLinks = [{
@@ -69,7 +67,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center mb-4">
-              <OptimizedLogo alt="DataOps Group Logo" className="h-12 w-auto" width={120} height={48} src="/lovable-uploads/28634c8f-dea6-4981-9eb2-5b37d3d918f4.png" />
+              <OptimizedLogo alt="DataOps Group Logo" width={120} height={48} src="/lovable-uploads/8c13735f-bb96-45da-9496-f4a9250e6f8b.png" className="h-14 w-auto" />
             </Link>
             <p className="text-gray-300 text-sm mb-4">
               Transforming portfolio operations into profit drivers through expert HubSpot implementation and data operations consulting.
