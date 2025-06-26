@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Clock, Calendar } from 'lucide-react';
 import { format } from 'date-fns';
 import OptimizedImage from '@/components/ui/optimized-image';
@@ -76,6 +77,15 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
                   placeholder="/placeholder.svg" 
                   componentType="card"
                 />
+                {/* Restore the color-coded badge for posts with cover images */}
+                {post.category && (
+                  <Badge 
+                    category={post.category}
+                    className="absolute top-3 left-3 z-10"
+                  >
+                    {post.category.toUpperCase()}
+                  </Badge>
+                )}
               </figure>
             ) : (
               <DynamicThumbnail
