@@ -1,6 +1,6 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AdminLink from '@/components/AdminLink';
 import OptimizedLogo from '@/components/ui/optimized-logo';
 
 const Footer = () => {
@@ -74,7 +74,6 @@ const Footer = () => {
             <p className="text-gray-300 text-sm mb-4">
               Transforming portfolio operations into profit drivers through expert HubSpot implementation and data operations consulting.
             </p>
-            <AdminLink className="text-gray-400" />
           </div>
 
           {/* Services */}
