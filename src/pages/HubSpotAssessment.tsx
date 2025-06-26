@@ -5,11 +5,10 @@ import SemanticLayout from '@/components/layout/SemanticLayout';
 import AssessmentQuiz from '@/components/assessment/AssessmentQuiz';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import QuizSchema from '@/components/seo/QuizSchema';
-import { buildCanonicalUrl, buildOGUrl } from '@/utils/url-builder';
 
 const HubSpotAssessment = () => {
-  const canonicalUrl = buildCanonicalUrl('/data-operations-assessment');
-  const ogUrl = buildOGUrl('/data-operations-assessment');
+  const canonicalUrl = 'https://dataopsgroup.com/data-operations-assessment';
+  const ogUrl = 'https://dataopsgroup.com/data-operations-assessment';
 
   return (
     <SemanticLayout>
