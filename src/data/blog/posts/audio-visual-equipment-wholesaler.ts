@@ -8,7 +8,6 @@ export const audioVisualEquipmentWholesaler: BlogPost = {
   date: "2025-03-26",
   author: "Geoff Tucker",
   category: "Case Study",
-  coverImage: "/lovable-uploads/fad4c033-af6a-4840-9e6a-85a5f451e089.webp", // Use optimized version
   content: `
     <h2>Introduction</h2>
     
