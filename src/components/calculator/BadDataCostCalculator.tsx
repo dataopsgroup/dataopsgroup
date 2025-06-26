@@ -52,7 +52,7 @@ const BadDataCostCalculator = () => {
             inputs={inputs}
             formatCurrency={formatCurrency}
           />
-          <div className="text-center mt-8">
+          <div className="text-center mt-4">
             <button
               onClick={resetCalculator}
               className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg"
