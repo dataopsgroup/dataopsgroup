@@ -11,6 +11,7 @@ import {
   CarouselPrevious 
 } from '@/components/ui/carousel';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import OptimizedImage from '@/components/ui/optimized-image';
 import DynamicThumbnail from '@/components/blog/DynamicThumbnail';
 import { calculateReadingTime } from '@/utils/thumbnail-generator';
@@ -130,10 +131,13 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                               loading={index === 0 ? "eager" : "lazy"}
                               placeholder="/placeholder.svg"
                             />
-                            {/* Category tag overlay */}
-                            <div className="absolute top-3 left-3 bg-dataops-600 text-white px-2 py-1 text-xs font-medium rounded">
+                            {/* Category tag overlay with color coding */}
+                            <Badge 
+                              category={post.category}
+                              className="absolute top-3 left-3"
+                            >
                               {post.category}
-                            </div>
+                            </Badge>
                           </div>
                         ) : (
                           <DynamicThumbnail

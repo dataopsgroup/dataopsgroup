@@ -26,9 +26,12 @@ const DynamicThumbnail: React.FC<DynamicThumbnailProps> = ({
     <div className={`relative overflow-hidden rounded-t-lg ${className}`}>
       {/* Gradient Background */}
       <div className={`w-full h-48 flex flex-col justify-between p-6 ${thumbnailStyle.gradientClass} transition-transform duration-300 group-hover:scale-105`}>
-        {/* Category Badge */}
+        {/* Category Badge with color coding */}
         {category && (
-          <Badge className="category-tag-enhanced absolute top-3 left-3 bg-white/20 backdrop-blur-sm text-white border-white/30">
+          <Badge 
+            category={category}
+            className="absolute top-3 left-3 bg-white/20 backdrop-blur-sm text-white border-white/30"
+          >
             {category}
           </Badge>
         )}

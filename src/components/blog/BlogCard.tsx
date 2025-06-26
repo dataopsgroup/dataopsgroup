@@ -72,7 +72,10 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
                   placeholder="/placeholder.svg" 
                 />
                 {post.category && (
-                  <Badge className="category-tag-enhanced absolute top-3 left-3">
+                  <Badge 
+                    category={post.category}
+                    className="absolute top-3 left-3"
+                  >
                     {post.category}
                   </Badge>
                 )}

@@ -18,6 +18,27 @@ const badgeVariants = cva(
         outline: "text-foreground",
         success:
           "border-transparent bg-green-500 text-white hover:bg-green-600",
+        // Topic-specific color variants
+        "data-strategy":
+          "border-transparent bg-purple-600 text-white hover:bg-purple-700",
+        "revenue-operations":
+          "border-transparent bg-emerald-600 text-white hover:bg-emerald-700",
+        "crm-management":
+          "border-transparent bg-blue-600 text-white hover:bg-blue-700",
+        "marketing-finance":
+          "border-transparent bg-orange-600 text-white hover:bg-orange-700",
+        "data-quality":
+          "border-transparent bg-red-600 text-white hover:bg-red-700",
+        "marketing-operations":
+          "border-transparent bg-indigo-600 text-white hover:bg-indigo-700",
+        "hubspot-consulting":
+          "border-transparent bg-teal-600 text-white hover:bg-teal-700",
+        "sales-operations":
+          "border-transparent bg-pink-600 text-white hover:bg-pink-700",
+        "business-intelligence":
+          "border-transparent bg-cyan-600 text-white hover:bg-cyan-700",
+        "lead-generation":
+          "border-transparent bg-amber-600 text-white hover:bg-amber-700",
       },
     },
     defaultVariants: {
@@ -26,14 +47,36 @@ const badgeVariants = cva(
   }
 )
 
+// Helper function to convert category to variant
+const getCategoryVariant = (category: string): string => {
+  const categoryMap: Record<string, string> = {
+    "Data Strategy": "data-strategy",
+    "Revenue Operations": "revenue-operations", 
+    "CRM Management": "crm-management",
+    "Marketing Finance": "marketing-finance",
+    "Data Quality": "data-quality",
+    "Marketing Operations": "marketing-operations",
+    "HubSpot Consulting": "hubspot-consulting",
+    "Sales Operations": "sales-operations",
+    "Business Intelligence": "business-intelligence",
+    "Lead Generation": "lead-generation",
+  };
+  
+  return categoryMap[category] || "default";
+};
+
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
+    VariantProps<typeof badgeVariants> {
+  category?: string;
+}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+function Badge({ className, variant, category, ...props }: BadgeProps) {
+  const finalVariant = category ? getCategoryVariant(category) : variant;
+  
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <div className={cn(badgeVariants({ variant: finalVariant as any }), className)} {...props} />
   )
 }
 
-export { Badge, badgeVariants }
+export { Badge, badgeVariants, getCategoryVariant }
