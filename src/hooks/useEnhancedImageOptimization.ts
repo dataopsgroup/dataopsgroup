@@ -5,7 +5,7 @@ import { ImageOptimizationService } from '@/services/imageOptimizationService';
 interface OptimizationOptions {
   maxSizeKB?: number;
   quality?: number;
-  context?: 'hero' | 'blog-cover' | 'thumbnail' | 'content';
+  context?: 'hero' | 'blog-cover' | 'thumbnail' | 'content' | 'logo';
   format?: 'webp' | 'jpeg' | 'png' | 'avif';
 }
 
