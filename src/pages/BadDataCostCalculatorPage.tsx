@@ -14,21 +14,21 @@ const BadDataCostCalculatorPage = () => {
   return (
     <SemanticLayout>
       <Helmet>
-        <title>Bad Data Cost Calculator 2025 - Calculate Your Data Quality Losses | DataOps Group</title>
+        <title>Bad Data Cost Calculator 2025 | DataOps Group</title>
         <meta name="description" content="Free calculator reveals annual costs of poor data quality. Get detailed breakdown of productivity losses and revenue impact." />
         <meta name="keywords" content="bad data cost calculator, data quality costs, poor data impact, productivity losses, revenue calculator" />
         <link rel="canonical" href={canonicalUrl} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Bad Data Cost Calculator 2025 - Calculate Your Data Quality Losses" />
+        <meta property="og:title" content="Bad Data Cost Calculator 2025" />
         <meta property="og:description" content="Free calculator reveals annual costs of poor data quality. Get detailed breakdown of productivity losses and revenue impact." />
         <meta property="og:url" content={ogUrl} />
         <meta property="og:image" content="https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Bad Data Cost Calculator 2025 - Calculate Your Data Quality Losses" />
+        <meta name="twitter:title" content="Bad Data Cost Calculator 2025" />
         <meta name="twitter:description" content="Free calculator reveals annual costs of poor data quality. Get detailed breakdown of productivity losses and revenue impact." />
         <meta name="twitter:image" content="https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" />
       </Helmet>
