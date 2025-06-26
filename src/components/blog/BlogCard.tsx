@@ -76,7 +76,7 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
                     category={post.category}
                     className="absolute top-3 left-3"
                   >
-                    {post.category}
+                    {post.category.toUpperCase()}
                   </Badge>
                 )}
               </figure>
