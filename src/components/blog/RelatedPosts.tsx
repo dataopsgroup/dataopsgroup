@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
@@ -148,7 +149,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
                       </CardContent>
                       <CardFooter className="flex justify-between items-center pt-2 border-t border-gray-100">
                         <div className="text-xs text-gray-500">
-                          {format(new Date(post.date), 'MMMM d, yyyy')} · {post.author}
+                          {format(new Date(post.date), 'MMMM d, yyyy')}
                         </div>
                       </CardFooter>
                     </Link>
