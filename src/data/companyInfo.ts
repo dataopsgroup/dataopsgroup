@@ -30,7 +30,6 @@ export const companyInfo = {
     linkedin: "https://www.linkedin.com/company/dataops-group/",
     twitter: "https://twitter.com/dataops_group",
   },
-  foundingDate: "2020-01-01",
-  numberOfEmployees: 10,
+  foundingDate: "2022-08-01",
+  numberOfEmployees: 5,
 };
-

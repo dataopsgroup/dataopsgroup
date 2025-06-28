@@ -7,23 +7,27 @@ export const generateLocalBusinessSchema = (businessData: any): string => {
     "name": "DataOps Group",
     "description": "HubSpot consulting and data operations expertise",
     "url": "https://dataopsgroup.com",
-    "telephone": businessData.phone || "+1-555-DATA-OPS",
-    "email": businessData.email || "contact@dataopsgroup.com",
+    "foundingDate": "2022-08-01",
+    "numberOfEmployees": 5,
+    "telephone": businessData.phone || "+1-479-844-2052",
+    "email": businessData.email || "admin@dataopsgroup.com",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": businessData.city || "Your City",
-      "addressRegion": businessData.state || "State", 
+      "streetAddress": "19 Roxburgh Drive",
+      "addressLocality": businessData.city || "Bella Vista",
+      "addressRegion": businessData.state || "AR", 
+      "postalCode": "72715",
       "addressCountry": "US"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": businessData.latitude || "0.0",
-      "longitude": businessData.longitude || "0.0"
+      "latitude": businessData.latitude || "36.4734",
+      "longitude": businessData.longitude || "-94.2710"
     },
     "openingHours": "Mo-Fr 09:00-17:00",
     "areaServed": ["United States", "Canada"],
     "serviceType": "HubSpot Consulting",
-    "priceRange": "$$",
+    "priceRange": "$$-$$$",
     "sameAs": [
       "https://www.linkedin.com/company/dataops-group"
     ]

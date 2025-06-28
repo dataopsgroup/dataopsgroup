@@ -10,6 +10,11 @@ const LocalBusinessSchema = () => {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${baseUrl}/#organization`, // Use same ID to merge with OrganizationSchema
+    "name": companyInfo.name,
+    "description": companyInfo.description,
+    "url": companyInfo.url,
+    "foundingDate": companyInfo.foundingDate,
+    "numberOfEmployees": companyInfo.numberOfEmployees,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": companyInfo.address.street,
@@ -24,7 +29,8 @@ const LocalBusinessSchema = () => {
       "longitude": companyInfo.geo.longitude
     },
     "telephone": companyInfo.contact.phone,
-    "priceRange": "$$$",
+    "email": companyInfo.contact.email,
+    "priceRange": "$$-$$$",
     "openingHours": "Mo,Tu,We,Th 09:00-17:00",
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
