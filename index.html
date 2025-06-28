@@ -88,6 +88,26 @@
         font-family: 'Rubik';
         font-display: swap;
       }
+      /* Mobile performance optimizations */
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for better performance */
+  * {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+  }
+  
+  /* Optimize font rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Ensure proper touch handling */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
     </style>
 
     <title>DataOps Group</title>
