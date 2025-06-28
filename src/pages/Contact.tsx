@@ -8,6 +8,25 @@ import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import MetaHead from '@/components/seo/MetaHead';
 
 const ContactPage = () => {
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact DataOps Group",
+    "description": "Get in touch with DataOps Group for specialized HubSpot implementation and data operations consulting for private equity portfolio companies.",
+    "url": "https://dataopsgroup.com/contact",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "DataOps Group",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1 479 844 2052",
+        "contactType": "customer service",
+        "availableLanguage": "English",
+        "hoursAvailable": "Mo-Thu 09:00-17:00"
+      }
+    }
+  };
+
   return (
     <SemanticLayout>
       <MetaHead
@@ -22,26 +41,9 @@ const ContactPage = () => {
         siteName="DataOps Group"
       />
       
-      {/* Additional schema and meta tags not handled by MetaHead */}
       <Helmet>
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "ContactPage",
-              "name": "DataOps Group Contact",
-              "description": "Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations.",
-              "url": "https://dataopsgroup.com/contact",
-              "publisher": {
-                "@type": "Organization",
-                "name": "DataOps Group",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://dataopsgroup.com/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
-                }
-              }
-            }
-          `}
+          {JSON.stringify(contactPageSchema)}
         </script>
       </Helmet>
       
