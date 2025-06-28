@@ -18,6 +18,50 @@
 
     <!-- Font fallback system to prevent layout shifts -->
     <style>
+      /* Mobile-specific hero optimizations - SAFE OVERRIDES */
+@media (max-width: 768px) {
+  /* Force mobile hero to use solid background instead of image */
+  .hero-section {
+    background-image: none !important;
+    background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%) !important;
+  }
+  
+  /* Ensure mobile text is readable */
+  .hero-section h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    color: white !important;
+  }
+  
+  .hero-section p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  /* Mobile touch targets */
+  .hero-section button,
+  .hero-section a {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    padding: 12px 24px !important;
+    font-size: 16px !important;
+  }
+  
+  /* Prevent layout shifts on mobile */
+  .hero-section {
+    min-height: 60vh !important;
+    padding: 80px 16px 60px !important;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-section {
+    background-image: none !important;
+    background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%) !important;
+  }
+}
       /* Consistent font loading with fallbacks */
       :root {
         --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
