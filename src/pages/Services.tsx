@@ -9,8 +9,47 @@ import ServicesSidebar from '@/components/services/ServicesSidebar';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import MetaHead from '@/components/seo/MetaHead';
+import { Helmet } from 'react-helmet-async';
 
 const ServicesPage = () => {
+  const servicesItemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "DataOps Group Services",
+    "description": "Comprehensive data operations and HubSpot implementation services for private equity portfolio companies",
+    "numberOfItems": 4,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Analytics & BI",
+        "description": "Transform raw data into actionable insights with custom dashboards and reporting systems.",
+        "url": "https://dataopsgroup.com/services/analytics-bi"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "DataOps Implementation",
+        "description": "End-to-end implementation of data operations processes and systems.",
+        "url": "https://dataopsgroup.com/services/dataops-implementation"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Team Training",
+        "description": "Comprehensive training programs to ensure your team maximizes system adoption.",
+        "url": "https://dataopsgroup.com/services/team-training"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Marketing Operations & RevOps",
+        "description": "Align your marketing, sales, and operations teams for maximum revenue growth.",
+        "url": "https://dataopsgroup.com/services/marketing-operations-revops"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead
@@ -31,6 +70,12 @@ const ServicesPage = () => {
         url="/services"
         serviceOutput="Optimized business operations, improved data quality, and enhanced marketing and sales performance"
       />
+
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(servicesItemListSchema)}
+        </script>
+      </Helmet>
       
       <BreadcrumbSchema 
         items={[
