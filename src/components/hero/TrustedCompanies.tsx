@@ -48,13 +48,13 @@ const TrustedCompanies = React.memo(() => {
             {featuredTestimonials.map((testimonial) => (
               <Card key={testimonial.id} className="bg-white">
                 <CardContent className="pt-6">
-                  <div className="flex mb-4">
+                  <div className="flex justify-center mb-4">
                     {Array(testimonial.rating || 5).fill(0).map((_, i) => (
                       <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-6 italic text-sm">"{testimonial.quote}"</p>
-                  <div>
+                  <p className="text-gray-700 mb-6 italic text-sm text-left">"{testimonial.quote}"</p>
+                  <div className="text-left">
                     <p className="font-semibold text-sm">{testimonial.author.name}</p>
                     <p className="text-xs text-gray-600">{testimonial.author.title}</p>
                     <p className="text-xs text-gray-500">{testimonial.author.company}</p>
