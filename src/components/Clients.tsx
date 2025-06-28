@@ -15,6 +15,11 @@ const clients = [
 
 const Clients = () => {
   const featuredTestimonials = getFeaturedTestimonials();
+  
+  // Debug logging
+  console.log('🎯 Clients component rendered');
+  console.log('📋 Featured testimonials:', featuredTestimonials);
+  console.log('📊 Number of testimonials:', featuredTestimonials.length);
 
   return (
     <section id="clients" className="section-padding bg-dataops-50">
@@ -30,24 +35,27 @@ const Clients = () => {
 
         {/* Real Client Testimonials */}
         <div className="grid md:grid-cols-3 gap-8 mb-20">
-          {featuredTestimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="bg-white">
-              <CardContent className="pt-6">
-                <div className="flex mb-4">
-                  {Array(testimonial.rating || 5).fill(0).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
-                <div>
-                  <p className="font-semibold">{testimonial.author.name}</p>
-                  <p className="text-sm text-gray-600">{testimonial.author.title}</p>
-                  <p className="text-sm text-gray-500">{testimonial.author.company}</p>
-                  <p className="text-xs text-gray-400 mt-1">{testimonial.author.industry}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+          {featuredTestimonials.map((testimonial) => {
+            console.log('🗣️ Rendering testimonial:', testimonial.id);
+            return (
+              <Card key={testimonial.id} className="bg-white">
+                <CardContent className="pt-6">
+                  <div className="flex mb-4">
+                    {Array(testimonial.rating || 5).fill(0).map((_, i) => (
+                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-6 italic">"{testimonial.quote}"</p>
+                  <div>
+                    <p className="font-semibold">{testimonial.author.name}</p>
+                    <p className="text-sm text-gray-600">{testimonial.author.title}</p>
+                    <p className="text-sm text-gray-500">{testimonial.author.company}</p>
+                    <p className="text-xs text-gray-400 mt-1">{testimonial.author.industry}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Clients Logos */}
