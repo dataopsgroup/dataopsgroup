@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -9,6 +10,7 @@ import AnalyticsBIChallenges from '@/components/services/analytics-bi/AnalyticsB
 import AnalyticsBICTA from '@/components/services/analytics-bi/AnalyticsBICTA';
 import ServiceSchemaMarkup from '@/components/services/ServiceSchemaMarkup';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
+import { Helmet } from 'react-helmet-async';
 
 /*
  * DESIGN PRESERVATION NOTICE:
@@ -34,6 +36,52 @@ const AnalyticsBI = () => {
     { name: "Analytics & BI", url: "/services/analytics-bi" }
   ];
 
+  // Enhanced Service Schema for SEO
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "HubSpot Analytics & Business Intelligence Services",
+    "description": "Transform your HubSpot data into actionable business intelligence with custom analytics solutions, dashboard creation, and performance insights.",
+    "provider": {
+      "@type": "Organization",
+      "@id": "https://dataopsgroup.com/#organization",
+      "name": "DataOps Group"
+    },
+    "serviceType": "Business Intelligence Consulting",
+    "areaServed": "United States",
+    "url": "https://dataopsgroup.com/services/analytics-bi",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Analytics & BI Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom Dashboard Development",
+            "description": "Create tailored HubSpot dashboards that visualize your key business metrics and performance indicators."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Data Visualization",
+            "description": "Transform complex data into clear, actionable visual insights for better decision-making."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Performance Analytics",
+            "description": "Advanced analytics solutions to track and optimize marketing, sales, and operational performance."
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <SemanticLayout>
       <MetaHead
@@ -45,6 +93,12 @@ const AnalyticsBI = () => {
         ogDescription={serviceDescription}
         ogType="website"
       />
+      
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+      </Helmet>
       
       <BreadcrumbSchema items={breadcrumbItems} />
       

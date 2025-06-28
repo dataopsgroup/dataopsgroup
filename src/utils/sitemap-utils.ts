@@ -1,3 +1,4 @@
+
 import { blogPosts } from '@/data/blog';
 import { CANONICAL_URLS } from './seo-config';
 
@@ -21,6 +22,7 @@ export const mainRoutes = [
   { url: CANONICAL_URLS.insights, priority: "0.9", changefreq: "weekly", lastmod: TODAY },
   { url: CANONICAL_URLS.caseStudies, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: CANONICAL_URLS.contact, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: "/testimonials", priority: "0.8", changefreq: "monthly", lastmod: "2025-01-27" },
   { url: CANONICAL_URLS.book, priority: "0.9", changefreq: "weekly", lastmod: TODAY },
   { url: "/pe-value-creation-program", priority: "0.9", changefreq: "monthly", lastmod: TODAY },
   { url: CANONICAL_URLS.assessment, priority: "0.9", changefreq: "weekly", lastmod: TODAY },

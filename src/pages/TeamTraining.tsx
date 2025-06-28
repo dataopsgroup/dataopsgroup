@@ -8,6 +8,7 @@ import ServiceBenefits from '@/components/services/ServiceBenefits';
 import RelatedServices from '@/components/services/RelatedServices';
 import CTABanner from '@/components/CTABanner';
 import ServiceSchemaMarkup from '@/components/services/ServiceSchemaMarkup';
+import { Helmet } from 'react-helmet-async';
 
 const TeamTraining = () => {
   const benefits = [
@@ -25,6 +26,52 @@ const TeamTraining = () => {
     }
   ];
 
+  // Enhanced Service Schema for SEO
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "HubSpot Team Training & Implementation Services",
+    "description": "Accelerate HubSpot adoption with expert team training and implementation services. Maximize platform ROI through comprehensive user training and ongoing support programs.",
+    "provider": {
+      "@type": "Organization",
+      "@id": "https://dataopsgroup.com/#organization",
+      "name": "DataOps Group"
+    },
+    "serviceType": "Professional Training",
+    "areaServed": "United States",
+    "url": "https://dataopsgroup.com/services/team-training",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "HubSpot Training Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "HubSpot User Training",
+            "description": "Comprehensive training programs to maximize your team's HubSpot proficiency and platform adoption."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Implementation Support",
+            "description": "Expert guidance through HubSpot implementation to ensure successful platform deployment."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Ongoing Mentorship",
+            "description": "Continuous support and best practices sharing to maintain momentum and drive long-term success."
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <SemanticLayout>
       <MetaHead
@@ -36,6 +83,12 @@ const TeamTraining = () => {
         ogTitle="HubSpot Team Training & Implementation | DataOps Group"
         ogDescription="Accelerate HubSpot adoption with expert team training and implementation services. Maximize platform ROI through comprehensive user training and ongoing support programs."
       />
+      
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+      </Helmet>
       
       <ServiceSchemaMarkup 
         isHubSpotTraining={true}

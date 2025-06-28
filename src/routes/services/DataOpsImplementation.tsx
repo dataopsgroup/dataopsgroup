@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import MetaHead from '@/components/seo/MetaHead';
@@ -12,6 +13,7 @@ import DataOpsImplementationFAQSchema from '@/components/services/dataops-implem
 import DataOpsImplementationBreadcrumbs from '@/components/services/dataops-implementation/DataOpsImplementationBreadcrumbs';
 import ScrollProgressIndicator from '@/components/services/dataops-implementation/ScrollProgressIndicator';
 import DataOpsImplementationSocialShare from '@/components/services/dataops-implementation/DataOpsImplementationSocialShare';
+import { Helmet } from 'react-helmet-async';
 
 /*
  * DESIGN PRESERVATION NOTICE:
@@ -32,6 +34,52 @@ const DataOpsImplementation = () => {
   const serviceDescription = "Scale marketing operations across your portfolio with streamlined DataOps implementation. Standardize processes, automate workflows, and drive consistent performance across all portfolio companies.";
   const enhancedKeywords = "DataOps implementation, portfolio operations, marketing operations scaling, process standardization, workflow automation, portfolio company optimization, system integration, HubSpot implementation, data pipeline automation, operational efficiency";
   
+  // Enhanced Service Schema for SEO
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "DataOps Implementation Services",
+    "description": "Scale marketing operations across your portfolio with streamlined DataOps implementation, process standardization, and workflow automation.",
+    "provider": {
+      "@type": "Organization",
+      "@id": "https://dataopsgroup.com/#organization",
+      "name": "DataOps Group"
+    },
+    "serviceType": "Data Operations Implementation",
+    "areaServed": "United States",
+    "url": "https://dataopsgroup.com/services/dataops-implementation",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "DataOps Implementation Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Portfolio Operations Scaling",
+            "description": "Standardize and scale marketing operations across your entire portfolio of companies."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Process Standardization",
+            "description": "Create consistent, repeatable processes that drive efficiency and performance."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Workflow Automation",
+            "description": "Automate data pipelines and operational workflows to reduce manual effort and errors."
+          }
+        }
+      ]
+    }
+  };
+  
   return (
     <SemanticLayout>
       <MetaHead 
@@ -43,6 +91,12 @@ const DataOpsImplementation = () => {
         ogDescription={serviceDescription} 
         ogType="website"
       />
+      
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+      </Helmet>
       
       <ServiceSchemaMarkup 
         serviceId="dataops-implementation" 

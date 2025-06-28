@@ -8,8 +8,55 @@ import MarketingOperationsRevOpsBenefits from '@/components/services/MarketingOp
 import RelatedServices from '@/components/services/RelatedServices';
 import CTABanner from '@/components/CTABanner';
 import MarketingOperationsRevOpsSchema from '@/components/services/MarketingOperationsRevOpsSchema';
+import { Helmet } from 'react-helmet-async';
 
 const MarketingOperationsRevOps = () => {
+  // Enhanced Service Schema for SEO
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Marketing Operations & Revenue Operations Services",
+    "description": "Transform your revenue operations with expert marketing automation, data integration, and performance optimization to maximize ROI through streamlined processes.",
+    "provider": {
+      "@type": "Organization",
+      "@id": "https://dataopsgroup.com/#organization",
+      "name": "DataOps Group"
+    },
+    "serviceType": "Revenue Operations Consulting",
+    "areaServed": "United States",
+    "url": "https://dataopsgroup.com/services/marketing-operations-revops",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Marketing Operations & RevOps Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Marketing Automation Setup",
+            "description": "Design and implement sophisticated marketing automation workflows that nurture leads and drive conversions."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Data Integration & Analytics",
+            "description": "Connect your marketing and sales data for comprehensive performance tracking and optimization."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Performance Optimization",
+            "description": "Optimize your revenue operations to maximize ROI and accelerate business growth."
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <SemanticLayout>
       <MetaHead
@@ -21,6 +68,12 @@ const MarketingOperationsRevOps = () => {
         ogTitle="Marketing Operations & RevOps | DataOps Group"
         ogDescription="Transform your revenue operations with expert marketing automation, data integration, and performance optimization. Maximize ROI through streamlined processes and analytics."
       />
+      
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+      </Helmet>
       
       <MarketingOperationsRevOpsSchema />
       
