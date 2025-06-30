@@ -7,7 +7,7 @@ const HeroContent = React.memo(() => {
       <div className="hero-headline-box">
         <h1 className="hero-headline" id="hero-heading">
           Turn PE Portfolio Operations Into Profit Drivers in{' '}
-          <span className="text-yellow-300 text-inherit">100 Days</span>
+          <span className="text-yellow-300 text-4xl lg:text-6xl font-bold">100 Days</span>
         </h1>
       </div>
     </div>
