@@ -18,7 +18,7 @@ const BlogListGrid = ({ posts }: BlogListGridProps) => {
   return (
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {sortedPosts.map((post, index) => (
             <BlogCard key={post.id} post={post} index={index} />
           ))}
