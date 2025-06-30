@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 export const dataEnrichmentStrategy: BlogPost = {
@@ -8,7 +7,7 @@ export const dataEnrichmentStrategy: BlogPost = {
   date: "2025-03-10",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.png",
+  coverImage: "/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.webp",
   content: `
     <h2>The Hidden Cost of Data Enrichment Failures</h2>
     
