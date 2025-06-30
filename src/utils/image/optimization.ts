@@ -31,7 +31,7 @@ export const getImageSrc = (src: string, context: ImageContext = 'content'): str
   
   try {
     // First, check if this is one of the large images that needs optimization
-    const optimizedSrc = getOptimizedImageSrc(src);
+    const optimizedSrc = getOptimizedImageSrc(src, context);
     if (optimizedSrc !== src) {
       return optimizedSrc; // Use pre-optimized version
     }
@@ -77,23 +77,23 @@ export const isLocalAsset = (src: string): boolean => {
  * Get recommended compression settings for any image
  */
 export const getCompressionSettings = (src: string, context: ImageContext = 'content') => {
-  // Use context-specific settings from the optimization settings
+  // Use context-specific settings from the Vercel optimization settings
   const settings = getOptimizationSettings(context);
   
-  // Apply context-specific adjustments
-  const contextMultipliers = {
-    hero: { quality: 1.0, maxWidth: 1.5 },
-    'blog-cover': { quality: 1.0, maxWidth: 1.0 },
-    content: { quality: 1.0, maxWidth: 1.0 },
-    thumbnail: { quality: 0.9, maxWidth: 0.3 },
-    logo: { quality: 1.0, maxWidth: 0.2 }
+  // Apply context-specific adjustments for compression
+  const contextSettings = {
+    hero: { qualityMultiplier: 1.0, targetSize: 200 },
+    'blog-cover': { qualityMultiplier: 1.0, targetSize: 150 },
+    content: { qualityMultiplier: 1.0, targetSize: 100 },
+    thumbnail: { qualityMultiplier: 0.9, targetSize: 50 },
+    logo: { qualityMultiplier: 1.0, targetSize: 30 }
   };
   
-  const multiplier = contextMultipliers[context];
+  const contextSetting = contextSettings[context];
   
   return {
-    maxSizeKB: settings.maxSizeKB,
-    quality: Math.min(settings.quality * multiplier.quality, 0.95),
-    maxWidth: Math.round(settings.maxWidth * multiplier.maxWidth)
+    targetSizeKB: contextSetting.targetSize,
+    quality: Math.min(settings.quality * contextSetting.qualityMultiplier, 95),
+    width: settings.width
   };
 };

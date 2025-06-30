@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
-import { ImageOptimizationService } from '@/services/imageOptimizationService';
+import { vercelImageOptimizer } from '@/services/imageOptimizationService';
 
 interface OptimizationOptions {
   maxSizeKB?: number;
@@ -30,15 +30,13 @@ export const useEnhancedImageOptimization = (
   const optimizeImage = useCallback(async () => {
     if (!src || src === optimizedSrc) return;
 
-    console.log('🖼️ Starting image optimization:', src);
+    console.log('🖼️ Starting Vercel image optimization:', src);
     setIsOptimizing(true);
     setError(null);
 
     try {
-      const service = ImageOptimizationService.getInstance();
-      
       // Check if image needs optimization
-      const shouldOptimize = await service.shouldOptimize(src, options.maxSizeKB || 200);
+      const shouldOptimize = vercelImageOptimizer.shouldOptimize(src);
       setNeedsOptimization(shouldOptimize);
       
       if (!shouldOptimize) {
@@ -48,48 +46,38 @@ export const useEnhancedImageOptimization = (
         return;
       }
 
-      // Handle cache-busting for images with version parameters
-      const hasVersionParam = src.includes('?v=');
-      const cacheBustingSrc = hasVersionParam ? src : `${src}?t=${Date.now()}`;
+      // Get context-specific optimization settings
+      const settings = vercelImageOptimizer.getOptimizationSettings(options.context || 'content');
       
-      console.log('🖼️ Optimizing with cache-busting:', cacheBustingSrc);
+      // Apply custom quality if provided
+      const optimizationSettings = {
+        ...settings,
+        quality: options.quality ? Math.round(options.quality * 100) : settings.quality,
+        format: options.format || settings.format
+      };
 
-      const result = await service.optimizeImage(cacheBustingSrc, {
-        maxWidth: options.context === 'hero' ? 1200 : 800,
-        maxHeight: options.context === 'hero' ? 800 : 600,
-        quality: options.quality || 0.85,
-        format: options.format || 'webp'
-      });
+      console.log('🖼️ Optimizing with Vercel:', optimizationSettings);
 
-      console.log('🖼️ Optimization result:', {
-        originalSize: result.originalSize,
-        optimizedSize: result.optimizedSize,
+      const result = vercelImageOptimizer.optimizeImage(src, optimizationSettings);
+
+      console.log('🖼️ Vercel optimization result:', {
         compressionRatio: result.compressionRatio
       });
 
       setOptimizedSrc(result.optimizedUrl);
       setCompressionRatio(result.compressionRatio);
     } catch (err) {
-      console.error('🖼️ Image optimization failed:', err);
+      console.error('🖼️ Vercel image optimization failed:', err);
       setError(err instanceof Error ? err.message : 'Optimization failed');
       setOptimizedSrc(src); // Fallback to original
     } finally {
       setIsOptimizing(false);
     }
-  }, [src, options.maxSizeKB, options.quality, options.context, options.format]);
+  }, [src, options.quality, options.context, options.format]);
 
   useEffect(() => {
     optimizeImage();
   }, [optimizeImage]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (optimizedSrc && optimizedSrc.startsWith('blob:')) {
-        URL.revokeObjectURL(optimizedSrc);
-      }
-    };
-  }, [optimizedSrc]);
 
   return {
     optimizedSrc,
