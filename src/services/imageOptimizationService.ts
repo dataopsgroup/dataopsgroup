@@ -7,7 +7,7 @@ interface VercelOptimizationOptions {
   width?: number;
   height?: number;
   quality?: number;
-  format?: 'webp' | 'avif' | 'auto';
+  format?: 'webp' | 'avif' | 'auto' | 'jpeg' | 'png';
   fit?: 'cover' | 'contain' | 'fill' | 'inside' | 'outside';
 }
 
@@ -51,7 +51,10 @@ export class VercelImageOptimizationService {
       if (width) params.append('w', width.toString());
       if (height) params.append('h', height.toString());
       params.append('q', quality.toString());
-      if (format !== 'auto') params.append('f', format);
+      
+      // Map format to Vercel-supported formats
+      const vercelFormat = this.mapToVercelFormat(format);
+      if (vercelFormat !== 'auto') params.append('f', vercelFormat);
       if (fit !== 'cover') params.append('fit', fit);
 
       // For Vercel deployment, use the _next/image endpoint
@@ -61,8 +64,8 @@ export class VercelImageOptimizationService {
         optimizedUrl,
         originalSize: 0, // Estimated, real size would need API call
         optimizedSize: 0, // Estimated based on quality setting
-        compressionRatio: this.estimateCompressionRatio(quality, format),
-        format: format === 'auto' ? 'webp' : format
+        compressionRatio: this.estimateCompressionRatio(quality, vercelFormat),
+        format: vercelFormat === 'auto' ? 'webp' : vercelFormat
       };
     } catch (error) {
       console.warn('Vercel image optimization failed:', error);
@@ -74,6 +77,25 @@ export class VercelImageOptimizationService {
         compressionRatio: 0,
         format: 'original'
       };
+    }
+  }
+
+  /**
+   * Map input formats to Vercel-supported formats
+   */
+  private mapToVercelFormat(format: string): string {
+    switch (format) {
+      case 'jpeg':
+      case 'jpg':
+        return 'webp'; // Convert JPEG to WebP for better compression
+      case 'png':
+        return 'webp'; // Convert PNG to WebP for better compression
+      case 'webp':
+        return 'webp';
+      case 'avif':
+        return 'avif';
+      default:
+        return 'auto';
     }
   }
 
