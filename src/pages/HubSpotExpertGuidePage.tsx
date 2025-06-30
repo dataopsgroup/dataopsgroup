@@ -61,19 +61,19 @@ const HubSpotExpertGuidePage = () => {
         <meta name="article:tag" content="Marketing Operations" />
         <meta name="article:tag" content="Data Integration" />
         
-        <link rel="canonical" href="https://www.dataopsgroup.com/guides/hubspot-expert" />
+        <link rel="canonical" href="https://dataopsgroup.com/guides/hubspot-expert" />
         
         {/* Enhanced Open Graph tags */}
         <meta property="og:title" content="How to Hire a HubSpot Expert: Complete Guide for 2025" />
         <meta property="og:description" content="Complete guide to hiring HubSpot experts. Learn how to find, evaluate, and work with certified HubSpot consultants for maximum ROI." />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://www.dataopsgroup.com/guides/hubspot-expert" />
+        <meta property="og:url" content="https://dataopsgroup.com/guides/hubspot-expert" />
         <meta property="og:image" content={featuredImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="HubSpot Expert Hiring Guide - DataOps Group" />
         <meta property="og:site_name" content="DataOps Group" />
-        <meta property="article:author" content="https://www.dataopsgroup.com/about" />
+        <meta property="article:author" content="https://dataopsgroup.com/about" />
         <meta property="article:published_time" content="2024-12-01T00:00:00Z" />
         <meta property="article:modified_time" content="2025-01-01T00:00:00Z" />
         <meta property="article:section" content="HubSpot Implementation" />
