@@ -9,6 +9,8 @@ export const why64PercentPEPortfolioCompaniesFailHubspotImplementation: BlogPost
   author: "Geoff Tucker",
   category: "Private Equity",
   content: `
+    <h1>Why 64% of PE Portfolio Companies Fail at HubSpot Implementation</h1>
+    
     <p>After working with dozens of private equity portfolio companies, I've witnessed a troubling pattern: 64% of HubSpot implementations fail to deliver the promised ROI within the first 18 months.</p>
     
     <p>This failure rate is particularly costly for PE firms who expect their technology investments to drive measurable growth and operational efficiency across their portfolio companies.</p>

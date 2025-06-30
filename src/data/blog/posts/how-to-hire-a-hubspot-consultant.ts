@@ -10,6 +10,8 @@ export const howToHireAHubSpotConsultant: BlogPost = {
   category: "HubSpot Consultant",
   coverImage: "/lovable-uploads/79716a8a-35d3-4966-a6e9-1d0f21b5f732.png",
   content: `
+    <h1>How to Hire a HubSpot Consultant</h1>
+    
     <h2>What does HubSpot do for marketing?</h2>
     
     <p>HubSpot is a comprehensive marketing platform. It helps businesses reach their goals and grow. It provides a suite of tools to help companies:</p>
