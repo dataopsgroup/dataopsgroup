@@ -180,10 +180,10 @@ const MetaHead = ({
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       )}
       
-      {/* Favicons */}
-      <link rel="icon" type="image/png" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
-      <link rel="shortcut icon" href="/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png" />
+      {/* Favicons - Updated to use new favicon */}
+      <link rel="icon" type="image/png" href="/lovable-uploads/ba33d4cb-8122-4421-8235-caef45d76c5f.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/lovable-uploads/ba33d4cb-8122-4421-8235-caef45d76c5f.png" />
+      <link rel="shortcut icon" href="/lovable-uploads/ba33d4cb-8122-4421-8235-caef45d76c5f.png" />
       
       {/* Open Graph / Facebook - CRITICAL: Must match canonical URL exactly */}
       <meta property="og:type" content={ogType} />
