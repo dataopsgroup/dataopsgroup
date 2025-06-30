@@ -1,15 +1,15 @@
 
-@import './styles/fonts-consolidated.css';
+@import './styles/fonts-optimized.css';
 @import './styles/base.css';
-@import './styles/typography-consolidated.css';
-@import './styles/hero-consolidated.css';
-@import './styles/components-consolidated.css';
+@import './styles/typography-optimized.css';
+@import './styles/hero-optimized.css';
+@import './styles/components-optimized.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Optimized font loading - use CSS custom properties for consistency */
+/* Optimized font loading with CSS custom properties */
 @layer base {
   :root {
     --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -19,24 +19,15 @@
   body {
     font-family: var(--font-inter);
     font-display: swap;
-    /* Prevent font loading layout shifts */
     font-optical-sizing: auto;
   }
   
-  /* Ensure headings use Rubik consistently */
   h1, h2, h3, h4, h5, h6, .font-rubik {
     font-family: var(--font-rubik);
   }
 }
 
-/* Performance optimization - reduce paint complexity */
 @layer utilities {
-  .font-display-swap {
-    font-display: swap;
-  }
-  
-  /* Optimize critical rendering path */
-  .critical-font-load {
-    font-display: block;
-  }
+  .font-display-swap { font-display: swap; }
+  .critical-font-load { font-display: block; }
 }

@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -7,7 +8,6 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
-		// Add specific patterns for better purging
 		"./src/components/**/*.{js,ts,jsx,tsx}",
 		"./src/pages/**/*.{js,ts,jsx,tsx}",
 		"./src/routes/**/*.{js,ts,jsx,tsx}",
@@ -100,40 +100,20 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				},
 				'fade-in': {
-					'0%': {
-						opacity: '0',
-						transform: 'translateY(10px)'
-					},
-					'100%': {
-						opacity: '1',
-						transform: 'translateY(0)'
-					}
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
 				},
 				'fade-out': {
-					'0%': {
-						opacity: '1',
-						transform: 'translateY(0)'
-					},
-					'100%': {
-						opacity: '0',
-						transform: 'translateY(10px)'
-					}
+					'0%': { opacity: '1', transform: 'translateY(0)' },
+					'100%': { opacity: '0', transform: 'translateY(10px)' }
 				}
 			},
 			animation: {
@@ -145,7 +125,7 @@ export default {
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
-	// Optimize for production builds
+	// Enhanced purging for production builds
 	...(process.env.NODE_ENV === 'production' && {
 		purge: {
 			enabled: true,
@@ -155,18 +135,25 @@ export default {
 			],
 			options: {
 				safelist: [
-					// Keep dynamic classes that might be missed
-					/^text-/,
-					/^bg-/,
-					/^border-/,
-					/hover:/,
-					/focus:/,
-					/active:/,
-					// Keep brand colors
-					'text-brand-saffron',
-					'bg-brand-saffron',
-					'text-dataops-950',
-					'bg-dataops-950',
+					// Dynamic classes that might be missed
+					/^(text|bg|border)-(dataops|brand)-/,
+					/^hover:/,
+					/^focus:/,
+					/^active:/,
+					/^md:/,
+					/^lg:/,
+					// Component-specific classes
+					'hero-section',
+					'hero-content',
+					'hero-headline',
+					'table-of-contents-container',
+					'pillar-content',
+					'blog-content-enhanced',
+					// Animation classes
+					'fade-in',
+					'fade-out',
+					'accordion-down',
+					'accordion-up'
 				],
 			}
 		}

@@ -1,0 +1,167 @@
+
+/* Optimized Component Styles - Utility-first approach */
+
+@layer components {
+  .hero-heading, .hero-text, .hero-button { visibility: visible; }
+  
+  .no-image-hover-effect .hover\:scale-105:hover { transform: none; }
+  .no-image-hover-effect .transition-transform { transition: none; }
+
+  /* Blog components - simplified */
+  .blog-card-enhanced {
+    @apply bg-white border border-gray-200 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .category-tag-enhanced {
+    @apply bg-brand-saffron text-white text-xs font-semibold px-3 py-1.5 rounded-full uppercase tracking-wider;
+  }
+
+  .blog-content-enhanced h2 {
+    @apply text-2xl md:text-3xl font-bold text-dataops-950 mt-12 mb-6 pb-3 border-b-2 border-brand-saffron;
+  }
+
+  .blog-content-enhanced h3 {
+    @apply text-xl md:text-2xl font-semibold text-dataops-800 mt-8 mb-4;
+  }
+
+  .blog-content-enhanced p {
+    @apply leading-relaxed text-gray-700 mb-6;
+  }
+
+  .blog-content-enhanced ul {
+    @apply space-y-2 mb-6 list-none;
+  }
+
+  .blog-content-enhanced ul li {
+    @apply relative pl-6;
+  }
+
+  .blog-content-enhanced ul li::before {
+    content: '→';
+    @apply absolute left-0 text-brand-saffron font-bold;
+  }
+
+  .key-insight-box {
+    @apply bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 my-8 relative;
+  }
+
+  .key-insight-box::before {
+    content: '💡';
+    @apply absolute -top-3 -left-3 text-2xl bg-white rounded-full p-2 shadow-md;
+  }
+
+  .cta-button {
+    @apply inline-block mt-4 px-6 py-3 bg-brand-saffron text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200;
+  }
+}
+
+/* Table of Contents - optimized */
+.table-of-contents-container {
+  @apply bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-2xl p-8 my-8 shadow-sm;
+}
+
+.table-of-contents-container h2 {
+  @apply text-dataops-950 mb-6 text-xl font-semibold;
+}
+
+.table-of-contents ul { @apply list-none p-0 m-0; }
+.table-of-contents li { @apply m-0 p-0; }
+
+.table-of-contents button {
+  @apply w-full block transition-all duration-300 border-none bg-transparent cursor-pointer text-sm text-left rounded-lg p-3 border-b border-gray-100 text-gray-600 hover:text-brand-saffron hover:bg-yellow-50 hover:translate-x-1;
+}
+
+.table-of-contents button.active {
+  @apply font-semibold bg-gradient-to-r from-yellow-50 to-transparent text-dataops-950 border-l-4 border-brand-saffron pl-2;
+}
+
+/* Article components - streamlined */
+.article-header {
+  @apply bg-gradient-to-br from-dataops-950 to-gray-700 text-white p-12 rounded-2xl mb-12 relative overflow-hidden;
+}
+
+.article-header::before {
+  content: '';
+  @apply absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-radial from-yellow-200/10 to-transparent pointer-events-none;
+}
+
+.article-meta {
+  @apply flex gap-4 mb-6 flex-wrap relative z-10;
+}
+
+.content-type, .read-time, .last-updated {
+  @apply bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm;
+}
+
+.article-summary .lead {
+  @apply text-xl leading-relaxed my-6 text-gray-300 font-normal;
+}
+
+.expertise-badge {
+  @apply bg-brand-saffron text-dataops-950 px-6 py-3 rounded-full inline-flex items-center gap-2 font-semibold mt-4;
+}
+
+/* Pillar content - consolidated */
+.pillar-content {
+  @apply px-8 leading-relaxed;
+}
+
+.pillar-content h2 {
+  @apply text-dataops-950 text-3xl my-16 p-6 pl-6 border-l-4 border-brand-saffron bg-gradient-to-r from-yellow-50 to-transparent rounded-r-lg font-semibold;
+}
+
+.pillar-content h3 {
+  @apply text-gray-700 text-2xl my-8 pb-2 border-b-2 border-gray-200 font-semibold;
+}
+
+.pillar-content h4 {
+  @apply text-gray-600 text-xl my-6 font-semibold;
+}
+
+.pillar-content p {
+  @apply mb-5 text-gray-600 text-left;
+}
+
+.pillar-content ul {
+  @apply mb-6;
+}
+
+.pillar-content ul li {
+  @apply mb-2 text-gray-600;
+}
+
+/* Callouts - simplified */
+.key-insight-callout {
+  @apply bg-gradient-to-br from-yellow-50 to-yellow-100 border border-yellow-300 rounded-xl p-6 my-8 flex items-start gap-4 shadow-sm;
+}
+
+.callout-icon {
+  @apply text-2xl flex-shrink-0;
+}
+
+.callout-content h4 {
+  @apply text-yellow-800 m-0 mb-2 text-lg font-semibold;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .table-of-contents-container {
+    @apply max-h-80 overflow-y-auto p-6;
+  }
+  
+  .article-header {
+    @apply p-8;
+  }
+  
+  .article-meta {
+    @apply flex-col gap-2;
+  }
+  
+  .pillar-content h2 {
+    @apply text-2xl p-3 pl-4 my-8;
+  }
+  
+  .pillar-content {
+    @apply px-4;
+  }
+}
