@@ -125,37 +125,25 @@ export default {
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
-	// Enhanced purging for production builds
-	...(process.env.NODE_ENV === 'production' && {
-		purge: {
-			enabled: true,
-			content: [
-				"./src/**/*.{js,ts,jsx,tsx}",
-				"./index.html"
-			],
-			options: {
-				safelist: [
-					// Dynamic classes that might be missed
-					/^(text|bg|border)-(dataops|brand)-/,
-					/^hover:/,
-					/^focus:/,
-					/^active:/,
-					/^md:/,
-					/^lg:/,
-					// Component-specific classes
-					'hero-section',
-					'hero-content',
-					'hero-headline',
-					'table-of-contents-container',
-					'pillar-content',
-					'blog-content-enhanced',
-					// Animation classes
-					'fade-in',
-					'fade-out',
-					'accordion-down',
-					'accordion-up'
-				],
-			}
-		}
-	})
+	safelist: [
+		// Dynamic classes that might be missed
+		{ pattern: /^(text|bg|border)-(dataops|brand)-/ },
+		{ pattern: /^hover:/ },
+		{ pattern: /^focus:/ },
+		{ pattern: /^active:/ },
+		{ pattern: /^md:/ },
+		{ pattern: /^lg:/ },
+		// Component-specific classes
+		'hero-section',
+		'hero-content',
+		'hero-headline',
+		'table-of-contents-container',
+		'pillar-content',
+		'blog-content-enhanced',
+		// Animation classes
+		'fade-in',
+		'fade-out',
+		'accordion-down',
+		'accordion-up'
+	]
 } satisfies Config;
