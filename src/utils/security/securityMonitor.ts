@@ -3,6 +3,9 @@ import { SecurityEvent } from './types';
 import { SecurityDetectors } from './detectors';
 import { TokenManager } from './tokenManager';
 import { AlertingService } from './alertingService';
+import { enhancedMonitoring } from './enhancedMonitoring';
+import { clientEncryption } from './clientEncryption';
+import { SECURITY_CONFIG } from './securityConfig';
 
 class SecurityMonitor {
   private events: SecurityEvent[] = [];
@@ -41,6 +44,9 @@ class SecurityMonitor {
 
     this.events.push(event);
     
+    // Use enhanced monitoring
+    enhancedMonitoring.logSecurityEvent(event);
+    
     if (this.events.length > this.MAX_EVENTS) {
       this.events = this.events.slice(-this.MAX_EVENTS);
     }
@@ -65,6 +71,20 @@ class SecurityMonitor {
 
   getEventsByType(type: SecurityEvent['type']): SecurityEvent[] {
     return this.events.filter(event => event.type === type);
+  }
+
+  // Enhanced methods with encryption support
+  encryptSensitiveData(data: Record<string, string>): Record<string, string> {
+    return clientEncryption.encryptFormData(data);
+  }
+
+  decryptSensitiveData(data: Record<string, string>): Record<string, string> {
+    return clientEncryption.decryptFormData(data);
+  }
+
+  // Get security analytics
+  getSecurityAnalytics() {
+    return enhancedMonitoring.getSecurityAnalytics();
   }
 
   // Delegate to detectors
