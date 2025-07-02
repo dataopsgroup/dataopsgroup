@@ -13,7 +13,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   subtitle
 }) => {
   return (
-    <div className="article-header">
+    <div className="bg-gradient-to-br from-dataops-950 to-dataops-800 text-white p-12 rounded-2xl mb-12 relative overflow-hidden">
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -89,34 +89,38 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
         </script>
       </Helmet>
 
-      <div className="article-meta">
-        <div className="flex items-center">
-          <ShareButtons title={title} className="flex-row space-x-2 space-y-0 mr-3" variant="white" />
-          <span className="content-type">👨‍🏫 Expert Guide</span>
+      <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-r from-yellow-200/10 to-transparent pointer-events-none"></div>
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-4 mb-6 flex-wrap">
+          <div className="flex items-center">
+            <ShareButtons title={title} className="flex-row space-x-2 space-y-0 mr-3" variant="white" />
+            <span className="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">👨‍🏫 Expert Guide</span>
+          </div>
+          
+          <span className="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm" style={{
+            color: '#8CC7E3'
+          }}>
+            ⏱️ 15 min read
+          </span>
+          <span className="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Updated January 2025</span>
         </div>
         
-        <span className="read-time" style={{
-          color: '#8CC7E3'
-        }}>
-          ⏱️ 15 min read
-        </span>
-        <span className="last-updated">Updated January 2025</span>
-      </div>
-      
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight relative z-10 mb-4">
-        {title}
-      </h1>
-      
-      <div className="article-summary">
-        <p className="lead">
-          The definitive guide to finding, evaluating, and hiring HubSpot experts that deliver measurable ROI for your business. 
-          Learn from 12+ years of implementation experience.
-        </p>
-      </div>
-      
-      <div className="expertise-badge">
-        <span className="text-xl">🏆</span>
-        <span>Written by HubSpot Expert Since 2012</span>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+          {title}
+        </h1>
+        
+        <div className="mb-6">
+          <p className="text-xl leading-relaxed text-gray-300 font-normal">
+            The definitive guide to finding, evaluating, and hiring HubSpot experts that deliver measurable ROI for your business. 
+            Learn from 12+ years of implementation experience.
+          </p>
+        </div>
+        
+        <div className="bg-brand-saffron text-dataops-950 px-6 py-3 rounded-full inline-flex items-center gap-2 font-semibold">
+          <span className="text-xl">🏆</span>
+          <span>Written by HubSpot Expert Since 2012</span>
+        </div>
       </div>
     </div>
   );
