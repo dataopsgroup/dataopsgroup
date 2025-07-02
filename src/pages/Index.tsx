@@ -1,3 +1,20 @@
+
+/**
+ * ⚠️ HOME PAGE - HERO SECTION LOCKED ⚠️
+ * 
+ * CRITICAL: The hero section in this file is LOCKED and should NOT be modified
+ * without explicit user permission. The current appearance and functionality
+ * are correct and must be preserved.
+ * 
+ * LOCKED COMPONENTS:
+ * - Hero component and all its children (HeroContent, HeroContentSection, TrustedCompanies)
+ * - Hero styling and layout
+ * - Hero background image and positioning
+ * - Hero text content and CTAs
+ * 
+ * DO NOT MODIFY the hero section unless explicitly instructed by the user!
+ */
+
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import Services from '@/components/Services';
@@ -53,7 +70,21 @@ const Index = () => {
         <TestimonialsSchema />
       </React.Suspense>
       
-      {/* Critical above-the-fold content */}
+      {/* 
+        ⚠️ HERO SECTION - LOCKED FOR EDITING ⚠️
+        
+        This hero section is currently working perfectly and should NOT be modified
+        without explicit user permission. It includes:
+        
+        - Hero component with proper 40vh height background
+        - HeroContent with headline and CTA buttons
+        - HeroContentSection with stats and progress bars
+        - TrustedCompanies section
+        - Proper WebP/PNG background image optimization
+        - Correct responsive design and styling
+        
+        Current structure is LOCKED - DO NOT CHANGE without user approval!
+      */}
       <section aria-labelledby="hero-heading">
         <ImageErrorBoundary fallback={
           <div className="min-h-[500px] bg-dataops-600 flex items-center justify-center">
@@ -63,9 +94,11 @@ const Index = () => {
             </div>
           </div>
         }>
+          {/* ⚠️ HERO COMPONENT - DO NOT MODIFY WITHOUT USER PERMISSION ⚠️ */}
           <Hero />
         </ImageErrorBoundary>
       </section>
+      {/* ⚠️ END OF LOCKED HERO SECTION ⚠️ */}
       
       <section aria-label="Chatbot Services">
         <ChatbotSection />
