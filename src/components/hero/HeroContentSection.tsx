@@ -1,86 +1,94 @@
 
-import React, { useCallback } from 'react';
-import { ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { trackEvent } from '@/utils/analytics';
+import React from 'react';
 
-const HeroContentSection = React.memo(() => {
-  // Memoized CTA tracking function
-  const trackContactCTAClick = useCallback(() => {
-    console.log('🎯 Contact CTA clicked');
-    
-    try {
-      // Use the centralized analytics utility
-      trackEvent('cta_click', {
-        event_category: 'Engagement',
-        event_label: 'Hero Contact CTA'
-      });
-      
-      // HubSpot tracking with safety check
-      if (typeof window !== 'undefined' && window._hsq) {
-        window._hsq.push(['trackEvent', {
-          id: 'hero_contact_cta_click'
-        }]);
-      }
-    } catch (error) {
-      console.warn('Analytics tracking failed:', error);
-    }
-  }, []);
-
+const HeroContentSection = () => {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-start">
-          {/* Left Column - Company Description */}
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <h2 className="text-gray-700 leading-relaxed font-normal">
-                We are PE-specialized{' '}
-                <Link to="/about" className="text-dataops-600 hover:text-dataops-700 underline">
-                  HubSpot experts
-                </Link>{' '}
-                who transform fragmented systems into unified platforms that drive EBITDA growth, 
-                improve operational efficiency, and create the data infrastructure your investors expect.
-              </h2>
-              
-              <ul className="list-disc pl-6 space-y-2 text-lg text-gray-700">
-                <li>19% higher valuation multiples</li>
-                <li>73% faster EBITDA growth</li>
-                <li>$18-22 ROI per $1 invested</li>
-              </ul>
-              
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Learn more about our{' '}
-                <Link to="/approach" className="text-dataops-600 hover:text-dataops-700 underline">
-                  proven methodology
-                </Link>{' '}
-                and explore our{' '}
-                <Link to="/case-studies" className="text-dataops-600 hover:text-dataops-700 underline">
-                  client success stories
-                </Link>.
+    <section className="hero-content-section py-16 bg-gradient-to-br from-white via-gray-50 to-blue-50">
+      <div className="container mx-auto px-6">
+        <div className="hero-content-grid grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left column - Text content */}
+          <div className="space-y-8">
+            <div className="space-y-6">
+              <p className="text-xl leading-relaxed text-gray-700">
+                We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
               </p>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                  <div className="text-3xl font-bold text-dataops-600 mb-2">19%</div>
+                  <div className="text-sm text-gray-600">Higher portfolio company valuations with standardized operations</div>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                  <div className="text-3xl font-bold text-green-600 mb-2">73%</div>
+                  <div className="text-sm text-gray-600">Faster EBITDA growth through data-driven insights</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <h3 className="text-xl font-semibold text-gray-900">
+                Ready to Transform Your Portfolio Operations?
+              </h3>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a 
+                  href="/data-operations-assessment"
+                  className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
+                >
+                  Assess Your PE Readiness
+                </a>
+                <a 
+                  href="/revops-roi-calculator"
+                  className="border-2 border-dataops-600 text-dataops-600 hover:bg-dataops-600 hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
+                >
+                  Calculate ROI Impact
+                </a>
+              </div>
             </div>
           </div>
           
-          {/* Right Column - CTA and Disclosure */}
-          <div className="flex flex-col space-y-6">
-            <div className="flex flex-col">
-              <Link 
-                to="/contact"
-                onClick={trackContactCTAClick}
-                className="bg-dataops-600 hover:bg-dataops-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center text-lg"
-              >
-                Get In Touch
-                <ChevronRight className="ml-2 h-5 w-5 flex-shrink-0" />
-              </Link>
-              
-              <div className="mt-4 text-sm text-gray-600 leading-relaxed">
-                <p className="font-semibold mb-2 text-gray-900">Confidential | No Risk</p>
-                <p>
-                  We'll evaluate your operations against PE portfolio standards and show you exactly 
-                  what's holding back your growth metrics. Completely free. No obligation, just honest 
-                  feedback about your investor readiness.
-                </p>
+          {/* Right column - Visual elements */}
+          <div className="space-y-8">
+            <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-lg">
+              <h4 className="text-lg font-semibold text-gray-900 mb-6">
+                Platform Transformation Results
+              </h4>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Revenue Operations Efficiency</span>
+                  <div className="flex items-center">
+                    <div className="w-24 bg-gray-200 rounded-full h-2 mr-3">
+                      <div className="bg-green-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                    </div>
+                    <span className="text-sm font-semibold text-green-600">+85%</span>
+                  </div>
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Data Quality Score</span>
+                  <div className="flex items-center">
+                    <div className="w-24 bg-gray-200 rounded-full h-2 mr-3">
+                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+                    </div>
+                    <span className="text-sm font-semibold text-blue-600">92%</span>
+                  </div>
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Process Standardization</span>
+                  <div className="flex items-center">
+                    <div className="w-24 bg-gray-200 rounded-full h-2 mr-3">
+                      <div className="bg-purple-500 h-2 rounded-full" style={{ width: '78%' }}></div>
+                    </div>
+                    <span className="text-sm font-semibold text-purple-600">+78%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <div className="inline-flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
+                ⚡ 100-Day Implementation Guarantee
               </div>
             </div>
           </div>
@@ -88,8 +96,6 @@ const HeroContentSection = React.memo(() => {
       </div>
     </section>
   );
-});
-
-HeroContentSection.displayName = 'HeroContentSection';
+};
 
 export default HeroContentSection;
