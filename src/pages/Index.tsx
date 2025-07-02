@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
-import Services from '@/components/Services';
 import Hero from '@/components/Hero';
-import BookCTA from '@/components/BookCTA';
-import Approach from '@/components/Approach';
-import ChatbotSection from '@/components/ChatbotSection';
-import MobilePerformanceMonitor from '@/components/performance/MobilePerformanceMonitor';
+import MetaHead from '@/components/seo/MetaHead';
+import ImageErrorBoundary from '@/components/ui/image-error-boundary';
+
+// Lazy imports for non-critical components
+import { 
+  LazyServices, 
+  LazyApproach, 
+  LazyBookCTA, 
+  LazyChatbotSection,
+  LazyMobilePerformanceMonitor 
+} from '@/components/lazy/LazyComponents';
+
+// Schema components (keep these normal imports as they're lightweight)
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
 import TestimonialsSchema from '@/components/seo/TestimonialsSchema';
-import MetaHead from '@/components/seo/MetaHead';
-import ImageErrorBoundary from '@/components/ui/image-error-boundary';
 
 const Index = () => {
   // Enhanced debugging for Index page initialization
@@ -21,8 +27,10 @@ const Index = () => {
   
   return (
     <SemanticLayout>
-      {/* Add mobile performance monitoring */}
-      <MobilePerformanceMonitor />
+      {/* Add mobile performance monitoring - lazy loaded */}
+      <Suspense fallback={null}>
+        <LazyMobilePerformanceMonitor />
+      </Suspense>
       
       <MetaHead
         title="PE Portfolio Operations Platform - HubSpot for Private Equity"
@@ -44,7 +52,7 @@ const Index = () => {
         }}
       />
       
-      {/* Schema markup for SEO */}
+      {/* Schema markup for SEO - lightweight, keep as normal imports */}
       <OrganizationSchema />
       <WebsiteSchema />
       <BreadcrumbSchema 
@@ -56,8 +64,8 @@ const Index = () => {
       <ProfessionalServiceSchema />
       <TestimonialsSchema />
       
-      {/* Main content sections with enhanced error boundary around Hero */}
-      <section aria-labelledby="hero-heading" className="bg-green-200">
+      {/* Critical above-the-fold content - normal import for fastest LCP */}
+      <section aria-labelledby="hero-heading">
         <ImageErrorBoundary fallback={
           <div className="min-h-[500px] bg-dataops-600 flex items-center justify-center">
             <div className="text-white text-center">
@@ -69,12 +77,15 @@ const Index = () => {
           <Hero />
         </ImageErrorBoundary>
       </section>
+
+      {/* Below-the-fold content - lazy loaded with loading placeholders */}
+      <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse" />}>
+        <section aria-label="Chatbot Services">
+          <LazyChatbotSection />
+        </section>
+      </Suspense>
       
-      <section aria-label="Chatbot Services">
-        <ChatbotSection />
-      </section>
-      
-      {/* Enhanced Assessment CTA Section */}
+      {/* Enhanced Assessment CTA Section - keep as normal component since it's important */}
       <section className="py-16 bg-gradient-to-br from-dataops-50 to-white">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
@@ -119,17 +130,24 @@ const Index = () => {
         </div>
       </section>
       
-      <section aria-label="Our Services">
-        <Services />
-      </section>
+      {/* Below-the-fold sections - lazy loaded */}
+      <Suspense fallback={<div className="h-64 bg-gray-50 animate-pulse" />}>
+        <section aria-label="Our Services">
+          <LazyServices />
+        </section>
+      </Suspense>
       
-      <section aria-label="Our Approach">
-        <Approach />
-      </section>
+      <Suspense fallback={<div className="h-64 bg-gray-50 animate-pulse" />}>
+        <section aria-label="Our Approach">
+          <LazyApproach />
+        </section>
+      </Suspense>
       
-      <section aria-label="Book a Consultation">
-        <BookCTA />
-      </section>
+      <Suspense fallback={<div className="h-32 bg-gray-50 animate-pulse" />}>
+        <section aria-label="Book a Consultation">
+          <LazyBookCTA />
+        </section>
+      </Suspense>
     </SemanticLayout>
   );
 };
