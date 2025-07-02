@@ -14,6 +14,9 @@
  */
 
 @import './styles/critical-mobile.css';
+@import './styles/critical-mobile-lcp.css';
+@import './styles/critical-desktop.css';
+@import './styles/device-detector.css';
 @import './styles/critical-hero.css';
 /* @import './styles/hero-debug.css'; -- COMMENTED OUT TO PREVENT CONFLICTS */
 @import './styles/fonts-optimized.css';

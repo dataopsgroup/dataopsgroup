@@ -5,6 +5,8 @@ import { RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import router from './routes';
 import { Toaster } from '@/components/ui/toaster';
+import MobilePerformanceMonitor from '@/components/performance/MobilePerformanceMonitor';
+import DeviceOptimizer from '@/components/performance/DeviceOptimizer';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,8 +45,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <RouterProvider router={router} />
-        <Toaster />
+        <DeviceOptimizer>
+          <MobilePerformanceMonitor />
+          <RouterProvider router={router} />
+          <Toaster />
+        </DeviceOptimizer>
       </HelmetProvider>
     </QueryClientProvider>
   );

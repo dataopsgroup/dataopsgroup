@@ -1,88 +1,74 @@
 
 import React, { useEffect } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
-/**
- * Mobile-specific performance monitoring
- * Tracks Core Web Vitals and reports mobile-specific metrics
- */
-const MobilePerformanceMonitor = () => {
+const MobilePerformanceMonitor: React.FC = () => {
+  const { isMobile, deviceType, logPerformanceMetric } = useIsMobile();
+
   useEffect(() => {
-    // Only run on mobile devices
-    const isMobile = window.innerWidth <= 768;
-    if (!isMobile) return;
+    if (typeof window === 'undefined' || !isMobile) return;
 
-    let lcpValue = 0;
-    let clsValue = 0;
-    let fidValue = 0;
-
-    // Monitor LCP (Largest Contentful Paint)
-    const lcpObserver = new PerformanceObserver((entryList) => {
-      const entries = entryList.getEntries();
-      const lastEntry = entries[entries.length - 1];
-      lcpValue = lastEntry.startTime;
-      
-      // Report to analytics
-      if (window.gtag) {
-        window.gtag('event', 'mobile_lcp', {
-          event_category: 'Mobile Performance',
-          value: Math.round(lcpValue),
-          custom_parameter_1: 'mobile_device'
-        });
-      }
-    });
-
-    // Monitor CLS (Cumulative Layout Shift)
-    const clsObserver = new PerformanceObserver((entryList) => {
-      entryList.getEntries().forEach((entry) => {
-        const layoutShift = entry as any;
-        if (!layoutShift.hadRecentInput) {
-          clsValue += layoutShift.value;
-        }
-      });
-      
-      if (window.gtag) {
-        window.gtag('event', 'mobile_cls', {
-          event_category: 'Mobile Performance',
-          value: clsValue,
-          custom_parameter_1: 'mobile_device'
-        });
-      }
-    });
-
-    // Monitor FID (First Input Delay)
-    const fidObserver = new PerformanceObserver((entryList) => {
-      entryList.getEntries().forEach((entry) => {
-        const firstInput = entry as any;
-        fidValue = firstInput.processingStart - firstInput.startTime;
-        
-        if (window.gtag) {
-          window.gtag('event', 'mobile_fid', {
-            event_category: 'Mobile Performance',
-            value: Math.round(fidValue),
-            custom_parameter_1: 'mobile_device'
+    // Mobile-specific Web Vitals tracking
+    const trackMobileLCP = () => {
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          entries.forEach((entry) => {
+            if (entry.entryType === 'largest-contentful-paint') {
+              const lcpValue = entry.startTime;
+              logPerformanceMetric('LCP', lcpValue);
+              
+              // Mobile LCP alerts
+              if (lcpValue > 2500) {
+                console.error(`🚨 MOBILE LCP CRITICAL: ${lcpValue.toFixed(0)}ms (target: <2500ms)`);
+              } else if (lcpValue > 2000) {
+                console.warn(`⚠️ MOBILE LCP WARNING: ${lcpValue.toFixed(0)}ms (target: <2000ms)`);
+              } else {
+                console.log(`✅ MOBILE LCP GOOD: ${lcpValue.toFixed(0)}ms`);
+              }
+            }
           });
-        }
-      });
-    });
+        });
 
-    // Start observing
-    try {
-      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
-      clsObserver.observe({ type: 'layout-shift', buffered: true });
-      fidObserver.observe({ type: 'first-input', buffered: true });
-    } catch (error) {
-      console.warn('Performance monitoring not supported:', error);
-    }
-
-    // Cleanup
-    return () => {
-      lcpObserver.disconnect();
-      clsObserver.disconnect();
-      fidObserver.disconnect();
+        observer.observe({ entryTypes: ['largest-contentful-paint'] });
+        
+        return () => observer.disconnect();
+      }
     };
-  }, []);
 
-  return null; // This is a monitoring component, no UI
+    // Track First Contentful Paint for mobile
+    const trackMobileFCP = () => {
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          entries.forEach((entry) => {
+            if (entry.entryType === 'paint' && entry.name === 'first-contentful-paint') {
+              const fcpValue = entry.startTime;
+              logPerformanceMetric('FCP', fcpValue);
+              
+              if (fcpValue > 1800) {
+                console.warn(`⚠️ MOBILE FCP SLOW: ${fcpValue.toFixed(0)}ms`);
+              }
+            }
+          });
+        });
+
+        observer.observe({ entryTypes: ['paint'] });
+        
+        return () => observer.disconnect();
+      }
+    };
+
+    const cleanupLCP = trackMobileLCP();
+    const cleanupFCP = trackMobileFCP();
+
+    return () => {
+      cleanupLCP?.();
+      cleanupFCP?.();
+    };
+  }, [isMobile, deviceType, logPerformanceMetric]);
+
+  return null; // This is a monitoring component with no UI
 };
 
 export default MobilePerformanceMonitor;
