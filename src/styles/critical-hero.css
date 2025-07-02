@@ -39,16 +39,18 @@
   font-weight: 700;
   margin-bottom: 1.5rem;
   color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .hero-subheading {
   font-size: 1rem;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   margin-top: 1.5rem;
   max-width: 32rem;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .hero-buttons {
@@ -111,7 +113,7 @@
     font-size: 4rem;
   }
   
-  /* Desktop background image */
+  /* Desktop background image - consultant photo */
   .hero-bg-desktop {
     display: block;
     position: absolute;
@@ -123,17 +125,32 @@
     z-index: 1;
   }
   
-  /* Desktop overlay for text readability */
+  /* Lighter desktop overlay for consultant photo visibility */
   .hero-overlay {
     display: block;
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.45) 0%, rgba(51, 65, 85, 0.35) 100%);
     z-index: 2;
   }
   
   .hero-container {
     z-index: 10;
+  }
+  
+  /* Enhanced text contrast for desktop with consultant photo */
+  .hero-content {
+    text-align: left;
+    max-width: 600px;
+    margin-left: 80px;
+  }
+  
+  .hero-headline {
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
+  }
+  
+  .hero-subheading {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
   }
 }
 
@@ -142,5 +159,9 @@
   .hero-bg-desktop {
     background-size: 120%;
     background-position: calc(100% + 50px) 30%;
+  }
+  
+  .hero-content {
+    margin-left: 120px;
   }
 }
