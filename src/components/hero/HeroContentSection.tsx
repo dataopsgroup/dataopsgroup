@@ -87,7 +87,7 @@ const HeroContentSection = () => {
             </div>
             
             <div className="text-center">
-              <div className="inline-flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-lg font-medium">
+              <div className="inline-flex items-center bg-lime-500 text-white px-4 py-2 rounded-full text-lg font-medium">
                 ⚡ 100-Day Implementation Guarantee
               </div>
             </div>
