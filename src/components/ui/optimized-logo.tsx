@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
-import { mobileLogoOptimizer, generateMobileLogoSrcSet, supportsWebP } from '@/utils/mobile-logo-optimization';
+import { useEnhancedImageOptimization } from '@/hooks/useEnhancedImageOptimization';
 
 interface OptimizedLogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -13,117 +13,81 @@ interface OptimizedLogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 /**
- * Optimized logo component with WebP conversion for mobile optimization
+ * Optimized logo component with strict size limits for fast loading and graceful fallbacks
  */
 const OptimizedLogo = ({
   src,
   alt,
-  width = 200,
-  height = 80,
+  width,
+  height,
   className,
   priority = false,
   ...props
 }: OptimizedLogoProps) => {
-  const [webPSupported, setWebPSupported] = useState<boolean | null>(null);
-  const [screenWidth, setScreenWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1024);
-  
-  // Check WebP support on mount
-  useEffect(() => {
-    supportsWebP().then(setWebPSupported);
-    
-    const handleResize = () => setScreenWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const shouldOptimizeForMobile = mobileLogoOptimizer.shouldOptimize(src);
-  
-  // Get the appropriate source based on WebP support and screen size
-  const getOptimalSrc = () => {
-    if (!shouldOptimizeForMobile || webPSupported === null) {
-      return src; // Fallback to original while checking support
-    }
-    
-    if (webPSupported) {
-      return mobileLogoOptimizer.getOptimizedSrc(src, screenWidth);
-    }
-    
-    // WebP not supported, use PNG with optimization parameters
-    if (screenWidth <= 480) {
-      return `${src}?w=120&h=48&q=85`;
-    }
-    if (screenWidth <= 768) {
-      return `${src}?w=160&h=64&q=90`;
-    }
-    return src;
-  };
-
-  // Generate srcset based on WebP support
-  const getSrcSet = () => {
-    if (!shouldOptimizeForMobile || webPSupported === null) {
-      return '';
-    }
-    
-    if (webPSupported) {
-      return generateMobileLogoSrcSet(src);
-    }
-    
-    // Fallback PNG srcset
-    return [
-      `${src}?w=120&h=48&q=85 480w`,
-      `${src}?w=160&h=64&q=90 768w`,
-      `${src}?w=200&h=80&q=95 1024w`
-    ].join(', ');
-  };
-
-  const sizes = shouldOptimizeForMobile ? mobileLogoOptimizer.getMobileSizes() : '';
+  const {
+    optimizedSrc,
+    isOptimizing,
+    error
+  } = useEnhancedImageOptimization(src, {
+    maxSizeKB: 50, // Very strict limit for logos
+    context: 'logo',
+    format: 'webp'
+  });
 
   // Enhanced error handler with fallback styling
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.warn('Logo failed to load, trying fallback');
-    const target = e.target as HTMLImageElement;
-    
-    // If WebP failed, try PNG fallback
-    if (shouldOptimizeForMobile && webPSupported && target.src.includes('.webp')) {
-      target.src = mobileLogoOptimizer.getOptimizedSrc(src.replace('.webp', '.png'), screenWidth);
-      return;
+    if (typeof console !== 'undefined') {
+      console.warn('Logo failed to load, using fallback styling');
     }
-    
-    // Ultimate fallback styling
-    target.alt = 'DataOps Group';
-    target.style.background = '#1e4f9c';
-    target.style.color = 'white';
-    target.style.display = 'flex';
-    target.style.alignItems = 'center';
-    target.style.justifyContent = 'center';
-    target.style.fontSize = '14px';
-    target.style.fontWeight = 'bold';
-    target.textContent = alt || 'DataOps Group';
+    e.currentTarget.alt = 'DataOps Group';
+    e.currentTarget.style.background = '#1e4f9c';
+    e.currentTarget.style.color = 'white';
+    e.currentTarget.style.display = 'flex';
+    e.currentTarget.style.alignItems = 'center';
+    e.currentTarget.style.justifyContent = 'center';
+    e.currentTarget.style.fontSize = '14px';
+    e.currentTarget.style.fontWeight = 'bold';
   };
 
   return (
-    <img
-      src={getOptimalSrc()}
-      srcSet={getSrcSet()}
-      sizes={sizes}
-      alt={alt}
-      width={width}
-      height={height}
-      className={cn(
-        className,
-        'max-w-full transition-opacity duration-300 object-contain'
+    <div className="relative">
+      <img
+        src={optimizedSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        className={cn(
+          className,
+          'max-w-full transition-opacity duration-300',
+          'object-contain', // Prevent compression and maintain aspect ratio
+          isOptimizing && 'opacity-70'
+        )}
+        style={{
+          aspectRatio: width && height ? `${width}/${height}` : 'auto',
+          maxHeight: '80px', // Prevent excessive height on mobile/tablet
+          objectFit: 'contain' // Ensure logo maintains proportions
+        }}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding={priority ? 'sync' : 'async'}
+        fetchPriority={priority ? 'high' : 'low'}
+        onError={handleLogoError}
+        {...props}
+      />
+      
+      {/* Minimal loading indicator for logos */}
+      {isOptimizing && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
+        </div>
       )}
-      style={{
-        aspectRatio: width && height ? `${width}/${height}` : 'auto',
-        maxHeight: '80px',
-        objectFit: 'contain'
-      }}
-      loading={priority ? 'eager' : 'lazy'}
-      decoding={priority ? 'sync' : 'async'}
-      fetchPriority={priority ? 'high' : 'low'}
-      onError={handleLogoError}
-      {...props}
-    />
+      
+      {/* Error fallback - styled text instead of error message */}
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-dataops-600 text-white text-sm font-bold rounded">
+          DataOps Group
+        </div>
+      )}
+    </div>
   );
 };
 
