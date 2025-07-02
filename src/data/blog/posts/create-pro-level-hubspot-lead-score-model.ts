@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 export const createProLevelHubSpotLeadScoreModel: BlogPost = {
@@ -8,7 +7,7 @@ export const createProLevelHubSpotLeadScoreModel: BlogPost = {
   date: "2023-12-18",
   author: "Geoff Tucker",
   category: "Tips & Tricks",
-  coverImage: "/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.png",
+  coverImage: "/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.webp",
   content: `
     <h2>Unveiling the Power of Lead Scoring in HubSpot for Beginners</h2>
     

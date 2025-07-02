@@ -1,4 +1,3 @@
-
 /**
  * Configuration for images that should preserve their original layout and sizing
  * Enhanced with Vercel optimization for large images
@@ -14,8 +13,16 @@ const LAYOUT_PRESERVING_IMAGES = new Set([
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
 ]);
 
-// The 8 flagged large images that need optimization
+// Updated to use WebP versions for optimized images
 const LARGE_IMAGES = new Set([
+  // Converted to WebP - blog cover images
+  '/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.webp',
+  '/lovable-uploads/69c5133c-e0a9-434d-9801-3496863a09d1.webp', 
+  '/lovable-uploads/66cb018a-41fa-4046-a81f-5c632b199583.webp',
+  // Original hero images (kept as PNG for layout preservation)
+  '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png',
+  '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
+  // Other optimized images
   '/lovable-uploads/032775c3-24cb-46f6-af01-decc4e9fb38e.png',
   '/lovable-uploads/07c7808f-3f42-4878-9945-9a0ef4b7e0e4.png',
   '/lovable-uploads/0b2e6693-839e-467e-8bea-d2458aa3e21f.png',
@@ -24,8 +31,6 @@ const LARGE_IMAGES = new Set([
   '/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png',
   '/lovable-uploads/12e641ec-9075-4921-80ad-5c42ee2a35de.png',
   '/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png',
-  '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png',
-  '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
 ]);
 
 /**

@@ -17,7 +17,7 @@ interface VercelOptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageEle
 }
 
 /**
- * Vercel-optimized image component with automatic compression and format conversion
+ * Vercel-optimized image component with automatic compression and WebP format conversion
  */
 const VercelOptimizedImage = ({
   src,
@@ -28,7 +28,7 @@ const VercelOptimizedImage = ({
   priority = false,
   context = 'content',
   quality = 80,
-  format = 'auto',
+  format = 'webp', // Default to WebP for all images
   ...props
 }: VercelOptimizedImageProps) => {
   // Check if image needs optimization
@@ -46,7 +46,7 @@ const VercelOptimizedImage = ({
     });
     
     finalSrc = optimizationResult.optimizedUrl;
-    compressionInfo = `Vercel optimized: -${optimizationResult.compressionRatio}%`;
+    compressionInfo = `WebP optimized: -${optimizationResult.compressionRatio}%`;
   }
 
   const imageLoading = priority ? 'eager' : 'lazy';
