@@ -6,10 +6,10 @@ const MobilePerformanceMonitor: React.FC = () => {
   const { isMobile, deviceType, logPerformanceMetric } = useIsMobile();
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !isMobile) return;
+    if (typeof window === 'undefined') return;
 
-    // Mobile-specific Web Vitals tracking
-    const trackMobileLCP = () => {
+    // Device-aware Web Vitals tracking
+    const trackLCP = () => {
       if ('PerformanceObserver' in window) {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
@@ -18,13 +18,30 @@ const MobilePerformanceMonitor: React.FC = () => {
               const lcpValue = entry.startTime;
               logPerformanceMetric('LCP', lcpValue);
               
-              // Mobile LCP alerts
-              if (lcpValue > 2500) {
-                console.error(`🚨 MOBILE LCP CRITICAL: ${lcpValue.toFixed(0)}ms (target: <2500ms)`);
-              } else if (lcpValue > 2000) {
-                console.warn(`⚠️ MOBILE LCP WARNING: ${lcpValue.toFixed(0)}ms (target: <2000ms)`);
+              // Device-specific LCP alerts
+              if (deviceType === 'mobile') {
+                if (lcpValue > 2500) {
+                  console.error(`🚨 MOBILE LCP CRITICAL: ${lcpValue.toFixed(0)}ms (target: <2500ms)`);
+                } else if (lcpValue > 2000) {
+                  console.warn(`⚠️ MOBILE LCP WARNING: ${lcpValue.toFixed(0)}ms (target: <2000ms)`);
+                } else {
+                  console.log(`✅ MOBILE LCP GOOD: ${lcpValue.toFixed(0)}ms`);
+                }
+              } else if (deviceType === 'desktop') {
+                if (lcpValue > 2000) {
+                  console.error(`🚨 DESKTOP LCP CRITICAL: ${lcpValue.toFixed(0)}ms (target: <2000ms)`);
+                } else if (lcpValue > 1500) {
+                  console.warn(`⚠️ DESKTOP LCP WARNING: ${lcpValue.toFixed(0)}ms (target: <1500ms)`);
+                } else {
+                  console.log(`✅ DESKTOP LCP GOOD: ${lcpValue.toFixed(0)}ms`);
+                }
               } else {
-                console.log(`✅ MOBILE LCP GOOD: ${lcpValue.toFixed(0)}ms`);
+                // Tablet
+                if (lcpValue > 2500) {
+                  console.error(`🚨 TABLET LCP CRITICAL: ${lcpValue.toFixed(0)}ms (target: <2500ms)`);
+                } else {
+                  console.log(`✅ TABLET LCP GOOD: ${lcpValue.toFixed(0)}ms`);
+                }
               }
             }
           });
@@ -36,8 +53,8 @@ const MobilePerformanceMonitor: React.FC = () => {
       }
     };
 
-    // Track First Contentful Paint for mobile
-    const trackMobileFCP = () => {
+    // Track First Contentful Paint for all devices
+    const trackFCP = () => {
       if ('PerformanceObserver' in window) {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
@@ -46,8 +63,9 @@ const MobilePerformanceMonitor: React.FC = () => {
               const fcpValue = entry.startTime;
               logPerformanceMetric('FCP', fcpValue);
               
-              if (fcpValue > 1800) {
-                console.warn(`⚠️ MOBILE FCP SLOW: ${fcpValue.toFixed(0)}ms`);
+              const threshold = deviceType === 'mobile' ? 1800 : 1500;
+              if (fcpValue > threshold) {
+                console.warn(`⚠️ ${deviceType.toUpperCase()} FCP SLOW: ${fcpValue.toFixed(0)}ms`);
               }
             }
           });
@@ -59,14 +77,14 @@ const MobilePerformanceMonitor: React.FC = () => {
       }
     };
 
-    const cleanupLCP = trackMobileLCP();
-    const cleanupFCP = trackMobileFCP();
+    const cleanupLCP = trackLCP();
+    const cleanupFCP = trackFCP();
 
     return () => {
       cleanupLCP?.();
       cleanupFCP?.();
     };
-  }, [isMobile, deviceType, logPerformanceMetric]);
+  }, [deviceType, logPerformanceMetric]);
 
   return null; // This is a monitoring component with no UI
 };

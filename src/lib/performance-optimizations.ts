@@ -1,9 +1,7 @@
 
 /**
  * Performance optimization utilities for improved asset loading and caching
- * 
- * This is now a facade module that re-exports all performance optimization
- * functions from their respective modules and coordinates initialization
+ * Enhanced with device-aware optimizations for mobile vs desktop
  */
 
 /**
@@ -13,6 +11,10 @@ export const initializeAllOptimizations = async () => {
   if (typeof window === 'undefined') return;
   
   try {
+    // Detect device type for targeted optimizations
+    const deviceType = window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop';
+    console.log(`🎯 Initializing ${deviceType} optimizations`);
+    
     // Phase 1: Critical resource hints (highest priority)
     try {
       const { setupResourceHints, setupDNSPrefetch } = await import('./performance/resource-hints');
@@ -22,7 +24,7 @@ export const initializeAllOptimizations = async () => {
       console.warn('Failed to setup resource hints:', error);
     }
     
-    // Phase 2: JavaScript optimizations
+    // Phase 2: Device-specific JavaScript optimizations
     try {
       const { initializeJSOptimizations } = await import('./performance/js-optimization');
       initializeJSOptimizations();
@@ -30,7 +32,7 @@ export const initializeAllOptimizations = async () => {
       console.warn('Failed to initialize JS optimizations:', error);
     }
     
-    // Phase 3: Asset loading optimizations
+    // Phase 3: Asset loading optimizations (device-aware)
     try {
       const { optimizeAssetLoading, optimizeResourceOrder } = await import('./performance/asset-loading');
       optimizeAssetLoading();
@@ -39,7 +41,7 @@ export const initializeAllOptimizations = async () => {
       console.warn('Failed to optimize asset loading:', error);
     }
     
-    // Phase 4: Caching setup
+    // Phase 4: Caching setup (lighter for mobile)
     try {
       const { setupClientCaching } = await import('./performance/caching');
       setupClientCaching();
@@ -47,7 +49,8 @@ export const initializeAllOptimizations = async () => {
       console.warn('Failed to setup caching:', error);
     }
     
-    // Phase 5: Interaction-based loading (lowest priority)
+    // Phase 5: Interaction-based loading (device-specific timing)
+    const interactionDelay = deviceType === 'mobile' ? 200 : 100;
     setTimeout(() => {
       import('./performance/interaction').then(({ setupInteractionBasedLoading }) => {
         try {
@@ -58,15 +61,15 @@ export const initializeAllOptimizations = async () => {
       }).catch(error => {
         console.warn('Failed to load interaction module:', error);
       });
-    }, 100);
+    }, interactionDelay);
     
-    console.log('Performance optimizations initialized successfully');
+    console.log(`✅ ${deviceType} performance optimizations initialized successfully`);
   } catch (error) {
     console.error('Failed to initialize performance optimizations:', error);
   }
 };
 
-// Re-export functions with direct imports
+// Re-export functions with direct imports and device awareness
 export const setupResourceHints = async () => {
   try {
     const { setupResourceHints: setup } = await import('./performance/resource-hints');

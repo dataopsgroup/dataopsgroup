@@ -19,14 +19,20 @@ const queryClient = new QueryClient({
 
 function App() {
   useEffect(() => {
-    // Simple initialization with error handling
+    // Enhanced initialization with device-aware performance optimization
     try {
       console.log('🚀 App initialized at:', new Date().toISOString());
       console.log('🛣️ Router configuration loaded successfully');
       
-      // Initialize performance optimizations with error handling
+      // Initialize device-aware performance optimizations
       if (typeof window !== 'undefined') {
-        // Delay performance optimizations to not interfere with initial render
+        // Detect device type for targeted optimization timing
+        const deviceType = window.innerWidth < 768 ? 'mobile' : window.innerWidth < 1024 ? 'tablet' : 'desktop';
+        const optimizationDelay = deviceType === 'mobile' ? 1500 : deviceType === 'tablet' ? 1200 : 1000;
+        
+        console.log(`📱 Device detected: ${deviceType}, optimization delay: ${optimizationDelay}ms`);
+        
+        // Device-specific performance optimization timing
         setTimeout(() => {
           import('./lib/performance-optimizations').then(({ initializeAllOptimizations }) => {
             initializeAllOptimizations().catch(error => {
@@ -35,7 +41,7 @@ function App() {
           }).catch(error => {
             console.warn('Failed to load performance optimizations:', error);
           });
-        }, 1000); // Increased delay to ensure router is fully ready
+        }, optimizationDelay);
       }
     } catch (error) {
       console.error('App initialization error:', error);
