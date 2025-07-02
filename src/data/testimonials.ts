@@ -50,7 +50,7 @@ export const testimonials: Testimonial[] = [
       name: "John L.",
       title: "COO",
       company: "Professional Services",
-      industry: "Professional Services"
+      industry: "Healthcare SaaS App"
     },
     rating: 5,
     date: "2023-08-10",
