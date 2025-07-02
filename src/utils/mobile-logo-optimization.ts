@@ -1,11 +1,13 @@
+
 /**
- * Mobile-specific logo optimization utilities
+ * Mobile-specific logo optimization utilities with WebP conversion
  */
 
 interface MobileLogoOptimization {
   shouldOptimize: (src: string) => boolean;
   getOptimizedSrc: (src: string, screenWidth: number) => string;
   getMobileSizes: () => string;
+  getWebPSrc: (src: string) => string;
 }
 
 export const mobileLogoOptimizer: MobileLogoOptimization = {
@@ -18,25 +20,40 @@ export const mobileLogoOptimizer: MobileLogoOptimization = {
   },
 
   /**
-   * Get mobile-optimized logo source based on screen width
+   * Convert PNG logo to WebP format for better compression
+   */
+  getWebPSrc: (src: string): string => {
+    if (!mobileLogoOptimizer.shouldOptimize(src)) {
+      return src;
+    }
+    
+    // Convert the PNG to WebP by changing the file extension
+    // This assumes the WebP version exists or will be served by the server
+    return src.replace('.png', '.webp');
+  },
+
+  /**
+   * Get mobile-optimized logo source with WebP conversion and sizing
    */
   getOptimizedSrc: (src: string, screenWidth: number): string => {
     if (!mobileLogoOptimizer.shouldOptimize(src)) {
       return src;
     }
 
-    // Mobile optimization - target <5KB
+    // First convert to WebP format
+    const webpSrc = mobileLogoOptimizer.getWebPSrc(src);
+    
+    // Then add mobile-specific optimization parameters
     if (screenWidth <= 480) {
-      return `${src}?w=120&h=48&q=80&fm=webp`; // Very small for mobile
+      return `${webpSrc}?w=120&h=48&q=75&fm=webp`; // Very small for mobile
     }
     
-    // Tablet optimization
     if (screenWidth <= 768) {
-      return `${src}?w=160&h=64&q=85&fm=webp`; // Medium for tablet
+      return `${webpSrc}?w=160&h=64&q=80&fm=webp`; // Medium for tablet
     }
     
-    // Desktop - keep original quality
-    return `${src}?w=200&h=80&q=95&fm=webp`;
+    // Desktop - use WebP with high quality
+    return `${webpSrc}?w=200&h=80&q=90&fm=webp`;
   },
 
   /**
@@ -48,16 +65,31 @@ export const mobileLogoOptimizer: MobileLogoOptimization = {
 };
 
 /**
- * Generate mobile-optimized srcset for logos
+ * Generate mobile-optimized srcset with WebP format
  */
 export const generateMobileLogoSrcSet = (src: string): string => {
   if (!mobileLogoOptimizer.shouldOptimize(src)) {
     return '';
   }
 
+  const webpSrc = mobileLogoOptimizer.getWebPSrc(src);
+  
   return [
-    `${src}?w=120&h=48&q=80&fm=webp 480w`,
-    `${src}?w=160&h=64&q=85&fm=webp 768w`, 
-    `${src}?w=200&h=80&q=95&fm=webp 1024w`
+    `${webpSrc}?w=120&h=48&q=75&fm=webp 480w`,
+    `${webpSrc}?w=160&h=64&q=80&fm=webp 768w`, 
+    `${webpSrc}?w=200&h=80&q=90&fm=webp 1024w`
   ].join(', ');
+};
+
+/**
+ * Check if WebP is supported by the browser
+ */
+export const supportsWebP = (): Promise<boolean> => {
+  return new Promise((resolve) => {
+    const webP = new Image();
+    webP.onload = webP.onerror = () => {
+      resolve(webP.height === 2);
+    };
+    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+  });
 };

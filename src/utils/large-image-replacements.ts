@@ -22,6 +22,8 @@ const LARGE_IMAGES = new Set([
   // Original hero images (kept as PNG for layout preservation)
   '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png',
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
+  // DataOps Group logo WebP version for mobile optimization
+  '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp',
   // Large images identified by Ahrefs - converting to WebP
   '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.webp', // converted from PNG
   '/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp', // converted from PNG
@@ -40,6 +42,8 @@ const LARGE_IMAGES = new Set([
 
 // Map PNG to WebP versions for automatic conversion
 const PNG_TO_WEBP_MAP = new Map([
+  // Add DataOps Group logo conversion for mobile optimization
+  ['/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp'],
   ['/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.png', '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.webp'],
   ['/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png', '/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp'],
   ['/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png', '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.webp'],
