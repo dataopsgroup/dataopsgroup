@@ -126,6 +126,7 @@
 @media (min-width: 1024px) {
   .hero-section {
     min-height: 60vh;
+    padding-top: 120px; /* Push content below navbar */
   }
   
   .hero-headline {
@@ -136,10 +137,7 @@
   .hero-bg-desktop {
     display: block;
     position: absolute;
-    top: 100px; /* Start below navbar to prevent bleeding */
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0; /* Cover full hero area including behind navbar */
     background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
     background-size: cover;
     background-position: center center;
