@@ -137,7 +137,10 @@
   .hero-bg-desktop {
     display: block;
     position: absolute;
-    inset: 0; /* Cover full hero area including behind navbar */
+    top: 112px; /* Start below navbar to prevent bleeding */
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
     background-size: cover;
     background-position: center center;
