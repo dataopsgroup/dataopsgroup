@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +8,7 @@ interface LCPElementAnalysisProps {
   metrics: WebVitalMetric[];
 }
 
-export const LCPElementAnalysis: React.FC<LCPElementAnalysisProps> = ({ metrics }) => {
+const LCPElementAnalysis: React.FC<LCPElementAnalysisProps> = ({ metrics }) => {
   // Filter only LCP metrics
   const lcpMetrics = metrics.filter(metric => metric.name === 'LCP');
   
@@ -128,3 +127,5 @@ export const LCPElementAnalysis: React.FC<LCPElementAnalysisProps> = ({ metrics 
     </Card>
   );
 };
+
+export default LCPElementAnalysis;

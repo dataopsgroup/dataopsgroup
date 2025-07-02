@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,7 +8,7 @@ interface BlockingTimeAnalysisProps {
   metrics: WebVitalMetric[];
 }
 
-export const BlockingTimeAnalysis: React.FC<BlockingTimeAnalysisProps> = ({ metrics }) => {
+const BlockingTimeAnalysis: React.FC<BlockingTimeAnalysisProps> = ({ metrics }) => {
   // Filter FID and INP metrics which relate to blocking time
   const interactionMetrics = metrics.filter(metric => 
     metric.name === 'FID' || metric.name === 'INP'
@@ -160,3 +159,5 @@ export const BlockingTimeAnalysis: React.FC<BlockingTimeAnalysisProps> = ({ metr
     </Card>
   );
 };
+
+export default BlockingTimeAnalysis;

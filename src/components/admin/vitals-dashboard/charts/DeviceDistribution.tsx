@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
@@ -8,7 +7,7 @@ interface DeviceDistributionProps {
   metrics: WebVitalMetric[];
 }
 
-export const DeviceDistribution: React.FC<DeviceDistributionProps> = ({ metrics }) => {
+const DeviceDistribution: React.FC<DeviceDistributionProps> = ({ metrics }) => {
   // Device category distribution
   const getDeviceDistribution = () => {
     const distribution: Record<string, number> = {};
@@ -57,3 +56,5 @@ export const DeviceDistribution: React.FC<DeviceDistributionProps> = ({ metrics 
     </Card>
   );
 };
+
+export default DeviceDistribution;
