@@ -8,7 +8,7 @@ export const customerChurnBlindspot: BlogPost = {
   date: "2025-04-16",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/ff953630-432d-46db-998e-cc20409e46d1.png",
+  coverImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp", // Updated to WebP
   content: `
     <p>"Our churn rate is 15%." Ouch.</p>
     

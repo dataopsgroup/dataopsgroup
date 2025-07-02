@@ -8,7 +8,7 @@ export const customerSegmentationMistakeICP: BlogPost = {
   date: "2025-04-07",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png",
+  coverImage: "/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.webp", // Updated to WebP
   content: `
     <p>"Who's your ideal customer?"</p>
     

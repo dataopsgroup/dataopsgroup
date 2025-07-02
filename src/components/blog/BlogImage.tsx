@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { useEnhancedImageOptimization } from '@/hooks/useEnhancedImageOptimization';
+import { getOptimizedImageSrc, type ImageContext } from '@/utils/large-image-replacements';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 interface BlogImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -17,7 +17,7 @@ interface BlogImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 /**
- * Optimized blog image component with automatic size limits and compression
+ * Optimized blog image component with automatic WebP conversion and compression
  */
 const BlogImage = ({
   src,
@@ -31,64 +31,56 @@ const BlogImage = ({
   showOptimizationInfo = false,
   ...props
 }: BlogImageProps) => {
-  const {
-    optimizedSrc,
-    isOptimizing,
-    compressionRatio,
-    error,
-    needsOptimization
-  } = useEnhancedImageOptimization(src, {
-    maxSizeKB: context === 'cover' ? 200 : context === 'thumbnail' ? 100 : 300,
-    context: context === 'cover' ? 'blog-cover' : context,
-    format: 'webp'
-  });
-
+  // Convert context to ImageContext type and get optimized source
+  const imageContext: ImageContext = context === 'cover' ? 'blog-cover' : context as ImageContext;
+  const optimizedSrc = getOptimizedImageSrc(src, imageContext);
+  
   const imageLoading = priority ? 'eager' : 'lazy';
   const imageDecoding = priority ? 'sync' : 'async';
+  
+  // Check if optimization was applied
+  const wasOptimized = optimizedSrc !== src;
 
   const imageElement = (
     <div className="relative">
-      <img
-        src={optimizedSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        className={cn(
-          className,
-          'max-w-full transition-opacity duration-300',
-          isOptimizing && 'opacity-80'
+      <picture>
+        {/* WebP source for modern browsers */}
+        {wasOptimized && (
+          <source 
+            srcSet={optimizedSrc} 
+            type="image/webp" 
+          />
         )}
-        loading={imageLoading}
-        decoding={imageDecoding}
-        fetchPriority={priority ? 'high' : 'low'}
-        {...props}
-      />
+        
+        {/* Main image element */}
+        <img
+          src={optimizedSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          className={cn(
+            className,
+            'max-w-full transition-opacity duration-300'
+          )}
+          loading={imageLoading}
+          decoding={imageDecoding}
+          fetchPriority={priority ? 'high' : 'low'}
+          onError={(e) => {
+            // Fallback to original if optimized version fails
+            const target = e.target as HTMLImageElement;
+            if (target.src !== src && wasOptimized) {
+              console.warn(`Optimized image failed for ${src}, falling back to original`);
+              target.src = src;
+            }
+          }}
+          {...props}
+        />
+      </picture>
       
-      {/* Loading indicator */}
-      {isOptimizing && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100/50">
-          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-        </div>
-      )}
-      
-      {/* Error state */}
-      {error && (
-        <div className="absolute top-2 right-2 bg-red-100 text-red-700 text-xs px-2 py-1 rounded">
-          Failed to optimize
-        </div>
-      )}
-      
-      {/* Size warning for large images */}
-      {needsOptimization && compressionRatio < 10 && process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-2 left-2 bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">
-          Large image detected
-        </div>
-      )}
-      
-      {/* Optimization success indicator */}
-      {showOptimizationInfo && compressionRatio > 10 && (
+      {/* Development optimization indicator */}
+      {wasOptimized && showOptimizationInfo && process.env.NODE_ENV === 'development' && (
         <div className="absolute bottom-2 right-2 bg-green-100 text-green-700 text-xs px-2 py-1 rounded">
-          -{compressionRatio.toFixed(0)}%
+          WebP Optimized
         </div>
       )}
     </div>

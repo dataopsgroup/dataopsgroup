@@ -13,7 +13,7 @@ const LAYOUT_PRESERVING_IMAGES = new Set([
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
 ]);
 
-// Updated to use WebP versions for optimized images
+// Updated to include the large PNG images that need WebP conversion
 const LARGE_IMAGES = new Set([
   // Converted to WebP - blog cover images
   '/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.webp',
@@ -22,15 +22,29 @@ const LARGE_IMAGES = new Set([
   // Original hero images (kept as PNG for layout preservation)
   '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png',
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
+  // Large images identified by Ahrefs - converting to WebP
+  '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.webp', // converted from PNG
+  '/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp', // converted from PNG
+  '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.webp', // converted from PNG
+  '/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.webp', // converted from PNG
+  '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp', // converted from PNG
   // Other optimized images
   '/lovable-uploads/032775c3-24cb-46f6-af01-decc4e9fb38e.png',
   '/lovable-uploads/07c7808f-3f42-4878-9945-9a0ef4b7e0e4.png',
   '/lovable-uploads/0b2e6693-839e-467e-8bea-d2458aa3e21f.png',
   '/lovable-uploads/0f49143a-7600-4926-8433-8f23c88cefa4.png',
-  '/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.png',
   '/lovable-uploads/1253bf24-1a66-4b00-8820-9eef25ca0db1.png',
   '/lovable-uploads/12e641ec-9075-4921-80ad-5c42ee2a35de.png',
   '/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png',
+]);
+
+// Map PNG to WebP versions for automatic conversion
+const PNG_TO_WEBP_MAP = new Map([
+  ['/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.png', '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.webp'],
+  ['/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png', '/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp'],
+  ['/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png', '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.webp'],
+  ['/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.png', '/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.webp'],
+  ['/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png', '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp'],
 ]);
 
 /**
@@ -44,14 +58,24 @@ export const shouldPreserveLayout = (src: string): boolean => {
  * Check if an image is a known large image
  */
 export const isLargeImage = (src: string): boolean => {
-  return LARGE_IMAGES.has(src) || vercelImageOptimizer.shouldOptimize(src);
+  return LARGE_IMAGES.has(src) || PNG_TO_WEBP_MAP.has(src) || vercelImageOptimizer.shouldOptimize(src);
 };
 
 /**
- * Get optimized image source using Vercel optimization
+ * Get optimized image source using Vercel optimization with automatic PNG to WebP conversion
  */
 export const getOptimizedImageSrc = (src: string, context: ImageContext = 'content'): string => {
-  if (!src || !isLargeImage(src)) {
+  if (!src) return src;
+
+  // First check if this PNG has a WebP equivalent
+  if (PNG_TO_WEBP_MAP.has(src)) {
+    const webpVersion = PNG_TO_WEBP_MAP.get(src)!;
+    console.log(`🖼️ Converting PNG to WebP: ${src} → ${webpVersion}`);
+    return webpVersion;
+  }
+
+  // If it's already a large image, apply Vercel optimization
+  if (!isLargeImage(src)) {
     return src;
   }
 
