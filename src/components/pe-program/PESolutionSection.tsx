@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Target, Clock, TrendingUp } from 'lucide-react';
+
 const PESolutionSection = () => {
   const solutions = [{
     icon: Target,
@@ -16,8 +18,10 @@ const PESolutionSection = () => {
     title: "Measurable Results",
     description: "Documented efficiency gains and EBITDA impact analysis"
   }];
+  
   const benefits = ["Unified data architecture across all business functions", "Automated workflows that eliminate manual bottlenecks", "Real-time visibility into operational performance", "Scalable systems that support aggressive growth targets", "Team training and knowledge transfer for sustainability"];
-  return <section className="py-16 md:py-24 bg-white">
+  
+  return <section className="pt-16 md:pt-24 pb-0 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -58,4 +62,5 @@ const PESolutionSection = () => {
       </div>
     </section>;
 };
+
 export default PESolutionSection;
