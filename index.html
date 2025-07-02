@@ -48,10 +48,21 @@
         color: white; 
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
       }
+      .hero-text-background {
+        position: absolute;
+        top: -2rem;
+        left: -2rem;
+        right: -2rem;
+        bottom: -2rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 1rem;
+        backdrop-filter: blur(5px);
+        z-index: -1;
+      }
       
       /* Desktop-only styles with consultant photo */
       @media (min-width: 1024px) { 
-        .hero-section { min-height: 80vh; }
+        .hero-section { min-height: 60vh; }
         .hero-headline { font-size: 4rem; }
         .hero-bg-desktop { 
           display: block; 
@@ -59,23 +70,23 @@
           inset: 0; 
           background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png'); 
           background-size: cover; 
-          background-position: center right; 
+          background-position: center center; 
           z-index: 1; 
         }
-        .hero-overlay { 
-          display: block; 
-          position: absolute; 
-          inset: 0; 
-          background: linear-gradient(135deg, rgba(30, 41, 59, 0.45) 0%, rgba(51, 65, 85, 0.35) 100%); 
-          z-index: 2; 
-        }
         .hero-content { 
-          text-align: left; 
-          max-width: 600px; 
-          margin-left: 80px; 
+          text-align: center; 
+          max-width: none; 
+          margin-left: auto;
+          margin-right: auto;
         }
         .hero-headline { 
           text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9); 
+        }
+        .hero-text-background {
+          top: -3rem;
+          left: -3rem;
+          right: -3rem;
+          bottom: -3rem;
         }
       }
       
