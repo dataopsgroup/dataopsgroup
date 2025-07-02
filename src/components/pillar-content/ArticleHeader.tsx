@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import ShareButtons from '@/components/ui/ShareButtons';
@@ -87,8 +88,6 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
           })}
         </script>
       </Helmet>
-
-      <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-r from-yellow-200/10 to-transparent pointer-events-none"></div>
 
       <div className="relative z-10">
         <div className="flex items-center gap-4 mb-6 flex-wrap">
