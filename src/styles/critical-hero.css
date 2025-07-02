@@ -21,8 +21,8 @@
 .hero-section {
   min-height: 40vh; /* Reduced from 85vh to 40vh */
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  /* Hero background image - WebP optimized version, visible on all screen sizes */
-  background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp');
+  /* Hero background image - use PNG as primary, WebP as fallback when available */
+  background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -33,6 +33,27 @@
   padding: 80px 16px 20px; /* Reduced padding to maintain 40vh height */
   position: relative;
   overflow: hidden;
+  z-index: 1; /* Ensure background layer is properly positioned */
+}
+
+/* Add pseudo-element for WebP optimization when available */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+/* Fallback for browsers that don't support WebP */
+.no-webp .hero-section::before {
+  background-image: none;
 }
 
 .hero-container {
