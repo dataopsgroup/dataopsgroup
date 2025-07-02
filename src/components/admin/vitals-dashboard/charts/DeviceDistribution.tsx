@@ -1,6 +1,15 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import { 
+  ResponsiveContainer, 
+  PieChart, 
+  Pie, 
+  Cell, 
+  Tooltip, 
+  Legend,
+  LazyChartWrapper
+} from '@/components/charts/LazyChartLoader';
 import { WebVitalMetric } from '@/utils/performance/types';
 
 interface DeviceDistributionProps {
@@ -32,26 +41,28 @@ const DeviceDistribution: React.FC<DeviceDistributionProps> = ({ metrics }) => {
         <CardTitle>Device Distribution</CardTitle>
       </CardHeader>
       <CardContent>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={getDeviceDistribution()}
-              cx="50%"
-              cy="50%"
-              labelLine={false}
-              outerRadius={80}
-              fill="#8884d8"
-              dataKey="value"
-              label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-            >
-              {getDeviceDistribution().map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip formatter={(value) => [`${value} measurements`, 'Count']} />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
+        <LazyChartWrapper height="h-[300px]">
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={getDeviceDistribution()}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+              >
+                {getDeviceDistribution().map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip formatter={(value) => [`${value} measurements`, 'Count']} />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </LazyChartWrapper>
       </CardContent>
     </Card>
   );

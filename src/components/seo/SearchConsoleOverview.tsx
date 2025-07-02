@@ -1,9 +1,20 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { 
+  ResponsiveContainer, 
+  LineChart, 
+  Line, 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  Legend,
+  LazyChartWrapper
+} from '@/components/charts/LazyChartLoader';
 
 // Mock data for demonstration purposes
 // This would be replaced with actual data from the Search Console API
@@ -94,7 +105,7 @@ const SearchConsoleOverview: React.FC = () => {
             <CardDescription>Clicks, impressions, and average position</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-80">
+            <LazyChartWrapper height="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                   data={mockPerformanceData}
@@ -116,7 +127,7 @@ const SearchConsoleOverview: React.FC = () => {
                   <Line yAxisId="right" type="monotone" dataKey="position" stroke="#ff7300" activeDot={{ r: 8 }} />
                 </LineChart>
               </ResponsiveContainer>
-            </div>
+            </LazyChartWrapper>
           </CardContent>
         </Card>
 
@@ -126,7 +137,7 @@ const SearchConsoleOverview: React.FC = () => {
             <CardDescription>Performance over time</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-80">
+            <LazyChartWrapper height="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={mockPerformanceData}
@@ -145,7 +156,7 @@ const SearchConsoleOverview: React.FC = () => {
                   <Bar dataKey="ctr" fill="#8884d8" name="CTR (%)" />
                 </BarChart>
               </ResponsiveContainer>
-            </div>
+            </LazyChartWrapper>
           </CardContent>
         </Card>
       </div>

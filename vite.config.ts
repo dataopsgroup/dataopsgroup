@@ -38,36 +38,45 @@ export default defineConfig(({ mode }) => ({
           // Core React - highest priority
           'react-vendor': ['react', 'react-dom'],
           
-          // Router - needed early
+          // Router - needed for navigation
           'router': ['react-router-dom'],
           
-          // Essential UI components only
+          // Essential UI only - critical components
           'ui-core': [
             '@radix-ui/react-dialog', 
-            '@radix-ui/react-tooltip'
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-select'
           ],
           
-          // Charts - simplified to avoid import issues
-          'charts': ['recharts'],
+          // Charts - LAZY LOAD ONLY (removed from main bundle)
+          // This prevents charts from loading on initial page load
+          'charts-lazy': ['recharts'],
           
-          // Forms - lazy load
+          // Forms - defer until needed
           'forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
           
-          // Schema components - lazy load
-          'schema': [
+          // Analytics tools - defer until admin routes
+          'analytics': [
             '@tanstack/react-query'
           ],
           
-          // Less critical UI components
+          // Extended UI - load when needed
           'ui-extended': [
             '@radix-ui/react-accordion',
             '@radix-ui/react-tabs',
-            '@radix-ui/react-select',
             '@radix-ui/react-scroll-area'
           ],
           
-          // Utilities
+          // Utilities - defer
           'utils': ['date-fns', 'lucide-react']
+        },
+        // Optimize chunk loading strategy
+        chunkFileNames: (chunkInfo) => {
+          // Charts should be loaded only when requested
+          if (chunkInfo.name === 'charts-lazy') {
+            return 'assets/charts-[hash].js';
+          }
+          return 'assets/[name]-[hash].js';
         },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name?.split('.') || [];
