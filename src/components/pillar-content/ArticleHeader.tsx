@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import ShareButtons from '@/components/ui/ShareButtons';
@@ -12,7 +13,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   subtitle
 }) => {
   return (
-    <div className="bg-gradient-to-br from-dataops-950 to-dataops-800 text-white p-12 rounded-2xl mb-12 relative overflow-hidden" style={{
+    <div className="text-white p-12 rounded-2xl mb-12 relative overflow-hidden" style={{
       background: 'linear-gradient(135deg, #0F172A 0%, #0F4786 100%)'
     }}>
       <Helmet>
