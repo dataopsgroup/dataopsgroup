@@ -1,15 +1,16 @@
 
 
+
 /* Fresh Hero CSS - Clean Implementation with Navbar Isolation */
 
 /* Mobile-first base styles */
 .hero-section {
-  min-height: 85vh; /* Reduced by 15% from 100vh */
+  min-height: 40vh; /* Reduced from 85vh to 40vh */
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 140px 16px 60px; /* Increased top padding to clear navbar content */
+  padding: 120px 16px 20px; /* Optimized padding for 40vh section */
   position: relative;
   overflow: hidden;
 }
@@ -104,11 +105,11 @@
 /* Desktop styles - add background image with proper containment */
 @media (min-width: 1024px) {
   .hero-section {
-    min-height: 85vh; /* Reduced by 15% */
-    /* Position background image 1px below navbar (112px + 1px = 113px) */
+    min-height: 40vh; /* Reduced from 85vh to 40vh */
+    /* Position background image at center instead of 113px offset */
     background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
     background-size: cover;
-    background-position: center 113px; /* Precisely positioned below navbar */
+    background-position: center; /* Changed from center 113px to center */
     background-repeat: no-repeat;
     background-attachment: scroll;
     /* Keep gradient as fallback */
@@ -134,7 +135,8 @@
 @media (min-width: 1440px) {
   .hero-section {
     background-size: cover;
-    background-position: center 113px; /* Maintain precise positioning */
+    background-position: center; /* Changed from center 113px to center */
   }
 }
+
 
