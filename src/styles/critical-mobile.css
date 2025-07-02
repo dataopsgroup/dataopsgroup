@@ -50,6 +50,29 @@ body {
     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
     padding: 80px 16px 60px;
   }
+  
+  /* Critical mobile text optimization - targets the LCP element */
+  .text-xl.leading-relaxed.text-gray-700,
+  p.text-xl.leading-relaxed.text-gray-700 {
+    font-size: 1.125rem !important;
+    line-height: 1.5 !important;
+    color: #374151 !important;
+    font-family: var(--font-inter) !important;
+    font-display: swap !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    contain: layout style !important;
+    will-change: auto !important;
+    transform: translateZ(0) !important;
+  }
+  
+  /* Preload critical text styles for mobile */
+  .hero-content p,
+  .hero-content .text-xl {
+    font-family: var(--font-inter) !important;
+    font-display: swap !important;
+    contain: layout style !important;
+  }
 }
 
 /* Essential button styles for mobile */
@@ -75,4 +98,29 @@ img {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
+}
+
+/* Mobile-specific performance optimizations */
+@media (max-width: 768px) {
+  /* Force GPU acceleration for critical elements */
+  .hero-content,
+  .text-xl,
+  p.text-xl {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Optimize font rendering for mobile */
+  * {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Critical content containment */
+  .hero-section,
+  .hero-content {
+    contain: layout style paint;
+  }
 }
