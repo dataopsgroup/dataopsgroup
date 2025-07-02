@@ -3,14 +3,18 @@
 
 /* Mobile-first base styles */
 .hero-section {
-  min-height: 85vh; /* Restored from 40vh to 85vh */
+  min-height: 70vh; /* Reduced from 85vh to proper height */
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 16px 60px; /* Restored proper padding */
+  padding: 120px 16px 60px;
   position: relative;
   overflow: hidden;
+}
+
+.hero-bg {
+  display: none; /* Hidden on mobile */
 }
 
 .hero-container {
@@ -100,18 +104,25 @@
   }
 }
 
-/* Desktop styles - add background image with proper containment */
+/* Desktop styles - add background image */
 @media (min-width: 1024px) {
   .hero-section {
-    min-height: 85vh; /* Restored from 40vh to 85vh */
-    /* Restore background image */
+    min-height: 70vh; /* Proper height for desktop */
+    background-color: #1e293b; /* Fallback color */
+  }
+  
+  .hero-bg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: scroll;
-    /* Keep gradient as fallback */
-    background-color: #1e293b;
+    z-index: 1;
   }
   
   .hero-headline {
@@ -131,7 +142,7 @@
 
 /* High-resolution desktop optimization */
 @media (min-width: 1440px) {
-  .hero-section {
+  .hero-bg {
     background-size: cover;
     background-position: center;
   }

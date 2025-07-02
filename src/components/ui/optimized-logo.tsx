@@ -12,7 +12,7 @@ interface OptimizedLogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 /**
- * Simplified optimized logo component without flickering
+ * Simplified logo component without optimization complexity that causes flickering
  */
 const OptimizedLogo = ({
   src,
@@ -23,13 +23,6 @@ const OptimizedLogo = ({
   priority = false,
   ...props
 }: OptimizedLogoProps) => {
-  // Simple error handler
-  const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.warn('Logo failed to load');
-    const target = e.target as HTMLImageElement;
-    target.alt = 'DataOps Group';
-  };
-
   return (
     <img
       src={src}
@@ -37,8 +30,8 @@ const OptimizedLogo = ({
       width={width}
       height={height}
       className={cn(
-        className,
-        'max-w-full transition-opacity duration-300 object-contain'
+        'max-w-full object-contain',
+        className
       )}
       style={{
         aspectRatio: width && height ? `${width}/${height}` : 'auto',
@@ -48,7 +41,6 @@ const OptimizedLogo = ({
       loading={priority ? 'eager' : 'lazy'}
       decoding={priority ? 'sync' : 'async'}
       fetchPriority={priority ? 'high' : 'low'}
-      onError={handleLogoError}
       {...props}
     />
   );
