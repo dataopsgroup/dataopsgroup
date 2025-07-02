@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import Services from '@/components/Services';
@@ -6,6 +5,7 @@ import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
 import ChatbotSection from '@/components/ChatbotSection';
+import MobilePerformanceMonitor from '@/components/performance/MobilePerformanceMonitor';
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
 import WebsiteSchema from '@/components/seo/WebsiteSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
@@ -21,6 +21,9 @@ const Index = () => {
   
   return (
     <SemanticLayout>
+      {/* Add mobile performance monitoring */}
+      <MobilePerformanceMonitor />
+      
       <MetaHead
         title="PE Portfolio Operations Platform - HubSpot for Private Equity"
         description="Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI. 100-day implementation."

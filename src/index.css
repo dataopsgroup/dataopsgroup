@@ -3,6 +3,8 @@
 @import './styles/base.css';
 @import './styles/typography-optimized.css';
 @import './styles/hero-optimized.css';
+@import './styles/hero-mobile-optimized.css';
+@import './styles/critical-mobile.css';
 @import './styles/components-optimized.css';
 
 @tailwind base;
@@ -24,6 +26,30 @@
   
   h1, h2, h3, h4, h5, h6, .font-rubik {
     font-family: var(--font-rubik);
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for better performance */
+  *, *::before, *::after {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+  }
+  
+  /* Optimize scrolling performance */
+  * {
+    scroll-behavior: auto !important;
+  }
+  
+  /* Optimize touch interactions */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+  
+  /* Prevent zoom on form inputs */
+  input, select, textarea {
+    font-size: 16px !important;
   }
 }
 
