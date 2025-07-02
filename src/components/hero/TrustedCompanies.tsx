@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
@@ -60,7 +61,7 @@ const TrustedCompanies = React.memo(() => {
                     <cite className="not-italic">
                       <p className="font-semibold text-sm text-gray-900">{testimonial.author.name}</p>
                       <p className="text-xs text-gray-600">{testimonial.author.title}</p>
-                      <p className="text-xs text-gray-400 mt-1">{testimonial.author.industry}</p>
+                      <p className="text-xs text-gray-400 mt-1">Home Goods Manufacturer</p>
                     </cite>
                   </div>
                 </CardContent>
@@ -130,3 +131,4 @@ const TrustedCompanies = React.memo(() => {
 TrustedCompanies.displayName = 'TrustedCompanies';
 
 export default TrustedCompanies;
+
