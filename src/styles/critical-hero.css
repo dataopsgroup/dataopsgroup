@@ -1,5 +1,5 @@
 
-/* Critical Hero CSS - Mobile First, Desktop Enhanced */
+/* Fresh Hero CSS - Clean Implementation */
 
 /* Mobile-first base styles */
 .hero-section {
@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 16px 60px;
+  padding: 120px 16px 60px; /* 120px top clears navbar */
   position: relative;
   overflow: hidden;
 }
@@ -97,11 +97,6 @@
   max-width: 280px;
 }
 
-/* Desktop background elements - hidden on mobile */
-.hero-bg-desktop {
-  display: none;
-}
-
 /* Tablet styles */
 @media (min-width: 768px) {
   .hero-headline {
@@ -122,45 +117,22 @@
   }
 }
 
-/* Desktop styles - background image loads here */
+/* Desktop styles - add background image directly to hero-section */
 @media (min-width: 1024px) {
   .hero-section {
     min-height: 60vh;
-    padding-top: 120px; /* Push content below navbar */
-  }
-  
-  .hero-headline {
-    font-size: 4rem;
-  }
-  
-  /* Desktop background image - consultant photo */
-  .hero-bg-desktop {
-    display: block;
-    position: absolute;
-    top: 112px; /* Start below navbar to prevent bleeding */
-    left: 0;
-    right: 0;
-    bottom: 0;
+    padding-top: 120px; /* Clear navbar space */
+    /* Add background image directly here */
     background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    z-index: 1;
-  }
-  
-  .hero-container {
-    z-index: 10;
-  }
-  
-  /* Centered content on desktop */
-  .hero-content {
-    text-align: center;
-    max-width: none;
-    margin-left: auto;
-    margin-right: auto;
+    /* Keep gradient as fallback */
+    background-color: #1e293b;
   }
   
   .hero-headline {
+    font-size: 4rem;
     text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
   }
   
@@ -168,19 +140,20 @@
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
   }
   
-  /* Adjust text background for desktop */
+  /* Enhance text background for desktop */
   .hero-text-background {
     top: -3rem;
     left: -3rem;
     right: -3rem;
     bottom: -3rem;
+    background: rgba(0, 0, 0, 0.6);
   }
 }
 
 /* High-resolution desktop optimization */
 @media (min-width: 1440px) {
-  .hero-bg-desktop {
-    background-size: 120%;
+  .hero-section {
+    background-size: 120% auto;
     background-position: center center;
   }
 }
