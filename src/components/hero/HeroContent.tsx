@@ -12,10 +12,6 @@ const HeroContent = React.memo(() => {
           Turn PE Portfolio Operations Into Profit Drivers in{' '}
           <span className="text-yellow-300 text-4xl lg:text-6xl font-bold">100 Days</span>
         </h1>
-        <p className="hero-subheading mt-6 text-lg md:text-xl text-gray-300 max-w-2xl">
-          Specialized HubSpot implementation for private equity firms. 
-          19% higher valuations, 73% faster EBITDA growth, $18-22 ROI per dollar invested.
-        </p>
         <div className="hero-buttons mt-8 flex flex-col sm:flex-row gap-4">
           <a 
             href="/data-operations-assessment"
