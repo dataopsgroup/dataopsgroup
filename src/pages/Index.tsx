@@ -89,7 +89,7 @@ const Index = () => {
                   <h3 className="text-xl font-semibold text-gray-900">Operations Assessment</h3>
                 </div>
                 <p className="text-gray-600 mb-4 flex-grow">
-                  5-minute evaluation to identify operational gaps and PE readiness issues
+                  Take our quick evaluation to identify gaps and PE readiness issues. No form required!
                 </p>
                 <a href="/data-operations-assessment" className="bg-dataops-600 hover:bg-dataops-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors inline-block mt-auto">
                   Assess PE Readiness
