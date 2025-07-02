@@ -1,40 +1,151 @@
 
-
 /* Debug visualization styles - Shows layout boundaries */
 
 .hero-section {
   position: relative !important;
+  border: 3px solid red !important;
+}
+
+.hero-section::before {
+  content: "HERO SECTION";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: red;
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1000;
 }
 
 .hero-bg {
+  border: 2px solid blue !important;
+}
+
+.hero-bg::before {
+  content: "HERO BG";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: blue;
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1000;
 }
 
 .hero-container {
   position: relative !important;
+  border: 2px solid green !important;
+}
+
+.hero-container::before {
+  content: "HERO CONTAINER";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: green;
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1000;
 }
 
 .hero-content {
   position: relative !important;
+  border: 2px solid orange !important;
+}
+
+.hero-content::before {
+  content: "HERO CONTENT";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: orange;
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1000;
 }
 
 .hero-headline-box {
   position: relative !important;
+  border: 2px solid purple !important;
+}
+
+.hero-headline-box::before {
+  content: "HEADLINE BOX";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: purple;
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1000;
 }
 
 /* Debug for the new content section below hero */
 .hero-content-section {
   position: relative !important;
+  border: 2px solid cyan !important;
+}
+
+.hero-content-section::before {
+  content: "HERO CONTENT SECTION";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: cyan;
+  color: black;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 1000;
 }
 
 /* Grid debug for two-column layout */
 .hero-content-grid {
+  border: 1px solid yellow !important;
 }
 
 .hero-content-grid > div:first-child {
   position: relative !important;
+  border: 1px solid pink !important;
+}
+
+.hero-content-grid > div:first-child::before {
+  content: "LEFT COLUMN";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: pink;
+  color: black;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 1000;
 }
 
 .hero-content-grid > div:last-child {
   position: relative !important;
+  border: 1px solid lightblue !important;
 }
 
+.hero-content-grid > div:last-child::before {
+  content: "RIGHT COLUMN";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: lightblue;
+  color: black;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 1000;
+}
