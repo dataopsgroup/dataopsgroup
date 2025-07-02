@@ -18,7 +18,6 @@ import { Link } from 'react-router-dom';
 import { mainNavItems } from '@/data/navigationData';
 import DesktopNavigation from './navigation/DesktopNavigation';
 import MobileNavigation from './navigation/MobileNavigation';
-import OptimizedLogo from '@/components/ui/optimized-logo';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,14 +49,33 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
-          <OptimizedLogo
-            src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
-            alt="DataOps Group Logo"
-            className="h-16 lg:h-20 w-auto object-contain"
-            priority={true}
-            width={200}
-            height={80}
-          />
+          {/* Mobile-first WebP optimized logo */}
+          <picture className="h-12 md:h-16 lg:h-20 w-auto">
+            <source 
+              srcSet="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp" 
+              type="image/webp"
+              media="(max-width: 768px)"
+            />
+            <source 
+              srcSet="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
+              type="image/png"
+              media="(max-width: 768px)"
+            />
+            <source 
+              srcSet="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp" 
+              type="image/webp"
+            />
+            <img
+              src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+              alt="DataOps Group Logo"
+              className="h-full w-auto object-contain nav-logo"
+              width="200"
+              height="80"
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+            />
+          </picture>
         </Link>
         
         {/* Desktop Navigation - Only show on large screens (1024px+) */}

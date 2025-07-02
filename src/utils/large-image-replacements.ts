@@ -24,6 +24,7 @@ const LARGE_IMAGES = new Set([
   // Original hero images (kept as PNG for layout preservation)
   '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png',
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
+  '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp', // Logo WebP version
   // Hero background image - now optimized to WebP
   '/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp',
   // Large images identified by Ahrefs - converting to WebP
@@ -51,6 +52,8 @@ const PNG_TO_WEBP_MAP = new Map([
   ['/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png', '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp'],
   // Hero background image conversion
   ['/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png', '/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp'],
+  // Logo conversion for mobile optimization
+  ['/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp'],
 ]);
 
 /**
