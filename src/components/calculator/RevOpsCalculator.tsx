@@ -33,12 +33,7 @@ const RevOpsCalculator = () => {
             />
           </div>
           <div className="lg:pl-8">
-            <button
-              onClick={calculateROI}
-              className="w-full bg-dataops-600 hover:bg-dataops-700 text-white py-3 px-6 rounded-lg font-semibold mb-6"
-            >
-              Calculate RevOps ROI
-            </button>
+            {/* Removed duplicate Calculate RevOps ROI button */}
           </div>
         </div>
       ) : (
