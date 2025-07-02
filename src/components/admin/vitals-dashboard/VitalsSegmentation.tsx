@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 import { WebVitalMetric } from '@/utils/performance/types';
-import { DeviceDistribution } from './charts/DeviceDistribution';
+import DeviceDistribution from './charts/DeviceDistribution';
 import { ConnectionDistribution } from './charts/ConnectionDistribution';
 
 interface VitalsSegmentationProps {
