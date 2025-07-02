@@ -47,8 +47,17 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-tooltip'
           ],
           
-          // Charts - lazy load (mobile performance critical)
-          'charts': ['recharts'],
+          // Charts - aggressively split and lazy load
+          'charts-core': ['recharts/lib/chart/ResponsiveContainer'],
+          'charts-bar': ['recharts/lib/chart/BarChart'],
+          'charts-line': ['recharts/lib/chart/LineChart'],
+          'charts-pie': ['recharts/lib/chart/PieChart'],
+          'charts-components': [
+            'recharts/lib/cartesian/XAxis',
+            'recharts/lib/cartesian/YAxis',
+            'recharts/lib/component/Tooltip',
+            'recharts/lib/component/Legend'
+          ],
           
           // Forms - lazy load
           'forms': ['react-hook-form', '@hookform/resolvers', 'zod'],

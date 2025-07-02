@@ -37,7 +37,7 @@ const ChartContainer = React.forwardRef<
   React.ComponentProps<"div"> & {
     config: ChartConfig
     children: React.ComponentProps<
-      typeof RechartsPrimitive.ResponsiveContainer
+      typeof React.ComponentType
     >["children"]
   }
 >(({ id, className, children, config, ...props }, ref) => {
@@ -56,9 +56,15 @@ const ChartContainer = React.forwardRef<
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
-          {children}
-        </RechartsPrimitive.ResponsiveContainer>
+        <React.Suspense fallback={<div className="loading-placeholder h-full w-full animate-pulse bg-gray-100 rounded" />}>
+          <LazyRecharts>
+            {({ ResponsiveContainer }) => (
+              <ResponsiveContainer>
+                {children}
+              </ResponsiveContainer>
+            )}
+          </LazyRecharts>
+        </React.Suspense>
       </div>
     </ChartContext.Provider>
   )

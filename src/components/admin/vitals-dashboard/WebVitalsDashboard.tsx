@@ -1,13 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
 import { WebVitalMetric } from '@/utils/performance/types';
 import { VitalsSummary } from '../vitals-dashboard/VitalsSummary';
 import { VitalsDetails } from '../vitals-dashboard/VitalsDetails';
 import { VitalsSegmentation } from '../vitals-dashboard/VitalsSegmentation';
 import { VitalsRawData } from '../vitals-dashboard/VitalsRawData';
-import { DeviceDistribution } from './charts/DeviceDistribution';
-import { LCPElementAnalysis } from './charts/LCPElementAnalysis';
-import { BlockingTimeAnalysis } from './charts/BlockingTimeAnalysis';
+
+// Lazy load chart components to reduce initial bundle
+const DeviceDistribution = React.lazy(() => import('./charts/DeviceDistribution'));
+const LCPElementAnalysis = React.lazy(() => import('./charts/LCPElementAnalysis'));
+const BlockingTimeAnalysis = React.lazy(() => import('./charts/BlockingTimeAnalysis'));
 
 const WebVitalsDashboard = () => {
   const [metrics, setMetrics] = useState<WebVitalMetric[]>([]);
@@ -127,12 +128,16 @@ const WebVitalsDashboard = () => {
           </div>
         </div>
         
-        {/* New Performance Insights Section */}
+        {/* Lazy loaded Performance Insights Section */}
         <div className="mb-6">
           <h2 className="text-xl font-semibold mb-4">Performance Insights</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-            <LCPElementAnalysis metrics={filteredMetrics} />
-            <BlockingTimeAnalysis metrics={filteredMetrics} />
+            <React.Suspense fallback={<div className="loading-placeholder h-64 rounded-lg animate-pulse bg-gray-100" />}>
+              <LCPElementAnalysis metrics={filteredMetrics} />
+            </React.Suspense>
+            <React.Suspense fallback={<div className="loading-placeholder h-64 rounded-lg animate-pulse bg-gray-100" />}>
+              <BlockingTimeAnalysis metrics={filteredMetrics} />
+            </React.Suspense>
           </div>
         </div>
         
@@ -146,7 +151,9 @@ const WebVitalsDashboard = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <DeviceDistribution metrics={filteredMetrics} />
+          <React.Suspense fallback={<div className="loading-placeholder h-64 rounded-lg animate-pulse bg-gray-100" />}>
+            <DeviceDistribution metrics={filteredMetrics} />
+          </React.Suspense>
           <VitalsSegmentation 
             metrics={filteredMetrics} 
             uniqueDevices={uniqueDevices}
