@@ -101,9 +101,6 @@ body {
 @tailwind components;
 @tailwind utilities;
 
-/* Import debug styles to visualize layout boundaries */
-@import './styles/hero-debug.css';
-
 /* Mobile performance optimizations */
 @media (max-width: 1023px) {
   /* Reduce animations on mobile for better performance */
@@ -132,3 +129,6 @@ body {
   .font-display-swap { font-display: swap; }
   .critical-font-load { font-display: block; }
 }
+
+/* Import debug styles LAST to override all other styles */
+@import './styles/hero-debug.css';
