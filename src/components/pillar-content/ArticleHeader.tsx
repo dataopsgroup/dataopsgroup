@@ -1,7 +1,12 @@
 
+
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import ShareButtons from '@/components/ui/ShareButtons';
+
+// WARNING: This component is specifically configured for the HubSpot Expert Guide page
+// Do not modify unless you are specifically editing this pillar content page
+// Changes here may affect the structured data, SEO, and visual design of the guide
 
 interface ArticleHeaderProps {
   title: string;
@@ -68,7 +73,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
                 "text": "Ask essential questions about their approach, experience with similar projects, and integration capabilities."
               },
               {
-                "@type": "HowToStep",
+                "@type": "HubToStep",
                 "position": 5,
                 "name": "Check References and Case Studies",
                 "text": "Verify past client success stories, implementation results, and long-term partnership outcomes."
@@ -125,3 +130,4 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
 };
 
 export default ArticleHeader;
+
