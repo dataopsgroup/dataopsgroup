@@ -80,7 +80,7 @@ const TrustedCompanies = React.memo(() => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .testimonials-masonry {
           display: grid;
           grid-template-columns: repeat(1, 1fr);
