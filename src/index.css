@@ -5,13 +5,11 @@
 @import './styles/fonts-optimized.css';
 @import './styles/base.css';
 @import './styles/typography-optimized.css';
+@import './styles/components-optimized.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Defer non-critical imports after Tailwind */
-@import './styles/components-optimized.css';
 
 /* Mobile performance optimizations */
 @media (max-width: 1023px) {
