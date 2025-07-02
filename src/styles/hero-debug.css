@@ -1,107 +1,29 @@
 
+
 /* Debug visualization styles - Shows layout boundaries */
 
 .hero-section {
   position: relative !important;
 }
 
-.hero-section::before {
-  content: "HERO SECTION" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 5px !important;
-  background: red !important;
-  color: white !important;
-  padding: 2px 6px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 1000 !important;
-}
-
 .hero-bg {
-}
-
-.hero-bg::before {
-  content: "HERO BACKGROUND" !important;
-  position: absolute !important;
-  top: 5px !important;
-  right: 5px !important;
-  background: blue !important;
-  color: white !important;
-  padding: 2px 6px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 1000 !important;
 }
 
 .hero-container {
   position: relative !important;
 }
 
-.hero-container::before {
-  content: "HERO CONTAINER" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  background: green !important;
-  color: white !important;
-  padding: 2px 6px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 1000 !important;
-}
-
 .hero-content {
   position: relative !important;
-}
-
-.hero-content::before {
-  content: "HERO CONTENT" !important;
-  position: absolute !important;
-  top: -25px !important;
-  left: 0 !important;
-  background: orange !important;
-  color: white !important;
-  padding: 2px 6px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 1000 !important;
 }
 
 .hero-headline-box {
   position: relative !important;
 }
 
-.hero-headline-box::before {
-  content: "HEADLINE BOX" !important;
-  position: absolute !important;
-  top: -25px !important;
-  right: 0 !important;
-  background: purple !important;
-  color: white !important;
-  padding: 2px 6px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 1000 !important;
-}
-
 /* Debug for the new content section below hero */
 .hero-content-section {
   position: relative !important;
-}
-
-.hero-content-section::before {
-  content: "CONTENT SECTION" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 5px !important;
-  background: cyan !important;
-  color: black !important;
-  padding: 2px 6px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 1000 !important;
 }
 
 /* Grid debug for two-column layout */
@@ -112,32 +34,7 @@
   position: relative !important;
 }
 
-.hero-content-grid > div:first-child::before {
-  content: "LEFT COLUMN" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 5px !important;
-  background: yellow !important;
-  color: black !important;
-  padding: 2px 6px !important;
-  font-size: 10px !important;
-  font-weight: bold !important;
-  z-index: 1000 !important;
-}
-
 .hero-content-grid > div:last-child {
   position: relative !important;
 }
 
-.hero-content-grid > div:last-child::before {
-  content: "RIGHT COLUMN" !important;
-  position: absolute !important;
-  top: 5px !important;
-  right: 5px !important;
-  background: pink !important;
-  color: black !important;
-  padding: 2px 6px !important;
-  font-size: 10px !important;
-  font-weight: bold !important;
-  z-index: 1000 !important;
-}
