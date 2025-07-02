@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
@@ -10,8 +9,8 @@ const TrustedCompanies = React.memo(() => {
   const featuredTestimonials = getFeaturedTestimonials();
   
   return (
-    <div className="pb-16 mt-12 trusted-companies-section bg-green-200">
-      <div className="container mx-auto px-4 text-center">
+    <div className="pb-16 mt-12 trusted-companies-section" style={{ backgroundColor: '#FBB03B' }}>
+      <div className="container mx-auto px-4 text-center pt-6">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 leading-normal md:leading-relaxed">
           Trusted by 50+ Companies to Rescue Their HubSpot Investments
         </h2>
