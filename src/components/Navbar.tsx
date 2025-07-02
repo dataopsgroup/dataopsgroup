@@ -49,33 +49,17 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <Link to="/" className="flex items-center" aria-label="DataOps Group Home">
-          {/* Mobile-first WebP optimized logo */}
-          <picture className="h-12 md:h-16 lg:h-20 w-auto">
-            <source 
-              srcSet="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp" 
-              type="image/webp"
-              media="(max-width: 768px)"
-            />
-            <source 
-              srcSet="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" 
-              type="image/png"
-              media="(max-width: 768px)"
-            />
-            <source 
-              srcSet="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp" 
-              type="image/webp"
-            />
-            <img
-              src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
-              alt="DataOps Group Logo"
-              className="h-full w-auto object-contain nav-logo"
-              width="200"
-              height="80"
-              loading="eager"
-              decoding="sync"
-              fetchPriority="high"
-            />
-          </picture>
+          {/* Optimized logo with PNG only (WebP not available yet) */}
+          <img
+            src="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
+            alt="DataOps Group Logo"
+            className="h-12 md:h-16 lg:h-20 w-auto object-contain nav-logo"
+            width="200"
+            height="80"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
+          />
         </Link>
         
         {/* Desktop Navigation - Only show on large screens (1024px+) */}
