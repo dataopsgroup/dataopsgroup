@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { useEnhancedImageOptimization } from '@/hooks/useEnhancedImageOptimization';
+import { mobileLogoOptimizer, generateMobileLogoSrcSet } from '@/utils/mobile-logo-optimization';
 
 interface OptimizedLogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -13,81 +13,61 @@ interface OptimizedLogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 /**
- * Optimized logo component with strict size limits for fast loading and graceful fallbacks
+ * Optimized logo component with mobile-specific optimization for DataOps Group logo
  */
 const OptimizedLogo = ({
   src,
   alt,
-  width,
-  height,
+  width = 200,
+  height = 80,
   className,
   priority = false,
   ...props
 }: OptimizedLogoProps) => {
-  const {
-    optimizedSrc,
-    isOptimizing,
-    error
-  } = useEnhancedImageOptimization(src, {
-    maxSizeKB: 50, // Very strict limit for logos
-    context: 'logo',
-    format: 'webp'
-  });
+  const shouldOptimizeForMobile = mobileLogoOptimizer.shouldOptimize(src);
+  
+  // Generate mobile-optimized srcset if this is the target logo
+  const srcSet = shouldOptimizeForMobile ? generateMobileLogoSrcSet(src) : '';
+  const sizes = shouldOptimizeForMobile ? mobileLogoOptimizer.getMobileSizes() : '';
 
   // Enhanced error handler with fallback styling
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    if (typeof console !== 'undefined') {
-      console.warn('Logo failed to load, using fallback styling');
-    }
-    e.currentTarget.alt = 'DataOps Group';
-    e.currentTarget.style.background = '#1e4f9c';
-    e.currentTarget.style.color = 'white';
-    e.currentTarget.style.display = 'flex';
-    e.currentTarget.style.alignItems = 'center';
-    e.currentTarget.style.justifyContent = 'center';
-    e.currentTarget.style.fontSize = '14px';
-    e.currentTarget.style.fontWeight = 'bold';
+    console.warn('Logo failed to load, using fallback styling');
+    const target = e.target as HTMLImageElement;
+    target.alt = 'DataOps Group';
+    target.style.background = '#1e4f9c';
+    target.style.color = 'white';
+    target.style.display = 'flex';
+    target.style.alignItems = 'center';
+    target.style.justifyContent = 'center';
+    target.style.fontSize = '14px';
+    target.style.fontWeight = 'bold';
+    target.textContent = alt || 'DataOps Group';
   };
 
   return (
-    <div className="relative">
-      <img
-        src={optimizedSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        className={cn(
-          className,
-          'max-w-full transition-opacity duration-300',
-          'object-contain', // Prevent compression and maintain aspect ratio
-          isOptimizing && 'opacity-70'
-        )}
-        style={{
-          aspectRatio: width && height ? `${width}/${height}` : 'auto',
-          maxHeight: '80px', // Prevent excessive height on mobile/tablet
-          objectFit: 'contain' // Ensure logo maintains proportions
-        }}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding={priority ? 'sync' : 'async'}
-        fetchPriority={priority ? 'high' : 'low'}
-        onError={handleLogoError}
-        {...props}
-      />
-      
-      {/* Minimal loading indicator for logos */}
-      {isOptimizing && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
-        </div>
+    <img
+      src={src}
+      srcSet={srcSet}
+      sizes={sizes}
+      alt={alt}
+      width={width}
+      height={height}
+      className={cn(
+        className,
+        'max-w-full transition-opacity duration-300 object-contain'
       )}
-      
-      {/* Error fallback - styled text instead of error message */}
-      {error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-dataops-600 text-white text-sm font-bold rounded">
-          DataOps Group
-        </div>
-      )}
-    </div>
+      style={{
+        aspectRatio: width && height ? `${width}/${height}` : 'auto',
+        maxHeight: '80px',
+        objectFit: 'contain'
+      }}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding={priority ? 'sync' : 'async'}
+      fetchPriority={priority ? 'high' : 'low'}
+      onError={handleLogoError}
+      {...props}
+    />
   );
 };
 
