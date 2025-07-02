@@ -11,6 +11,8 @@ const LAYOUT_PRESERVING_IMAGES = new Set([
   // Hero section images that need to maintain specific layouts
   '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png',
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
+  // Hero background image - preserve layout
+  '/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png',
 ]);
 
 // Updated to include the large PNG images that need WebP conversion
@@ -22,6 +24,8 @@ const LARGE_IMAGES = new Set([
   // Original hero images (kept as PNG for layout preservation)
   '/lovable-uploads/5f3a8bdf-410e-4727-8fa0-eb20abe91242.png',
   '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
+  // Hero background image - now optimized to WebP
+  '/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp',
   // Large images identified by Ahrefs - converting to WebP
   '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.webp', // converted from PNG
   '/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp', // converted from PNG
@@ -45,6 +49,8 @@ const PNG_TO_WEBP_MAP = new Map([
   ['/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png', '/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.webp'],
   ['/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.png', '/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.webp'],
   ['/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png', '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp'],
+  // Hero background image conversion
+  ['/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png', '/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp'],
 ]);
 
 /**

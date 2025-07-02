@@ -21,10 +21,16 @@
 .hero-section {
   min-height: 40vh; /* Reduced from 85vh to 40vh */
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  /* Hero background image - WebP optimized version, visible on all screen sizes */
+  background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 16px 20px; /* Optimized padding for 40vh section */
+  padding: 80px 16px 20px; /* Reduced padding to maintain 40vh height */
   position: relative;
   overflow: hidden;
 }
@@ -102,6 +108,10 @@
 
 /* Tablet styles */
 @media (min-width: 768px) {
+  .hero-section {
+    padding: 100px 16px 20px; /* Slightly increased for tablet */
+  }
+  
   .hero-headline {
     font-size: 3rem;
   }
@@ -116,18 +126,13 @@
   }
 }
 
-/* Desktop styles - add background image with proper containment */
+/* Desktop styles - enhanced background image properties */
 @media (min-width: 1024px) {
   .hero-section {
-    min-height: 40vh; /* Reduced from 85vh to 40vh */
-    /* Position background image at center instead of 113px offset */
-    background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
-    background-size: cover;
-    background-position: center; /* Changed from center 113px to center */
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    /* Keep gradient as fallback */
-    background-color: #1e293b;
+    min-height: 40vh; /* Maintain 40vh height */
+    padding: 120px 16px 20px; /* Proper navbar clearance */
+    /* Enhanced background properties for desktop */
+    background-attachment: fixed; /* Parallax effect on desktop */
   }
   
   .hero-headline {
@@ -149,6 +154,6 @@
 @media (min-width: 1440px) {
   .hero-section {
     background-size: cover;
-    background-position: center; /* Changed from center 113px to center */
+    background-position: center;
   }
 }
