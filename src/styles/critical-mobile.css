@@ -1,5 +1,5 @@
 
-/* Critical Mobile Performance CSS - Inlined for fastest loading */
+/* Critical Mobile Performance CSS - Enhanced with device-aware optimization */
 
 /* Essential mobile layout - prevents CLS */
 :root {
@@ -30,6 +30,16 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Device-aware optimizations */
+body.device-mobile {
+  font-size: 16px; /* Prevent zoom on iOS */
+}
+
+body.device-mobile * {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Mobile navigation - prevent layout shifts */
@@ -71,41 +81,56 @@ body {
   }
 }
 
-/* Mobile hero section - critical styles only */
-.hero-section {
-  min-height: 60vh;
-  position: relative;
-  contain: layout style paint;
+/* Device-specific hero section optimizations */
+.device-mobile .hero-section {
+  min-height: 50vh !important;
+  background: #1e293b !important;
+  background-image: none !important;
+  padding: 60px 16px 20px !important;
+  contain: layout style paint !important;
 }
 
-@media (max-width: 768px) {
-  .hero-section {
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-    padding: 80px 16px 60px;
-  }
-  
-  /* Critical mobile text optimization - targets the LCP element */
-  .text-xl.leading-relaxed.text-gray-700,
-  p.text-xl.leading-relaxed.text-gray-700 {
-    font-size: 1.125rem !important;
-    line-height: 1.5 !important;
-    color: #374151 !important;
-    font-family: var(--font-inter) !important;
-    font-display: swap !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    contain: layout style !important;
-    will-change: auto !important;
-    transform: translateZ(0) !important;
-  }
-  
-  /* Preload critical text styles for mobile */
-  .hero-content p,
-  .hero-content .text-xl {
-    font-family: var(--font-inter) !important;
-    font-display: swap !important;
-    contain: layout style !important;
-  }
+.device-tablet .hero-section {
+  min-height: 55vh !important;
+  padding: 80px 16px 40px !important;
+}
+
+.device-desktop .hero-section {
+  /* Keep existing desktop styles */
+}
+
+/* Connection-based optimizations */
+.connection-slow .device-mobile .hero-section {
+  background: #1e293b !important;
+  background-image: none !important;
+}
+
+.connection-slow .device-mobile * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Critical mobile text optimization - targets the LCP element */
+.device-mobile .text-xl.leading-relaxed.text-gray-700,
+.device-mobile p.text-xl.leading-relaxed.text-gray-700 {
+  font-size: 1.125rem !important;
+  line-height: 1.5 !important;
+  color: #374151 !important;
+  font-family: var(--font-inter) !important;
+  font-display: swap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  contain: layout style !important;
+  will-change: auto !important;
+  transform: translateZ(0) !important;
+}
+
+/* Preload critical text styles for mobile */
+.device-mobile .hero-content p,
+.device-mobile .hero-content .text-xl {
+  font-family: var(--font-inter) !important;
+  font-display: swap !important;
+  contain: layout style !important;
 }
 
 /* Essential button styles for mobile */

@@ -17,87 +17,116 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Critical font preload -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous">
+    <!-- Device-specific font preloading -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" media="(min-width: 1024px)">
+    
+    <!-- Mobile-optimized font loading -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" media="(max-width: 767px)">
+    
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
     </noscript>
 
     <!-- Desktop hero image preload - only on desktop -->
-    <link rel="preload" href="/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png" as="image" media="(min-width: 1024px)" />
+    <link rel="preload" href="/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png" as="image" media="(min-width: 1024px)" fetchpriority="high" />
 
-    <!-- Critical CSS inlined -->
+    <!-- Device-specific critical CSS -->
     <style>
-      /* Critical mobile-first hero rendering */
-      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-      .hero-section { 
-        min-height: 60vh; 
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%); 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        padding: 80px 16px 60px; 
-        position: relative;
-      }
-      .hero-content { text-align: center; color: white; position: relative; z-index: 10; }
-      .hero-headline { 
-        font-size: 2rem; 
-        line-height: 1.2; 
-        font-weight: 700; 
-        margin-bottom: 1.5rem; 
-        color: white; 
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-      }
-      .hero-text-background {
-        position: absolute;
-        top: -2rem;
-        left: -2rem;
-        right: -2rem;
-        bottom: -2rem;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 1rem;
-        backdrop-filter: blur(5px);
-        z-index: -1;
+      /* Device detection via CSS */
+      body.device-mobile,
+      body.device-tablet,
+      body.device-desktop {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       }
       
-      /* Desktop-only styles with consultant photo */
-      @media (min-width: 1024px) { 
-        .hero-section { min-height: 60vh; }
-        .hero-headline { font-size: 4rem; }
-        .hero-bg-desktop { 
-          display: block; 
-          position: absolute; 
-          inset: 0; 
-          background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png'); 
-          background-size: cover; 
-          background-position: center center; 
-          z-index: 1; 
+      /* Ultra-critical mobile LCP optimization */
+      @media (max-width: 767px) {
+        .hero-section { 
+          min-height: 50vh !important;
+          background: #1e293b !important;
+          background-image: none !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          padding: 60px 16px 20px !important;
+          position: relative !important;
         }
+        
         .hero-content { 
-          text-align: center; 
-          max-width: none; 
-          margin-left: auto;
-          margin-right: auto;
+          text-align: center !important;
+          color: white !important;
+          position: relative !important;
+          z-index: 10 !important;
         }
+        
         .hero-headline { 
-          text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9); 
+          font-size: 1.75rem !important;
+          line-height: 1.1 !important;
+          font-weight: 700 !important;
+          margin-bottom: 1rem !important;
+          color: white !important;
+          text-shadow: none !important;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+          contain: layout style !important;
         }
+        
         .hero-text-background {
-          top: -3rem;
-          left: -3rem;
-          right: -3rem;
-          bottom: -3rem;
+          display: none !important;
+        }
+        
+        .hero-buttons {
+          margin-top: 1.5rem !important;
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 0.75rem !important;
+          align-items: center !important;
+        }
+        
+        .hero-buttons a {
+          min-height: 44px !important;
+          padding: 10px 20px !important;
+          font-size: 15px !important;
+          width: 100% !important;
+          max-width: 260px !important;
+          transition: none !important;
+        }
+      }
+      
+      /* Desktop critical styles */
+      @media (min-width: 1024px) { 
+        .hero-section { 
+          min-height: 40vh !important;
+          background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+          background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png') !important;
+          background-size: cover !important;
+          background-position: center !important;
+          padding: 120px 16px 20px !important;
+        }
+        
+        .hero-headline { 
+          font-size: 4rem !important;
+          text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9) !important;
         }
       }
       
       /* Tablet styles */
-      @media (min-width: 768px) { 
-        .hero-headline { font-size: 3rem; } 
+      @media (min-width: 768px) and (max-width: 1023px) { 
+        .hero-headline { 
+          font-size: 3rem !important;
+        } 
       }
       
       /* Loading state */
-      .loading-placeholder { background: #f3f4f6; animation: pulse 1.5s ease-in-out infinite; }
-      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+      .loading-placeholder { 
+        background: #f3f4f6; 
+        animation: pulse 1.5s ease-in-out infinite; 
+      }
+      
+      @keyframes pulse { 
+        0%, 100% { opacity: 1; } 
+        50% { opacity: 0.7; } 
+      }
     </style>
 
     <title>PE Portfolio Operations Platform - HubSpot for Private Equity</title>
@@ -106,8 +135,30 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Defer non-critical scripts -->
+    <!-- Device-specific performance monitoring -->
     <script>
+      // Early device detection for performance optimization
+      (function() {
+        const width = window.innerWidth;
+        const deviceType = width < 768 ? 'mobile' : width < 1024 ? 'tablet' : 'desktop';
+        document.body.classList.add('device-' + deviceType);
+        
+        // Connection detection
+        if ('connection' in navigator) {
+          const connection = navigator.connection;
+          const effectiveType = connection.effectiveType;
+          if (effectiveType === '4g' || effectiveType === '5g') {
+            document.body.classList.add('connection-fast');
+          } else if (effectiveType === '2g' || effectiveType === '3g') {
+            document.body.classList.add('connection-slow');
+          } else {
+            document.body.classList.add('connection-unknown');
+          }
+        }
+        
+        console.log('📱 Early device detection:', deviceType, 'width:', width);
+      })();
+      
       // Defer analytics initialization
       setTimeout(() => {
         if (window.gtag) {

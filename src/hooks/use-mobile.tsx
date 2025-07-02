@@ -1,5 +1,6 @@
 
 import * as React from "react"
+import { devicePerformanceMonitor } from '@/utils/performance/device-performance-monitor';
 
 const MOBILE_BREAKPOINT = 1024 // Changed from 768 to 1024 to include tablets
 
@@ -7,6 +8,7 @@ export function useIsMobile() {
   // Initialize with undefined to prevent hydration mismatches
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
   const [touchDevice, setTouchDevice] = React.useState<boolean>(false)
+  const [deviceType, setDeviceType] = React.useState<'mobile' | 'tablet' | 'desktop'>('desktop')
   
   // Use refs to prevent infinite loops from dependency changes
   const timeoutRef = React.useRef<NodeJS.Timeout>()
@@ -19,11 +21,23 @@ export function useIsMobile() {
     }
     
     timeoutRef.current = setTimeout(() => {
-      const newIsMobile = window.innerWidth < MOBILE_BREAKPOINT
+      const width = window.innerWidth;
+      const newIsMobile = width < MOBILE_BREAKPOINT
+      const newDeviceType: 'mobile' | 'tablet' | 'desktop' = 
+        width < 768 ? 'mobile' : width < 1024 ? 'tablet' : 'desktop';
+      
       setIsMobile(prevIsMobile => {
         // Only update if value actually changed
         if (prevIsMobile !== newIsMobile) {
-          console.log('📱 Mobile/Tablet state changed:', newIsMobile, 'width:', window.innerWidth)
+          console.log('📱 Mobile/Tablet state changed:', newIsMobile, 'width:', width, 'type:', newDeviceType)
+          
+          // Update device type for performance monitoring
+          setDeviceType(newDeviceType);
+          
+          // Update body class for device-specific CSS
+          document.body.className = document.body.className.replace(/device-\w+/g, '');
+          document.body.classList.add(`device-${newDeviceType}`);
+          
           return newIsMobile
         }
         return prevIsMobile
@@ -64,8 +78,13 @@ export function useIsMobile() {
     isMobile: !!isMobile, // Now includes tablets (< 1024px)
     isTouch: touchDevice,
     isDesktop: !isMobile && !touchDevice,
-    isInitialized: isMobile !== undefined
-  }), [isMobile, touchDevice])
+    isInitialized: isMobile !== undefined,
+    deviceType, // Add device type to hook return
+    // Add performance monitoring method
+    logPerformanceMetric: (metricName: 'LCP' | 'FCP' | 'CLS' | 'FID' | 'INP', value: number) => {
+      devicePerformanceMonitor.logMetric(metricName, value);
+    }
+  }), [isMobile, touchDevice, deviceType])
 }
 
 // Custom hook for handling touch interactions properly

@@ -1,0 +1,122 @@
+
+/* DEVICE DETECTION UTILITIES */
+/* Provides CSS-based device detection and optimization hints */
+
+/* Base device detection classes */
+.device-mobile,
+.device-tablet,
+.device-desktop {
+  /* Base styles applied to all devices */
+}
+
+/* Connection-based optimizations */
+.connection-slow {
+  /* Optimizations for slow connections */
+}
+
+.connection-fast {
+  /* Optimizations for fast connections */
+}
+
+.connection-unknown {
+  /* Default optimizations */
+}
+
+/* Critical loading states */
+.loading-placeholder {
+  background: #f3f4f6;
+  animation: pulse 1.5s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: 0.7; 
+  }
+}
+
+/* Device-specific font loading optimization */
+.device-mobile * {
+  font-display: swap;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.device-desktop * {
+  font-display: swap;
+  text-rendering: optimizeLegibility;
+}
+
+/* Performance containment utilities */
+.contain-layout {
+  contain: layout;
+}
+
+.contain-style {
+  contain: style;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+.contain-all {
+  contain: layout style paint;
+}
+
+/* GPU acceleration utilities */
+.gpu-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Critical path utilities */
+.critical-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-display: swap;
+  contain: layout style;
+}
+
+.critical-layout {
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Device-specific visibility utilities */
+.mobile-only {
+  display: none;
+}
+
+.tablet-only {
+  display: none;
+}
+
+.desktop-only {
+  display: none;
+}
+
+.device-mobile .mobile-only {
+  display: block;
+}
+
+.device-tablet .tablet-only {
+  display: block;
+}
+
+.device-desktop .desktop-only {
+  display: block;
+}
+
+/* Hide non-critical elements on slow connections */
+.connection-slow .non-critical {
+  display: none;
+}
+
+.connection-slow .optional-visual {
+  display: none;
+}

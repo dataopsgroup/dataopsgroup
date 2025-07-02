@@ -1,0 +1,97 @@
+
+/* CRITICAL MOBILE LCP CSS - Ultra-lightweight for fastest LCP */
+/* Target: <2.5s LCP on mobile devices */
+
+/* Device detection classes */
+.device-mobile .hero-section {
+  /* Strip all non-essential styles for mobile LCP */
+  background: #1e293b !important; /* Solid color instead of gradient */
+  background-image: none !important; /* Remove background image */
+  min-height: 50vh !important; /* Reduce height for faster rendering */
+  padding: 60px 16px 20px !important; /* Reduce padding */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+
+/* Critical mobile text optimization - LCP element */
+.device-mobile .hero-headline {
+  font-size: 1.75rem !important; /* Smaller for mobile */
+  line-height: 1.1 !important; /* Tighter line height */
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
+  color: white !important;
+  text-shadow: none !important; /* Remove text shadow for faster rendering */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important; /* System fonts first */
+  contain: layout style !important; /* CSS containment for performance */
+  will-change: auto !important; /* Prevent unnecessary compositing */
+  transform: none !important; /* Remove transforms */
+}
+
+/* Remove background effects on mobile for LCP */
+.device-mobile .hero-text-background {
+  display: none !important; /* Remove backdrop for faster rendering */
+}
+
+/* Optimize buttons for mobile LCP */
+.device-mobile .hero-buttons {
+  margin-top: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
+  align-items: center !important;
+}
+
+.device-mobile .hero-buttons a {
+  min-height: 44px !important; /* Touch target size */
+  padding: 10px 20px !important; /* Reduced padding */
+  font-size: 15px !important; /* Slightly smaller font */
+  width: 100% !important;
+  max-width: 260px !important;
+  text-decoration: none !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  transition: none !important; /* Remove transitions for faster rendering */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Critical font loading for mobile */
+@media (max-width: 767px) {
+  /* Preload system fonts to avoid FOIT */
+  .hero-headline,
+  .hero-content p,
+  .hero-buttons a {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-display: swap !important;
+  }
+}
+
+/* Connection-based optimizations */
+.connection-slow .device-mobile .hero-section {
+  background: #1e293b !important; /* Solid color for slow connections */
+  background-image: none !important;
+}
+
+.connection-slow .device-mobile .hero-headline {
+  text-shadow: none !important;
+  font-weight: 600 !important; /* Lighter weight for faster rendering */
+}
+
+/* GPU acceleration only for critical elements on mobile */
+.device-mobile .hero-content {
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  contain: layout style paint !important;
+}
+
+/* Prevent layout shifts on mobile */
+.device-mobile .hero-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  position: relative !important;
+  contain: layout !important;
+}

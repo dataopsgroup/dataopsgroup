@@ -1,0 +1,115 @@
+
+/* CRITICAL DESKTOP CSS - Preserve current desktop performance */
+/* Maintain desktop LCP ≤2.0s while optimizing mobile */
+
+/* Desktop-specific hero optimizations */
+.device-desktop .hero-section {
+  min-height: 40vh;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 16px 20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Desktop WebP optimization */
+.device-desktop .hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+/* Desktop headline optimization */
+.device-desktop .hero-headline {
+  font-size: 4rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
+  position: relative;
+  z-index: 2;
+}
+
+/* Desktop text background effects */
+.device-desktop .hero-text-background {
+  position: absolute;
+  top: -3rem;
+  left: -3rem;
+  right: -3rem;
+  bottom: -3rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 1rem;
+  backdrop-filter: blur(5px);
+  z-index: -1;
+}
+
+/* Desktop button layout */
+.device-desktop .hero-buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.device-desktop .hero-buttons a {
+  min-height: 48px;
+  padding: 12px 24px;
+  font-size: 16px;
+  width: auto;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tablet optimizations */
+.device-tablet .hero-section {
+  min-height: 40vh;
+  padding: 100px 16px 20px;
+  background-attachment: scroll; /* Remove fixed attachment for tablets */
+}
+
+.device-tablet .hero-headline {
+  font-size: 3rem;
+}
+
+.device-tablet .hero-buttons {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.device-tablet .hero-buttons a {
+  width: auto;
+}
+
+/* High-resolution desktop optimization */
+@media (min-width: 1440px) {
+  .device-desktop .hero-section {
+    background-size: cover;
+    background-position: center;
+  }
+}
