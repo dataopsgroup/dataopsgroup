@@ -98,8 +98,7 @@
 }
 
 /* Desktop background elements - hidden on mobile */
-.hero-bg-desktop,
-.hero-overlay {
+.hero-bg-desktop {
   display: none;
 }
 
@@ -126,7 +125,7 @@
 /* Desktop styles - background image loads here */
 @media (min-width: 1024px) {
   .hero-section {
-    min-height: 60vh; /* Reduced from 80vh for better proportions */
+    min-height: 60vh;
   }
   
   .hero-headline {
@@ -137,17 +136,15 @@
   .hero-bg-desktop {
     display: block;
     position: absolute;
-    inset: 0;
+    top: 100px; /* Start below navbar to prevent bleeding */
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     z-index: 1;
-  }
-  
-  /* No overlay needed since we have text background */
-  .hero-overlay {
-    display: none;
   }
   
   .hero-container {
