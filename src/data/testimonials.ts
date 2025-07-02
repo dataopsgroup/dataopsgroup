@@ -22,7 +22,7 @@ export const testimonials: Testimonial[] = [
       name: "Jeremy S.",
       title: "Director of Marketing",
       company: "HubSpot Partner",
-      industry: "Marketing Technology"
+      industry: "Home Goods Manufacturer"
     },
     rating: 5,
     date: "2022-05-15",
@@ -36,7 +36,7 @@ export const testimonials: Testimonial[] = [
       name: "Dan G.",
       title: "Director of Marketing",
       company: "Technology Company",
-      industry: "Technology"
+      industry: "App Development Company"
     },
     rating: 5,
     date: "2023-03-20",

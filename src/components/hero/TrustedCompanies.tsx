@@ -61,7 +61,7 @@ const TrustedCompanies = React.memo(() => {
                     <cite className="not-italic">
                       <p className="font-semibold text-sm text-gray-900">{testimonial.author.name}</p>
                       <p className="text-xs text-gray-600">{testimonial.author.title}</p>
-                      <p className="text-xs text-gray-400 mt-1">Home Goods Manufacturer</p>
+                      <p className="text-xs text-gray-400 mt-1">{testimonial.author.industry}</p>
                     </cite>
                   </div>
                 </CardContent>
