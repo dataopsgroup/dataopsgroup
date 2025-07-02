@@ -5,13 +5,11 @@ import MetaHead from '@/components/seo/MetaHead';
 import ImageErrorBoundary from '@/components/ui/image-error-boundary';
 
 // Lazy imports for non-critical components
-import { 
-  LazyServices, 
-  LazyApproach, 
-  LazyBookCTA, 
-  LazyChatbotSection,
-  LazyMobilePerformanceMonitor 
-} from '@/components/lazy/LazyComponents';
+const LazyServices = React.lazy(() => import('@/components/Services'));
+const LazyApproach = React.lazy(() => import('@/components/Approach'));
+const LazyBookCTA = React.lazy(() => import('@/components/BookCTA'));
+const LazyChatbotSection = React.lazy(() => import('@/components/ChatbotSection'));
+const LazyMobilePerformanceMonitor = React.lazy(() => import('@/components/performance/MobilePerformanceMonitor'));
 
 // Schema components (keep these normal imports as they're lightweight)
 import OrganizationSchema from '@/components/seo/OrganizationSchema';
