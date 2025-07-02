@@ -1,3 +1,4 @@
+
 /**
  * Vercel-optimized image service for automatic compression and format conversion
  */
@@ -38,8 +39,8 @@ export class VercelImageOptimizationService {
     const {
       width,
       height,
-      quality = 75, // More aggressive default quality for better compression
-      format = 'webp', // Always default to WebP
+      quality = 75,
+      format = 'webp',
       fit = 'cover'
     } = options;
 
@@ -60,14 +61,13 @@ export class VercelImageOptimizationService {
 
       return {
         optimizedUrl,
-        originalSize: 0, // Estimated, real size would need API call
-        optimizedSize: 0, // Estimated based on quality setting
+        originalSize: 0,
+        optimizedSize: 0,
         compressionRatio: this.estimateCompressionRatio(quality, 'webp'),
         format: 'webp'
       };
     } catch (error) {
       console.warn('Vercel image optimization failed:', error);
-      // Return original image as fallback
       return {
         optimizedUrl: imageUrl,
         originalSize: 0,
@@ -79,28 +79,9 @@ export class VercelImageOptimizationService {
   }
 
   /**
-   * Map input formats to Vercel-supported formats
-   */
-  private mapToVercelFormat(format: string): string {
-    switch (format) {
-      case 'jpeg':
-      case 'jpg':
-        return 'webp'; // Convert JPEG to WebP for better compression
-      case 'png':
-        return 'webp'; // Convert PNG to WebP for better compression
-      case 'webp':
-        return 'webp';
-      case 'avif':
-        return 'avif';
-      default:
-        return 'webp'; // Default to WebP instead of auto
-    }
-  }
-
-  /**
    * Check if an image should be optimized based on file size indicators
    */
-  shouldOptimize(imageUrl: string): boolean => {
+  shouldOptimize(imageUrl: string): boolean {
     if (!imageUrl) return false;
     
     // Always optimize PNG files larger than typical blog images
@@ -128,30 +109,30 @@ export class VercelImageOptimizationService {
    * Estimate compression ratio based on quality and format
    */
   private estimateCompressionRatio(quality: number, format: string): number {
-    const baseCompression = {
-      'webp': 45, // More aggressive WebP compression estimate
-      'avif': 60, // AVIF typically 60% smaller than JPEG
+    const baseCompression: { [key: string]: number } = {
+      'webp': 45,
+      'avif': 60,
       'jpeg': 0,
-      'png': -20, // PNG typically larger than JPEG
+      'png': -20,
     };
     
-    const qualityFactor = (100 - quality) * 0.8; // More aggressive quality factor
-    return (baseCompression[format as keyof typeof baseCompression] || 0) + qualityFactor;
+    const qualityFactor = (100 - quality) * 0.8;
+    return (baseCompression[format] || 0) + qualityFactor;
   }
 
   /**
    * Get optimization settings for different contexts with more aggressive compression
    */
   getOptimizationSettings(context: string): VercelOptimizationOptions {
-    const settings = {
+    const settings: { [key: string]: VercelOptimizationOptions } = {
       hero: { width: 1200, height: 600, quality: 80, format: 'webp' as const },
-      'blog-cover': { width: 800, height: 400, quality: 70, format: 'webp' as const }, // More aggressive
+      'blog-cover': { width: 800, height: 400, quality: 70, format: 'webp' as const },
       content: { width: 600, height: 400, quality: 75, format: 'webp' as const },
       thumbnail: { width: 300, height: 200, quality: 70, format: 'webp' as const },
       logo: { width: 200, height: 100, quality: 85, format: 'webp' as const }
     };
     
-    return settings[context as keyof typeof settings] || settings.content;
+    return settings[context] || settings.content;
   }
 
   /**
