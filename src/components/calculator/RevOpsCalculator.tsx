@@ -23,17 +23,14 @@ const RevOpsCalculator = () => {
       <RevOpsCalculatorHeader />
       
       {!showResults ? (
-        <div className="grid lg:grid-cols-2 gap-8">
-          <div>
+        <div className="flex justify-center">
+          <div className="w-full max-w-2xl">
             <RevOpsInputForm 
               inputs={inputs}
               onInputChange={handleInputChange}
               onCalculate={calculateROI}
               onReset={resetCalculator}
             />
-          </div>
-          <div className="lg:pl-8">
-            {/* Removed duplicate Calculate RevOps ROI button */}
           </div>
         </div>
       ) : (
