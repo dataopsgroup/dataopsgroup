@@ -1,110 +1,96 @@
 
 # robots.txt for dataopsgroup.com
-# CRITICAL SEO FILE - DO NOT MODIFY WITHOUT SEO REVIEW
-# Cache refresh: 2025-06-14 - Added API endpoint blocks
+# Updated to allow AI crawlers and search engines full access
+# Last updated: 2025-07-02
 
 User-agent: *
 Allow: /
 
-# Disallow admin, authentication, and thank you pages
-Disallow: /thank-you
-Disallow: /thank-you/
-Disallow: /admin
+# Block only essential admin and private areas
 Disallow: /admin/
 Disallow: /wp-admin/
-Disallow: /wp-login.php
-Disallow: /auth/
-Disallow: /logout/
-Disallow: /login/
-Disallow: /signin/
-Disallow: /signup/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /staging/
+Disallow: /dev/
 
-# Disallow API endpoints that return 404s
-Disallow: /api/
-Disallow: /api/*
-Disallow: /_hcms/forms/embed/v4/render-definition/ssr
-Disallow: /0OV0VHL4M36Z.js.gz
+# Explicitly allow major AI crawlers
+User-agent: GPTBot
+Allow: /
 
-# CANONICAL URL PROTECTION - Disallow duplicate content
-Disallow: /guides/hubspot-expert-guide
-Disallow: /pillar-content/hubspot-expert
+User-agent: Claude-Web
+Allow: /
 
-# CANONICAL FAQ PROTECTION - Disallow ALL duplicate FAQ variants
-Disallow: /faqs/services-5
-Disallow: /faqs/hubspot-services
-Disallow: /faqs/hubspot-experts
-Disallow: /faqs/our-approach
-Disallow: /faqs/hubspot-modules
+User-agent: PerplexityBot
+Allow: /
 
-# Block duplicate FAQ patterns
-Disallow: /faqs/*-5
-Disallow: /faqs/hubspot-*
+User-agent: ChatGPT-User
+Allow: /
 
-# Explicitly allow canonical FAQ URLs
-Allow: /faqs/services
-Allow: /faqs/experts  
-Allow: /faqs/data-quality
-Allow: /faqs/approach
-Allow: /faqs/modules
+User-agent: Anthropic-AI
+Allow: /
 
-# ASSESSMENT PROTECTION - Disallow duplicate assessment URLs
-Disallow: /assessment
-Disallow: /hubspot-assessment
-Disallow: /hubspot-assessment-results
-Disallow: /data-operation-assessment
+User-agent: OpenAI-SearchBot
+Allow: /
 
-# Block query parameters that create duplicate content
-Disallow: /*?utm_source=
-Disallow: /*?utm_medium=
-Disallow: /*?utm_campaign=
-Disallow: /*?fbclid=
-Disallow: /*?gclid=
-Disallow: /*&utm_source=
-Disallow: /*&utm_medium=
-Disallow: /*&utm_campaign=
-Disallow: /*&fbclid=
-Disallow: /*&gclid=
+# Allow social media crawlers
+User-agent: FacebookExternalHit
+Allow: /
 
-# Sitemap
-Sitemap: https://dataopsgroup.com/sitemaps/sitemap-index.xml
+User-agent: Twitterbot
+Allow: /
 
-# Crawl delay settings
-Crawl-delay: 2
+User-agent: LinkedInBot
+Allow: /
 
-# Specific rules for major search engines
+# Allow major search engines
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
-Crawl-delay: 2
 
 User-agent: DuckDuckBot
 Allow: /
-Crawl-delay: 2
 
-User-agent: Googlebot-Mobile
-Allow: /
-Crawl-delay: 1
-
-User-agent: Mediapartners-Google
+User-agent: Baiduspider
 Allow: /
 
-User-agent: AdsBot-Google
+User-agent: YandexBot
 Allow: /
 
+# Allow image crawlers
 User-agent: Googlebot-Image
-Allow: /lovable-uploads/
-
-User-agent: BingPreview
 Allow: /
 
-# AI/ML Training Bots
-User-agent: GPTBot
+User-agent: Bingbot-Media
 Allow: /
-Crawl-delay: 1
+
+# Allow news crawlers
+User-agent: Googlebot-News
+Allow: /
+
+# Explicitly allow critical pages
+Allow: /services/
+Allow: /services/*
+Allow: /about
+Allow: /insights/
+Allow: /insights/*
+Allow: /faqs/
+Allow: /faqs/*
+Allow: /case-studies/
+Allow: /case-studies/*
+Allow: /assessment/
+Allow: /calculator/
+Allow: /book/
+Allow: /contact
+
+# Sitemap location
+Sitemap: https://dataopsgroup.com/sitemap.xml
+Sitemap: https://dataopsgroup.com/sitemaps/sitemap-index.xml
+
+# Crawl delay settings (optional - only if needed)
+# Crawl-delay: 1

@@ -1,83 +1,93 @@
 
 /**
- * Robots.txt Configuration - Controls search engine crawling and indexing
+ * Robots.txt Configuration - Updated for AI crawler optimization
+ * Allows all major search engines and AI crawlers full access
  */
 
 import { CANONICAL_URLS } from './canonical-urls';
 
-// ROBOTS.TXT DISALLOW PATTERNS - URLs that should never be indexed
+// ROBOTS.TXT DISALLOW PATTERNS - Only essential admin/private areas
 export const ROBOTS_DISALLOW_PATTERNS = [
-  // Home page variations
-  '/index',
-  '/index.html',
-  '/home',
+  // Admin and private areas only
+  '/admin/',
+  '/wp-admin/',
+  '/private/',
+  '/tmp/',
+  '/staging/',
+  '/dev/',
   
-  // Duplicate content paths
-  '/guides/hubspot-expert-guide',
-  '/pillar-content/hubspot-expert',
-  
-  // Duplicate FAQ variants
-  '/faqs/services-5',
-  '/faqs/hubspot-services',
-  '/faqs/hubspot-experts',
-  '/faqs/our-approach',
-  '/faqs/hubspot-modules',
-  '/faq',
-  
-  // Assessment duplicates - FIXED: Add singular form that was causing Ahrefs issues
-  '/assessment',
-  '/hubspot-assessment',
-  '/hubspot-assessment-results',
-  '/data-operation-assessment', // ADDED: Block singular form
-  
-  // Blog duplicates
-  '/blog',
-  '/whitepapers',
-  '/articles',
-  '/posts',
-  
-  // Pattern-based blocks
-  '/faqs/*-5',
-  '/faqs/hubspot-*',
-  
-  // Query parameter patterns
-  '/*?utm_source=',
-  '/*?utm_medium=',
-  '/*?utm_campaign=',
-  '/*?fbclid=',
-  '/*?gclid=',
-  '/*&utm_source=',
-  '/*&utm_medium=',
-  '/*&utm_campaign=',
-  '/*&fbclid=',
-  '/*&gclid='
+  // Development/testing paths
+  '/test/',
+  '/debug/',
+  '/.well-known/security.txt'
 ] as const;
 
-// ROBOTS.TXT EXPLICIT ALLOWS - Canonical URLs that should be indexed
+// ROBOTS.TXT EXPLICIT ALLOWS - All public content
 export const ROBOTS_EXPLICIT_ALLOWS = [
-  CANONICAL_URLS.home,
-  CANONICAL_URLS.services,
-  CANONICAL_URLS.about,
-  CANONICAL_URLS.approach,
-  CANONICAL_URLS.contact,
-  CANONICAL_URLS.insights,
-  CANONICAL_URLS.caseStudies,
-  CANONICAL_URLS.hubspotExpert,
-  CANONICAL_URLS.faqs, // FIXED: Added main FAQ page to explicit allows
-  CANONICAL_URLS.faqServices,
-  CANONICAL_URLS.faqExperts,
-  CANONICAL_URLS.faqDataQuality,
-  CANONICAL_URLS.faqApproach,
-  CANONICAL_URLS.faqModules,
-  CANONICAL_URLS.assessment,
-  CANONICAL_URLS.assessmentResults,
-  CANONICAL_URLS.badDataCalculator,
-  CANONICAL_URLS.revopsCalculator,
-  CANONICAL_URLS.book,
-  CANONICAL_URLS.peProgram
+  // Main pages
+  '/',
+  '/services/',
+  '/services/*',
+  '/about',
+  '/insights/',
+  '/insights/*',
+  '/faqs/',
+  '/faqs/*',
+  '/case-studies/',
+  '/case-studies/*',
+  '/assessment/',
+  '/calculator/',
+  '/book/',
+  '/contact',
+  '/approach',
+  '/testimonials',
+  
+  // Important tools and resources
+  '/pe-value-creation-program',
+  '/guides/*',
+  '/resources/*',
+  
+  // Sitemap and feeds
+  '/sitemap.xml',
+  '/sitemaps/*',
+  '/feed.xml',
+  '/rss.xml'
+] as const;
+
+// AI CRAWLERS - Explicitly allowed
+export const AI_CRAWLERS = [
+  'GPTBot',
+  'Claude-Web', 
+  'PerplexityBot',
+  'ChatGPT-User',
+  'Anthropic-AI',
+  'OpenAI-SearchBot'
+] as const;
+
+// SOCIAL MEDIA CRAWLERS
+export const SOCIAL_CRAWLERS = [
+  'FacebookExternalHit',
+  'Twitterbot',
+  'LinkedInBot'
+] as const;
+
+// SEARCH ENGINE CRAWLERS
+export const SEARCH_ENGINE_CRAWLERS = [
+  'Googlebot',
+  'Bingbot',
+  'Slurp',
+  'DuckDuckBot',
+  'Baiduspider',
+  'YandexBot',
+  'Googlebot-Image',
+  'Bingbot-Media',
+  'Googlebot-News'
 ] as const;
 
 export default {
   ROBOTS_DISALLOW_PATTERNS,
-  ROBOTS_EXPLICIT_ALLOWS
+  ROBOTS_EXPLICIT_ALLOWS,
+  AI_CRAWLERS,
+  SOCIAL_CRAWLERS,
+  SEARCH_ENGINE_CRAWLERS
 };
