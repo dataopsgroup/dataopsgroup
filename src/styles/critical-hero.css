@@ -1,17 +1,17 @@
 
+
 /* Fresh Hero CSS - Clean Implementation with Navbar Isolation */
 
 /* Mobile-first base styles */
 .hero-section {
-  min-height: calc(100vh - 120px); /* Subtract navbar height */
+  min-height: 85vh; /* Reduced by 15% from 100vh */
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 16px 60px; /* Reduced top padding since we're positioning below navbar */
+  padding: 140px 16px 60px; /* Increased top padding to clear navbar content */
   position: relative;
   overflow: hidden;
-  margin-top: 120px; /* Push entire section below navbar */
 }
 
 .hero-container {
@@ -104,14 +104,13 @@
 /* Desktop styles - add background image with proper containment */
 @media (min-width: 1024px) {
   .hero-section {
-    min-height: calc(100vh - 120px);
-    margin-top: 120px; /* Ensure we start below navbar */
-    /* Add background image directly here with containment */
+    min-height: 85vh; /* Reduced by 15% */
+    /* Position background image 1px below navbar (112px + 1px = 113px) */
     background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
     background-size: cover;
-    background-position: center center;
+    background-position: center 113px; /* Precisely positioned below navbar */
     background-repeat: no-repeat;
-    background-attachment: scroll; /* Prevent bleeding */
+    background-attachment: scroll;
     /* Keep gradient as fallback */
     background-color: #1e293b;
   }
@@ -135,6 +134,7 @@
 @media (min-width: 1440px) {
   .hero-section {
     background-size: cover;
-    background-position: center center;
+    background-position: center 113px; /* Maintain precise positioning */
   }
 }
+
