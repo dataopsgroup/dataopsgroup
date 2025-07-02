@@ -3,7 +3,7 @@
 
 /* Mobile-first base styles */
 .hero-section {
-  min-height: 60vh; /* Reduced from 70vh to meet requirement */
+  min-height: 60vh; /* Set to 60vh as requested */
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@
   padding: 120px 16px 60px;
   position: relative;
   overflow: hidden;
-  margin-top: 80px; /* Add margin to push below navbar */
+  padding-top: 160px; /* Add padding to push below navbar (80px + extra space) */
 }
 
 .hero-bg {
@@ -110,22 +110,21 @@
   .hero-section {
     min-height: 60vh; /* Consistent height for desktop */
     background-color: #1e293b; /* Fallback color */
-    margin-top: 0; /* Remove margin on desktop, use padding instead */
-    padding-top: 80px; /* Add padding to account for navbar height */
+    padding-top: 80px; /* Proper padding to account for navbar height */
   }
   
   .hero-bg {
-    display: block;
-    position: absolute;
-    top: 0; /* Start from top of hero section, not viewport */
+    display: block !important;
+    position: absolute !important;
+    top: 0; /* Start from top of hero section */
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 1;
+    background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    z-index: 1 !important;
   }
   
   .hero-headline {
@@ -146,7 +145,7 @@
 /* High-resolution desktop optimization */
 @media (min-width: 1440px) {
   .hero-bg {
-    background-size: cover;
-    background-position: center;
+    background-size: cover !important;
+    background-position: center !important;
   }
 }
