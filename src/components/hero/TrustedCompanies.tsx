@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
@@ -39,26 +38,30 @@ const TrustedCompanies = React.memo(() => {
           </div>
         </div>
 
-        {/* Client Testimonials - Masonry Layout */}
+        {/* Client Testimonials - Pinterest Style Masonry Layout */}
         <div className="mb-12">
           <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-8">
             What Our Clients Say
           </h3>
-          <div className="testimonials-masonry max-w-6xl mx-auto">
+          <div className="testimonials-pinterest max-w-6xl mx-auto">
             {featuredTestimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="bg-white testimonial-card">
-                <CardContent className="pt-6">
+              <Card key={testimonial.id} className="bg-white testimonial-card mb-6 break-inside-avoid">
+                <CardContent className="p-6">
                   <div className="flex justify-center mb-4">
                     {Array(testimonial.rating || 5).fill(0).map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-6 italic text-sm text-left leading-relaxed">"{testimonial.quote}"</p>
-                  <div className="text-left border-t pt-4">
-                    <p className="font-semibold text-sm">{testimonial.author.name}</p>
-                    <p className="text-xs text-gray-600">{testimonial.author.title}</p>
-                    <p className="text-xs text-gray-500">{testimonial.author.company}</p>
-                    <p className="text-xs text-gray-400 mt-1">{testimonial.author.industry}</p>
+                  <blockquote className="text-gray-700 mb-6 italic text-sm leading-relaxed">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  <div className="border-t pt-4">
+                    <cite className="not-italic">
+                      <p className="font-semibold text-sm text-gray-900">{testimonial.author.name}</p>
+                      <p className="text-xs text-gray-600">{testimonial.author.title}</p>
+                      <p className="text-xs text-gray-500">{testimonial.author.company}</p>
+                      <p className="text-xs text-gray-400 mt-1">{testimonial.author.industry}</p>
+                    </cite>
                   </div>
                 </CardContent>
               </Card>
@@ -81,55 +84,43 @@ const TrustedCompanies = React.memo(() => {
       </div>
 
       <style>{`
-        .testimonials-masonry {
-          display: grid;
-          grid-template-columns: repeat(1, 1fr);
-          gap: 1.5rem;
-          grid-template-rows: masonry;
+        .testimonials-pinterest {
+          column-count: 1;
+          column-gap: 1.5rem;
+          column-fill: balance;
         }
 
         @media (min-width: 768px) {
-          .testimonials-masonry {
-            grid-template-columns: repeat(2, 1fr);
+          .testimonials-pinterest {
+            column-count: 2;
           }
         }
 
         @media (min-width: 1024px) {
-          .testimonials-masonry {
-            grid-template-columns: repeat(3, 1fr);
+          .testimonials-pinterest {
+            column-count: 3;
           }
         }
 
         .testimonial-card {
+          display: inline-block;
+          width: 100%;
+          margin-bottom: 1.5rem;
           break-inside: avoid;
           page-break-inside: avoid;
-          margin-bottom: 0;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 12px;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        /* Fallback for browsers that don't support masonry */
-        @supports not (grid-template-rows: masonry) {
-          .testimonials-masonry {
-            column-count: 1;
-            column-gap: 1.5rem;
-          }
+        .testimonial-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
 
-          @media (min-width: 768px) {
-            .testimonials-masonry {
-              column-count: 2;
-            }
-          }
-
-          @media (min-width: 1024px) {
-            .testimonials-masonry {
-              column-count: 3;
-            }
-          }
-
-          .testimonial-card {
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 1.5rem;
-          }
+        /* Ensure proper spacing and prevent column breaks */
+        .testimonial-card * {
+          break-inside: avoid;
         }
       `}</style>
     </div>
