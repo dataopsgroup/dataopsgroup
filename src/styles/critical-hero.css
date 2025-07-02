@@ -11,6 +11,7 @@
   padding: 120px 16px 60px;
   position: relative;
   overflow: hidden;
+  margin-top: 80px; /* Add margin to push below navbar */
 }
 
 .hero-bg {
@@ -109,12 +110,14 @@
   .hero-section {
     min-height: 70vh; /* Proper height for desktop */
     background-color: #1e293b; /* Fallback color */
+    margin-top: 0; /* Remove margin on desktop, use padding instead */
+    padding-top: 80px; /* Add padding to account for navbar height */
   }
   
   .hero-bg {
     display: block;
     position: absolute;
-    top: 0;
+    top: 0; /* Start from top of hero section, not viewport */
     left: 0;
     right: 0;
     bottom: 0;
