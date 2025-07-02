@@ -1,5 +1,7 @@
 
-/* Critical Hero CSS - Inline for immediate rendering */
+/* Critical Hero CSS - Mobile First, Desktop Enhanced */
+
+/* Mobile-first base styles */
 .hero-section {
   min-height: 60vh;
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
@@ -8,19 +10,22 @@
   justify-content: center;
   padding: 80px 16px 60px;
   position: relative;
+  overflow: hidden;
 }
 
 .hero-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 10;
 }
 
 .hero-content {
   text-align: center;
   color: white;
-  z-index: 10;
   position: relative;
+  z-index: 10;
 }
 
 .hero-headline-box {
@@ -70,7 +75,13 @@
   max-width: 280px;
 }
 
-/* Desktop styles */
+/* Desktop background elements - hidden on mobile */
+.hero-bg-desktop,
+.hero-overlay {
+  display: none;
+}
+
+/* Tablet styles */
 @media (min-width: 768px) {
   .hero-headline {
     font-size: 3rem;
@@ -90,28 +101,46 @@
   }
 }
 
+/* Desktop styles - background image loads here */
 @media (min-width: 1024px) {
+  .hero-section {
+    min-height: 80vh;
+  }
+  
   .hero-headline {
     font-size: 4rem;
   }
   
-  .hero-section {
-    min-height: 80vh;
-    background-image: url('/images/hero-wireframe-bg.jpg');
-    background-size: 120%;
-    background-position: calc(100% + 50px) 30%;
-    background-repeat: no-repeat;
-  }
-  
-  .hero-section::before {
-    content: '';
+  /* Desktop background image */
+  .hero-bg-desktop {
+    display: block;
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.8) 100%);
+    background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
     z-index: 1;
   }
   
-  .hero-content {
+  /* Desktop overlay for text readability */
+  .hero-overlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.8) 100%);
+    z-index: 2;
+  }
+  
+  .hero-container {
     z-index: 10;
+  }
+}
+
+/* High-resolution desktop optimization */
+@media (min-width: 1440px) {
+  .hero-bg-desktop {
+    background-size: 120%;
+    background-position: calc(100% + 50px) 30%;
   }
 }

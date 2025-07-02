@@ -47,11 +47,16 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-tooltip'
           ],
           
-          // Charts - lazy load
+          // Charts - lazy load (mobile performance critical)
           'charts': ['recharts'],
           
           // Forms - lazy load
           'forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
+          
+          // Schema components - lazy load
+          'schema': [
+            '@tanstack/react-query'
+          ],
           
           // Less critical UI components
           'ui-extended': [
@@ -61,16 +66,13 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-scroll-area'
           ],
           
-          // Analytics and performance - defer
-          'analytics': ['@tanstack/react-query'],
-          
           // Utilities
           'utils': ['date-fns', 'lucide-react']
         },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name?.split('.') || [];
           const extType = info[info.length - 1];
-          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType || '')) {
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico|webp/i.test(extType || '')) {
             return `assets/images/[name]-[hash][extname]`;
           }
           if (/css/i.test(extType || '')) {

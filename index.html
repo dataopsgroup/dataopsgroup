@@ -23,12 +23,12 @@
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
     </noscript>
 
-    <!-- Desktop hero image preload -->
-    <link rel="preload" href="/images/hero-wireframe-bg.jpg" as="image" media="(min-width: 1025px)" />
+    <!-- Desktop hero image preload - only on desktop -->
+    <link rel="preload" href="/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png" as="image" media="(min-width: 1024px)" />
 
     <!-- Critical CSS inlined -->
     <style>
-      /* Critical hero rendering styles */
+      /* Critical mobile-first hero rendering */
       body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
       .hero-section { 
         min-height: 60vh; 
@@ -37,8 +37,9 @@
         align-items: center; 
         justify-content: center; 
         padding: 80px 16px 60px; 
+        position: relative;
       }
-      .hero-content { text-align: center; color: white; }
+      .hero-content { text-align: center; color: white; position: relative; z-index: 10; }
       .hero-headline { 
         font-size: 2rem; 
         line-height: 1.2; 
@@ -46,18 +47,34 @@
         margin-bottom: 1.5rem; 
         color: white; 
       }
+      
+      /* Desktop-only styles */
+      @media (min-width: 1024px) { 
+        .hero-section { min-height: 80vh; }
+        .hero-headline { font-size: 4rem; }
+        .hero-bg-desktop { 
+          display: block; 
+          position: absolute; 
+          inset: 0; 
+          background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png'); 
+          background-size: cover; 
+          background-position: center right; 
+          z-index: 1; 
+        }
+        .hero-overlay { 
+          display: block; 
+          position: absolute; 
+          inset: 0; 
+          background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(51, 65, 85, 0.8) 100%); 
+          z-index: 2; 
+        }
+      }
+      
+      /* Tablet styles */
       @media (min-width: 768px) { 
         .hero-headline { font-size: 3rem; } 
       }
-      @media (min-width: 1024px) { 
-        .hero-headline { font-size: 4rem; }
-        .hero-section { 
-          min-height: 80vh; 
-          background-image: url('/images/hero-wireframe-bg.jpg'); 
-          background-size: 120%; 
-          background-position: calc(100% + 50px) 30%; 
-        }
-      }
+      
       /* Loading state */
       .loading-placeholder { background: #f3f4f6; animation: pulse 1.5s ease-in-out infinite; }
       @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }

@@ -7,7 +7,13 @@ import TrustedCompanies from '@/components/hero/TrustedCompanies';
 const Hero = React.memo(() => {
   return (
     <>
-      <div className="hero-section bg-gray-50 pb-0">
+      <div className="hero-section">
+        {/* Desktop background image - only loads on desktop */}
+        <div className="hero-bg-desktop"></div>
+        
+        {/* Overlay for desktop readability */}
+        <div className="hero-overlay"></div>
+        
         {/* Layout Container */}
         <div className="hero-container">
           {/* Hero Content - headline overlay */}

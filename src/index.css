@@ -12,7 +12,7 @@
 @import './styles/components-optimized.css';
 
 /* Mobile performance optimizations */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   /* Reduce animations on mobile for better performance */
   *, *::before, *::after {
     animation-duration: 0.1s !important;
