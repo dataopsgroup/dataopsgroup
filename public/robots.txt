@@ -103,3 +103,8 @@ Allow: /lovable-uploads/
 
 User-agent: BingPreview
 Allow: /
+
+# AI/ML Training Bots
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
