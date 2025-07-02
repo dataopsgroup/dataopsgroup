@@ -1,35 +1,17 @@
 
-/* Critical inline styles - only what's needed for first paint */
-:root {
-  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-rubik: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-}
-
-/* Critical body and layout styles */
-body {
-  font-family: var(--font-inter);
-  font-display: swap;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Critical navigation styles */
-.navbar {
-  height: 80px;
-  contain: layout style;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  background: white;
-}
+@import './styles/critical-mobile.css';
+@import './styles/critical-hero.css';
+@import './styles/hero-debug.css';
+@import './styles/fonts-optimized.css';
+@import './styles/base.css';
+@import './styles/typography-optimized.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Defer non-critical imports after Tailwind */
+@import './styles/components-optimized.css';
 
 /* Mobile performance optimizations */
 @media (max-width: 1023px) {
@@ -59,6 +41,3 @@ body {
   .font-display-swap { font-display: swap; }
   .critical-font-load { font-display: block; }
 }
-
-/* Import critical hero styles */
-@import './styles/critical-hero.css';

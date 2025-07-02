@@ -8,9 +8,6 @@ const Hero = React.memo(() => {
   return (
     <>
       <div className="hero-section">
-        {/* Hero Background */}
-        <div className="hero-bg"></div>
-        
         {/* Layout Container */}
         <div className="hero-container">
           {/* Hero Content - headline overlay */}

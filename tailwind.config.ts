@@ -126,11 +126,13 @@ export default {
 	},
 	plugins: [require("tailwindcss-animate")],
 	safelist: [
-		// Dynamic classes that might be missed - use specific classes instead of patterns
-		'text-dataops-500', 'text-dataops-600', 'text-dataops-700',
-		'bg-dataops-500', 'bg-dataops-600', 'bg-dataops-700',
-		'border-dataops-500', 'border-dataops-600', 'border-dataops-700',
-		'text-brand-saffron', 'bg-brand-saffron', 'border-brand-saffron',
+		// Dynamic classes that might be missed
+		{ pattern: /^(text|bg|border)-(dataops|brand)-/ },
+		{ pattern: /^hover:/ },
+		{ pattern: /^focus:/ },
+		{ pattern: /^active:/ },
+		{ pattern: /^md:/ },
+		{ pattern: /^lg:/ },
 		// Component-specific classes
 		'hero-section',
 		'hero-content',

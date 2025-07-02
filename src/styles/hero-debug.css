@@ -1,187 +1,40 @@
 
-/* Debug visualization styles - Shows layout boundaries with maximum specificity */
 
-/* Hero Section Debug */
+/* Debug visualization styles - Shows layout boundaries */
+
 .hero-section {
   position: relative !important;
-  border: 5px solid #ff0000 !important;
-  box-shadow: inset 0 0 0 2px #ff0000 !important;
 }
 
-.hero-section::before {
-  content: "HERO SECTION" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 5px !important;
-  background: #ff0000 !important;
-  color: white !important;
-  padding: 4px 8px !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  z-index: 9999 !important;
-  border-radius: 3px !important;
-  font-family: Arial, sans-serif !important;
-}
-
-/* Hero Background Debug */
 .hero-bg {
-  border: 4px solid #0066ff !important;
-  box-shadow: inset 0 0 0 2px #0066ff !important;
 }
 
-.hero-bg::before {
-  content: "HERO BG" !important;
-  position: absolute !important;
-  top: 5px !important;
-  right: 5px !important;
-  background: #0066ff !important;
-  color: white !important;
-  padding: 4px 8px !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  z-index: 9999 !important;
-  border-radius: 3px !important;
-  font-family: Arial, sans-serif !important;
-}
-
-/* Hero Container Debug */
 .hero-container {
   position: relative !important;
-  border: 4px solid #00cc00 !important;
-  box-shadow: inset 0 0 0 2px #00cc00 !important;
 }
 
-.hero-container::before {
-  content: "HERO CONTAINER" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 5px !important;
-  background: #00cc00 !important;
-  color: white !important;
-  padding: 4px 8px !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  z-index: 9999 !important;
-  border-radius: 3px !important;
-  font-family: Arial, sans-serif !important;
-}
-
-/* Hero Content Debug */
 .hero-content {
   position: relative !important;
-  border: 4px solid #ff8800 !important;
-  box-shadow: inset 0 0 0 2px #ff8800 !important;
 }
 
-.hero-content::before {
-  content: "HERO CONTENT" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 5px !important;
-  background: #ff8800 !important;
-  color: white !important;
-  padding: 4px 8px !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  z-index: 9999 !important;
-  border-radius: 3px !important;
-  font-family: Arial, sans-serif !important;
-}
-
-/* Hero Headline Box Debug */
 .hero-headline-box {
   position: relative !important;
-  border: 4px solid #cc00cc !important;
-  box-shadow: inset 0 0 0 2px #cc00cc !important;
 }
 
-.hero-headline-box::before {
-  content: "HEADLINE BOX" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 5px !important;
-  background: #cc00cc !important;
-  color: white !important;
-  padding: 4px 8px !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  z-index: 9999 !important;
-  border-radius: 3px !important;
-  font-family: Arial, sans-serif !important;
-}
-
-/* Hero Content Section Debug (below hero) */
+/* Debug for the new content section below hero */
 .hero-content-section {
   position: relative !important;
-  border: 4px solid #00cccc !important;
-  box-shadow: inset 0 0 0 2px #00cccc !important;
 }
 
-.hero-content-section::before {
-  content: "HERO CONTENT SECTION" !important;
-  position: absolute !important;
-  top: 5px !important;
-  left: 5px !important;
-  background: #00cccc !important;
-  color: black !important;
-  padding: 4px 8px !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  z-index: 9999 !important;
-  border-radius: 3px !important;
-  font-family: Arial, sans-serif !important;
-}
-
-/* Grid Debug for two-column layout */
+/* Grid debug for two-column layout */
 .hero-content-grid {
-  border: 3px solid #ffff00 !important;
-  box-shadow: inset 0 0 0 1px #ffff00 !important;
 }
 
 .hero-content-grid > div:first-child {
   position: relative !important;
-  border: 3px solid #ff66cc !important;
-  box-shadow: inset 0 0 0 1px #ff66cc !important;
-}
-
-.hero-content-grid > div:first-child::before {
-  content: "LEFT COLUMN" !important;
-  position: absolute !important;
-  top: 2px !important;
-  left: 2px !important;
-  background: #ff66cc !important;
-  color: black !important;
-  padding: 3px 6px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 9999 !important;
-  border-radius: 2px !important;
-  font-family: Arial, sans-serif !important;
 }
 
 .hero-content-grid > div:last-child {
   position: relative !important;
-  border: 3px solid #66ccff !important;
-  box-shadow: inset 0 0 0 1px #66ccff !important;
 }
 
-.hero-content-grid > div:last-child::before {
-  content: "RIGHT COLUMN" !important;
-  position: absolute !important;
-  top: 2px !important;
-  left: 2px !important;
-  background: #66ccff !important;
-  color: black !important;
-  padding: 3px 6px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  z-index: 9999 !important;
-  border-radius: 2px !important;
-  font-family: Arial, sans-serif !important;
-}
-
-/* Additional debug for text background if it exists */
-.hero-text-background {
-  border: 2px dashed #ffffff !important;
-  box-shadow: inset 0 0 0 1px #ffffff !important;
-}

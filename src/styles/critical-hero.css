@@ -1,21 +1,18 @@
 
+
+
 /* Fresh Hero CSS - Clean Implementation with Navbar Isolation */
 
 /* Mobile-first base styles */
 .hero-section {
-  min-height: 60vh; /* Set to 60vh as requested */
+  min-height: 40vh; /* Reduced from 85vh to 40vh */
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 16px 60px;
+  padding: 120px 16px 20px; /* Optimized padding for 40vh section */
   position: relative;
   overflow: hidden;
-  padding-top: 160px; /* Add padding to push below navbar (80px + extra space) */
-}
-
-.hero-bg {
-  display: none; /* Hidden on mobile */
 }
 
 .hero-container {
@@ -105,26 +102,18 @@
   }
 }
 
-/* Desktop styles - add background image */
+/* Desktop styles - add background image with proper containment */
 @media (min-width: 1024px) {
   .hero-section {
-    min-height: 60vh; /* Consistent height for desktop */
-    background-color: #1e293b; /* Fallback color */
-    padding-top: 80px; /* Proper padding to account for navbar height */
-  }
-  
-  .hero-bg {
-    display: block !important;
-    position: absolute !important;
-    top: 0; /* Start from top of hero section */
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    z-index: 1 !important;
+    min-height: 40vh; /* Reduced from 85vh to 40vh */
+    /* Position background image at center instead of 113px offset */
+    background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
+    background-size: cover;
+    background-position: center; /* Changed from center 113px to center */
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    /* Keep gradient as fallback */
+    background-color: #1e293b;
   }
   
   .hero-headline {
@@ -144,8 +133,10 @@
 
 /* High-resolution desktop optimization */
 @media (min-width: 1440px) {
-  .hero-bg {
-    background-size: cover !important;
-    background-position: center !important;
+  .hero-section {
+    background-size: cover;
+    background-position: center; /* Changed from center 113px to center */
   }
 }
+
+
