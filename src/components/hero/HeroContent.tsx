@@ -1,4 +1,19 @@
 
+/**
+ * ⚠️ HERO CONTENT COMPONENT - LOCKED FOR EDITING ⚠️
+ * 
+ * This component contains the main hero headline and CTA buttons.
+ * Currently working correctly - DO NOT MODIFY without user approval.
+ * 
+ * Features locked:
+ * - Headline text with yellow "100 Days" highlight
+ * - Two CTA buttons (Assessment and Calculator)
+ * - Semi-transparent text background
+ * - Proper responsive styling
+ * 
+ * EDITING BLOCKED - User permission required!
+ */
+
 import React from 'react';
 
 const HeroContent = React.memo(() => {

@@ -1,5 +1,19 @@
 
-
+/**
+ * ⚠️ HERO STYLES - LOCKED FOR EDITING ⚠️
+ * 
+ * These styles control the hero section layout and are currently working
+ * correctly. DO NOT MODIFY without explicit user permission.
+ * 
+ * Key features locked:
+ * - 40vh height for compact hero
+ * - Background image positioning
+ * - Responsive text sizing
+ * - Proper navbar spacing (120px padding-top)
+ * - Text background overlay for readability
+ * 
+ * MODIFICATIONS BLOCKED - User approval required!
+ */
 
 /* Fresh Hero CSS - Clean Implementation with Navbar Isolation */
 
@@ -138,5 +152,3 @@
     background-position: center; /* Changed from center 113px to center */
   }
 }
-
-

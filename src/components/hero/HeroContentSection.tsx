@@ -1,4 +1,22 @@
 
+/**
+ * ⚠️ HERO CONTENT SECTION - LOCKED FOR EDITING ⚠️
+ * 
+ * This section appears below the main hero and contains stats,
+ * description text, and additional CTAs. Currently working correctly.
+ * 
+ * DO NOT MODIFY without explicit user permission.
+ * 
+ * Features locked:
+ * - Two-column responsive layout
+ * - Stats cards (19% and 73%)
+ * - CTA buttons
+ * - Progress bars visualization
+ * - 100-Day guarantee badge
+ * 
+ * EDITING BLOCKED - User approval required!
+ */
+
 import React from 'react';
 
 const HeroContentSection = () => {
