@@ -4,11 +4,9 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-// Simple initialization with error handling
+// Critical path optimization
 const initializeApp = async () => {
   try {
-    console.log('Starting app initialization...');
-    
     const rootElement = document.getElementById("root");
     if (!rootElement) {
       throw new Error('Root element not found');
@@ -22,27 +20,19 @@ const initializeApp = async () => {
       </StrictMode>
     );
     
-    console.log('App rendered successfully');
-    
-    // Initialize performance features after render
+    // Defer non-critical performance monitoring
     if (typeof window !== 'undefined') {
-      // Non-blocking performance initialization
       setTimeout(() => {
-        Promise.all([
-          import('./utils/performance/core-vitals').then(({ initWebVitals }) => {
-            initWebVitals();
-          }).catch(error => {
-            console.warn('Failed to initialize Web Vitals:', error);
-          })
-        ]).catch(error => {
-          console.warn('Failed to initialize performance features:', error);
+        import('./utils/performance/core-vitals').then(({ initWebVitals }) => {
+          initWebVitals();
+        }).catch(() => {
+          // Fail silently for performance monitoring
         });
-      }, 100);
+      }, 3000); // Increased delay to prioritize critical rendering
     }
   } catch (error) {
     console.error('Failed to initialize app:', error);
     
-    // Show error message in the loading div
     const rootElement = document.getElementById("root");
     if (rootElement) {
       rootElement.innerHTML = `
@@ -59,5 +49,4 @@ const initializeApp = async () => {
   }
 };
 
-// Initialize the app
 initializeApp();

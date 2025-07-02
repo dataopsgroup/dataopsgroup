@@ -5,25 +5,20 @@ import Hero from '@/components/Hero';
 import BookCTA from '@/components/BookCTA';
 import Approach from '@/components/Approach';
 import ChatbotSection from '@/components/ChatbotSection';
-import MobilePerformanceMonitor from '@/components/performance/MobilePerformanceMonitor';
-import OrganizationSchema from '@/components/seo/OrganizationSchema';
-import WebsiteSchema from '@/components/seo/WebsiteSchema';
-import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
-import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
-import ProfessionalServiceSchema from '@/components/seo/ProfessionalServiceSchema';
-import TestimonialsSchema from '@/components/seo/TestimonialsSchema';
 import MetaHead from '@/components/seo/MetaHead';
 import ImageErrorBoundary from '@/components/ui/image-error-boundary';
 
+// Lazy load non-critical components
+const OrganizationSchema = React.lazy(() => import('@/components/seo/OrganizationSchema'));
+const WebsiteSchema = React.lazy(() => import('@/components/seo/WebsiteSchema'));
+const BreadcrumbSchema = React.lazy(() => import('@/components/seo/BreadcrumbSchema'));
+const LocalBusinessSchema = React.lazy(() => import('@/components/seo/LocalBusinessSchema'));
+const ProfessionalServiceSchema = React.lazy(() => import('@/components/seo/ProfessionalServiceSchema'));
+const TestimonialsSchema = React.lazy(() => import('@/components/seo/TestimonialsSchema'));
+
 const Index = () => {
-  // Enhanced debugging for Index page initialization
-  console.log('🏠 Index page rendered at:', new Date().toISOString());
-  
   return (
     <SemanticLayout>
-      {/* Add mobile performance monitoring */}
-      <MobilePerformanceMonitor />
-      
       <MetaHead
         title="PE Portfolio Operations Platform - HubSpot for Private Equity"
         description="Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI. 100-day implementation."
@@ -44,20 +39,22 @@ const Index = () => {
         }}
       />
       
-      {/* Schema markup for SEO */}
-      <OrganizationSchema />
-      <WebsiteSchema />
-      <BreadcrumbSchema 
-        items={[
-          { name: "Home", url: "/" }
-        ]} 
-      />
-      <LocalBusinessSchema />
-      <ProfessionalServiceSchema />
-      <TestimonialsSchema />
+      {/* Lazy load schema markup to reduce initial bundle */}
+      <React.Suspense fallback={null}>
+        <OrganizationSchema />
+        <WebsiteSchema />
+        <BreadcrumbSchema 
+          items={[
+            { name: "Home", url: "/" }
+          ]} 
+        />
+        <LocalBusinessSchema />
+        <ProfessionalServiceSchema />
+        <TestimonialsSchema />
+      </React.Suspense>
       
-      {/* Main content sections with enhanced error boundary around Hero */}
-      <section aria-labelledby="hero-heading" className="bg-green-200">
+      {/* Critical above-the-fold content */}
+      <section aria-labelledby="hero-heading">
         <ImageErrorBoundary fallback={
           <div className="min-h-[500px] bg-dataops-600 flex items-center justify-center">
             <div className="text-white text-center">

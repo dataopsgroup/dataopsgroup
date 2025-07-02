@@ -28,40 +28,44 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    target: 'esnext',
+    target: 'es2020',
     minify: mode === 'production',
-    sourcemap: mode === 'development',
+    sourcemap: false,
     cssCodeSplit: true,
     rollupOptions: {
       output: {
         manualChunks: {
-          // Core React ecosystem
-          vendor: ['react', 'react-dom', 'react-router-dom'],
+          // Core React - highest priority
+          'react-vendor': ['react', 'react-dom'],
           
-          // UI framework components
-          ui: [
-            '@radix-ui/react-accordion', 
+          // Router - needed early
+          'router': ['react-router-dom'],
+          
+          // Essential UI components only
+          'ui-core': [
             '@radix-ui/react-dialog', 
-            '@radix-ui/react-tooltip',
+            '@radix-ui/react-tooltip'
+          ],
+          
+          // Charts - lazy load
+          'charts': ['recharts'],
+          
+          // Forms - lazy load
+          'forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
+          
+          // Less critical UI components
+          'ui-extended': [
+            '@radix-ui/react-accordion',
             '@radix-ui/react-tabs',
             '@radix-ui/react-select',
             '@radix-ui/react-scroll-area'
           ],
           
-          // Charts and data visualization
-          charts: ['recharts', 'embla-carousel-react'],
+          // Analytics and performance - defer
+          'analytics': ['@tanstack/react-query'],
           
-          // Forms and validation
-          forms: ['react-hook-form', '@hookform/resolvers', 'zod'],
-          
-          // Date utilities
-          dates: ['date-fns'],
-          
-          // Analytics and performance
-          analytics: ['@tanstack/react-query'],
-          
-          // Icons and assets
-          icons: ['lucide-react']
+          // Utilities
+          'utils': ['date-fns', 'lucide-react']
         },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name?.split('.') || [];
