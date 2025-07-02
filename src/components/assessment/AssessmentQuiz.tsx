@@ -13,6 +13,7 @@ const AssessmentQuiz = () => {
   const [currentSection, setCurrentSection] = useState(1);
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const [scores, setScores] = useState<Record<string, number>>({});
+  const [showValidationError, setShowValidationError] = useState(false);
   
   const { overallScore, scoreLabel, priorities, rescuePlan } = useAssessmentResults(scores);
 
@@ -26,7 +27,19 @@ const AssessmentQuiz = () => {
       ...prev,
       [questionId]: value
     }));
-  }, []);
+    // Clear validation error when user answers a question
+    if (showValidationError) {
+      setShowValidationError(false);
+    }
+  }, [showValidationError]);
+
+  // Check if all questions in current section are answered
+  const isCurrentSectionComplete = useCallback(() => {
+    const section = quizSections.find(s => s.id === currentSection);
+    if (!section) return false;
+    
+    return section.questions.every(question => answers[question.id] !== undefined);
+  }, [currentSection, answers]);
 
   // Memoize section score calculation
   const calculateSectionScore = useCallback((sectionId: number) => {
@@ -54,6 +67,14 @@ const AssessmentQuiz = () => {
   }, []);
 
   const nextSection = useCallback(() => {
+    // Check if current section is complete before proceeding
+    if (!isCurrentSectionComplete()) {
+      setShowValidationError(true);
+      return;
+    }
+
+    setShowValidationError(false);
+
     if (currentSection < quizSections.length) {
       setCurrentSection(prev => prev + 1);
       scrollToTop();
@@ -70,11 +91,12 @@ const AssessmentQuiz = () => {
       setCurrentStep('results');
       scrollToTop();
     }
-  }, [currentSection, calculateSectionScore, scrollToTop]);
+  }, [currentSection, calculateSectionScore, scrollToTop, isCurrentSectionComplete]);
 
   const prevSection = useCallback(() => {
     if (currentSection > 1) {
       setCurrentSection(prev => prev - 1);
+      setShowValidationError(false);
       scrollToTop();
     }
   }, [currentSection, scrollToTop]);
@@ -117,6 +139,7 @@ const AssessmentQuiz = () => {
               currentSection={currentSection}
               prevSection={prevSection}
               nextSection={nextSection}
+              showValidationError={showValidationError}
             />
           </div>
         </div>
