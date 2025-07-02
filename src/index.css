@@ -15,86 +15,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Critical hero styles for LCP */
-.hero-section {
-  min-height: 70vh;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 16px 60px;
-  position: relative;
-  overflow: hidden;
-  margin-top: 80px; /* Add margin to push below navbar */
-}
-
-.hero-bg {
-  display: none;
-}
-
-.hero-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 10;
-}
-
-.hero-content {
-  text-align: center;
-  color: white;
-  position: relative;
-  z-index: 10;
-}
-
-.hero-headline {
-  font-size: 2rem;
-  line-height: 1.2;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
 /* Critical navigation styles */
 .navbar {
   height: 80px;
   contain: layout style;
-}
-
-/* Desktop hero background */
-@media (min-width: 1024px) {
-  .hero-bg {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 1;
-  }
-  
-  .hero-headline {
-    font-size: 4rem;
-    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
-  }
-  
-  .hero-section {
-    min-height: 70vh; /* Proper height for desktop */
-    background-color: #1e293b; /* Fallback color */
-    margin-top: 0; /* Remove margin on desktop, use padding instead */
-    padding-top: 80px; /* Add padding to account for navbar height */
-  }
-}
-
-@media (min-width: 768px) {
-  .hero-headline {
-    font-size: 3rem;
-  }
 }
 
 @tailwind base;
@@ -129,6 +53,9 @@ body {
   .font-display-swap { font-display: swap; }
   .critical-font-load { font-display: block; }
 }
+
+/* Import critical hero styles */
+@import './styles/critical-hero.css';
 
 /* Import debug styles LAST to override all other styles */
 @import './styles/hero-debug.css';

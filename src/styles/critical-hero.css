@@ -3,7 +3,7 @@
 
 /* Mobile-first base styles */
 .hero-section {
-  min-height: 70vh; /* Reduced from 85vh to proper height */
+  min-height: 60vh; /* Reduced from 70vh to meet requirement */
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   display: flex;
   align-items: center;
@@ -108,7 +108,7 @@
 /* Desktop styles - add background image */
 @media (min-width: 1024px) {
   .hero-section {
-    min-height: 70vh; /* Proper height for desktop */
+    min-height: 60vh; /* Consistent height for desktop */
     background-color: #1e293b; /* Fallback color */
     margin-top: 0; /* Remove margin on desktop, use padding instead */
     padding-top: 80px; /* Add padding to account for navbar height */
