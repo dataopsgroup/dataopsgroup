@@ -157,6 +157,73 @@ const Index = () => {
         <Approach />
       </section>
       
+      {/* Strategic Links Section for SEO Link Equity */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl font-bold mb-8 text-center text-gray-900">Resources & Insights</h2>
+            <div className="grid md:grid-cols-4 gap-6">
+              <div className="space-y-4">
+                <h3 className="font-semibold text-gray-900">Popular Guides</h3>
+                <div className="space-y-2">
+                  <a href="/guides/hubspot-expert" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    HubSpot Expert Hiring Guide
+                  </a>
+                  <a href="/insights/hiring-and-working-with-a-hubspot-consultant" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    Working with HubSpot Consultants
+                  </a>
+                  <a href="/insights/create-pro-level-hubspot-lead-score-model" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    Pro Lead Scoring Models
+                  </a>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold text-gray-900">Case Studies</h3>
+                <div className="space-y-2">
+                  <a href="/insights/multi-national-specialty-insurance" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    Multi-National Insurance Success
+                  </a>
+                  <a href="/insights/audio-visual-equipment-wholesaler" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    AV Equipment Transformation
+                  </a>
+                  <a href="/case-studies" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    All Success Stories
+                  </a>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold text-gray-900">Expert Insights</h3>
+                <div className="space-y-2">
+                  <a href="/insights/stop-buying-contact-lists" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    Stop Buying Contact Lists
+                  </a>
+                  <a href="/insights/silent-sales-marketing-divide" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    Sales & Marketing Alignment
+                  </a>
+                  <a href="/insights/marketing-dashboards-fail" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    Why Dashboards Fail
+                  </a>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold text-gray-900">Industry Resources</h3>
+                <div className="space-y-2">
+                  <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    HubSpot Academy
+                  </a>
+                  <a href="https://blog.hubspot.com/" target="_blank" rel="noopener noreferrer" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    HubSpot Blog
+                  </a>
+                  <a href="https://ecosystem.hubspot.com/marketplace" target="_blank" rel="noopener noreferrer" className="block text-dataops-600 hover:text-dataops-800 text-sm transition-colors">
+                    HubSpot Marketplace
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <section aria-label="Book a Consultation">
         <BookCTA />
       </section>
