@@ -4,6 +4,9 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
+// Emergency disable client-side redirects for GSC compliance
+import "./utils/disable-client-redirects";
+
 // Critical path optimization
 const initializeApp = async () => {
   try {
