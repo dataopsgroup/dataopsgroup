@@ -6,40 +6,40 @@ import { ArrowRight } from 'lucide-react';
 const RelatedContent: React.FC = () => {
   const relatedArticles = [
     {
-      title: "Customer Churn Blindspot 83% of Companies Miss",
-      description: "Learn the five dimensions that reveal your true retention picture",
-      link: "/insights/customer-churn-blindspot",
+      title: "Hiring and Working with a HubSpot Consultant",
+      description: "Complete guide to finding, vetting, and working with HubSpot experts",
+      link: "/insights/hiring-and-working-with-a-hubspot-consultant",
+      category: "Consulting"
+    },
+    {
+      title: "Stop Buying Contact Lists: Here's Why It Always Fails",
+      description: "Why purchased lists damage reputation and sustainable alternatives",
+      link: "/insights/stop-buying-contact-lists",
+      category: "Lead Generation"
+    },
+    {
+      title: "The Silent Sales and Marketing Divide",
+      description: "How misaligned teams cost companies millions in lost revenue",
+      link: "/insights/silent-sales-marketing-divide",
+      category: "Revenue Operations"
+    },
+    {
+      title: "Why Most Marketing Dashboards Fail",
+      description: "Common dashboard mistakes that lead to poor business decisions",
+      link: "/insights/marketing-dashboards-fail",
       category: "Analytics"
     },
     {
-      title: "Your CRM Is a Mess: Here's Your 90-Day Cleanup Plan",
-      description: "Boost accuracy, reduce costs, and enhance productivity with our proven plan",
-      link: "/insights/crm-cleanup-plan",
-      category: "Operations"
-    },
-    {
-      title: "Customer Acquisition Cost Calculation That Could Save Your Company",
-      description: "Learn the comprehensive CAC formula that prevents unprofitable growth",
-      link: "/insights/customer-acquisition-cost",
-      category: "Finance"
-    },
-    {
-      title: "Marketing Operations Isn't IT: Defining Clear Boundaries", 
-      description: "Learn key differences to establish clear organizational boundaries",
-      link: "/insights/marketing-operations-isnt-it",
-      category: "Strategy"
-    },
-    {
-      title: "The Forgotten Art of Campaign Documentation",
-      description: "Structured documentation enhances efficiency and improves collaboration",
-      link: "/insights/forgotten-art-campaign-documentation", 
-      category: "Process"
-    },
-    {
-      title: "Data Enrichment Strategy That Actually Works",
-      description: "Fix validation, maintenance, & quality checks to boost lead quality",
-      link: "/insights/data-enrichment-strategy",
+      title: "Marketing Leaders at Risk: The Data Quality Crisis",
+      description: "How poor data quality puts marketing careers at risk",
+      link: "/insights/marketing-leaders-data-quality-crisis",
       category: "Data Quality"
+    },
+    {
+      title: "Create a Pro-Level HubSpot Lead Score Model",
+      description: "Build sophisticated lead scoring that predicts sales success",
+      link: "/insights/create-pro-level-hubspot-lead-score-model",
+      category: "Lead Management"
     }
   ];
 

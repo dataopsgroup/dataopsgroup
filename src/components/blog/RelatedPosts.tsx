@@ -22,8 +22,68 @@ interface RelatedPostsProps {
 }
 
 const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
-  // Enhanced sample blog posts with proper category tags
+  // Enhanced sample blog posts with ALL orphaned posts for better cross-linking
   const samplePosts = [
+    {
+      id: "hiring-and-working-with-a-hubspot-consultant",
+      title: "Hiring and Working with a HubSpot Consultant",
+      excerpt: "Complete guide to finding, vetting, and working effectively with HubSpot consultants to ensure project success.",
+      date: "2025-01-15",
+      author: "Geoff Tucker", 
+      category: "HubSpot Consulting",
+      coverImage: "/lovable-uploads/377d96ba-a218-4a91-a0f5-446f6b5dc23b.png",
+      content: ""
+    },
+    {
+      id: "create-pro-level-hubspot-lead-score-model",
+      title: "Create a Pro-Level HubSpot Lead Score Model",
+      excerpt: "Build sophisticated lead scoring models that actually predict sales success using HubSpot's advanced features.",
+      date: "2025-01-10",
+      author: "Geoff Tucker",
+      category: "Lead Management",
+      coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png", 
+      content: ""
+    },
+    {
+      id: "stop-buying-contact-lists",
+      title: "Stop Buying Contact Lists: Here's Why It Always Fails",
+      excerpt: "Purchased contact lists damage your reputation and deliver poor results. Learn sustainable lead generation alternatives.",
+      date: "2025-01-05",
+      author: "Geoff Tucker",
+      category: "Lead Generation",
+      coverImage: "/lovable-uploads/65e362f2-ce0e-48c8-8aed-c567255b52ba.png",
+      content: ""
+    },
+    {
+      id: "silent-sales-marketing-divide",
+      title: "The Silent Sales and Marketing Divide",
+      excerpt: "How misaligned sales and marketing teams cost companies millions in lost revenue and missed opportunities.",
+      date: "2024-12-20",
+      author: "Geoff Tucker",
+      category: "Revenue Operations",
+      coverImage: "/lovable-uploads/72e7f6ab-b186-48c5-990f-fa0d94659fc6.png",
+      content: ""
+    },
+    {
+      id: "marketing-dashboards-fail",
+      title: "Why Most Marketing Dashboards Fail",
+      excerpt: "Common dashboard mistakes that lead to poor decisions and how to build dashboards that actually drive results.",
+      date: "2024-12-15",
+      author: "Geoff Tucker",
+      category: "Analytics",
+      coverImage: "/lovable-uploads/269cf082-a0cd-445e-8738-c2aee0f60336.png",
+      content: ""
+    },
+    {
+      id: "marketing-leaders-data-quality-crisis",
+      title: "Marketing Leaders at Risk: The Data Quality Crisis",
+      excerpt: "Poor data quality is putting marketing leaders' careers at risk. Learn how to identify and fix critical data issues.",
+      date: "2024-12-10",
+      author: "Geoff Tucker",
+      category: "Data Quality",
+      coverImage: "/lovable-uploads/38a717bc-5952-4682-b390-57a9de301649.png",
+      content: ""
+    },
     {
       id: "customer-segmentation-mistake-icp",
       title: "The \"Ideal Customer Profile\" Myth That's Killing Your Growth",
@@ -86,13 +146,41 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
     }
   ];
 
-  // Combine actual related posts with sample posts, removing current post
-  const allPosts = [...relatedPosts, ...samplePosts]
-    .filter(post => post.id !== currentPostId)
-    .slice(0, 6); // Show 6 related posts instead of 3
+  // Enhanced post selection with topic-based relevance
+  const getTopicBasedPosts = (currentPost: string) => {
+    // Define topic clusters for better cross-linking
+    const topicClusters: Record<string, string[]> = {
+      'hubspot': ['hiring-and-working-with-a-hubspot-consultant', 'create-pro-level-hubspot-lead-score-model', 'stop-buying-contact-lists'],
+      'data-quality': ['data-enrichment-strategy', 'marketing-leaders-data-quality-crisis', 'crm-cleanup-plan'],
+      'operations': ['marketing-operations-isnt-it', 'silent-sales-marketing-divide', 'customer-churn-blindspot'],
+      'analytics': ['marketing-dashboards-fail', 'customer-acquisition-cost', 'customer-segmentation-mistake-icp']
+    };
 
-  // Posts to display
-  const postsToDisplay = allPosts.length > 0 ? allPosts : samplePosts.filter(post => post.id !== currentPostId).slice(0, 6);
+    // Find which cluster the current post belongs to
+    let relevantPosts: BlogPost[] = [];
+    for (const [topic, posts] of Object.entries(topicClusters)) {
+      if (posts.includes(currentPost)) {
+        relevantPosts = samplePosts.filter(post => posts.includes(post.id) && post.id !== currentPost);
+        break;
+      }
+    }
+
+    // Fill remaining slots with other high-value posts
+    const remainingPosts = samplePosts.filter(post => 
+      !relevantPosts.some(rp => rp.id === post.id) && post.id !== currentPost
+    );
+    
+    return [...relevantPosts.slice(0, 3), ...remainingPosts.slice(0, 3)].slice(0, 6);
+  };
+
+  // Combine related posts with strategically selected sample posts
+  const strategicPosts = getTopicBasedPosts(currentPostId);
+  const allPosts = [...relatedPosts, ...strategicPosts]
+    .filter(post => post.id !== currentPostId)
+    .slice(0, 6);
+
+  // Posts to display - prioritize topic relevance
+  const postsToDisplay = allPosts.length > 0 ? allPosts : strategicPosts;
 
   return (
     <section className="py-12 bg-gray-50">

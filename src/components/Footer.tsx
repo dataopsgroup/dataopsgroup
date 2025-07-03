@@ -123,6 +123,33 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Popular Articles Section */}
+        <div className="mt-12 pt-8 border-t border-gray-700">
+          <h3 className="text-lg font-semibold mb-6 text-brand-saffron text-center">Popular Articles</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Link to="/insights/hiring-and-working-with-a-hubspot-consultant" className="text-gray-300 hover:text-white transition-colors text-sm block p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50">
+              <div className="font-medium mb-1">Hiring & Working with a HubSpot Consultant</div>
+              <div className="text-xs text-gray-400">Complete guide to finding the right expert</div>
+            </Link>
+            <Link to="/insights/stop-buying-contact-lists" className="text-gray-300 hover:text-white transition-colors text-sm block p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50">
+              <div className="font-medium mb-1">Stop Buying Contact Lists</div>
+              <div className="text-xs text-gray-400">Why purchased lists always fail</div>
+            </Link>
+            <Link to="/insights/silent-sales-marketing-divide" className="text-gray-300 hover:text-white transition-colors text-sm block p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50">
+              <div className="font-medium mb-1">The Silent Sales & Marketing Divide</div>
+              <div className="text-xs text-gray-400">Bridge the gap between teams</div>
+            </Link>
+            <Link to="/insights/marketing-dashboards-fail" className="text-gray-300 hover:text-white transition-colors text-sm block p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50">
+              <div className="font-medium mb-1">Why Marketing Dashboards Fail</div>
+              <div className="text-xs text-gray-400">Common mistakes to avoid</div>
+            </Link>
+            <Link to="/insights/marketing-leaders-data-quality-crisis" className="text-gray-300 hover:text-white transition-colors text-sm block p-3 bg-gray-800/30 rounded-lg hover:bg-gray-800/50">
+              <div className="font-medium mb-1">Marketing Leaders Data Quality Crisis</div>
+              <div className="text-xs text-gray-400">The hidden risk to your business</div>
+            </Link>
+          </div>
+        </div>
+
         <div className="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
             © {currentYear} DataOps Group. All rights reserved.

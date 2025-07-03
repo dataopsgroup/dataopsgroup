@@ -37,6 +37,27 @@ export const faqServicesLinks: StrategicLink[] = [
     category: 'resource'
   },
   {
+    title: "Hiring and Working with a HubSpot Consultant",
+    description: "Practical guide to successful consultant relationships",
+    url: "/insights/hiring-and-working-with-a-hubspot-consultant",
+    isExternal: false,
+    category: 'resource'
+  },
+  {
+    title: "Create Pro-Level HubSpot Lead Score Model",
+    description: "Advanced lead scoring strategies for better qualification",
+    url: "/insights/create-pro-level-hubspot-lead-score-model",
+    isExternal: false,
+    category: 'resource'
+  },
+  {
+    title: "Stop Buying Contact Lists",
+    description: "Why purchased lists fail and sustainable alternatives",
+    url: "/insights/stop-buying-contact-lists",
+    isExternal: false,
+    category: 'resource'
+  },
+  {
     title: "HubSpot Academy",
     description: "Official HubSpot training and certification programs",
     url: "https://academy.hubspot.com/",
@@ -67,6 +88,20 @@ export const contentApiLinks: StrategicLink[] = [
     title: "Latest Insights",
     description: "Browse our latest blog posts and industry insights",
     url: "/insights",
+    isExternal: false,
+    category: 'resource'
+  },
+  {
+    title: "Marketing Dashboards Fail",
+    description: "Common dashboard mistakes and how to avoid them",
+    url: "/insights/marketing-dashboards-fail",
+    isExternal: false,
+    category: 'resource'
+  },
+  {
+    title: "Silent Sales and Marketing Divide",
+    description: "Bridge the gap between sales and marketing teams",
+    url: "/insights/silent-sales-marketing-divide",
     isExternal: false,
     category: 'resource'
   },
