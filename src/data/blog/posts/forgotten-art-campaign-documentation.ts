@@ -17,11 +17,11 @@ export const forgottenArtCampaignDocumentation: BlogPost = {
     ogDescription: "Discover how systematic campaign documentation transforms chaos into competitive advantage with 340% better outcomes and 67% faster execution."
   },
   content: `
-    <h1>The Forgotten Art of Campaign Documentation: The $4.7 Million Productivity Crisis Hiding in Plain Sight</h1>
-    
     <p><em>Many marketing teams skip using a campaign brief because they mistakenly believe it will slow them down. In reality, systematic documentation creates 340% better campaign outcomes while reducing execution time by 67%. Master the frameworks that transform chaos into competitive advantage.</em></p>
 
-    <p><strong>March 17, 2025</strong> | <strong>9 min read</strong></p>
+    <h1>The Forgotten Art of Campaign Documentation: The $4.7 Million Productivity Crisis Hiding in Plain Sight</h1>
+
+    <p><strong>March 17, 2025</strong> | <strong>9 min read</strong> | <a href="#">Share on LinkedIn</a> <a href="#">Share on Twitter</a> <a href="#">Copy link</a></p>
 
     <h2>The Hidden $4.7 Million Cost of Documentation Chaos</h2>
 

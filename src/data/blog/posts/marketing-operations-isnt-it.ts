@@ -17,11 +17,11 @@ export const marketingOperationsIsntIT: BlogPost = {
     ogDescription: "Discover the critical differences between Marketing Operations and IT, and learn how clear boundaries drive revenue growth and organizational effectiveness."
   },
   content: `
-    <h1>Marketing Operations Isn't IT: The $1.9M Misalignment Crisis Destroying Revenue Growth</h1>
-    
     <p><em>Marketing Ops gets confused with IT roles, costing organizations $1.9M annually in misallocated resources. Learn the key differences in focus, metrics, tools, and skills to establish clear organizational boundaries that drive revenue growth.</em></p>
 
-    <p><strong>February 4, 2025</strong> | <strong>8 min read</strong></p>
+    <h1>Marketing Operations Isn't IT: The $1.9M Misalignment Crisis Destroying Revenue Growth</h1>
+
+    <p><strong>February 4, 2025</strong> | <strong>8 min read</strong> | <a href="#">Share on LinkedIn</a> <a href="#">Share on Twitter</a> <a href="#">Copy link</a></p>
 
     <h2>The $1.9 Million Misalignment Crisis</h2>
 
