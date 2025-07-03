@@ -73,5 +73,12 @@ export const crmCleanupPlan: BlogPost = {
     <h4>Need help implementing your CRM cleanup?</h4>
     
     <p><a href="/contact">Schedule a consultation</a></p>
-  `
+  `,
+  seo: {
+    metaDescription: "Your CRM is a mess? Our 90-day cleanup plan boosts data accuracy, reduces costs, and enhances productivity with proven step-by-step strategies.",
+    keywords: "CRM cleanup, data quality, CRM optimization, database management, contact management, CRM strategy",
+    ogTitle: "Your CRM Is a Mess: Here's Your 90-Day Cleanup Plan",
+    ogDescription: "Transform your chaotic CRM into a powerful business asset with this proven 90-day cleanup strategy. Boost accuracy, reduce costs, and enhance productivity."
+  },
+  tags: ["CRM management", "data cleanup", "database optimization", "contact management"]
 };

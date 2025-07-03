@@ -50,5 +50,12 @@ export const customerSegmentationMistakeICP: BlogPost = {
     <h2>What's the last time you validated your ideal customer profile against actual revenue data? If it's been more than 6 months, we should talk.</h2>
     
     <h2>Book a Call</h2>
-  `
+  `,
+  seo: {
+    metaDescription: "Stop targeting the wrong customers! Discover how to use CRM data to identify your TRUE ideal customer profile and boost conversion rates by up to 76%.",
+    keywords: "ideal customer profile, customer segmentation, CRM data analysis, B2B marketing, customer targeting, marketing optimization, hubspot segmentation",
+    ogTitle: "The ICP Myth That's Killing Your Growth | DataOps Group",
+    ogDescription: "Your ideal customer profile is probably wrong. Learn the data-driven approach to identify customers who actually convert and stay loyal."
+  },
+  tags: ["customer segmentation", "marketing strategy", "CRM optimization", "data analysis"]
 };

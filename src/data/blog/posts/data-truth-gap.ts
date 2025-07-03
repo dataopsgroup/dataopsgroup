@@ -122,5 +122,12 @@ export const dataTruthGap: BlogPost = {
     <p>Data-driven marketing isn't a destination; it's a continuous journey of expanding what you measure, deepening how you analyze, and improving how you decide. The organizations that embrace this journey will find not just local improvements but entirely new peaks of marketing performance that their competitors never even knew existed.</p>
     
     <p>What areas of your marketing data ecosystem need the most attention? I'd love to hear your thoughts in the comments.</p>
-  `
+  `,
+  seo: {
+    metaDescription: "The gap between what your data says and business reality is costing you millions. Learn how to bridge the data truth gap and unlock accurate insights.",
+    keywords: "data accuracy, marketing data, data quality, business intelligence, marketing analytics, data-driven decisions",
+    ogTitle: "How the Data Truth Gap is Killing Your Growth Strategy",
+    ogDescription: "When your data doesn't reflect reality, every decision becomes a gamble. Learn to identify and close the data truth gap destroying your growth potential."
+  },
+  tags: ["data quality", "marketing analytics", "business intelligence", "data strategy"]
 };
