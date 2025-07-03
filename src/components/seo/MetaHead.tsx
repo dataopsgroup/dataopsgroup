@@ -64,7 +64,10 @@ const MetaHead = ({
   // Use the canonical URL hook for automatic canonical detection
   const { canonicalPath: autoCanonicalPath } = useCanonicalUrl();
   
-  // Use explicit canonical if provided, otherwise use auto-detected
+  // CRITICAL: Strip parameters from current location for canonical detection
+  const currentLocationPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+  
+  // Use explicit canonical if provided, otherwise use auto-detected (which should already be parameter-stripped)
   const finalCanonicalPath = explicitCanonicalPath || autoCanonicalPath;
   
   // CRITICAL FIX: Use centralized URL builder for ALL URLs to ensure consistency

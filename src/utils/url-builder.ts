@@ -10,7 +10,38 @@
 const CANONICAL_DOMAIN = 'https://dataopsgroup.com';
 
 /**
- * Build absolute URL with consistent domain
+ * Strip HubSpot and other tracking parameters from URL
+ */
+const stripParameters = (path: string): string => {
+  if (!path.includes('?')) return path;
+  
+  const [pathname, queryString] = path.split('?');
+  const params = new URLSearchParams(queryString);
+  
+  // HubSpot parameters to strip
+  const hubspotParams = [
+    'hs_amp', 'hsLang', 'hsCta', 'hsCtaTracking', '__hstc', '__hssc', '__hsfp',
+    'hsCtaTrackingCategory', 'hsCtaTrackingCategory2', 'hsCtaTrackingDomain'
+  ];
+  
+  // Google and other tracking parameters to strip
+  const trackingParams = [
+    'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
+    'gclid', 'fbclid', 'msclkid', 'ttclid', 'ref', 'source'
+  ];
+  
+  // Remove all tracking parameters
+  [...hubspotParams, ...trackingParams].forEach(param => {
+    params.delete(param);
+  });
+  
+  // Return clean path
+  const remainingParams = params.toString();
+  return remainingParams ? `${pathname}?${remainingParams}` : pathname;
+};
+
+/**
+ * Build absolute URL with consistent domain and parameter stripping
  */
 export const buildAbsoluteUrl = (path: string): string => {
   // Development warning for incorrect usage
@@ -32,8 +63,11 @@ export const buildAbsoluteUrl = (path: string): string => {
   // Remove any existing domain if accidentally included
   const cleanPath = normalizedPath.replace(/^https?:\/\/[^\/]+/, '');
   
+  // CRITICAL: Strip parameters for canonical URLs
+  const parameterStrippedPath = stripParameters(cleanPath);
+  
   // Final validation to ensure we have a valid path
-  const finalPath = cleanPath || '/';
+  const finalPath = parameterStrippedPath || '/';
   
   const result = `${CANONICAL_DOMAIN}${finalPath}`;
   
@@ -43,6 +77,7 @@ export const buildAbsoluteUrl = (path: string): string => {
       input: path,
       normalizedPath,
       cleanPath,
+      parameterStrippedPath,
       finalPath,
       result
     });

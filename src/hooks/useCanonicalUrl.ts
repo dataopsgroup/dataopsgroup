@@ -33,6 +33,12 @@ export const useCanonicalUrl = (): CanonicalUrlResult => {
     // Get the current pathname and normalize it
     let currentPath = location.pathname;
     
+    // Strip query parameters for canonical URL detection
+    if (location.search) {
+      // The buildCanonicalUrl function will handle parameter stripping
+      console.log('🔍 Query parameters detected:', location.search);
+    }
+    
     // Normalize trailing slashes - remove them for consistency
     if (currentPath.endsWith('/') && currentPath !== '/') {
       currentPath = currentPath.slice(0, -1);

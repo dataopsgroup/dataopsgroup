@@ -2,6 +2,21 @@
 {
   "redirects": [
     {
+      "source": "/(.*)\\?hs_amp=true(.*)",
+      "destination": "/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)\\?hsLang=([^&]*)(.*)",
+      "destination": "/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)\\?(.*&)?utm_([^&]*)(.*)",
+      "destination": "/$1",
+      "permanent": true
+    },
+    {
       "source": "/guides/hubspot-expert-guide",
       "destination": "/guides/hubspot-expert",
       "permanent": true
