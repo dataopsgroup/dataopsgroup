@@ -19,6 +19,12 @@ export const miscRedirects = [
     element: <Navigate to="/contact" replace />,
   },
   
+  // Leadership and terms
+  {
+    path: "/leadership/terms-fee",
+    element: <Navigate to="/" replace />,
+  },
+  
   // Tech and company pages
   {
     path: "/our-tech-stack",
