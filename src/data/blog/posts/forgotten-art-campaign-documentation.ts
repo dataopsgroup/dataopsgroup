@@ -17,7 +17,6 @@ export const forgottenArtCampaignDocumentation: BlogPost = {
     ogDescription: "Discover how systematic campaign documentation transforms chaos into competitive advantage with 340% better outcomes and 67% faster execution."
   },
   content: `
-    <p><strong>March 17, 2025</strong> | <strong>9 min read</strong> | <a href="#">Share on LinkedIn</a> <a href="#">Share on Twitter</a> <a href="#">Copy link</a></p>
 
     <h2>The Hidden $4.7 Million Cost of Documentation Chaos</h2>
 

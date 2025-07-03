@@ -17,7 +17,6 @@ export const demystifyingUtmParameters: BlogPost = {
     ogDescription: "Master UTM parameters with strategic frameworks that transform basic tracking into competitive intelligence and superior attribution accuracy."
   },
   content: `
-    <p><strong>February 18, 2025</strong> | <strong>8 min read</strong> | <a href="#">Share on LinkedIn</a> <a href="#">Share on Twitter</a> <a href="#">Copy link</a></p>
 
     <h2>The Attribution Crisis: Why 73% of Marketing Budgets Are Misallocated</h2>
 

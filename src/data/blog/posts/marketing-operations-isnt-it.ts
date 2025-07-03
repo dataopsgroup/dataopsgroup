@@ -17,7 +17,6 @@ export const marketingOperationsIsntIT: BlogPost = {
     ogDescription: "Discover the critical differences between Marketing Operations and IT, and learn how clear boundaries drive revenue growth and organizational effectiveness."
   },
   content: `
-    <p><strong>February 4, 2025</strong> | <strong>8 min read</strong> | <a href="#">Share on LinkedIn</a> <a href="#">Share on Twitter</a> <a href="#">Copy link</a></p>
 
     <h2>The $1.9 Million Misalignment Crisis</h2>
 

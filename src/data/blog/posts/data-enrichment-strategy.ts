@@ -17,7 +17,6 @@ export const dataEnrichmentStrategy: BlogPost = {
     ogDescription: "Discover why data enrichment fails and learn proven strategies that achieve 340% better ROI through systematic validation and optimization."
   },
   content: `
-    <p><strong>March 10, 2025</strong> | <strong>7 min read</strong> | <a href="#">Share on LinkedIn</a> <a href="#">Share on Twitter</a> <a href="#">Copy link</a></p>
 
     <h2>The Hidden Cost of Data Enrichment Failures</h2>
 
