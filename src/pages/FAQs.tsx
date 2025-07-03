@@ -85,20 +85,6 @@ const FAQsPage = () => {
         ogTitle="HubSpot FAQ - Expert Answers from Certified Consultants"
         ogDescription="Comprehensive answers to common HubSpot questions covering implementation, data quality, expert hiring, and optimization strategies."
         author="DataOps Group"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "name": "HubSpot FAQ - Expert Answers to Common Questions",
-          "description": "Get expert answers to your HubSpot questions. Comprehensive FAQ covering implementation, data quality, expert hiring, and best practices from certified consultants.",
-          "mainEntity": formattedFAQs.slice(0, 10).map(faq => ({
-            "@type": "Question",
-            "name": faq.question,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": faq.answer
-            }
-          }))
-        }}
       />
       
       <FAQPageSchema items={formattedFAQs} url="/faqs" />
