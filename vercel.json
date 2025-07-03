@@ -117,6 +117,26 @@
       "permanent": true
     },
     {
+      "source": "/services/a",
+      "destination": "/services/analytics-bi",
+      "permanent": true
+    },
+    {
+      "source": "/faqs/servi",
+      "destination": "/faqs/services",
+      "permanent": true
+    },
+    {
+      "source": "/services/([^/]{1,2})$",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/faqs/([^/]{1,5})$",
+      "destination": "/faqs",
+      "permanent": true
+    },
+    {
       "source": "/www/(.*)",
       "destination": "/$1",
       "permanent": true
