@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -6,7 +5,6 @@ import Contact from '@/components/Contact';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema';
 import MetaHead from '@/components/seo/MetaHead';
-
 const ContactPage = () => {
   const contactPageSchema = {
     "@context": "https://schema.org",
@@ -26,20 +24,8 @@ const ContactPage = () => {
       }
     }
   };
-
-  return (
-    <SemanticLayout>
-      <MetaHead
-        title="Contact Us - DataOps Group"
-        description="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations."
-        keywords="contact dataops, hubspot consultancy, get in touch, marketing operations, sales operations"
-        canonicalPath="/contact"
-        ogType="website"
-        ogTitle="Contact Us - DataOps Group"
-        ogDescription="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations."
-        ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
-        siteName="DataOps Group"
-      />
+  return <SemanticLayout>
+      <MetaHead title="Contact Us - DataOps Group" description="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations." keywords="contact dataops, hubspot consultancy, get in touch, marketing operations, sales operations" canonicalPath="/contact" ogType="website" ogTitle="Contact Us - DataOps Group" ogDescription="Get in touch with DataOps Group for HubSpot consultancy services that transform your marketing, sales, and operations." ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" siteName="DataOps Group" />
       
       <Helmet>
         <script type="application/ld+json">
@@ -49,12 +35,13 @@ const ContactPage = () => {
       
       <LocalBusinessSchema />
       
-      <BreadcrumbSchema 
-        items={[
-          { name: "Home", url: "/" },
-          { name: "Contact", url: "/contact" }
-        ]} 
-      />
+      <BreadcrumbSchema items={[{
+      name: "Home",
+      url: "/"
+    }, {
+      name: "Contact",
+      url: "/contact"
+    }]} />
       
       <section className="flex-grow pt-32 px-[5%]" aria-labelledby="contact-heading">
         <header className="max-w-3xl mx-auto text-center mb-16">
@@ -131,20 +118,11 @@ const ContactPage = () => {
             </div>
             
             <div className="text-xs text-gray-500">
-              <p>
-                <a href="https://blog.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 transition-colors">
-                  HubSpot Blog
-                </a>
-                <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 ml-4 transition-colors">
-                  HubSpot Academy
-                </a>
-              </p>
+              
             </div>
           </div>
         </section>
       </section>
-    </SemanticLayout>
-  );
+    </SemanticLayout>;
 };
-
 export default ContactPage;
