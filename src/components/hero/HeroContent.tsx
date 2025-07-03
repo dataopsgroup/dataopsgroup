@@ -24,7 +24,7 @@ const HeroContent = React.memo(() => {
         <div className="hero-text-background"></div>
         
         <h1 className="hero-headline" id="hero-heading">
-          Turn PE Portfolio Operations Into Profit Drivers in{' '}
+          Turn Portco CRM Ops Into Profit Drivers in{' '}
           <span className="text-yellow-300 text-4xl lg:text-6xl font-bold">100 Days</span>
         </h1>
         <div className="hero-buttons mt-8 flex flex-col sm:flex-row gap-4">
