@@ -53,8 +53,8 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <MetaHead
-        title="HubSpot & DataOps Services - Expert Implementation for Portfolio Companies | DataOps Group"
-        description="Expert HubSpot implementation, marketing operations, and data services that drive measurable portfolio growth. Specialized for PE firms and growing companies."
+        title="HubSpot & DataOps Services - Expert Implementation | DataOps Group"
+        description="Expert HubSpot implementation and data services that drive portfolio growth. Specialized for PE firms and growing companies."
         keywords="data services, data architecture, analytics, BI, data governance, dataops implementation, enterprise data solutions"
         canonicalPath="/services"
         ogType="website"

@@ -10,7 +10,7 @@ export const customerSegmentationMistake: BlogPost = {
   category: "Customer Segmentation",
   coverImage: "/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png",
   content: `
-    <h1>The "Ideal Customer Profile" Myth That's Killing Your Growth</h1>
+    <h2>The "Ideal Customer Profile" Myth That's Killing Your Growth</h2>
     
     <p>Your ICP is likely not who you think it is. Luckily, there is a systematic way to find out who it really is.</p>
     

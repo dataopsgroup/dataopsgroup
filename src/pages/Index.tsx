@@ -38,7 +38,7 @@ const Index = () => {
     <SemanticLayout>
       <MetaHead
         title="PE Portfolio Operations Platform - HubSpot for Private Equity"
-        description="Transform PE portfolio operations with specialized HubSpot platform. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI. 100-day implementation."
+        description="Transform PE operations with HubSpot expertise. 19% higher valuations, 73% faster EBITDA growth, $18-22 ROI. 100-day implementation program."
         keywords="hubspot consultancy, hubspot optimization, hubspot implementation, data operations, marketing operations, sales operations, revenue operations"
         canonicalPath="/"
         ogType="website"

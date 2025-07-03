@@ -9,7 +9,7 @@ export const why64PercentPEPortfolioCompaniesFailHubspotImplementation: BlogPost
   author: "Geoff Tucker",
   category: "Private Equity",
   content: `
-    <h1>Why 64% of PE Portfolio Companies Fail at HubSpot Implementation</h1>
+    <h2>Why 64% of PE Portfolio Companies Fail at HubSpot Implementation</h2>
     
     <p>After working with dozens of private equity portfolio companies, I've witnessed a troubling pattern: 64% of HubSpot implementations fail to deliver the promised ROI within the first 18 months.</p>
     

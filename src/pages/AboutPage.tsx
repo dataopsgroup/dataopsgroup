@@ -11,7 +11,7 @@ const AboutPage = () => {
     <div className="min-h-screen flex flex-col">
       <MetaHead
         title="About DataOps Group - HubSpot Experts & Data Operations Consultants"
-        description="Meet Geoff Tucker and the DataOps Group team - HubSpot specialists with 15+ years of experience transforming portfolio operations for private equity firms and growth companies."
+        description="Meet Geoff Tucker and DataOps Group - HubSpot specialists with 15+ years transforming portfolio operations for PE firms and growth companies."
         keywords="about dataops group, geoff tucker, hubspot expert, data operations consultant, crm consultant, hubspot specialist"
         canonicalPath="/about"
         ogType="website"
