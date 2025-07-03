@@ -1,0 +1,32 @@
+[
+  {
+    "source": "/faqs/services-5",
+    "destination": "/faqs/services",
+    "permanent": true
+  },
+  {
+    "source": "/faqs/hubspot-services",
+    "destination": "/faqs/services",
+    "permanent": true
+  },
+  {
+    "source": "/faqs/hubspot-experts",
+    "destination": "/faqs/experts",
+    "permanent": true
+  },
+  {
+    "source": "/faqs/our-approach",
+    "destination": "/faqs/approach",
+    "permanent": true
+  },
+  {
+    "source": "/faqs/hubspot-modules",
+    "destination": "/faqs/modules",
+    "permanent": true
+  },
+  {
+    "source": "/faqs/servi",
+    "destination": "/faqs/services",
+    "permanent": true
+  }
+]

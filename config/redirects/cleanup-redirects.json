@@ -1,0 +1,22 @@
+[
+  {
+    "source": "/(.*)\\?hs_amp=true(.*)",
+    "destination": "/$1",
+    "permanent": true
+  },
+  {
+    "source": "/(.*)\\?hsLang=([^&]*)(.*)",
+    "destination": "/$1",
+    "permanent": true
+  },
+  {
+    "source": "/(.*)\\?(.*&)?utm_([^&]*)(.*)",
+    "destination": "/$1",
+    "permanent": true
+  },
+  {
+    "source": "/www/(.*)",
+    "destination": "/$1",
+    "permanent": true
+  }
+]

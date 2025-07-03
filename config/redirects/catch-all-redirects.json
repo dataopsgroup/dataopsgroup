@@ -1,0 +1,12 @@
+[
+  {
+    "source": "/services/([^/]{1,2})$",
+    "destination": "/services",
+    "permanent": true
+  },
+  {
+    "source": "/faqs/([^/]{1,5})$",
+    "destination": "/faqs",
+    "permanent": true
+  }
+]

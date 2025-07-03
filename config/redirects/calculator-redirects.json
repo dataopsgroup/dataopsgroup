@@ -1,0 +1,7 @@
+[
+  {
+    "source": "/revops-cost-calculator",
+    "destination": "/revops-roi-calculator",
+    "permanent": true
+  }
+]

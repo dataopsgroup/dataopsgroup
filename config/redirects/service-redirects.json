@@ -1,0 +1,12 @@
+[
+  {
+    "source": "/services/marketing-operations",
+    "destination": "/services/marketing-operations-revops",
+    "permanent": true
+  },
+  {
+    "source": "/services/a",
+    "destination": "/services/analytics-bi",
+    "permanent": true
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "source": "/blog",
+    "destination": "/insights",
+    "permanent": true
+  },
+  {
+    "source": "/whitepapers",
+    "destination": "/insights",
+    "permanent": true
+  },
+  {
+    "source": "/articles",
+    "destination": "/insights",
+    "permanent": true
+  },
+  {
+    "source": "/posts",
+    "destination": "/insights",
+    "permanent": true
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "source": "/guides/hubspot-expert-guide",
+    "destination": "/guides/hubspot-expert",
+    "permanent": true
+  },
+  {
+    "source": "/how-to-hire-a-hubspot-expert-in-2025",
+    "destination": "/guides/hubspot-expert",
+    "permanent": true
+  },
+  {
+    "source": "/pillar-content/hubspot-expert",
+    "destination": "/guides/hubspot-expert",
+    "permanent": true
+  }
+]

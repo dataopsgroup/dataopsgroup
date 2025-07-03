@@ -1,0 +1,27 @@
+[
+  {
+    "source": "/assessment",
+    "destination": "/data-operations-assessment",
+    "permanent": true
+  },
+  {
+    "source": "/assessment/results",
+    "destination": "/data-operations-assessment/results",
+    "permanent": true
+  },
+  {
+    "source": "/hubspot-assessment",
+    "destination": "/data-operations-assessment",
+    "permanent": true
+  },
+  {
+    "source": "/hubspot-assessment-results",
+    "destination": "/data-operations-assessment/results",
+    "permanent": true
+  },
+  {
+    "source": "/data-operation-assessment",
+    "destination": "/data-operations-assessment",
+    "permanent": true
+  }
+]
