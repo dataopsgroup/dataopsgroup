@@ -43,8 +43,7 @@ const LARGE_IMAGES = new Set([
   '/lovable-uploads/1e7d023c-3afe-475d-9c49-0d57ecb025d9.png',
 ]);
 
-// Map PNG to WebP versions for automatic conversion
-// NOTE: Logo WebP mapping removed until WebP file is actually available
+// Map PNG to WebP versions for automatic conversion - All WebP files now available
 const PNG_TO_WEBP_MAP = new Map([
   ['/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.png', '/lovable-uploads/b7abeb4e-bdb9-4d8f-9c53-bc21d411f2f4.webp'],
   ['/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png', '/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp'],
@@ -53,8 +52,8 @@ const PNG_TO_WEBP_MAP = new Map([
   ['/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png', '/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp'],
   // Hero background image conversion
   ['/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.png', '/lovable-uploads/971e2c5a-6145-4fc0-b346-e4ba066cb14b.webp'],
-  // Logo conversion temporarily removed until WebP file exists
-  // ['/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp'],
+  // Logo conversion - now available
+  ['/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png', '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp'],
 ]);
 
 /**
@@ -77,14 +76,20 @@ export const isLargeImage = (src: string): boolean => {
 export const getOptimizedImageSrc = (src: string, context: ImageContext = 'content'): string => {
   if (!src) return src;
 
-  // First check if this PNG has a WebP equivalent
+  // PRIORITY 1: Check if this PNG has a WebP equivalent and always use it
   if (PNG_TO_WEBP_MAP.has(src)) {
     const webpVersion = PNG_TO_WEBP_MAP.get(src)!;
-    console.log(`🖼️ Converting PNG to WebP: ${src} → ${webpVersion}`);
+    console.log(`🖼️ FORCED PNG→WebP conversion for crawlers: ${src} → ${webpVersion}`);
     return webpVersion;
   }
 
-  // If it's already a large image, apply Vercel optimization
+  // PRIORITY 2: If the source is already WebP, keep it
+  if (src.endsWith('.webp')) {
+    console.log(`🖼️ Already WebP, serving directly: ${src}`);
+    return src;
+  }
+
+  // PRIORITY 3: Apply Vercel optimization for remaining large images
   if (!isLargeImage(src)) {
     return src;
   }

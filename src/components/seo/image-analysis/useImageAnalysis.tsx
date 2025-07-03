@@ -19,7 +19,7 @@ const initialImageIssues: ImageIssue[] = [
     status: 'warning'
   },
   {
-    url: '/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png',
+    url: '/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp',
     page: '/insights/hidden-cost-of-failed-hubspot-implementations',
     issues: ['Image file is large (950KB)'],
     status: 'warning'

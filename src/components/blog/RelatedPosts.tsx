@@ -41,7 +41,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
       date: "2025-01-10",
       author: "Geoff Tucker",
       category: "Lead Management",
-      coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png", // Will be auto-optimized to WebP 
+      coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp", 
       content: ""
     },
     {
@@ -192,7 +192,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
             {postsToDisplay.map((post, index) => {
               // All images will be auto-optimized to WebP by the optimization system
               const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" 
-                ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" // Will be auto-optimized to WebP
+                ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.webp"
                 : post.coverImage;
                 
               const hasCoverImage = !!coverImage;

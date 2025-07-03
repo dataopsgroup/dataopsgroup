@@ -8,7 +8,7 @@ export const crmCleanupPlan: BlogPost = {
   date: "2025-04-05",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png", // Restored to PNG
+  coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp",
   content: `
     <h2>Why CRM Cleanup Matters</h2>
     

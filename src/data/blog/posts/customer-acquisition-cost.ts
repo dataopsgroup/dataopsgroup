@@ -8,7 +8,7 @@ export const customerAcquisitionCost: BlogPost = {
   date: "2025-03-24",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png", // Restored to PNG
+  coverImage: "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.webp",
   content: `
     <p>"We spend $5,000 per month on marketing and acquired 10 new customers this month, so our CAC is $500."</p>
     

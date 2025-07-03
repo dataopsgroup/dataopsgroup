@@ -46,7 +46,7 @@ const MetaHead = ({
   keywords,
   canonicalPath: explicitCanonicalPath,
   ogType = 'website',
-  ogImage = '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png',
+  ogImage = '/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp',
   ogTitle,
   ogDescription,
   twitterCard = 'summary_large_image',
@@ -151,7 +151,9 @@ const MetaHead = ({
     ogType = 'article';
     ogTitle = ogTitle || blogPost.title;
     ogDescription = ogDescription || blogPost.excerpt;
-    ogImage = blogPost.featuredImage || blogPost.coverImage;
+    // CRITICAL: Ensure blog post images are WebP for crawlers
+    const blogImage = blogPost.featuredImage || blogPost.coverImage;
+    ogImage = blogImage?.endsWith('.png') ? blogImage.replace('.png', '.webp') : blogImage;
     author = blogPost.author;
     publishDate = blogPost.date;
   }
