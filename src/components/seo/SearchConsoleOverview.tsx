@@ -2,19 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  ResponsiveContainer, 
-  LineChart, 
-  Line, 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend,
-  LazyChartWrapper
-} from '@/components/charts/LazyChartLoader';
+// Charts removed for performance - this component is not actively used
 
 // Mock data for demonstration purposes
 // This would be replaced with actual data from the Search Console API
@@ -105,29 +93,10 @@ const SearchConsoleOverview: React.FC = () => {
             <CardDescription>Clicks, impressions, and average position</CardDescription>
           </CardHeader>
           <CardContent>
-            <LazyChartWrapper height="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart
-                  data={mockPerformanceData}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" />
-                  <YAxis yAxisId="left" />
-                  <YAxis yAxisId="right" orientation="right" />
-                  <Tooltip />
-                  <Legend />
-                  <Line yAxisId="left" type="monotone" dataKey="clicks" stroke="#8884d8" activeDot={{ r: 8 }} />
-                  <Line yAxisId="left" type="monotone" dataKey="impressions" stroke="#82ca9d" activeDot={{ r: 8 }} />
-                  <Line yAxisId="right" type="monotone" dataKey="position" stroke="#ff7300" activeDot={{ r: 8 }} />
-                </LineChart>
-              </ResponsiveContainer>
-            </LazyChartWrapper>
+            <div className="p-8 text-center text-gray-500">
+              <p>Charts temporarily unavailable for performance optimization</p>
+              <p className="text-sm mt-2">Data tables below provide the same information</p>
+            </div>
           </CardContent>
         </Card>
 
@@ -137,26 +106,10 @@ const SearchConsoleOverview: React.FC = () => {
             <CardDescription>Performance over time</CardDescription>
           </CardHeader>
           <CardContent>
-            <LazyChartWrapper height="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  data={mockPerformanceData}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="ctr" fill="#8884d8" name="CTR (%)" />
-                </BarChart>
-              </ResponsiveContainer>
-            </LazyChartWrapper>
+            <div className="p-8 text-center text-gray-500">
+              <p>Charts temporarily unavailable for performance optimization</p>
+              <p className="text-sm mt-2">Data tables below provide the same information</p>
+            </div>
           </CardContent>
         </Card>
       </div>

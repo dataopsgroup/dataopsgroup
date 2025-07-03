@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import GSCPerformanceChart from './GSCPerformanceChart';
+// GSCPerformanceChart removed for performance
 import GSCTopPages from './GSCTopPages';
 import GSCTopQueries from './GSCTopQueries';
 
@@ -21,7 +21,9 @@ const GSCContentTabs: React.FC<GSCContentTabsProps> = ({ activeTab, setActiveTab
       </TabsList>
       
       <TabsContent value="performance" className="mt-0">
-        <GSCPerformanceChart activeTab={activeTab} data={data?.metrics || []} />
+        <div className="p-4 text-center text-gray-500">
+          Performance chart temporarily unavailable
+        </div>
       </TabsContent>
       
       <TabsContent value="pages" className="mt-0">

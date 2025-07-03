@@ -10,10 +10,10 @@ const Privacy = lazy(() => import('../pages/Privacy'));
 const Terms = lazy(() => import('../pages/Terms'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
-const WebVitalsDashboard = lazy(() => import('../components/admin/WebVitalsDashboard'));
+// WebVitalsDashboard removed for performance
 const BadDataCostCalculatorPage = lazy(() => import('../pages/BadDataCostCalculatorPage'));
 const RevOpsROICalculatorPage = lazy(() => import('../pages/RevOpsROICalculatorPage'));
-const SchemaValidationPage = lazy(() => import('../pages/admin/schema-validation'));
+// SchemaValidationPage removed for performance
 
 // Loading component for Suspense fallback
 const LoadingFallback = () => (
@@ -80,16 +80,7 @@ export const utilityRoutes = [
     element: <SuspenseWrapper><StructuredDataTest /></SuspenseWrapper>,
     errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
-  {
-    path: "/admin/vitals",
-    element: <SuspenseWrapper><WebVitalsDashboard /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
-  },
-  {
-    path: "/admin/schema-validation",
-    element: <SuspenseWrapper><SchemaValidationPage /></SuspenseWrapper>,
-    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
-  },
+  // Admin routes removed for performance
   {
     path: "/404",
     element: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
