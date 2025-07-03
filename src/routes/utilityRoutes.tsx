@@ -9,6 +9,7 @@ const HubSpotAssessmentResultsPage = lazy(() => import('../pages/HubSpotAssessme
 const Privacy = lazy(() => import('../pages/Privacy'));
 const Terms = lazy(() => import('../pages/Terms'));
 const NotFound = lazy(() => import('../pages/NotFound'));
+const ServiceNotFound = lazy(() => import('../pages/ServiceNotFound'));
 const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
 // WebVitalsDashboard removed for performance
 const BadDataCostCalculatorPage = lazy(() => import('../pages/BadDataCostCalculatorPage'));
@@ -81,6 +82,10 @@ export const utilityRoutes = [
     errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   // Admin routes removed for performance
+  {
+    path: "/services/404",
+    element: <SuspenseWrapper><ServiceNotFound /></SuspenseWrapper>,
+  },
   {
     path: "/404",
     element: <SuspenseWrapper><NotFound /></SuspenseWrapper>,

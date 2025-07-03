@@ -46,7 +46,7 @@ const HubSpotAssessmentResultsPage = () => {
         <meta name="description" content="Your HubSpot assessment results with personalized recommendations and next steps to improve your data operations." />
         <meta name="keywords" content="hubspot assessment results, data operations results, personalized recommendations, implementation assessment" />
         <link rel="canonical" href={canonicalUrl} />
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="index, follow" />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />

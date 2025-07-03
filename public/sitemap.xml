@@ -63,7 +63,7 @@
   </url>
   <url>
     <loc>https://dataopsgroup.com/data-operations-assessment/results</loc>
-    <lastmod>2025-06-09</lastmod>
+    <lastmod>2025-07-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -387,14 +387,14 @@
   </url>
   <url>
     <loc>https://dataopsgroup.com/privacy</loc>
-    <lastmod>2025-06-09</lastmod>
+    <lastmod>2025-07-03</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://dataopsgroup.com/terms</loc>
-    <lastmod>2025-06-09</lastmod>
+    <lastmod>2025-07-03</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.4</priority>
   </url>
 </urlset>
