@@ -26,7 +26,7 @@ import { forgottenArtCampaignDocumentation } from './posts/forgotten-art-campaig
 import { customerChurnBlindspot } from './posts/customer-churn-blindspot';
 import { customerAcquisitionCost } from './posts/customer-acquisition-cost';
 import { salesFollowUpMyth } from './posts/sales-follow-up-myth';
-import { customerSegmentationMistake } from './posts/customer-segmentation-mistake';
+
 import { salesTeamStallingDeals } from './posts/sales-team-stalling-deals';
 import { salesPipelineMetrics } from './posts/sales-pipeline-metrics';
 import { salesIgnoringMarketingLeads } from './posts/sales-ignoring-marketing-leads';
@@ -59,7 +59,6 @@ export const blogPosts: BlogPost[] = [
   salesIgnoringMarketingLeads,
   salesPipelineMetrics,
   salesTeamStallingDeals,
-  customerSegmentationMistake,
   salesFollowUpMyth,
   customerAcquisitionCost,
   customerChurnBlindspot,
@@ -114,7 +113,7 @@ export {
   customerChurnBlindspot,
   customerAcquisitionCost,
   salesFollowUpMyth,
-  customerSegmentationMistake,
+  
   salesTeamStallingDeals,
   salesPipelineMetrics,
   salesIgnoringMarketingLeads,

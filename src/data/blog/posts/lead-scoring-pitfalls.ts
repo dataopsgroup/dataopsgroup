@@ -8,7 +8,7 @@ export const leadScoringPitfalls: BlogPost = {
   date: "2025-05-07",
   author: "Geoff Tucker",
   category: "Tips & Tricks",
-  coverImage: "/lovable-uploads/032775c3-24cb-46f6-af01-decc4e9fb38e.png",
+  coverImage: "/lovable-uploads/032775c3-24cb-46f6-af01-decc4e9fb38e.webp", // Updated to WebP
   content: `
     <h3>Four Tips for Your Lead Scoring Model</h3>
     

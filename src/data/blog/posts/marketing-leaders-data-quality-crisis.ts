@@ -7,7 +7,7 @@ export const marketingLeadersDataQualityCrisis: BlogPost = {
   date: "2025-03-24",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/42b78b11-74fb-44a2-8134-9097e47cc315.webp",
+  coverImage: "/lovable-uploads/42b78b11-74fb-44a2-8134-9097e47cc315.webp", // Updated to WebP
   content: `
     <h3></h3>
     

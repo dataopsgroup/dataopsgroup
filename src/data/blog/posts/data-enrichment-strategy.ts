@@ -9,7 +9,7 @@ export const dataEnrichmentStrategy: BlogPost = {
   author: "Geoff Tucker",
   category: "Data Quality",
   tags: ["data enrichment", "data quality", "crm optimization", "marketing operations", "lead generation"],
-  coverImage: "/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.webp",
+  coverImage: "/lovable-uploads/252fb89b-1bcd-41b0-83eb-ce0f35b6784b.webp", // Updated to WebP
   seo: {
     metaDescription: "Data enrichment failures waste $2.8M annually in marketing budgets. Learn proven tactics to fix validation, maintenance & quality for 340% better ROI.",
     keywords: "data enrichment strategy, data quality improvement, crm data enrichment, marketing data validation, lead enrichment best practices",

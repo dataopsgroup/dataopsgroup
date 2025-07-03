@@ -8,7 +8,7 @@ export const stopBuyingContactLists: BlogPost = {
   date: "2025-02-19",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/377d96ba-a218-4a91-a0f5-446f6b5dc23b.png",
+  coverImage: "/lovable-uploads/377d96ba-a218-4a91-a0f5-446f6b5dc23b.webp", // Updated to WebP
   content: `
     <h2></h2>
     
