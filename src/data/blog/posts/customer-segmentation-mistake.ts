@@ -8,7 +8,7 @@ export const customerSegmentationMistake: BlogPost = {
   date: "2023-12-15",
   author: "Geoff Tucker",
   category: "Customer Segmentation",
-  coverImage: "/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.png",
+  coverImage: "/lovable-uploads/501d08c7-58a5-430c-8110-a93ff790b027.webp", // Updated to WebP
   content: `
     <h2>The "Ideal Customer Profile" Myth That's Killing Your Growth</h2>
     

@@ -7,7 +7,7 @@ export const leadTiersCaseStudy: BlogPost = {
   date: "March 5, 2025",
   author: "Geoff Tucker",
   category: "Lead Management",
-  coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png",
+  coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp", // Updated to WebP
   content: `
   <article class="blog-post">
     <h2>The Importance of Lead Tiers</h2>
