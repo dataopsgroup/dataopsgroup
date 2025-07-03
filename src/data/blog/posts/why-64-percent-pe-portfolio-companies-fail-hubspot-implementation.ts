@@ -143,7 +143,7 @@ export const why64PercentPEPortfolioCompaniesFailHubspotImplementation: BlogPost
     
     <p>If you're a PE firm or portfolio company planning a HubSpot implementation, don't become part of the 64% failure statistic. Our specialized approach to PE portfolio company implementations has helped companies achieve measurable ROI within the critical 18-month window.</p>
     
-    <p>Learn more about our <a href="/services/hubspot-implementation">HubSpot implementation services</a> or explore our <a href="/case-studies">proven success stories</a> with similar companies.</p>
+    <p>Learn more about our <a href="/services/marketing-operations-revops">HubSpot implementation services</a> or explore our <a href="/case-studies">proven success stories</a> with similar companies.</p>
     
     <p>Contact us to discuss how we can help your portfolio company achieve HubSpot implementation success that drives real business value.</p>
   `,

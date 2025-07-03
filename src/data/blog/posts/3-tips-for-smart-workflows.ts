@@ -25,11 +25,11 @@ export const tipsForSmartWorkflows: BlogPost = {
     
     <p>Those are three of my favorites that have helped me repeatedly over the years.</p>
     
-    <p>These workflows become even more powerful when combined with proper <a href="/insights/data-enrichment-strategy">data enrichment strategies</a> and integrated into a comprehensive <a href="/services/hubspot-implementation">HubSpot implementation</a> that includes advanced automation and reporting capabilities.</p>
+    <p>These workflows become even more powerful when combined with proper <a href="/insights/data-enrichment-strategy">data enrichment strategies</a> and integrated into a comprehensive <a href="/services/marketing-operations-revops">HubSpot implementation</a> that includes advanced automation and reporting capabilities.</p>
     
-    <p>For companies looking to implement more sophisticated workflow strategies, our <a href="/services/marketing-operations">marketing operations services</a> can help you build automated systems that scale with your business growth. We've helped companies like those featured in our <a href="/case-studies">success stories</a> achieve significant efficiency gains through smart workflow design.</p>
+    <p>For companies looking to implement more sophisticated workflow strategies, our <a href="/services/marketing-operations-revops">marketing operations services</a> can help you build automated systems that scale with your business growth. We've helped companies like those featured in our <a href="/case-studies">success stories</a> achieve significant efficiency gains through smart workflow design.</p>
     
-    <p>Want to take your HubSpot workflows to the next level? Consider starting with our <a href="/data-operation-assessment">free DataOps assessment</a> to identify opportunities for automation and process improvement, or explore our full range of <a href="/services">consulting services</a> to get expert guidance on workflow optimization.</p>
+    <p>Want to take your HubSpot workflows to the next level? Consider starting with our <a href="/data-operations-assessment">free DataOps assessment</a> to identify opportunities for automation and process improvement, or explore our full range of <a href="/services">consulting services</a> to get expert guidance on workflow optimization.</p>
     
     <p>What are your three favorite go-to workflows? Add a comment below. I'd love to see what you've built.</p>
   `,
