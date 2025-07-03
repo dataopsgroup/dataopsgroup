@@ -53,8 +53,17 @@ export const initWebVitals = (): void => {
         reportWebVital(metricName, value, rating);
       });
     });
+    
+    // Observe first-input (widely supported)
     fidObserver.observe({ type: 'first-input', buffered: true });
-    fidObserver.observe({ type: 'interaction', buffered: true });
+    
+    // Only observe 'interaction' if supported (for INP metric)
+    try {
+      fidObserver.observe({ type: 'interaction', buffered: true });
+    } catch (error) {
+      // 'interaction' type not supported in this browser - ignore silently
+      console.debug('Interaction entry type not supported, INP tracking unavailable');
+    }
     
     // Observe First Contentful Paint
     const fcpObserver = new PerformanceObserver((entryList) => {
