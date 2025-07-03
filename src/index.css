@@ -23,12 +23,12 @@
 @import './styles/base.css';
 @import './styles/typography-optimized.css';
 
+/* Import components before Tailwind for proper order */
+@import './styles/components-optimized.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Defer non-critical imports after Tailwind */
-@import './styles/components-optimized.css';
 
 /* Mobile performance optimizations */
 @media (max-width: 1023px) {

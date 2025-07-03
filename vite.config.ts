@@ -48,9 +48,7 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-select'
           ],
           
-          // Charts - LAZY LOAD ONLY (removed from main bundle)
-          // This prevents charts from loading on initial page load
-          'charts-lazy': ['recharts'],
+          // Charts removed for performance optimization
           
           // Forms - defer until needed
           'forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
