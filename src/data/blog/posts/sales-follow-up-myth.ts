@@ -8,7 +8,7 @@ export const salesFollowUpMyth: BlogPost = {
   date: "2025-03-24",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/63a0febf-2f77-42fe-98b9-b8e109bd0139.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/63a0febf-2f77-42fe-98b9-b8e109bd0139.png", // Restored to PNG
   content: `
     <p>"We spend $5,000 per month on marketing and acquired 10 new customers this month, so our CAC is $500."</p>
     

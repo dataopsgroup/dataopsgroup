@@ -8,7 +8,7 @@ export const salesTeamStallingDeals: BlogPost = {
   date: "2025-04-01",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/0f49143a-7600-4926-8433-8f23c88cefa4.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/0f49143a-7600-4926-8433-8f23c88cefa4.png", // Restored to PNG
   content: `
     <p>"Our reps aren't closing enough deals." I hear this complaint from nearly every CRO I work with, yet the data tells a very different story.</p>
     

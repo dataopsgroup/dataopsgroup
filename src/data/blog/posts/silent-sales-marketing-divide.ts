@@ -8,7 +8,7 @@ export const silentSalesMarketingDivide: BlogPost = {
   date: "2025-03-29",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/8b53b7bd-97b6-4ae6-b2d3-755a27f50302.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/8b53b7bd-97b6-4ae6-b2d3-755a27f50302.png", // Restored to PNG
   content: `
     <p>"Our sales and marketing teams are aligned."</p>
     

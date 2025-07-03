@@ -8,7 +8,7 @@ export const salesIgnoringMarketingLeads: BlogPost = {
   date: "2025-03-15",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/aef17b85-c6b2-44d8-9442-4fa6c2d80354.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/aef17b85-c6b2-44d8-9442-4fa6c2d80354.png", // Restored to PNG
   content: `
     <p>"Sales never follows up on our marketing leads!"</p>
     

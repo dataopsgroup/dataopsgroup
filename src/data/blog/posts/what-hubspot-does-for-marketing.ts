@@ -8,7 +8,7 @@ export const whatHubSpotDoesForMarketing: BlogPost = {
   date: "2023-04-08",
   author: "Geoff Tucker",
   category: "HubSpot Consultant",
-  coverImage: "/lovable-uploads/e0229e4c-3461-4849-8717-16670e8e588a.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/e0229e4c-3461-4849-8717-16670e8e588a.png", // Restored to PNG
   content: `
     <h2>What does HubSpot do for marketing?</h2>
     

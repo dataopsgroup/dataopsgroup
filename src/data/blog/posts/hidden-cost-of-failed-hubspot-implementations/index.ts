@@ -9,8 +9,8 @@ export const hiddenCostOfFailedHubspotImplementations: BlogPost = {
   date: "2025-05-15",
   author: "Geoff Tucker", 
   category: "Insights", 
-  coverImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp", // Updated to WebP
-  featuredImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png", // Restored to PNG
+  featuredImage: "/lovable-uploads/26cea183-e8de-4d91-8678-a75233402192.png", // Restored to PNG
   content,
   tags: ["hubspot implementation", "marketing automation", "roi optimization", "business transformation"],
   seo: {

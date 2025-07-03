@@ -8,7 +8,7 @@ export const whatDoesAHubSpotConsultantCost: BlogPost = {
   date: "2025-05-07",
   author: "Geoff Tucker",
   category: "HubSpot Consultant",
-  coverImage: "/lovable-uploads/a47266d7-28ef-4bce-bb22-ed541dc80559.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/a47266d7-28ef-4bce-bb22-ed541dc80559.png", // Restored to PNG
   content: `
     <div style="margin-bottom: 2rem; text-align: center;">
       <a href="/guides/hubspot-expert" style="display: inline-block; background-color: #FBB03B; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; transition: background-color 0.2s;">
