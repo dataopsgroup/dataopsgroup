@@ -85,6 +85,18 @@ const IMAGE_ASSETS = {
   }
 };
 
+// Font files have their own caching strategy
+const FONT_FILES = {
+  name: `font-files-${CACHE_VERSION}`,
+  maxAge: 31536000, // 1 year in seconds
+  resources: [
+    '/public/fonts/roboto-subset/roboto-latin-300-normal.woff2',
+    '/public/fonts/roboto-subset/roboto-latin-400-normal.woff2',
+    '/public/fonts/roboto-subset/roboto-latin-500-normal.woff2',
+    '/public/fonts/roboto-subset/roboto-latin-700-normal.woff2'
+  ]
+};
+
 const OFFLINE_FALLBACKS = {
   name: `offline-fallbacks-${CACHE_VERSION}`,
   maxAge: 7776000, // 90 days in seconds
@@ -110,6 +122,7 @@ const cleanupOldCaches = async () => {
     JS_CSS_ASSETS.name,
     API_RESPONSES.name,
     IMAGE_ASSETS.name,
+    FONT_FILES.name,
     OFFLINE_FALLBACKS.name
   ];
   

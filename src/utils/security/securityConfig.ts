@@ -15,16 +15,19 @@ export const SECURITY_CONFIG = {
       'https://www.googletagmanager.com',
       'https://js.hs-scripts.com',
       'https://js.hsforms.net',
-      'https://js.hscollectedforms.net'
+      'https://js.hscollectedforms.net',
+      'https://vercel.live'
     ],
     'style-src': [
       "'self'",
       "'unsafe-inline'", // Required for Tailwind
-      'https://fonts.googleapis.com'
+      'https://fonts.googleapis.com',
+      'https://static.hsappstatic.net'
     ],
     'font-src': [
       "'self'",
-      'https://fonts.gstatic.com'
+      'https://fonts.gstatic.com',
+      'data:'
     ],
     'img-src': [
       "'self'",
