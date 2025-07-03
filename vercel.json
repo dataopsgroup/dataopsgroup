@@ -112,6 +112,11 @@
       "permanent": true
     },
     {
+      "source": "/services/marketing-operations",
+      "destination": "/services/marketing-operations-revops",
+      "permanent": true
+    },
+    {
       "source": "/www/(.*)",
       "destination": "/$1",
       "permanent": true
