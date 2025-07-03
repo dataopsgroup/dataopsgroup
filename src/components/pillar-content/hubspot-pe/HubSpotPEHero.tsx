@@ -5,7 +5,7 @@ import { ChevronRight } from 'lucide-react';
 
 const HubSpotPEHero = () => {
   return (
-    <section className="pt-0 pb-16 px-4 bg-gradient-to-br from-white to-dataops-50">
+    <section className="pt-0 pb-16 px-4 bg-blue-50">
       <div className="container mx-auto">
         <div className="max-w-4xl">
           <div className="space-y-6">
