@@ -132,10 +132,11 @@ export const validateUrlPair = (canonicalPath: string, ogPath: string): URLValid
   return result;
 };
 
-// Initialize monitoring in browser
-if (typeof window !== 'undefined') {
-  monitorUrlConsistency();
-}
+// Initialize monitoring in browser - DISABLED to prevent duplicate validation
+// The GlobalURLValidator component handles this instead
+// if (typeof window !== 'undefined') {
+//   monitorUrlConsistency();
+// }
 
 export default {
   validateCurrentPageUrls,
