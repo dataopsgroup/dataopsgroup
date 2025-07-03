@@ -20,6 +20,18 @@ const HubSpotPEHero = () => {
               Get the complete guide to CRM selection, implementation, and ROI optimization for private equity firms.
             </p>
             
+            {/* Enhanced Introduction for Better SEO */}
+            <div className="mt-6 p-6 bg-white rounded-lg border border-gray-200">
+              <p className="text-gray-700 leading-relaxed">
+                Private equity firms managing multiple portfolio companies face unique operational challenges that traditional CRMs cannot address. 
+                Spreadsheet-based reporting creates data silos, manual processes slow down deal velocity, and inconsistent systems across portfolio companies 
+                make it impossible to generate reliable investor reports. Our comprehensive guide demonstrates how HubSpot's multi-entity architecture 
+                solves these challenges while delivering measurable ROI improvements of 18-22x in the first year. Learn proven methodologies used by 
+                leading PE firms to standardize operations, accelerate value creation, and enhance portfolio company performance through strategic 
+                technology implementation.
+              </p>
+            </div>
+            
             {/* Key Benefits */}
             <div className="grid md:grid-cols-3 gap-6 my-8">
               <div className="flex items-center space-x-3">

@@ -37,6 +37,24 @@ const HubSpotPEFAQ = () => {
             Get answers to the most common questions about implementing HubSpot 
             for private equity portfolio operations.
           </p>
+          
+          {/* SEO-friendly FAQ Introduction */}
+          <div className="mt-8 p-6 bg-white rounded-lg border border-gray-200 text-left max-w-4xl mx-auto">
+            <h3 className="text-xl font-semibold text-dataops-900 mb-4">
+              HubSpot Implementation for Private Equity: Essential Information
+            </h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Private equity firms require specialized CRM solutions that can handle multiple portfolio companies, generate investor-grade reports, 
+              and scale rapidly with portfolio growth. Unlike traditional CRM implementations that focus on single-company deployments, 
+              PE-specific HubSpot implementations must address unique challenges including multi-entity data management, standardized reporting 
+              across diverse business models, and rapid onboarding of new acquisitions.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Our proven methodology has helped dozens of private equity firms successfully implement HubSpot across their entire portfolio, 
+              achieving consistent operational improvements and measurable ROI within the first year. The following frequently asked questions 
+              address the most critical considerations for PE firms evaluating HubSpot as their portfolio operations platform.
+            </p>
+          </div>
         </div>
 
         <div className="space-y-4">
@@ -48,11 +66,18 @@ const HubSpotPEFAQ = () => {
                 {openFAQ === index ? <Minus className="h-5 w-5 text-dataops-600 flex-shrink-0" /> : <Plus className="h-5 w-5 text-dataops-600 flex-shrink-0" />}
               </button>
               
-              {openFAQ === index && <div className="px-6 pb-4">
-                  <p className="text-gray-700 leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>}
+              {/* Always render FAQ content for crawlers, but hide/show with CSS */}
+              <div className={`px-6 pb-4 ${openFAQ === index ? 'block' : 'hidden'}`}>
+                <p className="text-gray-700 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+              
+              {/* Hidden text content for search engines */}
+              <div className="sr-only">
+                <h4>{faq.question}</h4>
+                <p>{faq.answer}</p>
+              </div>
             </div>)}
         </div>
 

@@ -110,6 +110,28 @@ const CRMSelectionChecklist = () => {
             Critical items are marked with red indicators - these are non-negotiable for PE operations.
           </p>
           
+          {/* Detailed CRM Selection Methodology */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-4xl mx-auto text-left mb-8">
+            <h3 className="text-xl font-semibold text-dataops-900 mb-4">
+              Private Equity CRM Selection Methodology
+            </h3>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Selecting the right CRM platform for private equity operations requires careful evaluation of capabilities that standard enterprise 
+              software vendors often overlook. Unlike single-company deployments, PE CRM implementations must support multiple business entities, 
+              standardized reporting across diverse industries, rapid deployment to new acquisitions, and investor-grade data security.
+            </p>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Our comprehensive evaluation framework has been developed through dozens of PE technology assessments and successful implementations. 
+              Critical requirements represent non-negotiable capabilities that any PE-suitable platform must provide. Optional items enhance 
+              operational efficiency but may not be essential for all portfolio structures.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Use this interactive checklist to systematically evaluate potential platforms against your specific requirements. Each section 
+              addresses a different aspect of PE operations, from technical scalability to compliance requirements. Platforms that meet 
+              fewer than 80% of critical requirements typically require extensive customization that negates their initial cost advantages.
+            </p>
+          </div>
+          
           {/* Progress Indicators */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-dataops-50 border border-dataops-100 rounded-lg p-4">
