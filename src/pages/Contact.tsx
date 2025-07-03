@@ -134,8 +134,8 @@ const ContactPage = () => {
               <p>
                 <a href="https://blog.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 transition-colors">
                   HubSpot Blog
-                </a> • 
-                <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 transition-colors">
+                </a>
+                <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 ml-4 transition-colors">
                   HubSpot Academy
                 </a>
               </p>
