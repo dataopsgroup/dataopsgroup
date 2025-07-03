@@ -132,11 +132,10 @@ const ContactPage = () => {
             
             <div className="text-xs text-gray-500">
               <p>
-                Industry insights: 
-                <a href="https://blog.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 ml-1 transition-colors">
+                <a href="https://blog.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 transition-colors">
                   HubSpot Blog
                 </a> • 
-                <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 ml-1 transition-colors">
+                <a href="https://academy.hubspot.com/" target="_blank" rel="noopener noreferrer" className="text-dataops-600 hover:text-dataops-800 transition-colors">
                   HubSpot Academy
                 </a>
               </p>
