@@ -102,15 +102,15 @@ const ContactPage = () => {
                 <a href="/insights/hiring-and-working-with-a-hubspot-consultant" className="text-dataops-600 hover:text-dataops-800 transition-colors">
                   How to Hire HubSpot Experts
                 </a>
-                <span className="text-gray-300">•</span>
+                <span className="text-gray-300">|</span>
                 <a href="/insights/stop-buying-contact-lists" className="text-dataops-600 hover:text-dataops-800 transition-colors">
                   Lead Generation Best Practices
                 </a>
-                <span className="text-gray-300">•</span>
+                <span className="text-gray-300">|</span>
                 <a href="/faqs" className="text-dataops-600 hover:text-dataops-800 transition-colors">
                   Frequently Asked Questions
                 </a>
-                <span className="text-gray-300">•</span>
+                <span className="text-gray-300">|</span>
                 <a href="/services" className="text-dataops-600 hover:text-dataops-800 transition-colors">
                   Our Services
                 </a>
