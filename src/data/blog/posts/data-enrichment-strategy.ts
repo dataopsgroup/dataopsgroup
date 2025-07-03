@@ -17,10 +17,6 @@ export const dataEnrichmentStrategy: BlogPost = {
     ogDescription: "Discover why data enrichment fails and learn proven strategies that achieve 340% better ROI through systematic validation and optimization."
   },
   content: `
-    <p><em>Improve your data enrichment strategy by fixing validation, maintenance, & quality checks. Avoid wasted budgets and boost lead quality with proven tactics that achieve 340% better ROI than standard approaches.</em></p>
-
-    <h1>Why Your Data Enrichment Strategy Isn't Working: The $2.8M Waste Hidden in Your CRM</h1>
-
     <p><strong>March 10, 2025</strong> | <strong>7 min read</strong> | <a href="#">Share on LinkedIn</a> <a href="#">Share on Twitter</a> <a href="#">Copy link</a></p>
 
     <h2>The Hidden Cost of Data Enrichment Failures</h2>

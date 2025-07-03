@@ -17,10 +17,6 @@ export const psychologyDataGovernance: BlogPost = {
     ogDescription: "Discover why teams resist data governance and the neuroscience-backed strategies that actually work to foster adoption and overcome resistance."
   },
   content: `
-    <p><em>Understand why teams resist data governance initiatives and learn psychological strategies to foster adoption. Overcome barriers to change with proven tactics that address the root causes of resistance, not just symptoms.</em></p>
-
-    <h1>The Psychology of Data Governance: The $8.7 Billion Problem No One Talks About</h1>
-
     <p><strong>February 10, 2025</strong> | <strong>9 min read</strong> | <a href="#">Share on LinkedIn</a> <a href="#">Share on Twitter</a> <a href="#">Copy link</a></p>
 
     <h2>The $8.7 Billion Psychology Problem No One Talks About</h2>
