@@ -33,7 +33,7 @@
     <!-- Mobile logo preload - highest priority for mobile LCP -->
     <link rel="preload" href="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png" as="image" media="(max-width: 767px)" fetchpriority="high" />
 
-    <!-- Ultra-critical mobile CSS inlined for fastest LCP -->
+    <!-- PHASE 4: Ultra-critical CSS for actual LCP element - INLINE FOR FASTEST PAINT -->
     <style>
       /* Device detection via CSS */
       body.device-mobile,
@@ -43,18 +43,50 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       }
       
-      /* Ultra-critical mobile LCP optimization - INLINE FOR SPEED */
+      /* PHASE 4: CRITICAL - Target the actual LCP element (paragraph text) */
       @media (max-width: 767px) {
+        /* The ACTUAL LCP element - paragraph text in HeroContentSection */
+        .text-xl.leading-relaxed.text-gray-700,
+        p.text-xl.leading-relaxed.text-gray-700 {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+          font-display: block !important; 
+          font-size: 1.125rem !important;
+          line-height: 1.5 !important;
+          color: #374151 !important;
+          font-weight: 400 !important;
+          margin: 0 0 1rem 0 !important;
+          padding: 0 !important;
+          contain: layout style !important;
+          will-change: auto !important;
+          transform: translateZ(0) !important;
+          backface-visibility: hidden !important;
+          text-rendering: optimizeSpeed !important;
+          -webkit-font-smoothing: antialiased !important;
+        }
+        
+        /* Hero content section optimization */
+        .hero-content-section { 
+          padding: 4rem 1.5rem !important;
+          background: linear-gradient(to bottom right, white, #f9fafb, #eff6ff) !important;
+          contain: layout style paint !important;
+        }
+        
+        .hero-content-grid {
+          display: block !important; /* Single column for mobile */
+          gap: 3rem !important;
+        }
+        
+        /* Hero section - reduce for faster LCP */
         .hero-section { 
-          min-height: 45vh !important; /* Further reduced for mobile LCP */
+          min-height: 45vh !important;
           background: #1e293b !important;
           background-image: none !important;
           display: flex !important;
           align-items: center !important;
           justify-content: center !important;
-          padding: 50px 16px 20px !important; /* Reduced padding */
+          padding: 50px 16px 20px !important;
           position: relative !important;
-          contain: layout style paint !important; /* CSS containment */
+          contain: layout style paint !important;
         }
         
         .hero-content { 
@@ -66,36 +98,35 @@
         }
         
         .hero-headline { 
-          font-size: 1.6rem !important; /* Slightly smaller for faster paint */
-          line-height: 1.05 !important; /* Tighter line height */
+          font-size: 1.6rem !important;
+          line-height: 1.05 !important;
           font-weight: 700 !important;
-          margin-bottom: 0.75rem !important; /* Reduced margin */
+          margin-bottom: 0.75rem !important;
           color: white !important;
           text-shadow: none !important;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
           contain: layout style !important;
-          will-change: auto !important;
-          transform: translateZ(0) !important; /* Force GPU layer */
+          transform: translateZ(0) !important;
         }
         
         .hero-text-background {
-          display: none !important; /* Remove completely for mobile */
+          display: none !important;
         }
         
         .hero-buttons {
-          margin-top: 1.25rem !important; /* Reduced margin */
+          margin-top: 1.25rem !important;
           display: flex !important;
           flex-direction: column !important;
-          gap: 0.5rem !important; /* Reduced gap */
+          gap: 0.5rem !important;
           align-items: center !important;
         }
         
         .hero-buttons a {
           min-height: 44px !important;
           padding: 10px 20px !important;
-          font-size: 14px !important; /* Smaller font */
+          font-size: 14px !important;
           width: 100% !important;
-          max-width: 240px !important; /* Reduced width */
+          max-width: 240px !important;
           transition: none !important;
           border-radius: 6px !important;
           font-weight: 600 !important;
@@ -107,12 +138,13 @@
         
         /* Force immediate paint for critical text */
         .hero-headline,
-        .hero-content p {
-          font-display: block !important; /* Block FOIT for critical text */
+        .hero-content p,
+        .text-xl.leading-relaxed.text-gray-700 {
+          font-display: block !important;
         }
       }
       
-      /* Desktop critical styles - unchanged */
+      /* Desktop styles - unchanged */
       @media (min-width: 1024px) { 
         .hero-section { 
           min-height: 40vh !important;
@@ -132,7 +164,7 @@
       /* Tablet styles */
       @media (min-width: 768px) and (max-width: 1023px) { 
         .hero-headline { 
-          font-size: 2.5rem !important; /* Optimized for tablet */
+          font-size: 2.5rem !important;
         } 
         .hero-section {
           min-height: 50vh !important;
@@ -141,21 +173,14 @@
         }
       }
       
-      /* Loading state */
-      .loading-placeholder { 
-        background: #f3f4f6; 
-        animation: pulse 1.5s ease-in-out infinite; 
-      }
-      
-      @keyframes pulse { 
-        0%, 100% { opacity: 1; } 
-        50% { opacity: 0.7; } 
-      }
-      
       /* Connection-based mobile optimizations */
       .connection-slow .device-mobile * {
         animation: none !important;
         transition: none !important;
+      }
+      
+      .connection-slow .device-mobile .text-xl.leading-relaxed.text-gray-700 {
+        font-weight: 400 !important;
       }
     </style>
 

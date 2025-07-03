@@ -1,4 +1,3 @@
-
 /**
  * ⚠️ HERO CONTENT SECTION - LOCKED FOR EDITING ⚠️
  * 
@@ -27,7 +26,8 @@ const HeroContentSection = () => {
           {/* Left column - Text content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <p className="text-xl leading-relaxed text-gray-700">
+              {/* CRITICAL: This is the actual LCP element on mobile - optimize it */}
+              <p className="text-xl leading-relaxed text-gray-700 critical-lcp-text">
                 We are PE-specialized HubSpot experts who transform fragmented systems into unified platforms that drive EBITDA growth, improve operational efficiency, and create the data infrastructure your investors expect.
               </p>
               

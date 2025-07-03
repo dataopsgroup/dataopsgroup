@@ -1,7 +1,7 @@
 
-/* Critical Mobile Performance CSS - Enhanced with device-aware optimization */
+/* Critical Mobile Performance CSS - Enhanced Phase 4: Target Actual LCP Element */
 
-/* Essential mobile layout - prevents CLS */
+/* Essential mobile-first font loading optimization */
 :root {
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segue UI', system-ui, sans-serif;
   --font-rubik: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segue UI', system-ui, sans-serif;
@@ -10,22 +10,15 @@
 /* Mobile-first font loading optimization */
 @font-face {
   font-family: 'Inter';
-  font-display: swap;
+  font-display: block; /* Block FOIT for critical text */
   font-weight: 400;
   src: local('Inter'), local('Inter-Regular');
-}
-
-@font-face {
-  font-family: 'Rubik';
-  font-display: swap;
-  font-weight: 700;
-  src: local('Rubik'), local('Rubik-Bold');
 }
 
 /* Essential mobile body styles */
 body {
   font-family: var(--font-inter);
-  font-display: swap;
+  font-display: block;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -42,13 +35,33 @@ body.device-mobile * {
   -webkit-font-smoothing: antialiased;
 }
 
+/* CRITICAL: Optimize the actual LCP element - paragraph text */
+.device-mobile .text-xl.leading-relaxed.text-gray-700,
+.device-mobile p.text-xl.leading-relaxed.text-gray-700 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segue UI', sans-serif !important;
+  font-display: block !important; /* Critical for LCP */
+  font-size: 1.125rem !important;
+  line-height: 1.5 !important;
+  color: #374151 !important;
+  font-weight: 400 !important;
+  margin: 0 0 1rem 0 !important;
+  padding: 0 !important;
+  contain: layout style !important;
+  will-change: auto !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  text-rendering: optimizeSpeed !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
 /* Mobile navigation - prevent layout shifts */
 .navbar {
   height: 80px;
   contain: layout style;
 }
 
-/* Mobile logo optimization - critical for LCP */
+/* Mobile logo optimization */
 @media (max-width: 768px) {
   .nav-logo {
     height: 48px !important;
@@ -60,76 +73,45 @@ body.device-mobile * {
     will-change: auto !important;
   }
   
-  /* Optimize logo container for mobile */
   picture {
     contain: layout style !important;
     display: block !important;
   }
   
-  /* Preload critical logo on mobile */
   .nav-logo {
     image-rendering: -webkit-optimize-contrast !important;
     image-rendering: crisp-edges !important;
   }
 }
 
-/* Tablet optimization */
-@media (min-width: 769px) and (max-width: 1023px) {
-  .nav-logo {
-    height: 64px !important;
-    max-width: 180px !important;
-  }
-}
-
-/* Device-specific hero section optimizations */
-.device-mobile .hero-section {
-  min-height: 50vh !important;
-  background: #1e293b !important;
-  background-image: none !important;
-  padding: 60px 16px 20px !important;
+/* Hero content section - where the actual LCP happens */
+.device-mobile .hero-content-section {
+  padding: 4rem 1.5rem !important;
+  background: linear-gradient(to bottom right, white, #f9fafb, #eff6ff) !important;
   contain: layout style paint !important;
 }
 
-.device-tablet .hero-section {
-  min-height: 55vh !important;
-  padding: 80px 16px 40px !important;
+.device-mobile .hero-content-grid {
+  display: block !important; /* Single column for mobile */
+  gap: 3rem !important;
 }
 
-.device-desktop .hero-section {
-  /* Keep existing desktop styles */
+/* Connection-based optimizations for LCP */
+.connection-slow .device-mobile .text-xl.leading-relaxed.text-gray-700 {
+  font-weight: 400 !important;
+  text-shadow: none !important;
 }
 
-/* Connection-based optimizations */
-.connection-slow .device-mobile .hero-section {
-  background: #1e293b !important;
-  background-image: none !important;
+.connection-slow .device-mobile .hero-content-section {
+  background: white !important;
 }
 
-.connection-slow .device-mobile * {
-  transition: none !important;
-  animation: none !important;
-}
-
-/* Critical mobile text optimization - targets the LCP element */
-.device-mobile .text-xl.leading-relaxed.text-gray-700,
-.device-mobile p.text-xl.leading-relaxed.text-gray-700 {
-  font-size: 1.125rem !important;
-  line-height: 1.5 !important;
-  color: #374151 !important;
-  font-family: var(--font-inter) !important;
-  font-display: swap !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  contain: layout style !important;
-  will-change: auto !important;
-  transform: translateZ(0) !important;
-}
-
-/* Preload critical text styles for mobile */
+/* Critical mobile text optimization - ALL text elements */
 .device-mobile .hero-content p,
-.device-mobile .hero-content .text-xl {
-  font-family: var(--font-inter) !important;
-  font-display: swap !important;
+.device-mobile .hero-content .text-xl,
+.device-mobile .text-3xl.font-bold {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segue UI', sans-serif !important;
+  font-display: block !important;
   contain: layout style !important;
 }
 
@@ -147,23 +129,12 @@ img {
   font-display: swap;
 }
 
-/* Prevent layout shifts during loading */
-.loading-placeholder {
-  background: #f3f4f6;
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
 /* Mobile-specific performance optimizations */
 @media (max-width: 768px) {
-  /* Force GPU acceleration for critical elements */
+  /* Force GPU acceleration for LCP element */
+  .text-xl.leading-relaxed.text-gray-700,
+  p.text-xl.leading-relaxed.text-gray-700,
   .hero-content,
-  .text-xl,
-  p.text-xl,
   .nav-logo {
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -180,12 +151,8 @@ img {
   /* Critical content containment */
   .hero-section,
   .hero-content,
+  .hero-content-section,
   .navbar {
     contain: layout style paint;
-  }
-  
-  /* Logo preload optimization */
-  link[rel="preload"][as="image"][href*="9b9f1c84-13af-4551-96d5-b7a930f008cf"] {
-    fetchpriority: high;
   }
 }

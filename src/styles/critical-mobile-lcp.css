@@ -1,97 +1,116 @@
 
-/* CRITICAL MOBILE LCP CSS - Ultra-lightweight for fastest LCP */
-/* Target: <2.5s LCP on mobile devices */
+/* CRITICAL MOBILE LCP CSS - Phase 4: Target Correct LCP Element */
+/* Target: <2.5s LCP on mobile devices by optimizing the actual LCP element */
 
-/* Device detection classes */
-.device-mobile .hero-section {
-  /* Strip all non-essential styles for mobile LCP */
-  background: #1e293b !important; /* Solid color instead of gradient */
-  background-image: none !important; /* Remove background image */
-  min-height: 50vh !important; /* Reduce height for faster rendering */
-  padding: 60px 16px 20px !important; /* Reduce padding */
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  position: relative !important;
-}
-
-/* Critical mobile text optimization - LCP element */
-.device-mobile .hero-headline {
-  font-size: 1.75rem !important; /* Smaller for mobile */
-  line-height: 1.1 !important; /* Tighter line height */
-  font-weight: 700 !important;
-  margin-bottom: 1rem !important;
-  color: white !important;
-  text-shadow: none !important; /* Remove text shadow for faster rendering */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important; /* System fonts first */
-  contain: layout style !important; /* CSS containment for performance */
-  will-change: auto !important; /* Prevent unnecessary compositing */
-  transform: none !important; /* Remove transforms */
-}
-
-/* Remove background effects on mobile for LCP */
-.device-mobile .hero-text-background {
-  display: none !important; /* Remove backdrop for faster rendering */
-}
-
-/* Optimize buttons for mobile LCP */
-.device-mobile .hero-buttons {
-  margin-top: 1.5rem !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0.75rem !important;
-  align-items: center !important;
-}
-
-.device-mobile .hero-buttons a {
-  min-height: 44px !important; /* Touch target size */
-  padding: 10px 20px !important; /* Reduced padding */
-  font-size: 15px !important; /* Slightly smaller font */
-  width: 100% !important;
-  max-width: 260px !important;
-  text-decoration: none !important;
-  border-radius: 6px !important;
-  font-weight: 600 !important;
-  transition: none !important; /* Remove transitions for faster rendering */
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* Critical font loading for mobile */
-@media (max-width: 767px) {
-  /* Preload system fonts to avoid FOIT */
-  .hero-headline,
-  .hero-content p,
-  .hero-buttons a {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    font-display: swap !important;
-  }
-}
-
-/* Connection-based optimizations */
-.connection-slow .device-mobile .hero-section {
-  background: #1e293b !important; /* Solid color for slow connections */
-  background-image: none !important;
-}
-
-.connection-slow .device-mobile .hero-headline {
-  text-shadow: none !important;
-  font-weight: 600 !important; /* Lighter weight for faster rendering */
-}
-
-/* GPU acceleration only for critical elements on mobile */
-.device-mobile .hero-content {
-  transform: translateZ(0) !important;
+/* CRITICAL: Target the actual LCP element - paragraph text in HeroContentSection */
+.device-mobile .text-xl.leading-relaxed.text-gray-700,
+.device-mobile p.text-xl.leading-relaxed.text-gray-700 {
+  /* Ultra-critical LCP text optimization */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-display: block !important; /* Block FOIT for LCP element */
+  font-size: 1.125rem !important; /* Optimize size for mobile */
+  line-height: 1.5 !important;
+  color: #374151 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  contain: layout style !important;
+  will-change: auto !important;
+  transform: translateZ(0) !important; /* Force GPU layer for LCP element */
   backface-visibility: hidden !important;
+  text-rendering: optimizeSpeed !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* Container optimization for LCP element */
+.device-mobile .hero-content-section {
+  background: linear-gradient(to bottom right, white, #f9fafb, #eff6ff) !important;
+  padding: 4rem 1.5rem !important; /* Reduce padding for faster paint */
   contain: layout style paint !important;
 }
 
-/* Prevent layout shifts on mobile */
-.device-mobile .hero-container {
+.device-mobile .hero-content-grid {
+  display: block !important; /* Single column on mobile for faster rendering */
+  gap: 2rem !important;
+}
+
+/* Optimize stats cards for mobile LCP */
+.device-mobile .hero-content-section .bg-white {
+  background: white !important;
+  padding: 1.5rem !important; /* Reduce padding */
+  border-radius: 0.75rem !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 1rem !important;
+  contain: layout style !important;
+}
+
+/* Critical text in stats cards */
+.device-mobile .text-3xl.font-bold {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  font-display: block !important;
+  font-size: 2rem !important; /* Slightly smaller for mobile */
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Optimize buttons in hero content section */
+.device-mobile .hero-content-section .bg-dataops-600,
+.device-mobile .hero-content-section .border-2 {
+  padding: 0.75rem 1.5rem !important; /* Reduce padding */
+  font-size: 0.875rem !important; /* Smaller font */
+  border-radius: 0.5rem !important;
+  transition: none !important; /* Remove transitions */
+  min-height: 44px !important; /* Touch target */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 0.5rem !important;
   width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  position: relative !important;
-  contain: layout !important;
+  max-width: 280px !important;
+}
+
+/* Connection-based optimizations for LCP element */
+.connection-slow .device-mobile .text-xl.leading-relaxed.text-gray-700 {
+  font-weight: 400 !important; /* Lighter weight for slow connections */
+  text-shadow: none !important;
+}
+
+.connection-slow .device-mobile .hero-content-section {
+  background: white !important; /* Solid color for slow connections */
+}
+
+/* Critical path for hero section text */
+.device-mobile .hero-section {
+  min-height: 45vh !important; /* Slightly reduce for faster LCP */
+  background: #1e293b !important;
+  background-image: none !important;
+  padding: 50px 16px 20px !important;
+  contain: layout style paint !important;
+}
+
+.device-mobile .hero-headline {
+  font-size: 1.6rem !important;
+  line-height: 1.05 !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.75rem !important;
+  color: white !important;
+  text-shadow: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+  contain: layout style !important;
+  transform: translateZ(0) !important;
+}
+
+/* Remove non-essential elements on mobile for LCP */
+.device-mobile .hero-text-background {
+  display: none !important;
+}
+
+/* GPU acceleration for critical elements */
+.device-mobile .hero-content,
+.device-mobile .text-xl,
+.device-mobile p.text-xl {
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  contain: layout style !important;
 }
