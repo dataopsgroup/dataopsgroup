@@ -1,60 +1,45 @@
 
-/**
- * ⚠️ MAIN CSS FILE - HERO IMPORTS LOCKED ⚠️
- * 
- * The hero-related CSS imports below are locked and working correctly.
- * DO NOT MODIFY the hero CSS imports without user approval.
- * 
- * LOCKED IMPORTS:
- * - critical-mobile.css
- * - critical-hero.css
- * - hero-debug.css (currently commented out)
- * 
- * User approval required for hero-related changes!
- */
+/* OPTIMIZED CSS - Consolidated for Performance */
 
-@import './styles/critical-mobile.css';
-@import './styles/critical-mobile-lcp.css';
-@import './styles/critical-desktop.css';
-@import './styles/device-detector.css';
-@import './styles/critical-hero.css';
-/* @import './styles/hero-debug.css'; -- COMMENTED OUT TO PREVENT CONFLICTS */
-@import './styles/fonts-optimized.css';
-@import './styles/base.css';
-@import './styles/typography-optimized.css';
+/* Critical path optimizations */
+@import './styles/critical-consolidated.css';
+@import './styles/components-consolidated.css';
 
-/* Import components before Tailwind for proper order */
-@import './styles/components-optimized.css';
-
+/* Tailwind imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Mobile performance optimizations */
-@media (max-width: 1023px) {
-  /* Reduce animations on mobile for better performance */
-  *, *::before, *::after {
-    animation-duration: 0.1s !important;
-    transition-duration: 0.1s !important;
+/* Base layer with essential variables */
+@layer base {
+  :root {
+    /* Design system colors */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 199 89% 48%;
+    --secondary-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --radius: 0.5rem;
   }
-  
-  /* Optimize scrolling performance */
-  * {
-    scroll-behavior: auto !important;
-  }
-  
-  /* Optimize touch interactions */
-  button, a, input, select, textarea {
-    touch-action: manipulation;
-  }
-  
-  /* Prevent zoom on form inputs */
-  input, select, textarea {
-    font-size: 16px !important;
-  }
+
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
 }
 
+/* Typography utilities */
+@layer base {
+  h1 { @apply text-4xl lg:text-6xl font-bold leading-tight tracking-tight; }
+  h2 { @apply text-3xl lg:text-4xl font-semibold leading-tight tracking-tight; }
+  h3 { @apply text-2xl lg:text-3xl font-semibold leading-normal; }
+  h4 { @apply text-xl lg:text-2xl font-medium leading-normal; }
+  p { @apply text-base lg:text-lg leading-relaxed; }
+}
+
+/* Utility classes */
 @layer utilities {
   .font-display-swap { font-display: swap; }
-  .critical-font-load { font-display: block; }
+  .gpu-accelerate { transform: translateZ(0); backface-visibility: hidden; }
+  .contain-layout { contain: layout style; }
 }
