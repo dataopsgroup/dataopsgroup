@@ -8,7 +8,7 @@ export const navigatingFirst90DaysRevops: BlogPost = {
   date: "2025-04-21",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/ef47b612-1fd8-4f88-9d56-a3f9e8de8378.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/ef47b612-1fd8-4f88-9d56-a3f9e8de8378.png", // Restored to PNG
   content: `
     <p>After years of helping dozens of organizations optimize their HubSpot implementations, I've noticed clear patterns in what makes RevOps transformations succeed or fail. Whether you're stepping into a new RevOps leadership role or revamping your existing operations, these are the strategies I've seen consistently drive successful outcomes.</p>
     

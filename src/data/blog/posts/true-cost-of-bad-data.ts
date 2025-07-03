@@ -8,7 +8,7 @@ export const trueCostOfBadData: BlogPost = {
   date: "2025-02-19",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/57daab38-9552-4147-bbb4-2e91c29aa0ab.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/57daab38-9552-4147-bbb4-2e91c29aa0ab.png", // Restored to PNG
   content: `
     <h2></h2>
     

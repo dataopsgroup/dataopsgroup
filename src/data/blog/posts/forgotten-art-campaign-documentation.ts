@@ -9,7 +9,7 @@ export const forgottenArtCampaignDocumentation: BlogPost = {
   author: "Geoff Tucker",
   category: "Marketing Operations",
   tags: ["campaign documentation", "marketing operations", "productivity", "process optimization", "campaign management"],
-  coverImage: "/lovable-uploads/ef47b612-1fd8-4f88-9d56-a3f9e8de8378.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/ef47b612-1fd8-4f88-9d56-a3f9e8de8378.png", // Restored to PNG
   seo: {
     metaDescription: "Campaign documentation crisis costs $4.7M annually. Learn how systematic documentation creates 340% better outcomes while reducing execution time by 67%.",
     keywords: "campaign documentation, marketing operations efficiency, campaign brief template, marketing productivity, campaign management process",

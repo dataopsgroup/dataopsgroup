@@ -8,7 +8,7 @@ export const hubspotBlogBestPractices: BlogPost = {
   date: "May 14, 2025",
   author: "Geoff Tucker",
   category: "HubSpot",
-  coverImage: "/lovable-uploads/7e08a245-2138-4e6b-952c-f9d008895f97.webp", // Updated to WebP
+  coverImage: "/lovable-uploads/7e08a245-2138-4e6b-952c-f9d008895f97.png", // Restored to PNG
   content: `
   <article class="blog-post-content">
     <p>Creating high-performing blog content in HubSpot requires more than just good writing—it demands strategic planning, technical optimization, and a deep understanding of your audience's needs. As HubSpot consultants who've helped numerous marketing teams transform their content operations, we've identified these seven best practices that consistently deliver results.</p>
