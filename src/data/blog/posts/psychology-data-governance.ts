@@ -9,7 +9,7 @@ export const psychologyDataGovernance: BlogPost = {
   author: "Geoff Tucker",
   category: "Data Quality",
   tags: ["data governance", "change management", "psychology", "neuroscience", "organizational behavior"],
-  coverImage: "/lovable-uploads/823db2dc-1e98-4466-87b5-3a4539a2b1ae.png",
+  coverImage: "/lovable-uploads/823db2dc-1e98-4466-87b5-3a4539a2b1ae.webp", // Updated to WebP
   seo: {
     metaDescription: "Why data governance fails: $8.7B lost annually due to psychological barriers. Learn neuroscience-backed strategies that achieve 340% higher success rates in governance adoption.",
     keywords: "data governance psychology, change management neuroscience, organizational resistance, data governance adoption, behavioral change strategies",

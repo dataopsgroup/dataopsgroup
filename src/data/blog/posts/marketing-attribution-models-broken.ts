@@ -8,7 +8,7 @@ export const marketingAttributionModelsBroken: BlogPost = {
   date: "2025-01-15", 
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.png",
+  coverImage: "/lovable-uploads/124706e5-20d8-43a1-92a0-d4d65389187b.webp", // Updated to WebP
   content: `
     <h2>The Problem with Traditional Attribution Models</h2>
     

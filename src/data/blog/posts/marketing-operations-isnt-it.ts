@@ -9,7 +9,7 @@ export const marketingOperationsIsntIT: BlogPost = {
   author: "Geoff Tucker",
   category: "Marketing Operations",
   tags: ["marketing operations", "organizational design", "it vs marketing ops", "revenue operations", "team structure"],
-  coverImage: "/lovable-uploads/51575736-affb-4097-ab47-c87b40af3b1b.png",
+  coverImage: "/lovable-uploads/51575736-affb-4097-ab47-c87b40af3b1b.webp", // Updated to WebP
   seo: {
     metaDescription: "Marketing Operations vs IT: Fix the $1.9M misalignment crisis. Learn key differences in focus, metrics, tools, and skills to establish clear boundaries that drive revenue growth.",
     keywords: "marketing operations vs it, marketing ops boundaries, organizational structure, revenue operations, marketing technology management",

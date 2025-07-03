@@ -8,7 +8,7 @@ export const marketingDataManagement: BlogPost = {
   date: "2025-04-28",
   author: "Geoff Tucker",
   category: "Data Management",
-  coverImage: "/lovable-uploads/85dd8ce3-48e5-43c2-ae26-e36e0f8413fc.png",
+  coverImage: "/lovable-uploads/85dd8ce3-48e5-43c2-ae26-e36e0f8413fc.webp", // Updated to WebP
   content: `
     <h2>It's All About the Data</h2>
     

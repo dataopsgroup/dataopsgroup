@@ -8,7 +8,7 @@ export const salesPipelineMetrics: BlogPost = {
   date: "2025-03-24",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png",
+  coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.webp", // Updated to WebP
   content: `
     <p>"Our pipeline is 3x our quarterly target, so we're in great shape." If you've said this recently, you might be building your forecast on quicksand. McKinsey's Revenue Growth Study found that 87% of companies rely on pipeline metrics that actually have minimal correlation with final revenue outcomes.</p>
     

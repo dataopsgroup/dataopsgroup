@@ -8,7 +8,7 @@ export const hiddenRevenueLeak: BlogPost = {
   date: "2025-03-24",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/bb0f0430-957b-4c83-ae2d-c44781088f98.png",
+  coverImage: "/lovable-uploads/bb0f0430-957b-4c83-ae2d-c44781088f98.webp", // Updated to WebP
   content: `
     <p>While you're focused on closing deals, your CRM's data quality is quietly draining your revenue potential. According to Salesforce Research, companies lose between 10-30% of potential revenue due to poor sales data quality—yet 67% of sales leaders don't even realize this leak exists.</p>
     

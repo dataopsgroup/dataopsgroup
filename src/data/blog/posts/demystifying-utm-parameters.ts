@@ -9,7 +9,7 @@ export const demystifyingUtmParameters: BlogPost = {
   author: "Geoff Tucker",
   category: "Marketing Attribution",
   tags: ["utm parameters", "marketing attribution", "campaign tracking", "google analytics", "marketing analytics"],
-  coverImage: "/lovable-uploads/7a7935e7-7904-4abf-86c2-7ed1801ab849.png",
+  coverImage: "/lovable-uploads/7a7935e7-7904-4abf-86c2-7ed1801ab849.webp", // Updated to WebP
   seo: {
     metaDescription: "UTM parameter mastery guide: Fix the $3.4M attribution gap with strategic UTM implementation. Learn advanced frameworks that achieve 340% better attribution accuracy.",
     keywords: "utm parameters guide, marketing attribution, campaign tracking, utm best practices, google analytics utm",
