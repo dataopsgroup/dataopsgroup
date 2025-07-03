@@ -41,7 +41,7 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
       date: "2025-01-10",
       author: "Geoff Tucker",
       category: "Lead Management",
-      coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png", 
+      coverImage: "/lovable-uploads/434400a1-30b5-4562-ae95-9a7ef18306ee.png", // Will be auto-optimized to WebP 
       content: ""
     },
     {
@@ -190,9 +190,9 @@ const RelatedPosts = ({ relatedPosts, currentPostId }: RelatedPostsProps) => {
         <Carousel className="w-full max-w-6xl mx-auto">
           <CarouselContent>
             {postsToDisplay.map((post, index) => {
-              // Special case for the post that has a specific image
+              // All images will be auto-optimized to WebP by the optimization system
               const coverImage = post.id === "hidden-cost-of-failed-hubspot-implementations" 
-                ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png"
+                ? "/lovable-uploads/dc1dbbad-be41-4dbb-8dd8-381cc59a869c.png" // Will be auto-optimized to WebP
                 : post.coverImage;
                 
               const hasCoverImage = !!coverImage;
