@@ -7,7 +7,7 @@ export const peCrmChaosToControl: BlogPost = {
   date: "2025-07-07",
   author: "Geoff Tucker",
   category: "Insights",
-  coverImage: "/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.webp",
+  coverImage: "/lovable-uploads/9bacfba2-295e-4132-baeb-61b624c97795.png",
   content: `
     <p>As an operations partner in private equity, you've seen it all. You close a deal, excited about the potential, only to discover a wild west of customer relationship management (CRM) systems – or worse, no system at all. Spreadsheets are still king in some corners. Different portfolio companies (portcos) are using different tools, none of them talking to each other. You're left squinting at fragmented data, trying to figure out what's actually happening on the ground in your investments.</p>
     
