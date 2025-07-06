@@ -41,9 +41,11 @@ import { saasHealthcareAchievesRemarkableInsights } from './posts/saas-healthcar
 import { hubspotBlogBestPractices } from './posts/hubspot-blog-best-practices';
 import { leadTiersCaseStudy } from './posts/lead-tiers-case-study';
 import { why64PercentPEPortfolioCompaniesFailHubspotImplementation } from './posts/why-64-percent-pe-portfolio-companies-fail-hubspot-implementation';
+import { peCrmChaosToControl } from './posts/pe-crm-chaos-to-control';
 
 // Export all blog posts as a single array
 export const blogPosts: BlogPost[] = [
+  peCrmChaosToControl,
   why64PercentPEPortfolioCompaniesFailHubspotImplementation,
   hiddenCostOfFailedHubspotImplementations,
   leadTiersCaseStudy,
@@ -86,6 +88,7 @@ export const blogPosts: BlogPost[] = [
 
 // Export individual posts for direct access if needed
 export {
+  peCrmChaosToControl,
   why64PercentPEPortfolioCompaniesFailHubspotImplementation,
   hiddenCostOfFailedHubspotImplementations,
   leadTiersCaseStudy,
