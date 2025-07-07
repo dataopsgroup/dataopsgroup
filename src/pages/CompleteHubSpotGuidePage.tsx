@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SemanticLayout from '@/components/layout/SemanticLayout';
@@ -218,7 +217,7 @@ const CompleteHubSpotGuidePage = () => {
         { name: "Complete HubSpot Guide for Private Equity", url: "/guides/complete-hubspot-guide-for-private-equity" }
       ]} />
 
-      <main className="bg-white">
+      <main className="bg-white -mt-[109px]">
         <CompleteHubSpotGuideHero />
         
         {/* Main Content Layout */}
