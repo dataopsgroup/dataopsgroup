@@ -56,13 +56,6 @@ const CompleteHubSpotGuideHero = () => {
               <div className="text-2xl font-bold text-white">15-25%</div>
               <div className="text-sm text-gray-300">Value Left on Table</div>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="bg-saffron-500 p-3 rounded-full mb-3">
-                <BookOpen className="h-6 w-6 text-white" />
-              </div>
-              <div className="text-2xl font-bold text-white">45 min</div>
-              <div className="text-sm text-gray-300">Read Time</div>
-            </div>
           </div>
         </div>
       </div>
