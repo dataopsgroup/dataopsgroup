@@ -1,4 +1,3 @@
-
 // Bot Detection and Handling for Service Worker
 
 // List of known search engine bot user agents
@@ -21,13 +20,26 @@ const SEARCH_ENGINE_BOTS = [
   'DotBot'
 ];
 
+// AI and semantic analysis tools
+const AI_CRAWLERS = [
+  'ChatGPT-User',
+  'CCBot',
+  'Claude-Web',
+  'PerplexityBot',
+  'AI2Bot',
+  'anthropic',
+  'openai',
+  'GPTBot',
+  'YouBot',
+  'Copilot'
+];
+
 /**
  * Detects if the request is from a search engine bot
  * @param {Request} request - The incoming request
  * @returns {boolean} - True if request is from a bot
  */
 const isSearchEngineBot = (request) => {
-  // Check User-Agent header
   const userAgent = request.headers.get('User-Agent') || '';
   
   // Check for bot patterns in user agent
@@ -56,86 +68,32 @@ const isSearchEngineBot = (request) => {
 };
 
 /**
- * Creates bot-friendly response headers
- * @param {Response} response - Original response
- * @returns {Response} - Response with bot-friendly headers
+ * Detects if the request is from an AI crawler or semantic analysis tool
+ * @param {Request} request - The incoming request
+ * @returns {boolean} - True if request is from an AI crawler
  */
-const addBotFriendlyHeaders = (response) => {
-  const newHeaders = new Headers(response.headers);
+const isAICrawler = (request) => {
+  const userAgent = request.headers.get('User-Agent') || '';
   
-  // CRITICAL: Ensure proper UTF-8 encoding for crawlers
-  newHeaders.set('Content-Type', 'text/html; charset=utf-8');
-  newHeaders.set('Cache-Control', 'public, max-age=3600, no-transform');
-  newHeaders.set('Vary', 'User-Agent');
+  // Check for AI crawler patterns
+  const isAIUserAgent = AI_CRAWLERS.some(crawler => 
+    userAgent.toLowerCase().includes(crawler.toLowerCase())
+  );
   
-  // CRITICAL: Remove compression to prevent binary corruption for crawlers
-  newHeaders.delete('Content-Encoding');
-  newHeaders.delete('Content-Length'); // Let browser recalculate
+  // Additional AI-specific patterns
+  const aiPatterns = [
+    /gpt/i,
+    /claude/i,
+    /anthropic/i,
+    /openai/i,
+    /perplexity/i,
+    /semantic/i,
+    /ai2/i
+  ];
   
-  // Add bot-specific headers
-  newHeaders.set('X-Robots-Tag', 'index, follow');
+  const matchesAIPattern = aiPatterns.some(pattern => 
+    pattern.test(userAgent)
+  );
   
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers: newHeaders
-  });
+  return isAIUserAgent || matchesAIPattern;
 };
-
-/**
- * Handles requests from search engine bots
- * Always bypasses cache and returns fresh content
- * @param {Request} request - The bot request
- * @returns {Promise<Response>} - Direct network response
- */
-const handleBotRequest = async (request) => {
-  try {
-    // CRITICAL: Always fetch fresh content for bots, bypass service worker completely
-    const response = await fetch(request, {
-      cache: 'no-store',
-      headers: {
-        'User-Agent': request.headers.get('User-Agent') || 'ServiceWorker-Bot-Handler',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Charset': 'utf-8'
-      }
-    });
-    
-    // CRITICAL: Ensure response is readable text for crawlers
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-    
-    // Add bot-friendly headers and ensure UTF-8 encoding
-    return addBotFriendlyHeaders(response);
-  } catch (error) {
-    console.error('Bot request failed:', error);
-    
-    // Return minimal HTML for navigation requests
-    if (request.mode === 'navigate') {
-      return new Response(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>DataOps Group - HubSpot Consultancy</title>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-        </head>
-        <body>
-          <h1>DataOps Group</h1>
-          <p>HubSpot consultancy for PE firms and portfolio companies.</p>
-        </body>
-        </html>
-      `, {
-        status: 200,
-        headers: {
-          'Content-Type': 'text/html; charset=utf-8',
-          'X-Robots-Tag': 'index, follow'
-        }
-      });
-    }
-    
-    // Return 404 for other failed requests
-    return new Response('Not Found', { status: 404 });
-  }
-};
-

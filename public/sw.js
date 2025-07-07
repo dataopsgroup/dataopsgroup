@@ -77,8 +77,23 @@ self.addEventListener('fetch', (event) => {
         logBotRequest(request, response.headers.get('X-Content-Source') || 'static');
         return response;
       }).catch(error => {
-        console.error('Static content serving failed, falling back to bot handler:', error);
-        return handleBotRequest(request);
+        console.error('Static content serving failed:', error);
+        // Return basic HTML instead of falling back to SPA
+        const basicHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DataOps Group - HubSpot Consultancy</title>
+  <meta name="description" content="Expert HubSpot implementation and data operations for private equity portfolio companies.">
+</head>
+<body>
+  <h1>DataOps Group</h1>
+  <p>Expert HubSpot implementation and data operations for private equity portfolio companies.</p>
+</body>
+</html>`;
+        return new Response(basicHtml, {
+          headers: { 'Content-Type': 'text/html; charset=utf-8', 'X-Content-Source': 'emergency-fallback' }
+        });
       })
     );
     return;

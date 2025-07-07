@@ -146,7 +146,7 @@
     { "source": "/insights/(.*)", "destination": "/index.html" },
     { "source": "/faqs/(.*)", "destination": "/index.html" },
     { "source": "/guides/(.*)", "destination": "/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!static/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -234,6 +234,27 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/static/(.*).html",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "X-Content-Source",
+          "value": "static"
+        },
+        {
+          "key": "X-Served-By",
+          "value": "vercel-direct"
         }
       ]
     }
