@@ -201,7 +201,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/data-operations-assessment">
-              <button className="bg-saffron-500 hover:bg-saffron-600 text-white px-8 py-3 rounded-lg font-semibold">
+              <button className="bg-transparent text-saffron-500 hover:text-saffron-600 px-8 py-3 rounded-lg font-semibold">
                 Get Portfolio Assessment
               </button>
             </Link>
