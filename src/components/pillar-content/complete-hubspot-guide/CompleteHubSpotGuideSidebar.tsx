@@ -20,8 +20,10 @@ const CompleteHubSpotGuideSidebar = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">PE-Optimized HubSpot Implementation Roadmap</h3>
-            <p className="text-sm text-gray-600">Step-by-step implementation guide tailored for private equity requirements</p>
+            <a href="/guides/pe-hubspot-implementation-roadmap" className="block group">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">PE-Optimized HubSpot Implementation Roadmap</h3>
+              <p className="text-sm text-gray-600">Step-by-step implementation guide tailored for private equity requirements</p>
+            </a>
           </div>
           
           <div>
