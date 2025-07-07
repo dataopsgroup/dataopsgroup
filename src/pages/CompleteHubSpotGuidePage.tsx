@@ -64,28 +64,23 @@ const CompleteHubSpotGuidePage = () => {
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Further Resources</h2>
                     <div className="space-y-4">
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">HubSpot Implementation</h3>
-                        <p className="text-sm text-gray-600">Step-by-step guide to implementing HubSpot across your portfolio</p>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">HubSpot ROI Calculator for Private Equity</h3>
+                        <p className="text-sm text-gray-600">Calculate the financial impact of HubSpot implementation across your portfolio</p>
                       </div>
                       
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Portfolio Orchestration</h3>
-                        <p className="text-sm text-gray-600">Advanced strategies for managing multiple portfolio companies</p>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">PE-Optimized HubSpot Implementation Roadmap</h3>
+                        <p className="text-sm text-gray-600">Step-by-step implementation guide tailored for private equity requirements</p>
                       </div>
                       
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Data Integration</h3>
-                        <p className="text-sm text-gray-600">Technical guide to connecting HubSpot with other PE systems</p>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">HubSpot vs Competitors: The PE Decision Framework</h3>
+                        <p className="text-sm text-gray-600">Comprehensive comparison framework for PE firms evaluating CRM platforms</p>
                       </div>
                       
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">ROI Measurement</h3>
-                        <p className="text-sm text-gray-600">Frameworks for measuring and reporting HubSpot ROI</p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Change Management</h3>
-                        <p className="text-sm text-gray-600">Best practices for driving adoption across portfolio companies</p>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Portfolio Value Creation Case Studies</h3>
+                        <p className="text-sm text-gray-600">Real examples of PE firms achieving measurable ROI through strategic HubSpot deployment</p>
                       </div>
                     </div>
                   </div>
