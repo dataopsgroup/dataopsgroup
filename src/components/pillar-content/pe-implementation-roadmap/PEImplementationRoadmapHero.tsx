@@ -1,0 +1,34 @@
+import React from 'react';
+
+const PEImplementationRoadmapHero = () => {
+  return (
+    <section className="bg-gradient-to-br from-dataops-950 via-dataops-900 to-dataops-800 text-white pt-32 pb-16 px-4">
+      <div className="container mx-auto max-w-4xl text-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          The PE-Optimized HubSpot Implementation Roadmap
+        </h1>
+        
+        <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
+          A battle-tested framework for implementing HubSpot across private equity portfolios that maximizes value creation while minimizing adoption risk
+        </p>
+        
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/hubspot-roi-calculator"
+            className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 px-8 py-3 rounded-lg font-semibold transition-colors"
+          >
+            Calculate Your ROI
+          </a>
+          <a 
+            href="/data-operations-assessment"
+            className="border-2 border-white text-white hover:bg-white hover:text-dataops-950 px-8 py-3 rounded-lg font-semibold transition-colors"
+          >
+            Get Your Assessment
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default PEImplementationRoadmapHero;
