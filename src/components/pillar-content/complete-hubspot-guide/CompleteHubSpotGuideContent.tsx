@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +7,7 @@ const CompleteHubSpotGuideContent = () => {
     <article>
       <div className="prose prose-lg prose-gray max-w-none">
         
-        <section className="mb-16">
+        <section id="pe-blind-spot" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The $2.5 Trillion Blind Spot</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             Private equity firms managing over $2.5 trillion globally share a dirty secret: most are leaving 15-25% of potential portfolio value on the table simply because they treat technology as an afterthought rather than a value creation driver.
@@ -19,7 +20,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="confidence-crisis" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The Confidence Crisis in B2B Buying</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             Recent research from LinkedIn's B2B Institute reveals something profound about how companies actually make purchasing decisions. When surveyed, 750 B2B buyers across multiple industries revealed that they value one thing above all else: the ability to defend their decision if it goes wrong, even more than buying a product that actually works.
@@ -38,7 +39,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="hidden-economics" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The Hidden Economics of CRM Failure</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             Most PE firms dramatically underestimate the true cost of poor technology decisions. A typical mid-market portfolio company with $25 million in revenue that implements HubSpot incorrectly doesn't just waste the $50,000 implementation budget—they create a cascade of value destruction that compounds over the entire hold period.
@@ -54,7 +55,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="pattern-recognition" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Portfolio-Level Pattern Recognition</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             The breakthrough insight comes when you stop thinking about HubSpot as individual portfolio company software and start treating it as a portfolio-wide intelligence system. When properly configured, HubSpot reveals patterns that individual companies can't see in isolation.
@@ -70,7 +71,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="implementation-gap" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The Implementation Reality Gap</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             Despite its apparent simplicity, HubSpot implementations fail at an alarming rate in PE environments. The core problem isn't technical complexity—it's that most agencies and consultants treat PE-backed companies like any other small business, completely missing the unique requirements of firms accountable to institutional investors.
@@ -86,7 +87,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="change-management" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The Science of Change Management</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             The LinkedIn research reveals something critical about driving adoption: the closer and more relatable the person recommending a change, the more likely teams are to embrace it. This insight has profound implications for how PE firms should approach HubSpot rollouts across their portfolios.
@@ -102,7 +103,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="ai-future" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">AI and the Future of Portfolio Intelligence</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             The most forward-thinking PE firms are beginning to experiment with HubSpot's AI capabilities not just for marketing automation, but for portfolio-wide intelligence gathering. HubSpot's conversation intelligence, for example, can analyze sales calls across all portfolio companies to identify common objections, competitive threats, and market trends that might not be visible at the individual company level.
@@ -115,7 +116,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="economic-impact" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Economic Impact: Beyond Soft Benefits</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             PE firms are notoriously skeptical of technology investments that promise intangible benefits. The beauty of a properly implemented HubSpot portfolio strategy is that the returns are measurable and attributable.
@@ -131,7 +132,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="relationship-economy" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The Relationship Economy</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             Perhaps the most underappreciated aspect of HubSpot's value in PE environments is how it transforms relationship management from an art to a science. Private equity success ultimately depends on relationships—with management teams, customers, suppliers, and other stakeholders—but most firms manage these relationships through a combination of personal memory and Excel spreadsheets.
@@ -144,7 +145,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="implementation-architecture" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Implementation Architecture for PE Firms</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             The technical architecture for PE-optimized HubSpot implementations differs significantly from standard business configurations. Successful firms typically deploy a hub-and-spoke model where a central PE firm instance connects to individual portfolio company instances, enabling both operational independence and strategic oversight.
@@ -157,7 +158,7 @@ const CompleteHubSpotGuideContent = () => {
           </p>
         </section>
 
-        <section className="mb-16">
+        <section id="competitive-moat" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">The Competitive Moat</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             As more PE firms recognize HubSpot's potential for value creation, early adopters are building competitive advantages that will be difficult for laggards to replicate. Firms with mature HubSpot implementations can evaluate acquisition targets more accurately, integrate new investments more quickly, and create synergies between portfolio companies more systematically.
@@ -172,6 +173,25 @@ const CompleteHubSpotGuideContent = () => {
             The choice facing PE firms today isn't whether to implement HubSpot—it's whether to treat it as a tactical CRM deployment or a strategic portfolio orchestration capability. The firms that understand this distinction will define the next generation of private equity value creation.
           </p>
         </section>
+
+        {/* Internal Links Section */}
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-16">
+          <h3 className="text-xl font-semibold text-blue-900 mb-4">Related Resources</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link to="/data-operations-assessment" className="text-blue-700 hover:text-blue-800 font-medium">
+              → Take Our DataOps Assessment
+            </Link>
+            <Link to="/services/marketing-operations-revops" className="text-blue-700 hover:text-blue-800 font-medium">
+              → Marketing Operations Services
+            </Link>
+            <Link to="/insights" className="text-blue-700 hover:text-blue-800 font-medium">
+              → Read More Insights
+            </Link>
+            <Link to="/case-studies" className="text-blue-700 hover:text-blue-800 font-medium">
+              → View Case Studies
+            </Link>
+          </div>
+        </div>
 
         {/* Call to Action */}
         <div className="bg-dataops-950 text-white p-8 rounded-lg text-center mt-16">
