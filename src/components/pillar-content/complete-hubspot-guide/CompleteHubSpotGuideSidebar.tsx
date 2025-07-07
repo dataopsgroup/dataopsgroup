@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Calculator } from 'lucide-react';
 
 const CompleteHubSpotGuideSidebar = () => {
   return (
@@ -10,7 +11,10 @@ const CompleteHubSpotGuideSidebar = () => {
         <div className="space-y-4">
           <div>
             <a href="/hubspot-roi-calculator" className="block group">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">HubSpot ROI Calculator for Private Equity</h3>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors flex items-center gap-2">
+                <Calculator className="h-5 w-5 text-dataops-600" />
+                HubSpot ROI Calculator for Private Equity
+              </h3>
               <p className="text-sm text-gray-600">Calculate the financial impact of HubSpot implementation across your portfolio</p>
             </a>
           </div>
