@@ -12,13 +12,7 @@ const PEImplementationRoadmapHero = () => {
           A battle-tested framework for implementing HubSpot across private equity portfolios that maximizes value creation while minimizing adoption risk
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a 
-            href="/hubspot-roi-calculator"
-            className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 px-8 py-3 rounded-lg font-semibold transition-colors"
-          >
-            Calculate Your ROI
-          </a>
+        <div className="flex justify-center">
           <a 
             href="/data-operations-assessment"
             className="border-2 border-white text-white hover:bg-white hover:text-dataops-950 px-8 py-3 rounded-lg font-semibold transition-colors"
