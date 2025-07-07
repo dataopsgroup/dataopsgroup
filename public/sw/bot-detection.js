@@ -63,19 +63,14 @@ const isSearchEngineBot = (request) => {
 const addBotFriendlyHeaders = (response) => {
   const newHeaders = new Headers(response.headers);
   
-  // Ensure no transformation by proxies
+  // CRITICAL: Ensure proper UTF-8 encoding for crawlers
+  newHeaders.set('Content-Type', 'text/html; charset=utf-8');
   newHeaders.set('Cache-Control', 'public, max-age=3600, no-transform');
   newHeaders.set('Vary', 'User-Agent');
   
-  // Prevent compression issues for bots
-  newHeaders.set('Content-Encoding', 'identity');
-  
-  // Ensure proper content type
-  if (!newHeaders.has('Content-Type')) {
-    if (response.url.endsWith('.html') || response.url.includes('/')) {
-      newHeaders.set('Content-Type', 'text/html; charset=utf-8');
-    }
-  }
+  // CRITICAL: Remove compression to prevent binary corruption for crawlers
+  newHeaders.delete('Content-Encoding');
+  newHeaders.delete('Content-Length'); // Let browser recalculate
   
   // Add bot-specific headers
   newHeaders.set('X-Robots-Tag', 'index, follow');

@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => ({
     devSourcemap: mode === 'development',
     preprocessorOptions: {
       css: {
-        charset: false,
+        charset: 'utf-8',
       },
     },
   },
