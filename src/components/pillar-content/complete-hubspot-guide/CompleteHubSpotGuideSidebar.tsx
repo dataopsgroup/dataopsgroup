@@ -9,8 +9,10 @@ const CompleteHubSpotGuideSidebar = () => {
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Further Resources</h2>
         <div className="space-y-4">
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">HubSpot ROI Calculator for Private Equity</h3>
-            <p className="text-sm text-gray-600">Calculate the financial impact of HubSpot implementation across your portfolio</p>
+            <a href="/hubspot-roi-calculator" className="block group">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">HubSpot ROI Calculator for Private Equity</h3>
+              <p className="text-sm text-gray-600">Calculate the financial impact of HubSpot implementation across your portfolio</p>
+            </a>
           </div>
           
           <div>

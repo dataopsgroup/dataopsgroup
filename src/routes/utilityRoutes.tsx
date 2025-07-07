@@ -14,6 +14,7 @@ const StructuredDataTest = lazy(() => import('../pages/StructuredDataTest'));
 // WebVitalsDashboard removed for performance
 const BadDataCostCalculatorPage = lazy(() => import('../pages/BadDataCostCalculatorPage'));
 const RevOpsROICalculatorPage = lazy(() => import('../pages/RevOpsROICalculatorPage'));
+const HubSpotROICalculatorPage = lazy(() => import('../pages/HubSpotROICalculatorPage'));
 // SchemaValidationPage removed for performance
 
 // Loading component for Suspense fallback
@@ -74,6 +75,11 @@ export const utilityRoutes = [
   {
     path: "/revops-roi-calculator",
     element: <SuspenseWrapper><RevOpsROICalculatorPage /></SuspenseWrapper>,
+    errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
+  },
+  {
+    path: "/hubspot-roi-calculator",
+    element: <SuspenseWrapper><HubSpotROICalculatorPage /></SuspenseWrapper>,
     errorElement: <SuspenseWrapper><NotFound /></SuspenseWrapper>,
   },
   {
