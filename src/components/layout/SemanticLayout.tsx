@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import NoindexValidator from '@/components/seo/NoindexValidator';
 import CookieBanner from '@/components/CookieBanner';
 import GlobalURLValidator from '@/components/seo/GlobalURLValidator';
 
@@ -15,6 +16,7 @@ const SemanticLayout = ({ children }: SemanticLayoutProps) => {
     <div className="min-h-screen flex flex-col">
       <ScrollToTop />
       <GlobalURLValidator />
+      <NoindexValidator />
       <header>
         <Navbar />
       </header>
