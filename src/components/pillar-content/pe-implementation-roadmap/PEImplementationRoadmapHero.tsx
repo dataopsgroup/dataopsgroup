@@ -12,14 +12,6 @@ const PEImplementationRoadmapHero = () => {
           A battle-tested framework for implementing HubSpot across private equity portfolios that maximizes value creation while minimizing adoption risk
         </p>
         
-        <div className="flex justify-center">
-          <a 
-            href="/data-operations-assessment"
-            className="border-2 border-white text-white hover:bg-white hover:text-dataops-950 px-8 py-3 rounded-lg font-semibold transition-colors"
-          >
-            Get Your Assessment
-          </a>
-        </div>
       </div>
     </section>
   );
