@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { BookOpen, TrendingUp, Users } from 'lucide-react';
 
@@ -64,15 +63,6 @@ const CompleteHubSpotGuideHero = () => {
               <div className="text-2xl font-bold text-white">45 min</div>
               <div className="text-sm text-gray-300">Read Time</div>
             </div>
-          </div>
-
-          {/* CTA Button */}
-          <div className="flex justify-center">
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-dataops-950 px-8 py-3">
-                Schedule Expert Consultation
-              </Button>
-            </Link>
           </div>
         </div>
       </div>
