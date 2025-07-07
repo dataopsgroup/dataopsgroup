@@ -1,4 +1,3 @@
-
 import { NavItem, SubNavItem } from '@/types/navigation';
 
 // Services dropdown items
@@ -39,6 +38,10 @@ export const guidesItems: SubNavItem[] = [
   { 
     name: 'HubSpot for Private Equity', 
     href: '/guides/hubspot-private-equity' 
+  },
+  { 
+    name: 'Complete HubSpot Guide for Private Equity', 
+    href: '/guides/complete-hubspot-guide-for-private-equity' 
   }
 ];
 
@@ -69,6 +72,10 @@ export const insightsItems: SubNavItem[] = [
   { 
     name: 'HubSpot for Private Equity', 
     href: '/guides/hubspot-private-equity' 
+  },
+  { 
+    name: 'Complete HubSpot Guide for Private Equity', 
+    href: '/guides/complete-hubspot-guide-for-private-equity' 
   },
   { 
     name: 'ROI Assessment Tools',
