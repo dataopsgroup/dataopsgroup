@@ -51,19 +51,54 @@ const CompleteHubSpotGuidePage = () => {
 
       <main className="bg-white">
         <CompleteHubSpotGuideHero />
-        <CompleteHubSpotGuideContent />
         
-        {/* Further Resources Section - Placeholder */}
-        <section className="py-16 bg-gray-50">
+        {/* Main Content Layout */}
+        <div className="py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Further Resources</h2>
-              <div id="further-resources">
-                {/* Content will be added in upcoming prompts */}
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-3 gap-12">
+                {/* Sidebar - 1/3 column */}
+                <div className="lg:col-span-1">
+                  {/* Further Resources Section */}
+                  <div className="bg-gray-50 rounded-lg p-6 sticky top-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Further Resources</h2>
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">HubSpot Implementation</h3>
+                        <p className="text-sm text-gray-600">Step-by-step guide to implementing HubSpot across your portfolio</p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Portfolio Orchestration</h3>
+                        <p className="text-sm text-gray-600">Advanced strategies for managing multiple portfolio companies</p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Data Integration</h3>
+                        <p className="text-sm text-gray-600">Technical guide to connecting HubSpot with other PE systems</p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">ROI Measurement</h3>
+                        <p className="text-sm text-gray-600">Frameworks for measuring and reporting HubSpot ROI</p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-800 mb-2">Change Management</h3>
+                        <p className="text-sm text-gray-600">Best practices for driving adoption across portfolio companies</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Main Content - 2/3 column */}
+                <div className="lg:col-span-2">
+                  <CompleteHubSpotGuideContent />
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </main>
     </SemanticLayout>
   );
