@@ -5,7 +5,7 @@ import { BookOpen, TrendingUp, Users } from 'lucide-react';
 
 const CompleteHubSpotGuideHero = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-br from-dataops-950 to-dataops-900 text-white overflow-hidden">
+    <section className="relative pt-24 pb-20 bg-gradient-to-br from-dataops-950 to-dataops-900 text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
