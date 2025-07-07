@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot Content Testing Tool - DataOps Group</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+    .test-results { background: #f5f5f5; padding: 15px; border-radius: 4px; margin: 10px 0; }
+    .success { border-left: 4px solid #4caf50; }
+    .warning { border-left: 4px solid #ff9800; }
+    .error { border-left: 4px solid #f44336; }
+    button { background: #1976d2; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin: 5px; }
+    button:hover { background: #1565c0; }
+    pre { background: #f8f8f8; padding: 10px; border-radius: 4px; overflow-x: auto; max-height: 300px; }
+    .url-input { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>🤖 Bot Content Testing Tool</h1>
+  <p>Test how your content appears to different types of crawlers and AI tools.</p>
+  
+  <div class="test-section">
+    <h2>Quick Tests for Top Pages</h2>
+    <button onclick="testUrl('/')">Test Homepage</button>
+    <button onclick="testUrl('/services')">Test Services</button>
+    <button onclick="testUrl('/guides/hubspot-expert')">Test HubSpot Guide</button>
+    <button onclick="testUrl('/services/dataops-implementation')">Test DataOps Service</button>
+    <button onclick="testUrl('/services/analytics-bi')">Test Analytics Service</button>
+  </div>
+  
+  <div class="test-section">
+    <h2>Custom URL Test</h2>
+    <input type="text" id="customUrl" class="url-input" placeholder="Enter URL path (e.g., /services/team-training)" value="/">
+    <br>
+    <button onclick="testCustomUrl()">Test Custom URL</button>
+  </div>
+  
+  <div class="test-section">
+    <h2>Bot User Agents</h2>
+    <select id="botSelect">
+      <option value="Googlebot/2.1 (+http://www.google.com/bot.html)">Googlebot</option>
+      <option value="Mozilla/5.0 (compatible; Bingbot/2.0; +http://www.bing.com/bingbot.htm)">Bingbot</option>
+      <option value="Mozilla/5.0 (compatible; ChatGPT-User/1.0; +https://openai.com/bot)">ChatGPT</option>
+      <option value="Mozilla/5.0 (compatible; Claude-Web/1.0; +https://anthropic.com)">Claude</option>
+      <option value="Mozilla/5.0 (compatible; PerplexityBot/1.0; +https://perplexity.ai)">Perplexity</option>
+      <option value="curl/7.68.0">cURL Command</option>
+    </select>
+  </div>
+  
+  <div id="results"></div>
+  
+  <div class="test-section">
+    <h2>Testing Commands</h2>
+    <p>Run these commands in your terminal to test crawler access:</p>
+    <pre id="curlCommands">
+# Test with Googlebot user agent
+curl -H "User-Agent: Googlebot/2.1 (+http://www.google.com/bot.html)" "https://dataopsgroup.com/"
+
+# Test with AI crawler user agent  
+curl -H "User-Agent: Mozilla/5.0 (compatible; ChatGPT-User/1.0)" "https://dataopsgroup.com/services"
+
+# Test with minimal headers (simulates semantic analysis tools)
+curl -H "User-Agent: SemanticBot/1.0" -H "Accept: text/html" "https://dataopsgroup.com/guides/hubspot-expert"
+
+# Test content accessibility without JavaScript
+curl -s "https://dataopsgroup.com/services/analytics-bi" | head -100
+    </pre>
+  </div>
+
+  <script>
+    async function testUrl(path, customUserAgent = null) {
+      const resultsDiv = document.getElementById('results');
+      const botSelect = document.getElementById('botSelect');
+      const userAgent = customUserAgent || botSelect.value;
+      
+      const testResult = document.createElement('div');
+      testResult.className = 'test-results';
+      testResult.innerHTML = `<h3>Testing: ${path}</h3><p>User-Agent: ${userAgent}</p><p>⏳ Loading...</p>`;
+      resultsDiv.appendChild(testResult);
+      
+      try {
+        const response = await fetch(path, {
+          headers: {
+            'User-Agent': userAgent,
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Charset': 'utf-8'
+          }
+        });
+        
+        const text = await response.text();
+        const contentLength = text.length;
+        const hasProperEncoding = response.headers.get('Content-Type')?.includes('charset=utf-8');
+        const servedBy = response.headers.get('X-Served-By') || 'Unknown';
+        const contentSource = response.headers.get('X-Content-Source') || 'Dynamic';
+        
+        // Check for binary corruption indicators
+        const hasBinaryCorruption = /[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFD]/.test(text);
+        const hasReadableContent = text.includes('<h1>') && text.includes('<p>');
+        
+        // Extract first 200 characters for preview
+        const preview = text.substring(0, 200).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        
+        let status = 'success';
+        let statusMessage = '✅ Content accessible and readable';
+        
+        if (hasBinaryCorruption) {
+          status = 'error';
+          statusMessage = '❌ Binary corruption detected';
+        } else if (!hasReadableContent) {
+          status = 'warning';
+          statusMessage = '⚠️ Limited readable content';
+        } else if (!hasProperEncoding) {
+          status = 'warning';
+          statusMessage = '⚠️ Missing proper UTF-8 encoding';
+        }
+        
+        testResult.className = `test-results ${status}`;
+        testResult.innerHTML = `
+          <h3>Results for: ${path}</h3>
+          <p><strong>Status:</strong> ${statusMessage}</p>
+          <p><strong>Content Length:</strong> ${contentLength} characters</p>
+          <p><strong>Content-Type:</strong> ${response.headers.get('Content-Type') || 'Not specified'}</p>
+          <p><strong>Served By:</strong> ${servedBy}</p>
+          <p><strong>Content Source:</strong> ${contentSource}</p>
+          <p><strong>Has UTF-8 Encoding:</strong> ${hasProperEncoding ? 'Yes' : 'No'}</p>
+          <p><strong>Binary Corruption:</strong> ${hasBinaryCorruption ? 'Yes ❌' : 'No ✅'}</p>
+          <p><strong>Readable Content:</strong> ${hasReadableContent ? 'Yes ✅' : 'No ❌'}</p>
+          <details>
+            <summary>Content Preview (first 200 chars)</summary>
+            <pre>${preview}...</pre>
+          </details>
+        `;
+        
+      } catch (error) {
+        testResult.className = 'test-results error';
+        testResult.innerHTML = `
+          <h3>Error testing: ${path}</h3>
+          <p>❌ Request failed: ${error.message}</p>
+        `;
+      }
+    }
+    
+    function testCustomUrl() {
+      const customUrl = document.getElementById('customUrl').value;
+      if (customUrl) {
+        testUrl(customUrl);
+      }
+    }
+    
+    // Auto-update curl commands based on current domain
+    function updateCurlCommands() {
+      const domain = window.location.origin;
+      const curlCommands = document.getElementById('curlCommands');
+      curlCommands.textContent = `
+# Test with Googlebot user agent
+curl -H "User-Agent: Googlebot/2.1 (+http://www.google.com/bot.html)" "${domain}/"
+
+# Test with AI crawler user agent  
+curl -H "User-Agent: Mozilla/5.0 (compatible; ChatGPT-User/1.0)" "${domain}/services"
+
+# Test with minimal headers (simulates semantic analysis tools)
+curl -H "User-Agent: SemanticBot/1.0" -H "Accept: text/html" "${domain}/guides/hubspot-expert"
+
+# Test content accessibility without JavaScript
+curl -s "${domain}/services/analytics-bi" | head -100
+
+# Test encoding and binary corruption
+curl -s "${domain}/" | file -
+      `;
+    }
+    
+    updateCurlCommands();
+    
+    // Add keyboard shortcut for quick testing
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 'Enter') {
+        testCustomUrl();
+      }
+    });
+  </script>
+</body>
+</html>

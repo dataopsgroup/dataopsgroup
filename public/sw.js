@@ -4,6 +4,7 @@
 
 importScripts('./sw/config.js');
 importScripts('./sw/bot-detection.js');
+importScripts('./sw/static-content-handler.js');
 importScripts('./sw/cache-strategies.js');
 importScripts('./sw/cache-utils.js');
 importScripts('./sw/navigation-handler.js');
@@ -69,9 +70,17 @@ self.addEventListener('fetch', (event) => {
   // Skip non-HTTP requests
   if (!url.protocol.startsWith('http')) return;
   
-  // CRITICAL: Always bypass service worker for bots to prevent binary corruption
-  if (isSearchEngineBot(request)) {
-    event.respondWith(handleBotRequest(request));
+  // CRITICAL: Enhanced bot handling with static content serving
+  if (isSearchEngineBot(request) || isAICrawler(request)) {
+    event.respondWith(
+      serveStaticContent(request).then(response => {
+        logBotRequest(request, response.headers.get('X-Content-Source') || 'static');
+        return response;
+      }).catch(error => {
+        console.error('Static content serving failed, falling back to bot handler:', error);
+        return handleBotRequest(request);
+      })
+    );
     return;
   }
   

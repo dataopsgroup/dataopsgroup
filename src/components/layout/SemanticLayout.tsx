@@ -7,15 +7,17 @@ import NoindexValidator from '@/components/seo/NoindexValidator';
 import CookieBanner from '@/components/CookieBanner';
 import GlobalURLValidator from '@/components/seo/GlobalURLValidator';
 import { initEncodingValidator } from '@/utils/encoding-validation';
+import { initStaticContentValidator } from '@/utils/static-content-validator';
 
 interface SemanticLayoutProps {
   children: React.ReactNode;
 }
 
 const SemanticLayout = ({ children }: SemanticLayoutProps) => {
-  // Initialize encoding validation in development
+  // Initialize validation systems in development
   useEffect(() => {
     initEncodingValidator();
+    initStaticContentValidator();
   }, []);
 
   return (
