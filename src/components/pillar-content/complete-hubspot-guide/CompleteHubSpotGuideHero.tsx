@@ -66,13 +66,8 @@ const CompleteHubSpotGuideHero = () => {
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/data-operations-assessment">
-              <Button size="lg" className="bg-saffron-500 hover:bg-saffron-600 text-white px-8 py-3">
-                Get Your Portfolio Assessment
-              </Button>
-            </Link>
+          {/* CTA Button */}
+          <div className="flex justify-center">
             <Link to="/contact">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-dataops-950 px-8 py-3">
                 Schedule Expert Consultation
