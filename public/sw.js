@@ -69,6 +69,12 @@ self.addEventListener('fetch', (event) => {
   // Skip non-HTTP requests
   if (!url.protocol.startsWith('http')) return;
   
+  // CRITICAL: Always bypass service worker for bots to prevent binary corruption
+  if (isSearchEngineBot(request)) {
+    event.respondWith(handleBotRequest(request));
+    return;
+  }
+  
   // Skip problematic third-party scripts
   const problematicHosts = [
     'cdn.gpteng.co',

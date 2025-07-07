@@ -90,15 +90,22 @@ const addBotFriendlyHeaders = (response) => {
  */
 const handleBotRequest = async (request) => {
   try {
-    // Always fetch fresh content for bots
+    // CRITICAL: Always fetch fresh content for bots, bypass service worker completely
     const response = await fetch(request, {
       cache: 'no-store',
       headers: {
-        'User-Agent': request.headers.get('User-Agent') || 'ServiceWorker-Bot-Handler'
+        'User-Agent': request.headers.get('User-Agent') || 'ServiceWorker-Bot-Handler',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Charset': 'utf-8'
       }
     });
     
-    // Add bot-friendly headers
+    // CRITICAL: Ensure response is readable text for crawlers
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    // Add bot-friendly headers and ensure UTF-8 encoding
     return addBotFriendlyHeaders(response);
   } catch (error) {
     console.error('Bot request failed:', error);

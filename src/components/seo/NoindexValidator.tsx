@@ -5,9 +5,21 @@ import { validateComponentNoindex, isAllowedNoindexPage, isRequiredIndexablePage
 /**
  * Development-only component to validate noindex usage
  * Warns when content pages have noindex or system pages lack noindex
+ * CRITICAL: Must be rendered inside Router context
  */
 const NoindexValidator: React.FC = () => {
-  const location = useLocation();
+  // CRITICAL FIX: Safe location access with fallback
+  let location;
+  try {
+    location = useLocation();
+  } catch (error) {
+    // Fallback if not in router context (SSR, initial render, etc.)
+    if (typeof window !== 'undefined') {
+      location = { pathname: window.location.pathname };
+    } else {
+      location = { pathname: '/' };
+    }
+  }
   
   useEffect(() => {
     // Only run in development
