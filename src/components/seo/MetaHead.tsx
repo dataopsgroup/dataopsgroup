@@ -160,10 +160,6 @@ const MetaHead = ({
 
   return (
     <Helmet>
-      {/* Character Encoding - CRITICAL for crawler readability */}
-      <meta charSet="utf-8" />
-      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-      
       {/* Basic Meta Tags */}
       <title>{truncatedTitle}</title>
       <meta name="description" content={truncatedDescription} />

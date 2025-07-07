@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import SemanticLayout from '@/components/layout/SemanticLayout';
 import PillarContent from '@/components/PillarContent';
 import MetaHead from '@/components/seo/MetaHead';
@@ -16,19 +16,52 @@ const PillarContentPage = () => {
   }, []);
 
   // For now, we only have one pillar content piece
-  // Future: expand to handle multiple pieces based on slug
-  
-  // Known content mappings
-  const validContentSlugs = ['hubspot-expert-guide', 'hubspot-expert'];
-  
-  // Redirect hubspot-expert to hubspot-expert-guide for consistency
-  if (slug === 'hubspot-expert') {
-    return <Navigate to="/guides/hubspot-expert" replace />;
-  }
-  
-  // If slug is not valid, redirect to 404 instead of showing noindex page
-  if (!validContentSlugs.includes(slug || '')) {
-    return <Navigate to="/404" replace />;
+  // In the future, this could be expanded to handle multiple pieces
+  if (slug !== 'hubspot-expert-guide') {
+    return (
+      <SemanticLayout>
+        <MetaHead
+          title="Content Not Found - DataOps Group"
+          description="The requested content could not be found. Browse our available guides and resources."
+          canonicalPath={`/guides/${slug}`}
+          noindex={true}
+          structuredData={{
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Content Not Found",
+            "description": "The requested pillar content could not be found",
+            "url": `https://dataopsgroup.com/guides/${slug}`,
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://dataopsgroup.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Guides",
+                  "item": "https://dataopsgroup.com/guides"
+                }
+              ]
+            }
+          }}
+        />
+        <BreadcrumbSchema items={[
+          { name: 'Home', url: '/' },
+          { name: 'Guides', url: '/guides' },
+          { name: 'Content Not Found', url: `/guides/${slug}` }
+        ]} />
+        
+        <div className="container mx-auto px-4 py-16 text-center">
+          <h1 className="text-4xl font-bold mb-4">Content Not Found</h1>
+          <p className="text-gray-600">The requested content could not be found.</p>
+        </div>
+      </SemanticLayout>
+    );
   }
 
   return (

@@ -4,7 +4,6 @@
 
 importScripts('./sw/config.js');
 importScripts('./sw/bot-detection.js');
-importScripts('./sw/static-content-handler.js');
 importScripts('./sw/cache-strategies.js');
 importScripts('./sw/cache-utils.js');
 importScripts('./sw/navigation-handler.js');
@@ -69,35 +68,6 @@ self.addEventListener('fetch', (event) => {
   
   // Skip non-HTTP requests
   if (!url.protocol.startsWith('http')) return;
-  
-  // CRITICAL: Enhanced bot handling with static content serving
-  if (isSearchEngineBot(request) || isAICrawler(request)) {
-    event.respondWith(
-      serveStaticContent(request).then(response => {
-        logBotRequest(request, response.headers.get('X-Content-Source') || 'static');
-        return response;
-      }).catch(error => {
-        console.error('Static content serving failed:', error);
-        // Return basic HTML instead of falling back to SPA
-        const basicHtml = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>DataOps Group - HubSpot Consultancy</title>
-  <meta name="description" content="Expert HubSpot implementation and data operations for private equity portfolio companies.">
-</head>
-<body>
-  <h1>DataOps Group</h1>
-  <p>Expert HubSpot implementation and data operations for private equity portfolio companies.</p>
-</body>
-</html>`;
-        return new Response(basicHtml, {
-          headers: { 'Content-Type': 'text/html; charset=utf-8', 'X-Content-Source': 'emergency-fallback' }
-        });
-      })
-    );
-    return;
-  }
   
   // Skip problematic third-party scripts
   const problematicHosts = [

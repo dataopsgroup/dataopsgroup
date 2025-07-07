@@ -13,7 +13,7 @@ import RelatedServices from '@/components/services/RelatedServices';
 import ServiceSchema from '@/components/seo/ServiceSchema';
 import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 import { Button } from '@/components/ui/button';
-import MetaHead from '@/components/seo/MetaHead';
+import { Helmet } from 'react-helmet';
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
@@ -69,17 +69,24 @@ const ServiceDetail = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <MetaHead
-        title={`${title} | DataOps Group`}
-        description={metaDescription}
-        canonicalPath={`/services/${serviceId}`}
-        ogType="website"
-        ogTitle={`${title} | DataOps Group`}
-        ogDescription={metaDescription}
-        ogImage="/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png"
-        siteName="DataOps Group"
-        keywords={isHubSpotTraining ? "hubspot training, hubspot implementation, marketing operations, sales enablement" : "data services, analytics, business intelligence, data governance"}
-      />
+      <Helmet>
+        <title>{title} | DataOps Group</title>
+        <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={`${baseUrl}/services/${serviceId}`} />
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${title} | DataOps Group`} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={`${baseUrl}/services/${serviceId}`} />
+        <meta property="og:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta property="og:site_name" content="DataOps Group" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${title} | DataOps Group`} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={`${baseUrl}/lovable-uploads/9b9f1c84-13af-4551-96d5-b7a930f008cf.png`} />
+        <meta name="twitter:site" content="@dataops_group" />
+      </Helmet>
       
       {/* Schema Markup */}
       <ServiceSchema 

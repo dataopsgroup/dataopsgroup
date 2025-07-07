@@ -1,18 +1,17 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import MetaHead from '@/components/seo/MetaHead';
+import { Helmet } from 'react-helmet-async';
 
 const PrivacyPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <MetaHead
-        title="Privacy Policy - DataOps Group"
-        description="Read our privacy policy to understand how DataOps Group collects, uses, and protects your personal information."
-        keywords="privacy policy, data protection, personal information, GDPR compliance"
-        canonicalPath="/privacy"
-        noindex={true}
-      />
+      <Helmet>
+        <title>Privacy Policy - DataOps Group</title>
+        <meta name="description" content="Read our privacy policy to understand how DataOps Group collects, uses, and protects your personal information." />
+        <meta name="keywords" content="privacy policy, data protection, personal information, GDPR compliance" />
+        <link rel="canonical" href="/privacy" />
+      </Helmet>
       <Navbar />
       <main className="pt-28 flex-1">
         <div className="container mx-auto px-[5%]">
