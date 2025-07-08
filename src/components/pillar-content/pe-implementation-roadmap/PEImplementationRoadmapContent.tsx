@@ -3,8 +3,6 @@ import React from 'react';
 const PEImplementationRoadmapContent = () => {
   return (
     <article className="prose prose-lg prose-gray max-w-none">
-      <div className="border-b border-gray-200 pb-6 mb-8">
-            </div>
 
       <section className="mb-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">The 90-Day Value Creation Sprint</h2>
