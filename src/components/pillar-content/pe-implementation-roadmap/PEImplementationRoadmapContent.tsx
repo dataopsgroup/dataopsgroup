@@ -4,10 +4,7 @@ const PEImplementationRoadmapContent = () => {
   return (
     <article className="prose prose-lg prose-gray max-w-none">
       <div className="border-b border-gray-200 pb-6 mb-8">
-        <p className="text-gray-600 italic text-lg leading-relaxed">
-          A battle-tested framework for implementing HubSpot across private equity portfolios that maximizes value creation while minimizing adoption risk
-        </p>
-      </div>
+            </div>
 
       <section className="mb-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-6">The 90-Day Value Creation Sprint</h2>
@@ -16,7 +13,7 @@ const PEImplementationRoadmapContent = () => {
         </p>
         
         <p className="text-lg text-gray-700 leading-relaxed">
-          This roadmap is built on lessons learned from over 200 PE portfolio company implementations, distilling the most effective practices into a systematic approach that reduces time-to-value from 14 months to 90 days.
+          This roadmap is built on lessons learned from multiple portfolio company implementations, distilling the most effective practices into a systematic approach that reduces time-to-value from 14 months to 100 days.
         </p>
       </section>
 
