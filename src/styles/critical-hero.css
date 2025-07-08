@@ -11,7 +11,7 @@
  * - Responsive text sizing
  * - Proper navbar spacing (120px padding-top)
  * - Text background overlay for readability
- * 
+ * - 
  * MODIFICATIONS BLOCKED - User approval required!
  */
 
@@ -107,6 +107,7 @@
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 2;
 }
