@@ -27,8 +27,10 @@ const CompleteHubSpotGuideSidebar = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">HubSpot vs Competitors: The PE Decision Framework</h3>
-            <p className="text-sm text-gray-600">Comprehensive comparison framework for PE firms evaluating CRM platforms</p>
+            <a href="/guides/pe-decision-framework" className="block group">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">HubSpot vs Competitors: The PE Decision Framework</h3>
+              <p className="text-sm text-gray-600">Comprehensive comparison framework for PE firms evaluating CRM platforms</p>
+            </a>
           </div>
           
           <div>

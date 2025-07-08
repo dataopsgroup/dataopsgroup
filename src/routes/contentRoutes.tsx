@@ -3,6 +3,7 @@ import PillarContentPage from '@/pages/PillarContentPage';
 import HubSpotPEPage from '@/pages/HubSpotPEPage';
 import CompleteHubSpotGuidePage from '@/pages/CompleteHubSpotGuidePage';
 import PEHubSpotImplementationRoadmapPage from '@/pages/PEHubSpotImplementationRoadmapPage';
+import PEDecisionFrameworkPage from '@/pages/PEDecisionFrameworkPage';
 
 export const contentRoutes: RouteObject[] = [
   {
@@ -20,5 +21,9 @@ export const contentRoutes: RouteObject[] = [
   {
     path: '/guides/pe-hubspot-implementation-roadmap',
     element: <PEHubSpotImplementationRoadmapPage />
+  },
+  {
+    path: '/guides/pe-decision-framework',
+    element: <PEDecisionFrameworkPage />
   }
 ];

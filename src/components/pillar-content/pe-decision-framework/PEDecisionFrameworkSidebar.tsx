@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calculator } from 'lucide-react';
 
-const PEImplementationRoadmapSidebar = () => {
+const PEDecisionFrameworkSidebar = () => {
   return (
     <div className="lg:col-span-1">
       {/* Further Resources Section */}
@@ -26,9 +26,9 @@ const PEImplementationRoadmapSidebar = () => {
           </div>
           
           <div>
-            <a href="/guides/pe-decision-framework" className="block group">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">HubSpot vs Competitors: The PE Decision Framework</h3>
-              <p className="text-sm text-gray-600">Comprehensive comparison framework for PE firms evaluating CRM platforms</p>
+            <a href="/guides/pe-hubspot-implementation-roadmap" className="block group">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">PE-Optimized HubSpot Implementation Roadmap</h3>
+              <p className="text-sm text-gray-600">Step-by-step implementation guide tailored for private equity requirements</p>
             </a>
           </div>
           
@@ -42,4 +42,4 @@ const PEImplementationRoadmapSidebar = () => {
   );
 };
 
-export default PEImplementationRoadmapSidebar;
+export default PEDecisionFrameworkSidebar;
