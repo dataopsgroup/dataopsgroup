@@ -10,7 +10,7 @@
  * - Two CTA buttons (Assessment and Calculator)
  * - Semi-transparent text background
  * - Proper responsive styling
- * 
+ * - Hero-buttons: justify-center
  * EDITING BLOCKED - User permission required!
  */
 
@@ -27,7 +27,7 @@ const HeroContent = React.memo(() => {
           Turn Portco CRM Ops Into Profit Drivers in{' '}
           <span className="text-yellow-300 text-4xl lg:text-6xl font-bold">100 Days</span>
         </h1>
-        <div className="hero-buttons mt-8 flex flex-col sm:flex-row gap-4">
+        <div className="hero-buttons mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <a 
             href="/data-operations-assessment"
             className="bg-brand-saffron hover:bg-yellow-400 text-black px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center"
