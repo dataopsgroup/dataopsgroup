@@ -4,6 +4,7 @@
 /* Critical path optimizations */
 @import './styles/critical-consolidated.css';
 @import './styles/components-consolidated.css';
+@import './styles/critical-hero.css';
 
 /* Tailwind imports */
 @tailwind base;
