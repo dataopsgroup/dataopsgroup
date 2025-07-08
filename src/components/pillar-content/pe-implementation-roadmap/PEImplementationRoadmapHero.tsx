@@ -8,9 +8,6 @@ const PEImplementationRoadmapHero = () => {
           The PE-Optimized HubSpot Implementation Roadmap
         </h1>
         
-        <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
-          A battle-tested framework for implementing HubSpot across private equity portfolios that maximizes value creation while minimizing adoption risk
-        </p>
         
       </div>
     </section>
