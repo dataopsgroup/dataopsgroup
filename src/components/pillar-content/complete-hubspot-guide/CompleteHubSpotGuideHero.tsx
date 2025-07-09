@@ -109,12 +109,6 @@ const CompleteHubSpotGuideHero = () => {
             </div>
           </div>
 
-          {/* Call to Action */}
-          <div className="text-center">
-            <button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
-              Start Reading the Guide
-            </button>
-          </div>
         </div>
       </div>
     </section>
