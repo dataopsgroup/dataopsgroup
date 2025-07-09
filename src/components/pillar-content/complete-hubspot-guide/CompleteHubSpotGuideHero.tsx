@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, TrendingUp, Users } from 'lucide-react';
+import { TrendingUp, Users, Clock, Target, Zap, BarChart3 } from 'lucide-react';
 
 const CompleteHubSpotGuideHero = () => {
   return (
@@ -32,30 +32,88 @@ const CompleteHubSpotGuideHero = () => {
           
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-            Beyond CRM to Portfolio Orchestration
+            Turn Operations Into Value Creation Engines
           </p>
 
           {/* Description */}
           <p className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            How smart PE firms use HubSpot not just as a customer database, but as the central nervous system that drives portfolio value creation and IRR optimization
+            The definitive playbook for PE firms to leverage HubSpot as their portfolio optimization platform, driving measurable IRR improvements across all investments
           </p>
 
-          {/* Stats Row */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="flex flex-col items-center">
-              <div className="bg-saffron-500 p-3 rounded-full mb-3">
-                <TrendingUp className="h-6 w-6 text-white" />
+          {/* Enhanced Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
+            {/* Stat 1 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-saffron-500 p-3 rounded-full">
+                  <TrendingUp className="h-6 w-6 text-white" />
+                </div>
               </div>
-              <div className="text-2xl font-bold text-white">$2.5T</div>
+              <div className="text-3xl font-bold text-white mb-2">$2.5T</div>
               <div className="text-sm text-gray-300">PE Assets Under Management</div>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="bg-saffron-500 p-3 rounded-full mb-3">
-                <Users className="h-6 w-6 text-white" />
+
+            {/* Stat 2 */}
+            <div className="bg-saffron-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-saffron-500/25 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-white/20 p-3 rounded-full">
+                  <Users className="h-6 w-6 text-white" />
+                </div>
               </div>
-              <div className="text-2xl font-bold text-white">15-25%</div>
-              <div className="text-sm text-gray-300">Value Left on Table</div>
+              <div className="text-3xl font-bold text-white mb-2">65%</div>
+              <div className="text-sm text-gray-300">Portfolio Companies Using Outdated Systems</div>
             </div>
+
+            {/* Stat 3 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-saffron-500 p-3 rounded-full">
+                  <BarChart3 className="h-6 w-6 text-white" />
+                </div>
+              </div>
+              <div className="text-3xl font-bold text-white mb-2">23%</div>
+              <div className="text-sm text-gray-300">Average IRR Improvement with Better Data</div>
+            </div>
+
+            {/* Stat 4 */}
+            <div className="bg-saffron-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-saffron-500/25 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-white/20 p-3 rounded-full">
+                  <Clock className="h-6 w-6 text-white" />
+                </div>
+              </div>
+              <div className="text-3xl font-bold text-white mb-2">100 Days</div>
+              <div className="text-sm text-gray-300">Typical Investment Period Lost to Poor Ops</div>
+            </div>
+
+            {/* Stat 5 */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-saffron-500 p-3 rounded-full">
+                  <Zap className="h-6 w-6 text-white" />
+                </div>
+              </div>
+              <div className="text-3xl font-bold text-white mb-2">40%</div>
+              <div className="text-sm text-gray-300">Time Savings with Proper CRM Integration</div>
+            </div>
+
+            {/* Stat 6 */}
+            <div className="bg-saffron-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-saffron-500/25 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-white/20 p-3 rounded-full">
+                  <Target className="h-6 w-6 text-white" />
+                </div>
+              </div>
+              <div className="text-3xl font-bold text-white mb-2">3.2x</div>
+              <div className="text-sm text-gray-300">Revenue Growth Multiplier with HubSpot</div>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center">
+            <button className="bg-saffron-500 hover:bg-saffron-600 text-dataops-950 font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 hover:scale-105 shadow-lg">
+              Start Reading the Guide
+            </button>
           </div>
         </div>
       </div>
