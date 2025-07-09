@@ -42,70 +42,70 @@ const CompleteHubSpotGuideHero = () => {
 
           {/* Enhanced Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
-            {/* Stat 1 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+            {/* Stat 1 - Emerald Green */}
+            <div className="bg-emerald-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-emerald-500/25 transition-all duration-300 hover:scale-105 border border-emerald-400/20">
               <div className="flex items-center justify-center mb-4">
-                <div className="bg-saffron-500 p-3 rounded-full">
+                <div className="bg-emerald-500 p-3 rounded-full shadow-lg">
                   <TrendingUp className="h-6 w-6 text-white" />
                 </div>
               </div>
               <div className="text-3xl font-bold text-white mb-2">$2.5T</div>
-              <div className="text-sm text-gray-300">PE Assets Under Management</div>
+              <div className="text-sm text-emerald-100">PE Assets Under Management</div>
             </div>
 
-            {/* Stat 2 */}
-            <div className="bg-saffron-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-saffron-500/25 transition-all duration-300 hover:scale-105">
+            {/* Stat 2 - Orange/Amber */}
+            <div className="bg-orange-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-orange-500/25 transition-all duration-300 hover:scale-105 border border-orange-400/20">
               <div className="flex items-center justify-center mb-4">
-                <div className="bg-white/20 p-3 rounded-full">
+                <div className="bg-orange-500 p-3 rounded-full shadow-lg">
                   <Users className="h-6 w-6 text-white" />
                 </div>
               </div>
               <div className="text-3xl font-bold text-white mb-2">65%</div>
-              <div className="text-sm text-gray-300">Portfolio Companies Using Outdated Systems</div>
+              <div className="text-sm text-orange-100">Portfolio Companies Using Outdated Systems</div>
             </div>
 
-            {/* Stat 3 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+            {/* Stat 3 - Purple */}
+            <div className="bg-purple-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-purple-500/25 transition-all duration-300 hover:scale-105 border border-purple-400/20">
               <div className="flex items-center justify-center mb-4">
-                <div className="bg-saffron-500 p-3 rounded-full">
+                <div className="bg-purple-500 p-3 rounded-full shadow-lg">
                   <BarChart3 className="h-6 w-6 text-white" />
                 </div>
               </div>
               <div className="text-3xl font-bold text-white mb-2">23%</div>
-              <div className="text-sm text-gray-300">Average IRR Improvement with Better Data</div>
+              <div className="text-sm text-purple-100">Average IRR Improvement with Better Data</div>
             </div>
 
-            {/* Stat 4 */}
-            <div className="bg-saffron-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-saffron-500/25 transition-all duration-300 hover:scale-105">
+            {/* Stat 4 - Red/Rose */}
+            <div className="bg-rose-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-rose-500/25 transition-all duration-300 hover:scale-105 border border-rose-400/20">
               <div className="flex items-center justify-center mb-4">
-                <div className="bg-white/20 p-3 rounded-full">
+                <div className="bg-rose-500 p-3 rounded-full shadow-lg">
                   <Clock className="h-6 w-6 text-white" />
                 </div>
               </div>
               <div className="text-3xl font-bold text-white mb-2">100 Days</div>
-              <div className="text-sm text-gray-300">Typical Investment Period Lost to Poor Ops</div>
+              <div className="text-sm text-rose-100">Typical Investment Period Lost to Poor Ops</div>
             </div>
 
-            {/* Stat 5 */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/15 transition-all duration-300 hover:scale-105">
+            {/* Stat 5 - Cyan/Teal */}
+            <div className="bg-cyan-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-cyan-500/25 transition-all duration-300 hover:scale-105 border border-cyan-400/20">
               <div className="flex items-center justify-center mb-4">
-                <div className="bg-saffron-500 p-3 rounded-full">
+                <div className="bg-cyan-500 p-3 rounded-full shadow-lg">
                   <Zap className="h-6 w-6 text-white" />
                 </div>
               </div>
               <div className="text-3xl font-bold text-white mb-2">40%</div>
-              <div className="text-sm text-gray-300">Time Savings with Proper CRM Integration</div>
+              <div className="text-sm text-cyan-100">Time Savings with Proper CRM Integration</div>
             </div>
 
-            {/* Stat 6 */}
-            <div className="bg-saffron-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-saffron-500/25 transition-all duration-300 hover:scale-105">
+            {/* Stat 6 - Saffron (brand color) */}
+            <div className="bg-saffron-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-saffron-500/25 transition-all duration-300 hover:scale-105 border border-yellow-400/20">
               <div className="flex items-center justify-center mb-4">
-                <div className="bg-white/20 p-3 rounded-full">
+                <div className="bg-saffron-500 p-3 rounded-full shadow-lg">
                   <Target className="h-6 w-6 text-white" />
                 </div>
               </div>
               <div className="text-3xl font-bold text-white mb-2">3.2x</div>
-              <div className="text-sm text-gray-300">Revenue Growth Multiplier with HubSpot</div>
+              <div className="text-sm text-yellow-100">Revenue Growth Multiplier with HubSpot</div>
             </div>
           </div>
 
