@@ -97,15 +97,15 @@ const CompleteHubSpotGuideHero = () => {
               <div className="text-sm text-cyan-100">Time Savings with Proper CRM Integration</div>
             </div>
 
-            {/* Stat 6 - Saffron (brand color) */}
-            <div className="bg-saffron-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-saffron-500/25 transition-all duration-300 hover:scale-105 border border-yellow-400/20">
+            {/* Stat 6 - Indigo */}
+            <div className="bg-indigo-500/20 backdrop-blur-sm rounded-lg p-6 hover:bg-indigo-500/25 transition-all duration-300 hover:scale-105 border border-indigo-400/20">
               <div className="flex items-center justify-center mb-4">
-                <div className="bg-saffron-500 p-3 rounded-full shadow-lg">
+                <div className="bg-indigo-500 p-3 rounded-full shadow-lg">
                   <Target className="h-6 w-6 text-white" />
                 </div>
               </div>
               <div className="text-3xl font-bold text-white mb-2">3.2x</div>
-              <div className="text-sm text-yellow-100">Revenue Growth Multiplier with HubSpot</div>
+              <div className="text-sm text-indigo-100">Revenue Growth Multiplier with HubSpot</div>
             </div>
           </div>
 
