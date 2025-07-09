@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calculator } from 'lucide-react';
 
-const PEDecisionFrameworkSidebar = () => {
+const PEPortfolioCaseStudiesSidebar = () => {
   return (
     <div className="lg:col-span-1">
       {/* Further Resources Section */}
@@ -21,7 +21,7 @@ const PEDecisionFrameworkSidebar = () => {
           <div>
             <a href="/guides/complete-hubspot-guide-for-private-equity" className="block group">
               <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">Complete HubSpot Guide for Private Equity</h3>
-              <p className="text-sm text-gray-600">Comprehensive guide to transforming HubSpot into a portfolio orchestration platform</p>
+              <p className="text-sm text-gray-600">Comprehensive guide to HubSpot implementation strategies for PE firms</p>
             </a>
           </div>
           
@@ -33,9 +33,9 @@ const PEDecisionFrameworkSidebar = () => {
           </div>
           
           <div>
-            <a href="/guides/pe-portfolio-value-creation-case-studies" className="block group">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">Portfolio Value Creation Case Studies</h3>
-              <p className="text-sm text-gray-600">Real examples of PE firms achieving measurable ROI through strategic HubSpot deployment</p>
+            <a href="/guides/pe-decision-framework" className="block group">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">HubSpot vs Competitors: The PE Decision Framework</h3>
+              <p className="text-sm text-gray-600">Comprehensive comparison framework for PE firms evaluating CRM platforms</p>
             </a>
           </div>
         </div>
@@ -44,4 +44,4 @@ const PEDecisionFrameworkSidebar = () => {
   );
 };
 
-export default PEDecisionFrameworkSidebar;
+export default PEPortfolioCaseStudiesSidebar;

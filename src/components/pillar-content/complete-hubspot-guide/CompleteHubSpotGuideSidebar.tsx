@@ -34,8 +34,10 @@ const CompleteHubSpotGuideSidebar = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">Portfolio Value Creation Case Studies</h3>
-            <p className="text-sm text-gray-600">Real examples of PE firms achieving measurable ROI through strategic HubSpot deployment</p>
+            <a href="/guides/pe-portfolio-value-creation-case-studies" className="block group">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-dataops-600 transition-colors">Portfolio Value Creation Case Studies</h3>
+              <p className="text-sm text-gray-600">Real examples of PE firms achieving measurable ROI through strategic HubSpot deployment</p>
+            </a>
           </div>
         </div>
       </div>

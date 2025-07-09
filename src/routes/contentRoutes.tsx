@@ -4,6 +4,7 @@ import HubSpotPEPage from '@/pages/HubSpotPEPage';
 import CompleteHubSpotGuidePage from '@/pages/CompleteHubSpotGuidePage';
 import PEHubSpotImplementationRoadmapPage from '@/pages/PEHubSpotImplementationRoadmapPage';
 import PEDecisionFrameworkPage from '@/pages/PEDecisionFrameworkPage';
+import PEPortfolioValueCreationCaseStudiesPage from '@/pages/PEPortfolioValueCreationCaseStudiesPage';
 
 export const contentRoutes: RouteObject[] = [
   {
@@ -25,5 +26,9 @@ export const contentRoutes: RouteObject[] = [
   {
     path: '/guides/pe-decision-framework',
     element: <PEDecisionFrameworkPage />
+  },
+  {
+    path: '/guides/pe-portfolio-value-creation-case-studies',
+    element: <PEPortfolioValueCreationCaseStudiesPage />
   }
 ];
