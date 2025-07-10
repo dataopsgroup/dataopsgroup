@@ -42,7 +42,10 @@ export const CANONICAL_URLS = {
   
   // Legal pages
   terms: '/terms',
-  privacy: '/privacy'
+  privacy: '/privacy',
+  
+  // Service pages
+  hubspotIntegrationServices: '/services'
 } as const;
 
 export default CANONICAL_URLS;

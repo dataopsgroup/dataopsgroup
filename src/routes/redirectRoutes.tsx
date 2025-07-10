@@ -17,13 +17,19 @@ import { guidesRedirects } from './redirects/guidesRedirects';
 import { miscRedirects } from './redirects/miscRedirects';
 import { ampRedirects } from './redirects/ampRedirects';
 import { legalRedirects } from './redirects/legalRedirects';
+import { serviceRedirects } from './redirects/serviceRedirects';
+import { caseStudyRedirects } from './redirects/caseStudyRedirects';
+import { typoRedirects } from './redirects/typoRedirects';
 
 // 301 Redirects - organized by category
 // CRITICAL: Ensure guidesRedirects is included to fix Ahrefs canonical issues
 export const redirectRoutes = [
   ...guidesRedirects, // MOVED TO TOP for priority - fixes /guides/hubspot-expert-guide redirects
+  ...typoRedirects, // HIGH PRIORITY - Fix common typos first
   ...assessmentRedirects,
   ...servicesRedirects,
+  ...serviceRedirects, // NEW: Service page redirects
+  ...caseStudyRedirects, // NEW: Case study redirects
   ...contentRedirects,
   ...legalRedirects,
   ...miscRedirects,
@@ -34,5 +40,8 @@ export const redirectRoutes = [
 if (process.env.NODE_ENV === 'development') {
   console.log('🔀 Redirect routes loaded:', redirectRoutes.length, 'redirects');
   console.log('📍 Guide redirects:', guidesRedirects.length, 'redirects');
+  console.log('🔧 Service redirects:', serviceRedirects.length, 'redirects');
+  console.log('📋 Case study redirects:', caseStudyRedirects.length, 'redirects');
+  console.log('🔤 Typo redirects:', typoRedirects.length, 'redirects');
   console.log('⚖️ Legal redirects:', legalRedirects.length, 'redirects');
 }

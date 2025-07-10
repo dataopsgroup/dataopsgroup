@@ -75,7 +75,22 @@ export const DUPLICATE_URLS_TO_REDIRECT = {
   '/calculator': CANONICAL_URLS.badDataCalculator,
   '/bad-data-calculator': CANONICAL_URLS.badDataCalculator,
   '/roi-calculator': CANONICAL_URLS.revopsCalculator,
-  '/revops-calculator': CANONICAL_URLS.revopsCalculator
+  '/revops-calculator': CANONICAL_URLS.revopsCalculator,
+  
+  // Service page variations
+  '/hubspot-integration-customization-services': CANONICAL_URLS.services,
+  '/hubspot-integration-services': CANONICAL_URLS.services,
+  '/hubspot-customization-services': CANONICAL_URLS.services,
+  
+  // Case study variations
+  '/case-study-upscale-home-improvement-manufacturer-boost-by-hubspot': CANONICAL_URLS.caseStudies,
+  '/case-study-private-equity-portfolio-company-data-transformation': CANONICAL_URLS.caseStudies,
+  '/case-study-manufacturing-company-hubspot-migration': CANONICAL_URLS.caseStudies,
+  
+  // Typo corrections
+  '/leaderschip': '/about',
+  '/servies': CANONICAL_URLS.services,
+  '/insigths': CANONICAL_URLS.insights
 } as const;
 
 // BROKEN EXTERNAL LINKS TO REPLACE

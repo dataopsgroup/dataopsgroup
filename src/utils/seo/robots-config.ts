@@ -40,6 +40,21 @@ export const ROBOTS_DISALLOW_PATTERNS = [
   '/terms-of-service',
   '/privacy-policy',
   
+  // Duplicate Service URLs
+  '/hubspot-integration-customization-services',
+  '/hubspot-integration-services',
+  '/hubspot-customization-services',
+  
+  // Duplicate Case Study URLs
+  '/case-study-upscale-home-improvement-manufacturer-boost-by-hubspot',
+  '/case-study-private-equity-portfolio-company-data-transformation',
+  '/case-study-manufacturing-company-hubspot-migration',
+  
+  // Typo URLs
+  '/leaderschip',
+  '/servies',
+  '/insigths',
+  
   // Query parameters that create duplicate content
   '/*?hs_amp=*',
   '/*?hsLang=*',

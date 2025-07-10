@@ -1,0 +1,27 @@
+[
+  {
+    "source": "/case-study-upscale-home-improvement-manufacturer-boost-by-hubspot",
+    "destination": "/case-studies",
+    "permanent": true
+  },
+  {
+    "source": "/case-study-private-equity-portfolio-company-data-transformation",
+    "destination": "/case-studies",
+    "permanent": true
+  },
+  {
+    "source": "/case-study-manufacturing-company-hubspot-migration",
+    "destination": "/case-studies",
+    "permanent": true
+  },
+  {
+    "source": "/case-studies/upscale-home-improvement",
+    "destination": "/case-studies",
+    "permanent": true
+  },
+  {
+    "source": "/case-studies/private-equity-transformation",
+    "destination": "/case-studies",
+    "permanent": true
+  }
+]

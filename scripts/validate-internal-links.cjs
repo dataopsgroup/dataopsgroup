@@ -31,6 +31,21 @@ const REDIRECT_MAPPINGS = {
   '/roi-calculator': '/revops-roi-calculator',
   '/terms-of-service': '/terms',
   '/privacy-policy': '/privacy',
+  
+  // Service page variations
+  '/hubspot-integration-customization-services': '/services',
+  '/hubspot-integration-services': '/services',
+  '/hubspot-customization-services': '/services',
+  
+  // Case study variations
+  '/case-study-upscale-home-improvement-manufacturer-boost-by-hubspot': '/case-studies',
+  '/case-study-private-equity-portfolio-company-data-transformation': '/case-studies',
+  '/case-study-manufacturing-company-hubspot-migration': '/case-studies',
+  
+  // Typo corrections
+  '/leaderschip': '/about',
+  '/servies': '/services',
+  '/insigths': '/insights'
 };
 
 /**

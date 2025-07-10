@@ -1,0 +1,32 @@
+[
+  {
+    "source": "/leaderschip",
+    "destination": "/about",
+    "permanent": true
+  },
+  {
+    "source": "/leaderschip/:path*",
+    "destination": "/about",
+    "permanent": true
+  },
+  {
+    "source": "/servies",
+    "destination": "/services",
+    "permanent": true
+  },
+  {
+    "source": "/servies/:path*",
+    "destination": "/services",
+    "permanent": true
+  },
+  {
+    "source": "/insigths",
+    "destination": "/insights",
+    "permanent": true
+  },
+  {
+    "source": "/insigths/:path*",
+    "destination": "/insights",
+    "permanent": true
+  }
+]
