@@ -24,6 +24,7 @@ const routes = [
   { url: '/data-operations-assessment', changefreq: 'weekly', priority: 0.9, lastmod: new Date() },
   { url: '/data-operations-assessment/results', changefreq: 'monthly', priority: 0.7, lastmod: new Date() },
   { url: '/guides/hubspot-expert', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
+  { url: '/guides/complete-hubspot-guide-for-private-equity', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },
   
   // Services - high priority
   { url: '/services/marketing-operations-revops', changefreq: 'monthly', priority: 0.8, lastmod: new Date() },

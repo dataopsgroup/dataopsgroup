@@ -167,6 +167,7 @@ const MetaHead = ({
       <link rel="canonical" href={fullCanonicalUrl} />
       
       {/* Google Search Console verification */}
+      <meta name="google-site-verification" content="your-gsc-verification-code" />
       {gscVerification && <meta name="google-site-verification" content={gscVerification} />}
       
       {/* Language and Locale */}

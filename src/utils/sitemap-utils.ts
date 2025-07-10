@@ -28,6 +28,7 @@ export const mainRoutes = [
   { url: CANONICAL_URLS.assessment, priority: "0.9", changefreq: "weekly", lastmod: TODAY },
   { url: CANONICAL_URLS.assessmentResults, priority: "0.7", changefreq: "monthly", lastmod: TODAY },
   { url: CANONICAL_URLS.hubspotExpert, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
+  { url: CANONICAL_URLS.completeHubspotGuide, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: CANONICAL_URLS.badDataCalculator, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: CANONICAL_URLS.revopsCalculator, priority: "0.8", changefreq: "monthly", lastmod: TODAY },
   { url: "/faqs", priority: "0.7", changefreq: "monthly", lastmod: TODAY },

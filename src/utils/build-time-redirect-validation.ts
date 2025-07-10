@@ -9,6 +9,7 @@
 import { validateForDeployment } from './redirect-prevention-system';
 import { auditAllRedirects } from './comprehensive-redirect-audit';
 import { CANONICAL_URLS, DUPLICATE_URLS_TO_REDIRECT } from './seo-config';
+import { runBuildTimeGSCValidation } from './gsc-sitemap-validation';
 
 /**
  * Main build validation that must pass for deployment
@@ -29,12 +30,16 @@ export const runBuildTimeRedirectValidation = () => {
     // 4. Cross-check with sitemap configuration
     validateSitemapConsistency();
     
-    // 5. Final validation summary
-    if (audit.isValid && deployment.canDeploy) {
-      console.log('✅ BUILD VALIDATION PASSED - Safe to deploy without Ahrefs issues');
+    // 5. Validate Google Search Console compliance
+    const gscValid = runBuildTimeGSCValidation();
+    
+    // 6. Final validation summary
+    if (audit.isValid && deployment.canDeploy && gscValid) {
+      console.log('✅ BUILD VALIDATION PASSED - Safe to deploy without Ahrefs or GSC issues');
       return true;
     } else {
-      console.error('🚫 BUILD VALIDATION FAILED - Deployment blocked to prevent Ahrefs issues');
+      console.error('🚫 BUILD VALIDATION FAILED - Deployment blocked to prevent Ahrefs and GSC issues');
+      console.error(`🔍 Issues: Redirects=${!audit.isValid}, Deployment=${!deployment.canDeploy}, GSC=${!gscValid}`);
       return false;
     }
     
