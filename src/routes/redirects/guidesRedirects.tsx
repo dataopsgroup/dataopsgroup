@@ -57,5 +57,19 @@ export const guidesRedirects = [
   {
     path: "/how-much-is-bad-data-costing-your-business",
     element: <Navigate to="/insights/true-cost-of-bad-data" replace />,
+  },
+  
+  // Complete HubSpot Guide redirects
+  {
+    path: "/complete-hubspot-guide",
+    element: <Navigate to={CANONICAL_URLS.completeHubspotGuide} replace />,
+  },
+  {
+    path: "/hubspot-guide-pe",
+    element: <Navigate to={CANONICAL_URLS.completeHubspotGuide} replace />,
+  },
+  {
+    path: "/pe-hubspot-guide",
+    element: <Navigate to={CANONICAL_URLS.completeHubspotGuide} replace />,
   }
 ];

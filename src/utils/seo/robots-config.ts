@@ -6,9 +6,9 @@
 
 import { CANONICAL_URLS } from './canonical-urls';
 
-// ROBOTS.TXT DISALLOW PATTERNS - Only essential admin/private areas
+// ROBOTS.TXT DISALLOW PATTERNS - Admin areas and duplicate URLs
 export const ROBOTS_DISALLOW_PATTERNS = [
-  // Admin and private areas only
+  // Admin and private areas
   '/admin/',
   '/wp-admin/',
   '/private/',
@@ -19,7 +19,31 @@ export const ROBOTS_DISALLOW_PATTERNS = [
   // Development/testing paths
   '/test/',
   '/debug/',
-  '/.well-known/security.txt'
+  '/.well-known/security.txt',
+  
+  // Duplicate URLs that redirect (prevent indexing)
+  '/guides/hubspot-expert-guide',
+  '/how-to-hire-a-hubspot-expert-in-2025',
+  '/complete-hubspot-guide',
+  '/hubspot-guide-pe',
+  '/pe-hubspot-guide',
+  '/assessment',
+  '/data-operation-assessment',
+  '/calculator',
+  '/bad-data-calculator',
+  '/roi-calculator',
+  '/faq',
+  '/blog',
+  '/whitepapers',
+  '/articles',
+  '/service',
+  '/terms-of-service',
+  '/privacy-policy',
+  
+  // Query parameters that create duplicate content
+  '/*?hs_amp=*',
+  '/*?hsLang=*',
+  '/*?utm_*'
 ] as const;
 
 // ROBOTS.TXT EXPLICIT ALLOWS - All public content

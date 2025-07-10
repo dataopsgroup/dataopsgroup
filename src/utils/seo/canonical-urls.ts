@@ -16,6 +16,7 @@ export const CANONICAL_URLS = {
   
   // Main guide URLs - FIXED: Ensure this points to actual final destination
   hubspotExpert: '/guides/hubspot-expert',
+  completeHubspotGuide: '/guides/complete-hubspot-guide-for-private-equity',
   
   // Main FAQ page - FIXED: Added missing canonical URL for main FAQ page
   faqs: '/faqs',
@@ -37,7 +38,11 @@ export const CANONICAL_URLS = {
   
   // Book and PE program
   book: '/book',
-  peProgram: '/pe-value-creation-program'
+  peProgram: '/pe-value-creation-program',
+  
+  // Legal pages
+  terms: '/terms',
+  privacy: '/privacy'
 } as const;
 
 export default CANONICAL_URLS;

@@ -16,6 +16,7 @@ import { contentRedirects } from './redirects/contentRedirects';
 import { guidesRedirects } from './redirects/guidesRedirects';
 import { miscRedirects } from './redirects/miscRedirects';
 import { ampRedirects } from './redirects/ampRedirects';
+import { legalRedirects } from './redirects/legalRedirects';
 
 // 301 Redirects - organized by category
 // CRITICAL: Ensure guidesRedirects is included to fix Ahrefs canonical issues
@@ -24,6 +25,7 @@ export const redirectRoutes = [
   ...assessmentRedirects,
   ...servicesRedirects,
   ...contentRedirects,
+  ...legalRedirects,
   ...miscRedirects,
   ...ampRedirects
 ];
@@ -32,4 +34,5 @@ export const redirectRoutes = [
 if (process.env.NODE_ENV === 'development') {
   console.log('🔀 Redirect routes loaded:', redirectRoutes.length, 'redirects');
   console.log('📍 Guide redirects:', guidesRedirects.length, 'redirects');
+  console.log('⚖️ Legal redirects:', legalRedirects.length, 'redirects');
 }

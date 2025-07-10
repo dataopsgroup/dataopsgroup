@@ -5,7 +5,7 @@
  */
 
 import { CANONICAL_URLS, DUPLICATE_URLS_TO_REDIRECT } from './seo-config';
-import { validateCanonicalUrlIntegrity, logSEOValidation } from './seo-validation';
+import { validateSEOConfig } from './seo/validation';
 
 /**
  * Validates canonical URL configuration at build time
@@ -14,7 +14,7 @@ import { validateCanonicalUrlIntegrity, logSEOValidation } from './seo-validatio
 export const validateCanonicalConfigAtBuildTime = () => {
   console.log('🔍 Running build-time canonical URL validation...');
   
-  const validation = validateCanonicalUrlIntegrity();
+  const validation = validateSEOConfig();
   
   if (!validation.isValid) {
     console.error('🚨 BUILD FAILED: Canonical URL configuration errors detected!');
@@ -36,43 +36,50 @@ export const validateCanonicalConfigAtBuildTime = () => {
   }
   
   console.log('✅ Canonical URL validation passed');
-  
-  // Run full SEO validation for comprehensive logging
-  logSEOValidation();
+  console.log('🔍 SEO validation completed successfully');
 };
 
 /**
- * Specific validation for the problematic /guides/hubspot-expert URL
+ * Specific validation for guide URLs that were causing issues
  */
-export const validateHubSpotExpertGuideConfig = () => {
-  const hubspotExpertCanonical = CANONICAL_URLS.hubspotExpert; // Should be '/guides/hubspot-expert'
+export const validateGuideUrlsConfig = () => {
   const duplicateUrls = Object.keys(DUPLICATE_URLS_TO_REDIRECT);
   
-  console.log(`🎯 Validating HubSpot Expert Guide configuration...`);
-  console.log(`📍 Canonical URL: ${hubspotExpertCanonical}`);
+  console.log(`🎯 Validating Guide URLs configuration...`);
   
-  // Check if canonical URL is in redirect list
+  // Validate HubSpot Expert Guide
+  const hubspotExpertCanonical = CANONICAL_URLS.hubspotExpert;
+  console.log(`📍 HubSpot Expert Canonical: ${hubspotExpertCanonical}`);
+  
   if (duplicateUrls.includes(hubspotExpertCanonical)) {
-    throw new Error(`FATAL: ${hubspotExpertCanonical} is both canonical AND in redirect list - this causes the Ahrefs 200→307→200 error!`);
+    throw new Error(`FATAL: ${hubspotExpertCanonical} is both canonical AND in redirect list!`);
   }
   
-  // Check redirect targets point to canonical URL
-  const redirectsToHubSpotExpert = Object.entries(DUPLICATE_URLS_TO_REDIRECT)
-    .filter(([, target]) => target === hubspotExpertCanonical);
+  // Validate Complete HubSpot Guide
+  const completeGuideCanonical = CANONICAL_URLS.completeHubspotGuide;
+  console.log(`📍 Complete Guide Canonical: ${completeGuideCanonical}`);
   
-  console.log(`📋 Found ${redirectsToHubSpotExpert.length} URLs redirecting to ${hubspotExpertCanonical}:`);
-  redirectsToHubSpotExpert.forEach(([source]) => {
-    console.log(`  🔀 ${source} → ${hubspotExpertCanonical}`);
+  if (duplicateUrls.includes(completeGuideCanonical)) {
+    throw new Error(`FATAL: ${completeGuideCanonical} is both canonical AND in redirect list!`);
+  }
+  
+  // Check redirects for both guides
+  const guideRedirects = Object.entries(DUPLICATE_URLS_TO_REDIRECT)
+    .filter(([, target]) => target === hubspotExpertCanonical || target === completeGuideCanonical);
+  
+  console.log(`📋 Found ${guideRedirects.length} URLs redirecting to guide pages:`);
+  guideRedirects.forEach(([source, target]) => {
+    console.log(`  🔀 ${source} → ${target}`);
   });
   
-  console.log('✅ HubSpot Expert Guide configuration is valid');
+  console.log('✅ Guide URLs configuration is valid');
 };
 
 // Run validation immediately when imported in development
 if (process.env.NODE_ENV === 'development') {
   try {
     validateCanonicalConfigAtBuildTime();
-    validateHubSpotExpertGuideConfig();
+    validateGuideUrlsConfig();
   } catch (error) {
     console.error('🚨 Canonical URL validation failed:', error);
   }
@@ -80,5 +87,5 @@ if (process.env.NODE_ENV === 'development') {
 
 export default {
   validateCanonicalConfigAtBuildTime,
-  validateHubSpotExpertGuideConfig
+  validateGuideUrlsConfig
 };

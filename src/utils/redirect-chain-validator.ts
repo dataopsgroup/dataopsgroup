@@ -21,6 +21,9 @@ const REDIRECT_MAPPINGS = {
   // Guide redirects
   '/guides/hubspot-expert-guide': '/guides/hubspot-expert',
   '/how-to-hire-a-hubspot-expert-in-2025': '/guides/hubspot-expert',
+  '/complete-hubspot-guide': '/guides/complete-hubspot-guide-for-private-equity',
+  '/hubspot-guide-pe': '/guides/complete-hubspot-guide-for-private-equity',
+  '/pe-hubspot-guide': '/guides/complete-hubspot-guide-for-private-equity',
   
   // FAQ redirects
   '/faqs/hubspot-services': '/faqs/services',
@@ -30,6 +33,16 @@ const REDIRECT_MAPPINGS = {
   
   // Assessment redirects
   '/data-operation-assessment': '/data-operations-assessment',
+  '/assessment': '/data-operations-assessment',
+  
+  // Calculator redirects
+  '/calculator': '/bad-data-cost-calculator',
+  '/bad-data-calculator': '/bad-data-cost-calculator',
+  '/roi-calculator': '/revops-roi-calculator',
+  
+  // Legal redirects
+  '/terms-of-service': '/terms',
+  '/privacy-policy': '/privacy',
   
   // Legacy URLs
   '/whitepapers': '/insights',

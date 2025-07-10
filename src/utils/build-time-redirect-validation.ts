@@ -53,10 +53,17 @@ const validateProblematicPatterns = () => {
   const problematicUrls = [
     '/guides/hubspot-expert-guide', // The original issue
     '/guides/hubspot-expert',       // Canonical version
+    '/guides/complete-hubspot-guide-for-private-equity', // New guide canonical
+    '/complete-hubspot-guide',      // New guide redirect
     '/faqs/services-5',             // FAQ duplicates
     '/faqs/hubspot-services',
     '/faqs/hubspot-experts',
     '/assessment',                  // Assessment redirects
+    '/data-operations-assessment',  // Assessment canonical
+    '/calculator',                  // Calculator redirects
+    '/bad-data-cost-calculator',    // Calculator canonical
+    '/terms',                       // Legal pages
+    '/privacy',
     '/blog'                         // Blog redirects
   ];
   

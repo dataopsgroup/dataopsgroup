@@ -17,11 +17,20 @@ const REDIRECT_MAPPINGS = {
   '/business-intelligence': '/services/analytics-bi',
   '/guides/hubspot-expert-guide': '/guides/hubspot-expert',
   '/how-to-hire-a-hubspot-expert-in-2025': '/guides/hubspot-expert',
+  '/complete-hubspot-guide': '/guides/complete-hubspot-guide-for-private-equity',
+  '/hubspot-guide-pe': '/guides/complete-hubspot-guide-for-private-equity',
+  '/pe-hubspot-guide': '/guides/complete-hubspot-guide-for-private-equity',
   '/faqs/hubspot-services': '/faqs/services',
   '/faqs/hubspot-experts': '/faqs/experts',
   '/faqs/our-approach': '/faqs/approach',
   '/faqs/hubspot-modules': '/faqs/modules',
   '/data-operation-assessment': '/data-operations-assessment',
+  '/assessment': '/data-operations-assessment',
+  '/calculator': '/bad-data-cost-calculator',
+  '/bad-data-calculator': '/bad-data-cost-calculator',
+  '/roi-calculator': '/revops-roi-calculator',
+  '/terms-of-service': '/terms',
+  '/privacy-policy': '/privacy',
 };
 
 /**

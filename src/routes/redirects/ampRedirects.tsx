@@ -10,10 +10,24 @@ const AmpRedirectHandler = () => {
   return <Navigate to={`/insights/${cleanPostId}`} replace />;
 };
 
+// Handle hsLang parameter redirects
+const HsLangRedirectHandler = () => {
+  const { '*': path } = useParams();
+  // Remove hsLang parameter and redirect to clean URL
+  const cleanPath = path ? path.split('?')[0] : '';
+  return <Navigate to={`/${cleanPath}`} replace />;
+};
+
 export const ampRedirects = [
   // AMP URLs
   {
     path: "/en/blog/:postId",
     element: <AmpRedirectHandler />,
+  },
+  
+  // hsLang parameter redirects
+  {
+    path: "/*",
+    element: <HsLangRedirectHandler />,
   }
 ];
