@@ -58,12 +58,33 @@ const CategoryPageLayout: React.FC<CategoryPageLayoutProps> = ({
         <meta name="robots" content={robots} />
       </Helmet>
       
-      <FAQPageSchema 
-        items={formattedFAQs}
-        url={canonicalPath}
-        title={`${category.title} - FAQ`}
-        description={description}
-      />
+      {/* Use individual Question schema for category pages to avoid duplicate FAQPage */}
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "QAPage",
+            "@id": `https://dataopsgroup.com${canonicalPath}#qapage`,
+            "url": `https://dataopsgroup.com${canonicalPath}`,
+            "name": `${category.title} - FAQ`,
+            "description": description,
+            "mainEntity": formattedFAQs.map((item, index) => ({
+              "@type": "Question",
+              "@id": `https://dataopsgroup.com${canonicalPath}#question-${index + 1}`,
+              "name": item.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "@id": `https://dataopsgroup.com${canonicalPath}#answer-${index + 1}`,
+                "text": item.answer
+              }
+            })),
+            "isPartOf": {
+              "@id": "https://dataopsgroup.com/faqs#faqpage"
+            },
+            "inLanguage": "en-US"
+          })}
+        </script>
+      </Helmet>
       
       <BreadcrumbSchema items={breadcrumbs} />
       
