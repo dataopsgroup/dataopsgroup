@@ -88,9 +88,8 @@ Allow: /calculator/
 Allow: /book/
 Allow: /contact
 
-# Sitemap location
+# Sitemap location - SINGLE COMPREHENSIVE SITEMAP
 Sitemap: https://dataopsgroup.com/sitemap.xml
-Sitemap: https://dataopsgroup.com/sitemaps/sitemap-index.xml
 
 # Crawl delay settings (optional - only if needed)
 # Crawl-delay: 1
