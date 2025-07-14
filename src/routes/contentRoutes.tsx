@@ -1,5 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 import PillarContentPage from '@/pages/PillarContentPage';
+import HubSpotExpertGuidePage from '@/pages/HubSpotExpertGuidePage';
 import HubSpotPEPage from '@/pages/HubSpotPEPage';
 import CompleteHubSpotGuidePage from '@/pages/CompleteHubSpotGuidePage';
 import PEHubSpotImplementationRoadmapPage from '@/pages/PEHubSpotImplementationRoadmapPage';
@@ -9,7 +10,7 @@ import PEPortfolioValueCreationCaseStudiesPage from '@/pages/PEPortfolioValueCre
 export const contentRoutes: RouteObject[] = [
   {
     path: '/guides/hubspot-expert',
-    element: <PillarContentPage />
+    element: <HubSpotExpertGuidePage />
   },
   {
     path: '/guides/hubspot-private-equity',
